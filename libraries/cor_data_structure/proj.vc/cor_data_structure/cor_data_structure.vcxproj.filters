@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project ToolsVersion='4.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+  <ItemGroup>
+    
+    
+    
+  <Filter Include='sources\ai'/><Filter Include='sources'/><Filter Include='sources\geometry'/></ItemGroup>
+  <ItemGroup>
+    <Text Include='ReadMe.txt'/>
+  </ItemGroup>
+  <ItemGroup>
+    
+  <ClCompile Include='../../sources/ai/cost_grid_space.cpp'><Filter>sources\ai</Filter></ClCompile><ClCompile Include='../../sources/ai/priority_queue.cpp'><Filter>sources\ai</Filter></ClCompile><ClCompile Include='../../sources/ai/stack_decoder.cpp'><Filter>sources\ai</Filter></ClCompile><ClCompile Include='../../sources/array_pool.cpp'><Filter>sources</Filter></ClCompile><ClCompile Include='../../sources/geometry/r_tree_pool.cpp'><Filter>sources\geometry</Filter></ClCompile><ClCompile Include='../../sources/geometry/uniform_grid.cpp'><Filter>sources\geometry</Filter></ClCompile><ClCompile Include='../../sources/tree_pool.cpp'><Filter>sources</Filter></ClCompile></ItemGroup>
+  <ItemGroup>
+    
+    
+    
+  <ClInclude Include='../../sources/ai/cost_grid_space.h'><Filter>sources\ai</Filter></ClInclude><ClInclude Include='../../sources/ai/cost_grid_space_tmpl.h'><Filter>sources\ai</Filter></ClInclude><ClInclude Include='../../sources/ai/cost_grid_space_tmpl_impl.h'><Filter>sources\ai</Filter></ClInclude><ClInclude Include='../../sources/ai/priority_queue.h'><Filter>sources\ai</Filter></ClInclude><ClInclude Include='../../sources/ai/priority_queue_tmpl.h'><Filter>sources\ai</Filter></ClInclude><ClInclude Include='../../sources/ai/priority_queue_tmpl_impl.h'><Filter>sources\ai</Filter></ClInclude><ClInclude Include='../../sources/ai/stack_decoder.h'><Filter>sources\ai</Filter></ClInclude><ClInclude Include='../../sources/ai/stack_decoder_tmpl.h'><Filter>sources\ai</Filter></ClInclude><ClInclude Include='../../sources/ai/stack_decoder_tmpl_impl.h'><Filter>sources\ai</Filter></ClInclude><ClInclude Include='../../sources/array_pool.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/array_pool_tmpl.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/array_pool_tmpl_impl.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/geometry/r_tree_pool.h'><Filter>sources\geometry</Filter></ClInclude><ClInclude Include='../../sources/geometry/r_tree_pool_tmpl.h'><Filter>sources\geometry</Filter></ClInclude><ClInclude Include='../../sources/geometry/r_tree_pool_tmpl_impl.h'><Filter>sources\geometry</Filter></ClInclude><ClInclude Include='../../sources/geometry/uniform_grid.h'><Filter>sources\geometry</Filter></ClInclude><ClInclude Include='../../sources/geometry/uniform_grid_tmpl.h'><Filter>sources\geometry</Filter></ClInclude><ClInclude Include='../../sources/geometry/uniform_grid_tmpl_impl.h'><Filter>sources\geometry</Filter></ClInclude><ClInclude Include='../../sources/tree_pool.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/tree_pool_tmpl.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/tree_pool_tmpl_impl.h'><Filter>sources</Filter></ClInclude></ItemGroup>
+</Project>

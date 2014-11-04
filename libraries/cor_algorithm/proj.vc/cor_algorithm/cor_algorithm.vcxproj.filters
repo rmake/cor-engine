@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project ToolsVersion='4.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+  <ItemGroup>
+    
+    
+    
+  <Filter Include='sources'/></ItemGroup>
+  <ItemGroup>
+    <Text Include='ReadMe.txt'/>
+  </ItemGroup>
+  <ItemGroup>
+    
+  <ClCompile Include='../../sources/bit_operation.cpp'><Filter>sources</Filter></ClCompile><ClCompile Include='../../sources/utilities.cpp'><Filter>sources</Filter></ClCompile></ItemGroup>
+<ItemGroup><ClInclude Include='../../sources/bit_operation.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/bit_operation_tmpl.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/bit_operation_tmpl_impl.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/utilities.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/utilities_tmpl.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/utilities_tmpl_impl.h'><Filter>sources</Filter></ClInclude></ItemGroup></Project>

@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project DefaultTargets='Build' ToolsVersion='12.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+  <ItemGroup Label='ProjectConfigurations'>
+    <ProjectConfiguration Include='Debug|Win32'>
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include='Release|Win32'>
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label='Globals'>
+    <ProjectGuid>{B6E4178B-2CBD-4138-9C0C-94B57D3152C4}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>cor_mruby_interface</RootNamespace>
+  </PropertyGroup>
+  <Import Project='$(VCTargetsPath)\Microsoft.Cpp.Default.props'/>
+  <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;' Label='Configuration'>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;' Label='Configuration'>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project='$(VCTargetsPath)\Microsoft.Cpp.props'/>
+  <ImportGroup Label='ExtensionSettings'>
+  </ImportGroup>
+  <ImportGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;' Label='PropertySheets'>
+    <Import Condition='exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)' Label='LocalAppDataPlatform' Project='$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props'/>
+  </ImportGroup>
+  <ImportGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;' Label='PropertySheets'>
+    <Import Condition='exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)' Label='LocalAppDataPlatform' Project='$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props'/>
+  </ImportGroup>
+  <PropertyGroup Label='UserMacros'/>
+  <PropertyGroup/>
+  <ItemDefinitionGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;'>
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;MRB_ENABLE_CXX_EXCEPTION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../;../../../../external/mrubybind;../../../../external/mruby/include;../../../../external/boost</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;'>
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;MRB_ENABLE_CXX_EXCEPTION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../;../../../../external/mrubybind;../../../../external/mruby/include;../../../../external/boost</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <LinkTimeCodeGeneration/>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include='ReadMe.txt'/>
+  </ItemGroup>
+  <Import Project='$(VCTargetsPath)\Microsoft.Cpp.targets'/>
+  <ImportGroup Label='ExtensionTargets'>
+  </ImportGroup>
+  <ItemGroup/>
+  <ItemGroup/>
+  <ItemGroup/>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  <ClCompile Include='../../sources/basic_bind/sub_0.cpp'/><ClCompile Include='../../sources/basic_bind/sub_1.cpp'/><ClCompile Include='../../sources/basic_bind/sub_10.cpp'/><ClCompile Include='../../sources/basic_bind/sub_11.cpp'/><ClCompile Include='../../sources/basic_bind/sub_12.cpp'/><ClCompile Include='../../sources/basic_bind/sub_13.cpp'/><ClCompile Include='../../sources/basic_bind/sub_14.cpp'/><ClCompile Include='../../sources/basic_bind/sub_15.cpp'/><ClCompile Include='../../sources/basic_bind/sub_16.cpp'/><ClCompile Include='../../sources/basic_bind/sub_17.cpp'/><ClCompile Include='../../sources/basic_bind/sub_18.cpp'/><ClCompile Include='../../sources/basic_bind/sub_19.cpp'/><ClCompile Include='../../sources/basic_bind/sub_2.cpp'/><ClCompile Include='../../sources/basic_bind/sub_20.cpp'/><ClCompile Include='../../sources/basic_bind/sub_21.cpp'/><ClCompile Include='../../sources/basic_bind/sub_22.cpp'/><ClCompile Include='../../sources/basic_bind/sub_23.cpp'/><ClCompile Include='../../sources/basic_bind/sub_24.cpp'/><ClCompile Include='../../sources/basic_bind/sub_25.cpp'/><ClCompile Include='../../sources/basic_bind/sub_26.cpp'/><ClCompile Include='../../sources/basic_bind/sub_27.cpp'/><ClCompile Include='../../sources/basic_bind/sub_28.cpp'/><ClCompile Include='../../sources/basic_bind/sub_29.cpp'/><ClCompile Include='../../sources/basic_bind/sub_3.cpp'/><ClCompile Include='../../sources/basic_bind/sub_4.cpp'/><ClCompile Include='../../sources/basic_bind/sub_5.cpp'/><ClCompile Include='../../sources/basic_bind/sub_6.cpp'/><ClCompile Include='../../sources/basic_bind/sub_7.cpp'/><ClCompile Include='../../sources/basic_bind/sub_8.cpp'/><ClCompile Include='../../sources/basic_bind/sub_9.cpp'/><ClCompile Include='../../sources/basic_bind.cpp'/><ClCompile Include='../../sources/mruby_array.cpp'/><ClCompile Include='../../sources/mruby_experimental.cpp'/><ClCompile Include='../../sources/mruby_state.cpp'/><ClCompile Include='../../sources/mrubybind.cpp'/></ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+  <ClInclude Include='../../sources/basic_bind.h'/><ClInclude Include='../../sources/mruby_array.h'/><ClInclude Include='../../sources/mruby_array_tmpl.h'/><ClInclude Include='../../sources/mruby_array_tmpl_impl.h'/><ClInclude Include='../../sources/mruby_experimental.h'/><ClInclude Include='../../sources/mruby_state.h'/></ItemGroup>
+</Project>

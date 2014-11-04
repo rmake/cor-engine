@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<Project ToolsVersion='4.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+  <ItemGroup>
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include='ReadMe.txt'/>
+  </ItemGroup>
+<ItemGroup/><ItemGroup/><ItemGroup><ClInclude Include='../../sources/collision_2d_node.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/easy_http_client.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/rts/rts_object.h'><Filter>sources\rts</Filter></ClInclude><ClInclude Include='../../sources/rts/rts_object_group.h'><Filter>sources\rts</Filter></ClInclude><ClInclude Include='../../sources/rts/rts_object_sensor.h'><Filter>sources\rts</Filter></ClInclude><ClInclude Include='../../sources/rts/rts_object_system.h'><Filter>sources\rts</Filter></ClInclude><ClInclude Include='../../sources/step_size_scene.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/type_converter.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/type_converter_tmpl.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/type_converter_tmpl_impl.h'><Filter>sources</Filter></ClInclude></ItemGroup><ItemGroup><ClCompile Include='../../sources/collision_2d_node.cpp'><Filter>sources</Filter></ClCompile><ClCompile Include='../../sources/easy_http_client.cpp'><Filter>sources</Filter></ClCompile><ClCompile Include='../../sources/rts/rts_object.cpp'><Filter>sources\rts</Filter></ClCompile><ClCompile Include='../../sources/rts/rts_object_group.cpp'><Filter>sources\rts</Filter></ClCompile><ClCompile Include='../../sources/rts/rts_object_sensor.cpp'><Filter>sources\rts</Filter></ClCompile><ClCompile Include='../../sources/rts/rts_object_system.cpp'><Filter>sources\rts</Filter></ClCompile><ClCompile Include='../../sources/step_size_scene.cpp'><Filter>sources</Filter></ClCompile><ClCompile Include='../../sources/type_converter.cpp'><Filter>sources</Filter></ClCompile></ItemGroup><ItemGroup><Filter Include='sources'/><Filter Include='sources\rts'/></ItemGroup></Project>

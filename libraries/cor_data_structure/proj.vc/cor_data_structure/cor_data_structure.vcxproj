@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project DefaultTargets='Build' ToolsVersion='12.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+  <ItemGroup Label='ProjectConfigurations'>
+    <ProjectConfiguration Include='Debug|Win32'>
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include='Release|Win32'>
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label='Globals'>
+    <ProjectGuid>{0DF74A76-79E5-4E9D-AC01-DF64F4F6DA1C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>cor_data_structure</RootNamespace>
+  </PropertyGroup>
+  <Import Project='$(VCTargetsPath)\Microsoft.Cpp.Default.props'/>
+  <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;' Label='Configuration'>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;' Label='Configuration'>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project='$(VCTargetsPath)\Microsoft.Cpp.props'/>
+  <ImportGroup Label='ExtensionSettings'>
+  </ImportGroup>
+  <ImportGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;' Label='PropertySheets'>
+    <Import Condition='exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)' Label='LocalAppDataPlatform' Project='$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props'/>
+  </ImportGroup>
+  <ImportGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;' Label='PropertySheets'>
+    <Import Condition='exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)' Label='LocalAppDataPlatform' Project='$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props'/>
+  </ImportGroup>
+  <PropertyGroup Label='UserMacros'/>
+  <PropertyGroup/>
+  <ItemDefinitionGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;'>
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../;../../../../external/boost</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;'>
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../;../../../../external/boost</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <LinkTimeCodeGeneration/>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include='ReadMe.txt'/>
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+  <ClCompile Include='../../sources/ai/cost_grid_space.cpp'/><ClCompile Include='../../sources/ai/priority_queue.cpp'/><ClCompile Include='../../sources/ai/stack_decoder.cpp'/><ClCompile Include='../../sources/array_pool.cpp'/><ClCompile Include='../../sources/geometry/r_tree_pool.cpp'/><ClCompile Include='../../sources/geometry/uniform_grid.cpp'/><ClCompile Include='../../sources/tree_pool.cpp'/></ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  <ClInclude Include='../../sources/ai/cost_grid_space.h'/><ClInclude Include='../../sources/ai/cost_grid_space_tmpl.h'/><ClInclude Include='../../sources/ai/cost_grid_space_tmpl_impl.h'/><ClInclude Include='../../sources/ai/priority_queue.h'/><ClInclude Include='../../sources/ai/priority_queue_tmpl.h'/><ClInclude Include='../../sources/ai/priority_queue_tmpl_impl.h'/><ClInclude Include='../../sources/ai/stack_decoder.h'/><ClInclude Include='../../sources/ai/stack_decoder_tmpl.h'/><ClInclude Include='../../sources/ai/stack_decoder_tmpl_impl.h'/><ClInclude Include='../../sources/array_pool.h'/><ClInclude Include='../../sources/array_pool_tmpl.h'/><ClInclude Include='../../sources/array_pool_tmpl_impl.h'/><ClInclude Include='../../sources/geometry/r_tree_pool.h'/><ClInclude Include='../../sources/geometry/r_tree_pool_tmpl.h'/><ClInclude Include='../../sources/geometry/r_tree_pool_tmpl_impl.h'/><ClInclude Include='../../sources/geometry/uniform_grid.h'/><ClInclude Include='../../sources/geometry/uniform_grid_tmpl.h'/><ClInclude Include='../../sources/geometry/uniform_grid_tmpl_impl.h'/><ClInclude Include='../../sources/tree_pool.h'/><ClInclude Include='../../sources/tree_pool_tmpl.h'/><ClInclude Include='../../sources/tree_pool_tmpl_impl.h'/></ItemGroup>
+  <Import Project='$(VCTargetsPath)\Microsoft.Cpp.targets'/>
+  <ImportGroup Label='ExtensionTargets'>
+  </ImportGroup>
+</Project>

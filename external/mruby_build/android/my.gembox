@@ -1,0 +1,13 @@
+MRuby::GemBox.new do |conf|
+  conf.gem :core => "mruby-sprintf"
+  conf.gem :core => "mruby-print"
+  conf.gem :git => 'https://github.com/mattn/mruby-json.git'
+
+  Dir.glob("#{root}/mrbgems/mruby-*") do |x|
+    next if x.index(/mruby-bin-.*/)
+
+    g = File.basename(x)
+    conf.gem :core => g unless g =~ /^mruby-(print|sprintf)$/
+  end
+end
+

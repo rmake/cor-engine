@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project ToolsVersion='4.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+  <ItemGroup>
+    
+    
+    
+  <Filter Include='sources'/></ItemGroup>
+  <ItemGroup>
+    <Text Include='ReadMe.txt'/>
+  </ItemGroup>
+<ItemGroup><ClInclude Include='../../sources/allocation_monitor.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/cor_time.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/job_queue.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/logger.h'><Filter>sources</Filter></ClInclude></ItemGroup><ItemGroup><ClCompile Include='../../sources/allocation_monitor.cpp'><Filter>sources</Filter></ClCompile><ClCompile Include='../../sources/cor_time.cpp'><Filter>sources</Filter></ClCompile><ClCompile Include='../../sources/job_queue.cpp'><Filter>sources</Filter></ClCompile><ClCompile Include='../../sources/logger.cpp'><Filter>sources</Filter></ClCompile></ItemGroup></Project>

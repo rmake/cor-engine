@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project ToolsVersion='4.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+  <ItemGroup>
+    
+    
+    
+  <Filter Include='sources'/></ItemGroup>
+  <ItemGroup>
+    <Text Include='ReadMe.txt'/>
+  </ItemGroup>
+<ItemGroup><ClInclude Include='../../sources/application.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/project_base.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/project_group.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/project_group_scene.h'><Filter>sources</Filter></ClInclude><ClInclude Include='../../sources/project_mruby_call.h'><Filter>sources</Filter></ClInclude></ItemGroup><ItemGroup><ClCompile Include='../../sources/application.cpp'><Filter>sources</Filter></ClCompile><ClCompile Include='../../sources/project_base.cpp'><Filter>sources</Filter></ClCompile><ClCompile Include='../../sources/project_group.cpp'><Filter>sources</Filter></ClCompile><ClCompile Include='../../sources/project_group_scene.cpp'><Filter>sources</Filter></ClCompile><ClCompile Include='../../sources/project_mruby_call.cpp'><Filter>sources</Filter></ClCompile></ItemGroup></Project>

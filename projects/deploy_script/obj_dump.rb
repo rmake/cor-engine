@@ -1,0 +1,1 @@
+system("\"C:\\cocos2dx\\external\\apps\\android-ndk-r9d\\toolchains\\arm-linux-androideabi-4.8\\prebuilt\\windows-x86_64\\bin\\arm-linux-androideabi-objdump.exe\" -S \"C:\\cocos2dx\\cor-client\\projects\\cor_lib_test_main\\proj.android\\libs\\armeabi-v7a\\libcocos2dcpp.so\" > od.log")
