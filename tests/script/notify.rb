@@ -81,6 +81,12 @@ str = str.gsub("\"", '\"')
 
 #str = URI.encode_www_form_component "#{str}"
 
-call = "sh -c \"curl --data-urlencode 'source=#{str}' -d format=html https://idobata.io/hook/generic/eeb150db-9169-4fab-a275-44d68c61ce8f\""
-print "#{call}"
-`#{call}`
+if File.exist? "test_local_conf.rb"
+  load "test_local_conf.rb"
+  call = "sh -c \"curl --data-urlencode 'source=#{str}' -d format=html #{NOTIFY_URL}\""
+  print "#{call}"
+  `#{call}`
+end
+
+
+
