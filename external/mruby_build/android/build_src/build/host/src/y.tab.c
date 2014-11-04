@@ -1063,7 +1063,7 @@ heredoc_end(parser_state *p)
 
 
 /* Line 189 of yacc.c  */
-#line 1067 "c:/cocos2dx/cor-client/external/mruby/build/host/src/y.tab.c"
+#line 1067 "c:/cocos2dx/cor-engine/external/mruby/build/host/src/y.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -1236,7 +1236,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 1240 "c:/cocos2dx/cor-client/external/mruby/build/host/src/y.tab.c"
+#line 1240 "c:/cocos2dx/cor-engine/external/mruby/build/host/src/y.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -1248,7 +1248,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 1252 "c:/cocos2dx/cor-client/external/mruby/build/host/src/y.tab.c"
+#line 1252 "c:/cocos2dx/cor-engine/external/mruby/build/host/src/y.tab.c"
 
 #ifdef short
 # undef short
@@ -9256,7 +9256,7 @@ yyreduce:
 
 
 /* Line 1464 of yacc.c  */
-#line 9260 "c:/cocos2dx/cor-client/external/mruby/build/host/src/y.tab.c"
+#line 9260 "c:/cocos2dx/cor-engine/external/mruby/build/host/src/y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);

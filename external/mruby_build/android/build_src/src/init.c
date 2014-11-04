@@ -26,16 +26,6 @@ void mrb_init_version(mrb_state*);
 void mrb_init_mrblib(mrb_state*);
 
 #define DONE mrb_gc_arena_restore(mrb, 0);
-
-/* dycoon extention */
-void mrb_init_dycoon_extention(mrb_state* mrb)
-{
-  mrb->run_exited = TRUE;
-  mrb->old_pc = NULL;
-  mrb->external_stop = FALSE;
-}
-
-
 void
 mrb_init_core(mrb_state *mrb)
 {
@@ -58,6 +48,4 @@ mrb_init_core(mrb_state *mrb)
   mrb_init_gc(mrb); DONE;
   mrb_init_version(mrb); DONE;
   mrb_init_mrblib(mrb); DONE;
-
-  mrb_init_dycoon_extention(mrb); DONE; /* dycoon extention */
 }

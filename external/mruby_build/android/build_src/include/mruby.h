@@ -177,10 +177,6 @@ typedef struct mrb_state {
   struct RClass *eException_class;
   struct RClass *eStandardError_class;
   struct RObject *nomem_err;              /* pre-allocated NoMemoryError */
-  
-  int run_exited; /* dycoon extention */
-  mrb_code *old_pc; /* dycoon extention */
-  int external_stop; /* dycoon extention */
 
   void *ud; /* auxiliary data */
 

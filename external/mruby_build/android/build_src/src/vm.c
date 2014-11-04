@@ -685,9 +685,7 @@ argnum_error(mrb_state *mrb, mrb_int num)
 #endif
 
 #if defined __GNUC__ || defined __clang__ || defined __INTEL_COMPILER
-#ifndef __FLASHCC__
 #define DIRECT_THREADED
-#endif
 #endif
 
 #ifndef DIRECT_THREADED
@@ -695,7 +693,7 @@ argnum_error(mrb_state *mrb, mrb_int num)
 #define INIT_DISPATCH for (;;) { i = *pc; CODE_FETCH_HOOK(mrb, irep, pc, regs); switch (GET_OPCODE(i)) {
 #define CASE(op) case op:
 #define NEXT pc++; break
-#define JUMP if(mrb->external_stop){ mrb->old_pc = pc; goto L_STOP; } break /* dycoon extention */
+#define JUMP break
 #define END_DISPATCH }}
 
 #else
@@ -703,7 +701,7 @@ argnum_error(mrb_state *mrb, mrb_int num)
 #define INIT_DISPATCH JUMP; return mrb_nil_value();
 #define CASE(op) L_ ## op:
 #define NEXT i=*++pc; CODE_FETCH_HOOK(mrb, irep, pc, regs); goto *optable[GET_OPCODE(i)]
-#define JUMP i=*pc; CODE_FETCH_HOOK(mrb, irep, pc, regs); if(mrb->external_stop){ mrb->old_pc = pc; goto L_STOP; } goto *optable[GET_OPCODE(i)] /* dycoon extention */
+#define JUMP i=*pc; CODE_FETCH_HOOK(mrb, irep, pc, regs); goto *optable[GET_OPCODE(i)]
 
 #define END_DISPATCH
 
@@ -771,12 +769,6 @@ RETRY_TRY_BLOCK:
   mrb->c->ci->nregs = irep->nregs;
   regs = mrb->c->stack;
   regs[0] = self;
-  
-  mrb->run_exited = FALSE; /* dycoon extention */
-  if(mrb->old_pc){
-    pc = mrb->old_pc;
-    mrb->old_pc = NULL;
-  } /* dycoon extention */
 
   INIT_DISPATCH {
     CASE(OP_NOP) {
