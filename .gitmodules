@@ -1,0 +1,6 @@
+[submodule "external/mruby"]
+	path = external/mruby
+	url = git@github.com:dycoon/mruby_dycoon.git
+[submodule "external/mrubybind"]
+	path = external/mrubybind
+	url = git@github.com:dycoon/mrubybind.git
