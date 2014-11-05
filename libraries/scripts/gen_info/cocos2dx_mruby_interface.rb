@@ -505,6 +505,10 @@ COCOS2DX_MRUBY_INTERFACE = [
       :value => :cocos_ptr,
     },
     {
+      :name => "cocos2d::ScaleTo",
+      :value => :cocos_ptr,
+    },
+    {
       :name => "cocos2d::ScaleBy",
       :value => :cocos_ptr,
     },
