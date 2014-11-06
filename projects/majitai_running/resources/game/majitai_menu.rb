@@ -12,6 +12,7 @@ class MajitaiMenu
     
     director = Director.get_instance
     @visible_size = director.get_visible_size
+    director.set_display_stats false
     
     list = []
     list << {

@@ -5,6 +5,8 @@ class MajitaiGame
   attr_accessor :scene
   attr_accessor :draw_node
   
+  @@distance = 0
+  
   def initialize
     
     self.layer = Project.get_current_layer
@@ -14,6 +16,7 @@ class MajitaiGame
     @visible_size = director.get_visible_size
     
     @sx = 0
+    @@distance = 0
     
     @player = nil
     offset = Vec2.create
@@ -132,6 +135,10 @@ class MajitaiGame
                 next
               end
               
+              
+              @@distance = p.x / 64
+              @label.set_text "#{sprintf "%6.2f", @@distance}m"
+              
               contacting -= 1
               
               n.set_position p
@@ -163,7 +170,27 @@ class MajitaiGame
       end
       
       self.scene.add_child button.sprite
-  
+      
+      @label = self.create_distance_label
+      self.scene.add_child @label.sprite
+      
+      ed = self.layer.get_event_dispatcher
+      listener = EventListenerKeyboard.create
+      listener.on_key_pressed = Proc.new do |c, e|
+        if c == 146
+          if contacting > 0
+            pressed = 16
+          end
+        end
+      end
+      
+      listener.on_key_released = Proc.new do |c, e|
+        if c == 146
+          pressed = 0
+        end
+      end
+      ed.add_event_listener_with_scene_graph_priority(listener, self.layer);
+ 
     end
     
     n.add_child s
@@ -193,15 +220,15 @@ class MajitaiGame
       return 0
     end
     
-    if @sx < 200
+    if @sx < 50
       return rand(4)
     end
     
-    if @sx < 400
+    if @sx < 100
       return rand(6)
     end
     
-    if @sx < 600
+    if @sx < 150
       return rand(8)
     end
     
@@ -219,6 +246,21 @@ class MajitaiGame
       @sx += 1
     end
     
+  end
+  
+  def self.distance
+    @@distance
+  end
+  
+  def create_distance_label
+    r = Rect.create(- 96 * 2 / 2, - 96 / 2, 96 * 2, 96)
+    label = CorPanel.new :text => "0m", :rect => r, 
+          :font_name => "fonts/MTLc3m.ttf",
+          :text_scale => 1.0, :disable_swallow => true
+    label.sprite.set_scale 1.0
+    label.sprite.set_position @visible_size.width - 96 * 2, @visible_size.height - 96 / 2
+    
+    label
   end
   
   def collision_system
