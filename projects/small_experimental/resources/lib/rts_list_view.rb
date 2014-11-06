@@ -68,9 +68,12 @@ class RtsListView
     drn.set_global_z_order 0.0
     @drn = drn
     
-    self.world.scene.add_child self.node
-    self.node.set_action_manager self.world.action_manager_fast
-    
+    if self.world.class.method_defined? :scene
+      self.world.scene.add_child self.node
+    end
+    if self.world.class.method_defined? :action_manager_fast
+      self.node.set_action_manager self.world.action_manager_fast
+    end
     #drn = DrawNode.create
     #drn.draw_triangle(Vec2.create(0, 0), Vec2.create(100, 0), Vec2.create(100, 100), Color4F.create(1, 1, 1, 1))
     #

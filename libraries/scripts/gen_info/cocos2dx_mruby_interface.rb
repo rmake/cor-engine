@@ -128,6 +128,10 @@ COCOS2DX_MRUBY_INTERFACE = [
       :value => :cocos_ptr,
     },
     {
+      :name => "cocos2d::EventListenerKeyboard",
+      :value => :cocos_ptr,
+    },
+    {
       :name => "cocos2d::EventDispatcher",
       :value => :cocos_ptr,
     },

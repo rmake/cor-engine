@@ -4,17 +4,21 @@ class RtsUtilities
   attr_accessor :tile_x
   attr_accessor :tile_y
   attr_accessor :character_scale
+  attr_accessor :tile_half_x
+  attr_accessor :tile_half_y
 
   def initialize
   
     self.tile_x = 32
     self.tile_y = 32
+    self.tile_half_x = self.tile_x / 2
+    self.tile_half_y = self.tile_y / 2
     self.character_scale = 1
     
   end
   
   def tile_index p
-    Vector2I.create p.x / self.tile_x, p.y / self.tile_y
+    Vector2I.create (p.x) / self.tile_x, (p.y) / self.tile_y
   end
   
   def tile_position p

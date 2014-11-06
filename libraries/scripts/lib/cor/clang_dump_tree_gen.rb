@@ -194,10 +194,6 @@ module COR
       mths = []
       return mths unless c 
       
-      if c[:class_name] == "Label"
-        puts "c[:class_name] #{c[:class_name]}"
-      end
-      
       c[:methods].each do |m|
         
         

@@ -68,6 +68,10 @@ class RtsButton
     listener.on_touch_began = Proc.new do |t, e|
       lp = t.get_location
       
+      if @on_touch_began
+        @on_touch_began.call t, e
+      end
+      
       prnt = s.get_parent
       unless rect
         rect = Rts.u.node_rect s
@@ -86,12 +90,22 @@ class RtsButton
     
     listener.on_touch_moved = Proc.new do |t, e|
       l = t.get_location
+      
+      if @on_touch_moved
+        @on_touch_moved.call t, e
+      end
+      
+      
       if old_l && l.get_distance(old_l) > 3.0 * 4
         old_l = nil
       end
     end
     
     listener.on_touch_ended = Proc.new do |t, e|
+      
+      if @on_touch_ended
+        @on_touch_ended.call t, e
+      end
       
       if old_l && @on_tap
         @on_tap.call t, e
@@ -255,6 +269,30 @@ class RtsButton
   
   def call_on_tap
     @on_tap.call
+  end
+  
+  def on_touch_began(&block)
+    @on_touch_began = block
+  end
+  
+  def call_on_touch_began
+    @on_touch_began.call
+  end
+  
+  def on_touch_moved(&block)
+    @on_touch_moved = block
+  end
+  
+  def call_on_touch_moved
+    @on_touch_moved.call
+  end
+  
+  def on_touch_ended(&block)
+    @on_touch_ended = block
+  end
+  
+  def call_on_touch_ended
+    @on_touch_ended.call
   end
   
   def add_child button

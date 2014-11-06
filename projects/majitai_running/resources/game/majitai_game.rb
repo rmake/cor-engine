@@ -3,7 +3,6 @@ class MajitaiGame
   
   attr_accessor :layer
   attr_accessor :scene
-  attr_accessor :action_manager_fast
   attr_accessor :draw_node
   
   def initialize
@@ -13,66 +12,57 @@ class MajitaiGame
     
     director = Director.get_instance
     @visible_size = director.get_visible_size
-    @origin = director.get_visible_origin
-  
-    self.action_manager_fast = self.layer.get_action_manager
     
-    sx = 0
+    @sx = 0
     
-    self.delay_call 0 do
-      
-      player = nil
-      offset = Vec2.create
-      
-      self.draw_node = DrawNode.create
-      self.draw_node.set_global_z_order 200.0
-      self.scene.add_child self.draw_node
-      darw_line_proc = Proc.new do
-        self.draw_node.clear
-        self.collision_system.render_to_draw_node self.draw_node
+    @player = nil
+    offset = Vec2.create
+    
+    self.draw_node = DrawNode.create
+    self.draw_node.set_global_z_order 200.0
+    self.scene.add_child self.draw_node
+    darw_line_proc = Proc.new do
+      self.draw_node.clear
+      self.collision_system.render_to_draw_node self.draw_node
+    end
+    
+    self.collision_system.set_collision_group_pair 0, 1, 1
+    
+    camera_action = ActionCamera.create
+    camera_action.start_with_target layer
+    camera_proc = Proc.new do
+      p = @player.get_position
+      p.x += offset.x
+      #p.y += offset.y
+      p.y = -32
+      pos = Vec3.create p.x, p.y, 1.0
+      camera_action.set_eye pos
+      center = Vec3.create p.x, p.y, 0.0
+      camera_action.set_center center
+    end
+    
+    @player = self.create_player
+    p = @player.get_position
+    offset.x = - p.x
+    offset.y = - p.y
+    
+    self.layer.add_child @player
+    
+    Project.interval_call 0 do
+    
+      (0..1).each do |i| 
+        self.collision_system.set_changed i
       end
+      self.collision_system.all_pair_call
+    
+      self.generate_wall
       
-      self.collision_system.set_collision_group_pair 0, 1, 1
       
-      camera_action = ActionCamera.create
-      camera_action.start_with_target layer
-      camera_proc = Proc.new do
-        p = player.get_position
-        p.x += offset.x
-        #p.y += offset.y
-        p.y = -100
-        pos = Vec3.create p.x, p.y, 1.0
-        camera_action.set_eye pos
-        center = Vec3.create p.x, p.y, 0.0
-        camera_action.set_center center
-      end
-      
-      player = self.create_player
-      p = player.get_position
-      offset.x = - p.x
-      offset.y = - p.y
-      
-      self.layer.add_child player
-      
-      self.interval_call 0 do
-      
-        (0..1).each do |i| 
-          self.collision_system.set_changed i
-        end
-        self.collision_system.all_pair_call
-      
-        wall = self.create_wall sx, 0
-      
-        self.layer.add_child wall
-        
-        camera_proc.call
-        darw_line_proc.call
-        
-        
-        sx += 1
-      end
+      camera_proc.call
+      darw_line_proc.call
       
     end
+    
     
   end
   
@@ -82,19 +72,28 @@ class MajitaiGame
     s.set_scale 0.5
     n.set_position 3 * 64, 1 * 64
     
+    vx = 4
+    vy = 0 
+    
+    contacting = 0
+    
     s.set_on_enter_callback do
     
       collision_ref = self.collision_system.add_o_box n, 
         0, Box2F.create(
+          -16, 
           -32, 
-          -32, 
-          64, 
+          32, 
           64) do |n0, n1|
         
         cp = n.get_position
         p = n1.get_position
-        if cp.y < p.y + 64 && cp.y > p.y + 32
-          n.set_position cp.x, p.y + 64
+        if cp.y < p.y + 64 && cp.y > p.y + -4
+          n.set_position cp.x, [cp.y + 8, p.y + 64].min
+          if vy < 0
+            vy = 0
+          end
+          contacting = 2
         end
       end
     
@@ -110,6 +109,7 @@ class MajitaiGame
       ac = RepeatForever.create(Sequence.create(a))
       s.run_action ac
       
+      pressed = 0
       
       s.run_action(
         RepeatForever.create(
@@ -117,8 +117,22 @@ class MajitaiGame
             DelayTime.create(0.033),
             (CallFunc.create do
               p = n.get_position
-              p.x += 2
-              p.y -= 1
+              p.x += vx
+              if pressed > 0
+                vy = 8.0
+                pressed -= 1
+              else
+                vy -= 1
+              end
+              p.y += vy
+              
+              if p.y < -64
+                Project.start_ruby_project "game/majitai_result.rb"
+                n.remove_from_parent
+                next
+              end
+              
+              contacting -= 1
               
               n.set_position p
             end),
@@ -133,11 +147,19 @@ class MajitaiGame
         :text_scale => 1.0, :sprite => sp, :disable_swallow => true
       button.sprite.set_scale 1.0
       button.sprite.set_position 48, 48
+      
+      button.on_touch_began do |t, e|
+        if contacting > 0
+          pressed = 16
+        end
+      end
+      
+      button.on_touch_ended do |t, e|
+        pressed = 0
+      end
+      
       button.on_tap do |t, e|
-        p = n.get_position
-        p.y += 32
         
-        n.set_position p
       end
       
       self.scene.add_child button.sprite
@@ -165,45 +187,45 @@ class MajitaiGame
     s
   end
   
+  def get_y
+    
+    if @sx < 10
+      return 0
+    end
+    
+    if @sx < 200
+      return rand(4)
+    end
+    
+    if @sx < 400
+      return rand(6)
+    end
+    
+    if @sx < 600
+      return rand(8)
+    end
+    
+    0
+  end
+  
+  def generate_wall
+    
+    while !@wall || @wall.get_position.x < @player.get_position.x + 800
+    
+      @wall = create_wall @sx, self.get_y
+      
+      self.layer.add_child @wall
+      
+      @sx += 1
+    end
+    
+  end
+  
   def collision_system
     Project.get_collision_system
   end
   
-  def delay_call(interval, &block)
-    old_action = self.layer.run_action(
-        RepeatForever.create(
-          Sequence.create([
-            DelayTime.create(interval),
-            (CallFunc.create do
-              self.layer.stop_action old_action
-              yield
-            end),
-          ])
-        )
-      )
-    cancel = Proc.new do
-      self.layer.stop_action old_action
-    end
-    cancel
-  end
   
-  def interval_call(interval, &block)
-    old_action = self.layer.run_action(
-        RepeatForever.create(
-          Sequence.create([
-            DelayTime.create(interval),
-            (CallFunc.create do
-              yield
-            end),
-          ])
-        )
-      )
-    cancel = Proc.new do
-      self.layer.stop_action old_action
-    end
-    cancel
-  end
-
 end
 
 MajitaiGame.new

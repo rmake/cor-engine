@@ -45,6 +45,7 @@ namespace cor
             cocos2dx_converter::RtsObjectGroupSP rts_object_group;
             ApplicationPtr app;
             SceneLocalSPTable scene_local_sp_table;
+            RBool first;
 
             static Cocos2dSceneWP get_current_scene()
             {
@@ -346,11 +347,34 @@ namespace cor
             {
                 c->setBlendFunc(cocos2d::BlendFunc::ALPHA_NON_PREMULTIPLIED);
             }
+
+            static cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> delay_call(RFloat interval, mrubybind::FuncPtr<void()> callback)
+            {
+                cocos2d::Vector<cocos2d::FiniteTimeAction*> a;
+                a.pushBack(cocos2d::DelayTime::create(interval));
+                a.pushBack(cocos2d::CallFunc::create([=](){callback.func()(); }));
+                return project_mruby_call_itnl_instance->current_layer->runAction(cocos2d::Sequence::create(
+                        a
+                    ));
+            }
+
+            static cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> interval_call(RFloat interval, mrubybind::FuncPtr<void()> callback)
+            {
+                cocos2d::Vector<cocos2d::FiniteTimeAction*> a;
+                a.pushBack(cocos2d::DelayTime::create(interval));
+                a.pushBack(cocos2d::CallFunc::create([=](){callback.func()(); }));
+                return project_mruby_call_itnl_instance->current_layer->runAction(
+                    cocos2d::RepeatForever::create(cocos2d::Sequence::create(
+                    a
+                    )));
+            }
             
         };
         
         ProjectMrubyCall::ProjectMrubyCall() : itnl(new ProjectMrubyCallItnl())
         {
+            itnl->first = rtrue;
+
 #if defined(ANDROID_NDK) && defined(PROFILING)
             static RBool first = rtrue;
             if(first)
@@ -438,6 +462,8 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "enum_files", ProjectMrubyCallItnl::enum_files);
             binder.bind_static_method("Cor", "Project", "set_edit_box_delegate", ProjectMrubyCallItnl::set_edit_box_delegate);
             binder.bind_static_method("Cor", "Project", "set_label_blend_func", ProjectMrubyCallItnl::set_label_blend_func);
+            binder.bind_static_method("Cor", "Project", "delay_call", ProjectMrubyCallItnl::delay_call);
+            binder.bind_static_method("Cor", "Project", "interval_call", ProjectMrubyCallItnl::interval_call);
             binder.bind_static_method("Cor", "Project", "set_text_sprite_blend_func", ProjectMrubyCallItnl::set_text_sprite_blend_func);
 
 
@@ -446,23 +472,30 @@ namespace cor
             itnl->rts_object_group = cocos2dx_converter::RtsObjectGroup::create(itnl->collision);
 
 
-            //
-            log_debug("ProjectMrubyCall::start()");
-
-            if(!cocos2d::FileUtils::getInstance()->isFileExist(itnl->file_name))
-            {
-                log_error("File not found \"", itnl->file_name, "\".");
-            }
-            RString code = cocos2d::FileUtils::getInstance()->getStringFromFile(itnl->file_name);
-            mrb.load_string_error_log(itnl->file_name, code);
-
-
-            
 
         }
 
         void ProjectMrubyCall::step()
         {
+            if(itnl->first)
+            {
+                cocos2dx_mruby_interface::MrubyScriptEnginePtr instance = cocos2dx_mruby_interface::MrubyScriptEngine::get_instance();
+
+                auto& mrb = instance->ref_mrb();
+
+                //
+                log_debug("ProjectMrubyCall::start()");
+
+                if(!cocos2d::FileUtils::getInstance()->isFileExist(itnl->file_name))
+                {
+                    log_error("File not found \"", itnl->file_name, "\".");
+                }
+                RString code = cocos2d::FileUtils::getInstance()->getStringFromFile(itnl->file_name);
+                mrb.load_string_error_log(itnl->file_name, code);
+
+                itnl->first = false;
+            }
+
             auto mrb= mruby_interface::MrubyState::get_current();
             mrb->clear_tmp_shared();
         }

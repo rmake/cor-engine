@@ -18,6 +18,22 @@ class RtsSprite
     s
   end
   
+  def self.create_texture_animation(a)
+    sfs = []
+    animation = Animation.create
+    a.each do |v|
+      animation.add_sprite_frame_with_file v
+    end
+    animation.set_delay_per_unit 0.033
+    animation.retain
+    s = self.create_simple :texture => a.first
+    s.set_on_enter_callback do
+      action = s.run_action RepeatForever.create(Animate.create(animation))
+      animation.release
+    end
+    s
+  end
+  
   def self.create_simple_rect(options = {})
   
     texture = self.get_texture options[:texture] || "data_test_2/nd3_32x32_2.png"
@@ -29,8 +45,14 @@ class RtsSprite
     s
   end
   
-  def self.create_label_atlas text
+  def self.create_label_atlas(text)
     LabelAtlas.create text, "fonts/fast2.png", 19, 33, " ".getbyte(0)
+    
+  end
+  
+  def self.create_label_ttf(text)
+    label = RtsLabel.new :font_name => "fonts/MTLc3m.ttf", :font_size => 32, :text => text, :edge_size => 2
+    label
   end
   
   def self.create_sprite_9(options = {})
@@ -128,7 +150,7 @@ class RtsSprite
         x = (tx + (w / 2) - rect.size.width / 2)
         
         if ix >= 1
-          x -= 0.5
+          x -= 1
         end
         if iy >= 1
           y += 0.5
