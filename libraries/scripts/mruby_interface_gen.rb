@@ -137,15 +137,15 @@ def gen_code option
     "std::map<enum cocos2d::Texture2D::PixelFormat, const cocos2d::Texture2D::PixelFormatInfo, std::less<enum cocos2d::Texture2D::PixelFormat>, std::allocator<std::pair<const enum cocos2d::Texture2D::PixelFormat, const cocos2d::Texture2D::PixelFormatInfo> > >" => "delete",
   }
   
-  
   reject_method_table = {
-    "cocos2d::EventListenerTouchAllAtOnce" => {
-      "onTouchesBegan" => true,
-      "onTouchesMoved" => true,
-      "onTouchesEnded" => true,
-      "onTouchesCancelled" => true,
-    }
+    #"cocos2d::EventListenerTouchAllAtOnce" => {
+    #  "onTouchesBegan" => true,
+    #  "onTouchesMoved" => true,
+    #  "onTouchesEnded" => true,
+    #  "onTouchesCancelled" => true,
+    #}
   }
+  
   #reject_method_table = {
   #  "cocos2d::PhysicsWorld" => {
   #    "rayCast" => true,

@@ -316,6 +316,7 @@ module COR
         func_args = func_args.gsub(/^[^(]*\(/, "").gsub(/\)$/, "")
         func_args = func_args.scan(/([^<^>^,]+(<[^<^>]*(<[^<^>]*(<[^<^>]*[^<^>]*>)*[^<^>]*>)*[^<^>]*>)*[^<^>^,]*)|([^<^>^,]+)/)
         cva = func_args.map do |v|
+        
           is_nil, targ, call_arg = self.convert_value(class_replace_table, is_nil, v[0], {
             :val => v[0],
             :is_enum => v[0].match(/^enum /) || v[0].match(/^const enum /),
@@ -327,6 +328,11 @@ module COR
         func_args_list = []
         func_args.each_with_index do |b, j|
           tb = b[0].gsub(/^ /, "")
+          
+          if tb.match(/cocos2d::Touch/)
+            puts "tb #{tb}"
+          end
+          
           if tb.match(/^enum /)
             arg = arg.gsub(tb, "int")
             func_args_def << "#{tb.gsub(/^enum /, "")} b#{j}"
@@ -335,11 +341,19 @@ module COR
             rpl = class_replace_table[tb]
             func_args_def << "#{tb} b#{j}"
             
+            if tb.match(/cocos2d::Touch/)
+              puts "rpl #{rpl}"
+            end
             
             if rpl
             
               t_arg = rpl[:class_type]
-              t_access = rpl[:access]
+              t_access = rpl[:inv_access] || rpl[:access]
+              
+              if tb.match(/cocos2d::Touch/)
+                puts "t_arg #{t_arg}"
+                puts "t_access #{t_access}"
+              end
               
               if rpl[:value] == :cocos_ptr && tb.match(/\&$/)
                 t_access = "#{t_arg}(&source)"
@@ -349,9 +363,14 @@ module COR
                 t_access = "const_cast<#{t_arg}>(&source)"
               elsif rpl[:value] == :pointer && tb.match(/\&$/)
                 t_access = "&source"
-              elsif rpl[:value] = :shared_ptr
+              elsif rpl[:value] == :shared_ptr
                 t_access = "source"
               end
+              
+              if tb.match(/cocos2d::Touch/)
+                puts "post t_access #{t_access}"
+              end
+              
               
               func_args_list << t_access.gsub("source", "b#{j}")
             else
@@ -796,6 +815,8 @@ module COR
           access_p = nil
           original_class_type = nil
           
+          
+          
           case tp
           when :value
             class_type = v[:original_class_name]
@@ -870,6 +891,7 @@ module COR
               :value => :value,
               :class_type => "std::weak_ptr<#{v[:original_class_name]}>",
               :access => "source.lock()",
+              :inv_access => "source",
             }
             class_replace_table["std::shared_ptr<#{v[:original_class_name]}>"] = ch
           end
@@ -897,6 +919,7 @@ module COR
               :value => :value,
               :class_type => "MrubyRef",
               :access => "cor::cocos2dx_mruby_interface::CocosArray::convert_to_from_cocos_vec<#{v[:original_class_name]}>(source)",
+              :inv_access => "cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby<#{v[:original_class_name]}>(source)",
               :is_cocos_array => true,
             }
             
@@ -923,6 +946,7 @@ module COR
               :value => :value,
               :class_type => "MrubyRef",
               :access => "cor::cocos2dx_mruby_interface::CocosArray::convert_to_from_std_vec<#{v[:original_class_name]}>(source)",
+              :inv_access => "cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby<#{v[:original_class_name]}>(source)",
               :is_std_array => true,
             }
             
@@ -934,6 +958,10 @@ module COR
             class_replace_table["std::vector<#{v[:original_class_name]} *>&"] = ch
             class_replace_table["const std::vector<#{v[:original_class_name]} *>"] = ch
             class_replace_table["std::vector<#{v[:original_class_name]} *>"] = ch
+            class_replace_table["const std::vector<#{v[:original_class_name]} *, std::allocator<#{v[:original_class_name]} *> >"] = ch
+            class_replace_table["std::vector<#{v[:original_class_name]} *, std::allocator<#{v[:original_class_name]} *> >"] = ch
+            class_replace_table["const std::vector<#{v[:original_class_name]} *, std::allocator<#{v[:original_class_name]} *> > &"] = ch
+            class_replace_table["std::vector<#{v[:original_class_name]} *, std::allocator<#{v[:original_class_name]} *> > &"] = ch
           
           end
           
@@ -1631,7 +1659,6 @@ EOS
               
               
               first_arg_class = arg[:arg][0].gsub("::", "__")
-              puts "first_arg_class #{first_arg_class}"
               ca = classes[first_arg_class]
               unless ca
               

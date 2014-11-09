@@ -3432,6 +3432,10 @@ namespace cor
         void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_release_165(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_autorelease_165(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c);
         unsigned int Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_get_reference_count_165(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c);
+        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_began(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (MrubyRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a);
+        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_moved(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (MrubyRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a);
+        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_ended(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (MrubyRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a);
+        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_cancelled(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (MrubyRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerKeyboard> Cocos2dxBind_cocos2d__EventListenerKeyboard_create();
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerKeyboard> Cocos2dxBind_cocos2d__EventListenerKeyboard_clone(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerKeyboard> c);
         bool Cocos2dxBind_cocos2d__EventListenerKeyboard_check_available(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerKeyboard> c);
@@ -10404,6 +10408,10 @@ namespace cor
             binder.bind_custom_method("Cocos2d", "EventListenerTouchAllAtOnce", "release_165", Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_release_165);
             binder.bind_custom_method("Cocos2d", "EventListenerTouchAllAtOnce", "autorelease_165", Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_autorelease_165);
             binder.bind_custom_method("Cocos2d", "EventListenerTouchAllAtOnce", "get_reference_count_165", Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_get_reference_count_165);
+            binder.bind_custom_method("Cocos2d", "EventListenerTouchAllAtOnce", "on_touches_began=", Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_began);
+            binder.bind_custom_method("Cocos2d", "EventListenerTouchAllAtOnce", "on_touches_moved=", Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_moved);
+            binder.bind_custom_method("Cocos2d", "EventListenerTouchAllAtOnce", "on_touches_ended=", Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_ended);
+            binder.bind_custom_method("Cocos2d", "EventListenerTouchAllAtOnce", "on_touches_cancelled=", Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_cancelled);
             binder.bind_static_method("Cocos2d", "EventListenerKeyboard", "create", Cocos2dxBind_cocos2d__EventListenerKeyboard_create);
             binder.bind_custom_method("Cocos2d", "EventListenerKeyboard", "clone", Cocos2dxBind_cocos2d__EventListenerKeyboard_clone);
             binder.bind_custom_method("Cocos2d", "EventListenerKeyboard", "check_available", Cocos2dxBind_cocos2d__EventListenerKeyboard_check_available);
