@@ -1,46 +1,46 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
+<?xml version='1.0' encoding='UTF-8'?>
+<Project DefaultTargets='Build' ToolsVersion='12.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+  <ItemGroup Label='ProjectConfigurations'>
+    <ProjectConfiguration Include='Debug|Win32'>
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
+    <ProjectConfiguration Include='Release|Win32'>
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <PropertyGroup Label="Globals">
+  <PropertyGroup Label='Globals'>
     <ProjectGuid>{95EA3EE3-229E-4474-A202-375C6DFAB0AD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>cor_cocos2dx_mruby_interface</RootNamespace>
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+  <Import Project='$(VCTargetsPath)\Microsoft.Cpp.Default.props'/>
+  <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;' Label='Configuration'>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+  <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;' Label='Configuration'>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
+  <Import Project='$(VCTargetsPath)\Microsoft.Cpp.props'/>
+  <ImportGroup Label='ExtensionSettings'>
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  <ImportGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;' Label='PropertySheets'>
+    <Import Condition='exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)' Label='LocalAppDataPlatform' Project='$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props'/>
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  <ImportGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;' Label='PropertySheets'>
+    <Import Condition='exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)' Label='LocalAppDataPlatform' Project='$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props'/>
   </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <PropertyGroup Label='UserMacros'/>
+  <PropertyGroup/>
+  <ItemDefinitionGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;'>
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -57,7 +57,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+  <ItemDefinitionGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;'>
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
@@ -77,63 +77,63 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <LinkTimeCodeGeneration />
+      <LinkTimeCodeGeneration/>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <Text Include='ReadMe.txt'/>
   </ItemGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
+  <Import Project='$(VCTargetsPath)\Microsoft.Cpp.targets'/>
+  <ImportGroup Label='ExtensionTargets'>
   </ImportGroup>
   <ItemGroup>
-    <ClInclude Include="../../sources/cocos2dx_bind.h" />
-    <ClInclude Include="../../sources/cocos2dx_experimental.h" />
-    <ClInclude Include="../../sources/cocos_array.h" />
-    <ClInclude Include="../../sources/cocos_mruby_ref.h" />
-    <ClInclude Include="../../sources/cocos_value.h" />
-    <ClInclude Include="../../sources/cocos_weak_ptr.h" />
-    <ClInclude Include="../../sources/mruby_script_engine.h" />
-    <ClInclude Include="../../sources/sprite_experimental.h" />
-  </ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+  <ClInclude Include='../../sources/cocos2dx_bind.h'/><ClInclude Include='../../sources/cocos2dx_experimental.h'/><ClInclude Include='../../sources/cocos_array.h'/><ClInclude Include='../../sources/cocos_mruby_ref.h'/><ClInclude Include='../../sources/cocos_value.h'/><ClInclude Include='../../sources/cocos_weak_ptr.h'/><ClInclude Include='../../sources/mruby_script_engine.h'/><ClInclude Include='../../sources/sprite_experimental.h'/></ItemGroup>
   <ItemGroup>
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_0.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_1.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_10.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_11.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_12.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_13.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_14.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_15.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_16.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_17.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_18.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_19.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_2.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_20.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_21.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_22.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_23.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_24.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_25.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_26.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_27.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_28.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_29.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_3.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_4.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_5.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_6.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_7.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_8.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind/sub_9.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_bind.cpp" />
-    <ClCompile Include="../../sources/cocos2dx_experimental.cpp" />
-    <ClCompile Include="../../sources/cocos_array.cpp" />
-    <ClCompile Include="../../sources/cocos_mruby_ref.cpp" />
-    <ClCompile Include="../../sources/cocos_value.cpp" />
-    <ClCompile Include="../../sources/cocos_weak_ptr.cpp" />
-    <ClCompile Include="../../sources/mruby_script_engine.cpp" />
-    <ClCompile Include="../../sources/sprite_experimental.cpp" />
-  </ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  <ClCompile Include='../../sources/cocos2dx_bind/sub_0.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_1.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_10.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_11.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_12.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_13.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_14.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_15.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_16.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_17.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_18.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_19.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_2.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_20.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_21.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_22.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_23.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_24.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_25.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_26.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_27.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_28.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_29.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_3.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_4.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_5.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_6.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_7.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_8.cpp'/><ClCompile Include='../../sources/cocos2dx_bind/sub_9.cpp'/><ClCompile Include='../../sources/cocos2dx_bind.cpp'/><ClCompile Include='../../sources/cocos2dx_experimental.cpp'/><ClCompile Include='../../sources/cocos_array.cpp'/><ClCompile Include='../../sources/cocos_mruby_ref.cpp'/><ClCompile Include='../../sources/cocos_value.cpp'/><ClCompile Include='../../sources/cocos_weak_ptr.cpp'/><ClCompile Include='../../sources/mruby_script_engine.cpp'/><ClCompile Include='../../sources/sprite_experimental.cpp'/></ItemGroup>
 </Project>
