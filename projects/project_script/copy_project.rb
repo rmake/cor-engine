@@ -17,6 +17,8 @@ end
 destination_resource_path = "../cor_lib_test_main/Resources"
 source_resource_path = "#{source_path}/resources"
 
+FileUtils.mkpath destination_resource_path
+
 list = Cor.u.file_list source_resource_path
 d_list = Cor.u.file_list destination_resource_path do |fn|
   !fn.include? ".gitignore"
