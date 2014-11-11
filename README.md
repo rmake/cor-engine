@@ -21,8 +21,17 @@ I confirm this on windows 8.1, Android, OSX, iOS(simulator).
 
 - cocos2d-x development environment
 
+
+## windows with prebuilt
+
+you can download prebuilt binary.
+
+https://github.com/rmake/cor-engine/releases
+
+you edit start.rb.
+
 ## windows
- 
+
 - visual studio 2013
 - MingW, msys (maybe cygwin also ok)
    - mingw64 exception=sjlj http://sourceforge.net/projects/mingw-w64/
