@@ -50,7 +50,7 @@ git clone git@github.com:rmake/cor-engine.git
 cd cor-engine
 ruby scripts/init_work/start_day_work.rb
 
-# copy script resources
+# copy resources
 cd projects/project_script
 echo "SOURCE_PATH = \"../majitai_running\"" > project_source_path_local_conf.rb
 ruby copy_project.rb
@@ -59,7 +59,8 @@ cd ../../
 # build on windows
 cd projects/deploy_script
 ruby deploy_win.rb
-build_tmp/rts_test_win/cor_lib_test_main.exe
+cd build_tmp/rts_test_win/
+cor_lib_test_main.exe
 
 ```
 
@@ -73,3 +74,36 @@ SOURCE_PATH = "../majitai_running"
 - select Debug target
 - press F5 key
    - copy_project.rb called on debug-built application
+
+
+# folder structure
+
+```
+external
+  external codes
+external/mruby_build
+  build mruby script
+libraries
+  library codes
+libraris/scripts
+  code generator and utility scripts
+licensies
+  license files of software used by cor-engine
+projects
+  application source files
+projects/cor_lib_test_main
+  cocos2d-x project which builds cor-engine application 
+projects/deploy_script
+  release script of cor-engine application 
+projects/project_script
+  copy resources to projects/cor_lib_test_main
+projects/cocos2dx_simple
+  simple code using cocos2d-x api with mruby
+projects/majitai_running
+  simple game code
+scripts
+  scripts for this repository
+tests
+  test codes
+```
+
