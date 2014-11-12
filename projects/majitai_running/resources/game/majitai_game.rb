@@ -26,7 +26,7 @@ class MajitaiGame
     self.scene.add_child self.draw_node
     darw_line_proc = Proc.new do
       self.draw_node.clear
-      self.collision_system.render_to_draw_node self.draw_node
+      #self.collision_system.render_to_draw_node self.draw_node
     end
     
     self.collision_system.set_collision_group_pair 0, 1, 1
@@ -232,7 +232,7 @@ class MajitaiGame
       return rand(8)
     end
     
-    0
+    rand(10)
   end
   
   def generate_wall
