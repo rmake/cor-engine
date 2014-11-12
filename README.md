@@ -1,36 +1,36 @@
 cor-engine
 ==========
 
-# what is code on rmake engine (cor-engine)
+# What is cor-engine(code on rmake engine)?
 
-this is library for making game.
+This is framework for making game.
 
 - mruby binding generator
 - cocos2d-x 3.2
 - some utilities
 
-# status
+# Status
 
-experimental, need refactoring and reconstructing.
+Experimental, needed refactoring and reconstructing.
 
-# development environment
+# Development environment
 
 I confirm this on windows 8.1, Android, OSX, iOS(simulator).
 
-## common
+## Common
 
 - cocos2d-x development environment
 
 
-## windows with prebuilt
+## Windows with prebuilt
 
-you can download prebuilt binary.
+You can download prebuilt binary.
 
 https://github.com/rmake/cor-engine/releases
 
-you edit start.rb.
+You edit start.rb.
 
-## windows
+## Windows
 
 - visual studio 2013
 - MingW, msys (maybe cygwin also ok)
@@ -41,18 +41,18 @@ you edit start.rb.
 - ruby for windows
    - utilities
 
-### building android application on windows
+### Building android application on windows
 
 - Android SDK, NDK
 
-## osx, ios
+## OSX, iOS
 
 - ruby
 
 
-# build sample project
+# Build sample project
 
-## windows msys command line
+## Windows msys command line
 
 ```
 git clone git@github.com:rmake/cor-engine.git
@@ -73,7 +73,7 @@ cor_lib_test_main.exe
 
 ```
 
-## windows visual studio debug
+## Windows visual studio debug
 
 - open "projects/cor_lib_test_main/proj.win32/cor_lib_test_main.sln"
 - write text file to "projects/project_script/project_source_path_local_conf.rb"
@@ -85,7 +85,7 @@ SOURCE_PATH = "../majitai_running"
    - copy_project.rb called on debug-built application
 
 
-# folder structure
+# Folder structure
 
 ```
 external
