@@ -99,8 +99,7 @@
       </StackCommitSize>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist $(ProjectDir)..\Resources mkdir $(ProjectDir)..\Resources</Command>
     </PostBuildEvent>
     <PreLinkEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
@@ -138,8 +137,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
       <StackReserveSize>2097152</StackReserveSize>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist $(ProjectDir)..\Resources mkdir $(ProjectDir)..\Resources</Command>
     </PostBuildEvent>
     <PreLinkEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
