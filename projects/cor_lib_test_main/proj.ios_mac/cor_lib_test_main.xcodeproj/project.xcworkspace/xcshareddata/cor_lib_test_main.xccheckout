@@ -12,20 +12,24 @@
 	<dict>
 		<key>9495A99E5E7E89C3AFBC813AD20581EE4DB28F68</key>
 		<string>https://github.com/rmake/cor-client.git</string>
+		<key>DF6A3DC50406A30A24853D83D74235A1976C6288</key>
+		<string>github.com:rmake/cor-engine.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>projects/cor_lib_test_main/proj.ios_mac/cor_lib_test_main.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>9495A99E5E7E89C3AFBC813AD20581EE4DB28F68</key>
+		<string>../../../../../../cor-client</string>
+		<key>DF6A3DC50406A30A24853D83D74235A1976C6288</key>
 		<string>../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/rmake/cor-client.git</string>
+	<string>github.com:rmake/cor-engine.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9495A99E5E7E89C3AFBC813AD20581EE4DB28F68</string>
+	<string>DF6A3DC50406A30A24853D83D74235A1976C6288</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>9495A99E5E7E89C3AFBC813AD20581EE4DB28F68</string>
 			<key>IDESourceControlWCCName</key>
 			<string>cor-client</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DF6A3DC50406A30A24853D83D74235A1976C6288</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cor-engine</string>
 		</dict>
 	</array>
 </dict>

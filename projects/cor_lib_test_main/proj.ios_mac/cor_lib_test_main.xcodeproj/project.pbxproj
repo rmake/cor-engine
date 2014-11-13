@@ -74,24 +74,18 @@
 		64C8BE7F19A34E54003D205D /* libcor_project_structure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8BE7E19A34E54003D205D /* libcor_project_structure.a */; };
 		64C8BE8119A34E7A003D205D /* libcor_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8BE8019A34E7A003D205D /* libcor_system.a */; };
 		64C8BE8319A34E8B003D205D /* libcor_type.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8BE8219A34E8B003D205D /* libcor_type.a */; };
-		64F27C201A0746AC00537BB2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C071A0746AC00537BB2 /* .gitignore */; };
-		64F27C211A0746AC00537BB2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C071A0746AC00537BB2 /* .gitignore */; };
-		64F27C221A0746AC00537BB2 /* copy_date.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C081A0746AC00537BB2 /* copy_date.txt */; };
-		64F27C231A0746AC00537BB2 /* copy_date.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C081A0746AC00537BB2 /* copy_date.txt */; };
-		64F27C421A0746AC00537BB2 /* start.rb in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C1F1A0746AC00537BB2 /* start.rb */; };
-		64F27C431A0746AC00537BB2 /* start.rb in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C1F1A0746AC00537BB2 /* start.rb */; };
-		64F27C4A1A0746EA00537BB2 /* data_test_1 in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C441A0746EA00537BB2 /* data_test_1 */; };
-		64F27C4B1A0746EA00537BB2 /* data_test_1 in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C441A0746EA00537BB2 /* data_test_1 */; };
-		64F27C4C1A0746EA00537BB2 /* data_test_2 in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C451A0746EA00537BB2 /* data_test_2 */; };
-		64F27C4D1A0746EA00537BB2 /* data_test_2 in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C451A0746EA00537BB2 /* data_test_2 */; };
-		64F27C4E1A0746EA00537BB2 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C461A0746EA00537BB2 /* fonts */; };
-		64F27C4F1A0746EA00537BB2 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C461A0746EA00537BB2 /* fonts */; };
-		64F27C501A0746EA00537BB2 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C471A0746EA00537BB2 /* lib */; };
-		64F27C511A0746EA00537BB2 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C471A0746EA00537BB2 /* lib */; };
-		64F27C521A0746EA00537BB2 /* math in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C481A0746EA00537BB2 /* math */; };
-		64F27C531A0746EA00537BB2 /* math in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C481A0746EA00537BB2 /* math */; };
-		64F27C541A0746EA00537BB2 /* menu in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C491A0746EA00537BB2 /* menu */; };
-		64F27C551A0746EA00537BB2 /* menu in Resources */ = {isa = PBXBuildFile; fileRef = 64F27C491A0746EA00537BB2 /* menu */; };
+		64D163C71A14B07C00DDDBA3 /* copy_date.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64D163B11A14B07C00DDDBA3 /* copy_date.txt */; };
+		64D163C81A14B07C00DDDBA3 /* copy_date.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64D163B11A14B07C00DDDBA3 /* copy_date.txt */; };
+		64D163E91A14B07C00DDDBA3 /* start.rb in Resources */ = {isa = PBXBuildFile; fileRef = 64D163C61A14B07C00DDDBA3 /* start.rb */; };
+		64D163EA1A14B07C00DDDBA3 /* start.rb in Resources */ = {isa = PBXBuildFile; fileRef = 64D163C61A14B07C00DDDBA3 /* start.rb */; };
+		64D163EF1A14B19B00DDDBA3 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 64D163EB1A14B19B00DDDBA3 /* fonts */; };
+		64D163F01A14B19B00DDDBA3 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 64D163EB1A14B19B00DDDBA3 /* fonts */; };
+		64D163F11A14B19B00DDDBA3 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 64D163EC1A14B19B00DDDBA3 /* lib */; };
+		64D163F21A14B19B00DDDBA3 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 64D163EC1A14B19B00DDDBA3 /* lib */; };
+		64D163F31A14B19B00DDDBA3 /* math in Resources */ = {isa = PBXBuildFile; fileRef = 64D163ED1A14B19B00DDDBA3 /* math */; };
+		64D163F41A14B19B00DDDBA3 /* math in Resources */ = {isa = PBXBuildFile; fileRef = 64D163ED1A14B19B00DDDBA3 /* math */; };
+		64D163F51A14B19B00DDDBA3 /* menu in Resources */ = {isa = PBXBuildFile; fileRef = 64D163EE1A14B19B00DDDBA3 /* menu */; };
+		64D163F61A14B19B00DDDBA3 /* menu in Resources */ = {isa = PBXBuildFile; fileRef = 64D163EE1A14B19B00DDDBA3 /* menu */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -425,15 +419,12 @@
 		64C8BE7E19A34E54003D205D /* libcor_project_structure.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_project_structure.a; path = ../../../libraries/cor_project_structure/proj.ios_mac/osx/libcor_project_structure.a; sourceTree = "<group>"; };
 		64C8BE8019A34E7A003D205D /* libcor_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_system.a; path = ../../../libraries/cor_system/proj.ios_mac/osx/libcor_system.a; sourceTree = "<group>"; };
 		64C8BE8219A34E8B003D205D /* libcor_type.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_type.a; path = ../../../libraries/cor_type/proj.ios_mac/osx/libcor_type.a; sourceTree = "<group>"; };
-		64F27C071A0746AC00537BB2 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		64F27C081A0746AC00537BB2 /* copy_date.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copy_date.txt; sourceTree = "<group>"; };
-		64F27C1F1A0746AC00537BB2 /* start.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = start.rb; sourceTree = "<group>"; };
-		64F27C441A0746EA00537BB2 /* data_test_1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data_test_1; sourceTree = "<group>"; };
-		64F27C451A0746EA00537BB2 /* data_test_2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data_test_2; sourceTree = "<group>"; };
-		64F27C461A0746EA00537BB2 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
-		64F27C471A0746EA00537BB2 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
-		64F27C481A0746EA00537BB2 /* math */ = {isa = PBXFileReference; lastKnownFileType = folder; path = math; sourceTree = "<group>"; };
-		64F27C491A0746EA00537BB2 /* menu */ = {isa = PBXFileReference; lastKnownFileType = folder; path = menu; sourceTree = "<group>"; };
+		64D163B11A14B07C00DDDBA3 /* copy_date.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copy_date.txt; sourceTree = "<group>"; };
+		64D163C61A14B07C00DDDBA3 /* start.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = start.rb; sourceTree = "<group>"; };
+		64D163EB1A14B19B00DDDBA3 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		64D163EC1A14B19B00DDDBA3 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
+		64D163ED1A14B19B00DDDBA3 /* math */ = {isa = PBXFileReference; lastKnownFileType = folder; path = math; sourceTree = "<group>"; };
+		64D163EE1A14B19B00DDDBA3 /* menu */ = {isa = PBXFileReference; lastKnownFileType = folder; path = menu; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -566,7 +557,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				64F27C061A0746AC00537BB2 /* Resources */,
+				64D163B01A14B07C00DDDBA3 /* Resources */,
 				64BDF0C019A2DFBF00E0EA0B /* cor_type.xcodeproj */,
 				64BDF0BB19A2DFB000E0EA0B /* cor_system.xcodeproj */,
 				64BDF0B619A2DF9900E0EA0B /* cor_project_scructure.xcodeproj */,
@@ -724,18 +715,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		64F27C061A0746AC00537BB2 /* Resources */ = {
+		64D163B01A14B07C00DDDBA3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				64F27C441A0746EA00537BB2 /* data_test_1 */,
-				64F27C451A0746EA00537BB2 /* data_test_2 */,
-				64F27C461A0746EA00537BB2 /* fonts */,
-				64F27C471A0746EA00537BB2 /* lib */,
-				64F27C481A0746EA00537BB2 /* math */,
-				64F27C491A0746EA00537BB2 /* menu */,
-				64F27C071A0746AC00537BB2 /* .gitignore */,
-				64F27C081A0746AC00537BB2 /* copy_date.txt */,
-				64F27C1F1A0746AC00537BB2 /* start.rb */,
+				64D163EB1A14B19B00DDDBA3 /* fonts */,
+				64D163EC1A14B19B00DDDBA3 /* lib */,
+				64D163ED1A14B19B00DDDBA3 /* math */,
+				64D163EE1A14B19B00DDDBA3 /* menu */,
+				64D163B11A14B07C00DDDBA3 /* copy_date.txt */,
+				64D163C61A14B07C00DDDBA3 /* start.rb */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -953,23 +941,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64F27C501A0746EA00537BB2 /* lib in Resources */,
-				64F27C4A1A0746EA00537BB2 /* data_test_1 in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
+				64D163EF1A14B19B00DDDBA3 /* fonts in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
-				64F27C541A0746EA00537BB2 /* menu in Resources */,
-				64F27C521A0746EA00537BB2 /* math in Resources */,
-				64F27C4C1A0746EA00537BB2 /* data_test_2 in Resources */,
-				64F27C201A0746AC00537BB2 /* .gitignore in Resources */,
-				64F27C421A0746AC00537BB2 /* start.rb in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
+				64D163F11A14B19B00DDDBA3 /* lib in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
-				64F27C4E1A0746EA00537BB2 /* fonts in Resources */,
+				64D163F31A14B19B00DDDBA3 /* math in Resources */,
+				64D163C71A14B07C00DDDBA3 /* copy_date.txt in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
+				64D163F51A14B19B00DDDBA3 /* menu in Resources */,
+				64D163E91A14B07C00DDDBA3 /* start.rb in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
@@ -977,7 +963,6 @@
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
-				64F27C221A0746AC00537BB2 /* copy_date.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -985,16 +970,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64F27C4B1A0746EA00537BB2 /* data_test_1 in Resources */,
-				64F27C551A0746EA00537BB2 /* menu in Resources */,
-				64F27C431A0746AC00537BB2 /* start.rb in Resources */,
-				64F27C511A0746EA00537BB2 /* lib in Resources */,
-				64F27C211A0746AC00537BB2 /* .gitignore in Resources */,
-				64F27C4F1A0746EA00537BB2 /* fonts in Resources */,
+				64D163F41A14B19B00DDDBA3 /* math in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
-				64F27C531A0746EA00537BB2 /* math in Resources */,
-				64F27C231A0746AC00537BB2 /* copy_date.txt in Resources */,
-				64F27C4D1A0746EA00537BB2 /* data_test_2 in Resources */,
+				64D163F21A14B19B00DDDBA3 /* lib in Resources */,
+				64D163EA1A14B07C00DDDBA3 /* start.rb in Resources */,
+				64D163C81A14B07C00DDDBA3 /* copy_date.txt in Resources */,
+				64D163F01A14B19B00DDDBA3 /* fonts in Resources */,
+				64D163F61A14B19B00DDDBA3 /* menu in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
