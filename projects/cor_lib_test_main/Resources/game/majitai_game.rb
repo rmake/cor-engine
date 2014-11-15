@@ -232,7 +232,7 @@ class MajitaiGame
       return rand(8)
     end
     
-    0
+    rand(10)
   end
   
   def generate_wall

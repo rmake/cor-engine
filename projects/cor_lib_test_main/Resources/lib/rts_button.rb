@@ -14,17 +14,21 @@ class RtsButton
   attr_accessor :text_scale
   attr_accessor :align
   
+  TAP_RANGE = 3.0 * 8  
   
   def initialize(options = {})
     
-    texture_name = options[:texture] || "data_test_2/button_bg.png"
+    texture_name = options[:texture]# || "data_test_2/button_bg.png"
     text = options[:text]
     rect = options[:rect]
     self.rect = rect
     
     self.align = options[:align] || :center
     
-    texture = RtsSprite.get_texture texture_name
+    texture = nil
+    if texture_name
+      texture = RtsSprite.get_texture texture_name
+    end
     
     self.name = options[:name]
     
@@ -65,12 +69,11 @@ class RtsButton
     
     old_l = nil
     
+    containing = false
+    
     listener.on_touch_began = Proc.new do |t, e|
       lp = t.get_location
       
-      if @on_touch_began
-        @on_touch_began.call t, e
-      end
       
       prnt = s.get_parent
       unless rect
@@ -84,6 +87,13 @@ class RtsButton
       bb = rect || s.get_bounding_box
       
       if @on_tap && bb.contains_point(clp)
+      
+        if @on_touch_began
+          containing = true
+          @on_touch_began.call t, e
+        end
+        
+      
         old_l = lp
       end
     end
@@ -91,19 +101,19 @@ class RtsButton
     listener.on_touch_moved = Proc.new do |t, e|
       l = t.get_location
       
-      if @on_touch_moved
+      if @on_touch_moved && containing
         @on_touch_moved.call t, e
       end
       
       
-      if old_l && l.get_distance(old_l) > 3.0 * 4
+      if old_l && l.get_distance(old_l) > TAP_RANGE
         old_l = nil
       end
     end
     
     listener.on_touch_ended = Proc.new do |t, e|
       
-      if @on_touch_ended
+      if @on_touch_ended && containing
         @on_touch_ended.call t, e
       end
       
