@@ -75,7 +75,7 @@ class MajitaiGame
     s.set_scale 0.5
     n.set_position 3 * 64, 1 * 64
     
-    vx = 4
+    vx = 6
     vy = 0 
     
     contacting = 0
@@ -155,21 +155,26 @@ class MajitaiGame
       button.sprite.set_scale 1.0
       button.sprite.set_position 48, 48
       
-      button.on_touch_began do |t, e|
+      self.scene.add_child button.sprite
+      
+      r = Rect.create(-@visible_size.width / 2, -@visible_size.height / 2, @visible_size.width, @visible_size.height)
+      all_screen = CorPanel.new :rect => r
+      all_screen.sprite.set_position(@visible_size.width / 2, @visible_size.height / 2)
+      all_screen.on_touch_began do |t, e|
         if contacting > 0
           pressed = 16
         end
       end
       
-      button.on_touch_ended do |t, e|
+      all_screen.on_touch_ended do |t, e|
         pressed = 0
       end
       
-      button.on_tap do |t, e|
-        
+      all_screen.on_tap do
+      
       end
       
-      self.scene.add_child button.sprite
+      self.scene.add_child all_screen.sprite
       
       @label = self.create_distance_label
       self.scene.add_child @label.sprite
