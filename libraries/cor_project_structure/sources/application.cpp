@@ -25,6 +25,19 @@ namespace cor
         Application::Application() : itnl(new ApplicationItnl())
         {
 
+            auto eventDispatcher = Director::getInstance()->getEventDispatcher();
+
+            //auto rendererRecreatedListener = EventListenerCustom::create(EVENT_RENDERER_RECREATED, [](EventCustom* e){
+            //    cocos2dx_converter::RtsObjectSystem::on_active();
+            //});
+            //
+            //eventDispatcher->addEventListenerWithFixedPriority(rendererRecreatedListener, -3);
+
+            auto toForegroundListener = EventListenerCustom::create(EVENT_COME_TO_FOREGROUND, [](EventCustom* e){
+                cocos2dx_converter::RtsObjectSystem::on_active();
+            });
+            eventDispatcher->addEventListenerWithFixedPriority(toForegroundListener, -3);
+
         }
         
         Application::~Application()
@@ -84,6 +97,7 @@ namespace cor
             {
                 //cocos2d::ShaderCache::getInstance()->reloadDefaultGLPrograms();
                 //cocos2dx_converter::RtsObjectSystem::on_active();
+
             }
 
             if(get_will_enter_foreground_func())

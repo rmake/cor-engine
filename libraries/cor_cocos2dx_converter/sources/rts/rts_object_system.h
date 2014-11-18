@@ -25,6 +25,8 @@ namespace cor
             static void setup_avoid_blur_texture(cocos2d::Texture2D* texture);
             static cocos2d::Rect node_rect(cocos2d::Node* node);
             static cocos2d::Rect nodes_rect(cocos2d::Vector<cocos2d::Node*> nodes);
+            static cocos2d::Action* delay_call(cocos2d::Node* node, RFloat interval, std::function<void()> callback);
+            static cocos2d::Action* interval_call(cocos2d::Node* node, RFloat interval, std::function<void()> callback);
 
 
             static void on_active();

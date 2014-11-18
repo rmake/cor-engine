@@ -68,6 +68,7 @@ namespace cor
                 {
                     auto ss = cocos2d::GLProgram::createWithByteArrays(cocos2d::ccPositionTextureColor_noMVP_vert, my_frag_shader);
                     rts_object_system_alpha_test_shader = ss;
+                    ss->retain();
                 }
                 else
                 {
@@ -106,17 +107,20 @@ namespace cor
                     }
                 );
 
-                if(!rts_object_system_round_shader)
-                {
+                //if(!rts_object_system_round_shader)
+                //{
+                    log_debug("rts_object_system_round_shader create");
                     auto ss = cocos2d::GLProgram::createWithByteArrays(my_vert_shader, cocos2d::ccPositionTextureColor_noMVP_frag);
                     rts_object_system_round_shader = ss;
-                }
-                else
-                {
-                    auto ss = rts_object_system_round_shader;
-                    ss->reset();
-                    ss->initWithByteArrays(my_vert_shader, cocos2d::ccPositionTextureColor_noMVP_frag);
-                }
+                    ss->retain();
+                //}
+                //else
+                //{
+                //    log_debug("rts_object_system_round_shader reset");
+                //    auto ss = rts_object_system_round_shader;
+                //    ss->reset();
+                //    ss->initWithByteArrays(my_vert_shader, cocos2d::ccPositionTextureColor_noMVP_frag);
+                //}
 
             }
             
@@ -137,13 +141,81 @@ namespace cor
         void RtsObjectSystem::setup_sprite_round(cocos2d::Sprite* sprite)
         {
             static cocos2d::GLProgramState* s = NULL;
+            static RBool need_reset = rfalse;
+            auto p_need_reset = &need_reset;
+            auto ps = &s;
             if(!s)
             {
+                auto shader = &rts_object_system_round_shader;
                 rts_object_system_load_shader();
-                s = cocos2d::GLProgramStateCache::getInstance()->getGLProgramState(rts_object_system_round_shader);
+                log_debug("shader ", (*shader)->getProgram());
+                s = cocos2d::GLProgramStateCache::getInstance()->getGLProgramState(*shader);
                 s->retain();
+                auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+                    
+                    log_debug("p_need_reset true");
+                    *p_need_reset = rtrue;
+
+                    //auto s = *ps;
+                    //log_debug("reset shader", s);
+                    //s->release();
+                    //cocos2d::GLProgramStateCache::getInstance()->removeUnusedGLProgramState();
+                    //rts_object_system_load_shader();
+                    //log_debug("shader ", (*shader)->getProgram());
+                    //s = cocos2d::GLProgramStateCache::getInstance()->getGLProgramState(*shader);
+                    //s->retain();
+                    //log_debug(" new shader", s);
+                    //*ps = s;
+                });
+                cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -2);
             }
             sprite->setGLProgramState(s);
+            {
+                auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+                    log_debug("remove shader from sprite ", *ps);
+                    sprite->setGLProgramState(
+                        cocos2d::GLProgramState::getOrCreateWithGLProgramName(
+                            cocos2d::GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP));
+                });
+                sprite->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -3);
+            }
+            {
+                auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+                    //log_debug("reseted shader to sprite ", *ps);
+                    //sprite->setGLProgramState(*ps);
+                });
+                sprite->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -1);
+
+            }
+            {
+                auto shader = &rts_object_system_round_shader;
+                auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+                    RtsObjectSystem::delay_call(sprite, 0.01f, [=](){
+                        log_debug("delay call reset");
+                        if(*p_need_reset)
+                        {
+                            auto s = *ps;
+                            log_debug("reset shader", s);
+                            s->release();
+                            cocos2d::GLProgramStateCache::getInstance()->removeUnusedGLProgramState();
+                            rts_object_system_load_shader();
+                            log_debug("shader ", (*shader)->getProgram());
+                            s = cocos2d::GLProgramStateCache::getInstance()->getGLProgramState(*shader);
+                            s->retain();
+                            log_debug(" new shader", s);
+                            *ps = s;
+
+                            *p_need_reset = rfalse;
+                        }
+
+                        log_debug("reseted shader to sprite ", *ps);
+                        sprite->setGLProgramState(*ps);
+                    });
+                });
+                sprite->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -1);
+                
+                
+            }
         }
 
         void RtsObjectSystem::setup_avoid_blur_texture(cocos2d::Texture2D* texture)
@@ -242,9 +314,31 @@ namespace cor
             
         }
 
+        cocos2d::Action* RtsObjectSystem::delay_call(cocos2d::Node* node, RFloat interval, std::function<void()> callback)
+        {
+            cocos2d::Vector<cocos2d::FiniteTimeAction*> a;
+            a.pushBack(cocos2d::DelayTime::create(interval));
+            a.pushBack(cocos2d::CallFunc::create([=](){callback(); }));
+            return node->runAction(cocos2d::Sequence::create(
+                a
+                ));
+        }
+
+        cocos2d::Action* RtsObjectSystem::interval_call(cocos2d::Node* node, RFloat interval, std::function<void()> callback)
+        {
+            cocos2d::Vector<cocos2d::FiniteTimeAction*> a;
+            a.pushBack(cocos2d::DelayTime::create(interval));
+            a.pushBack(cocos2d::CallFunc::create([=](){callback(); }));
+            return node->runAction(
+                cocos2d::RepeatForever::create(cocos2d::Sequence::create(
+                a
+                )));
+        }
+
         void RtsObjectSystem::on_active()
         {
-            rts_object_system_load_shader();
+            log_debug("RtsObjectSystem::on_active");
+            //rts_object_system_load_shader();
         }
 
 
