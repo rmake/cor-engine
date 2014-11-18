@@ -1,11 +1,15 @@
 
 class RtsLabel
   
+  @@first = true
   @@all_font_textures = []
   @@all_line = {}
   @@all_chatacter = {}
   @@max_line = 0
   @@last_label = nil
+  @@all_label = {}
+  @@enable_set_text = true
+  
   WIDTH = 512
   
   attr_accessor :font_name
@@ -14,6 +18,7 @@ class RtsLabel
   attr_accessor :edge_size
   attr_accessor :node
   attr_accessor :text
+  attr_accessor :setted_text
   attr_accessor :color
   attr_accessor :line_height
   
@@ -31,6 +36,84 @@ class RtsLabel
     #  
     #end
     
+    if @@first
+      
+      el = EventListenerCustom.create "event_come_to_background" do |e|
+        Logger.debug "event event_come_to_background"
+        
+        @@enable_set_text = false
+        
+        @@all_label.values.each do |l|
+          l.release_text
+        end
+        
+        @@all_font_textures.each do |aft|
+          aft.release
+        end
+        
+        @@all_font_textures = []
+        @@all_line = {}
+        @@all_chatacter = {}
+        @@max_line = 0
+        
+      end
+      
+      Director.get_instance.get_event_dispatcher.add_event_listener_with_fixed_priority(el, -1);
+      
+      
+      ct = 0
+      
+      el = EventListenerCustom.create "event_come_to_foreground" do |e|
+        Logger.debug "event event_come_to_foreground"
+      end
+      
+      Director.get_instance.get_event_dispatcher.add_event_listener_with_fixed_priority(el, -1);
+      
+      el = EventListenerCustom.create "event_renderer_recreated" do |e|
+        Logger.debug "event event_renderer_recreated"
+        
+        ct += 1
+        
+        Project.delay_call 0.01 do
+        
+          Project.delay_call 0.01 do
+          
+            ct -= 1
+        
+            Logger.debug "event event_come_to_foreground delay #{ct}"
+          
+            if ct <= 0
+            
+              @@all_label.values.each do |l|
+                l.release_text
+              end
+              
+              @@all_font_textures.each do |aft|
+                aft.release
+              end
+              
+              @@all_font_textures = []
+              @@all_line = {}
+              @@all_chatacter = {}
+              @@max_line = 0
+            
+            
+              @@enable_set_text = true
+              
+              @@all_label.values.each do |l|
+                Logger.debug "setted_text #{l.setted_text}"
+                l.set_text l.setted_text
+              end
+            end
+          end
+        end
+      end
+      
+      Director.get_instance.get_event_dispatcher.add_event_listener_with_fixed_priority(el, -1);
+      
+      @@first = false
+    end
+    
     self.font_name = options[:font_name] || "fonts/MTLc3m.ttf"
     self.edge_size = options[:edge_size] || 0
     self.font_size = options[:font_size] || 34
@@ -45,6 +128,7 @@ class RtsLabel
     r.set_value self
     r.set_on_delete do
       self.release_text
+      @@all_label.delete self.object_id
     end
     self.node.set_user_object r
     
@@ -53,6 +137,8 @@ class RtsLabel
     else
       self.set_text " "
     end
+    
+    @@all_label[self.object_id] = self
     
   end
   
@@ -96,6 +182,11 @@ class RtsLabel
     self.release_text
     
     self.text = text
+    self.setted_text = text
+    
+    unless @@enable_set_text
+      return
+    end
     
     labels = []
     

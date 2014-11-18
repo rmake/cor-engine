@@ -305,7 +305,7 @@ namespace cor
 
         void RtsObjectSystem::on_active()
         {
-            log_debug("RtsObjectSystem::on_active");
+            //log_debug("RtsObjectSystem::on_active");
             //rts_object_system_load_shader();
         }
 
