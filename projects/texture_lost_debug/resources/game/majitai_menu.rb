@@ -23,7 +23,8 @@ class MajitaiMenu
     lv = CorListView.new list, {:size => Size.create(@visible_size.width - 100, @visible_size.height)} do |data|
       r = Rect.create(-96 * 4 / 2, -96 / 2, 96 * 4, 96)
       sp = CorSprite.create_sprite_9 :texture => "game/sp9bg_dark.png", :rect => r
-      button = CorPanel.new :rect => r,
+      button = CorPanel.new :rect => r, 
+        #:font_name => "fonts/MTLc3m.ttf", :text => data[:text], 
         :text_scale => 1.0, :sprite => sp, :disable_swallow => true
       button.sprite.set_scale 1.0
       button.on_tap do |t, e|

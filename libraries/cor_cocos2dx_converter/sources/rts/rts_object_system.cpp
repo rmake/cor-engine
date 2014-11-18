@@ -161,7 +161,9 @@ namespace cor
             {
                 auto shader = &rts_object_system_round_shader;
                 auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+
                     RtsObjectSystem::delay_call(sprite, 0.01f, [=](){
+
                         if(*p_need_reset)
                         {
                             auto s = *ps;
@@ -178,7 +180,7 @@ namespace cor
                         sprite->setGLProgramState(*ps);
                     });
                 });
-                sprite->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -1);
+                sprite->getEventDispatcher()->addEventListenerWithSceneGraphPriority(backToForegroundlistener, sprite);
                 
                 
             }

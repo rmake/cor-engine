@@ -137,7 +137,7 @@ class MajitaiGame
               
               
               @@distance = p.x / 64
-              @label.set_text "#{sprintf "%6.2f", @@distance}m"
+              #@label.set_text "#{sprintf "%6.2f", @@distance}m"
               
               contacting -= 1
               
@@ -149,8 +149,8 @@ class MajitaiGame
       
       r = Rect.create(-96 / 2, -96 / 2, 96, 96)
       sp = CorSprite.create_sprite_9 :texture => "game/sp9bg_dark.png", :rect => r
-      button = CorPanel.new :text => "jump", :rect => r, 
-        :font_name => "fonts/MTLc3m.ttf",
+      button = CorPanel.new :rect => r, 
+        #:font_name => "fonts/MTLc3m.ttf", :text => "jump", 
         :text_scale => 1.0, :sprite => sp, :disable_swallow => true
       button.sprite.set_scale 1.0
       button.sprite.set_position 48, 48
@@ -176,8 +176,8 @@ class MajitaiGame
       
       self.scene.add_child all_screen.sprite
       
-      @label = self.create_distance_label
-      self.scene.add_child @label.sprite
+      #@label = self.create_distance_label
+      #self.scene.add_child @label.sprite
       
       ed = self.layer.get_event_dispatcher
       listener = EventListenerKeyboard.create
