@@ -225,7 +225,7 @@ class RtsLabel
       aft = @@all_back_font_textures.pop
     end
     
-    aft.clear 0.0, 0.0, 1.0, 1.0
+    aft.clear 0.0, 0.0, 0.0, 0.0
     
     @@all_font_textures << aft
     
