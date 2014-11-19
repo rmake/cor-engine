@@ -839,6 +839,10 @@ COCOS2DX_MRUBY_INTERFACE = [
       :name => "cocos2d::extension::ScrollView",
       :value => :cocos_ptr,
     },
+    {
+      :name => "CocosDenshion::SimpleAudioEngine",
+      :value => :pointer,
+    },
   ]
     
 

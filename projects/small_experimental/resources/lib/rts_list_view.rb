@@ -74,6 +74,7 @@ class RtsListView
     if self.world.class.method_defined? :action_manager_fast
       self.node.set_action_manager self.world.action_manager_fast
     end
+    
     #drn = DrawNode.create
     #drn.draw_triangle(Vec2.create(0, 0), Vec2.create(100, 0), Vec2.create(100, 100), Color4F.create(1, 1, 1, 1))
     #

@@ -27,6 +27,10 @@ class CorMenu
         :text => "math/operator.rb",
         :file => "math/operator.rb",
       }
+      list << {
+        :text => "sound/sound.rb",
+        :file => "sound/sound.rb",
+      }
       
       lv = CorListView.new list, {:size => Size.create(@visible_size.width - 100, @visible_size.height)} do |data|
         r = Rect.create(-96 * 4 / 2, -96 / 2, 96 * 4, 96)

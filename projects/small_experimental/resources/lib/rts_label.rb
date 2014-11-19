@@ -1,11 +1,16 @@
 
 class RtsLabel
   
+  @@first = true
   @@all_font_textures = []
+  @@all_back_font_textures = []
   @@all_line = {}
   @@all_chatacter = {}
   @@max_line = 0
   @@last_label = nil
+  @@all_label = {}
+  @@enable_set_text = true
+  
   WIDTH = 512
   
   attr_accessor :font_name
@@ -14,6 +19,7 @@ class RtsLabel
   attr_accessor :edge_size
   attr_accessor :node
   attr_accessor :text
+  attr_accessor :setted_text
   attr_accessor :color
   attr_accessor :line_height
   
@@ -31,6 +37,119 @@ class RtsLabel
     #  
     #end
     
+    if @@first
+      
+      
+      ct = 0
+      canceled = true
+      
+      regenerate_proc = Proc.new do
+        @@all_label.values.each do |l|
+          l.release_text
+        end
+        
+        @@all_font_textures.each do |aft|
+          aft.release
+        end
+        
+        #@@all_back_font_textures += @@all_font_textures
+        @@all_font_textures = []
+        @@all_line = {}
+        @@all_chatacter = {}
+        @@max_line = 0
+      
+        @@enable_set_text = true
+        
+        @@all_label.values.each do |l|
+          l.set_text l.setted_text
+        end
+      end
+      
+      proc = Proc.new do
+      
+        canceled = false
+        ct += 1
+      
+        Project.delay_call 0.1 do
+        
+          Project.delay_call 0.3 do
+          
+            ct -= 1
+            
+            
+            if ct <= 0
+              #self.create_texture
+              
+              aft = RenderTexture.create 32, 32#, 2, 35056
+              aft.retain
+              
+              Project.delay_call 0.1 do
+                aft.release
+                regenerate_proc.call
+              end
+              
+            end
+          
+          end
+        end
+      end
+      
+      
+      el = EventListenerCustom.create "event_come_to_background" do |e|
+        
+        Logger.debug "event event_come_to_background"
+        
+        @@enable_set_text = false
+        
+        @@all_label.values.each do |l|
+          l.release_text
+        end
+        
+        @@all_font_textures.each do |aft|
+          aft.release
+        end
+        
+        #@@all_back_font_textures += @@all_font_textures
+        @@all_font_textures = []
+        @@all_line = {}
+        @@all_chatacter = {}
+        @@max_line = 0
+        
+        canceled = true
+        
+        #proc.call
+        
+      end
+      
+      Director.get_instance.get_event_dispatcher.add_event_listener_with_fixed_priority(el, -1);
+      
+      
+      
+      
+      el = EventListenerCustom.create "event_renderer_recreated" do |e|
+        
+        Logger.debug "event event_renderer_recreated"
+        
+        
+        #proc.call
+        
+      end
+      
+      Director.get_instance.get_event_dispatcher.add_event_listener_with_fixed_priority(el, -1);
+      
+      el = EventListenerCustom.create "event_come_to_foreground" do |e|
+        
+        Logger.debug "event event_come_to_foreground"
+        
+        proc.call
+        
+      end
+      
+      Director.get_instance.get_event_dispatcher.add_event_listener_with_fixed_priority(el, -1);
+      
+      @@first = false
+    end
+    
     self.font_name = options[:font_name] || "fonts/MTLc3m.ttf"
     self.edge_size = options[:edge_size] || 0
     self.font_size = options[:font_size] || 34
@@ -45,6 +164,7 @@ class RtsLabel
     r.set_value self
     r.set_on_delete do
       self.release_text
+      @@all_label.delete self.object_id
     end
     self.node.set_user_object r
     
@@ -53,6 +173,8 @@ class RtsLabel
     else
       self.set_text " "
     end
+    
+    @@all_label[self.object_id] = self
     
   end
   
@@ -91,11 +213,53 @@ class RtsLabel
     end
   end
   
+  def create_texture
+    Logger.debug "pre create render texture"
+  
+    Texture2D.set_default_alpha_pixel_format 1
+    
+    if @@all_back_font_textures.empty?
+      aft = RenderTexture.create WIDTH, WIDTH#, 2, 35056
+      aft.retain
+    else
+      aft = @@all_back_font_textures.pop
+    end
+    
+    aft.clear 0.0, 0.0, 0.0, 0.0
+    
+    @@all_font_textures << aft
+    
+    texture = aft.get_sprite.get_texture
+    
+    texture.set_anti_alias_tex_parameters
+    
+    @@max_line = 0
+    
+    Texture2D.set_default_alpha_pixel_format 8
+    
+    Logger.debug "post create render texture"
+    
+    #s = Sprite.create_with_texture texture
+    #s.set_scale 0.5
+    #@ca ||= 0
+    #s.set_position 150 + @ca, 150 + @ca
+    #@ca += 10
+    #Project.get_current_scene.add_child s
+    
+    
+    texture
+  end
+  
   def set_text(text)
   
     self.release_text
     
     self.text = text
+    self.setted_text = text
+    
+    unless @@enable_set_text
+      return
+    end
     
     labels = []
     
@@ -113,27 +277,12 @@ class RtsLabel
       
         if @@all_font_textures.empty? || (@@max_line > WIDTH - self.all_size)
         
-          Logger.debug "pre create render texture"
-        
-          Texture2D.set_default_alpha_pixel_format 1
+          texture = self.create_texture
+    
           
-          aft = RenderTexture.create WIDTH, WIDTH#, 2, 35056
-          aft.retain
-          
-          aft.clear 0.0, 0.0, 0.0, 0.0
-          
-          @@all_font_textures << aft
-          
-          texture = aft.get_sprite.get_texture
-          
-          texture.set_anti_alias_tex_parameters
-          
-          @@max_line = 0
-          
-          Texture2D.set_default_alpha_pixel_format 8
-          
-          Logger.debug "post create render texture"
-          
+        else
+          Logger.debug "get last texture"
+          texture = @@all_font_textures.last.get_sprite.get_texture
         end
         
         @@all_line[self.all_size] ||= []
@@ -166,6 +315,7 @@ class RtsLabel
           :key => key,
           :rect => Rect.create(h[:left], h[:top], wa, ha),
           :ref_count => 1,
+          :texture => texture,
         }
         
         x = h[:left] + (wa / 2 - self.edge_size)
@@ -206,6 +356,8 @@ class RtsLabel
     
     unless labels.empty?
       
+      # todo: multiple texture
+      
       tmp_node = Node.create
       
       labels.each do |label|
@@ -220,7 +372,7 @@ class RtsLabel
       tmp_node.visit
       
       @@all_font_textures.last.end
-    
+      
     end
     
     texture = @@all_font_textures.last.get_sprite.get_texture
@@ -245,7 +397,8 @@ class RtsLabel
       
       
       r = h[:rect]
-      sf = SpriteFrame.create_with_texture texture, r
+      sf = SpriteFrame.create_with_texture h[:texture], r
+      #sf = SpriteFrame.create_with_texture h[:texture], Rect.create(0, 0, WIDTH, WIDTH)
       tl = Sprite.create_with_sprite_frame sf
       tl.set_position l + (r.size.width / 2), t
       tl.set_scale 1.0, -1.0
