@@ -58,6 +58,11 @@ COCOS2DX_MRUBY_INTERFACE = [
       :create_function => "create",
     },
     {
+      :name => "cocos2d::Color4B",
+      :value => :value,
+      :create_function => "create",
+    },
+    {
       :name => "cocos2d::Color3B",
       :value => :value,
       :create_function => "create",
@@ -675,6 +680,10 @@ COCOS2DX_MRUBY_INTERFACE = [
     },
     {
       :name => "cocos2d::Layer",
+      :value => :cocos_ptr,
+    },
+    {
+      :name => "cocos2d::LayerColor",
       :value => :cocos_ptr,
     },
     {
