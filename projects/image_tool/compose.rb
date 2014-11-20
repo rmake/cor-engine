@@ -14,10 +14,11 @@ output_name = ARGV[2] || "all"
 
 img_sz = ARGV[3] || "2048"
 img_sz = img_sz.to_i
+img_sz_y = ARGV[4].to_i || img_sz
 
 a = Cor.u.file_list source_path
 
-packed = Magick::Image.new img_sz, img_sz do
+packed = Magick::Image.new img_sz, img_sz_y do
   self.background_color = "#00000000"
 end
 
