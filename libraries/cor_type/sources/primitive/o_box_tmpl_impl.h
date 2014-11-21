@@ -305,6 +305,48 @@ namespace cor
 
         }
 
+        template<class T, class Vec> typename OBoxTmpl<T, Vec>::Box OBoxTmpl<T, Vec>::get_aabb() const
+        {
+            RSize i, isz;
+            RSize j;
+            Box b;
+
+            Vec vmn, vmx;
+            isz = b.p.size();
+            auto vo = m.get_o_vec();
+            Vec3 dv[] = { m.get_x_vec(), m.get_y_vec(), m.get_z_vec() };
+            for(i = 0; i < isz; i++)
+            {
+                
+                T mn, mx;
+                mn = vo[i];
+                mx = vo[i];
+                
+                for(j = 0; j < isz; j++)
+                {
+                    auto t = dv[j][i];
+                    if(t >= (T)0.0)
+                    {
+                        mn += t * box.p[j];
+                        mx += t * (box.p[j] + box.w[j]);
+                    }
+                    else
+                    {
+                        mn += t * (box.p[j] + box.w[j]);
+                        mx += t * box.p[j];
+                    }
+                }
+                
+                vmn[i] = mn;
+                vmx[i] = mx;
+            }
+
+            b.p = vmn;
+            b.set_max(vmx);
+            
+            return b;
+        }
+
 
     }
 }

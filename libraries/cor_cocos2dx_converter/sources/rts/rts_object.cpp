@@ -563,6 +563,10 @@ namespace cor
                                                 auto odv = p - old_pos;
                                                 auto ndn = n * d;
                                                 auto ndv = dv;
+                                                auto ab0 = box0.get_aabb();
+                                                auto ab1 = box1.get_aabb();
+                                                type::Vector2F ap0;
+                                                type::Vector2F ap1;
                                                 ndn.normalize();
                                                 ndv.normalize();
                                                 if(ndv.dot(ndn) < -0.01f)
@@ -570,17 +574,33 @@ namespace cor
                                                     if(std::abs(n.x) > std::abs(n.y))
                                                     {
                                                         dv.x = 0;
+
+                                                        auto c0 = ab0.get_center();
+                                                        auto c1 = ab1.get_center();
+                                                        auto w = (ab0.w.x + ab1.w.x) / 2.0f + 4.0f;
+                                                        ap0.x = old_pos.x;
+                                                        ap0.y = (c1.y > c0.y ? c1.y : c0.y) + w;
+                                                        ap1.x = old_pos.x;
+                                                        ap1.y = (c1.y < c0.y ? c1.y : c0.y) - w;
                                                     }
                                                     else
                                                     {
                                                         dv.y = 0;
+
+                                                        auto c0 = ab0.get_center();
+                                                        auto c1 = ab1.get_center();
+                                                        auto w = (ab0.w.y + ab1.w.y) / 2.0f + 4.0f;
+                                                        ap0.x = (c1.x > c0.x ? c1.x : c0.x) + w;
+                                                        ap0.y = old_pos.y;
+                                                        ap1.x = (c1.x < c0.x ? c1.x : c0.x) - w;
+                                                        ap1.y = old_pos.y;
                                                     }
                                                     new_pos = old_pos + dv;
                                                     canceled = true;
 
                                                     if(itnl->move_push_back_callback)
                                                     {
-                                                        itnl->move_push_back_callback(o, o1, p, n, odv);
+                                                        itnl->move_push_back_callback(o, o1, p, n, odv, ap0, ap1);
                                                     }
                                                 }
 

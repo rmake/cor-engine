@@ -44,7 +44,7 @@ namespace cor
             typedef std::function<void()> NoArgCallback;
             typedef std::function<void(RtsObjectSP)> ObjectCallback;
             typedef std::function<void(RtsObjectSP)> MoveEndCallback;
-            typedef std::function<void(RtsObjectSP, RtsObjectSP, type::Vector2F, type::Vector2F, type::Vector2F)> MovePushBackCallback;
+            typedef std::function<void(RtsObjectSP, RtsObjectSP, type::Vector2F, type::Vector2F, type::Vector2F, type::Vector2F, type::Vector2F)> MovePushBackCallback;
             typedef std::function<void(RtsObjectActionSP, RtsObjectSP)> StepCallback;
             typedef std::function<type::Vector2F(RtsObjectActionSP, RtsObjectSP, type::Vector2F, type::Vector2F)> PremoveCallback;
             typedef Collision2dNode::CollisionCallback CollisionCallback;

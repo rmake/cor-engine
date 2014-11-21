@@ -30,6 +30,7 @@ namespace cor
             T get_distance(const Vec& p) const;
             VectorArray get_vertices() const;
             RBool get_contact_info(const OBoxTmpl& b, Vec& n, T& d, Vec& p0, Vec& p1) const;
+            Box get_aabb() const;
         };
 
         typedef OBoxTmpl<RFloat, Vector2Tmpl<RFloat> > OBox2F;

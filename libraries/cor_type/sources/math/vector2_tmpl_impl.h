@@ -115,6 +115,12 @@ namespace cor
             return x * a.y - y * a.x;
         }
 
+        template<class T> T Vector2Tmpl<T>::distance(const Vector2Tmpl<T>& a) const
+        {
+            auto d = a - *this;
+            return d.get_square_magnitude();
+        }
+
         template<class T> Vector2Tmpl<T> operator +(const Vector2Tmpl<T>& a, const Vector2Tmpl<T>& b)
         {
             return Vector2Tmpl<T>(a.x + b.x, a.y + b.y);

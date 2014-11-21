@@ -58,8 +58,8 @@ BOOST_AUTO_TEST_CASE(obox2d_distance)
     typedef cor::type::OBox2F B;
     typedef cor::type::Vector2F V;
     
-    B b0(B::Matrix::scale(1.5f, 1.5f, 1.0f) * 
-        B::Matrix::rot_z(0.1f) * B::Matrix::translate(0.0f, 0.0f, 0.0f), 
+    B b0(B::Matrix::translate(0.0f, 0.0f, 0.0f) * 
+        B::Matrix::rot_z(0.1f) * B::Matrix::scale(1.5f, 1.5f, 1.0f), 
             B::Box(-0.5f, -0.5f, 1.0f, 1.0f));
     
     V v(cosf(0.1f) - sinf(0.1f), sinf(0.1f) + cosf(0.1f));
@@ -67,6 +67,31 @@ BOOST_AUTO_TEST_CASE(obox2d_distance)
     cor::log_debug("v.x = ", v.x, ", v.y = ", v.y);
     cor::log_debug("d = ", d);
     BOOST_CHECK_CLOSE(d, 0.5f / sqrtf(2.0f), 0.0001f);
+    
+}
+
+BOOST_AUTO_TEST_CASE(obox2d_aabb)
+{
+    typedef cor::type::OBox2F B;
+    typedef cor::type::Vector2F V;
+    
+    auto rot = cor::PI / 3;
+    B b0(B::Matrix::translate(0.0f, 1.0f, 0.0f) * 
+        B::Matrix::rot_z(rot) * B::Matrix::scale(2.0f, 2.0f, 2.0f), 
+            B::Box(-0.5f, -0.5f, 1.0f, 1.0f));
+    
+    auto aabb = b0.get_aabb();
+    
+    cor::log_debug("aabb.p.x ", aabb.p.x, ", aabb.p.y ", aabb.p.y, 
+        ", aabb.w.x ", aabb.w.x, ", aabb.w.y ", aabb.w.y);
+        
+    V v((cosf(rot) + sinf(rot)), (sinf(rot) + cosf(rot) + 1.0f));
+    
+    cor::log_debug("mx (", aabb.get_max().x, ", ", aabb.get_max().y, 
+        "), v (", v.x, ", ", v.y, ")");
+    
+    BOOST_CHECK_CLOSE(aabb.get_max().x, v.x, 0.0001f);
+    BOOST_CHECK_CLOSE(aabb.get_max().y, v.y, 0.0001f);
     
 }
 

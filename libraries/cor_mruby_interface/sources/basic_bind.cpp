@@ -1053,6 +1053,12 @@ namespace cor
             return c.cross(a0);
         }
         
+        float BasicBind_cor__type__Vector2F_distance(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.distance(a0);
+        }
+        
         cor::type::Vector2F BasicBind_cor__type__Vector2F_zero()
         {
 
@@ -1231,6 +1237,12 @@ namespace cor
         {
 
             return c.cross(a0);
+        }
+        
+        int BasicBind_cor__type__Vector2I_distance(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.distance(a0);
         }
         
         cor::type::Vector2I BasicBind_cor__type__Vector2I_zero()
@@ -2521,6 +2533,12 @@ namespace cor
             c.get_vertices();
         }
         
+        void BasicBind_cor__type__OBox2F_get_aabb(cor::type::OBox2F& c)
+        {
+
+            c.get_aabb();
+        }
+        
         void BasicBind_cor__type__OBox2I_is_include(cor::type::OBox2I& c, cor::type::Vector2I a0)
         {
 
@@ -2537,6 +2555,12 @@ namespace cor
         {
 
             c.get_vertices();
+        }
+        
+        void BasicBind_cor__type__OBox2I_get_aabb(cor::type::OBox2I& c)
+        {
+
+            c.get_aabb();
         }
         
         void BasicBind_cor__type__Sphere2F_set(cor::type::Sphere2F& c, cor::type::Vector2F a0, float a1)

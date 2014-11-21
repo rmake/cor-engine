@@ -47,6 +47,7 @@ namespace cor
             RBool normalize();
             T dot(const Vector2Tmpl& a) const;
             T cross(const Vector2Tmpl& a) const;
+            T distance(const Vector2Tmpl& a) const;
             Vector2Tmpl& operator *=(const T& a);
             Vector2Tmpl& operator +=(const Vector2Tmpl& a);
             Vector2Tmpl operator-();

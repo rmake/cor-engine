@@ -184,6 +184,7 @@ namespace cor
         void BasicBind_cor__type__Vector2F_normalize(cor::type::Vector2F& c);
         float BasicBind_cor__type__Vector2F_dot(cor::type::Vector2F& c, cor::type::Vector2F a0);
         float BasicBind_cor__type__Vector2F_cross(cor::type::Vector2F& c, cor::type::Vector2F a0);
+        float BasicBind_cor__type__Vector2F_distance(cor::type::Vector2F& c, cor::type::Vector2F a0);
         cor::type::Vector2F BasicBind_cor__type__Vector2F_zero();
         cor::type::Vector2F BasicBind_cor__type__Vector2F_one();
         cor::type::Vector2F BasicBind_cor__type__Vector2F_max_vec(cor::type::Vector2F& c, cor::type::Vector2F a0);
@@ -214,6 +215,7 @@ namespace cor
         void BasicBind_cor__type__Vector2I_normalize(cor::type::Vector2I& c);
         int BasicBind_cor__type__Vector2I_dot(cor::type::Vector2I& c, cor::type::Vector2I a0);
         int BasicBind_cor__type__Vector2I_cross(cor::type::Vector2I& c, cor::type::Vector2I a0);
+        int BasicBind_cor__type__Vector2I_distance(cor::type::Vector2I& c, cor::type::Vector2I a0);
         cor::type::Vector2I BasicBind_cor__type__Vector2I_zero();
         cor::type::Vector2I BasicBind_cor__type__Vector2I_one();
         cor::type::Vector2I BasicBind_cor__type__Vector2I_max_vec(cor::type::Vector2I& c, cor::type::Vector2I a0);
@@ -429,9 +431,11 @@ namespace cor
         void BasicBind_cor__type__OBox2F_is_include(cor::type::OBox2F& c, cor::type::Vector2F a0);
         float BasicBind_cor__type__OBox2F_get_distance(cor::type::OBox2F& c, cor::type::Vector2F a0);
         void BasicBind_cor__type__OBox2F_get_vertices(cor::type::OBox2F& c);
+        void BasicBind_cor__type__OBox2F_get_aabb(cor::type::OBox2F& c);
         void BasicBind_cor__type__OBox2I_is_include(cor::type::OBox2I& c, cor::type::Vector2I a0);
         int BasicBind_cor__type__OBox2I_get_distance(cor::type::OBox2I& c, cor::type::Vector2I a0);
         void BasicBind_cor__type__OBox2I_get_vertices(cor::type::OBox2I& c);
+        void BasicBind_cor__type__OBox2I_get_aabb(cor::type::OBox2I& c);
         void BasicBind_cor__type__Sphere2F_set(cor::type::Sphere2F& c, cor::type::Vector2F a0, float a1);
         void BasicBind_cor__type__Sphere2F_is_include_point(cor::type::Sphere2F& c, cor::type::Vector2F a0);
         float BasicBind_cor__type__Sphere2F_get_distance(cor::type::Sphere2F& c, cor::type::Vector2F a0);
@@ -510,9 +514,11 @@ namespace cor
             binder.bind_custom_method("CorType", "OBox2F", "is_include", BasicBind_cor__type__OBox2F_is_include);
             binder.bind_custom_method("CorType", "OBox2F", "get_distance", BasicBind_cor__type__OBox2F_get_distance);
             binder.bind_custom_method("CorType", "OBox2F", "get_vertices", BasicBind_cor__type__OBox2F_get_vertices);
+            binder.bind_custom_method("CorType", "OBox2F", "get_aabb", BasicBind_cor__type__OBox2F_get_aabb);
             binder.bind_custom_method("CorType", "OBox2I", "is_include", BasicBind_cor__type__OBox2I_is_include);
             binder.bind_custom_method("CorType", "OBox2I", "get_distance", BasicBind_cor__type__OBox2I_get_distance);
             binder.bind_custom_method("CorType", "OBox2I", "get_vertices", BasicBind_cor__type__OBox2I_get_vertices);
+            binder.bind_custom_method("CorType", "OBox2I", "get_aabb", BasicBind_cor__type__OBox2I_get_aabb);
 
           }
 
