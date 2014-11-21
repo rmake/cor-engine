@@ -368,6 +368,23 @@ namespace cor
                     a
                     )));
             }
+
+            static RString get_platform_name()
+            {
+#ifdef CC_PLATFORM_WIN32
+                return "win32";
+#elif  CC_PLATFORM_ANDROID
+                return "android";
+#elif  CC_PLATFORM_MAC
+                return "mac";
+#elif  CC_PLATFORM_IOS
+                return "ios";
+#elif CC_PLATFORM_LINUX
+                return "linux";
+#else
+                return "";
+#endif
+            }
             
         };
         
@@ -465,7 +482,8 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "delay_call", ProjectMrubyCallItnl::delay_call);
             binder.bind_static_method("Cor", "Project", "interval_call", ProjectMrubyCallItnl::interval_call);
             binder.bind_static_method("Cor", "Project", "set_text_sprite_blend_func", ProjectMrubyCallItnl::set_text_sprite_blend_func);
-
+            binder.bind_static_method("Cor", "Project", "get_platform_name", ProjectMrubyCallItnl::get_platform_name);
+            
 
             //
             itnl->collision = std::make_shared<cocos2dx_converter::Collision2dNode>();
