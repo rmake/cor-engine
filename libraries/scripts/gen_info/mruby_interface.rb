@@ -20,8 +20,17 @@ MRUBY_INTERFACE_TAGET_CLASSES = [
       :create_function => "create",
       :operator => [
         { :name => "*", :args => [
-          {:ret => "cor::type::Vector3F", :arg => ["float", "cor::type::Vector3F"]},
+          #{:ret => "cor::type::Vector3F", :arg => ["float", "cor::type::Vector3F"]},
           {:ret => "cor::type::Vector3F", :arg => ["cor::type::Vector3F", "float"]},
+        ]},
+        { :name => "+", :args => [
+          {:ret => "cor::type::Vector3F", :arg => ["cor::type::Vector3F", "cor::type::Vector3F"]},
+        ]},
+        { :name => "-", :args => [
+          {:ret => "cor::type::Vector3F", :arg => ["cor::type::Vector3F", "cor::type::Vector3F"]},
+        ]},
+        { :name => "-@", :args => [
+          {:ret => "cor::type::Vector3F", :arg => ["cor::type::Vector3F"]},
         ]},
       ],
     },

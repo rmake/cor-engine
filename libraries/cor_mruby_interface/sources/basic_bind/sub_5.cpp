@@ -267,8 +267,10 @@ namespace cor
         float BasicBind_cor__type__Vector3F_accessor_get_y(cor::type::Vector3F& c);
         void BasicBind_cor__type__Vector3F_accessor_set_z(cor::type::Vector3F& c, float a);
         float BasicBind_cor__type__Vector3F_accessor_get_z(cor::type::Vector3F& c);
-        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator_asterisk_0(float a0, cor::type::Vector3F a1);
-        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator_asterisk_1(cor::type::Vector3F a0, float a1);
+        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator__asterisk__0(cor::type::Vector3F a0, float a1);
+        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator__plus__0(cor::type::Vector3F a0, cor::type::Vector3F a1);
+        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator__minus__0(cor::type::Vector3F a0, cor::type::Vector3F a1);
+        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator__minus_self__0(cor::type::Vector3F a0);
         void BasicBind_cor__type__Vector3I_set(cor::type::Vector3I& c, int a0, int a1, int a2);
         void BasicBind_cor__type__Vector3I_begin_1(cor::type::Vector3I& c);
         void BasicBind_cor__type__Vector3I_end_1(cor::type::Vector3I& c);
@@ -583,8 +585,14 @@ namespace cor
             binder.bind_custom_method("CorType", "Vector3F", "y", BasicBind_cor__type__Vector3F_accessor_get_y);
             binder.bind_custom_method("CorType", "Vector3F", "z=", BasicBind_cor__type__Vector3F_accessor_set_z);
             binder.bind_custom_method("CorType", "Vector3F", "z", BasicBind_cor__type__Vector3F_accessor_get_z);
-            binder.bind_custom_method("Float", "asterisk_0", BasicBind_cor__type__Vector3F_operator_asterisk_0);
-            binder.bind_custom_method("CorType", "Vector3F", "asterisk_1", BasicBind_cor__type__Vector3F_operator_asterisk_1);
+            binder.bind_custom_method("CorType", "Vector3F", "_asterisk__0", BasicBind_cor__type__Vector3F_operator__asterisk__0);
+            binder.bind_custom_method("CorType", "Vector3F", "*", BasicBind_cor__type__Vector3F_operator__asterisk__0);
+            binder.bind_custom_method("CorType", "Vector3F", "_plus__0", BasicBind_cor__type__Vector3F_operator__plus__0);
+            binder.bind_custom_method("CorType", "Vector3F", "+", BasicBind_cor__type__Vector3F_operator__plus__0);
+            binder.bind_custom_method("CorType", "Vector3F", "_minus__0", BasicBind_cor__type__Vector3F_operator__minus__0);
+            binder.bind_custom_method("CorType", "Vector3F", "-", BasicBind_cor__type__Vector3F_operator__minus__0);
+            binder.bind_custom_method("CorType", "Vector3F", "_minus_self__0", BasicBind_cor__type__Vector3F_operator__minus_self__0);
+            binder.bind_custom_method("CorType", "Vector3F", "-@", BasicBind_cor__type__Vector3F_operator__minus_self__0);
 
           }
 

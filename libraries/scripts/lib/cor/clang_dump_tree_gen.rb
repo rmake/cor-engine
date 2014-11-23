@@ -4,6 +4,14 @@ module COR
 
   module ClangDumpTree
   
+    OPERATOR_TABLE = {
+      "*" => "_asterisk_",
+      "/" => "_slash_",
+      "+" => "_plus_",
+      "-" => "_minus_",
+      "-@" => "_minus_self_",
+    }
+  
     def self.typedef_assoc_base(base, type, option)
     
       @typedef_assoc_base ||= {}
@@ -329,9 +337,6 @@ module COR
         func_args.each_with_index do |b, j|
           tb = b[0].gsub(/^ /, "")
           
-          if tb.match(/cocos2d::Touch/)
-            puts "tb #{tb}"
-          end
           
           if tb.match(/^enum /)
             arg = arg.gsub(tb, "int")
@@ -341,19 +346,12 @@ module COR
             rpl = class_replace_table[tb]
             func_args_def << "#{tb} b#{j}"
             
-            if tb.match(/cocos2d::Touch/)
-              puts "rpl #{rpl}"
-            end
             
             if rpl
             
               t_arg = rpl[:class_type]
               t_access = rpl[:inv_access] || rpl[:access]
               
-              if tb.match(/cocos2d::Touch/)
-                puts "t_arg #{t_arg}"
-                puts "t_access #{t_access}"
-              end
               
               if rpl[:value] == :cocos_ptr && tb.match(/\&$/)
                 t_access = "#{t_arg}(&source)"
@@ -365,10 +363,6 @@ module COR
                 t_access = "&source"
               elsif rpl[:value] == :shared_ptr
                 t_access = "source"
-              end
-              
-              if tb.match(/cocos2d::Touch/)
-                puts "post t_access #{t_access}"
               end
               
               
@@ -1492,7 +1486,7 @@ EOS
             
             ct = 0
             
-            operator_name = {"*" => "asterisk"}[op[:name]]
+            operator_name = OPERATOR_TABLE[op[:name]]
             op[:operator_name] = operator_name
             op[:args].each do |arg|
               
@@ -1513,7 +1507,7 @@ EOS
               arg[:c_function_name] = c_function_name
               
               if av.length <= 1
-                vb = "#{op[:name]}#{av[0]}"
+                vb = "#{op[:name].gsub("@", "")}#{av[0]}"
               else
                 vb = av.join(op[:name])
               end
@@ -1652,7 +1646,7 @@ EOS
             
             ct = 0
             
-            operator_name = {"*" => "asterisk"}[op[:name]]
+            operator_name = OPERATOR_TABLE[op[:name]]
             op[:operator_name] = operator_name
             op[:args].each do |arg|
               
@@ -1679,7 +1673,35 @@ EOS
               string_literals_register.call(ca[:class_name])
               }, "#{arg[:operator_name]}", #{arg[:c_function_name]});
 EOS
+              
+              c[:overload_operators] ||= {}
+              overload_operators = c[:overload_operators]
+              mruby_method_name = arg[:operator_name]
+              original_method_name = op[:name]
+              
+              overload_operators[original_method_name] ||= []
+              overload_operators[original_method_name] << {
+                  :method_name => mruby_method_name,
+                  :arg_num => arg[:arg].length - 1,
+                }
+              
               ct += 1
+            end
+            
+            if op[:args].length == 1
+              
+              arg = op[:args][0]
+              first_arg_class = arg[:arg][0].gsub("::", "__")
+              ca = classes[first_arg_class]
+              str += <<EOS
+            binder.bind_custom_method(#{
+              string_literals_register.call(ca[:module_name])
+              }, #{
+              string_literals_register.call(ca[:class_name])
+              }, "#{op[:name]}", #{arg[:c_function_name]});
+EOS
+
+            
             end
             
           end
@@ -1838,6 +1860,75 @@ EOS
         end
         
         method_overload_define << mruby_code
+        
+        mruby_code = []
+        
+        overload_operators = c[:overload_operators] 
+        if overload_operators
+          overload_operators.each do |k, oo|
+          
+            next if overload_operators.length <= 1
+          
+            a = []
+            a << <<EOS
+            #{c[:module_name]}::#{c[:class_name]}.class_eval do
+                def #{k}(*args, &block)
+                  a = args
+                  a << block if block
+                  argc = a.length
+                  exs = []
+                  case argc
+EOS
+            ct = 0
+            
+            arg_count_table = {}
+            oo.each do |om|
+              
+              arg_count_table[om[:arg_num]] ||= []
+              arg_count_table[om[:arg_num]] << om
+              
+              ct += 1
+            end
+        
+            arg_count_table.each do |k, v|
+        
+              code = <<EOS
+                  when #{k}
+EOS
+          
+              v.each do |om|
+              
+                code += <<EOS
+                    begin
+                      return self.#{om[:method_name]}(*a)
+                    rescue TypeError => e
+                      exs << e
+                    end
+EOS
+              end
+              
+              a << code
+              
+            end
+        
+            #next if ct == 0
+        
+            a << <<EOS
+                    raise exs
+                  else
+                    raise "not match arg count \#{argc}"
+                  end
+                end
+            end
+EOS
+              
+            mruby_code << a.join
+          end
+          
+          method_overload_define << mruby_code
+        end
+        
+        
       end
       
       Utility.file_write "log/#{option[:name]}/code.rb.log", method_overload_define.join
