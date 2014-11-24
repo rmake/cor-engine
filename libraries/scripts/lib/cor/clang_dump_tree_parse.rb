@@ -60,6 +60,7 @@ module COR
           s += "  type = #{m[:type]}\n"
           s += "  is_const = #{m[:is_const]}\n"
           s += "  is_final = #{m[:is_final]}\n"
+          s += "  public = #{m[:public]}\n"
           s += "]\n"
           str << s
         end
@@ -335,7 +336,7 @@ module COR
           if a[0] == 'AccessSpecDecl'
             pbl = a.last == 'public'
           elsif a[0] == 'CXXMethodDecl'
-            next unless pbl
+            #next unless pbl
             method_name = a[3]
             c[:method_name] = method_name
             args = []
@@ -351,6 +352,7 @@ module COR
               :type => a[5],
               :is_const => (a[4].match(/const'$/) ? true : false),
               :is_final => false,
+              :public => pbl,
             }
             methods << f
             c[:method] = f
@@ -413,7 +415,7 @@ module COR
               if a[0] == 'AccessSpecDecl'
                 pbl = a.last == 'public'
               elsif a[0] == 'CXXMethodDecl'
-                next unless pbl
+                #next unless pbl
                 method_name = a[3]
                 c[:method_name] = method_name
                 args = []
@@ -427,6 +429,7 @@ module COR
                   :sentinel => c[:sentinel],
                   :args => args,
                   :type => a[5],
+                  :public => pbl,
                   :is_const => (a[4].match(/const'$/) ? true : false),
                 }
                 #methods << f

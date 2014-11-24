@@ -204,7 +204,7 @@ module COR
       mths = []
       return mths unless c 
       
-      c[:methods].each do |m|
+      c[:methods].select{|v| v[:public]}.each do |m|
         
         
         if !reject_table[m[:method_name]]
@@ -256,7 +256,11 @@ module COR
         reject_table[m[:method_name]] = m
       end
       
-      mths += c[:methods]
+      if c[:class_name].include? "Sprite3D"
+        puts "Sprite3D #{c[:methods].map{|v| v[:method_name]}}"
+      end
+      
+      mths += c[:methods].select{|v| v[:public]}
       c[:super_classes].each do |sc|
         mths += self.gather_methods_super sc, reject_table
       end
@@ -619,6 +623,7 @@ module COR
             :method_ret => method_ret,
             :type => m[:type],
             :is_constructor => m[:is_constructor],
+            :public => m[:public],
             :template => t,
           }
           
@@ -1478,7 +1483,6 @@ EOS
         end
         
         if c[:target_class][:operator]
-          puts "c[:target_class][:operator] #{c[:target_class][:operator]}"
           
           ops = c[:target_class][:operator]
           
@@ -1641,7 +1645,6 @@ EOS
         #
         str = ""
         if c[:target_class][:operator]
-          puts "c[:target_class][:operator] #{c[:target_class][:operator]}"
           
           ops = c[:target_class][:operator]
           

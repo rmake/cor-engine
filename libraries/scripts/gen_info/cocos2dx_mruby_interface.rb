@@ -662,10 +662,10 @@ COCOS2DX_MRUBY_INTERFACE = [
       :name => "cocos2d::Sprite",
       :value => :cocos_ptr,
     },
-    #{
-    #  :name => "cocos2d::Sprite3D",
-    #  :value => :cocos_ptr,
-    #},
+    {
+      :name => "cocos2d::Sprite3D",
+      :value => :cocos_ptr,
+    },
     {
       :name => "cocos2d::DrawNode",
       :value => :cocos_ptr,
