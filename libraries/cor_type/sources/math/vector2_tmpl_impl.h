@@ -118,7 +118,7 @@ namespace cor
         template<class T> T Vector2Tmpl<T>::distance(const Vector2Tmpl<T>& a) const
         {
             auto d = a - *this;
-            return d.get_square_magnitude();
+            return d.get_magnitude();
         }
 
         template<class T> Vector2Tmpl<T> operator +(const Vector2Tmpl<T>& a, const Vector2Tmpl<T>& b)

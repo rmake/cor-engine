@@ -58,6 +58,7 @@ namespace cor
             const Vector3T& xyz() const;
             RBool normalize();
             T dot(const Vector4Tmpl& a) const;
+            T distance(const Vector4Tmpl& a) const;
             Vector4Tmpl& operator *=(const T& a);
             Vector4Tmpl& operator +=(const Vector4Tmpl& a);
             Vector4Tmpl operator-();

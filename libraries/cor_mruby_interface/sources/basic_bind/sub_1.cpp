@@ -248,6 +248,7 @@ namespace cor
         void BasicBind_cor__type__Vector3F_normalize(cor::type::Vector3F& c);
         float BasicBind_cor__type__Vector3F_dot(cor::type::Vector3F& c, cor::type::Vector3F a0);
         cor::type::Vector3F BasicBind_cor__type__Vector3F_cross(cor::type::Vector3F& c, cor::type::Vector3F a0);
+        float BasicBind_cor__type__Vector3F_distance(cor::type::Vector3F& c, cor::type::Vector3F a0);
         cor::type::Vector3F BasicBind_cor__type__Vector3F_zero();
         cor::type::Vector3F BasicBind_cor__type__Vector3F_one();
         cor::type::Vector3F BasicBind_cor__type__Vector3F_max_vec(cor::type::Vector3F& c, cor::type::Vector3F a0);
@@ -267,10 +268,12 @@ namespace cor
         float BasicBind_cor__type__Vector3F_accessor_get_y(cor::type::Vector3F& c);
         void BasicBind_cor__type__Vector3F_accessor_set_z(cor::type::Vector3F& c, float a);
         float BasicBind_cor__type__Vector3F_accessor_get_z(cor::type::Vector3F& c);
-        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator__asterisk__0(cor::type::Vector3F a0, float a1);
-        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator__plus__0(cor::type::Vector3F a0, cor::type::Vector3F a1);
-        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator__minus__0(cor::type::Vector3F a0, cor::type::Vector3F a1);
-        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator__minus_self__0(cor::type::Vector3F a0);
+        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator__asterisk__0(cor::type::Vector3F & a0, float a1);
+        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator__plus__0(cor::type::Vector3F & a0, cor::type::Vector3F a1);
+        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator__minus__0(cor::type::Vector3F & a0, cor::type::Vector3F a1);
+        cor::type::Vector3F BasicBind_cor__type__Vector3F_operator__minus_self__0(cor::type::Vector3F & a0);
+        float BasicBind_cor__type__Vector3F_operator__brackets__0(cor::type::Vector3F & a0, int a1);
+        float BasicBind_cor__type__Vector3F_operator__brackets_equal__0(cor::type::Vector3F & a0, int a1, float a2);
         void BasicBind_cor__type__Vector3I_set(cor::type::Vector3I& c, int a0, int a1, int a2);
         void BasicBind_cor__type__Vector3I_begin_1(cor::type::Vector3I& c);
         void BasicBind_cor__type__Vector3I_end_1(cor::type::Vector3I& c);
@@ -286,6 +289,7 @@ namespace cor
         void BasicBind_cor__type__Vector3I_normalize(cor::type::Vector3I& c);
         int BasicBind_cor__type__Vector3I_dot(cor::type::Vector3I& c, cor::type::Vector3I a0);
         cor::type::Vector3I BasicBind_cor__type__Vector3I_cross(cor::type::Vector3I& c, cor::type::Vector3I a0);
+        int BasicBind_cor__type__Vector3I_distance(cor::type::Vector3I& c, cor::type::Vector3I a0);
         cor::type::Vector3I BasicBind_cor__type__Vector3I_zero();
         cor::type::Vector3I BasicBind_cor__type__Vector3I_one();
         cor::type::Vector3I BasicBind_cor__type__Vector3I_max_vec(cor::type::Vector3I& c, cor::type::Vector3I a0);
@@ -321,6 +325,7 @@ namespace cor
         void BasicBind_cor__type__Vector4F_xyz_2(cor::type::Vector4F& c);
         void BasicBind_cor__type__Vector4F_normalize(cor::type::Vector4F& c);
         float BasicBind_cor__type__Vector4F_dot(cor::type::Vector4F& c, cor::type::Vector4F a0);
+        float BasicBind_cor__type__Vector4F_distance(cor::type::Vector4F& c, cor::type::Vector4F a0);
         cor::type::Vector4F BasicBind_cor__type__Vector4F_zero();
         cor::type::Vector4F BasicBind_cor__type__Vector4F_one();
         cor::type::Vector4F BasicBind_cor__type__Vector4F_max_vec(cor::type::Vector4F& c, cor::type::Vector4F a0);
@@ -358,6 +363,7 @@ namespace cor
         void BasicBind_cor__type__Vector4I_xyz_2(cor::type::Vector4I& c);
         void BasicBind_cor__type__Vector4I_normalize(cor::type::Vector4I& c);
         int BasicBind_cor__type__Vector4I_dot(cor::type::Vector4I& c, cor::type::Vector4I a0);
+        int BasicBind_cor__type__Vector4I_distance(cor::type::Vector4I& c, cor::type::Vector4I a0);
         cor::type::Vector4I BasicBind_cor__type__Vector4I_zero();
         cor::type::Vector4I BasicBind_cor__type__Vector4I_one();
         cor::type::Vector4I BasicBind_cor__type__Vector4I_max_vec(cor::type::Vector4I& c, cor::type::Vector4I a0);

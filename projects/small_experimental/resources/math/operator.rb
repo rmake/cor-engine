@@ -33,8 +33,15 @@ class OperatorTest
     v1 = -v0
     
     Logger.debug "v1 = #{v1.x}, #{v1.y}, #{v1.z}"
-  
     
+    #
+    v1 = Vector3F.create
+    v1[0] = 7
+    v1[1] = 8
+    v1[2] = 9
+    
+    Logger.debug "v1 #{v1[0]}, #{v1[1]}, #{v1[2]}"
+  
   end
 
 end

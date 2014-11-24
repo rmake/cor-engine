@@ -10,6 +10,8 @@ module COR
       "+" => "_plus_",
       "-" => "_minus_",
       "-@" => "_minus_self_",
+      "[]" => "_brackets_",
+      "[]=" => "_brackets_equal_",
     }
   
     def self.typedef_assoc_base(base, type, option)
@@ -1497,7 +1499,7 @@ EOS
               ct2 = 0
               av = []
               type = arg[:ret]
-              an = arg[:arg].map do |a|
+              an = ([c[:class_type] + " &"] + arg[:arg]).map do |a|
                 s = "#{a} a#{ct2}"
                 av << "a#{ct2}"
                 ct2 += 1
@@ -1506,7 +1508,11 @@ EOS
               
               arg[:c_function_name] = c_function_name
               
-              if av.length <= 1
+              if op[:name] == "[]"
+                vb = "#{av[0]}[#{av[1]}]"
+              elsif op[:name] == "[]="
+                vb = "#{av[0]}[#{av[1]}] = #{av[2]}"
+              elsif av.length <= 1
                 vb = "#{op[:name].gsub("@", "")}#{av[0]}"
               else
                 vb = av.join(op[:name])
@@ -1652,7 +1658,7 @@ EOS
               
               
               
-              first_arg_class = arg[:arg][0].gsub("::", "__")
+              first_arg_class = c[:class_type].gsub("::", "__")
               ca = classes[first_arg_class]
               unless ca
               
@@ -1682,7 +1688,7 @@ EOS
               overload_operators[original_method_name] ||= []
               overload_operators[original_method_name] << {
                   :method_name => mruby_method_name,
-                  :arg_num => arg[:arg].length - 1,
+                  :arg_num => arg[:arg].length,
                 }
               
               ct += 1
@@ -1691,7 +1697,7 @@ EOS
             if op[:args].length == 1
               
               arg = op[:args][0]
-              first_arg_class = arg[:arg][0].gsub("::", "__")
+              first_arg_class = c[:class_type].gsub("::", "__")
               ca = classes[first_arg_class]
               str += <<EOS
             binder.bind_custom_method(#{

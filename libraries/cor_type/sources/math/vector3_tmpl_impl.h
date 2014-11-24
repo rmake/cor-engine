@@ -132,6 +132,12 @@ namespace cor
             return c;
         }
 
+        template<class T> T Vector3Tmpl<T>::distance(const Vector3Tmpl<T>& a) const
+        {
+            auto d = a - *this;
+            return d.get_magnitude();
+        }
+
         template<class T> Vector3Tmpl<T> operator +(const Vector3Tmpl<T>& a, const Vector3Tmpl<T>& b)
         {
             return Vector3Tmpl<T>(a.x + b.x, a.y + b.y, a.z + b.z);
