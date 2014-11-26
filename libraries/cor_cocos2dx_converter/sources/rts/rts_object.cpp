@@ -649,7 +649,7 @@ namespace cor
             };
             auto st_cp = get_position();
             auto dp = tp - st_cp;
-            itnl->parabora_h = (dp).get_magnitude() * 1.0f;
+            itnl->parabora_h = (dp).get_magnitude() * 0.75f;
             std::shared_ptr<Tmp> tmp = std::make_shared<Tmp>();
 
             if(itnl->walks.size() > 0 && dp.get_magnitude() > 0.0f)
@@ -688,17 +688,21 @@ namespace cor
 
                     stop_move();
 
-                    if(itnl->past_th >= 0)
+                    if(itnl->idles.size() > 0)
                     {
-                        start_animation(cocos2d::Animate::create(itnl->idles.at(itnl->past_th)));
+                        if(itnl->past_th >= 0)
+                        {
+                            start_animation(cocos2d::Animate::create(itnl->idles.at(itnl->past_th)));
 
-                    }
-                    else
-                    {
-                        RFloat tha = atan2f(dp.y, -dp.x);
-                        auto th = (static_cast<int>((tha + PI * 1.5f) * 8 / (2 * PI) + 0.5f) + 1) % 8;
+                        }
+                        else
+                        {
+                            RFloat tha = atan2f(dp.y, -dp.x);
+                            auto th = (static_cast<int>((tha + PI * 1.5f) * 8 / (2 * PI) + 0.5f) + 1) % 8;
 
-                        start_animation(cocos2d::Animate::create(itnl->idles.at(th)));
+                            start_animation(cocos2d::Animate::create(itnl->idles.at(th)));
+                        }
+
                     }
                     
                     move_end_callback(o);
