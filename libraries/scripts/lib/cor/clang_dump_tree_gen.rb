@@ -256,10 +256,6 @@ module COR
         reject_table[m[:method_name]] = m
       end
       
-      if c[:class_name].include? "Sprite3D"
-        puts "Sprite3D #{c[:methods].map{|v| v[:method_name]}}"
-      end
-      
       mths += c[:methods].select{|v| v[:public]}
       c[:super_classes].each do |sc|
         mths += self.gather_methods_super sc, reject_table

@@ -845,6 +845,10 @@ COCOS2DX_MRUBY_INTERFACE = [
       :value => :cocos_ptr,
     },
     {
+      :name => "cocos2d::MotionStreak",
+      :value => :cocos_ptr,
+    },
+    {
       :name => "cocos2d::extension::ScrollView",
       :value => :cocos_ptr,
     },
