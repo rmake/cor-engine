@@ -2,6 +2,7 @@
 #include "../../cor_mruby_interface/sources/mruby_array.h"
 #include "../../cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "../../cor_mruby_interface/sources/mruby_experimental.h"
+#include "../../cor_mruby_interface/sources/mruby_ref_container.h"
 #include "../../cor_mruby_interface/sources/mruby_state.h"
 #include "../../cor_cocos2dx_converter/sources/collision_2d_node.h"
 #include "../../cor_cocos2dx_converter/sources/easy_http_client.h"

@@ -38,6 +38,7 @@ namespace cor
             typedef std::shared_ptr<cocos2dx_converter::Collision2dNode> Collision2dNodeSP;
             typedef std::weak_ptr<cocos2dx_converter::Collision2dNode> Collision2dNodeWP;
             typedef std::map<RString, mruby_interface::AnySP> SceneLocalSPTable;
+            typedef mrubybind::FuncPtr<void()> StartProc;
 
             Cocos2dSceneWP current_scene;
             Cocos2dLayerWP current_layer;
@@ -46,6 +47,7 @@ namespace cor
             ApplicationPtr app;
             SceneLocalSPTable scene_local_sp_table;
             RBool first;
+            StartProc start_proc;
 
             static Cocos2dSceneWP get_current_scene()
             {
@@ -159,6 +161,14 @@ namespace cor
                 auto project =
                     std::make_shared<cor::project_structure::ProjectMrubyCall>();
                 project->set_start_file(file_name);
+                project_mruby_call_itnl_instance->app->replace_to_project("main", project);
+            }
+
+            static void start_ruby_project_proc(StartProc proc)
+            {
+                auto project =
+                    std::make_shared<cor::project_structure::ProjectMrubyCall>();
+                project->get_itnl()->start_proc = proc;
                 project_mruby_call_itnl_instance->app->replace_to_project("main", project);
             }
 
@@ -434,6 +444,11 @@ namespace cor
             itnl->file_name = file_name;
         }
 
+        ProjectMrubyCallItnl* ProjectMrubyCall::get_itnl()
+        {
+            return itnl.get();
+        }
+
         void ProjectMrubyCall::start()
         {
             RInt64 tm = system::Time::get_time_ms();
@@ -471,6 +486,7 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "reset_collision_system", ProjectMrubyCallItnl::reset_collision_system); 
             binder.bind_static_method("Cor", "Project", "set_scene_local", ProjectMrubyCallItnl::set_scene_local);
             binder.bind_static_method("Cor", "Project", "start_ruby_project", ProjectMrubyCallItnl::start_ruby_project);
+            binder.bind_static_method("Cor", "Project", "start_ruby_project_proc", ProjectMrubyCallItnl::start_ruby_project_proc);
             binder.bind_static_method("Cor", "Project", "test_str", ProjectMrubyCallItnl::test_str); 
             binder.bind_static_method("Cor", "Project", "convert_to_writable_path", ProjectMrubyCallItnl::convert_to_writable_path);
             binder.bind_static_method("Cor", "Project", "exist_writable_file", ProjectMrubyCallItnl::exist_writable_file);
@@ -516,8 +532,17 @@ namespace cor
                 {
                     log_error("File not found \"", itnl->file_name, "\".");
                 }
-                RString code = cocos2d::FileUtils::getInstance()->getStringFromFile(itnl->file_name);
-                mrb.load_string_error_log(itnl->file_name, code);
+
+                if(itnl->start_proc)
+                {
+                    itnl->start_proc.func()();
+                }
+
+                if(!itnl->file_name.empty())
+                {
+                    RString code = cocos2d::FileUtils::getInstance()->getStringFromFile(itnl->file_name);
+                    mrb.load_string_error_log(itnl->file_name, code);
+                }
 
                 itnl->first = false;
             }

@@ -20,13 +20,15 @@ namespace cor
             std::unique_ptr<ProjectMrubyCallItnl> itnl;
         
         public:
-        
+
             ProjectMrubyCall();
             virtual ~ProjectMrubyCall();
 
             void clear();
 
             void set_start_file(const RString& file_name);
+            ProjectMrubyCallItnl* get_itnl();
+            
 
             virtual void start();
             virtual void step();

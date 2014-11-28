@@ -110,6 +110,11 @@ MRUBY_INTERFACE_TAGET_CLASSES = [
       :create_function => "create",
     },
     {
+      :name => "cor::mruby_interface::MrubyRefContainer",
+      :value => :shared_ptr,
+      :create_function => "create",
+    },
+    {
       :name => "cor::mruby_interface::MrubyExperimentalBindTestClass",
       :value => :shared_ptr, # :value, :pointer, :shared_ptr, :weak_ptr, :cocos_ptr
       :create_function => "create",

@@ -32,4 +32,5 @@ PRJSRCS=../../cor_mruby_interface/sources/basic_bind/sub_0.cpp\
     ../../cor_mruby_interface/sources/mrubybind.cpp\
     ../../cor_mruby_interface/sources/mruby_array.cpp\
     ../../cor_mruby_interface/sources/mruby_experimental.cpp\
+    ../../cor_mruby_interface/sources/mruby_ref_container.cpp\
     ../../cor_mruby_interface/sources/mruby_state.cpp

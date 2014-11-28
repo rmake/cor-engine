@@ -44,6 +44,7 @@
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"
+#include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 
@@ -62,6 +63,9 @@ namespace cor
         std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> BasicBind_MrubyExperimentalBindTestClassInherited_create();
         bool BasicBind_MrubyExperimentalBindTestClass_valid_question(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c);
         std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_MrubyExperimentalBindTestClass_create_0(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> a0);
+        bool BasicBind_MrubyRefContainer_valid_question(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c);
+        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_MrubyRefContainer_create_0();
+        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_MrubyRefContainer_create_1(mrubybind::MrubyRef a0);
         bool BasicBind_RCharArray_valid_question(std::weak_ptr<cor::RCharArray> c);
         std::weak_ptr<cor::RCharArray> BasicBind_RCharArray_create();
         cor::type::Vector2F BasicBind_Vector2F_create_0();
@@ -145,6 +149,8 @@ namespace cor
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> a0);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::RCharArray> a0);
+        void BasicBind_cor__mruby_interface__MrubyRefContainer_set_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c, mrubybind::MrubyRef a0);
+        mrubybind::MrubyRef BasicBind_cor__mruby_interface__MrubyRefContainer_get_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c);
         void BasicBind_cor__RCharArray_begin_1(std::weak_ptr<cor::RCharArray> c);
         void BasicBind_cor__RCharArray_begin_2(std::weak_ptr<cor::RCharArray> c);
         void BasicBind_cor__RCharArray_end_1(std::weak_ptr<cor::RCharArray> c);
@@ -495,7 +501,34 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_custom_method("CorType", "Box2F", "set_1", BasicBind_cor__type__Box2F_set_1);
+                            binder.bind_custom_method("CorType", "Matrix4x4F", "begin_1", BasicBind_cor__type__Matrix4x4F_begin_1);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "end_1", BasicBind_cor__type__Matrix4x4F_end_1);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "begin_2", BasicBind_cor__type__Matrix4x4F_begin_2);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "end_2", BasicBind_cor__type__Matrix4x4F_end_2);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "get_array", BasicBind_cor__type__Matrix4x4F_get_array);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "get_x_vec_1", BasicBind_cor__type__Matrix4x4F_get_x_vec_1);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "get_x_vec_2", BasicBind_cor__type__Matrix4x4F_get_x_vec_2);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "get_y_vec_1", BasicBind_cor__type__Matrix4x4F_get_y_vec_1);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "get_y_vec_2", BasicBind_cor__type__Matrix4x4F_get_y_vec_2);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "get_z_vec_1", BasicBind_cor__type__Matrix4x4F_get_z_vec_1);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "get_z_vec_2", BasicBind_cor__type__Matrix4x4F_get_z_vec_2);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "get_o_vec_1", BasicBind_cor__type__Matrix4x4F_get_o_vec_1);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "get_o_vec_2", BasicBind_cor__type__Matrix4x4F_get_o_vec_2);
+            binder.bind_static_method("CorType", "Matrix4x4F", "rot_x", BasicBind_cor__type__Matrix4x4F_rot_x);
+            binder.bind_static_method("CorType", "Matrix4x4F", "rot_y", BasicBind_cor__type__Matrix4x4F_rot_y);
+            binder.bind_static_method("CorType", "Matrix4x4F", "rot_z", BasicBind_cor__type__Matrix4x4F_rot_z);
+            binder.bind_static_method("CorType", "Matrix4x4F", "translate", BasicBind_cor__type__Matrix4x4F_translate);
+            binder.bind_static_method("CorType", "Matrix4x4F", "scale", BasicBind_cor__type__Matrix4x4F_scale);
+            binder.bind_static_method("CorType", "Matrix4x4F", "ortho_matrix", BasicBind_cor__type__Matrix4x4F_ortho_matrix);
+            binder.bind_static_method("CorType", "Matrix4x4F", "transpose_inverse", BasicBind_cor__type__Matrix4x4F_transpose_inverse);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "transpose_inverse_2", BasicBind_cor__type__Matrix4x4F_transpose_inverse_2);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "transpose_inverse_3", BasicBind_cor__type__Matrix4x4F_transpose_inverse_3);
+            binder.bind_static_method("CorType", "Matrix4x4F", "affine_inverse", BasicBind_cor__type__Matrix4x4F_affine_inverse);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "affine_inverse_2", BasicBind_cor__type__Matrix4x4F_affine_inverse_2);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "affine_inverse_3", BasicBind_cor__type__Matrix4x4F_affine_inverse_3);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "transpose", BasicBind_cor__type__Matrix4x4F_transpose);
+            binder.bind_custom_method("CorType", "Matrix4x4F", "equal", BasicBind_cor__type__Matrix4x4F_equal);
+            binder.bind_custom_method("CorType", "Box2F", "set_1", BasicBind_cor__type__Box2F_set_1);
             binder.bind_custom_method("CorType", "Box2F", "set_2", BasicBind_cor__type__Box2F_set_2);
             binder.bind_custom_method("CorType", "Box2F", "get_max", BasicBind_cor__type__Box2F_get_max);
             binder.bind_custom_method("CorType", "Box2F", "set_max", BasicBind_cor__type__Box2F_set_max);
@@ -523,10 +556,6 @@ namespace cor
             binder.bind_custom_method("CorType", "OBox2F", "get_distance", BasicBind_cor__type__OBox2F_get_distance);
             binder.bind_custom_method("CorType", "OBox2F", "get_vertices", BasicBind_cor__type__OBox2F_get_vertices);
             binder.bind_custom_method("CorType", "OBox2F", "get_aabb", BasicBind_cor__type__OBox2F_get_aabb);
-            binder.bind_custom_method("CorType", "OBox2I", "is_include", BasicBind_cor__type__OBox2I_is_include);
-            binder.bind_custom_method("CorType", "OBox2I", "get_distance", BasicBind_cor__type__OBox2I_get_distance);
-            binder.bind_custom_method("CorType", "OBox2I", "get_vertices", BasicBind_cor__type__OBox2I_get_vertices);
-            binder.bind_custom_method("CorType", "OBox2I", "get_aabb", BasicBind_cor__type__OBox2I_get_aabb);
 
           }
 

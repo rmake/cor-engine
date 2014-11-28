@@ -196,6 +196,13 @@ def cor_file_list
       :action => [:sync, :force_create, :delete][0],
     },
     {
+      :project => "cor_mruby_interface",
+      :path => "mruby_ref_container",
+      :namespace => ["cor", "mruby_interface"],
+      :action => [:sync, :force_create, :delete][0],
+      :no_template => true,
+    },
+    {
       :project => "cor_cocos2dx_mruby_interface",
       :path => "sprite_experimental",
       :namespace => ["cor", "cocos2dx_mruby_interface"],

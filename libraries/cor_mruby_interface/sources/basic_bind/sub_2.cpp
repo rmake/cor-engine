@@ -44,6 +44,7 @@
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"
+#include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 
@@ -62,6 +63,9 @@ namespace cor
         std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> BasicBind_MrubyExperimentalBindTestClassInherited_create();
         bool BasicBind_MrubyExperimentalBindTestClass_valid_question(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c);
         std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_MrubyExperimentalBindTestClass_create_0(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> a0);
+        bool BasicBind_MrubyRefContainer_valid_question(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c);
+        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_MrubyRefContainer_create_0();
+        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_MrubyRefContainer_create_1(mrubybind::MrubyRef a0);
         bool BasicBind_RCharArray_valid_question(std::weak_ptr<cor::RCharArray> c);
         std::weak_ptr<cor::RCharArray> BasicBind_RCharArray_create();
         cor::type::Vector2F BasicBind_Vector2F_create_0();
@@ -145,6 +149,8 @@ namespace cor
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> a0);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::RCharArray> a0);
+        void BasicBind_cor__mruby_interface__MrubyRefContainer_set_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c, mrubybind::MrubyRef a0);
+        mrubybind::MrubyRef BasicBind_cor__mruby_interface__MrubyRefContainer_get_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c);
         void BasicBind_cor__RCharArray_begin_1(std::weak_ptr<cor::RCharArray> c);
         void BasicBind_cor__RCharArray_begin_2(std::weak_ptr<cor::RCharArray> c);
         void BasicBind_cor__RCharArray_end_1(std::weak_ptr<cor::RCharArray> c);
@@ -495,7 +501,9 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_class<cor::type::OSphere2I >("CorType", "OSphere2I");
+                            binder.bind_class<cor::type::OSphere2F >("CorType", "OSphere2F");
+            binder.bind_static_method("CorType", "OSphere2F", "create", BasicBind_OSphere2F_create);
+            binder.bind_class<cor::type::OSphere2I >("CorType", "OSphere2I");
             binder.bind_static_method("CorType", "OSphere2I", "create", BasicBind_OSphere2I_create);
             binder.bind_class<std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRInt32> >("CorMrubyInterface", "MrubyExperimentalTemplateStructRInt32");
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalTemplateStructRInt32", "valid?", BasicBind_MrubyExperimentalTemplateStructRInt32_valid_question);

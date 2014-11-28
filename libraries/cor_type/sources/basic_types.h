@@ -86,6 +86,9 @@ namespace cor
     typedef RUInt8* RUInt8Ptr;
     typedef RSize* RSizePtr;
 
+    typedef std::shared_ptr<void> AnySP;
+    typedef std::weak_ptr<void> AnyWP;
+
     static const RDouble PI = 3.14159265358979323846;
     static const RFloat FloatMax = FLT_MAX;
 }

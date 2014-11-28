@@ -44,6 +44,7 @@
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"
+#include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 
@@ -62,6 +63,9 @@ namespace cor
         std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> BasicBind_MrubyExperimentalBindTestClassInherited_create();
         bool BasicBind_MrubyExperimentalBindTestClass_valid_question(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c);
         std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_MrubyExperimentalBindTestClass_create_0(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> a0);
+        bool BasicBind_MrubyRefContainer_valid_question(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c);
+        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_MrubyRefContainer_create_0();
+        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_MrubyRefContainer_create_1(mrubybind::MrubyRef a0);
         bool BasicBind_RCharArray_valid_question(std::weak_ptr<cor::RCharArray> c);
         std::weak_ptr<cor::RCharArray> BasicBind_RCharArray_create();
         cor::type::Vector2F BasicBind_Vector2F_create_0();
@@ -145,6 +149,8 @@ namespace cor
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> a0);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::RCharArray> a0);
+        void BasicBind_cor__mruby_interface__MrubyRefContainer_set_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c, mrubybind::MrubyRef a0);
+        mrubybind::MrubyRef BasicBind_cor__mruby_interface__MrubyRefContainer_get_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c);
         void BasicBind_cor__RCharArray_begin_1(std::weak_ptr<cor::RCharArray> c);
         void BasicBind_cor__RCharArray_begin_2(std::weak_ptr<cor::RCharArray> c);
         void BasicBind_cor__RCharArray_end_1(std::weak_ptr<cor::RCharArray> c);
@@ -495,7 +501,11 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_custom_method("CorType", "OSphere2I", "is_include", BasicBind_cor__type__OSphere2I_is_include);
+                            binder.bind_custom_method("CorType", "OSphere2F", "is_include", BasicBind_cor__type__OSphere2F_is_include);
+            binder.bind_custom_method("CorType", "OSphere2F", "get_distance", BasicBind_cor__type__OSphere2F_get_distance);
+            binder.bind_custom_method("CorType", "OSphere2F", "get_draw_vertices", BasicBind_cor__type__OSphere2F_get_draw_vertices);
+            binder.bind_custom_method("CorType", "OSphere2F", "get_box", BasicBind_cor__type__OSphere2F_get_box);
+            binder.bind_custom_method("CorType", "OSphere2I", "is_include", BasicBind_cor__type__OSphere2I_is_include);
             binder.bind_custom_method("CorType", "OSphere2I", "get_distance", BasicBind_cor__type__OSphere2I_get_distance);
             binder.bind_custom_method("CorType", "OSphere2I", "get_draw_vertices", BasicBind_cor__type__OSphere2I_get_draw_vertices);
             binder.bind_custom_method("CorType", "OSphere2I", "get_box", BasicBind_cor__type__OSphere2I_get_box);
@@ -505,18 +515,6 @@ namespace cor
             binder.bind_static_method("CorMrubyInterface", "MrubyExperimentalTemplateStructRString", "add", BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add);
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalTemplateStructRString", "add2", BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add2);
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalTemplateStructRString", "set_n", BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_set_n);
-            binder.bind_custom_method("CorDataStructure", "CostGridSpaceItem", "terminated=", BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_terminated);
-            binder.bind_custom_method("CorDataStructure", "CostGridSpaceItem", "terminated", BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_terminated);
-            binder.bind_custom_method("CorDataStructure", "CostGridSpaceItem", "passable=", BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_passable);
-            binder.bind_custom_method("CorDataStructure", "CostGridSpaceItem", "passable", BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_passable);
-            binder.bind_custom_method("CorDataStructure", "CostGridSpaceItem", "enter_cost=", BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_enter_cost);
-            binder.bind_custom_method("CorDataStructure", "CostGridSpaceItem", "enter_cost", BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_enter_cost);
-            binder.bind_custom_method("CorDataStructure", "CostGridSpaceItem", "passed=", BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_passed);
-            binder.bind_custom_method("CorDataStructure", "CostGridSpaceItem", "passed", BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_passed);
-            binder.bind_custom_method("CorDataStructure", "CostGridSpaceItem", "min_cost=", BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_min_cost);
-            binder.bind_custom_method("CorDataStructure", "CostGridSpaceItem", "min_cost", BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_min_cost);
-            binder.bind_custom_method("CorDataStructure", "CostGridSpaceItem", "parent=", BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_parent);
-            binder.bind_custom_method("CorDataStructure", "CostGridSpaceItem", "parent", BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_parent);
 
           }
 
