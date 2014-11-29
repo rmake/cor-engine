@@ -29,8 +29,8 @@ builds = []
 flags = "-arch armv7"
 flags_simulator = "-arch i386"
 
-SDK_PATH = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk"
-SIMULATOR_SDK_PATH = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk"
+SDK_PATH = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk"
+SIMULATOR_SDK_PATH = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.1.sdk"
 
 builds << {
   :name => 'ios_debug',
@@ -144,12 +144,12 @@ MRuby::CrossBuild.new('ios_sim_debug') do |conf|
     
     conf.cc do |cc|
         cc.command = 'xcrun'
-        cc.flags = %W(-sdk iphoneos clang -arch i386 -arch x86_64 -miphoneos-version-min=5.0 -isysroot #{SIMULATOR_SDK_PATH} -g -O3 -Wall -Werror-implicit-function-declaration)
+        cc.flags = %W(-sdk iphoneos clang -arch i386 -arch x86_64 -miphoneos-version-min=6.0 -isysroot #{SIMULATOR_SDK_PATH} -g -O3 -Wall -Werror-implicit-function-declaration)
     end
     
     conf.linker do |linker|
         linker.command = 'xcrun'
-        linker.flags = %W(-sdk iphoneos clang -arch i386 -arch x86_64 -miphoneos-version-min=5.0 -isysroot #{SIMULATOR_SDK_PATH})
+        linker.flags = %W(-sdk iphoneos clang -arch i386 -arch x86_64 -miphoneos-version-min=6.0 -isysroot #{SIMULATOR_SDK_PATH})
     end
     
     #enable_cxx_abi
@@ -162,12 +162,12 @@ MRuby::CrossBuild.new('ios_sim_release') do |conf|
     
     conf.cc do |cc|
         cc.command = 'xcrun'
-        cc.flags = %W(-sdk iphoneos clang -arch i386 -arch x86_64 -miphoneos-version-min=5.0 -isysroot #{SIMULATOR_SDK_PATH} -g -O3 -Wall -Werror-implicit-function-declaration)
+        cc.flags = %W(-sdk iphoneos clang -arch i386 -arch x86_64 -miphoneos-version-min=6.0 -isysroot #{SIMULATOR_SDK_PATH} -g -O3 -Wall -Werror-implicit-function-declaration)
     end
     
     conf.linker do |linker|
         linker.command = 'xcrun'
-        linker.flags = %W(-sdk iphoneos clang -arch i386 -arch x86_64 -miphoneos-version-min=5.0 -isysroot #{SIMULATOR_SDK_PATH})
+        linker.flags = %W(-sdk iphoneos clang -arch i386 -arch x86_64 -miphoneos-version-min=6.0 -isysroot #{SIMULATOR_SDK_PATH})
     end
     
     #enable_cxx_abi
