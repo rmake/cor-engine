@@ -74,6 +74,7 @@
 		64C8BE7F19A34E54003D205D /* libcor_project_structure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8BE7E19A34E54003D205D /* libcor_project_structure.a */; };
 		64C8BE8119A34E7A003D205D /* libcor_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8BE8019A34E7A003D205D /* libcor_system.a */; };
 		64C8BE8319A34E8B003D205D /* libcor_type.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8BE8219A34E8B003D205D /* libcor_type.a */; };
+		64D02C781A299AAC009C1727 /* sound in Resources */ = {isa = PBXBuildFile; fileRef = 64D02C771A299AAC009C1727 /* sound */; };
 		64D163C71A14B07C00DDDBA3 /* copy_date.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64D163B11A14B07C00DDDBA3 /* copy_date.txt */; };
 		64D163C81A14B07C00DDDBA3 /* copy_date.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64D163B11A14B07C00DDDBA3 /* copy_date.txt */; };
 		64D163E91A14B07C00DDDBA3 /* start.rb in Resources */ = {isa = PBXBuildFile; fileRef = 64D163C61A14B07C00DDDBA3 /* start.rb */; };
@@ -419,6 +420,7 @@
 		64C8BE7E19A34E54003D205D /* libcor_project_structure.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_project_structure.a; path = ../../../libraries/cor_project_structure/proj.ios_mac/osx/libcor_project_structure.a; sourceTree = "<group>"; };
 		64C8BE8019A34E7A003D205D /* libcor_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_system.a; path = ../../../libraries/cor_system/proj.ios_mac/osx/libcor_system.a; sourceTree = "<group>"; };
 		64C8BE8219A34E8B003D205D /* libcor_type.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_type.a; path = ../../../libraries/cor_type/proj.ios_mac/osx/libcor_type.a; sourceTree = "<group>"; };
+		64D02C771A299AAC009C1727 /* sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound; sourceTree = "<group>"; };
 		64D163B11A14B07C00DDDBA3 /* copy_date.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copy_date.txt; sourceTree = "<group>"; };
 		64D163C61A14B07C00DDDBA3 /* start.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = start.rb; sourceTree = "<group>"; };
 		64D163EB1A14B19B00DDDBA3 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
@@ -718,6 +720,7 @@
 		64D163B01A14B07C00DDDBA3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				64D02C771A299AAC009C1727 /* sound */,
 				64D163EB1A14B19B00DDDBA3 /* fonts */,
 				64D163EC1A14B19B00DDDBA3 /* lib */,
 				64D163ED1A14B19B00DDDBA3 /* math */,
@@ -944,6 +947,7 @@
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
+				64D02C781A299AAC009C1727 /* sound in Resources */,
 				64D163EF1A14B19B00DDDBA3 /* fonts in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,

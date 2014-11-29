@@ -1937,7 +1937,12 @@ EOS
       end
       
       Utility.file_write "log/#{option[:name]}/code.rb.log", method_overload_define.join
-      `../../external/mruby/build/host/bin/mrbc.exe -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
+      
+      if RUBY_PLATFORM.include? "mswin32"
+        `../../external/mruby/build/host/bin/mrbc.exe -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
+      else
+        `../../external/mruby/build/host/bin/mrbc -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
+      end
       method_overload_define = Utility.file_read("log/#{option[:name]}/code.c.log").gsub(/#include.*?\n/m, "static ")
       
       string_literals = string_literals.map{|k, v| v[:def]}.join
