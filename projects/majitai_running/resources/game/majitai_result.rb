@@ -27,7 +27,9 @@ class MajitaiResult
     button.sprite.set_position @visible_size.width / 2, @visible_size.height / 2
     
     button.on_tap do |t, e|
-      Project.start_ruby_project "game/majitai_menu.rb"
+      Project.start_ruby_project_proc do
+        MajitaiMenu.new
+      end
     end
     
     self.scene.add_child button.sprite
@@ -44,5 +46,3 @@ class MajitaiResult
   end
   
 end
-
-MajitaiResult.new

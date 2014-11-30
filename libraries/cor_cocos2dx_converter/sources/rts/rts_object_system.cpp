@@ -148,15 +148,36 @@ namespace cor
 
                 });
                 cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -2);
+                {
+                    // todo: comfirm on android
+                    auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+
+                        auto scn = cocos2d::Director::getInstance()->getRunningScene();
+                        scn->enumerateChildren("//[[:alnum:]]+", [&](cocos2d::Node* n){
+                            if(n->getGLProgramState() == s)
+                            {
+                                n->setGLProgramState(
+                                    cocos2d::GLProgramState::getOrCreateWithGLProgramName(
+                                    cocos2d::GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP));
+                            }
+                            return false;
+                        });
+                        
+                    });
+
+                    cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -3);
+                }
             }
             sprite->setGLProgramState(s);
             {
-                auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
-                    sprite->setGLProgramState(
-                        cocos2d::GLProgramState::getOrCreateWithGLProgramName(
-                            cocos2d::GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP));
-                });
-                sprite->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -3);
+                //auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+                //    sprite->setGLProgramState(
+                //        cocos2d::GLProgramState::getOrCreateWithGLProgramName(
+                //            cocos2d::GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP));
+                //});
+
+                //// Memory leak.
+                //sprite->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -3);
             }
             {
                 auto shader = &rts_object_system_round_shader;

@@ -10,14 +10,20 @@ class MajitaiMenu
     self.layer = Project.get_current_layer
     self.scene = Project.get_current_scene
     
+    
     director = Director.get_instance
     @visible_size = director.get_visible_size
     director.set_display_stats false
     
+    
     list = []
     list << {
       :text => "start_game",
-      :file => "game/majitai_game.rb",
+      :proc => (Proc.new do
+        Project.start_ruby_project_proc do
+          MajitaiGame.new
+        end
+      end),
     }
     
     lv = CorListView.new list, {:size => Size.create(@visible_size.width - 100, @visible_size.height)} do |data|
@@ -28,7 +34,7 @@ class MajitaiMenu
         :text_scale => 1.0, :sprite => sp, :disable_swallow => true
       button.sprite.set_scale 1.0
       button.on_tap do |t, e|
-        Project.start_ruby_project data[:file]
+        data[:proc].call
       end
       
       button.sprite
@@ -43,5 +49,5 @@ class MajitaiMenu
 
 end
 
-MajitaiMenu.new
+
 

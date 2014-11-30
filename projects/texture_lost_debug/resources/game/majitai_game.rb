@@ -130,7 +130,9 @@ class MajitaiGame
               p.y += vy
               
               if p.y < -64
-                Project.start_ruby_project "game/majitai_result.rb"
+                Project.start_ruby_project_proc do
+                  MajitaiResult.new
+                end
                 n.remove_from_parent
                 next
               end
@@ -149,8 +151,8 @@ class MajitaiGame
       
       r = Rect.create(-96 / 2, -96 / 2, 96, 96)
       sp = CorSprite.create_sprite_9 :texture => "game/sp9bg_dark.png", :rect => r
-      button = CorPanel.new :rect => r, 
-        :font_name => "fonts/MTLc3m.ttf", :text => "jump", 
+      button = CorPanel.new :text => "jump", :rect => r, 
+        :font_name => "fonts/MTLc3m.ttf",
         :text_scale => 1.0, :sprite => sp, :disable_swallow => true
       button.sprite.set_scale 1.0
       button.sprite.set_position 48, 48
@@ -274,5 +276,3 @@ class MajitaiGame
   
   
 end
-
-MajitaiGame.new

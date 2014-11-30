@@ -130,7 +130,9 @@ class MajitaiGame
               p.y += vy
               
               if p.y < -64
-                Project.start_ruby_project "game/majitai_result.rb"
+                Project.start_ruby_project_proc do
+                  MajitaiResult.new
+                end
                 n.remove_from_parent
                 next
               end
@@ -274,5 +276,3 @@ class MajitaiGame
   
   
 end
-
-MajitaiGame.new
