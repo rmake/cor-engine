@@ -144,6 +144,7 @@ namespace cor
                 s = cocos2d::GLProgramStateCache::getInstance()->getGLProgramState(*shader);
                 s->retain();
                 auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+                    log_debug("backToForegroundlistener -2");
                     *p_need_reset = rtrue;
 
                 });
@@ -151,18 +152,21 @@ namespace cor
                 {
                     // todo: comfirm on android
                     auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
-
+                        log_debug("backToForegroundlistener -3");
                         auto scn = cocos2d::Director::getInstance()->getRunningScene();
-                        scn->enumerateChildren("//[[:alnum:]]+", [&](cocos2d::Node* n){
+                        log_debug("scn ", scn);
+                        scn->enumerateChildren("//.*", [&](cocos2d::Node* n){
+                            log_debug("n ", n);
                             if(n->getGLProgramState() == s)
                             {
+                                log_debug("eq");
                                 n->setGLProgramState(
                                     cocos2d::GLProgramState::getOrCreateWithGLProgramName(
                                     cocos2d::GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP));
                             }
                             return false;
                         });
-                        
+                        log_debug("scn ed ", scn);
                     });
 
                     cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -3);
@@ -184,7 +188,7 @@ namespace cor
                 auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
 
                     RtsObjectSystem::delay_call(sprite, 0.01f, [=](){
-
+                        log_debug("backToForegroundlistener sg");
                         if(*p_need_reset)
                         {
                             auto s = *ps;
