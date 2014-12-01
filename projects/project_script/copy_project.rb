@@ -14,6 +14,10 @@ if File.exist? "project_source_path_local_conf.rb"
   source_path = SOURCE_PATH
 end
 
+if ARGV[0]
+  source_path = ARGV[0]
+end
+
 destination_resource_path = "../cor_lib_test_main/Resources"
 source_resource_path = "#{source_path}/resources"
 
@@ -53,14 +57,7 @@ list.each do |fn|
   d_table.delete dfn
 end
 
-dir_list = Cor.u.dir_list destination_resource_path
-dir_list.each do |d|
-  fl = Cor.u.file_list d
-  if fl.empty?
-    FileUtils.rmdir d
-  end
-  
-end
+
 
 past_copy_json = JSON.pretty_generate past_copy_table
 Cor.u.file_write past_copy, past_copy_json
@@ -75,3 +72,13 @@ d_table.keys.each do |fn|
   FileUtils.remove fn
 end
 
+sleep 1
+
+dir_list = Cor.u.dir_list destination_resource_path
+dir_list.each do |d|
+  fl = Cor.u.file_list d
+  if fl.empty?
+    FileUtils.rmdir d
+  end
+  
+end
