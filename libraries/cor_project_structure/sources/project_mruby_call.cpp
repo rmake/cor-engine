@@ -1,5 +1,6 @@
 
 #include "project_mruby_call.h"
+#include "cor_data_structure/sources/basic/shared_ptr_table.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/cocos2dx_bind.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
@@ -48,6 +49,12 @@ namespace cor
             SceneLocalSPTable scene_local_sp_table;
             RBool first;
             StartProc start_proc;
+            data_structure::SharedPtrTableSP table_sp;
+
+            static data_structure::SharedPtrTableWP get_table_sp()
+            {
+                return project_mruby_call_itnl_instance->table_sp;
+            }
 
             static Cocos2dSceneWP get_current_scene()
             {
@@ -390,11 +397,11 @@ namespace cor
             {
 #ifdef CC_PLATFORM_WIN32
                 return "win32";
-#elif  CC_PLATFORM_ANDROID
+#elif CC_PLATFORM_ANDROID
                 return "android";
-#elif  CC_PLATFORM_MAC
+#elif CC_PLATFORM_MAC
                 return "mac";
-#elif  CC_PLATFORM_IOS
+#elif CC_PLATFORM_IOS
                 return "ios";
 #elif CC_PLATFORM_LINUX
                 return "linux";
@@ -474,6 +481,7 @@ namespace cor
             itnl->app = this->get_app();
 
             binder.bind_class<ProjectMrubyCallItnl>("Cor", "Project");
+            binder.bind_static_method("Cor", "Project", "get_table_sp", ProjectMrubyCallItnl::get_table_sp);
             binder.bind_static_method("Cor", "Project", "get_current_scene", ProjectMrubyCallItnl::get_current_scene);
             binder.bind_static_method("Cor", "Project", "get_current_layer", ProjectMrubyCallItnl::get_current_layer);
             binder.bind_static_method("Cor", "Project", "load_eval", ProjectMrubyCallItnl::load_eval);
@@ -510,10 +518,11 @@ namespace cor
             
 
             //
+            itnl->table_sp = data_structure::SharedPtrTable::create();
+
             itnl->collision = std::make_shared<cocos2dx_converter::Collision2dNode>();
             itnl->rts_object_group = cocos2dx_converter::RtsObjectGroup::create(itnl->collision);
-
-
+            
 
         }
 

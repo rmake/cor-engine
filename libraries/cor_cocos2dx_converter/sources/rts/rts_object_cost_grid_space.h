@@ -8,7 +8,28 @@ namespace cor
 {
     namespace cocos2dx_converter
     {
+        struct RtsObjectCostGridSpaceNodeItnl;
+
+        class RtsObjectCostGridSpaceNode
+        {
+            std::unique_ptr<RtsObjectCostGridSpaceNodeItnl> itnl;
+
+        public:
+
+            RtsObjectCostGridSpaceNode();
+            virtual ~RtsObjectCostGridSpaceNode();
+
+        };
+
+        typedef std::shared_ptr<RtsObjectCostGridSpaceNode> RtsObjectCostGridSpaceNodeSP;
+        typedef std::weak_ptr<RtsObjectCostGridSpaceNode> RtsObjectCostGridSpaceNodeWP;
+
         struct RtsObjectCostGridSpaceItnl;
+
+        class RtsObjectCostGridSpace;
+
+        typedef std::shared_ptr<RtsObjectCostGridSpace> RtsObjectCostGridSpaceSP;
+        typedef std::weak_ptr<RtsObjectCostGridSpace> RtsObjectCostGridSpaceWP;
     
         class RtsObjectCostGridSpace
         {

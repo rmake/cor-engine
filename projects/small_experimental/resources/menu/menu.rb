@@ -23,6 +23,18 @@ class CorMenu
     #self.scene.add_child label
     list = [
       {
+        :text => "graph/graph.rb",
+        :proc => (Proc.new do
+          GraphTest.new
+        end),
+      },
+      {
+        :text => "basic/basic.rb",
+        :proc => (Proc.new do
+          BasicTest.new
+        end),
+      },
+      {
         :text => "math/operator.rb",
         :proc => (Proc.new do
           OperatorTest.new
@@ -34,12 +46,7 @@ class CorMenu
           SoundTest.new
         end),
       },
-      {
-        :text => "graph/graph.rb",
-        :proc => (Proc.new do
-          GraphTest.new
-        end),
-      },
+      
     ]
     
     lv = CorListView.new list, {:size => Size.create(@visible_size.width - 100, @visible_size.height)} do |data|

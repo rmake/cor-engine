@@ -26,6 +26,7 @@
 #include "cor_data_structure/sources/ai/stack_decoder_tmpl.h"
 #include "cor_data_structure/sources/array_pool.h"
 #include "cor_data_structure/sources/array_pool_tmpl.h"
+#include "cor_data_structure/sources/basic/shared_ptr_table.h"
 #include "cor_data_structure/sources/geometry/r_tree_pool.h"
 #include "cor_data_structure/sources/geometry/r_tree_pool_tmpl.h"
 #include "cor_data_structure/sources/geometry/uniform_grid.h"
@@ -60,6 +61,10 @@ namespace cor
         std::weak_ptr<cor::data_structure::CostGridSpace> BasicBind_CostGridSpace_create()
         {
             return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(std::make_shared<cor::data_structure::CostGridSpace>());
+        }
+        bool BasicBind_SharedPtrTable_valid_question(std::weak_ptr<cor::data_structure::SharedPtrTable> c)
+        {
+            return !c.expired();
         }
         bool BasicBind_JobQueue_valid_question(std::weak_ptr<cor::system::JobQueue> c)
         {
@@ -434,6 +439,36 @@ namespace cor
             }
 
             return tmp_c->get_first_corner(a0);
+        }
+        
+        std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create()
+        {
+
+            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::data_structure::SharedPtrTable::create());
+        }
+        
+        void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char> a0, cor::mruby_interface::AnyWP a1)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->set(a0, a1.lock());
+        }
+        
+        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char> a0)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            return tmp_c->get(a0);
         }
         
         int BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c)
@@ -2920,13 +2955,13 @@ namespace cor
             return c.parent;
         }
         
-        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_any(cor::data_structure::CostGridSpaceItem& c, std::shared_ptr<void> a)
+        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_any(cor::data_structure::CostGridSpaceItem& c, cor::mruby_interface::AnyWP a)
         {
 
-            c.any = a;
+            c.any = a.lock();
         }
         
-        std::shared_ptr<void> BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_any(cor::data_structure::CostGridSpaceItem& c)
+        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_any(cor::data_structure::CostGridSpaceItem& c)
         {
 
             return c.any;

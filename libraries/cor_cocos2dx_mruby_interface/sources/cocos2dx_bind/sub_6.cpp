@@ -4,12 +4,12 @@
 #include "cor_mruby_interface/sources/mruby_experimental.h"
 #include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_cocos2dx_converter/sources/cocos2dx_experimental.h"
 #include "cor_cocos2dx_converter/sources/collision_2d_node.h"
 #include "cor_cocos2dx_converter/sources/easy_http_client.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_cost_grid_space.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_cost_grid_space_experimental.h"
-#include "cor_cocos2dx_converter/sources/rts/rts_object_cost_grid_space_item.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_group.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_sensor.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_system.h"
@@ -69,6 +69,7 @@ namespace cor
         cocos2d::Color4F Cocos2dxBind_Color4F_create_4(cocos2d::Color4F a0);
         bool Cocos2dxBind_Texture2D_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> c);
         bool Cocos2dxBind_Node_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c);
+        bool Cocos2dxBind_Cocos2dxExperimental_valid_question(std::weak_ptr<cor::cocos2dx_converter::Cocos2dxExperimental> c);
         bool Cocos2dxBind_DrawNode_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c);
         bool Cocos2dxBind_Collision2dNode_valid_question(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c);
         std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> Cocos2dxBind_Collision2dNode_create();
@@ -270,7 +271,6 @@ namespace cor
         cocos2d::Color4B Cocos2dxBind_Color4B_create_3(cocos2d::Color4F a0);
         cocos2d::Color4B Cocos2dxBind_Color4B_create_4(cocos2d::Color4B a0);
         bool Cocos2dxBind_RtsObjectCostGridSpace_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c);
-        bool Cocos2dxBind_RtsObjectCostGridSpaceItem_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpaceItem> c);
         cocos2d::PhysicsMaterial Cocos2dxBind_PhysicsMaterial_create_0();
         cocos2d::PhysicsMaterial Cocos2dxBind_PhysicsMaterial_create_1(float a0, float a1, float a2);
         cocos2d::PhysicsMaterial Cocos2dxBind_PhysicsMaterial_create_2(cocos2d::PhysicsMaterial a0);
@@ -706,6 +706,7 @@ namespace cor
         int Cocos2dxBind_cocos2d__Node_accessor_get__lua_id(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c);
         void Cocos2dxBind_cocos2d__Node_accessor_set__script_object(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c, void * a);
         void * Cocos2dxBind_cocos2d__Node_accessor_get__script_object(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c);
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cor__cocos2dx_converter__Cocos2dxExperimental_set_on_enter_callback_create();
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> Cocos2dxBind_cocos2d__DrawNode_create();
         void Cocos2dxBind_cocos2d__DrawNode_draw_dot(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c, cocos2d::Vec2 a0, float a1, cocos2d::Color4F a2);
         void Cocos2dxBind_cocos2d__DrawNode_draw_segment(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c, cocos2d::Vec2 a0, cocos2d::Vec2 a1, float a2, cocos2d::Color4F a3);
@@ -1818,7 +1819,7 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_move(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_start_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate> a0);
-        std::basic_string<char> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run1();
+        std::basic_string<char> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a0);
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_1();
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_2(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> a0);
         std::weak_ptr<cor::cocos2dx_converter::RtsObject> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_object(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, cor::cocos2dx_converter::Collision2dNodeRef a0);
@@ -9364,7 +9365,29 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_custom_method("Cocos2d", "ActionEase", "get_inner_action_38", Cocos2dxBind_cocos2d__ActionEase_get_inner_action_38);
+                            binder.bind_custom_method("Cocos2d", "ActionManager", "add_action", Cocos2dxBind_cocos2d__ActionManager_add_action);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "remove_all_actions", Cocos2dxBind_cocos2d__ActionManager_remove_all_actions);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "remove_all_actions_from_target", Cocos2dxBind_cocos2d__ActionManager_remove_all_actions_from_target);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "remove_action", Cocos2dxBind_cocos2d__ActionManager_remove_action);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "remove_action_by_tag", Cocos2dxBind_cocos2d__ActionManager_remove_action_by_tag);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "get_action_by_tag", Cocos2dxBind_cocos2d__ActionManager_get_action_by_tag);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "get_number_of_running_actions_in_target", Cocos2dxBind_cocos2d__ActionManager_get_number_of_running_actions_in_target);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "pause_target", Cocos2dxBind_cocos2d__ActionManager_pause_target);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "resume_target", Cocos2dxBind_cocos2d__ActionManager_resume_target);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "pause_all_running_actions", Cocos2dxBind_cocos2d__ActionManager_pause_all_running_actions);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "resume_targets", Cocos2dxBind_cocos2d__ActionManager_resume_targets);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "update", Cocos2dxBind_cocos2d__ActionManager_update);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "retain_168", Cocos2dxBind_cocos2d__ActionManager_retain_168);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "release_168", Cocos2dxBind_cocos2d__ActionManager_release_168);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "autorelease_168", Cocos2dxBind_cocos2d__ActionManager_autorelease_168);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "get_reference_count_168", Cocos2dxBind_cocos2d__ActionManager_get_reference_count_168);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "_id=", Cocos2dxBind_cocos2d__ActionManager_accessor_set__id);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "_id", Cocos2dxBind_cocos2d__ActionManager_accessor_get__id);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "_lua_id=", Cocos2dxBind_cocos2d__ActionManager_accessor_set__lua_id);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "_lua_id", Cocos2dxBind_cocos2d__ActionManager_accessor_get__lua_id);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "_script_object=", Cocos2dxBind_cocos2d__ActionManager_accessor_set__script_object);
+            binder.bind_custom_method("Cocos2d", "ActionManager", "_script_object", Cocos2dxBind_cocos2d__ActionManager_accessor_get__script_object);
+            binder.bind_custom_method("Cocos2d", "ActionEase", "get_inner_action_38", Cocos2dxBind_cocos2d__ActionEase_get_inner_action_38);
             binder.bind_custom_method("Cocos2d", "ActionEase", "clone", Cocos2dxBind_cocos2d__ActionEase_clone);
             binder.bind_custom_method("Cocos2d", "ActionEase", "reverse", Cocos2dxBind_cocos2d__ActionEase_reverse);
             binder.bind_custom_method("Cocos2d", "ActionEase", "start_with_target_38", Cocos2dxBind_cocos2d__ActionEase_start_with_target_38);
@@ -10080,31 +10103,6 @@ namespace cor
             binder.bind_custom_method("Cocos2d", "EaseQuarticActionOut", "release_168", Cocos2dxBind_cocos2d__EaseQuarticActionOut_release_168);
             binder.bind_custom_method("Cocos2d", "EaseQuarticActionOut", "autorelease_168", Cocos2dxBind_cocos2d__EaseQuarticActionOut_autorelease_168);
             binder.bind_custom_method("Cocos2d", "EaseQuarticActionOut", "get_reference_count_168", Cocos2dxBind_cocos2d__EaseQuarticActionOut_get_reference_count_168);
-            binder.bind_static_method("Cocos2d", "EaseQuarticActionInOut", "create", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_create);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "update", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_update);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "clone", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_clone);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "reverse", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_reverse);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "get_inner_action_38", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_get_inner_action_38);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "start_with_target_38", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_start_with_target_38);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "stop_38", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_stop_38);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "get_elapsed_89", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_get_elapsed_89);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "set_amplitude_rate_84", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_set_amplitude_rate_84);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "get_amplitude_rate_84", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_get_amplitude_rate_84);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "is_done_87", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_is_done_87);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "step_88", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_step_88);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "get_duration_102", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_get_duration_102);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "set_duration_102", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_set_duration_102);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "description_105", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_description_105);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "get_target_105", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_get_target_105);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "set_target_105", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_set_target_105);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "get_original_target_105", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_get_original_target_105);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "set_original_target_105", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_set_original_target_105);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "get_tag_105", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_get_tag_105);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "set_tag_105", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_set_tag_105);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "retain_168", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_retain_168);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "release_168", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_release_168);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "autorelease_168", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_autorelease_168);
-            binder.bind_custom_method("Cocos2d", "EaseQuarticActionInOut", "get_reference_count_168", Cocos2dxBind_cocos2d__EaseQuarticActionInOut_get_reference_count_168);
 
           }
 

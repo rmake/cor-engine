@@ -26,6 +26,7 @@
 #include "cor_data_structure/sources/ai/stack_decoder_tmpl.h"
 #include "cor_data_structure/sources/array_pool.h"
 #include "cor_data_structure/sources/array_pool_tmpl.h"
+#include "cor_data_structure/sources/basic/shared_ptr_table.h"
 #include "cor_data_structure/sources/geometry/r_tree_pool.h"
 #include "cor_data_structure/sources/geometry/r_tree_pool_tmpl.h"
 #include "cor_data_structure/sources/geometry/uniform_grid.h"
@@ -55,6 +56,7 @@ namespace cor
         
         bool BasicBind_CostGridSpace_valid_question(std::weak_ptr<cor::data_structure::CostGridSpace> c);
         std::weak_ptr<cor::data_structure::CostGridSpace> BasicBind_CostGridSpace_create();
+        bool BasicBind_SharedPtrTable_valid_question(std::weak_ptr<cor::data_structure::SharedPtrTable> c);
         bool BasicBind_JobQueue_valid_question(std::weak_ptr<cor::system::JobQueue> c);
         std::weak_ptr<cor::system::JobQueue> BasicBind_JobQueue_create();
         bool BasicBind_MrubyExperimentalBindTestStruct_valid_question(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> c);
@@ -122,6 +124,9 @@ namespace cor
         cor::data_structure::CostGridSpaceItem BasicBind_cor__data_structure__CostGridSpace_get(std::weak_ptr<cor::data_structure::CostGridSpace> c, cor::type::Vector2I a0);
         cor::data_structure::CostGridSpacePath BasicBind_cor__data_structure__CostGridSpace_search_nearest_path(std::weak_ptr<cor::data_structure::CostGridSpace> c, cor::type::Vector2I a0);
         cor::type::Vector2I BasicBind_cor__data_structure__CostGridSpace_get_first_corner(std::weak_ptr<cor::data_structure::CostGridSpace> c, cor::data_structure::CostGridSpacePath a0);
+        std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
+        void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char> a0, cor::mruby_interface::AnyWP a1);
+        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char> a0);
         int BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c);
         void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0);
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c);
@@ -492,8 +497,8 @@ namespace cor
         float BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_min_cost(cor::data_structure::CostGridSpaceItem& c);
         void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_parent(cor::data_structure::CostGridSpaceItem& c, cor::type::Vector2I a);
         cor::type::Vector2I BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_parent(cor::data_structure::CostGridSpaceItem& c);
-        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_any(cor::data_structure::CostGridSpaceItem& c, std::shared_ptr<void> a);
-        std::shared_ptr<void> BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_any(cor::data_structure::CostGridSpaceItem& c);
+        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_any(cor::data_structure::CostGridSpaceItem& c, cor::mruby_interface::AnyWP a);
+        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_any(cor::data_structure::CostGridSpaceItem& c);
         void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_cost(cor::data_structure::CostGridSpacePath& c, float a);
         float BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_cost(cor::data_structure::CostGridSpacePath& c);
         void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, MrubyRef a);
@@ -543,6 +548,8 @@ namespace cor
             binder.bind_class<cor::type::Sphere2I >("CorType", "Sphere2I");
             binder.bind_static_method("CorType", "Sphere2I", "create_0", BasicBind_Sphere2I_create_0);
             binder.bind_static_method("CorType", "Sphere2I", "create_1", BasicBind_Sphere2I_create_1);
+            binder.bind_class<cor::type::OSphere2F >("CorType", "OSphere2F");
+            binder.bind_static_method("CorType", "OSphere2F", "create", BasicBind_OSphere2F_create);
 
           }
 

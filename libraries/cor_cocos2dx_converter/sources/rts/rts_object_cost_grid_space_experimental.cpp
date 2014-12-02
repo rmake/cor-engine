@@ -24,7 +24,7 @@ namespace cor
             
         }
 
-        RString RtsObjectCostGridSpaceExperimental::run1()
+        RString RtsObjectCostGridSpaceExperimental::run1(cocos2d::DrawNode* draw_node)
         {
             typedef boost::adjacency_list<boost::listS, boost::listS, boost::undirectedS,
                 type::Vector2F, boost::property<boost::edge_weight_t, RFloat> > Graph;
@@ -36,11 +36,11 @@ namespace cor
             s << "graph run 1\n";
             
             auto va = {
-                type::Vector2F(10.0f, 10.0f),
-                type::Vector2F(20.0f, 10.0f),
-                type::Vector2F(30.0f, 10.0f),
-                type::Vector2F(10.0f, 20.0f),
-                type::Vector2F(20.0f, 40.0f)
+                type::Vector2F(100.0f, 100.0f),
+                type::Vector2F(200.0f, 100.0f),
+                type::Vector2F(300.0f, 100.0f),
+                type::Vector2F(100.0f, 200.0f),
+                type::Vector2F(200.0f, 400.0f)
             };
 
             std::vector<Graph::vertex_descriptor> vda;
@@ -63,7 +63,7 @@ namespace cor
                 Pair(1, 3),
                 Pair(2, 3),
                 Pair(3, 4),
-                Pair(0, 4)
+                Pair(2, 4)
             };
 
             for(auto e : ea)
@@ -80,8 +80,12 @@ namespace cor
                 auto ea = boost::out_edges(*v, g);
                 for(auto e = ea.first; e != ea.second; e++)
                 {
-                    s << "e (" << g[e->m_source].x << ", " << g[e->m_source].y << "), -> " <<
-                        "(" << g[e->m_target].x << ", " << g[e->m_target].y << ") = " << boost::get(w, *e) << "\n";
+                    s << "e (" << g[boost::source(*e, g)].x << ", " << g[boost::source(*e, g)].y << "), -> " <<
+                        "(" << g[boost::target(*e, g)].x << ", " << g[boost::target(*e, g)].y << ") = " << boost::get(w, *e) << "\n";
+
+                    draw_node->drawSegment(cocos2d::Vec2(g[boost::source(*e, g)].x, g[boost::source(*e, g)].y),
+                        cocos2d::Vec2(g[boost::target(*e, g)].x, g[boost::target(*e, g)].y), 1.0f,
+                        cocos2d::Color4F(1.0f, 0.0f, 0.0f, 1.0f));
                 }
             }
 

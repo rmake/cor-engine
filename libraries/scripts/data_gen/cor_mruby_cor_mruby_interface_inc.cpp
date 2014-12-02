@@ -26,6 +26,7 @@
 #include "../../cor_data_structure/sources/ai/stack_decoder_tmpl.h"
 #include "../../cor_data_structure/sources/array_pool.h"
 #include "../../cor_data_structure/sources/array_pool_tmpl.h"
+#include "../../cor_data_structure/sources/basic/shared_ptr_table.h"
 #include "../../cor_data_structure/sources/geometry/r_tree_pool.h"
 #include "../../cor_data_structure/sources/geometry/r_tree_pool_tmpl.h"
 #include "../../cor_data_structure/sources/geometry/uniform_grid.h"

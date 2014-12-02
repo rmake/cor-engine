@@ -2,7 +2,7 @@
 #define ____COR_COCOS2DX_CONVERTER_SOURCES_RTS_RTS_OBJECT_COST_GRID_SPACE_EXPERIMENTAL_H_
 
 #include "cor_type/sources/basic_types.h"
-
+#include "CCDrawNode.h"
 
 namespace cor
 {
@@ -19,7 +19,7 @@ namespace cor
             RtsObjectCostGridSpaceExperimental();
             virtual ~RtsObjectCostGridSpaceExperimental();
 
-            static RString run1();
+            static RString run1(cocos2d::DrawNode* draw_node);
         };
     }
 }

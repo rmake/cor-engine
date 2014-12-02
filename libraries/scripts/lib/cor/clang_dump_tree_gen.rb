@@ -819,6 +819,9 @@ module COR
             class_type = v[:original_class_name]
             access = "source"
             access_p = "source"
+            if class_type == "cor::mruby_interface::AnyWP"
+              access = "source.lock()"
+            end
           when :pointer
             class_type = "#{v[:original_class_name]}*"
             access = "source"

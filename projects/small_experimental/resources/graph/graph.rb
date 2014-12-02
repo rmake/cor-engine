@@ -31,8 +31,9 @@ class GraphTest
         :text_scale => 1.0, :sprite => sp, :disable_swallow => true
       button.sprite.set_scale 1.0
       button.on_tap do |t, e|
+        @draw_node.clear
         data[:proc].call
-        lv.node.remove_from_parent
+        #lv.node.remove_from_parent
       end
       
       button.sprite
@@ -42,6 +43,9 @@ class GraphTest
     
     self.scene.add_child lv.node
     
+    @draw_node = DrawNode.create
+    @draw_node.set_global_z_order 1.0
+    self.scene.add_child @draw_node
   
   end
   
@@ -60,6 +64,11 @@ class GraphTest
       #button.sprite.set_position @visible_size.width / 2, @visible_size.height / 2
       #self.scene.add_child button.sprite
       
+      button.on_tap do
+        @draw_node.clear
+        lv.node.remove_from_parent
+      end
+      
       button.sprite
     end
     
@@ -70,8 +79,10 @@ class GraphTest
   end
   
   def test1
+  
     
-    str = RtsObjectCostGridSpaceExperimental.run1
+    
+    str = RtsObjectCostGridSpaceExperimental.run1 @draw_node
     self.show_result_text str
     
   end

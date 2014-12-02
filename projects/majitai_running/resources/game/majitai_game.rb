@@ -80,126 +80,122 @@ class MajitaiGame
     
     contacting = 0
     
-    s.set_on_enter_callback do
-    
-      collision_ref = self.collision_system.add_o_box n, 
-        0, Box2F.create(
-          -16, 
-          -32, 
-          32, 
-          64) do |n0, n1|
-        
-        cp = n.get_position
-        p = n1.get_position
-        if cp.y < p.y + 64 && cp.y > p.y + -4
-          n.set_position cp.x, [cp.y + 8, p.y + 64].min
-          if vy < 0
-            vy = 0
-          end
-          contacting = 2
+    collision_ref = self.collision_system.add_o_box n, 
+      0, Box2F.create(
+        -16, 
+        -32, 
+        32, 
+        64) do |n0, n1|
+      
+      cp = n.get_position
+      p = n1.get_position
+      if cp.y < p.y + 64 && cp.y > p.y + -4
+        n.set_position cp.x, [cp.y + 8, p.y + 64].min
+        if vy < 0
+          vy = 0
         end
+        contacting = 2
       end
-    
-      a = []
-      a << ScaleTo.create(0.125, 0.5, 0.5)
-      a << ScaleTo.create(0.125, 0.5, 0.5 / 1.1)
-      ac = RepeatForever.create(Sequence.create(a))
-      s.run_action ac
+    end
   
-      a = []
-      a << MoveTo.create(0.125, Vec2.create(0, 0))
-      a << MoveTo.create(0.125, Vec2.create(0, -8 * 0.5 / 1.1))
-      ac = RepeatForever.create(Sequence.create(a))
-      s.run_action ac
-      
-      pressed = 0
-      
-      s.run_action(
-        RepeatForever.create(
-          Sequence.create([
-            DelayTime.create(0.033),
-            (CallFunc.create do
-              p = n.get_position
-              p.x += vx
-              if pressed > 0
-                vy = 8.0
-                pressed -= 1
-              else
-                vy -= 1
+    a = []
+    a << ScaleTo.create(0.125, 0.5, 0.5)
+    a << ScaleTo.create(0.125, 0.5, 0.5 / 1.1)
+    ac = RepeatForever.create(Sequence.create(a))
+    s.run_action ac
+
+    a = []
+    a << MoveTo.create(0.125, Vec2.create(0, 0))
+    a << MoveTo.create(0.125, Vec2.create(0, -8 * 0.5 / 1.1))
+    ac = RepeatForever.create(Sequence.create(a))
+    s.run_action ac
+    
+    pressed = 0
+    
+    s.run_action(
+      RepeatForever.create(
+        Sequence.create([
+          DelayTime.create(0.033),
+          (CallFunc.create do
+            p = n.get_position
+            p.x += vx
+            if pressed > 0
+              vy = 8.0
+              pressed -= 1
+            else
+              vy -= 1
+            end
+            p.y += vy
+            
+            if p.y < -64
+              Project.start_ruby_project_proc do
+                MajitaiResult.new
               end
-              p.y += vy
-              
-              if p.y < -64
-                Project.start_ruby_project_proc do
-                  MajitaiResult.new
-                end
-                n.remove_from_parent
-                next
-              end
-              
-              
-              @@distance = p.x / 64
-              @label.set_text "#{sprintf "%6.2f", @@distance}m"
-              
-              contacting -= 1
-              
-              n.set_position p
-            end),
-          ])
-        )
+              n.remove_from_parent
+              next
+            end
+            
+            
+            @@distance = p.x / 64
+            @label.set_text "#{sprintf "%6.2f", @@distance}m"
+            
+            contacting -= 1
+            
+            n.set_position p
+          end),
+        ])
       )
-      
-      r = Rect.create(-96 / 2, -96 / 2, 96, 96)
-      sp = CorSprite.create_sprite_9 :texture => "game/sp9bg_dark.png", :rect => r
-      button = CorPanel.new :text => "jump", :rect => r, 
-        :font_name => "fonts/MTLc3m.ttf",
-        :text_scale => 1.0, :sprite => sp, :disable_swallow => true
-      button.sprite.set_scale 1.0
-      button.sprite.set_position 48, 48
-      
-      self.scene.add_child button.sprite
-      
-      r = Rect.create(-@visible_size.width / 2, -@visible_size.height / 2, @visible_size.width, @visible_size.height)
-      all_screen = CorPanel.new :rect => r
-      all_screen.sprite.set_position(@visible_size.width / 2, @visible_size.height / 2)
-      all_screen.on_touch_began do |t, e|
+    )
+    
+    r = Rect.create(-96 / 2, -96 / 2, 96, 96)
+    sp = CorSprite.create_sprite_9 :texture => "game/sp9bg_dark.png", :rect => r
+    button = CorPanel.new :text => "jump", :rect => r, 
+      :font_name => "fonts/MTLc3m.ttf",
+      :text_scale => 1.0, :sprite => sp, :disable_swallow => true
+    button.sprite.set_scale 1.0
+    button.sprite.set_position 48, 48
+    
+    self.scene.add_child button.sprite
+    
+    r = Rect.create(-@visible_size.width / 2, -@visible_size.height / 2, @visible_size.width, @visible_size.height)
+    all_screen = CorPanel.new :rect => r
+    all_screen.sprite.set_position(@visible_size.width / 2, @visible_size.height / 2)
+    all_screen.on_touch_began do |t, e|
+      if contacting > 0
+        pressed = 16
+      end
+    end
+    
+    all_screen.on_touch_ended do |t, e|
+      pressed = 0
+    end
+    
+    all_screen.on_tap do
+    
+    end
+    
+    self.scene.add_child all_screen.sprite
+    
+    @label = self.create_distance_label
+    self.scene.add_child @label.sprite
+    
+    ed = self.layer.get_event_dispatcher
+    listener = EventListenerKeyboard.create
+    listener.on_key_pressed = Proc.new do |c, e|
+      if c == 146
         if contacting > 0
           pressed = 16
         end
       end
-      
-      all_screen.on_touch_ended do |t, e|
-        pressed = 0
-      end
-      
-      all_screen.on_tap do
-      
-      end
-      
-      self.scene.add_child all_screen.sprite
-      
-      @label = self.create_distance_label
-      self.scene.add_child @label.sprite
-      
-      ed = self.layer.get_event_dispatcher
-      listener = EventListenerKeyboard.create
-      listener.on_key_pressed = Proc.new do |c, e|
-        if c == 146
-          if contacting > 0
-            pressed = 16
-          end
-        end
-      end
-      
-      listener.on_key_released = Proc.new do |c, e|
-        if c == 146
-          pressed = 0
-        end
-      end
-      ed.add_event_listener_with_scene_graph_priority(listener, self.layer);
- 
     end
     
+    listener.on_key_released = Proc.new do |c, e|
+      if c == 146
+        pressed = 0
+      end
+    end
+    ed.add_event_listener_with_scene_graph_priority(listener, self.layer);
+ 
     n.add_child s
     n
   end

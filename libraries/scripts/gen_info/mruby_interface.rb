@@ -145,6 +145,10 @@ MRUBY_INTERFACE_TAGET_CLASSES = [
       :create_function => "create",
     },
     {
+      :name => "cor::data_structure::SharedPtrTable",
+      :value => :shared_ptr,
+    },
+    {
       :name => "cor::data_structure::CostGridSpaceItem",
       :value => :value,
       :create_function => "create",
