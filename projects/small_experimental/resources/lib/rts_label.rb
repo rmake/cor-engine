@@ -97,8 +97,6 @@ class RtsLabel
       
       el = EventListenerCustom.create "event_come_to_background" do |e|
         
-        Logger.debug "event event_come_to_background"
-        
         @@enable_set_text = false
         
         @@all_label.values.each do |l|
@@ -128,18 +126,11 @@ class RtsLabel
       
       el = EventListenerCustom.create "event_renderer_recreated" do |e|
         
-        Logger.debug "event event_renderer_recreated"
-        
-        
-        #proc.call
-        
       end
       
       Director.get_instance.get_event_dispatcher.add_event_listener_with_fixed_priority(el, -1);
       
       el = EventListenerCustom.create "event_come_to_foreground" do |e|
-        
-        Logger.debug "event event_come_to_foreground"
         
         proc.call
         
@@ -281,7 +272,6 @@ class RtsLabel
     
           
         else
-          Logger.debug "get last texture"
           texture = @@all_font_textures.last.get_sprite.get_texture
         end
         

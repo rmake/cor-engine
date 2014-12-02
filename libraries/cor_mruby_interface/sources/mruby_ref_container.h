@@ -24,6 +24,9 @@ namespace cor
             MrubyRefContainer(const MrubyRef & value);
             virtual ~MrubyRefContainer();
 
+            static MrubyRefContainerSP create();
+            static MrubyRefContainerSP create(const MrubyRef & value);
+
             void set_value(const MrubyRef & value);
             MrubyRef get_value();
         };

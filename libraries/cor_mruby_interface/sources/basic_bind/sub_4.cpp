@@ -149,6 +149,8 @@ namespace cor
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> a0);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::RCharArray> a0);
+        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_cor__mruby_interface__MrubyRefContainer_create_1();
+        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_cor__mruby_interface__MrubyRefContainer_create_2(mrubybind::MrubyRef a0);
         void BasicBind_cor__mruby_interface__MrubyRefContainer_set_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c, mrubybind::MrubyRef a0);
         mrubybind::MrubyRef BasicBind_cor__mruby_interface__MrubyRefContainer_get_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c);
         void BasicBind_cor__RCharArray_begin_1(std::weak_ptr<cor::RCharArray> c);
@@ -490,6 +492,8 @@ namespace cor
         float BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_min_cost(cor::data_structure::CostGridSpaceItem& c);
         void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_parent(cor::data_structure::CostGridSpaceItem& c, cor::type::Vector2I a);
         cor::type::Vector2I BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_parent(cor::data_structure::CostGridSpaceItem& c);
+        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_any(cor::data_structure::CostGridSpaceItem& c, std::shared_ptr<void> a);
+        std::shared_ptr<void> BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_any(cor::data_structure::CostGridSpaceItem& c);
         void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_cost(cor::data_structure::CostGridSpacePath& c, float a);
         float BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_cost(cor::data_structure::CostGridSpacePath& c);
         void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, MrubyRef a);
@@ -511,6 +515,8 @@ namespace cor
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "recieve", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve);
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "test", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test);
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "tmpl_test", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test);
+            binder.bind_static_method("CorMrubyInterface", "MrubyRefContainer", "create_1", BasicBind_cor__mruby_interface__MrubyRefContainer_create_1);
+            binder.bind_static_method("CorMrubyInterface", "MrubyRefContainer", "create_2", BasicBind_cor__mruby_interface__MrubyRefContainer_create_2);
             binder.bind_custom_method("CorMrubyInterface", "MrubyRefContainer", "set_value", BasicBind_cor__mruby_interface__MrubyRefContainer_set_value);
             binder.bind_custom_method("CorMrubyInterface", "MrubyRefContainer", "get_value", BasicBind_cor__mruby_interface__MrubyRefContainer_get_value);
             binder.bind_custom_method("Cor", "RCharArray", "begin_1", BasicBind_cor__RCharArray_begin_1);

@@ -75,7 +75,7 @@ end
 sleep 1
 
 dir_list = Cor.u.dir_list destination_resource_path
-dir_list.each do |d|
+dir_list.reverse.each do |d|
   fl = Cor.u.file_list d
   if fl.empty?
     FileUtils.rmdir d

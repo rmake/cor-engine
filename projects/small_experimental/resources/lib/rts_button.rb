@@ -193,16 +193,19 @@ class RtsButton
       sc = self.text_scale
       
       line_height = nil
+      
+      tbs = []
     
       texts.each do |text|
         #t = RtsSprite.create_label_atlas text
         #t = RtsSprite.create_label_ttf text
         t = RtsLabel.new :font_name => self.font_name, :font_size => 34, :text => text, :edge_size => 2, 
           :color => self.font_color
-        line_height = t.line_height
+        line_height = t.line_height * sc
         
         #tb = t.get_bounding_box
         tb = Rts.u.node_rect t.node
+        tbs << tb
         
         p = Vec2.create
         p.x = sb.origin.x + (sb.size.width - tb.size.width * sc) / 2
@@ -220,7 +223,7 @@ class RtsButton
       aw = 0
       self.text_labels.each_with_index do |t, i|
         #tb = t.get_bounding_box
-        tb = Rts.u.node_rect t
+        tb = tbs[i]
         
         h = [h, tb.size.height].max
         aw = [aw, tb.size.width].max
@@ -232,7 +235,7 @@ class RtsButton
       
       self.text_labels.each_with_index do |t, i|
         #tb = t.get_bounding_box
-        tb = Rts.u.node_rect t
+        tb = tbs[i]
         p = Vec2.create
         if align == :left
           p.x = sb.origin.x

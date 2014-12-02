@@ -184,6 +184,27 @@ def cor_file_list
       :no_template => true,
     },
     {
+      :project => "cor_cocos2dx_converter",
+      :path => "rts/rts_object_cost_grid_space_item",
+      :namespace => ["cor", "cocos2dx_converter"],
+      :action => [:sync, :force_create, :delete][0],
+      :no_template => true,
+    },
+    {
+      :project => "cor_cocos2dx_converter",
+      :path => "rts/rts_object_cost_grid_space",
+      :namespace => ["cor", "cocos2dx_converter"],
+      :action => [:sync, :force_create, :delete][0],
+      :no_template => true,
+    },
+    {
+      :project => "cor_cocos2dx_converter",
+      :path => "rts/rts_object_cost_grid_space_experimental",
+      :namespace => ["cor", "cocos2dx_converter"],
+      :action => [:sync, :force_create, :delete][0],
+      :no_template => true,
+    },
+    {
       :project => "cor_mruby_interface",
       :path => "mruby_experimental",
       :namespace => ["cor", "mruby_interface"],

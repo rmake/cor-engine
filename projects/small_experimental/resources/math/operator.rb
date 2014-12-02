@@ -46,6 +46,3 @@ class OperatorTest
 
 end
 
-OperatorTest.new
-
-

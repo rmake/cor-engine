@@ -20,6 +20,8 @@ namespace cor
             RFloat min_cost;
             type::Vector2I parent;
 
+            AnySP any;
+
             CostGridSpaceItem();
         };
 

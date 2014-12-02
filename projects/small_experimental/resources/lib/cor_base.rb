@@ -4,6 +4,7 @@ CorUtilities = RtsUtilities
 CorPanel = RtsButton
 #CorListView = RtsListView
 CorLabel = RtsLabel
+CorMessageView = RtsMessageView
 
 
 class CorListView < RtsListView

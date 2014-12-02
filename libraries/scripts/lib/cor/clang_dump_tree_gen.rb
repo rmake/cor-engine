@@ -1326,6 +1326,9 @@ EOS
           if ret.match(/^std::shared_ptr/)
             call_method = "cor::mruby_interface::MrubyState::add_tmp_shared_and_return(#{call_method})"
           end
+          if ret.match(/^std::weak_ptr/)
+            call_method = "cor::mruby_interface::MrubyState::add_tmp_shared_and_return(#{call_method})"
+          end
           
           if ret != "void"
             call_method = "return #{call_method}"

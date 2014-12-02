@@ -25,6 +25,18 @@ namespace cor
             
         }
 
+        MrubyRefContainerSP MrubyRefContainer::create()
+        {
+            return std::make_shared<MrubyRefContainer>();
+        }
+
+        MrubyRefContainerSP MrubyRefContainer::create(const MrubyRef & value)
+        {
+            auto p = std::make_shared<MrubyRefContainer>();
+            p->set_value(value);
+            return p;
+        }
+
         void MrubyRefContainer::set_value(const MrubyRef & value)
         {
             itnl->value = value;

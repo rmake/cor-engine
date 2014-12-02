@@ -7,6 +7,9 @@
 #include "cor_cocos2dx_converter/sources/collision_2d_node.h"
 #include "cor_cocos2dx_converter/sources/easy_http_client.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object.h"
+#include "cor_cocos2dx_converter/sources/rts/rts_object_cost_grid_space.h"
+#include "cor_cocos2dx_converter/sources/rts/rts_object_cost_grid_space_experimental.h"
+#include "cor_cocos2dx_converter/sources/rts/rts_object_cost_grid_space_item.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_group.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_sensor.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_system.h"
@@ -119,6 +122,7 @@ namespace cor
         bool Cocos2dxBind_TargetedAction_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TargetedAction> c);
         bool Cocos2dxBind_RtsObjectAction_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectAction> c);
         bool Cocos2dxBind_RtsObject_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
+        bool Cocos2dxBind_RtsObjectCostGridSpaceExperimental_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpaceExperimental> c);
         bool Cocos2dxBind_RtsObjectGroup_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
         bool Cocos2dxBind_PhysicsShape_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> c);
         bool Cocos2dxBind_PhysicsShapeCircle_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeCircle> c);
@@ -265,6 +269,8 @@ namespace cor
         cocos2d::Color4B Cocos2dxBind_Color4B_create_2(cocos2d::Color3B a0);
         cocos2d::Color4B Cocos2dxBind_Color4B_create_3(cocos2d::Color4F a0);
         cocos2d::Color4B Cocos2dxBind_Color4B_create_4(cocos2d::Color4B a0);
+        bool Cocos2dxBind_RtsObjectCostGridSpace_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c);
+        bool Cocos2dxBind_RtsObjectCostGridSpaceItem_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpaceItem> c);
         cocos2d::PhysicsMaterial Cocos2dxBind_PhysicsMaterial_create_0();
         cocos2d::PhysicsMaterial Cocos2dxBind_PhysicsMaterial_create_1(float a0, float a1, float a2);
         cocos2d::PhysicsMaterial Cocos2dxBind_PhysicsMaterial_create_2(cocos2d::PhysicsMaterial a0);
@@ -1812,6 +1818,7 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_move(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_start_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate> a0);
+        std::basic_string<char> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run1();
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_1();
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_2(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> a0);
         std::weak_ptr<cor::cocos2dx_converter::RtsObject> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_object(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, cor::cocos2dx_converter::Collision2dNodeRef a0);
@@ -10027,6 +10034,27 @@ namespace cor
             binder.bind_custom_method("Cocos2d", "SpriteBatchNode", "release_168", Cocos2dxBind_cocos2d__SpriteBatchNode_release_168);
             binder.bind_custom_method("Cocos2d", "SpriteBatchNode", "autorelease_168", Cocos2dxBind_cocos2d__SpriteBatchNode_autorelease_168);
             binder.bind_custom_method("Cocos2d", "SpriteBatchNode", "get_reference_count_168", Cocos2dxBind_cocos2d__SpriteBatchNode_get_reference_count_168);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "add_letter_definition", Cocos2dxBind_cocos2d__FontAtlas_add_letter_definition);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "prepare_letter_definitions", Cocos2dxBind_cocos2d__FontAtlas_prepare_letter_definitions);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "add_texture", Cocos2dxBind_cocos2d__FontAtlas_add_texture);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "get_common_line_height", Cocos2dxBind_cocos2d__FontAtlas_get_common_line_height);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "set_common_line_height", Cocos2dxBind_cocos2d__FontAtlas_set_common_line_height);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "get_texture", Cocos2dxBind_cocos2d__FontAtlas_get_texture);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "get_font", Cocos2dxBind_cocos2d__FontAtlas_get_font);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "listen_renderer_recreated", Cocos2dxBind_cocos2d__FontAtlas_listen_renderer_recreated);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "purge_textures_atlas", Cocos2dxBind_cocos2d__FontAtlas_purge_textures_atlas);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "set_anti_alias_tex_parameters", Cocos2dxBind_cocos2d__FontAtlas_set_anti_alias_tex_parameters);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "set_alias_tex_parameters", Cocos2dxBind_cocos2d__FontAtlas_set_alias_tex_parameters);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "retain_168", Cocos2dxBind_cocos2d__FontAtlas_retain_168);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "release_168", Cocos2dxBind_cocos2d__FontAtlas_release_168);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "autorelease_168", Cocos2dxBind_cocos2d__FontAtlas_autorelease_168);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "get_reference_count_168", Cocos2dxBind_cocos2d__FontAtlas_get_reference_count_168);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "_id=", Cocos2dxBind_cocos2d__FontAtlas_accessor_set__id);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "_id", Cocos2dxBind_cocos2d__FontAtlas_accessor_get__id);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "_lua_id=", Cocos2dxBind_cocos2d__FontAtlas_accessor_set__lua_id);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "_lua_id", Cocos2dxBind_cocos2d__FontAtlas_accessor_get__lua_id);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "_script_object=", Cocos2dxBind_cocos2d__FontAtlas_accessor_set__script_object);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "_script_object", Cocos2dxBind_cocos2d__FontAtlas_accessor_get__script_object);
 
           }
 
