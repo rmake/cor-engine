@@ -130,7 +130,7 @@ namespace cor
             sprite->setGLProgramState(s);
         }
 
-        void RtsObjectSystem::setup_sprite_round(cocos2d::Sprite* sprite)
+        void RtsObjectSystem::setup_sprite_round(cocos2d::Node* sprite)
         {
             static cocos2d::GLProgramState* s = NULL;
             static RBool need_reset = rfalse;

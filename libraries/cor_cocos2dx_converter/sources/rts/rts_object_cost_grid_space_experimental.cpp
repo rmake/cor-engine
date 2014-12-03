@@ -2,6 +2,7 @@
 #include "rts_object_cost_grid_space_experimental.h"
 
 #include "cor_type/sources/math/vector2.h"
+#include "cor_data_structure/sources/ai/stack_decoder_tmpl_impl.h"
 
 #include <boost/graph/adjacency_list.hpp>
 
@@ -39,7 +40,7 @@ namespace cor
                 type::Vector2F(100.0f, 100.0f),
                 type::Vector2F(200.0f, 100.0f),
                 type::Vector2F(300.0f, 100.0f),
-                type::Vector2F(100.0f, 200.0f),
+                type::Vector2F(100.0f, 250.0f),
                 type::Vector2F(200.0f, 400.0f)
             };
 
@@ -88,6 +89,79 @@ namespace cor
                         cocos2d::Color4F(1.0f, 0.0f, 0.0f, 1.0f));
                 }
             }
+
+            std::map<Graph::vertex_descriptor, RFloat> vertex_cost_table;
+            std::map<Graph::vertex_descriptor, Graph::vertex_descriptor> vertex_parent_table;
+            struct State
+            {
+                Graph::vertex_descriptor vd;
+                RFloat cost;
+
+                State()
+                {
+                    vd = nullptr;
+                    cost = 0.0f;
+                }
+            };
+
+            typedef data_structure::InstantStackDecoderTmpl<RFloat, State> StackDecoder;
+
+            StackDecoder sd;
+
+            s << "searching" << "\n";
+
+            sd.set_func([&](const State& state){
+                return state.cost;
+            }, [&](const State& state, std::function<void(const State&)> f){
+                auto ea = boost::out_edges(state.vd, g);
+                auto& src = g[state.vd];
+                for(auto e = ea.first; e != ea.second; e++)
+                {
+                    auto target_vd = boost::target(*e, g);
+                    auto& tgt = g[target_vd];
+                    auto cost = state.cost + src.distance(tgt);
+
+                    if(vertex_cost_table.find(target_vd) != vertex_cost_table.end())
+                    {
+                        if(vertex_cost_table[target_vd] <= cost)
+                        {
+                            continue;
+                        }
+                    }
+
+                    State st;
+                    vertex_cost_table[target_vd] = cost;
+                    vertex_parent_table[target_vd] = state.vd;
+                    st.vd = target_vd;
+                    st.cost = cost;
+
+                    s << "(" << g[target_vd].x << ", " << g[target_vd].y << "), " << cost << "\n";
+
+                    f(st);
+                }
+            }, [&](const State& state){
+                return state.vd == vda[4];
+            });
+
+
+            State first_state;
+            first_state.vd = vda[0];
+            vertex_cost_table[vda[0]] = 0.0f;
+            vertex_parent_table[vda[0]] = nullptr;
+            sd.push(first_state);
+
+            s << "path" << "\n";
+            sd.search_first_n(1, [&](const State& state){
+                Graph::vertex_descriptor vd = state.vd;
+                while(vd)
+                {
+                    s << "(" << g[vd].x << ", " << g[vd].y << ")" << "\n";
+
+                    vd = vertex_parent_table[vd];
+                }
+
+                return rtrue;
+            });
 
             
             return s.str();

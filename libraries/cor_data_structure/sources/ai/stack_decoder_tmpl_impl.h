@@ -166,7 +166,7 @@ namespace cor
 
         template<class Key, class State> void InstantStackDecoderTmpl<Key, State>::push(State state)
         {
-            queue.enqueue(const_func(state), state);
+            queue.enqueue(this->cost_func(state), state);
         }
 
         template<class Key, class State> void InstantStackDecoderTmpl<Key, State>::set_func(typename InstantStackDecoderTmpl<Key, State>::CostFunc cost_func, typename InstantStackDecoderTmpl<Key, State>::NextStatesFunc next_states_func, typename InstantStackDecoderTmpl<Key, State>::GoalFunc goal_func)

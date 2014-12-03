@@ -51,23 +51,39 @@ class GraphTest
   
   def show_result_text(str)
     
+    Cor.p.st :result_set_text
+    
     lv = CorListView.new [:one], {:size => Size.create(@visible_size.width - 100, @visible_size.height)} do |data|
     
+      Cor.p.st :internal_list_view
     
-      r = Rect.create(-@visible_size.width * 0.8 / 2, -@visible_size.height / 2, @visible_size.width * 0.8, @visible_size.height)
+      ct = 0
+      str.each_line{|v| ct += 1}
+      h = (ct * 19) + 10
+      r = Rect.create(-@visible_size.width * 0.8 / 2, -h / 2, @visible_size.width * 0.8, h)
       sp = CorSprite.create_sprite_9 :texture => "menu/sp9bg_dark.png", :rect => r
-      button = CorPanel.new :text => "test", :rect => r, 
+      button = CorPanel.new :rect => r, 
           :font_name => "fonts/MTLc3m.ttf", :align => :left,
           :text_scale => 0.5, :sprite => sp, :disable_swallow => true
       
       button.set_text str
+      
       #button.sprite.set_position @visible_size.width / 2, @visible_size.height / 2
       #self.scene.add_child button.sprite
       
       button.on_tap do
+        Cor.p.output
+    
+        Cor.p.st :close_output
         @draw_node.clear
         lv.node.remove_from_parent
+        Cor.p.ed :close_output
+        
+        Cor.p.output
+    
       end
+      
+      Cor.p.ed :internal_list_view
       
       button.sprite
     end
@@ -76,14 +92,22 @@ class GraphTest
     
     self.scene.add_child lv.node
     
+    Cor.p.ed :result_set_text
+      
+    
   end
   
   def test1
   
+    Cor.p.output
     
-    
+    Cor.p.st :graph_run1
     str = RtsObjectCostGridSpaceExperimental.run1 @draw_node
+    Cor.p.ed :graph_run1
+    
     self.show_result_text str
+    
+    Cor.p.output
     
   end
 
