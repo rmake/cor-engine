@@ -60,6 +60,8 @@ namespace cor
             RtsObjectGroupSP get_object_group() const;
 
             const Collision2dNodeRef& get_node_ref() const;
+            void set_kind(RInt32 kind);
+            RInt32 get_kind() const;
             void set_movable(RBool movable);
             RBool get_movable() const;
             void set_collidable(RBool collidable);

@@ -124,6 +124,7 @@ namespace cor
         bool Cocos2dxBind_RtsObjectAction_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectAction> c);
         bool Cocos2dxBind_RtsObject_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         bool Cocos2dxBind_RtsObjectGroup_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
+        bool Cocos2dxBind_RtsObjectCostGridSpace_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c);
         bool Cocos2dxBind_RtsObjectCostGridSpaceExperimental_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpaceExperimental> c);
         bool Cocos2dxBind_PhysicsShape_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> c);
         bool Cocos2dxBind_PhysicsShapeCircle_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeCircle> c);
@@ -270,7 +271,6 @@ namespace cor
         cocos2d::Color4B Cocos2dxBind_Color4B_create_2(cocos2d::Color3B a0);
         cocos2d::Color4B Cocos2dxBind_Color4B_create_3(cocos2d::Color4F a0);
         cocos2d::Color4B Cocos2dxBind_Color4B_create_4(cocos2d::Color4B a0);
-        bool Cocos2dxBind_RtsObjectCostGridSpace_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c);
         cocos2d::PhysicsMaterial Cocos2dxBind_PhysicsMaterial_create_0();
         cocos2d::PhysicsMaterial Cocos2dxBind_PhysicsMaterial_create_1(float a0, float a1, float a2);
         cocos2d::PhysicsMaterial Cocos2dxBind_PhysicsMaterial_create_2(cocos2d::PhysicsMaterial a0);
@@ -1770,6 +1770,8 @@ namespace cor
         std::weak_ptr<cor::cocos2dx_converter::RtsObject> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_create_2(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> a0, cor::cocos2dx_converter::Collision2dNodeRef a1);
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_object_group(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         cor::cocos2dx_converter::Collision2dNodeRef Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_node_ref(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_kind(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
+        int Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_kind(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_movable(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
         int Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_movable(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_collidable(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
@@ -1834,6 +1836,9 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_solve_contact_1(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, int a0, int a1, std::weak_ptr<cor::cocos2dx_converter::RtsObject> a2, std::weak_ptr<cor::cocos2dx_converter::RtsObject> a3);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_solve_contact_2(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_poll(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_add(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c, std::weak_ptr<cor::cocos2dx_converter::RtsObject> a0);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_remove(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c, std::weak_ptr<cor::cocos2dx_converter::RtsObject> a0);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_make_graph(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c);
         std::basic_string<char> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a0);
         std::basic_string<char> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a1, std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> a2, std::weak_ptr<cor::data_structure::CostGridSpace> a3, std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> a4);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> Cocos2dxBind_cocos2d__PhysicsShape_get_body_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> c);
@@ -9514,6 +9519,8 @@ namespace cor
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "valid?", Cocos2dxBind_RtsObject_valid_question);
             binder.bind_class<std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> >("CorCocos2dxConverter", "RtsObjectGroup");
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "valid?", Cocos2dxBind_RtsObjectGroup_valid_question);
+            binder.bind_class<std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> >("CorCocos2dxConverter", "RtsObjectCostGridSpace");
+            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectCostGridSpace", "valid?", Cocos2dxBind_RtsObjectCostGridSpace_valid_question);
             binder.bind_class<std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpaceExperimental> >("CorCocos2dxConverter", "RtsObjectCostGridSpaceExperimental");
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectCostGridSpaceExperimental", "valid?", Cocos2dxBind_RtsObjectCostGridSpaceExperimental_valid_question);
             binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> >("Cocos2d", "PhysicsShape");
@@ -9569,8 +9576,6 @@ namespace cor
             binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionCamera> >("Cocos2d", "ActionCamera");
             binder.bind_custom_method("Cocos2d", "ActionCamera", "valid?", Cocos2dxBind_ActionCamera_valid_question);
             binder.bind_static_method("Cocos2d", "ActionCamera", "create", Cocos2dxBind_ActionCamera_create);
-            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::OrbitCamera> >("Cocos2d", "OrbitCamera");
-            binder.bind_custom_method("Cocos2d", "OrbitCamera", "valid?", Cocos2dxBind_OrbitCamera_valid_question);
 
           }
 

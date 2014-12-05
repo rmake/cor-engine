@@ -81,6 +81,7 @@ namespace cor
             cocos2d::Vec3 old_render_pos;
             cocos2d::Vec3 new_render_pos;
             type::Vector2F render_offset;
+            RInt32 kind;
             RInt32 render_time;
             RBool move_warp;
             Actions actions;
@@ -106,6 +107,7 @@ namespace cor
             
             RtsObjectItnl()
             {
+                kind = 0;
                 move_warp = rtrue;
                 released = rfalse;
                 movable = rtrue;
@@ -164,6 +166,16 @@ namespace cor
         void RtsObject::release()
         {
             itnl->released = rtrue;
+        }
+
+        void RtsObject::set_kind(RInt32 kind)
+        {
+            itnl->kind = kind;
+        }
+
+        RInt32 RtsObject::get_kind() const
+        {
+            return itnl->kind;
         }
 
         void RtsObject::set_movable(RBool movable)

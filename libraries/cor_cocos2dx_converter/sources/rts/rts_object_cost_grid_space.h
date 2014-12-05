@@ -10,21 +10,20 @@ namespace cor
 {
     namespace cocos2dx_converter
     {
-        struct RtsObjectCostGridSpaceNodeItnl;
+        
+        struct RtsObjectCostGridSpaceCell;
+        typedef RtsObjectCostGridSpaceCell* RtsObjectCostGridSpaceCellPtr;
 
-        class RtsObjectCostGridSpaceNode
+        struct RtsObjectCostGridSpaceCell
         {
-            std::unique_ptr<RtsObjectCostGridSpaceNodeItnl> itnl;
+            type::Vector2I position;
+            RtsObjectSPArray a;
+            RtsObjectCostGridSpaceCellPtr parent;
+            RtsObjectCostGridSpaceCellPtr root;
+            RFloat min_cost;
 
-        public:
-
-            RtsObjectCostGridSpaceNode();
-            virtual ~RtsObjectCostGridSpaceNode();
-
+            RtsObjectCostGridSpaceCell();
         };
-
-        typedef std::shared_ptr<RtsObjectCostGridSpaceNode> RtsObjectCostGridSpaceNodeSP;
-        typedef std::weak_ptr<RtsObjectCostGridSpaceNode> RtsObjectCostGridSpaceNodeWP;
 
         struct RtsObjectCostGridSpaceItnl;
 
@@ -42,6 +41,15 @@ namespace cor
             RtsObjectCostGridSpace();
             RtsObjectCostGridSpace(Collision2dNodeSP collision, data_structure::CostGridSpaceSP cost_grid_space, RtsObjectGroupSP object_group);
             virtual ~RtsObjectCostGridSpace();
+
+            void set_wall_kind(RInt32 wall_kind);
+            void set_index_convert(type::Vector2F scale, type::Vector2F offset);
+
+            void add(RtsObjectSP o);
+            void remove(RtsObjectSP o);
+
+            void make_graph();
+
         };
     }
 }

@@ -172,11 +172,15 @@ namespace cor
         RString RtsObjectCostGridSpaceExperimental::run2(cocos2d::Node* root_node, cocos2d::DrawNode* draw_node, Collision2dNodeSP collision, data_structure::CostGridSpaceSP cost_grid_space, RtsObjectGroupSP object_group)
         {
             auto cgs = std::make_shared<RtsObjectCostGridSpace>(collision, cost_grid_space, object_group);
+            cgs->set_wall_kind(2);
 
             struct Character
             {
                 type::Vector2F p;
                 cocos2d::Color4F c;
+                Collision2dNodeRef r;
+                RtsObjectSP o;
+                cocos2d::Node* n;
 
                 Character(RFloat x, RFloat y, RFloat r, RFloat g, RFloat b, RFloat a)
                 {
@@ -187,7 +191,7 @@ namespace cor
 
             RStringStream s;
 
-            auto ca = {
+            Character ca[] = {
                 Character(100.0f, 100.0f, 1.0f, 0.0f, 0.0f, 1.0f),
                 Character(200.0f, 100.0f, 1.0f, 1.0f, 0.0f, 1.0f),
                 Character(300.0f, 100.0f, 1.0f, 0.0f, 1.0f, 1.0f),
@@ -203,6 +207,10 @@ namespace cor
                 return type::Vector2F(vi.x * 10.0f, vi.y * 10.0f);
             };
 
+            auto vec_f_to_i = [](type::Vector2F vf){
+                return type::Vector2F(static_cast<RInt32>(vf.x / 10.0f + 0.5f), static_cast<RInt32>(vf.y / 10.0f + 0.5f));
+            };
+
             
 
             RSize sz = 45;
@@ -211,14 +219,15 @@ namespace cor
             {
                 auto ip = type::Vector2I(15, i + 5);
                 auto& cell = cost_grid_space->ref(ip);
-                cell.passable = rfalse;
+                //cell.passable = rfalse;
             }
 
             for(RSize i = 0; i < 10; i++)
             {
                 auto ip = type::Vector2I(15 + i, 15);
                 auto& cell = cost_grid_space->ref(ip);
-                cell.passable = rfalse;
+                cell.enter_cost = 2.0f;
+                //cell.passable = rfalse;
             }
 
             for(RSize i = 0; i < sz; i++)
@@ -229,12 +238,15 @@ namespace cor
                     auto vp = vec_i_to_f(ip);
                     auto& cell = cost_grid_space->ref(ip);
 
-                    if(cell.passable)
+                    cocos2d::Node* n;
+                    if(cell.enter_cost > 1.5f)
                     {
                         auto l = cocos2d::LayerColor::create(cocos2d::Color4B(127, 127, 127, 64), 10, 10);
                         l->setPosition(vp.x, vp.y);
 
                         root_node->addChild(l);
+
+                        n = l;
                     }
                     else
                     {
@@ -242,23 +254,50 @@ namespace cor
                         l->setPosition(vp.x, vp.y);
 
                         root_node->addChild(l);
+
+                        n = l;
+
+                        //
+                        auto r = collision->add_o_box(n, 0, type::Box2F(0, 0, 10, 10), [=](cocos2d::Node*, cocos2d::Node*){
+
+                        });
+                        refs.push_back(r);
+
+                        //
+                        auto o = object_group->create_object(r);
+                        o->set_kind(2);
+                        cgs->add(o);
                     }
+
 
                 }
             }
 
-            for(auto c : ca)
+            for(auto& c : ca)
             {
-                auto l = cocos2d::LayerColor::create(cocos2d::Color4B(c.c), 10, 10);
-                l->setPosition(c.p.x, c.p.y);
+                auto n = cocos2d::LayerColor::create(cocos2d::Color4B(c.c), 10, 10);
+                n->setPosition(c.p.x, c.p.y);
+                c.n = n;
+                root_node->addChild(n);
 
-                auto r = collision->add_o_box(l, 0, type::Box2F(0, 0, 100, 100), [=](cocos2d::Node*, cocos2d::Node*){
+                //
+                auto r = collision->add_o_box(n, 0, type::Box2F(0, 0, 10, 10), [=](cocos2d::Node*, cocos2d::Node*){
 
                 });
-
+                c.r = r;
                 refs.push_back(r);
 
-                root_node->addChild(l);
+                //
+                auto o = object_group->create_object(r);
+                o->set_kind(1);
+                c.o = o;
+                cgs->add(o);
+
+                //
+                auto ip = vec_f_to_i(c.p);
+                auto& cell = cost_grid_space->ref(ip);
+
+                
             }
 
 
