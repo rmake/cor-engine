@@ -25,12 +25,21 @@ namespace cor
 
         struct RtsObjectCostGridSpaceItnl
         {
-            
+            Collision2dNodeSP collision;
+            data_structure::CostGridSpaceSP cost_grid_space;
+            RtsObjectGroupSP object_group;
         };
         
         RtsObjectCostGridSpace::RtsObjectCostGridSpace() : itnl(new RtsObjectCostGridSpaceItnl())
         {
             
+        }
+
+        RtsObjectCostGridSpace::RtsObjectCostGridSpace(Collision2dNodeSP collision, data_structure::CostGridSpaceSP cost_grid_space, RtsObjectGroupSP object_group) : itnl(new RtsObjectCostGridSpaceItnl())
+        {
+            itnl->collision = collision;
+            itnl->cost_grid_space = cost_grid_space;
+            itnl->object_group = object_group;
         }
         
         RtsObjectCostGridSpace::~RtsObjectCostGridSpace()

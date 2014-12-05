@@ -123,8 +123,8 @@ namespace cor
         bool Cocos2dxBind_TargetedAction_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TargetedAction> c);
         bool Cocos2dxBind_RtsObjectAction_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectAction> c);
         bool Cocos2dxBind_RtsObject_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
-        bool Cocos2dxBind_RtsObjectCostGridSpaceExperimental_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpaceExperimental> c);
         bool Cocos2dxBind_RtsObjectGroup_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
+        bool Cocos2dxBind_RtsObjectCostGridSpaceExperimental_valid_question(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpaceExperimental> c);
         bool Cocos2dxBind_PhysicsShape_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> c);
         bool Cocos2dxBind_PhysicsShapeCircle_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeCircle> c);
         bool Cocos2dxBind_PhysicsShapePolygon_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapePolygon> c);
@@ -1819,7 +1819,6 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_move(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_start_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate> a0);
-        std::basic_string<char> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a0);
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_1();
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_2(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> a0);
         std::weak_ptr<cor::cocos2dx_converter::RtsObject> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_object(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, cor::cocos2dx_converter::Collision2dNodeRef a0);
@@ -1835,6 +1834,8 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_solve_contact_1(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, int a0, int a1, std::weak_ptr<cor::cocos2dx_converter::RtsObject> a2, std::weak_ptr<cor::cocos2dx_converter::RtsObject> a3);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_solve_contact_2(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_poll(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
+        std::basic_string<char> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a0);
+        std::basic_string<char> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a1, std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> a2, std::weak_ptr<cor::data_structure::CostGridSpace> a3, std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> a4);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> Cocos2dxBind_cocos2d__PhysicsShape_get_body_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> c);
         cocos2d::PhysicsShape::Type Cocos2dxBind_cocos2d__PhysicsShape_get_type_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> c);
         float Cocos2dxBind_cocos2d__PhysicsShape_get_area_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> c);
@@ -9365,21 +9366,8 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_static_method("CorCocos2dxConverter", "RtsObjectGroup", "create_1", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_1);
-            binder.bind_static_method("CorCocos2dxConverter", "RtsObjectGroup", "create_2", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_2);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "create_object", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_object);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "release_object", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_release_object);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "set_dt", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_set_dt);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "get_dt", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_get_dt);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "get_internal_state", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_get_internal_state);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "search_from_node", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_search_from_node);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "get_collision", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_get_collision);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "set_transform_to_render", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_set_transform_to_render);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "get_transform_to_render", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_get_transform_to_render);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "set_contact_pair", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_set_contact_pair);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "solve_contact_1", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_solve_contact_1);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "solve_contact_2", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_solve_contact_2);
-            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "poll", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_poll);
+                            binder.bind_static_method("CorCocos2dxConverter", "RtsObjectCostGridSpaceExperimental", "run1", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run1);
+            binder.bind_static_method("CorCocos2dxConverter", "RtsObjectCostGridSpaceExperimental", "run2", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run2);
             binder.bind_custom_method("Cocos2d", "PhysicsShape", "get_body_8", Cocos2dxBind_cocos2d__PhysicsShape_get_body_8);
             binder.bind_custom_method("Cocos2d", "PhysicsShape", "get_type_8", Cocos2dxBind_cocos2d__PhysicsShape_get_type_8);
             binder.bind_custom_method("Cocos2d", "PhysicsShape", "get_area_8", Cocos2dxBind_cocos2d__PhysicsShape_get_area_8);

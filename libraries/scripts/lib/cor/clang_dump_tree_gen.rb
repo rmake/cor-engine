@@ -397,7 +397,12 @@ module COR
           call_arg = access.gsub("source", "a#{i}")
         end
       else
-        call_arg = "a#{i}"
+        if arg.match "std::shared_ptr"
+          arg = arg.gsub("std::shared_ptr", "std::weak_ptr")
+          call_arg = "a#{i}.lock()"
+        else
+          call_arg = "a#{i}"
+        end
       end
     
       [is_nil, arg, call_arg]

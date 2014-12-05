@@ -1,3 +1,4 @@
+Project.load_eval "graph/rts_graph_test.rb"
 
 class GraphTest
 
@@ -19,6 +20,12 @@ class GraphTest
         :text => "boost::graph test",
         :proc => (Proc.new do
           self.test1
+        end),
+      },
+      {
+        :text => "rts graph test",
+        :proc => (Proc.new do
+          RtsGraphTest.new self, @draw_node
         end),
       },
     ]
