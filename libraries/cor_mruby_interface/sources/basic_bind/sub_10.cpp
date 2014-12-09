@@ -41,6 +41,7 @@
 #include "cor_system/sources/cor_time.h"
 #include "cor_system/sources/job_queue.h"
 #include "cor_system/sources/logger.h"
+#include "cor_system/sources/thread_pool.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"

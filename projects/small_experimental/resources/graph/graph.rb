@@ -87,6 +87,10 @@ class GraphTest
         Cor.p.ed :close_output
         
         Cor.p.output
+        
+        Project.start_ruby_project_proc do
+          GraphTest.new
+        end
     
       end
       

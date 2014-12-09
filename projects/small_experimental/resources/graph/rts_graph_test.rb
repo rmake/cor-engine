@@ -17,7 +17,7 @@ class RtsGraphTest
     collision_system = Project.get_collision_system
     rts_object_group = Project.get_rts_object_group
     grid_space = CostGridSpace.create
-    sz = Size.create 200, 200 #21, 21
+    sz = Size.create 30, 30 #21, 21
     grid_space.set_neighbor_mode 1
     grid_space.set_max_cost 20.0
     grid_space.resize sz.width, sz.height

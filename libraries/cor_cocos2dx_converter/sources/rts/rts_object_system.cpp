@@ -212,6 +212,46 @@ namespace cor
             texture->setTexParameters(p);
         }
 
+        cocos2d::Image* RtsObjectSystem::create_empty_image(RInt32 w, RInt32 h)
+        {
+            auto image = new cocos2d::Image();
+            RByteArray a;
+            a.resize(w * h * 4);
+            image->initWithRawData(&a[0], a.size(), w, h, 32, false);
+            return image;
+        }
+
+        void RtsObjectSystem::copy_rect_image(cocos2d::Image* src, cocos2d::Image* dst, RInt32 x, RInt32 y)
+        {
+            auto dd = dst->getData();
+            auto dw = dst->getWidth();
+            auto dh = dst->getHeight();
+            auto sd = src->getData();
+            auto sw = src->getWidth();
+            auto sh = src->getHeight();
+
+            auto iw = std::min(sw, dw - x);
+            auto ih = std::min(sh, dh - y);
+
+            for(auto i = 0; i < ih; i++)
+            {
+                auto cldp = dd + ((y + i) * dw + x) * 4;
+                auto ldp = reinterpret_cast<RInt32*>(cldp);
+
+                auto clsp = sd + (i * sw) * 4;
+                auto lsp = reinterpret_cast<RInt32*>(clsp);
+
+                for(auto j = 0; j < iw; j++)
+                {
+                    *ldp = *lsp;
+
+                    ldp++;
+                    lsp++;
+                }
+
+            }
+        }
+
         cocos2d::Rect RtsObjectSystem::node_rect(cocos2d::Node* node)
         {
             auto bb = node->getBoundingBox();

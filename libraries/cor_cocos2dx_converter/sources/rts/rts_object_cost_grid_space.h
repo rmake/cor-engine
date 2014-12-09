@@ -17,6 +17,7 @@ namespace cor
         struct RtsObjectCostGridSpaceCell
         {
             type::Vector2I position;
+            RBool wall;
             RtsObjectSPArray a;
             RtsObjectCostGridSpaceCellPtr parent;
             RtsObjectCostGridSpaceCellPtr root;
@@ -47,6 +48,10 @@ namespace cor
 
             void add(RtsObjectSP o);
             void remove(RtsObjectSP o);
+
+            void each_vertices(std::function<void(RtsObjectCostGridSpaceCellPtr)> callback);
+            void each_edges(std::function<void(RtsObjectCostGridSpaceCellPtr, RtsObjectCostGridSpaceCellPtr, RFloat)> callback);
+            void each_cell(std::function<void(RtsObjectCostGridSpaceCellPtr)> callback);
 
             void make_graph();
 

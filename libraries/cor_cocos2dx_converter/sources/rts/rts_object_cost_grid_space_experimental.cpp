@@ -174,6 +174,8 @@ namespace cor
             auto cgs = std::make_shared<RtsObjectCostGridSpace>(collision, cost_grid_space, object_group);
             cgs->set_wall_kind(2);
 
+            cgs->set_index_convert(type::Vector2F(10.0f, 10.0f), type::Vector2F(0.0f, 0.0f));
+
             struct Character
             {
                 type::Vector2F p;
@@ -192,11 +194,11 @@ namespace cor
             RStringStream s;
 
             Character ca[] = {
-                Character(100.0f, 100.0f, 1.0f, 0.0f, 0.0f, 1.0f),
-                Character(200.0f, 100.0f, 1.0f, 1.0f, 0.0f, 1.0f),
-                Character(300.0f, 100.0f, 1.0f, 0.0f, 1.0f, 1.0f),
-                Character(100.0f, 250.0f, 0.0f, 1.0f, 0.0f, 1.0f),
-                Character(200.0f, 400.0f, 0.0f, 1.0f, 1.0f, 1.0f)
+                Character(50.0f, 50.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+                Character(120.0f, 50.0f, 1.0f, 1.0f, 0.0f, 1.0f),
+                Character(200.0f, 50.0f, 1.0f, 0.0f, 1.0f, 1.0f),
+                Character(50.0f, 100.0f, 0.0f, 1.0f, 0.0f, 1.0f),
+                Character(200.0f, 200.0f, 0.0f, 1.0f, 1.0f, 1.0f)
             };
 
             s << "test run2";
@@ -213,18 +215,19 @@ namespace cor
 
             
 
-            RSize sz = 45;
-
-            for(RSize i = 0; i < 20; i++)
-            {
-                auto ip = type::Vector2I(15, i + 5);
-                auto& cell = cost_grid_space->ref(ip);
-                //cell.passable = rfalse;
-            }
+            RSize sz = 30;
 
             for(RSize i = 0; i < 10; i++)
             {
-                auto ip = type::Vector2I(15 + i, 15);
+                auto ip = type::Vector2I(10, i + 5);
+                auto& cell = cost_grid_space->ref(ip);
+                cell.enter_cost = 2.0f;
+                //cell.passable = rfalse;
+            }
+
+            for(RSize i = 0; i < 7; i++)
+            {
+                auto ip = type::Vector2I(10 + i, 10);
                 auto& cell = cost_grid_space->ref(ip);
                 cell.enter_cost = 2.0f;
                 //cell.passable = rfalse;
@@ -239,14 +242,16 @@ namespace cor
                     auto& cell = cost_grid_space->ref(ip);
 
                     cocos2d::Node* n;
-                    if(cell.enter_cost > 1.5f)
+                    if(cell.enter_cost < 1.5f)
                     {
-                        auto l = cocos2d::LayerColor::create(cocos2d::Color4B(127, 127, 127, 64), 10, 10);
-                        l->setPosition(vp.x, vp.y);
+                        //auto l = cocos2d::LayerColor::create(cocos2d::Color4B(127, 127, 127, 64), 10, 10);
+                        //l->setPosition(vp.x, vp.y);
+                        //
+                        //root_node->addChild(l);
+                        //
+                        //n = l;
 
-                        root_node->addChild(l);
-
-                        n = l;
+                        
                     }
                     else
                     {
@@ -299,6 +304,39 @@ namespace cor
 
                 
             }
+
+            cgs->make_graph();
+
+            cgs->each_vertices([&](RtsObjectCostGridSpaceCellPtr cell){
+                //s << "v (" << cell->position.x << ", " << cell->position.y << ")" << "\n";
+            });
+
+            cgs->each_edges([&](RtsObjectCostGridSpaceCellPtr source, RtsObjectCostGridSpaceCellPtr target, RFloat w){
+                //s << "e s (" << source->position.x << ", " << source->position.y << "), " <<
+                //    "t(" << target->position.x << ", " << target->position.y << ")" << ", w " << w << "\n";
+
+                auto v0 = vec_i_to_f(source->position);
+                auto v1 = vec_i_to_f(target->position);
+                auto color = cocos2d::Color4F(1.0f, 0.0f, 0.0f, 1.0f);
+                if(source->wall || target->wall)
+                {
+                    color = cocos2d::Color4F(0.0f, 0.0f, 1.0f, 1.0f);
+                }
+
+                draw_node->drawSegment(cocos2d::Vec2(v0.x + 5.0f, v0.y + 5.0f), cocos2d::Vec2(v1.x + 5.0f, v1.y + 5.0f), 1.0f, color);
+            });
+
+            //cgs->each_cell([&](RtsObjectCostGridSpaceCellPtr cell){
+            //    auto l = static_cast<cocos2d::LayerColor*>(cell->root->a[0]->get_node_ref().get_node());
+            //    auto c = l->getColor();
+            //    auto a = l->getOpacity();
+            //    a /= 2;
+            //    auto nl = cocos2d::LayerColor::create(cocos2d::Color4B(c.r, c.g, c.b, a), 5, 5);
+            //    auto v0 = vec_i_to_f(cell->position);
+            //    nl->setPosition(v0.x, v0.y);
+
+            //    root_node->addChild(nl);
+            //});
 
 
             return s.str();

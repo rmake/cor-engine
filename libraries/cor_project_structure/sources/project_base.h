@@ -55,7 +55,7 @@ namespace cor
 
             Cocos2dSceneWP get_scene();
             ProjectGroupSceneWP get_layer();
-            system::JobQueue& ref_job_queue();
+            system::JobQueueSP get_job_queue();
 
             void call_step();
 

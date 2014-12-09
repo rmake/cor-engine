@@ -544,7 +544,12 @@ namespace cor
                             if(r.is_box())
                             {
                                 auto box = r.get_box();
+                                RBool first = rtrue;
                                 collision->find_o_box(m, i.first, box.box, [&](cocos2d::Node* n1){
+                                    if(!first)
+                                    {
+                                        return;
+                                    }
                                     auto o1 = og->search_from_node(n1);
                                     if(!o1 || o == o1)
                                     {
@@ -612,6 +617,7 @@ namespace cor
 
                                                     if(itnl->move_push_back_callback)
                                                     {
+                                                        first = rfalse;
                                                         itnl->move_push_back_callback(o, o1, p, n, odv, ap0, ap1);
                                                     }
                                                 }

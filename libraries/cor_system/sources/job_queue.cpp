@@ -41,9 +41,14 @@ namespace cor
         JobQueueFunc JobQueue::pop_job()
         {
             std::lock_guard<std::mutex> locker(itnl->mutex);
+            if(!itnl->queue.empty())
+            {
+                return JobQueueFunc();
+            }
             auto r = itnl->queue.front();
             itnl->queue.pop_front();
             return r;
+            
         }
 
         void JobQueue::step()
@@ -56,7 +61,11 @@ namespace cor
                 }
 
                 auto f = pop_job();
-                f();
+                if(f)
+                {
+                    f();
+                }
+                
                 
             }
         }

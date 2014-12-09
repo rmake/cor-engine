@@ -163,8 +163,14 @@ COCOS2DX_MRUBY_INTERFACE = [
       :value => :cocos_ptr,
     },
     {
+      :name => "cocos2d::Image",
+      :value => :cocos_ptr,
+      :create_function => "create",
+    },
+    {
       :name => "cocos2d::Texture2D",
       :value => :cocos_ptr,
+      :create_function => "create",
     },
     {
       :name => "cocos2d::Action",
