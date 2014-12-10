@@ -1849,6 +1849,7 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_make_graph(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c);
         std::basic_string<char> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a0);
         std::basic_string<char> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a1, std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> a2, std::weak_ptr<cor::data_structure::CostGridSpace> a3, std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> a4);
+        std::basic_string<char> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_thread_run();
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> Cocos2dxBind_cocos2d__PhysicsShape_get_body_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> c);
         cocos2d::PhysicsShape::Type Cocos2dxBind_cocos2d__PhysicsShape_get_type_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> c);
         float Cocos2dxBind_cocos2d__PhysicsShape_get_area_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> c);

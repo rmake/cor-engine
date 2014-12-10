@@ -26,8 +26,11 @@ namespace cor
 
         template<class Key, class Value> void PriorityQueueTmpl<Key, Value>::clear()
         {
-            //queue.clear();
+#ifdef COR_PRIORITY_QUEUE_USE_MULTIMUP
+            queue.clear();
+#else
             queue.swap(Queue());
+#endif
         }
 
         template<class Key, class Value> RSize PriorityQueueTmpl<Key, Value>::size() const

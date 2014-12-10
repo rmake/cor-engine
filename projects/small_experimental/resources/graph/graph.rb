@@ -120,6 +120,8 @@ class GraphTest
     
     Cor.p.output
     
+    str = RtsObjectCostGridSpaceExperimental.thread_run
+    
   end
 
 end

@@ -131,6 +131,12 @@ def cor_file_list
     },
     {
       :project => "cor_system",
+      :path => "parallel_processor",
+      :namespace => ["cor", "system"],
+      :action => [:sync, :force_create, :delete][0],
+    },
+    {
+      :project => "cor_system",
       :path => "allocation_monitor",
       :namespace => ["cor", "system"],
       :action => [:sync, :force_create, :delete][0],

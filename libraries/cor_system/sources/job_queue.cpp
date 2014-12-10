@@ -1,5 +1,7 @@
 #include "job_queue.h"
 
+#include "cor_system/sources/logger.h"
+
 #include <deque>
 #include <mutex>
 
@@ -41,7 +43,7 @@ namespace cor
         JobQueueFunc JobQueue::pop_job()
         {
             std::lock_guard<std::mutex> locker(itnl->mutex);
-            if(!itnl->queue.empty())
+            if(itnl->queue.empty())
             {
                 return JobQueueFunc();
             }

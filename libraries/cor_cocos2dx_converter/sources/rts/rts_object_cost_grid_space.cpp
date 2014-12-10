@@ -110,7 +110,7 @@ namespace cor
         void RtsObjectCostGridSpace::each_edges(std::function<void(RtsObjectCostGridSpaceCellPtr, RtsObjectCostGridSpaceCellPtr, RFloat)> callback)
         {
             auto ea = boost::edges(itnl->g);
-            auto& w = boost::get(boost::edge_weight, itnl->g);
+            const auto w = boost::get(boost::edge_weight, itnl->g);
             for(auto e = ea.first; e != ea.second; e++)
             {
                 callback(itnl->g[boost::source(*e, itnl->g)], itnl->g[boost::target(*e, itnl->g)], w[*e]);
@@ -183,7 +183,7 @@ namespace cor
             typedef data_structure::InstantStackDecoderTmpl<RFloat, State> StackDecoder;
 
             StackDecoder sd;
-            auto& w = boost::get(boost::edge_weight, g);
+            const auto w = boost::get(boost::edge_weight, g);
 
             auto next_state = [&](RInt32 x, RInt32 y, const State& prev_state, std::function<void(const State&)> f){
                 type::Vector2I vi = prev_state.cell->position;

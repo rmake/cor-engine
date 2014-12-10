@@ -21,8 +21,7 @@ namespace cor
             std::unique_ptr<ThreadPoolItnl> itnl;
         
             void set_threads(RSize thread_count);
-            void set_busy_mode(RBool busy_mode);
-
+            
             void inc_run_count();
             void dec_run_count();
             void get_run_count(std::function<void(RSize)> callback);
@@ -33,11 +32,9 @@ namespace cor
         
             ThreadPool();
             ThreadPool(JobQueueSP job_queue, RSize thread_count);
-            ThreadPool(JobQueueSP job_queue, RSize thread_count, RBool busy_mode);
             virtual ~ThreadPool();
             
-            RBool get_busy_mode();
-            void resume();
+            RBool empty();
             void add_job(ThreadRunFunc run_func, ThreadEndFunc end_func);
         };
     }

@@ -11,10 +11,12 @@ namespace cor
             ProjectBaseSPArray children;
             ProjectGroupWP project_group;
             system::JobQueueSP job_queue;
+            system::ThreadPoolSP thread_pool;
 
             ProjectItnl()
             {
                 job_queue = std::make_shared<system::JobQueue>();
+                thread_pool = std::make_shared<system::ThreadPool>(job_queue, 2);
             }
         };
         
@@ -83,6 +85,11 @@ namespace cor
         system::JobQueueSP ProjectBase::get_job_queue()
         {
             return itnl->job_queue;
+        }
+
+        system::ThreadPoolSP ProjectBase::get_thread_pool()
+        {
+            return itnl->thread_pool;
         }
 
         void ProjectBase::call_step()

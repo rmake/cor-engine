@@ -29,13 +29,15 @@ namespace cor
 {
     namespace project_structure
     {
-        ProjectMrubyCallItnl* project_mruby_call_itnl_instance = NULL;
+        ProjectMrubyCall* project_mruby_call_instance = nullptr;
+        ProjectMrubyCallItnl* project_mruby_call_itnl_instance = nullptr;
 
         struct ProjectMrubyCallItnl
         {
             RString file_name;
 
             typedef cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerPhysicsContact> EventListenerPhysicsContactWP;
+            typedef cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Image> ImageWP;
             typedef std::shared_ptr<cocos2dx_converter::Collision2dNode> Collision2dNodeSP;
             typedef std::weak_ptr<cocos2dx_converter::Collision2dNode> Collision2dNodeWP;
             typedef std::map<RString, mruby_interface::AnySP> SceneLocalSPTable;
@@ -393,6 +395,38 @@ namespace cor
                     )));
             }
 
+            static void load_text_async(RString name, mrubybind::FuncPtr<void(RString)> callback)
+            {
+                auto th = project_mruby_call_instance->get_thread_pool();
+                struct Data
+                {
+                    RString str;
+                };
+                auto data = std::make_shared<Data>();
+                th->add_job([=](){
+                    data->str = cocos2d::FileUtils::getInstance()->getStringFromFile(name);
+                }, [=](){
+                    callback.func()(data->str);
+                });
+            }
+
+            static void load_image_async(RString name, mrubybind::FuncPtr<void(ImageWP)> callback)
+            {
+                auto th = project_mruby_call_instance->get_thread_pool();
+                struct Data
+                {
+                    cocos2d::Image* image;
+                };
+                auto data = std::make_shared<Data>();
+                th->add_job([=](){
+                    auto image = new cocos2d::Image();
+                    image->initWithImageFile(name);
+                    data->image = image;
+                }, [=](){
+                    callback.func()(data->image);
+                });
+            }
+
             static RString get_platform_name()
             {
 #ifdef CC_PLATFORM_WIN32
@@ -461,6 +495,7 @@ namespace cor
             RInt64 tm = system::Time::get_time_ms();
 
             project_mruby_call_itnl_instance = itnl.get();
+            project_mruby_call_instance = this;
 
             cocos2dx_mruby_interface::MrubyScriptEnginePtr instance = cocos2dx_mruby_interface::MrubyScriptEngine::get_instance();
 
@@ -514,6 +549,8 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "delay_call", ProjectMrubyCallItnl::delay_call);
             binder.bind_static_method("Cor", "Project", "interval_call", ProjectMrubyCallItnl::interval_call);
             binder.bind_static_method("Cor", "Project", "set_text_sprite_blend_func", ProjectMrubyCallItnl::set_text_sprite_blend_func);
+            binder.bind_static_method("Cor", "Project", "load_text_async", ProjectMrubyCallItnl::load_text_async);
+            binder.bind_static_method("Cor", "Project", "load_image_async", ProjectMrubyCallItnl::load_image_async);
             binder.bind_static_method("Cor", "Project", "get_platform_name", ProjectMrubyCallItnl::get_platform_name);
             
 
