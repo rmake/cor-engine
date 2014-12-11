@@ -4,6 +4,7 @@
 
 #include <deque>
 #include <mutex>
+#include <thread>
 
 namespace cor
 {
@@ -39,7 +40,6 @@ namespace cor
             itnl->queue.push_back(job);
         }
 
-
         JobQueueFunc JobQueue::pop_job()
         {
             std::lock_guard<std::mutex> locker(itnl->mutex);
@@ -50,14 +50,13 @@ namespace cor
             auto r = itnl->queue.front();
             itnl->queue.pop_front();
             return r;
-            
         }
 
         void JobQueue::step()
         {
             for(;;)
             {
-                if(itnl->queue.empty())
+                if(empty())
                 {
                     break;
                 }

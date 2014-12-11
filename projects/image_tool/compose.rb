@@ -16,6 +16,7 @@ img_sz = ARGV[3] || "2048"
 img_sz = img_sz.to_i
 img_sz_y = ARGV[4] || img_sz
 img_sz_y = img_sz_y.to_i
+remove_mode = ARGV[5] || false
 
 a = Cor.u.file_list source_path
 
@@ -31,6 +32,10 @@ images = []
 
 a.each do |fn|
   if File.extname(fn) != ".png"
+    next
+  end
+  
+  if remove_mode && (fn.match(/right00/) || fn.match(/rightBack00/) || fn.match(/rightFront00/))
     next
   end
 
@@ -120,142 +125,163 @@ past_rects = []
 
 frames = []
 
-images.each do |table|
-  
-  img = table[:img]
-  r = table[:r]
-  puts "h #{r[:h]}, w #{r[:w]}, len #{left_tops.length}"
-  
-  i = 0
-  lt = left_tops[i]
-  
-  while lt[:x] + r[:w] >= aw || lt[:y] + r[:h] >= ah || 
-      (past_rects.any?{|ra| 
-        ra[:x] <= lt[:x] + r[:w] && 
-        ra[:y] <= lt[:y] + r[:h] &&
-        lt[:x] <= ra[:x] + ra[:w] && 
-        lt[:y] <= ra[:y] + ra[:h]
-      })
-    i += 1
-    lt = left_tops[i]
-  end
+#begin
+  images.each do |table|
     
-  croped = img.crop r[:x], r[:y], r[:w], r[:h], true
-  
-  packed.composite! croped, lt[:x], lt[:y], Magick::OverCompositeOp
-  
-  past_rects << {
-    :x => lt[:x],
-    :y => lt[:y],
-    :w => r[:w],
-    :h => r[:h],
-  }
-  
-  lh = {
-    :x => lt[:x] + r[:w] + 1,
-    :y => lt[:y],
-  }
-  5.times do |i|
-    h = {
-      :x => lt[:x] + r[:w] + 1,
-      :y => lt[:y] - i * 8,
-    }
-    if left_tops.any? {|lt| lt[:x] <= h[:x] && lt[:y] <= h[:y]} &&
-        !past_rects.any?{|ra| 
-          ra[:x] <= h[:x] && 
-          ra[:y] <= h[:y] &&
-          h[:x] <= ra[:x] + ra[:w] && 
-          h[:y] <= ra[:y] + ra[:h]
-        }
-      lh = h
+    img = table[:img]
+    r = table[:r]
+    puts "h #{r[:h]}, w #{r[:w]}, len #{left_tops.length}"
+    
+    i = 0
+    lt = left_tops[i]
+    
+    while lt[:x] + r[:w] >= aw || lt[:y] + r[:h] >= ah || 
+        (past_rects.any?{|ra| 
+          ra[:x] <= lt[:x] + r[:w] && 
+          ra[:y] <= lt[:y] + r[:h] &&
+          lt[:x] <= ra[:x] + ra[:w] && 
+          lt[:y] <= ra[:y] + ra[:h]
+        })
+      i += 1
+      lt = left_tops[i]
     end
-  end
-  #puts " lh#{lh}"
-  left_tops << lh
-  
-  lh = {
-    :x => lt[:x],
-    :y => lt[:y] + r[:h] + 1,
-  }
-  5.times do |i|
-    h = {
-      :x => lt[:x] - i * 8,
+      
+    croped = img.crop r[:x], r[:y], r[:w], r[:h], true
+    
+    packed.composite! croped, lt[:x], lt[:y], Magick::OverCompositeOp
+    
+    past_rects << {
+      :x => lt[:x],
+      :y => lt[:y],
+      :w => r[:w],
+      :h => r[:h],
+    }
+    
+    lh = {
+      :x => lt[:x] + r[:w] + 1,
+      :y => lt[:y],
+    }
+    5.times do |i|
+      h = {
+        :x => lt[:x] + r[:w] + 1,
+        :y => lt[:y] - i * 8,
+      }
+      if left_tops.any? {|lt| lt[:x] <= h[:x] && lt[:y] <= h[:y]} &&
+          !past_rects.any?{|ra| 
+            ra[:x] <= h[:x] && 
+            ra[:y] <= h[:y] &&
+            h[:x] <= ra[:x] + ra[:w] && 
+            h[:y] <= ra[:y] + ra[:h]
+          }
+        lh = h
+      end
+    end
+    #puts " lh#{lh}"
+    left_tops << lh
+    
+    lh = {
+      :x => lt[:x],
       :y => lt[:y] + r[:h] + 1,
     }
-    if left_tops.any? {|lt| lt[:x] <= h[:x] && lt[:y] <= h[:y]} &&
-        !past_rects.any?{|ra| 
-          ra[:x] <= h[:x] && 
-          ra[:y] <= h[:y] &&
-          h[:x] <= ra[:x] + ra[:w] && 
-          h[:y] <= ra[:y] + ra[:h]
-        }
-      lh = h
+    5.times do |i|
+      h = {
+        :x => lt[:x] - i * 8,
+        :y => lt[:y] + r[:h] + 1,
+      }
+      if left_tops.any? {|lt| lt[:x] <= h[:x] && lt[:y] <= h[:y]} &&
+          !past_rects.any?{|ra| 
+            ra[:x] <= h[:x] && 
+            ra[:y] <= h[:y] &&
+            h[:x] <= ra[:x] + ra[:w] && 
+            h[:y] <= ra[:y] + ra[:h]
+          }
+        lh = h
+      end
     end
-  end
-  #puts " lh#{lh}"
-  left_tops << lh
-  
-  left_tops.sort! do |a, b|
-    b[:y] <=> a[:y]
-  end
-  
-  left_tops.select! do |lt|
-    !past_rects.any?{|ra| 
-      ra[:x] <= lt[:x] && 
-      ra[:y] <= lt[:y] &&
-      lt[:x] <= ra[:x] + ra[:w] && 
-      lt[:y] <= ra[:y] + ra[:h]
-    }
-  end
-  
-  left_tops.sort! do |a, b|
-    (a[:x] * 0.1 + a[:y]) <=> (b[:x] * 0.1 + b[:y])
-  end
-  
-  left_tops.uniq!
-  
-  #left_tops.select! do |lt|
-  #  !left_tops.any?{|tlt| 
-  #    dx = (tlt[:x] - lt[:x]).abs
-  #    dy = (tlt[:y] - lt[:y]).abs
-  #    next false if dx == 0 && dy == 0
-  #    a = [dx, dy].min / [dx, dy].max
-  #    tlt[:x] < lt[:x] - 10 &&
-  #    tlt[:y] < lt[:y] - 10 &&
-  #    a > 0.9
-  #  }
-  #end
-  
-  mnl = aw
-  left_tops.each do |lt|
-    if mnl < lt[:x]
-      mnl = lt[:x]
+    5.times do |i|
+      h = {
+        :x => lt[:x] + r[:w] + i * 8,
+        :y => lt[:y] - 8,
+      }
+      if left_tops.any? {|lt| lt[:x] <= h[:x] && lt[:y] <= h[:y]} &&
+          !past_rects.any?{|ra| 
+            ra[:x] <= h[:x] && 
+            ra[:y] <= h[:y] &&
+            h[:x] <= ra[:x] + ra[:w] && 
+            h[:y] <= ra[:y] + ra[:h]
+          }
+        lh = h
+      end
     end
-  end
-  
-  frames << {
-    "filename" => table[:file_name],
-    "frame" => {
-      "x" => lt[:x],
-      "y" => lt[:y],
-      "w" => r[:w],
-      "h" => r[:h],
-    },
-    "rotated" => false,
-    "trimmed" => true,
-    "spriteSourceSize" => {
-      "x" => r[:x],
-      "y" => r[:y],
-      "w" => r[:w],
-      "h" => r[:h],
-    },
-    "sourceSize" => {
-      "w" => img.columns,
-      "h" => img.rows,
+    
+    #puts " lh#{lh}"
+    left_tops << lh
+    
+    left_tops.sort! do |a, b|
+      b[:y] <=> a[:y]
+    end
+    
+    left_tops.select! do |lt|
+      !past_rects.any?{|ra| 
+        ra[:x] <= lt[:x] && 
+        ra[:y] <= lt[:y] &&
+        lt[:x] <= ra[:x] + ra[:w] && 
+        lt[:y] <= ra[:y] + ra[:h]
+      }
+    end
+    
+    left_tops.sort! do |a, b|
+      (a[:x] * 0.1 + a[:y]) <=> (b[:x] * 0.1 + b[:y])
+    end
+    
+    left_tops.uniq!
+    
+    #left_tops.select! do |lt|
+    #  !left_tops.any?{|tlt| 
+    #    dx = (tlt[:x] - lt[:x]).abs
+    #    dy = (tlt[:y] - lt[:y]).abs
+    #    next false if dx == 0 && dy == 0
+    #    a = [dx, dy].min / [dx, dy].max
+    #    tlt[:x] < lt[:x] - 10 &&
+    #    tlt[:y] < lt[:y] - 10 &&
+    #    a > 0.9
+    #  }
+    #end
+    
+    mnl = aw
+    left_tops.each do |lt|
+      if mnl < lt[:x]
+        mnl = lt[:x]
+      end
+    end
+    
+    frames << {
+      "filename" => table[:file_name],
+      "frame" => {
+        "x" => lt[:x],
+        "y" => lt[:y],
+        "w" => r[:w],
+        "h" => r[:h],
+      },
+      "rotated" => false,
+      "trimmed" => true,
+      "spriteSourceSize" => {
+        "x" => r[:x],
+        "y" => r[:y],
+        "w" => r[:w],
+        "h" => r[:h],
+      },
+      "sourceSize" => {
+        "w" => img.columns,
+        "h" => img.rows,
+      }
     }
-  }
-  
-end
+    
+  end
+
+#rescue
+#  puts "failed"
+#end
 
 FileUtils.mkpath destination_path
 packed.write "#{destination_path}/#{output_name}.png"

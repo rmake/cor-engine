@@ -5,7 +5,7 @@ require 'open3'
 target_list = [
   { :name => "../basic", :exe => "basic_test.exe" },
   { :name => "../math", :exe => "math_test.exe" },
-  { :name => "../thread", :exe => "thread_test.exe" }, #mingw thead is buggy?
+  #{ :name => "../thread", :exe => "thread_test.exe" }, #mingw thead is buggy?
   { :name => "../data_structure", :exe => "data_structure_test.exe" },
   { :name => "../data_structure/geometry", :exe => "data_structure_geometry_test.exe" },
   { :name => "../data_structure/ai", :exe => "data_structure_ai_test.exe" },

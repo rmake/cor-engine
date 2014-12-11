@@ -8,7 +8,7 @@ namespace cor
     {
         struct ThreadPoolItnl
         {
-            std::vector<std::thread> threads;
+            std::vector<std::shared_ptr<std::thread> > threads;
             JobQueueSP thread_job_queue;
             JobQueueSP end_job_queue;
             std::mutex cnd_mutex;
@@ -44,7 +44,7 @@ namespace cor
             itnl->terminated = rtrue;
             for(auto& t : itnl->threads)
             {
-                t.join();
+                t->join();
             }
         }
 
@@ -52,10 +52,9 @@ namespace cor
         {
             for(RSize i = 0; i < thread_count; i++)
             {
-                itnl->threads.push_back(std::thread([=](){
+                itnl->threads.push_back(std::make_shared<std::thread>([=](){
                     while(!itnl->terminated)
                     {
-                        
                         inc_run_count();
                         if(!itnl->thread_job_queue->empty())
                         {
@@ -108,9 +107,12 @@ namespace cor
 
         void ThreadPool::add_job(ThreadRunFunc run_func, ThreadEndFunc end_func)
         {
+            
             itnl->thread_job_queue->add_job([=](){
                 run_func();
+
                 itnl->end_job_queue->add_job(end_func);
+
             });
         }
     }
