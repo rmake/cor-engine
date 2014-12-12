@@ -30,12 +30,20 @@ left_tops = [{:x => 1, :y => 1}]
 
 images = []
 
+def is_remove(fn)
+  (fn.match(/right00/) || fn.match(/rightBack00/) || fn.match(/rightFront00/))
+end
+
+def is_left(fn)
+  (fn.match(/left00/) || fn.match(/leftBack00/) || fn.match(/leftFront00/))
+end
+
 a.each do |fn|
   if File.extname(fn) != ".png"
     next
   end
   
-  if remove_mode && (fn.match(/right00/) || fn.match(/rightBack00/) || fn.match(/rightFront00/))
+  if remove_mode && is_remove(fn)
     next
   end
 
@@ -285,6 +293,18 @@ frames = []
 
 FileUtils.mkpath destination_path
 packed.write "#{destination_path}/#{output_name}.png"
+
+if remove_mode
+  frames.each do |f|
+    fn = f["filename"]
+    if is_left(fn)
+      h = f.clone
+      h["filename"] = f["filename"].gsub(/left/, "right")
+      frames << h
+    end
+  end
+end
+
 
 data = {
   "frames" => frames,

@@ -118,6 +118,7 @@ namespace cor
             RtsObjectActionSP interval_call(RFloat interval, ObjectCallback interval_callback);
             void stop_move();
 
+            void flip_on_right(RInt32 th);
             void stop_animation();
             cocos2d::Action* start_animation(cocos2d::Animate* animate);
         };

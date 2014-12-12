@@ -16,7 +16,7 @@ namespace cor
             ProjectItnl()
             {
                 job_queue = std::make_shared<system::JobQueue>();
-                thread_pool = std::make_shared<system::ThreadPool>(job_queue, 2);
+                thread_pool = std::make_shared<system::ThreadPool>(job_queue, 1);
             }
         };
         

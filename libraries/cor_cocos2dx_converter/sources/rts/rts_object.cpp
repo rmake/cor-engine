@@ -677,6 +677,7 @@ namespace cor
                 if(itnl->past_th != th)
                 {
                     start_animation(cocos2d::Animate::create(itnl->walks.at(th)));
+                    flip_on_right(th);
                     itnl->past_th = th;
                 }
 
@@ -710,15 +711,18 @@ namespace cor
                     {
                         if(itnl->past_th >= 0)
                         {
+                            flip_on_right(itnl->past_th);
                             start_animation(cocos2d::Animate::create(itnl->idles.at(itnl->past_th)));
-
+                            
                         }
                         else
                         {
                             RFloat tha = atan2f(dp.y, -dp.x);
                             auto th = (static_cast<int>((tha + PI * 1.5f) * 8 / (2 * PI) + 0.5f) + 1) % 8;
 
+                            flip_on_right(th);
                             start_animation(cocos2d::Animate::create(itnl->idles.at(th)));
+                            
                         }
 
                     }
@@ -902,6 +906,18 @@ namespace cor
             }
 
             itnl->past_th = -1000;
+        }
+
+        void RtsObject::flip_on_right(RInt32 th)
+        {
+            if(1 <= th && th <= 3)
+            {
+                itnl->node_render_z->setScaleX(-1.0f);
+            }
+            else
+            {
+                itnl->node_render_z->setScaleX(1.0f);
+            }
         }
 
         cocos2d::Action* RtsObject::start_animation(cocos2d::Animate* animate)
