@@ -217,7 +217,7 @@ namespace cor
             auto image = new cocos2d::Image();
             RByteArray a;
             a.resize(w * h * 4);
-            image->initWithRawData(&a[0], a.size(), w, h, 32, false);
+            image->initWithRawData(&a[0], a.size(), w, h, 32, true);
             return image;
         }
 
