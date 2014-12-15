@@ -1822,6 +1822,7 @@ namespace cor
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectAction> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_interval_call_no_arg(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, float a0, mrubybind::FuncPtr<void ()> a1);
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectAction> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_interval_call(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, float a0, mrubybind::FuncPtr<void (std::weak_ptr<cor::cocos2dx_converter::RtsObject>)> a1);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_move(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_flip_on_right(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_start_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate> a0);
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_1();
@@ -10110,6 +10111,7 @@ namespace cor
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "interval_call_no_arg", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_interval_call_no_arg);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "interval_call", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_interval_call);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "stop_move", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_move);
+            binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "flip_on_right", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_flip_on_right);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "stop_animation", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_animation);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "start_animation", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_start_animation);
             binder.bind_static_method("CorCocos2dxConverter", "RtsObjectGroup", "create_1", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_1);
