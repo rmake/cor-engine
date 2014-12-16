@@ -1785,6 +1785,8 @@ namespace cor
         int Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_rotate_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_parabola_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
         int Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_parabola_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_flip_mode(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
+        int Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_flip_mode(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_node_render(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_node_render_z(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_node_render(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);

@@ -91,6 +91,7 @@ namespace cor
             RBool enemy_collidable;
             RBool rotate_animation;
             RBool parabola_animation;
+            RBool flip_mode;
             RtsObject::MovePushBackCallback move_push_back_callback;
             RFloat z_offset;
             RFloat mv_t;
@@ -122,6 +123,7 @@ namespace cor
                 z_offset = 0.0f;
                 past_th = -1000;
                 animation_action = nullptr;
+                flip_mode = rfalse;
             }
         };
         
@@ -221,6 +223,16 @@ namespace cor
         RBool RtsObject::get_parabola_animation() const
         {
             return itnl->parabola_animation;
+        }
+
+        void RtsObject::set_flip_mode(RBool flip_mode)
+        {
+            itnl->flip_mode = flip_mode;
+        }
+
+        RBool RtsObject::get_flip_mode() const
+        {
+            return itnl->flip_mode;
         }
 
         void RtsObject::set_enemy_collidable(RBool enemy_collidable)
@@ -910,7 +922,7 @@ namespace cor
 
         void RtsObject::flip_on_right(RInt32 th)
         {
-            if(1 <= th && th <= 3)
+            if(itnl->flip_mode && (1 <= th && th <= 3))
             {
                 itnl->node_render_z->setScaleX(-1.0f);
             }

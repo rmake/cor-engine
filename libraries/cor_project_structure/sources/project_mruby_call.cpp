@@ -51,6 +51,7 @@ namespace cor
             SceneLocalSPTable scene_local_sp_table;
             RBool first;
             StartProc start_proc;
+            RString start_code;
             data_structure::SharedPtrTableSP table_sp;
 
             static data_structure::SharedPtrTableWP get_table_sp()
@@ -179,6 +180,19 @@ namespace cor
                     std::make_shared<cor::project_structure::ProjectMrubyCall>();
                 project->get_itnl()->start_proc = proc;
                 project_mruby_call_itnl_instance->app->replace_to_project("main", project);
+            }
+
+            static void start_ruby_project_code(RString code)
+            {
+                auto project =
+                    std::make_shared<cor::project_structure::ProjectMrubyCall>();
+                project->get_itnl()->start_code = code;
+                project_mruby_call_itnl_instance->app->replace_to_project("main", project);
+            }
+
+            static void call_start_proc()
+            {
+                project_mruby_call_itnl_instance->start_proc.func()();
             }
 
             static void test_str(type::Vector2I& v)
@@ -530,6 +544,8 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "set_scene_local", ProjectMrubyCallItnl::set_scene_local);
             binder.bind_static_method("Cor", "Project", "start_ruby_project", ProjectMrubyCallItnl::start_ruby_project);
             binder.bind_static_method("Cor", "Project", "start_ruby_project_proc", ProjectMrubyCallItnl::start_ruby_project_proc);
+            binder.bind_static_method("Cor", "Project", "start_ruby_project_code", ProjectMrubyCallItnl::start_ruby_project_code);
+            binder.bind_static_method("Cor", "Project", "call_start_proc", ProjectMrubyCallItnl::call_start_proc);
             binder.bind_static_method("Cor", "Project", "test_str", ProjectMrubyCallItnl::test_str); 
             binder.bind_static_method("Cor", "Project", "convert_to_writable_path", ProjectMrubyCallItnl::convert_to_writable_path);
             binder.bind_static_method("Cor", "Project", "exist_writable_file", ProjectMrubyCallItnl::exist_writable_file);
@@ -581,7 +597,13 @@ namespace cor
 
                 if(itnl->start_proc)
                 {
-                    itnl->start_proc.func()();
+                    mrb.load_string_error_log("start_code", "Project.call_start_proc");
+                    //itnl->start_proc.func()();
+                }
+
+                if(!itnl->start_code.empty())
+                {
+                    mrb.load_string_error_log("start_code", itnl->start_code);
                 }
 
                 if(!itnl->file_name.empty())

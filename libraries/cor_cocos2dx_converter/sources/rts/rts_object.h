@@ -72,6 +72,8 @@ namespace cor
             RBool get_rotate_animation() const;
             void set_parabola_animation(RBool parabola_animation);
             RBool get_parabola_animation() const;
+            void set_flip_mode(RBool flip_mode);
+            RBool get_flip_mode() const;
             //Actions& ref_actions();
             //Sensors& ref_sensors();
             void set_node_render(cocos2d::Node* node_render);
