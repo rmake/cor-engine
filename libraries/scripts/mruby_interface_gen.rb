@@ -89,6 +89,7 @@ def gen_code option
     "unsigned char" => "int", 
     "const _Bool" => "const bool",
     "RBool" => "bool",
+    "std::shared_ptr<void>" => "std::weak_ptr<void>",
     "std::function<void (EventCustom *)>" => "mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventCustom>)>",
     "Touch::DispatchMode" => "cocos2d::Touch::DispatchMode",
     "std::function<_Bool (cocos2d::Touch *, cocos2d::Event *)>" => "mrubybind::FuncPtr<bool (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)>",

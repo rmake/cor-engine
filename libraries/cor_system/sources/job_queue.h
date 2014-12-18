@@ -10,6 +10,10 @@ namespace cor
         struct JobQueueItnl;
 
         typedef std::function<void()> JobQueueFunc;
+
+        class JobQueue;
+        typedef std::shared_ptr<JobQueue> JobQueueSP;
+        typedef std::weak_ptr<JobQueue> JobQueueWP;
     
         class JobQueue
         {

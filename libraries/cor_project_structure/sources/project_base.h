@@ -5,6 +5,7 @@
 #include "cor_system/sources/logger.h"
 #include "cor_system/sources/job_queue.h"
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
+#include "cor_system/sources/thread_pool.h"
 #include "CCScene.h"
 
 namespace cor
@@ -55,7 +56,8 @@ namespace cor
 
             Cocos2dSceneWP get_scene();
             ProjectGroupSceneWP get_layer();
-            system::JobQueue& ref_job_queue();
+            system::JobQueueSP get_job_queue();
+            system::ThreadPoolSP get_thread_pool();
 
             void call_step();
 

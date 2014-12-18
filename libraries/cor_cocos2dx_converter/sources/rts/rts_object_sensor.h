@@ -16,6 +16,7 @@ namespace cor
         class RtsObject;
         typedef std::shared_ptr<RtsObject> RtsObjectSP;
         typedef std::weak_ptr<RtsObject> RtsObjectWP;
+        typedef std::vector<RtsObjectSP> RtsObjectSPArray;
 
 
         class RtsObjectGroup;

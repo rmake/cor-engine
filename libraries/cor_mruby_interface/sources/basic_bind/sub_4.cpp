@@ -26,6 +26,7 @@
 #include "cor_data_structure/sources/ai/stack_decoder_tmpl.h"
 #include "cor_data_structure/sources/array_pool.h"
 #include "cor_data_structure/sources/array_pool_tmpl.h"
+#include "cor_data_structure/sources/basic/shared_ptr_table.h"
 #include "cor_data_structure/sources/geometry/r_tree_pool.h"
 #include "cor_data_structure/sources/geometry/r_tree_pool_tmpl.h"
 #include "cor_data_structure/sources/geometry/uniform_grid.h"
@@ -40,6 +41,8 @@
 #include "cor_system/sources/cor_time.h"
 #include "cor_system/sources/job_queue.h"
 #include "cor_system/sources/logger.h"
+#include "cor_system/sources/parallel_processor.h"
+#include "cor_system/sources/thread_pool.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
@@ -55,6 +58,7 @@ namespace cor
         
         bool BasicBind_CostGridSpace_valid_question(std::weak_ptr<cor::data_structure::CostGridSpace> c);
         std::weak_ptr<cor::data_structure::CostGridSpace> BasicBind_CostGridSpace_create();
+        bool BasicBind_SharedPtrTable_valid_question(std::weak_ptr<cor::data_structure::SharedPtrTable> c);
         bool BasicBind_JobQueue_valid_question(std::weak_ptr<cor::system::JobQueue> c);
         std::weak_ptr<cor::system::JobQueue> BasicBind_JobQueue_create();
         bool BasicBind_MrubyExperimentalBindTestStruct_valid_question(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> c);
@@ -122,6 +126,9 @@ namespace cor
         cor::data_structure::CostGridSpaceItem BasicBind_cor__data_structure__CostGridSpace_get(std::weak_ptr<cor::data_structure::CostGridSpace> c, cor::type::Vector2I a0);
         cor::data_structure::CostGridSpacePath BasicBind_cor__data_structure__CostGridSpace_search_nearest_path(std::weak_ptr<cor::data_structure::CostGridSpace> c, cor::type::Vector2I a0);
         cor::type::Vector2I BasicBind_cor__data_structure__CostGridSpace_get_first_corner(std::weak_ptr<cor::data_structure::CostGridSpace> c, cor::data_structure::CostGridSpacePath a0);
+        std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
+        void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char> a0, cor::mruby_interface::AnyWP a1);
+        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char> a0);
         int BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c);
         void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0);
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c);
@@ -149,6 +156,8 @@ namespace cor
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> a0);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::RCharArray> a0);
+        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_cor__mruby_interface__MrubyRefContainer_create_1();
+        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_cor__mruby_interface__MrubyRefContainer_create_2(mrubybind::MrubyRef a0);
         void BasicBind_cor__mruby_interface__MrubyRefContainer_set_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c, mrubybind::MrubyRef a0);
         mrubybind::MrubyRef BasicBind_cor__mruby_interface__MrubyRefContainer_get_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c);
         void BasicBind_cor__RCharArray_begin_1(std::weak_ptr<cor::RCharArray> c);
@@ -490,6 +499,8 @@ namespace cor
         float BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_min_cost(cor::data_structure::CostGridSpaceItem& c);
         void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_parent(cor::data_structure::CostGridSpaceItem& c, cor::type::Vector2I a);
         cor::type::Vector2I BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_parent(cor::data_structure::CostGridSpaceItem& c);
+        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_any(cor::data_structure::CostGridSpaceItem& c, cor::mruby_interface::AnyWP a);
+        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_any(cor::data_structure::CostGridSpaceItem& c);
         void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_cost(cor::data_structure::CostGridSpacePath& c, float a);
         float BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_cost(cor::data_structure::CostGridSpacePath& c);
         void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, MrubyRef a);
@@ -501,7 +512,10 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClassInherited", "toast", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_toast);
+                            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestStruct", "test_2", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_test_2);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestStruct", "a=", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_accessor_set_a);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestStruct", "a", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_accessor_get_a);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClassInherited", "toast", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_toast);
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClassInherited", "test_2", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_test_2);
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClassInherited", "a=", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_accessor_set_a);
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClassInherited", "a", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_accessor_get_a);
@@ -511,33 +525,10 @@ namespace cor
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "recieve", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve);
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "test", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test);
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "tmpl_test", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test);
+            binder.bind_static_method("CorMrubyInterface", "MrubyRefContainer", "create_1", BasicBind_cor__mruby_interface__MrubyRefContainer_create_1);
+            binder.bind_static_method("CorMrubyInterface", "MrubyRefContainer", "create_2", BasicBind_cor__mruby_interface__MrubyRefContainer_create_2);
             binder.bind_custom_method("CorMrubyInterface", "MrubyRefContainer", "set_value", BasicBind_cor__mruby_interface__MrubyRefContainer_set_value);
             binder.bind_custom_method("CorMrubyInterface", "MrubyRefContainer", "get_value", BasicBind_cor__mruby_interface__MrubyRefContainer_get_value);
-            binder.bind_custom_method("Cor", "RCharArray", "begin_1", BasicBind_cor__RCharArray_begin_1);
-            binder.bind_custom_method("Cor", "RCharArray", "begin_2", BasicBind_cor__RCharArray_begin_2);
-            binder.bind_custom_method("Cor", "RCharArray", "end_1", BasicBind_cor__RCharArray_end_1);
-            binder.bind_custom_method("Cor", "RCharArray", "end_2", BasicBind_cor__RCharArray_end_2);
-            binder.bind_custom_method("Cor", "RCharArray", "rbegin_1", BasicBind_cor__RCharArray_rbegin_1);
-            binder.bind_custom_method("Cor", "RCharArray", "rbegin_2", BasicBind_cor__RCharArray_rbegin_2);
-            binder.bind_custom_method("Cor", "RCharArray", "rend_1", BasicBind_cor__RCharArray_rend_1);
-            binder.bind_custom_method("Cor", "RCharArray", "rend_2", BasicBind_cor__RCharArray_rend_2);
-            binder.bind_custom_method("Cor", "RCharArray", "cbegin", BasicBind_cor__RCharArray_cbegin);
-            binder.bind_custom_method("Cor", "RCharArray", "cend", BasicBind_cor__RCharArray_cend);
-            binder.bind_custom_method("Cor", "RCharArray", "crbegin", BasicBind_cor__RCharArray_crbegin);
-            binder.bind_custom_method("Cor", "RCharArray", "crend", BasicBind_cor__RCharArray_crend);
-            binder.bind_custom_method("Cor", "RCharArray", "size", BasicBind_cor__RCharArray_size);
-            binder.bind_custom_method("Cor", "RCharArray", "max_size", BasicBind_cor__RCharArray_max_size);
-            binder.bind_custom_method("Cor", "RCharArray", "shrink_to_fit", BasicBind_cor__RCharArray_shrink_to_fit);
-            binder.bind_custom_method("Cor", "RCharArray", "capacity", BasicBind_cor__RCharArray_capacity);
-            binder.bind_custom_method("Cor", "RCharArray", "empty", BasicBind_cor__RCharArray_empty);
-            binder.bind_custom_method("Cor", "RCharArray", "front_1", BasicBind_cor__RCharArray_front_1);
-            binder.bind_custom_method("Cor", "RCharArray", "front_2", BasicBind_cor__RCharArray_front_2);
-            binder.bind_custom_method("Cor", "RCharArray", "back_1", BasicBind_cor__RCharArray_back_1);
-            binder.bind_custom_method("Cor", "RCharArray", "back_2", BasicBind_cor__RCharArray_back_2);
-            binder.bind_custom_method("Cor", "RCharArray", "data_1", BasicBind_cor__RCharArray_data_1);
-            binder.bind_custom_method("Cor", "RCharArray", "data_2", BasicBind_cor__RCharArray_data_2);
-            binder.bind_custom_method("Cor", "RCharArray", "pop_back", BasicBind_cor__RCharArray_pop_back);
-            binder.bind_custom_method("Cor", "RCharArray", "clear", BasicBind_cor__RCharArray_clear);
 
           }
 

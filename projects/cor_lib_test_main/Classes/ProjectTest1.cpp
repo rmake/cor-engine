@@ -304,7 +304,7 @@ void ProjectTest1::mrubyTest()
         result,
         [=](Ref* pSender){
 
-        this->ref_job_queue().add_job([=](){
+        this->get_job_queue()->add_job([=](){
             for(auto node : *nodes.get())
             {
                 node->removeFromParent();

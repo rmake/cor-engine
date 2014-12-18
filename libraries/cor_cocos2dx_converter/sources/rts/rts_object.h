@@ -60,6 +60,8 @@ namespace cor
             RtsObjectGroupSP get_object_group() const;
 
             const Collision2dNodeRef& get_node_ref() const;
+            void set_kind(RInt32 kind);
+            RInt32 get_kind() const;
             void set_movable(RBool movable);
             RBool get_movable() const;
             void set_collidable(RBool collidable);
@@ -70,6 +72,8 @@ namespace cor
             RBool get_rotate_animation() const;
             void set_parabola_animation(RBool parabola_animation);
             RBool get_parabola_animation() const;
+            void set_flip_mode(RBool flip_mode);
+            RBool get_flip_mode() const;
             //Actions& ref_actions();
             //Sensors& ref_sensors();
             void set_node_render(cocos2d::Node* node_render);
@@ -116,6 +120,7 @@ namespace cor
             RtsObjectActionSP interval_call(RFloat interval, ObjectCallback interval_callback);
             void stop_move();
 
+            void flip_on_right(RInt32 th);
             void stop_animation();
             cocos2d::Action* start_animation(cocos2d::Animate* animate);
         };

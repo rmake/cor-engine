@@ -328,6 +328,19 @@ class RtsSprite
         #)
       )
   end
+  
+  def self.interval_action(node, interval, &callback)
+    node.run_action(
+        RepeatForever.create(
+          Sequence.create([
+            DelayTime.create(interval),
+            (CallFunc.create do
+              yield
+            end),
+          ])
+        )
+      )
+  end
 
 end
 

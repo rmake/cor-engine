@@ -1,6 +1,9 @@
-PRJSRCS=../../cor_cocos2dx_converter/sources/collision_2d_node.cpp\
+PRJSRCS=../../cor_cocos2dx_converter/sources/cocos2dx_experimental.cpp\
+    ../../cor_cocos2dx_converter/sources/collision_2d_node.cpp\
     ../../cor_cocos2dx_converter/sources/easy_http_client.cpp\
     ../../cor_cocos2dx_converter/sources/rts/rts_object.cpp\
+    ../../cor_cocos2dx_converter/sources/rts/rts_object_cost_grid_space.cpp\
+    ../../cor_cocos2dx_converter/sources/rts/rts_object_cost_grid_space_experimental.cpp\
     ../../cor_cocos2dx_converter/sources/rts/rts_object_group.cpp\
     ../../cor_cocos2dx_converter/sources/rts/rts_object_sensor.cpp\
     ../../cor_cocos2dx_converter/sources/rts/rts_object_system.cpp\

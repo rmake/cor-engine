@@ -97,8 +97,6 @@ class RtsLabel
       
       el = EventListenerCustom.create "event_come_to_background" do |e|
         
-        Logger.debug "event event_come_to_background"
-        
         @@enable_set_text = false
         
         @@all_label.values.each do |l|
@@ -128,18 +126,11 @@ class RtsLabel
       
       el = EventListenerCustom.create "event_renderer_recreated" do |e|
         
-        Logger.debug "event event_renderer_recreated"
-        
-        
-        #proc.call
-        
       end
       
       Director.get_instance.get_event_dispatcher.add_event_listener_with_fixed_priority(el, -1);
       
       el = EventListenerCustom.create "event_come_to_foreground" do |e|
-        
-        Logger.debug "event event_come_to_foreground"
         
         proc.call
         
@@ -281,7 +272,6 @@ class RtsLabel
     
           
         else
-          Logger.debug "get last texture"
           texture = @@all_font_textures.last.get_sprite.get_texture
         end
         
@@ -380,6 +370,22 @@ class RtsLabel
     l = 0
     t = 0
     
+    bath_node_mode = true
+    
+    if bath_node_mode
+      
+      sp = Sprite.create_with_texture texture
+      dummy = SpriteBatchNode.create_with_texture texture, 29
+      batch_node = SpriteBatchNode.create_with_texture texture, 100
+      self.node.add_child batch_node
+      #RtsObjectSystem.setup_sprite_round batch_node
+    end
+    
+    ct = 0
+    
+    mxw = 0
+    mxh = 0
+    
     text.each_char do |c|
       
       key = [c, self.font_name, self.all_size]
@@ -399,17 +405,39 @@ class RtsLabel
       r = h[:rect]
       sf = SpriteFrame.create_with_texture h[:texture], r
       #sf = SpriteFrame.create_with_texture h[:texture], Rect.create(0, 0, WIDTH, WIDTH)
-      tl = Sprite.create_with_sprite_frame sf
+      if bath_node_mode
+        tl = sp
+        tl.set_batch_node dummy
+      else 
+        tl = Sprite.create_with_sprite_frame sf
+        
+      end
+      
+      tl.set_sprite_frame_2 sf
       tl.set_position l + (r.size.width / 2), t
       tl.set_scale 1.0, -1.0
       tl.set_color self.color
-      RtsObjectSystem.setup_sprite_round tl
+      #RtsObjectSystem.setup_sprite_round tl
       l += r.size.width
       
-      self.node.add_child tl
+      if bath_node_mode
+        mxw = [mxw, l + r.size.width / 2].max
+        mxh = [mxh, t + r.size.height].max
+        
+        batch_node.insert_quad_from_sprite tl, ct
+        
+      else
+        RtsObjectSystem.setup_sprite_round tl
+        self.node.add_child tl
+      end
+      
+      
       
     end
     
+    if bath_node_mode
+      batch_node.set_content_size Size.create(mxw, mxh)
+    end
     
   end
 

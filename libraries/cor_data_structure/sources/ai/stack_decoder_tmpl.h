@@ -48,6 +48,44 @@ namespace cor
             void search(FoundStateFunc found_func);
             void search_first_n(RSize n, FoundStateFunc found_func);
         };
+
+        template<class Key, class State> class InstantStackDecoderTmpl
+        {
+        public:
+            typedef PriorityQueueTmpl<Key, State> Queue;
+            typedef std::function<void(const State&)> EmitStateFunc;
+            typedef std::function<RBool(const State&)> FoundStateFunc;
+            typedef std::function<RFloat(const State&)> CostFunc;
+            typedef std::function<void(const State&, std::function<void(const State&)>)> NextStatesFunc;
+            typedef std::function<RBool(const State&)> GoalFunc;
+
+        private:
+            Queue queue;
+            EmitStateFunc emit_func;
+            CostFunc cost_func;
+            NextStatesFunc next_states_func;
+            GoalFunc goal_func;
+
+        public:
+
+            InstantStackDecoderTmpl();
+            ~InstantStackDecoderTmpl();
+
+            void clear();
+            void set_max_size(RSize max_size);
+            RSize get_max_size();
+            RSize size();
+            Key get_current_min_cost();
+            void push(State state);
+            void set_func(CostFunc cost_func, NextStatesFunc next_states_func, GoalFunc goal_func);
+            void on_emit(EmitStateFunc emit_func);
+            void on_cost(CostFunc cost_func);
+            void on_next_states(NextStatesFunc next_states_func);
+            void on_goal(GoalFunc goal_func);
+            RBool emit(FoundStateFunc found_func);
+            void search(FoundStateFunc found_func);
+            void search_first_n(RSize n, FoundStateFunc found_func);
+        };
     }
 }
 

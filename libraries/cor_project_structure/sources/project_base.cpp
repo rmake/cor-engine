@@ -10,7 +10,14 @@ namespace cor
             RSize index;
             ProjectBaseSPArray children;
             ProjectGroupWP project_group;
-            system::JobQueue job_queue;
+            system::JobQueueSP job_queue;
+            system::ThreadPoolSP thread_pool;
+
+            ProjectItnl()
+            {
+                job_queue = std::make_shared<system::JobQueue>();
+                thread_pool = std::make_shared<system::ThreadPool>(job_queue, 1);
+            }
         };
         
         ProjectBase::ProjectBase() : itnl(new ProjectItnl())
@@ -75,14 +82,19 @@ namespace cor
             return ProjectGroupSceneWP();
         }
 
-        system::JobQueue& ProjectBase::ref_job_queue()
+        system::JobQueueSP ProjectBase::get_job_queue()
         {
             return itnl->job_queue;
         }
 
+        system::ThreadPoolSP ProjectBase::get_thread_pool()
+        {
+            return itnl->thread_pool;
+        }
+
         void ProjectBase::call_step()
         {
-            itnl->job_queue.step();
+            itnl->job_queue->step();
 
             step();
         }

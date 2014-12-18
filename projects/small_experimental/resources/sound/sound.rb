@@ -10,6 +10,4 @@ class SoundTest
 
 end
 
-SoundTest.new
-
 

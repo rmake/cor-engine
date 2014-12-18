@@ -511,7 +511,7 @@ namespace cor
             {
                 T d;
                 NodeRef ref;
-                const Vec& p;
+                Vec p;
 
                 NodeState(const Vec& tp) : p(tp)
                 {

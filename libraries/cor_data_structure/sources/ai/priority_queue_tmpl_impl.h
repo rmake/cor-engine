@@ -26,7 +26,11 @@ namespace cor
 
         template<class Key, class Value> void PriorityQueueTmpl<Key, Value>::clear()
         {
+#ifdef COR_PRIORITY_QUEUE_USE_MULTIMUP
             queue.clear();
+#else
+            queue.swap(Queue());
+#endif
         }
 
         template<class Key, class Value> RSize PriorityQueueTmpl<Key, Value>::size() const
@@ -50,11 +54,16 @@ namespace cor
             {
                 throw std::runtime_error("PriorityQueueTmpl queue size == 0. cannot return get_current_min_cost.");
             }
+#ifdef COR_PRIORITY_QUEUE_USE_MULTIMUP
             return queue.begin()->first;
+#else
+            return queue.top().first;
+#endif
         }
 
         template<class Key, class Value> void PriorityQueueTmpl<Key, Value>::enqueue(const Key& k, const Value& v)
         {
+#ifdef COR_PRIORITY_QUEUE_USE_MULTIMUP
             queue.insert(std::make_pair(k, v));
             if(queue.size() > max_size)
             {
@@ -62,14 +71,23 @@ namespace cor
                 i++;
                 queue.erase(i.base());
             }
+#else
+            queue.push(std::make_pair(k, v));
+#endif
         }
 
         template<class Key, class Value>typename PriorityQueueTmpl<Key, Value>::Pair PriorityQueueTmpl<Key, Value>::dequeue()
         {
+#ifdef COR_PRIORITY_QUEUE_USE_MULTIMUP
             auto i = queue.begin();
             auto v = *i;
             queue.erase(i);
             return v;
+#else
+            auto v = queue.top();
+            queue.pop();
+            return v;
+#endif
         }
 
 

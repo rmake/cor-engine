@@ -81,6 +81,7 @@ namespace cor
             cocos2d::Vec3 old_render_pos;
             cocos2d::Vec3 new_render_pos;
             type::Vector2F render_offset;
+            RInt32 kind;
             RInt32 render_time;
             RBool move_warp;
             Actions actions;
@@ -90,6 +91,7 @@ namespace cor
             RBool enemy_collidable;
             RBool rotate_animation;
             RBool parabola_animation;
+            RBool flip_mode;
             RtsObject::MovePushBackCallback move_push_back_callback;
             RFloat z_offset;
             RFloat mv_t;
@@ -106,6 +108,7 @@ namespace cor
             
             RtsObjectItnl()
             {
+                kind = 0;
                 move_warp = rtrue;
                 released = rfalse;
                 movable = rtrue;
@@ -120,6 +123,7 @@ namespace cor
                 z_offset = 0.0f;
                 past_th = -1000;
                 animation_action = nullptr;
+                flip_mode = rfalse;
             }
         };
         
@@ -166,6 +170,16 @@ namespace cor
             itnl->released = rtrue;
         }
 
+        void RtsObject::set_kind(RInt32 kind)
+        {
+            itnl->kind = kind;
+        }
+
+        RInt32 RtsObject::get_kind() const
+        {
+            return itnl->kind;
+        }
+
         void RtsObject::set_movable(RBool movable)
         {
             itnl->movable = movable;
@@ -209,6 +223,16 @@ namespace cor
         RBool RtsObject::get_parabola_animation() const
         {
             return itnl->parabola_animation;
+        }
+
+        void RtsObject::set_flip_mode(RBool flip_mode)
+        {
+            itnl->flip_mode = flip_mode;
+        }
+
+        RBool RtsObject::get_flip_mode() const
+        {
+            return itnl->flip_mode;
         }
 
         void RtsObject::set_enemy_collidable(RBool enemy_collidable)
@@ -532,7 +556,12 @@ namespace cor
                             if(r.is_box())
                             {
                                 auto box = r.get_box();
+                                RBool first = rtrue;
                                 collision->find_o_box(m, i.first, box.box, [&](cocos2d::Node* n1){
+                                    if(!first)
+                                    {
+                                        return;
+                                    }
                                     auto o1 = og->search_from_node(n1);
                                     if(!o1 || o == o1)
                                     {
@@ -600,6 +629,7 @@ namespace cor
 
                                                     if(itnl->move_push_back_callback)
                                                     {
+                                                        first = rfalse;
                                                         itnl->move_push_back_callback(o, o1, p, n, odv, ap0, ap1);
                                                     }
                                                 }
@@ -659,6 +689,7 @@ namespace cor
                 if(itnl->past_th != th)
                 {
                     start_animation(cocos2d::Animate::create(itnl->walks.at(th)));
+                    flip_on_right(th);
                     itnl->past_th = th;
                 }
 
@@ -692,15 +723,18 @@ namespace cor
                     {
                         if(itnl->past_th >= 0)
                         {
+                            flip_on_right(itnl->past_th);
                             start_animation(cocos2d::Animate::create(itnl->idles.at(itnl->past_th)));
-
+                            
                         }
                         else
                         {
                             RFloat tha = atan2f(dp.y, -dp.x);
                             auto th = (static_cast<int>((tha + PI * 1.5f) * 8 / (2 * PI) + 0.5f) + 1) % 8;
 
+                            flip_on_right(th);
                             start_animation(cocos2d::Animate::create(itnl->idles.at(th)));
+                            
                         }
 
                     }
@@ -884,6 +918,18 @@ namespace cor
             }
 
             itnl->past_th = -1000;
+        }
+
+        void RtsObject::flip_on_right(RInt32 th)
+        {
+            if(itnl->flip_mode && (1 <= th && th <= 3))
+            {
+                itnl->node_render_z->setScaleX(-1.0f);
+            }
+            else
+            {
+                itnl->node_render_z->setScaleX(1.0f);
+            }
         }
 
         cocos2d::Action* RtsObject::start_animation(cocos2d::Animate* animate)

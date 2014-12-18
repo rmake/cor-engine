@@ -18,6 +18,10 @@ COCOS2DX_MRUBY_INTERFACE = [
       :value => :shared_ptr,
     },
     {
+      :name => "cor::cocos2dx_converter::Cocos2dxExperimental",
+      :value => :shared_ptr,
+    },
+    {
       :name => "cor::cocos2dx_converter::RtsObjectSensor",
       :value => :shared_ptr,
     },
@@ -36,6 +40,16 @@ COCOS2DX_MRUBY_INTERFACE = [
     },
     {
       :name => "cor::cocos2dx_converter::RtsObjectSystem",
+      :value => :shared_ptr,
+      #:create_function => "create",
+    },
+    {
+      :name => "cor::cocos2dx_converter::RtsObjectCostGridSpace",
+      :value => :shared_ptr,
+      #:create_function => "create",
+    },
+    {
+      :name => "cor::cocos2dx_converter::RtsObjectCostGridSpaceExperimental",
       :value => :shared_ptr,
       #:create_function => "create",
     },
@@ -149,8 +163,14 @@ COCOS2DX_MRUBY_INTERFACE = [
       :value => :cocos_ptr,
     },
     {
+      :name => "cocos2d::Image",
+      :value => :cocos_ptr,
+      :create_function => "create",
+    },
+    {
       :name => "cocos2d::Texture2D",
       :value => :cocos_ptr,
+      :create_function => "create",
     },
     {
       :name => "cocos2d::Action",

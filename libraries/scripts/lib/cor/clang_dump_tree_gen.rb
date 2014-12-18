@@ -397,7 +397,12 @@ module COR
           call_arg = access.gsub("source", "a#{i}")
         end
       else
-        call_arg = "a#{i}"
+        if arg.match "std::shared_ptr"
+          arg = arg.gsub("std::shared_ptr", "std::weak_ptr")
+          call_arg = "a#{i}.lock()"
+        else
+          call_arg = "a#{i}"
+        end
       end
     
       [is_nil, arg, call_arg]
@@ -819,6 +824,9 @@ module COR
             class_type = v[:original_class_name]
             access = "source"
             access_p = "source"
+            if class_type == "cor::mruby_interface::AnyWP"
+              access = "source.lock()"
+            end
           when :pointer
             class_type = "#{v[:original_class_name]}*"
             access = "source"
@@ -1324,6 +1332,9 @@ EOS
           end
           
           if ret.match(/^std::shared_ptr/)
+            call_method = "cor::mruby_interface::MrubyState::add_tmp_shared_and_return(#{call_method})"
+          end
+          if ret.match(/^std::weak_ptr/)
             call_method = "cor::mruby_interface::MrubyState::add_tmp_shared_and_return(#{call_method})"
           end
           

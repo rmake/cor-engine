@@ -2,6 +2,9 @@
 #define ____COR_DATA_STRUCTURE_SOURCES_AI_PRIORITY_QUEUE_TMPL_H_
 
 #include "cor_type/sources/basic_types.h"
+#include <queue>
+
+#define COR_PRIORITY_QUEUE_USE_MULTIMUP
 
 namespace cor
 {
@@ -13,7 +16,18 @@ namespace cor
             typedef std::pair<Key, Value> Pair;
 
         private:
+#ifdef COR_PRIORITY_QUEUE_USE_MULTIMUP
             typedef std::multimap<Key, Value> Queue;
+#else
+            typedef struct Comp{
+                bool operator()(const Pair& x, const Pair& y) const
+                {
+                    return x.first > y.first;
+                }
+
+            };
+            typedef std::priority_queue<Pair, std::vector<Pair>, Comp> Queue;
+#endif
 
             RSize max_size;
             Queue queue;

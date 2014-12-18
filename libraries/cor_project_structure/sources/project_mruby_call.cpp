@@ -1,5 +1,6 @@
 
 #include "project_mruby_call.h"
+#include "cor_data_structure/sources/basic/shared_ptr_table.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/cocos2dx_bind.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
@@ -28,13 +29,15 @@ namespace cor
 {
     namespace project_structure
     {
-        ProjectMrubyCallItnl* project_mruby_call_itnl_instance = NULL;
+        ProjectMrubyCall* project_mruby_call_instance = nullptr;
+        ProjectMrubyCallItnl* project_mruby_call_itnl_instance = nullptr;
 
         struct ProjectMrubyCallItnl
         {
             RString file_name;
 
             typedef cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerPhysicsContact> EventListenerPhysicsContactWP;
+            typedef cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Image> ImageWP;
             typedef std::shared_ptr<cocos2dx_converter::Collision2dNode> Collision2dNodeSP;
             typedef std::weak_ptr<cocos2dx_converter::Collision2dNode> Collision2dNodeWP;
             typedef std::map<RString, mruby_interface::AnySP> SceneLocalSPTable;
@@ -48,6 +51,13 @@ namespace cor
             SceneLocalSPTable scene_local_sp_table;
             RBool first;
             StartProc start_proc;
+            RString start_code;
+            data_structure::SharedPtrTableSP table_sp;
+
+            static data_structure::SharedPtrTableWP get_table_sp()
+            {
+                return project_mruby_call_itnl_instance->table_sp;
+            }
 
             static Cocos2dSceneWP get_current_scene()
             {
@@ -170,6 +180,19 @@ namespace cor
                     std::make_shared<cor::project_structure::ProjectMrubyCall>();
                 project->get_itnl()->start_proc = proc;
                 project_mruby_call_itnl_instance->app->replace_to_project("main", project);
+            }
+
+            static void start_ruby_project_code(RString code)
+            {
+                auto project =
+                    std::make_shared<cor::project_structure::ProjectMrubyCall>();
+                project->get_itnl()->start_code = code;
+                project_mruby_call_itnl_instance->app->replace_to_project("main", project);
+            }
+
+            static void call_start_proc()
+            {
+                project_mruby_call_itnl_instance->start_proc.func()();
             }
 
             static void test_str(type::Vector2I& v)
@@ -369,7 +392,16 @@ namespace cor
             {
                 cocos2d::Vector<cocos2d::FiniteTimeAction*> a;
                 a.pushBack(cocos2d::DelayTime::create(interval));
-                a.pushBack(cocos2d::CallFunc::create([=](){callback.func()(); }));
+                a.pushBack(cocos2d::CallFunc::create([=](){
+                    mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb());
+                    try { 
+                        callback.func()();
+                    } 
+                    catch(mrb_int e) 
+                    { 
+                        auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); 
+                    } 
+                }));
                 return project_mruby_call_itnl_instance->current_layer->runAction(cocos2d::Sequence::create(
                         a
                     ));
@@ -379,22 +411,63 @@ namespace cor
             {
                 cocos2d::Vector<cocos2d::FiniteTimeAction*> a;
                 a.pushBack(cocos2d::DelayTime::create(interval));
-                a.pushBack(cocos2d::CallFunc::create([=](){callback.func()(); }));
+                a.pushBack(cocos2d::CallFunc::create([=](){
+                    mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb());
+                    try {
+                        callback.func()();
+                    }
+                    catch(mrb_int e)
+                    {
+                        auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log();
+                    }
+                }));
                 return project_mruby_call_itnl_instance->current_layer->runAction(
                     cocos2d::RepeatForever::create(cocos2d::Sequence::create(
                     a
                     )));
             }
 
+            static void load_text_async(RString name, mrubybind::FuncPtr<void(RString)> callback)
+            {
+                auto th = project_mruby_call_instance->get_thread_pool();
+                struct Data
+                {
+                    RString str;
+                };
+                auto data = std::make_shared<Data>();
+                th->add_job([=](){
+                    data->str = cocos2d::FileUtils::getInstance()->getStringFromFile(name);
+                }, [=](){
+                    callback.func()(data->str);
+                });
+            }
+
+            static void load_image_async(RString name, mrubybind::FuncPtr<void(ImageWP)> callback)
+            {
+                auto th = project_mruby_call_instance->get_thread_pool();
+                struct Data
+                {
+                    cocos2d::Image* image;
+                };
+                auto data = std::make_shared<Data>();
+                th->add_job([=](){
+                    auto image = new cocos2d::Image();
+                    image->initWithImageFile(name);
+                    data->image = image;
+                }, [=](){
+                    callback.func()(data->image);
+                });
+            }
+
             static RString get_platform_name()
             {
 #ifdef CC_PLATFORM_WIN32
                 return "win32";
-#elif  CC_PLATFORM_ANDROID
+#elif CC_PLATFORM_ANDROID
                 return "android";
-#elif  CC_PLATFORM_MAC
+#elif CC_PLATFORM_MAC
                 return "mac";
-#elif  CC_PLATFORM_IOS
+#elif CC_PLATFORM_IOS
                 return "ios";
 #elif CC_PLATFORM_LINUX
                 return "linux";
@@ -454,6 +527,7 @@ namespace cor
             RInt64 tm = system::Time::get_time_ms();
 
             project_mruby_call_itnl_instance = itnl.get();
+            project_mruby_call_instance = this;
 
             cocos2dx_mruby_interface::MrubyScriptEnginePtr instance = cocos2dx_mruby_interface::MrubyScriptEngine::get_instance();
 
@@ -474,6 +548,7 @@ namespace cor
             itnl->app = this->get_app();
 
             binder.bind_class<ProjectMrubyCallItnl>("Cor", "Project");
+            binder.bind_static_method("Cor", "Project", "get_table_sp", ProjectMrubyCallItnl::get_table_sp);
             binder.bind_static_method("Cor", "Project", "get_current_scene", ProjectMrubyCallItnl::get_current_scene);
             binder.bind_static_method("Cor", "Project", "get_current_layer", ProjectMrubyCallItnl::get_current_layer);
             binder.bind_static_method("Cor", "Project", "load_eval", ProjectMrubyCallItnl::load_eval);
@@ -487,6 +562,8 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "set_scene_local", ProjectMrubyCallItnl::set_scene_local);
             binder.bind_static_method("Cor", "Project", "start_ruby_project", ProjectMrubyCallItnl::start_ruby_project);
             binder.bind_static_method("Cor", "Project", "start_ruby_project_proc", ProjectMrubyCallItnl::start_ruby_project_proc);
+            binder.bind_static_method("Cor", "Project", "start_ruby_project_code", ProjectMrubyCallItnl::start_ruby_project_code);
+            binder.bind_static_method("Cor", "Project", "call_start_proc", ProjectMrubyCallItnl::call_start_proc);
             binder.bind_static_method("Cor", "Project", "test_str", ProjectMrubyCallItnl::test_str); 
             binder.bind_static_method("Cor", "Project", "convert_to_writable_path", ProjectMrubyCallItnl::convert_to_writable_path);
             binder.bind_static_method("Cor", "Project", "exist_writable_file", ProjectMrubyCallItnl::exist_writable_file);
@@ -506,14 +583,17 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "delay_call", ProjectMrubyCallItnl::delay_call);
             binder.bind_static_method("Cor", "Project", "interval_call", ProjectMrubyCallItnl::interval_call);
             binder.bind_static_method("Cor", "Project", "set_text_sprite_blend_func", ProjectMrubyCallItnl::set_text_sprite_blend_func);
+            binder.bind_static_method("Cor", "Project", "load_text_async", ProjectMrubyCallItnl::load_text_async);
+            binder.bind_static_method("Cor", "Project", "load_image_async", ProjectMrubyCallItnl::load_image_async);
             binder.bind_static_method("Cor", "Project", "get_platform_name", ProjectMrubyCallItnl::get_platform_name);
             
 
             //
+            itnl->table_sp = data_structure::SharedPtrTable::create();
+
             itnl->collision = std::make_shared<cocos2dx_converter::Collision2dNode>();
             itnl->rts_object_group = cocos2dx_converter::RtsObjectGroup::create(itnl->collision);
-
-
+            
 
         }
 
@@ -535,7 +615,13 @@ namespace cor
 
                 if(itnl->start_proc)
                 {
-                    itnl->start_proc.func()();
+                    mrb.load_string_error_log("start_code", "Project.call_start_proc");
+                    //itnl->start_proc.func()();
+                }
+
+                if(!itnl->start_code.empty())
+                {
+                    mrb.load_string_error_log("start_code", itnl->start_code);
                 }
 
                 if(!itnl->file_name.empty())

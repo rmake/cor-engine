@@ -128,6 +128,123 @@ namespace cor
         }
 
 
+        //
+        template<class Key, class State> InstantStackDecoderTmpl<Key, State>::InstantStackDecoderTmpl()
+        {
+
+        }
+
+        template<class Key, class State> InstantStackDecoderTmpl<Key, State>::~InstantStackDecoderTmpl()
+        {
+
+        }
+
+        template<class Key, class State> void InstantStackDecoderTmpl<Key, State>::clear()
+        {
+            queue.clear();
+        }
+
+        template<class Key, class State> void InstantStackDecoderTmpl<Key, State>::set_max_size(RSize max_size)
+        {
+            queue.set_max_size(max_size);
+        }
+
+        template<class Key, class State> RSize InstantStackDecoderTmpl<Key, State>::get_max_size()
+        {
+            return queue.get_max_size();
+        }
+
+        template<class Key, class State> RSize InstantStackDecoderTmpl<Key, State>::size()
+        {
+            return queue.size();
+        }
+
+        template<class Key, class State> Key InstantStackDecoderTmpl<Key, State>::get_current_min_cost()
+        {
+            return queue.get_current_min_cost();
+        }
+
+        template<class Key, class State> void InstantStackDecoderTmpl<Key, State>::push(State state)
+        {
+            queue.enqueue(this->cost_func(state), state);
+        }
+
+        template<class Key, class State> void InstantStackDecoderTmpl<Key, State>::set_func(typename InstantStackDecoderTmpl<Key, State>::CostFunc cost_func, typename InstantStackDecoderTmpl<Key, State>::NextStatesFunc next_states_func, typename InstantStackDecoderTmpl<Key, State>::GoalFunc goal_func)
+        {
+            on_cost(cost_func);
+            on_next_states(next_states_func);
+            on_goal(goal_func);
+        }
+
+        template<class Key, class State> void InstantStackDecoderTmpl<Key, State>::on_emit(typename InstantStackDecoderTmpl<Key, State>::EmitStateFunc emit_func)
+        {
+            this->emit_func = emit_func;
+        }
+
+        template<class Key, class State> void InstantStackDecoderTmpl<Key, State>::on_cost(typename InstantStackDecoderTmpl<Key, State>::CostFunc cost_func)
+        {
+            this->cost_func = cost_func;
+        }
+
+        template<class Key, class State> void InstantStackDecoderTmpl<Key, State>::on_next_states(typename InstantStackDecoderTmpl<Key, State>::NextStatesFunc next_states_func)
+        {
+            this->next_states_func = next_states_func;
+        }
+
+        template<class Key, class State> void InstantStackDecoderTmpl<Key, State>::on_goal(typename InstantStackDecoderTmpl<Key, State>::GoalFunc goal_func)
+        {
+            this->goal_func = goal_func;
+        }
+
+        template<class Key, class State> RBool InstantStackDecoderTmpl<Key, State>::emit(typename InstantStackDecoderTmpl<Key, State>::FoundStateFunc found_func)
+        {
+            auto state = queue.dequeue();
+            if(goal_func(state.second))
+            {
+                auto terminated = found_func(state.second);
+                return terminated;
+            }
+            else
+            {
+                next_states_func(state.second, [&](const State& state){
+                    if(emit_func)
+                    {
+                        emit_func(state);
+                    }
+                    push(state);
+                });
+            }
+
+            return rfalse;
+        }
+
+        template<class Key, class State> void InstantStackDecoderTmpl<Key, State>::search(typename InstantStackDecoderTmpl<Key, State>::FoundStateFunc found_func)
+        {
+            RBool terminated = rfalse;
+            while(!terminated && queue.size() != 0)
+            {
+                terminated = emit(found_func);
+            }
+        }
+
+        template<class Key, class State> void InstantStackDecoderTmpl<Key, State>::search_first_n(RSize n, typename InstantStackDecoderTmpl<Key, State>::FoundStateFunc found_func)
+        {
+            RSize ct = 0;
+            search([&](const State& state){
+                if(found_func(state))
+                {
+                    return rtrue;
+                }
+                ct++;
+                if(ct >= n)
+                {
+                    return rtrue;
+                }
+                return rfalse;
+            });
+        }
+
+
     }
 }
 

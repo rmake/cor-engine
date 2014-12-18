@@ -71,68 +71,70 @@ class RtsButton
     
     containing = false
     
-    listener.on_touch_began = Proc.new do |t, e|
-      lp = t.get_location
-      
-      
-      prnt = s.get_parent
-      unless rect
-        rect = Rts.u.node_rect s
-        self.rect = rect
+    if false
+      listener.on_touch_began = Proc.new do |t, e|
+        lp = t.get_location
+        
+        
+        prnt = s.get_parent
+        unless rect
+          rect = Rts.u.node_rect s
+          self.rect = rect
+        end
+        if rect
+          prnt = s
+        end
+        clp = prnt.convert_to_node_space lp
+        bb = rect || s.get_bounding_box
+        
+        if @on_tap && bb.contains_point(clp)
+        
+          if @on_touch_began
+            containing = true
+            @on_touch_began.call t, e
+          end
+          
+        
+          old_l = lp
+        end
       end
-      if rect
-        prnt = s
-      end
-      clp = prnt.convert_to_node_space lp
-      bb = rect || s.get_bounding_box
       
-      if @on_tap && bb.contains_point(clp)
-      
-        if @on_touch_began
-          containing = true
-          @on_touch_began.call t, e
+      listener.on_touch_moved = Proc.new do |t, e|
+        l = t.get_location
+        
+        if @on_touch_moved && containing
+          @on_touch_moved.call t, e
         end
         
-      
-        old_l = lp
-      end
-    end
-    
-    listener.on_touch_moved = Proc.new do |t, e|
-      l = t.get_location
-      
-      if @on_touch_moved && containing
-        @on_touch_moved.call t, e
+        
+        if old_l && l.get_distance(old_l) > TAP_RANGE
+          old_l = nil
+        end
       end
       
-      
-      if old_l && l.get_distance(old_l) > TAP_RANGE
+      listener.on_touch_ended = Proc.new do |t, e|
+        
+        if @on_touch_ended && containing
+          @on_touch_ended.call t, e
+        end
+        
+        if old_l && @on_tap
+          @on_tap.call t, e
+        end
+        
         old_l = nil
       end
-    end
-    
-    listener.on_touch_ended = Proc.new do |t, e|
       
-      if @on_touch_ended && containing
-        @on_touch_ended.call t, e
+      ed = s.get_event_dispatcher
+      ed.add_event_listener_with_scene_graph_priority listener, s
+      
+      Rts.u.each_node s do |n, level|
+        ed = n.get_event_dispatcher
+        l = listener.clone
+        ed.add_event_listener_with_scene_graph_priority l, n
       end
-      
-      if old_l && @on_tap
-        @on_tap.call t, e
-      end
-      
-      old_l = nil
     end
-    
-    ed = s.get_event_dispatcher
-    ed.add_event_listener_with_scene_graph_priority listener, s
-    
-    Rts.u.each_node s do |n, level|
-      ed = n.get_event_dispatcher
-      l = listener.clone
-      ed.add_event_listener_with_scene_graph_priority l, n
-    end
-    
+      
     self.text_scale = options[:text_scale] || 0.7
     
     self.sprite = s

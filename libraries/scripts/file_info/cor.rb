@@ -82,6 +82,13 @@ def cor_file_list
     },
     {
       :project => "cor_data_structure",
+      :path => "basic/shared_ptr_table",
+      :namespace => ["cor", "data_structure"],
+      :action => [:sync, :force_create, :delete][0],
+      :no_template => true,
+    },
+    {
+      :project => "cor_data_structure",
       :path => "geometry/r_tree_pool",
       :namespace => ["cor", "data_structure"],
       :action => [:sync, :force_create, :delete][0],
@@ -113,6 +120,18 @@ def cor_file_list
     {
       :project => "cor_system",
       :path => "job_queue",
+      :namespace => ["cor", "system"],
+      :action => [:sync, :force_create, :delete][0],
+    },
+    {
+      :project => "cor_system",
+      :path => "thread_pool",
+      :namespace => ["cor", "system"],
+      :action => [:sync, :force_create, :delete][0],
+    },
+    {
+      :project => "cor_system",
+      :path => "parallel_processor",
       :namespace => ["cor", "system"],
       :action => [:sync, :force_create, :delete][0],
     },
@@ -154,6 +173,13 @@ def cor_file_list
       :path => "collision_2d_node",
       :namespace => ["cor", "cocos2dx_converter"],
       :action => [:sync, :force_create, :delete][0],
+      :no_template => true,
+    },
+    {
+      :project => "cor_cocos2dx_converter",
+      :path => "cocos2dx_experimental",
+      :namespace => ["cor", "cocos2dx_converter"],
+      :action => [:sync, :force_create, :delete][0],
     },
     {
       :project => "cor_cocos2dx_converter",
@@ -179,6 +205,20 @@ def cor_file_list
     {
       :project => "cor_cocos2dx_converter",
       :path => "rts/rts_object_system",
+      :namespace => ["cor", "cocos2dx_converter"],
+      :action => [:sync, :force_create, :delete][0],
+      :no_template => true,
+    },
+    {
+      :project => "cor_cocos2dx_converter",
+      :path => "rts/rts_object_cost_grid_space",
+      :namespace => ["cor", "cocos2dx_converter"],
+      :action => [:sync, :force_create, :delete][0],
+      :no_template => true,
+    },
+    {
+      :project => "cor_cocos2dx_converter",
+      :path => "rts/rts_object_cost_grid_space_experimental",
       :namespace => ["cor", "cocos2dx_converter"],
       :action => [:sync, :force_create, :delete][0],
       :no_template => true,
