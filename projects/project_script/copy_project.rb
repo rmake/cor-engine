@@ -47,7 +47,7 @@ end
 
 CorProject.source_path = source_path
 
-destination_resource_path = "../cor_lib_test_main/Resources"
+destination_resource_path = "../cor_lib_test_main/Resources/project_resource"
 source_conf_path = "#{source_path}/conf.rb"
 source_resource_path = "#{source_path}/resources"
 

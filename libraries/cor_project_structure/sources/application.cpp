@@ -27,6 +27,8 @@ namespace cor
 
             auto eventDispatcher = Director::getInstance()->getEventDispatcher();
 
+            FileUtils::getInstance()->addSearchPath("project_resource");
+
             //auto rendererRecreatedListener = EventListenerCustom::create(EVENT_RENDERER_RECREATED, [](EventCustom* e){
             //    cocos2dx_converter::RtsObjectSystem::on_active();
             //});
