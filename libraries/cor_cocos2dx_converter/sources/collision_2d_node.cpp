@@ -98,7 +98,14 @@ namespace cor
             {
                 auto a = o_box->get_vertices();
                 RSize i, isz;
-                isz = a.size();
+                
+                auto tr = this->collision->get_transform_to_render();
+                for(auto& v : a)
+                {
+                    v = tr.transform(type::Vector3F(v.x, v.y, 0.0f)).xy();
+                }
+
+                isz = a.size();                
                 for(i = 0; i < isz; i++)
                 {
                     auto& v0 = a[i];
@@ -111,6 +118,13 @@ namespace cor
             {
                 auto a = o_sphere->get_draw_vertices();
                 RSize i, isz;
+                
+                auto tr = this->collision->get_transform_to_render();
+                for(auto& v : a)
+                {
+                    v = tr.transform(type::Vector3F(v.x, v.y, 0.0f)).xy();
+                }
+                
                 isz = a.size();
                 for(i = 0; i < isz; i++)
                 {
@@ -248,6 +262,7 @@ namespace cor
             type::Collision2d collision;
             cocos2d::RefPtr<cocos2d::Node> transform_to;
             cocos2d::Mat4 current_transform;
+            type::Matrix4x4F transform_to_render;
 
             Collision2dNodeItnl()
             {
@@ -277,6 +292,16 @@ namespace cor
                 itnl->current_transform = itnl->transform_to->getNodeToWorldTransform();
                 itnl->current_transform.inverse();
             }
+        }
+
+        void Collision2dNode::set_transform_to_render(const type::Matrix4x4F& transform_to_render)
+        {
+            itnl->transform_to_render = transform_to_render;
+        }
+
+        const type::Matrix4x4F& Collision2dNode::get_transform_to_render()
+        {
+            return itnl->transform_to_render;
         }
 
         cocos2d::Mat4 Collision2dNode::get_current_transform()

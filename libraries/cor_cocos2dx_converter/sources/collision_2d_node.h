@@ -103,6 +103,8 @@ namespace cor
             cocos2d::Mat4 get_current_transform();
             type::Collision2dGroupTable& ref_groups();
             void update_current_transform();
+            void set_transform_to_render(const type::Matrix4x4F& transform_to_render);
+            const type::Matrix4x4F& get_transform_to_render();
 
             void set_collision_group_pair(RInt32 id0, RInt32 id1, RBool collidable);
             RBool get_collision_group_pair(RInt32 id0, RInt32 id1);

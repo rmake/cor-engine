@@ -903,6 +903,8 @@ namespace cor
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_get_transform_to(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c);
         cocos2d::Mat4 Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_get_current_transform(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_update_current_transform(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c);
+        void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_set_transform_to_render(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::type::Matrix4x4Tmpl<float> a0);
+        cor::type::Matrix4x4Tmpl<float> Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_get_transform_to_render(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_set_collision_group_pair(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, int a1, int a2);
         int Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_get_collision_group_pair(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, int a1);
         cor::cocos2dx_converter::Collision2dNodeRef Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_add_o_box(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, cor::type::BoxTmpl<float, cor::type::Vector2Tmpl<float> > a2, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a3);

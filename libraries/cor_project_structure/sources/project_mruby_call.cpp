@@ -392,7 +392,16 @@ namespace cor
             {
                 cocos2d::Vector<cocos2d::FiniteTimeAction*> a;
                 a.pushBack(cocos2d::DelayTime::create(interval));
-                a.pushBack(cocos2d::CallFunc::create([=](){callback.func()(); }));
+                a.pushBack(cocos2d::CallFunc::create([=](){
+                    mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb());
+                    try { 
+                        callback.func()();
+                    } 
+                    catch(mrb_int e) 
+                    { 
+                        auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); 
+                    } 
+                }));
                 return project_mruby_call_itnl_instance->current_layer->runAction(cocos2d::Sequence::create(
                         a
                     ));
@@ -402,7 +411,16 @@ namespace cor
             {
                 cocos2d::Vector<cocos2d::FiniteTimeAction*> a;
                 a.pushBack(cocos2d::DelayTime::create(interval));
-                a.pushBack(cocos2d::CallFunc::create([=](){callback.func()(); }));
+                a.pushBack(cocos2d::CallFunc::create([=](){
+                    mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb());
+                    try {
+                        callback.func()();
+                    }
+                    catch(mrb_int e)
+                    {
+                        auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log();
+                    }
+                }));
                 return project_mruby_call_itnl_instance->current_layer->runAction(
                     cocos2d::RepeatForever::create(cocos2d::Sequence::create(
                     a
