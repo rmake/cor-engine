@@ -459,6 +459,38 @@ namespace cor
                 });
             }
 
+            static void load_image_data_async(RString name, mrubybind::FuncPtr<void(cocos2d::Data)> callback)
+            {
+                auto th = project_mruby_call_instance->get_thread_pool();
+                struct Data
+                {
+                    cocos2d::Data d;
+                };
+                auto data = std::make_shared<Data>();
+                th->add_job([=](){
+                    data->d = cocos2d::FileUtils::getInstance()->getDataFromFile(name);
+                }, [=](){
+                    callback.func()(data->d);
+                });
+            }
+
+            static void make_image_from_data_async(cocos2d::Data d, mrubybind::FuncPtr<void(ImageWP)> callback)
+            {
+                auto th = project_mruby_call_instance->get_thread_pool();
+                struct Data
+                {
+                    cocos2d::Image* image;
+                };
+                auto data = std::make_shared<Data>();
+                th->add_job([=](){
+                    auto image = new cocos2d::Image();
+                    image->initWithImageData(d.getBytes(), d.getSize());
+                    data->image = image;
+                }, [=](){
+                    callback.func()(data->image);
+                });
+            }
+
             static RString get_platform_name()
             {
 #ifdef CC_PLATFORM_WIN32
@@ -585,6 +617,8 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "set_text_sprite_blend_func", ProjectMrubyCallItnl::set_text_sprite_blend_func);
             binder.bind_static_method("Cor", "Project", "load_text_async", ProjectMrubyCallItnl::load_text_async);
             binder.bind_static_method("Cor", "Project", "load_image_async", ProjectMrubyCallItnl::load_image_async);
+            binder.bind_static_method("Cor", "Project", "load_image_data_async", ProjectMrubyCallItnl::load_image_data_async);
+            binder.bind_static_method("Cor", "Project", "make_image_from_data_async", ProjectMrubyCallItnl::make_image_from_data_async);
             binder.bind_static_method("Cor", "Project", "get_platform_name", ProjectMrubyCallItnl::get_platform_name);
             
 

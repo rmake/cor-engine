@@ -177,6 +177,13 @@ def cor_file_list
     },
     {
       :project => "cor_cocos2dx_converter",
+      :path => "textured_triangle_node",
+      :namespace => ["cor", "cocos2dx_converter"],
+      :action => [:sync, :force_create, :delete][0],
+      :no_template => true,
+    },
+    {
+      :project => "cor_cocos2dx_converter",
       :path => "cocos2dx_experimental",
       :namespace => ["cor", "cocos2dx_converter"],
       :action => [:sync, :force_create, :delete][0],
