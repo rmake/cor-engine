@@ -10,6 +10,8 @@ Project.load_eval "sound/sound.rb"
 
 Project.load_eval "graph/graph.rb"
 
+Project.load_eval "triangle/triangle.rb"
+
 Project.load_eval "menu/menu.rb"
 
 CorMenu.new

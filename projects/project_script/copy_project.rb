@@ -41,8 +41,27 @@ if File.exist? "project_source_path_local_conf.rb"
   source_path = SOURCE_PATH
 end
 
-if ARGV[0]
-  source_path = ARGV[0]
+ma = []
+va = []
+
+ARGV.each do |v|
+  if v[0] == "-"
+    ma << v
+  else
+    va << v
+  end
+end
+
+resource_only = false
+
+ma.each do |v|
+  if v == "--resource-only"
+    resource_only = true
+  end
+end
+
+if va[0]
+  source_path = va[0]
 end
 
 CorProject.source_path = source_path
@@ -50,6 +69,7 @@ CorProject.source_path = source_path
 destination_resource_path = "../cor_lib_test_main/Resources/project_resource"
 source_conf_path = "#{source_path}/conf.rb"
 source_resource_path = "#{source_path}/resources"
+
 
 FileUtils.mkpath destination_resource_path
 
@@ -59,6 +79,30 @@ if File.exists? source_conf_path
   puts "load source conf #{source_conf_path}"
   load source_conf_path
 end
+
+unless resource_only
+
+  destination_projects = "../cor_lib_test_main/"
+  
+  CorProject.includes.each do |inc|
+    source_projects = "#{inc}/project_file"
+    puts "source_projects #{source_projects}"
+
+    if Dir.exists? "#{inc}/project_file"
+      puts "project_file copy #{source_projects} -> #{destination_projects}"
+      FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
+    end
+  end
+  
+  source_projects = "#{source_path}/project_file"
+  puts "source_projects #{source_projects}"
+  
+  if Dir.exists? "#{source_path}/project_file"
+    puts "project_file copy #{source_projects} -> #{destination_projects}"
+    FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
+  end
+end
+
 
 CorProject.includes.each do |inc_path|
   find_path = "#{inc_path}/resources/"

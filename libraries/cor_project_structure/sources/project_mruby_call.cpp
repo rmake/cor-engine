@@ -642,11 +642,6 @@ namespace cor
                 //
                 log_debug("ProjectMrubyCall::start()");
 
-                if(!cocos2d::FileUtils::getInstance()->isFileExist(itnl->file_name))
-                {
-                    log_error("File not found \"", itnl->file_name, "\".");
-                }
-
                 if(itnl->start_proc)
                 {
                     mrb.load_string_error_log("start_code", "Project.call_start_proc");
@@ -660,6 +655,11 @@ namespace cor
 
                 if(!itnl->file_name.empty())
                 {
+                    if(!cocos2d::FileUtils::getInstance()->isFileExist(itnl->file_name))
+                    {
+                        log_error("File not found \"", itnl->file_name, "\".");
+                    }
+
                     RString code = cocos2d::FileUtils::getInstance()->getStringFromFile(itnl->file_name);
                     mrb.load_string_error_log(itnl->file_name, code);
                 }

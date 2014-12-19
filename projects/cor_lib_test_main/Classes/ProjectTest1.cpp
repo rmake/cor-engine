@@ -55,7 +55,7 @@ void ProjectTest1::init_mruby_call(cor::project_structure::ApplicationPtr app)
     binder.bind_static_method("Cor", "ProjectTest1", "start_project_test1", ProjectTest1::start_project_test1);
 
 #if defined(_DEBUG) && defined(CC_PLATFORM_WIN32)
-    ShellExecute(NULL, TEXT("open"), TEXT("cmd"), TEXT("/c ruby ../../project_script/copy_project.rb"), NULL, SW_SHOWNORMAL);
+    ShellExecute(NULL, TEXT("open"), TEXT("cmd"), TEXT("/c ruby ../../project_script/copy_project.rb --resource-only"), NULL, SW_SHOWNORMAL);
 #endif
 }
 

@@ -14,6 +14,7 @@
 #include "../../cor_cocos2dx_converter/sources/rts/rts_object_sensor.h"
 #include "../../cor_cocos2dx_converter/sources/rts/rts_object_system.h"
 #include "../../cor_cocos2dx_converter/sources/step_size_scene.h"
+#include "../../cor_cocos2dx_converter/sources/textured_triangle_node.h"
 #include "../../cor_cocos2dx_converter/sources/type_converter.h"
 #include "../../cor_cocos2dx_converter/sources/type_converter_tmpl.h"
 #include "../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind.h"

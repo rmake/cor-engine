@@ -22,6 +22,10 @@ COCOS2DX_MRUBY_INTERFACE = [
       :value => :shared_ptr,
     },
     {
+      :name => "cor::cocos2dx_converter::TexturedTriangleNode",
+      :value => :cocos_ptr,
+    },
+    {
       :name => "cor::cocos2dx_converter::RtsObjectSensor",
       :value => :shared_ptr,
     },
@@ -78,6 +82,11 @@ COCOS2DX_MRUBY_INTERFACE = [
     },
     {
       :name => "cocos2d::Color3B",
+      :value => :value,
+      :create_function => "create",
+    },
+    {
+      :name => "cocos2d::Tex2F",
       :value => :value,
       :create_function => "create",
     },

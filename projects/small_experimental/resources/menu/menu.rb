@@ -41,6 +41,12 @@ class CorMenu
         end),
       },
       {
+        :text => "triangle.rb",
+        :proc => (Proc.new do
+          TriangleTest.new
+        end),
+      },
+      {
         :text => "sound/sound.rb",
         :proc => (Proc.new do
           SoundTest.new
