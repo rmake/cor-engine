@@ -31,15 +31,20 @@ def gen_code option
   
   cocos2dx = option[:cocos2dx]
   
+  a2 = []
   if cocos2dx
-    a += [
+    a2 = [
       "#{COCOS2DX_PATH}/cocos/cocos2d.h",
-      "#{COCOS2DX_PATH}/extensions/cocos-ext.h",
+      #"#{COCOS2DX_PATH}/extensions/cocos-ext.h",
+      "#{COCOS2DX_PATH}/extensions/GUI/CCScrollView/CCScrollView.h",
+      "#{COCOS2DX_PATH}/cocos/audio/include/SimpleAudioEngine.h",
       "../cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h",
     ]
   end
 
-  src = a.map{|v| "#include \"../#{v}\"\n" }.join("")
+  src = a.map{|v| "#include \"../#{v}\"\n" }.join("") +
+    "#undef RELATIVE\n#undef ABSOLUTE\n" +
+    a2.map{|v| "#include \"../#{v}\"\n" }.join("")
 
   Utility.file_write "data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp", src
 
@@ -54,7 +59,7 @@ def gen_code option
     includes += ' ' + (COCOS2DX_INCPATH + ipath).map{|v| "-I#{v}"}.join(' ')
   end
   
-  cmd_clang = "clang++ -Xclang -ast-dump -fsyntax-only -std=c++11 -pg -Wall -DLINUX #{includes} data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp"
+  cmd_clang = "clang++ -Xclang -ast-dump -fsyntax-only -std=c++11 -pg -Wall -DLINUX -DCC_STATIC #{includes} data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp"
   
   str = `#{cmd_clang}`
   

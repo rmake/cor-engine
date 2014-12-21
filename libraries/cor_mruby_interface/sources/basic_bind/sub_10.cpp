@@ -49,6 +49,8 @@
 #include "cor_mruby_interface/sources/mruby_experimental.h"
 #include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "cor_mruby_interface/sources/basic_bind.h"
 
 namespace cor
