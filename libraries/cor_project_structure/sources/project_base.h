@@ -6,7 +6,7 @@
 #include "cor_system/sources/job_queue.h"
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_system/sources/thread_pool.h"
-#include "CCScene.h"
+#include "2d/CCScene.h"
 
 namespace cor
 {

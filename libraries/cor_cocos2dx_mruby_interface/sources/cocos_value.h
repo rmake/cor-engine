@@ -3,7 +3,7 @@
 
 #include "cor_type/sources/basic_types.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
-#include "CCValue.h"
+#include "base/CCValue.h"
 
 namespace cor
 {

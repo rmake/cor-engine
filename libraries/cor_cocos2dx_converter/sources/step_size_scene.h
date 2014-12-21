@@ -2,7 +2,7 @@
 #define ____COR_COCOS2DX_CONVERTER_SOURCES_STEP_SIZE_SCENE_H_
 
 #include "cor_type/sources/basic_types.h"
-#include "CCScene.h"
+#include "2d/CCScene.h"
 
 namespace cor
 {

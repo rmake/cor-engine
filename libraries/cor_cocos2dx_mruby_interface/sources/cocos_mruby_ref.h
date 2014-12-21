@@ -4,7 +4,7 @@
 #include "cor_type/sources/basic_types.h"
 #include "mruby.h"
 #include "mrubybind.h"
-#include "CCRef.h"
+#include "base/CCRef.h"
 
 namespace cor
 {

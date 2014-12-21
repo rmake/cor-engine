@@ -2,7 +2,7 @@
 #define ____COR_COCOS2DX_MRUBY_INTERFACE_SOURCES_COCOS_WEAK_PTR_H_
 
 #include "cor_type/sources/basic_types.h"
-#include "CCScriptSupport.h"
+#include "base/CCScriptSupport.h"
 
 namespace cor
 {

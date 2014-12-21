@@ -1,7 +1,7 @@
 #include "rts_object.h"
 #include "rts_object_group.h"
 #include "cor_system/sources/logger.h"
-#include "CCRefPtr.h"
+#include "base/CCRefPtr.h"
 #include "cocos2d.h"
 
 #include <boost/multi_index_container.hpp>

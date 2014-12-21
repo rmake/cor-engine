@@ -47,7 +47,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../;../../../../projects/cor_lib_test_main/cocos2d/;../../../../projects/cor_lib_test_main/cocos2d/cocos/;../../../../projects/cor_lib_test_main/cocos2d/cocos/2d;../../../../projects/cor_lib_test_main/cocos2d/cocos/audio/include;../../../../projects/cor_lib_test_main/cocos2d/cocos/renderer;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/desktop;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/win32;../../../../projects/cor_lib_test_main/cocos2d/cocos/base;../../../../projects/cor_lib_test_main/cocos2d/cocos/physics;../../../../projects/cor_lib_test_main/cocos2d/cocos/math;../../../../projects/cor_lib_test_main/cocos2d/external/win32-specific/gles/include/OGLES;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include/win32;../../../../external/boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../;../../../../projects/cor_lib_test_main/cocos2d/;../../../../projects/cor_lib_test_main/cocos2d/cocos/;../../../../projects/cor_lib_test_main/cocos2d/cocos/2d;../../../../projects/cor_lib_test_main/cocos2d/cocos/audio/include;../../../../projects/cor_lib_test_main/cocos2d/cocos/renderer;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/desktop;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/win32;../../../../projects/cor_lib_test_main/cocos2d/cocos/base;../../../../projects/cor_lib_test_main/cocos2d/cocos/physics;../../../../projects/cor_lib_test_main/cocos2d/cocos/math;../../../../projects/cor_lib_test_main/cocos2d/external/win32-specific/gles/include/OGLES;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include/win32;../../../../projects/cor_lib_test_main/cocos2d/external;../../../../external/boost</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
@@ -65,7 +65,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../;../../../../projects/cor_lib_test_main/cocos2d/;../../../../projects/cor_lib_test_main/cocos2d/cocos/;../../../../projects/cor_lib_test_main/cocos2d/cocos/2d;../../../../projects/cor_lib_test_main/cocos2d/cocos/audio/include;../../../../projects/cor_lib_test_main/cocos2d/cocos/renderer;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/desktop;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/win32;../../../../projects/cor_lib_test_main/cocos2d/cocos/base;../../../../projects/cor_lib_test_main/cocos2d/cocos/physics;../../../../projects/cor_lib_test_main/cocos2d/cocos/math;../../../../projects/cor_lib_test_main/cocos2d/external/win32-specific/gles/include/OGLES;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include/win32;../../../../external/boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../;../../../../projects/cor_lib_test_main/cocos2d/;../../../../projects/cor_lib_test_main/cocos2d/cocos/;../../../../projects/cor_lib_test_main/cocos2d/cocos/2d;../../../../projects/cor_lib_test_main/cocos2d/cocos/audio/include;../../../../projects/cor_lib_test_main/cocos2d/cocos/renderer;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/desktop;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/win32;../../../../projects/cor_lib_test_main/cocos2d/cocos/base;../../../../projects/cor_lib_test_main/cocos2d/cocos/physics;../../../../projects/cor_lib_test_main/cocos2d/cocos/math;../../../../projects/cor_lib_test_main/cocos2d/external/win32-specific/gles/include/OGLES;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include/win32;../../../../projects/cor_lib_test_main/cocos2d/external;../../../../external/boost</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -97,8 +97,16 @@
     
     
     
+    
+    
+    
+    
   <ClInclude Include='../../sources/cocos2dx_experimental.h'/><ClInclude Include='../../sources/collision_2d_node.h'/><ClInclude Include='../../sources/easy_http_client.h'/><ClInclude Include='../../sources/rts/rts_object.h'/><ClInclude Include='../../sources/rts/rts_object_cost_grid_space.h'/><ClInclude Include='../../sources/rts/rts_object_cost_grid_space_experimental.h'/><ClInclude Include='../../sources/rts/rts_object_group.h'/><ClInclude Include='../../sources/rts/rts_object_sensor.h'/><ClInclude Include='../../sources/rts/rts_object_system.h'/><ClInclude Include='../../sources/step_size_scene.h'/><ClInclude Include='../../sources/textured_triangle_node.h'/><ClInclude Include='../../sources/type_converter.h'/><ClInclude Include='../../sources/type_converter_tmpl.h'/><ClInclude Include='../../sources/type_converter_tmpl_impl.h'/></ItemGroup>
   <ItemGroup>
+    
+    
+    
+    
     
     
     

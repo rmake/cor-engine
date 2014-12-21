@@ -822,19 +822,19 @@ COCOS2DX_MRUBY_INTERFACE = [
       :value => :cocos_ptr,
     },
     {
-      :name => "cocos2d::extension::Control",
+      :name => "cocos2d::ui::Control",
       :value => :cocos_ptr,
     },
     {
-      :name => "cocos2d::extension::ControlButton",
+      :name => "cocos2d::ui::ControlButton",
       :value => :cocos_ptr,
     },
     {
-      :name => "cocos2d::extension::EditBox",
+      :name => "cocos2d::ui::EditBox",
       :value => :cocos_ptr,
     },
     {
-      :name => "cocos2d::extension::Scale9Sprite",
+      :name => "cocos2d::ui::Scale9Sprite",
       :value => :cocos_ptr,
     },
     {

@@ -2,7 +2,7 @@
 #define ____COR_COCOS2DX_CONVERTER_SOURCES_RTS_RTS_OBJECT_COST_GRID_SPACE_EXPERIMENTAL_H_
 
 #include "cor_type/sources/basic_types.h"
-#include "CCDrawNode.h"
+#include "2d/CCDrawNode.h"
 #include "rts_object_cost_grid_space.h"
 #include "cor_cocos2dx_converter/sources/collision_2d_node.h"
 #include "rts_object_group.h"

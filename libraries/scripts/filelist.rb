@@ -54,6 +54,14 @@ ifneq ($(WINDOWS), )
     MKDIR := mkdir -p
 endif
 
+ifneq ($(CLANG), )
+    CC := clang
+    CXX := clang++ 
+    AR := ar
+    MKDIR := mkdir -p
+endif
+
+
 #ifneq ($(WINDOWS), )
 #    CC := PATH=/c/TDM-GCC-64/bin:$$PATH "C:\\TDM-GCC-64\\bin\\gcc.exe" -m32 -static 
 #    CXX := PATH=/c/TDM-GCC-64/bin:$$PATH "C:\\TDM-GCC-64\\bin\\g++.exe" -m32 -static 
@@ -65,6 +73,10 @@ endif
 CPPFLAGS = -std=c++11 -pg -Wall -O2 -DRMAKE_CUSTOM_NEW_OPERATOR \\
     -I. -I.. -I../../ -I../../../ \\
     $(INCDIRFLAGS)
+
+ifneq ($(CLANG), )
+  CPPFLAGS += -stdlib=libc++
+endif
 
 ifneq ($(DEBUG), )
     CPPFLAGS += -g
@@ -222,6 +234,8 @@ ts = []
 flag = ""
 if RUBY_PLATFORM.include? "mswin32"
     flag = "WINDOWS=TRUE"
+else
+    #flag = "CLANG=TRUE"    
 end
 
 paths.each do |path|

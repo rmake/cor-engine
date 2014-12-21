@@ -1,6 +1,7 @@
 #include "allocation_monitor.h"
 #include "cor_algorithm/sources/bit_operation.h"
 #include <mutex>
+#include <string.h>
 
 namespace cor
 {

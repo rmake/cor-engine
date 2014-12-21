@@ -2,7 +2,7 @@
 #define ____COR_COCOS2DX_CONVERTER_SOURCES_TEXTURED_TRIANGLE_NODE_H_
 
 #include "cor_type/sources/basic_types.h"
-#include "CCNode.h"
+#include "2d/CCNode.h"
 
 namespace cor
 {

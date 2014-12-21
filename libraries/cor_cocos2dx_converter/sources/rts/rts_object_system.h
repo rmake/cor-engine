@@ -2,7 +2,7 @@
 #define ____COR_COCOS2DX_CONVERTER_SOURCES_RTS_RTS_OBJECT_SYSTEM_H_
 
 #include "cor_type/sources/basic_types.h"
-#include "CCSprite.h"
+#include "2d/CCSprite.h"
 
 namespace cor
 {

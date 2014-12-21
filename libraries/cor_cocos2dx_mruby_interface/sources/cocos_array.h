@@ -4,7 +4,7 @@
 #include "cor_type/sources/basic_types.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
-#include "CCVector.h"
+#include "base/CCVector.h"
 
 
 namespace cor

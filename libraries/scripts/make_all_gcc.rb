@@ -6,6 +6,8 @@ ts = []
 flag = ""
 if RUBY_PLATFORM.include? "mswin32"
     flag = "WINDOWS=TRUE"
+else
+    #flag = "CLANG=TRUE"    
 end
 
 paths.each do |path|

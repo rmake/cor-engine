@@ -3,8 +3,8 @@
 
 #include "mruby_script_engine.h"
 
-#include "CCScene.h"
-#include "CCLayer.h"
+#include "2d/CCScene.h"
+#include "2d/CCLayer.h"
 
 namespace cor
 {

@@ -1,5 +1,5 @@
 #include "project_group_scene.h"
-#include "CCScene.h"
+#include "2d/CCScene.h"
 #include "cor_cocos2dx_converter/sources/step_size_scene.h"
 
 USING_NS_CC;
@@ -86,22 +86,22 @@ namespace cor
             }
         }
 
-        void ProjectGroupScene::editBoxEditingDidBegin(cocos2d::extension::EditBox* editBox)
+        void ProjectGroupScene::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
         {
         
         }
 
-        void ProjectGroupScene::editBoxEditingDidEnd(cocos2d::extension::EditBox* editBox)
+        void ProjectGroupScene::editBoxEditingDidEnd(cocos2d::ui::EditBox* editBox)
         {
         
         }
 
-        void ProjectGroupScene::editBoxTextChanged(cocos2d::extension::EditBox* editBox, const std::string& text)
+        void ProjectGroupScene::editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std::string& text)
         {
         
         }
 
-        void ProjectGroupScene::editBoxReturn(cocos2d::extension::EditBox* editBox)
+        void ProjectGroupScene::editBoxReturn(cocos2d::ui::EditBox* editBox)
         {
             
         }

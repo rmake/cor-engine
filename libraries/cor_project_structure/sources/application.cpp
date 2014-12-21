@@ -140,7 +140,7 @@ namespace cor
             auto glview = director->getOpenGLView();
             if(!glview) {
                 //glview = GLView::createWithRect("Code on Rmake", Rect(0.0f, 0.0f, 480.0f, 800.0f));
-                glview = GLView::createWithRect("Code on Rmake", Rect(0.0f, 0.0f, 800.0f, 480.0f));
+				glview = GLViewImpl::createWithRect("Code on Rmake", Rect(0.0f, 0.0f, 800.0f, 480.0f));
                 director->setOpenGLView(glview);
             }
 

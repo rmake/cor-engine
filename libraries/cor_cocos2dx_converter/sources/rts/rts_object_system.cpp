@@ -2,7 +2,7 @@
 #include "rts_object_system.h"
 
 #include "cocos2d.h"
-#include "CCGLProgramStateCache.h"
+#include "renderer/CCGLProgramStateCache.h"
 #include "cor_system/sources/logger.h"
 #include "cor_type/sources/primitive/box.h"
 #include "cor_cocos2dx_converter/sources/type_converter.h"

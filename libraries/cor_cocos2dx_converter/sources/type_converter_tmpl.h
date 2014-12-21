@@ -2,7 +2,7 @@
 #define ____COR_COCOS2DX_CONVERTER_SOURCES_TYPE_CONVERTER_TMPL_H_
 
 #include "cor_type/sources/basic_types.h"
-#include "CCVector.h"
+#include "base/CCVector.h"
 
 namespace cor
 {

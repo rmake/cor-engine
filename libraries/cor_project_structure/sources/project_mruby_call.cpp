@@ -13,7 +13,7 @@
 #include "cor_cocos2dx_converter/sources/rts/rts_object_group.h"
 #include "application.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
-#include "CCGLProgramStateCache.h"
+#include "renderer/CCGLProgramStateCache.h"
 
 
 #if defined(ANDROID_NDK) && defined(PROFILING)
@@ -373,9 +373,9 @@ namespace cor
 #endif    
             }
 
-            static void set_edit_box_delegate(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::EditBox> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> a)
+            static void set_edit_box_delegate(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::EditBox> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> a)
             {
-                c->setDelegate(dynamic_cast<cocos2d::extension::EditBoxDelegate*>(a.get()));
+                c->setDelegate(dynamic_cast<cocos2d::ui::EditBoxDelegate*>(a.get()));
             }
 
             static void set_label_blend_func(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c)

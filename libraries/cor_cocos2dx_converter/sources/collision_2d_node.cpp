@@ -2,7 +2,7 @@
 #include "collision_2d_node.h"
 #include "cor_algorithm/sources/utilities.h"
 #include "cor_data_structure/sources/geometry/r_tree_pool_tmpl_impl.h"
-#include "CCRefPtr.h"
+#include "base/CCRefPtr.h"
 
 namespace cor
 {

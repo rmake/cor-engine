@@ -2,8 +2,8 @@
 #define ____COR_PROJECT_STRUCTURE_SOURCES_PROJECT_GROUP_SCENE_H_
 
 #include "project_group.h"
-#include "CCLayer.h"
-#include "GUI/CCEditBox/CCEditBox.h"
+#include "2d/CCLayer.h"
+#include "UI/UIEditBox/UIEditBox.h"
 
 namespace cor
 {
@@ -11,7 +11,7 @@ namespace cor
     {
         struct ProjectGroupSceneItnl;
     
-        class ProjectGroupScene : public cocos2d::Layer, public cocos2d::extension::EditBoxDelegate
+        class ProjectGroupScene : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
         {
             std::unique_ptr<ProjectGroupSceneItnl> itnl;
         
@@ -34,10 +34,10 @@ namespace cor
             virtual void start();
             virtual void step(float dt);
 
-            virtual void editBoxEditingDidBegin(cocos2d::extension::EditBox* editBox);
-            virtual void editBoxEditingDidEnd(cocos2d::extension::EditBox* editBox);
-            virtual void editBoxTextChanged(cocos2d::extension::EditBox* editBox, const std::string& text);
-            virtual void editBoxReturn(cocos2d::extension::EditBox* editBox);
+            virtual void editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox);
+            virtual void editBoxEditingDidEnd(cocos2d::ui::EditBox* editBox);
+            virtual void editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std::string& text);
+            virtual void editBoxReturn(cocos2d::ui::EditBox* editBox);
 
             CREATE_FUNC(ProjectGroupScene);
         };

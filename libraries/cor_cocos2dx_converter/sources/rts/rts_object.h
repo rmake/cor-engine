@@ -5,9 +5,9 @@
 
 #include "cor_cocos2dx_converter/sources/rts/rts_object_sensor.h"
 
-#include "CCVector.h"
-#include "CCAnimation.h"
-#include "CCActionInterval.h"
+#include "base/CCVector.h"
+#include "2d/CCAnimation.h"
+#include "2d/CCActionInterval.h"
 
 namespace cor
 {

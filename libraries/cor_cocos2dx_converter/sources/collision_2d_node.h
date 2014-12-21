@@ -2,8 +2,8 @@
 #define ____COR_COCOS2DX_CONVERTER_SOURCES_COLLISION_2D_NODE_H_
 
 #include "cor_type/sources/collision/collision_2d.h"
-#include "CCNode.h"
-#include "CCDrawNode.h"
+#include "2d/CCNode.h"
+#include "2d/CCDrawNode.h"
 #include "type_converter.h"
 
 namespace cor
