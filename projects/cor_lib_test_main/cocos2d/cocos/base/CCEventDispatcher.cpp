@@ -22,8 +22,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 #include "base/CCEventDispatcher.h"
-#include "base/CCEvent.h"
-#include "base/CCEventTouch.h"
+#include <algorithm>
+
 #include "base/CCEventCustom.h"
 #include "base/CCEventListenerTouch.h"
 #include "base/CCEventListenerAcceleration.h"
@@ -37,8 +37,6 @@
 #include "2d/CCScene.h"
 #include "base/CCDirector.h"
 #include "base/CCEventType.h"
-
-#include <algorithm>
 
 
 #define DUMP_LISTENER_ITEM_PRIORITY_INFO 0
@@ -273,7 +271,7 @@ void EventDispatcher::visitTarget(Node* node, bool isRootNode)
             globalZOrders.push_back(e.first);
         }
         
-        std::stable_sort(globalZOrders.begin(), globalZOrders.end(), [](const float a, const float b){
+        std::sort(globalZOrders.begin(), globalZOrders.end(), [](const float a, const float b){
             return a < b;
         });
         
@@ -461,7 +459,7 @@ void EventDispatcher::forceAddEventListener(EventListener* listener)
     if (itr == _listenerMap.end())
     {
         
-        listeners = new EventListenerVector();
+        listeners = new (std::nothrow) EventListenerVector();
         _listenerMap.insert(std::make_pair(listenerID, listeners));
     }
     else
@@ -1196,7 +1194,7 @@ void EventDispatcher::sortEventListenersOfSceneGraphPriority(const EventListener
     visitTarget(rootNode, true);
     
     // After sort: priority < 0, > 0
-    std::stable_sort(sceneGraphListeners->begin(), sceneGraphListeners->end(), [this](const EventListener* l1, const EventListener* l2) {
+    std::sort(sceneGraphListeners->begin(), sceneGraphListeners->end(), [this](const EventListener* l1, const EventListener* l2) {
         return _nodePriorityMap[l1->getAssociatedNode()] > _nodePriorityMap[l2->getAssociatedNode()];
     });
     
@@ -1221,7 +1219,7 @@ void EventDispatcher::sortEventListenersOfFixedPriority(const EventListener::Lis
         return;
     
     // After sort: priority < 0, > 0
-    std::stable_sort(fixedListeners->begin(), fixedListeners->end(), [](const EventListener* l1, const EventListener* l2) {
+    std::sort(fixedListeners->begin(), fixedListeners->end(), [](const EventListener* l1, const EventListener* l2) {
         return l1->getFixedPriority() < l2->getFixedPriority();
     });
     
