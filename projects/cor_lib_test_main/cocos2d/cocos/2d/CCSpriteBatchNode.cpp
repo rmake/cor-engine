@@ -245,7 +245,7 @@ void SpriteBatchNode::sortAllChildren()
 {
     if (_reorderChildDirty)
     {
-        std::sort(std::begin(_children), std::end(_children), nodeComparisonLess);
+        std::stable_sort(std::begin(_children), std::end(_children), nodeComparisonLess);
 
         //sorted now check all children
         if (!_children.empty())

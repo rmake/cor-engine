@@ -52,7 +52,7 @@ namespace cor
 
         template<class F, class AT> void sort_all(AT& a, F f)
         {
-            std::sort(a.begin(), a.end(), f);
+            std::stable_sort(a.begin(), a.end(), f);
         }
 
         template<class T> RString join(const T& a, const RString& c = RString(""))

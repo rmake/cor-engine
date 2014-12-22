@@ -1058,7 +1058,7 @@ y+=ytranslate;         \
         }
         if( _reorderProtectedChildDirty )
         {
-            std::sort( std::begin(_protectedChildren), std::end(_protectedChildren), nodeComparisonLess );
+            std::stable_sort( std::begin(_protectedChildren), std::end(_protectedChildren), nodeComparisonLess );
             _reorderProtectedChildDirty = false;
         }
     }

@@ -9,7 +9,7 @@
 #include "cor_cocos2dx_converter/sources/easy_http_client.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_cost_grid_space.h"
-#include "cor_cocos2dx_converter/sources/rts/rts_object_cost_grid_space_experimental.h"
+#include "cor_cocos2dx_converter/sources/rts/rts_object_cost_grid_space_e.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_group.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_sensor.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_system.h"
