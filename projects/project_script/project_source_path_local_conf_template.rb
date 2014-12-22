@@ -3,5 +3,5 @@
 #SOURCE_PATH = "../cocos2dx_simples/sprite_one"
 #SOURCE_PATH = "../cocos2dx_simples/sprite_action"
 #SOURCE_PATH = "../cocos2dx_simples/touch"
-SOURCE_PATH = "../majitai_running"
+#SOURCE_PATH = "../majitai_running"
 #SOURCE_PATH = "../texture_lost_debug"
