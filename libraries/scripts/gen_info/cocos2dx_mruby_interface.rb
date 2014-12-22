@@ -58,6 +58,11 @@ COCOS2DX_MRUBY_INTERFACE = [
       #:create_function => "create",
     },
     {
+      :name => "cor::cocos2dx_converter::RtsObjectEffect",
+      :value => :shared_ptr,
+      #:create_function => "create",
+    },
+    {
       :name => "cor::cocos2dx_mruby_interface::CocosMrubyRef",
       :value => :cocos_ptr,
     },
