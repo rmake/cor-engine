@@ -123,6 +123,9 @@ namespace cor
             void flip_on_right(RInt32 th);
             void stop_animation();
             cocos2d::Action* start_animation(cocos2d::Animate* animate);
+			cocos2d::Action* start_shoot_animation(RFloat x, RFloat y);
+			cocos2d::Action* start_idle_animation(RInt32 th);
+			RInt32 get_past_animation_direction();
         };
     }
 }

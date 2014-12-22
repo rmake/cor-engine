@@ -38,30 +38,34 @@ namespace cor
 
 				RFloat l, r, t, b;
 
-				l = rect.origin.x / w;
-				r = l + rect.size.width / w;
-				t = rect.origin.y / h;
-				b = t + rect.size.width / h;
+				l = (rect.origin.x + 0.5f) / w;
+				r = l + (rect.size.width - 1.0f) / w;
+				t = (rect.origin.y + 0.5f) / h;
+				b = t + (rect.size.height - 1.0f) / h;
 
 				n->add_triangle(
-					cocos2d::Vec2(box.origin.x, box.origin.y), white, cocos2d::Tex2F(l, t),
-					cocos2d::Vec2(box.origin.x + box.size.width, box.origin.y), white, cocos2d::Tex2F(r, t),
-					cocos2d::Vec2(box.origin.x, box.origin.y + box.size.height), white, cocos2d::Tex2F(l, b)
+					cocos2d::Vec2(box.origin.x, box.origin.y), white, cocos2d::Tex2F(l, b),
+					cocos2d::Vec2(box.origin.x, box.origin.y + box.size.height), white, cocos2d::Tex2F(l, t),
+					cocos2d::Vec2(box.origin.x + box.size.width, box.origin.y), white, cocos2d::Tex2F(r, b)
 					);
 
 				n->add_triangle(
-					cocos2d::Vec2(box.origin.x, box.origin.y + box.size.height), white, cocos2d::Tex2F(l, b),
-					cocos2d::Vec2(box.origin.x + box.size.width, box.origin.y), white, cocos2d::Tex2F(r, t),
-					cocos2d::Vec2(box.origin.x + box.size.width, box.origin.y + box.size.height), white, cocos2d::Tex2F(r, b)
+					cocos2d::Vec2(box.origin.x + box.size.width, box.origin.y), white, cocos2d::Tex2F(r, b),
+					cocos2d::Vec2(box.origin.x, box.origin.y + box.size.height), white, cocos2d::Tex2F(l, t),
+					cocos2d::Vec2(box.origin.x + box.size.width, box.origin.y + box.size.height), white, cocos2d::Tex2F(r, t)
 					);
 
 			};
 
-			auto la = length - 16;
+			auto r0 = sf0->getRect();
+			auto r1 = sf1->getRect();
+			auto r2 = sf2->getRect();
 
-			mk_box(sf0, cocos2d::Rect(-16, -8, 32, 16));
-			mk_box(sf1, cocos2d::Rect(-16, -la / 2, 32, la));
-			mk_box(sf2, cocos2d::Rect(-16, -8 + la, 32, 16));
+			auto la = length - r0.size.height / 2 - r2.size.height / 2;
+
+			mk_box(sf0, cocos2d::Rect(-r0.size.width / 2, -r0.size.height / 2, r0.size.width, r0.size.height));
+			mk_box(sf1, cocos2d::Rect(-r1.size.width / 2, r0.size.height / 2, r1.size.width, la));
+			mk_box(sf2, cocos2d::Rect(-r2.size.width / 2, -r2.size.height / 2 + length, r2.size.width, r2.size.height));
 
 			return n;
 		}

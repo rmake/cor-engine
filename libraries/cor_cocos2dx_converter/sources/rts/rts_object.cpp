@@ -734,6 +734,7 @@ namespace cor
 
                             flip_on_right(th);
                             start_animation(cocos2d::Animate::create(itnl->idles.at(th)));
+							itnl->past_th = th;
                             
                         }
 
@@ -940,6 +941,37 @@ namespace cor
 
             return itnl->animation_action;
         }
+
+
+		cocos2d::Action* RtsObject::start_shoot_animation(RFloat x, RFloat y)
+		{
+			auto p = type::Vector2F(x, y);
+			auto cp = get_position();
+			auto dp = p - cp;
+
+			RFloat tha = atan2f(dp.y, -dp.x);
+			auto th = (static_cast<int>((tha + PI * 1.5f) * 8 / (2 * PI) + 0.5f) + 1) % 8;
+
+			flip_on_right(th);
+			auto action = start_animation(cocos2d::Animate::create(itnl->shoots.at(th)));
+			itnl->past_th = th;
+
+			return action;
+		}
+
+		cocos2d::Action* RtsObject::start_idle_animation(RInt32 th)
+		{
+			flip_on_right(th);
+			auto action = start_animation(cocos2d::Animate::create(itnl->idles.at(th)));
+			itnl->past_th = th;
+
+			return action;
+		}
+
+		RInt32 RtsObject::get_past_animation_direction()
+		{
+			return itnl->past_th;
+		}
 
     }
 }

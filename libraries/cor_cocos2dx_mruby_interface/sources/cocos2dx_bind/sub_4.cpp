@@ -1834,6 +1834,8 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_flip_on_right(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_start_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate> a0);
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_start_shoot_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, float a0, float a1);
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_start_idle_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_1();
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_2(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> a0);
         std::weak_ptr<cor::cocos2dx_converter::RtsObject> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_object(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, cor::cocos2dx_converter::Collision2dNodeRef a0);
@@ -9644,6 +9646,8 @@ namespace cor
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "flip_on_right", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_flip_on_right);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "stop_animation", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_animation);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "start_animation", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_start_animation);
+            binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "start_shoot_animation", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_start_shoot_animation);
+            binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "start_idle_animation", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_start_idle_animation);
             binder.bind_static_method("CorCocos2dxConverter", "RtsObjectGroup", "create_1", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_1);
             binder.bind_static_method("CorCocos2dxConverter", "RtsObjectGroup", "create_2", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_2);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "create_object", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_create_object);
