@@ -1,4 +1,4 @@
-#ifndef __PROJECT_TEST_1_H_
+#ifndef __PROJECT_TEST_1_H__
 #define __PROJECT_TEST_1_H__
 
 #include "cor_project_structure/sources/application.h"
