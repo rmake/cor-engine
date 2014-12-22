@@ -61,6 +61,14 @@
 		6403A52A1A47D70E0035196A /* libcor_project_structure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6403A5291A47D70E0035196A /* libcor_project_structure.a */; };
 		6403A52C1A47D7240035196A /* libcor_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6403A52B1A47D7240035196A /* libcor_system.a */; };
 		6403A52E1A47D73B0035196A /* libcor_type.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6403A52D1A47D73B0035196A /* libcor_type.a */; };
+		64E018C11A47EAC9000B5AE3 /* libcor_algorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E018C01A47EAC9000B5AE3 /* libcor_algorithm.a */; };
+		64E018C31A47EADC000B5AE3 /* libcor_cocos2dx_converter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E018C21A47EADC000B5AE3 /* libcor_cocos2dx_converter.a */; };
+		64E018C51A47EAF6000B5AE3 /* libcor_cocos2dx_mruby_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E018C41A47EAF6000B5AE3 /* libcor_cocos2dx_mruby_interface.a */; };
+		64E018C71A47EB0D000B5AE3 /* libcor_data_structure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E018C61A47EB0D000B5AE3 /* libcor_data_structure.a */; };
+		64E018C91A47EB25000B5AE3 /* libcor_mruby_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E018C81A47EB25000B5AE3 /* libcor_mruby_interface.a */; };
+		64E018CB1A47EB3C000B5AE3 /* libcor_project_structure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E018CA1A47EB3C000B5AE3 /* libcor_project_structure.a */; };
+		64E018CD1A47EB56000B5AE3 /* libcor_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E018CC1A47EB56000B5AE3 /* libcor_system.a */; };
+		64E018CF1A47EB6C000B5AE3 /* libcor_type.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E018CE1A47EB6C000B5AE3 /* libcor_type.a */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -277,6 +285,14 @@
 		6403A5291A47D70E0035196A /* libcor_project_structure.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_project_structure.a; path = ../../../libraries/cor_project_structure/proj.ios_mac/osx/libcor_project_structure.a; sourceTree = "<group>"; };
 		6403A52B1A47D7240035196A /* libcor_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_system.a; path = ../../../libraries/cor_system/proj.ios_mac/osx/libcor_system.a; sourceTree = "<group>"; };
 		6403A52D1A47D73B0035196A /* libcor_type.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_type.a; path = ../../../libraries/cor_type/proj.ios_mac/osx/libcor_type.a; sourceTree = "<group>"; };
+		64E018C01A47EAC9000B5AE3 /* libcor_algorithm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_algorithm.a; path = ../../../libraries/cor_algorithm/proj.ios_mac/ios/libcor_algorithm.a; sourceTree = "<group>"; };
+		64E018C21A47EADC000B5AE3 /* libcor_cocos2dx_converter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_cocos2dx_converter.a; path = ../../../libraries/cor_cocos2dx_converter/proj.ios_mac/ios/libcor_cocos2dx_converter.a; sourceTree = "<group>"; };
+		64E018C41A47EAF6000B5AE3 /* libcor_cocos2dx_mruby_interface.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_cocos2dx_mruby_interface.a; path = ../../../libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/ios/libcor_cocos2dx_mruby_interface.a; sourceTree = "<group>"; };
+		64E018C61A47EB0D000B5AE3 /* libcor_data_structure.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_data_structure.a; path = ../../../libraries/cor_data_structure/proj.ios_mac/ios/libcor_data_structure.a; sourceTree = "<group>"; };
+		64E018C81A47EB25000B5AE3 /* libcor_mruby_interface.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_mruby_interface.a; path = ../../../libraries/cor_mruby_interface/proj.ios_mac/ios/libcor_mruby_interface.a; sourceTree = "<group>"; };
+		64E018CA1A47EB3C000B5AE3 /* libcor_project_structure.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_project_structure.a; path = ../../../libraries/cor_project_structure/proj.ios_mac/ios/libcor_project_structure.a; sourceTree = "<group>"; };
+		64E018CC1A47EB56000B5AE3 /* libcor_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_system.a; path = ../../../libraries/cor_system/proj.ios_mac/ios/libcor_system.a; sourceTree = "<group>"; };
+		64E018CE1A47EB6C000B5AE3 /* libcor_type.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_type.a; path = ../../../libraries/cor_type/proj.ios_mac/ios/libcor_type.a; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -291,6 +307,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64E018CF1A47EB6C000B5AE3 /* libcor_type.a in Frameworks */,
+				64E018CD1A47EB56000B5AE3 /* libcor_system.a in Frameworks */,
+				64E018CB1A47EB3C000B5AE3 /* libcor_project_structure.a in Frameworks */,
+				64E018C91A47EB25000B5AE3 /* libcor_mruby_interface.a in Frameworks */,
+				64E018C71A47EB0D000B5AE3 /* libcor_data_structure.a in Frameworks */,
+				64E018C51A47EAF6000B5AE3 /* libcor_cocos2dx_mruby_interface.a in Frameworks */,
+				64E018C31A47EADC000B5AE3 /* libcor_cocos2dx_converter.a in Frameworks */,
+				64E018C11A47EAC9000B5AE3 /* libcor_algorithm.a in Frameworks */,
 				1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */,
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -392,6 +416,14 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64E018CE1A47EB6C000B5AE3 /* libcor_type.a */,
+				64E018CC1A47EB56000B5AE3 /* libcor_system.a */,
+				64E018CA1A47EB3C000B5AE3 /* libcor_project_structure.a */,
+				64E018C81A47EB25000B5AE3 /* libcor_mruby_interface.a */,
+				64E018C61A47EB0D000B5AE3 /* libcor_data_structure.a */,
+				64E018C41A47EAF6000B5AE3 /* libcor_cocos2dx_mruby_interface.a */,
+				64E018C21A47EADC000B5AE3 /* libcor_cocos2dx_converter.a */,
+				64E018C01A47EAC9000B5AE3 /* libcor_algorithm.a */,
 				6403A52D1A47D73B0035196A /* libcor_type.a */,
 				6403A52B1A47D7240035196A /* libcor_system.a */,
 				6403A5291A47D70E0035196A /* libcor_project_structure.a */,
@@ -885,6 +917,14 @@
 					../../../libraries/cor_project_structure/proj.ios_mac/ios,
 					../../../libraries/cor_system/proj.ios_mac/ios,
 					../../../libraries/cor_type/proj.ios_mac/ios,
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_algorithm/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_cocos2dx_converter/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_data_structure/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_mruby_interface/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_project_structure/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_system/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_type/proj.ios_mac/ios",
 				);
 				OTHER_LDFLAGS = "-lmruby_combined";
 				SDKROOT = iphoneos;
@@ -930,6 +970,14 @@
 					../../../libraries/cor_project_structure/proj.ios_mac/ios,
 					../../../libraries/cor_system/proj.ios_mac/ios,
 					../../../libraries/cor_type/proj.ios_mac/ios,
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_algorithm/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_cocos2dx_converter/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_data_structure/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_mruby_interface/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_project_structure/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_system/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_type/proj.ios_mac/ios",
 				);
 				OTHER_LDFLAGS = "-lmruby_combined";
 				SDKROOT = iphoneos;
