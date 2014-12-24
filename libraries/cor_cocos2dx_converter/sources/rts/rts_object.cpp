@@ -104,6 +104,7 @@ namespace cor
             cocos2d::Vector<cocos2d::Animation*> idles;
             cocos2d::Action* animation_action;
             RInt32 past_th;
+			RInt32 past_animation_direction;
             RtsObjectActionSP current_move_action;
             
             RtsObjectItnl()
@@ -122,6 +123,7 @@ namespace cor
                 parabora_h = 0.0f;
                 z_offset = 0.0f;
                 past_th = -1000;
+				past_animation_direction = -1000;
                 animation_action = nullptr;
                 flip_mode = rfalse;
             }
@@ -312,6 +314,17 @@ namespace cor
             return itnl->idles;
         }
 
+		void RtsObject::set_past_th(RInt32 past_th)
+		{
+			itnl->past_th = past_th;
+			itnl->past_animation_direction = past_th;
+		}
+
+		RInt32 RtsObject::get_past_animation_direction()
+		{
+			return itnl->past_animation_direction;
+		}
+
         bool RtsObject::is_valid() const
         {
             return itnl->node_ref.is_valid() && !itnl->released;
@@ -437,6 +450,12 @@ namespace cor
             cocos2d::Vec3 dcv(dv.x, dv.y, dv.z);
             return dcv;
         }
+
+		RFloat RtsObject::z_order_correct(RFloat z) const
+		{
+			auto tz = -10000.0 + 100.0f + z / 10.0f + itnl->z_offset;
+			return tz;
+		}
 
         void RtsObject::render()
         {
@@ -690,7 +709,7 @@ namespace cor
                 {
                     start_animation(cocos2d::Animate::create(itnl->walks.at(th)));
                     flip_on_right(th);
-                    itnl->past_th = th;
+					set_past_th(th);
                 }
 
             }
@@ -734,7 +753,7 @@ namespace cor
 
                             flip_on_right(th);
                             start_animation(cocos2d::Animate::create(itnl->idles.at(th)));
-							itnl->past_th = th;
+							set_past_th(th);
                             
                         }
 
@@ -954,7 +973,8 @@ namespace cor
 
 			flip_on_right(th);
 			auto action = start_animation(cocos2d::Animate::create(itnl->shoots.at(th)));
-			itnl->past_th = th;
+			set_past_th(th);
+			itnl->past_th = -1000;
 
 			return action;
 		}
@@ -963,15 +983,13 @@ namespace cor
 		{
 			flip_on_right(th);
 			auto action = start_animation(cocos2d::Animate::create(itnl->idles.at(th)));
-			itnl->past_th = th;
+			set_past_th(th);
+			itnl->past_th = -1000;
 
 			return action;
 		}
 
-		RInt32 RtsObject::get_past_animation_direction()
-		{
-			return itnl->past_th;
-		}
+		
 
     }
 }

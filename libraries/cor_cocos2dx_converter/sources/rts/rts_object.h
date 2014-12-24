@@ -88,6 +88,8 @@ namespace cor
             cocos2d::Vector<cocos2d::Animation*> get_shoots() const;
             void set_idles(const cocos2d::Vector<cocos2d::Animation*>& idles);
             cocos2d::Vector<cocos2d::Animation*> get_idles() const;
+			void set_past_th(RInt32 past_th);
+			RInt32 get_past_animation_direction();
 
 
             bool is_valid() const;
@@ -96,6 +98,7 @@ namespace cor
 
             cocos2d::Vec3 convert_to_render(type::Vector2F av) const;
             cocos2d::Vec3 convert_to_render() const;
+			RFloat z_order_correct(RFloat z) const;
             void step();
             void render();
             RtsObjectActionSP add_action(StepCallback step_callback);
@@ -125,7 +128,7 @@ namespace cor
             cocos2d::Action* start_animation(cocos2d::Animate* animate);
 			cocos2d::Action* start_shoot_animation(RFloat x, RFloat y);
 			cocos2d::Action* start_idle_animation(RInt32 th);
-			RInt32 get_past_animation_direction();
+			
         };
     }
 }
