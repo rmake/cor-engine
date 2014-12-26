@@ -158,15 +158,16 @@ end
 past_copy_json = JSON.pretty_generate past_copy_table
 Cor.u.file_write past_copy, past_copy_json
 
-File.open "#{destination_resource_path}/copy_date.txt", "w" do |f|
-  f.write Time.now.strftime("%Y-%m-%d %H:%M:%S")
-end
-
 sleep 1
 
 d_table.keys.each do |fn|
   FileUtils.remove fn
 end
+
+File.open "#{destination_resource_path}/copy_date.txt", "w" do |f|
+  f.write Time.now.strftime("%Y-%m-%d %H:%M:%S")
+end
+
 
 sleep 1
 

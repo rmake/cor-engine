@@ -123,6 +123,20 @@ COCOS2DX_MRUBY_INTERFACE = [
       :name => "cocos2d::Vec3",
       :value => :value,
       :create_function => "create",
+      :operator => [
+        { :name => "*", :args => [
+          {:ret => "cocos2d::Vec3", :arg => ["float"]},
+        ]},
+        { :name => "+", :args => [
+          {:ret => "cocos2d::Vec3", :arg => ["cocos2d::Vec3"]},
+        ]},
+        { :name => "-", :args => [
+          {:ret => "cocos2d::Vec3", :arg => ["cocos2d::Vec3"]},
+        ]},
+        { :name => "-@", :args => [
+          {:ret => "cocos2d::Vec3", :arg => []},
+        ]},
+      ],
     },
     {
       :name => "cocos2d::Size",

@@ -380,6 +380,10 @@ namespace cor
         float Cocos2dxBind_cocos2d__Vec3_accessor_get_y(cocos2d::Vec3& c);
         void Cocos2dxBind_cocos2d__Vec3_accessor_set_z(cocos2d::Vec3& c, float a);
         float Cocos2dxBind_cocos2d__Vec3_accessor_get_z(cocos2d::Vec3& c);
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__Vec3_operator__asterisk__0(cocos2d::Vec3 & a0, float a1);
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__Vec3_operator__plus__0(cocos2d::Vec3 & a0, cocos2d::Vec3 a1);
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__Vec3_operator__minus__0(cocos2d::Vec3 & a0, cocos2d::Vec3 a1);
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__Vec3_operator__minus_self__0(cocos2d::Vec3 & a0);
         void Cocos2dxBind_cocos2d__Size_set_size(cocos2d::Size& c, float a0, float a1);
         bool Cocos2dxBind_cocos2d__Size_equals(cocos2d::Size& c, cocos2d::Size a0);
         void Cocos2dxBind_cocos2d__Size_accessor_set_width(cocos2d::Size& c, float a);

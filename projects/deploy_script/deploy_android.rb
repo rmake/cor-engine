@@ -5,6 +5,9 @@ require 'cor/utility'
 require 'json'
 require 'fileutils'
 
+
+system "ruby ../project_script/copy_project.rb"
+
 system("sh build_android.sh")
 #system("sh package_android.sh")
 

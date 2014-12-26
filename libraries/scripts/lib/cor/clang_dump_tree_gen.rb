@@ -1950,7 +1950,9 @@ EOS
       Utility.file_write "log/#{option[:name]}/code.rb.log", method_overload_define.join
       
       if RUBY_PLATFORM.include? "mswin32"
-        `../../external/mruby/build/host/bin/mrbc.exe -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
+        #`../../external/mruby/build/host/bin/mrbc.exe -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
+        `../../external/mruby_build/builded/vc_debug_32/bin/mrbc.exe -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
+      
       else
         `../../external/mruby/build/host/bin/mrbc -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
       end

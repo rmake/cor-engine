@@ -8,11 +8,51 @@ MRUBY_INTERFACE_TAGET_CLASSES = [
       :name => "cor::type::Vector2F",
       :value => :value, # :value, :pointer, :shared_ptr, :weak_ptr, :cocos_ptr
       :create_function => "create",
+      :operator => [
+        { :name => "*", :args => [
+          {:ret => "cor::type::Vector2F", :arg => ["float"]},
+        ]},
+        { :name => "+", :args => [
+          {:ret => "cor::type::Vector2F", :arg => ["cor::type::Vector2F"]},
+        ]},
+        { :name => "-", :args => [
+          {:ret => "cor::type::Vector2F", :arg => ["cor::type::Vector2F"]},
+        ]},
+        { :name => "-@", :args => [
+          {:ret => "cor::type::Vector2F", :arg => []},
+        ]},
+        { :name => "[]", :args => [
+          {:ret => "float", :arg => ["int"]},
+        ]},
+        { :name => "[]=", :args => [
+          {:ret => "float", :arg => ["int", "float"]},
+        ]},
+      ],
     },
     {
       :name => "cor::type::Vector2I",
       :value => :value, # :value, :pointer, :shared_ptr, :weak_ptr, :cocos_ptr
       :create_function => "create",
+      :operator => [
+        { :name => "*", :args => [
+          {:ret => "cor::type::Vector2I", :arg => ["int"]},
+        ]},
+        { :name => "+", :args => [
+          {:ret => "cor::type::Vector2I", :arg => ["cor::type::Vector2I"]},
+        ]},
+        { :name => "-", :args => [
+          {:ret => "cor::type::Vector2I", :arg => ["cor::type::Vector2I"]},
+        ]},
+        { :name => "-@", :args => [
+          {:ret => "cor::type::Vector2I", :arg => []},
+        ]},
+        { :name => "[]", :args => [
+          {:ret => "int", :arg => ["int"]},
+        ]},
+        { :name => "[]=", :args => [
+          {:ret => "int", :arg => ["int", "int"]},
+        ]},
+      ],
     },
     {
       :name => "cor::type::Vector3F",
@@ -44,21 +84,86 @@ MRUBY_INTERFACE_TAGET_CLASSES = [
       :name => "cor::type::Vector3I",
       :value => :value, # :value, :pointer, :shared_ptr, :weak_ptr, :cocos_ptr
       :create_function => "create",
+      :operator => [
+        { :name => "*", :args => [
+          {:ret => "cor::type::Vector3I", :arg => ["int"]},
+        ]},
+        { :name => "+", :args => [
+          {:ret => "cor::type::Vector3I", :arg => ["cor::type::Vector3I"]},
+        ]},
+        { :name => "-", :args => [
+          {:ret => "cor::type::Vector3I", :arg => ["cor::type::Vector3I"]},
+        ]},
+        { :name => "-@", :args => [
+          {:ret => "cor::type::Vector3I", :arg => []},
+        ]},
+        { :name => "[]", :args => [
+          {:ret => "int", :arg => ["int"]},
+        ]},
+        { :name => "[]=", :args => [
+          {:ret => "int", :arg => ["int", "int"]},
+        ]},
+      ],
     },
     {
       :name => "cor::type::Vector4F",
       :value => :value, # :value, :pointer, :shared_ptr, :weak_ptr, :cocos_ptr
       :create_function => "create",
+      :operator => [
+        { :name => "*", :args => [
+          {:ret => "cor::type::Vector4F", :arg => ["float"]},
+        ]},
+        { :name => "+", :args => [
+          {:ret => "cor::type::Vector4F", :arg => ["cor::type::Vector4F"]},
+        ]},
+        { :name => "-", :args => [
+          {:ret => "cor::type::Vector4F", :arg => ["cor::type::Vector4F"]},
+        ]},
+        { :name => "-@", :args => [
+          {:ret => "cor::type::Vector4F", :arg => []},
+        ]},
+        { :name => "[]", :args => [
+          {:ret => "float", :arg => ["int"]},
+        ]},
+        { :name => "[]=", :args => [
+          {:ret => "float", :arg => ["int", "float"]},
+        ]},
+      ],
     },
     {
       :name => "cor::type::Vector4I",
       :value => :value, # :value, :pointer, :shared_ptr, :weak_ptr, :cocos_ptr
       :create_function => "create",
+      :operator => [
+        { :name => "*", :args => [
+          {:ret => "cor::type::Vector4I", :arg => ["int"]},
+        ]},
+        { :name => "+", :args => [
+          {:ret => "cor::type::Vector4I", :arg => ["cor::type::Vector4I"]},
+        ]},
+        { :name => "-", :args => [
+          {:ret => "cor::type::Vector4I", :arg => ["cor::type::Vector4I"]},
+        ]},
+        { :name => "-@", :args => [
+          {:ret => "cor::type::Vector4I", :arg => []},
+        ]},
+        { :name => "[]", :args => [
+          {:ret => "int", :arg => ["int"]},
+        ]},
+        { :name => "[]=", :args => [
+          {:ret => "int", :arg => ["int", "int"]},
+        ]},
+      ],
     },
     {
       :name => "cor::type::Matrix4x4F",
       :value => :value, # :value, :pointer, :shared_ptr, :weak_ptr, :cocos_ptr
       :create_function => "create",
+      :operator => [
+        { :name => "*", :args => [
+          {:ret => "cor::type::Matrix4x4F", :arg => ["cor::type::Matrix4x4F"]},
+        ]},
+      ],
     },
     {
       :name => "cor::type::Box2F",

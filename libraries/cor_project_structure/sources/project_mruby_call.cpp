@@ -566,6 +566,7 @@ namespace cor
             auto& mrb = instance->ref_mrb();
             auto& binder = mrb.ref_binder();
 
+			//mrb.get_mrb()->gc_disabled = TRUE;
 
             static RBool first = rtrue;
             if(first)
