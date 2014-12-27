@@ -93,6 +93,8 @@ namespace cor
             RBool parabola_animation;
             RBool flip_mode;
             RtsObject::MovePushBackCallback move_push_back_callback;
+            RtsObject::MoveFirstCallback move_first_callback;
+            RtsObject::MoveTargetFilterCallback move_target_filter_callback;
             RFloat z_offset;
             RFloat mv_t;
             RFloat old_mv_t;
@@ -272,6 +274,16 @@ namespace cor
         void RtsObject::set_move_push_back_callback(MovePushBackCallback move_push_back_callback)
         {
             itnl->move_push_back_callback = move_push_back_callback;
+        }
+
+        void RtsObject::set_move_first_callback(MoveFirstCallback move_first_callback)
+        {
+            itnl->move_first_callback = move_first_callback;
+        }
+
+        void RtsObject::set_move_target_filter_callback(MoveTargetFilterCallback move_target_filter_callback)
+        {
+            itnl->move_target_filter_callback = move_target_filter_callback;
         }
 
         void RtsObject::set_z_offset(RFloat z_offset)
@@ -652,8 +664,16 @@ namespace cor
                                                         itnl->move_push_back_callback(o, o1, p, n, odv, ap0, ap1);
                                                     }
                                                 }
+												else
+												{
+													new_pos = (new_pos + old_pos) * 0.5f;
+												}
 
                                             }
+											else
+											{
+												new_pos = (new_pos + old_pos) * 0.5f;
+											}
                                         }
                                         
                                     }

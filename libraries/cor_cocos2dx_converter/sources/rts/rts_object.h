@@ -47,6 +47,8 @@ namespace cor
             typedef std::function<void(RtsObjectSP, RtsObjectSP, type::Vector2F, type::Vector2F, type::Vector2F, type::Vector2F, type::Vector2F)> MovePushBackCallback;
             typedef std::function<void(RtsObjectActionSP, RtsObjectSP)> StepCallback;
             typedef std::function<type::Vector2F(RtsObjectActionSP, RtsObjectSP, type::Vector2F, type::Vector2F)> PremoveCallback;
+			typedef std::function<void(RtsObjectSP, type::Vector2F)> MoveFirstCallback;
+			typedef std::function<type::Vector2F(RtsObjectSP, type::Vector2F)> MoveTargetFilterCallback;
             typedef Collision2dNode::CollisionCallback CollisionCallback;
 
 
@@ -80,6 +82,9 @@ namespace cor
             void set_node_render_z(cocos2d::Node* node_render_z);
             cocos2d::Node* get_node_render();
             void set_move_push_back_callback(MovePushBackCallback move_push_back_callback);
+            void set_move_first_callback(MoveFirstCallback move_first_callback);
+            void set_move_target_filter_callback(MoveTargetFilterCallback move_target_filter_callback);
+
             void set_z_offset(RFloat z_offset);
             RFloat get_z_offset();
             void set_walks(const cocos2d::Vector<cocos2d::Animation*>& walks);
