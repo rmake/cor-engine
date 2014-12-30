@@ -67,14 +67,14 @@ module COR
     
     def self.file_write fn, data
       FileUtils.mkpath(File.dirname(fn))
-      File.open fn, "w" do |f|
+      File.open fn, "wb" do |f|
         f.write data
       end
     end
     
     def self.file_read fn
       data = nil
-      File.open fn, "r" do |f|
+      File.open fn, "rb" do |f|
         data = f.read
       end
       data

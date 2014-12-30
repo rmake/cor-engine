@@ -1806,6 +1806,8 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_node_render_z(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_node_render(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_move_push_back_callback(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, mrubybind::FuncPtr<void (std::weak_ptr<cor::cocos2dx_converter::RtsObject>, std::weak_ptr<cor::cocos2dx_converter::RtsObject>, cor::type::Vector2Tmpl<float>, cor::type::Vector2Tmpl<float>, cor::type::Vector2Tmpl<float>, cor::type::Vector2Tmpl<float>, cor::type::Vector2Tmpl<float>)> a0);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_move_first_callback(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, mrubybind::FuncPtr<void (std::weak_ptr<cor::cocos2dx_converter::RtsObject>, cor::type::Vector2Tmpl<float>)> a0);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_move_target_filter_callback(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, mrubybind::FuncPtr<cor::type::Vector2Tmpl<float> (std::weak_ptr<cor::cocos2dx_converter::RtsObject>, cor::type::Vector2Tmpl<float>)> a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_z_offset(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, float a0);
         float Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_z_offset(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_walks(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, MrubyRef a0);
@@ -9621,6 +9623,8 @@ namespace cor
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "set_node_render_z", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_node_render_z);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "get_node_render", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_node_render);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "set_move_push_back_callback", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_move_push_back_callback);
+            binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "set_move_first_callback", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_move_first_callback);
+            binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "set_move_target_filter_callback", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_move_target_filter_callback);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "set_z_offset", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_z_offset);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "get_z_offset", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_z_offset);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObject", "set_walks", Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_walks);
