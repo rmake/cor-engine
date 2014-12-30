@@ -1,3 +1,6 @@
+# namespaceを省略できるように
+include Cor
+include Cocos2d
 
 # visible_sizeは画面の大きさ
 director = Director.get_instance

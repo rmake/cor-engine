@@ -1200,7 +1200,7 @@ EOS
         
         if v[:this_type] == :shared_ptr
           str += <<EOS
-            binder.add_convertable("#{v[:class_name]}", "AnyWP");
+            binder.add_convertable("#{[v[:module_name], v[:class_name]].join("::")}", "CorMrubyInterface::AnyWP");
 EOS
         end
         
@@ -1208,7 +1208,8 @@ EOS
           ca[:super_classes].each do |sc|
             if sc
               str += <<EOS
-            binder.add_convertable("#{v[:class_name]}", "#{sc[:class_name]}");
+            binder.add_convertable("#{[v[:module_name], v[:class_name]].join("::")
+              }", "#{[sc[:module_name], sc[:class_name]].join("::")}");
 EOS
               super_class_rec_call.call(sc)
             end
@@ -1793,7 +1794,7 @@ EOS
               
               a << <<EOS
                   when #{k}
-#{code}                    raise exs
+#{code}                    raise exs.to_s
 EOS
             end
             
@@ -1857,14 +1858,18 @@ EOS
 EOS
             end
             
+            code += <<EOS
+                    raise exs.to_s
+EOS
+            
             a << code
+            
             
           end
           
           next if ct == 0
           
           a << <<EOS
-                    raise exs
                   else
                     raise "not match arg count \#{argc}"
                   end
@@ -1923,6 +1928,10 @@ EOS
 EOS
               end
               
+              code += <<EOS
+                    raise exs.to_s
+EOS
+              
               a << code
               
             end
@@ -1930,7 +1939,6 @@ EOS
             #next if ct == 0
         
             a << <<EOS
-                    raise exs
                   else
                     raise "not match arg count \#{argc}"
                   end

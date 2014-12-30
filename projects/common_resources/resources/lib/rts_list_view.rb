@@ -54,7 +54,7 @@ class RtsListView
     #drn = RtsSprite.create_simple
     #drn.set_position 100, 200
     self.node.set_anchor_point Vec2.create(0.5, 0.5)
-    self.node.set_position Size.create(100 / 2, 100 / 2)
+    self.node.set_position Vec2.create(100 / 2, 100 / 2)
     self.node.set_stencil drn
     self.node.set_inverted(false)
     #self.node.set_alpha_threshold(0.0)

@@ -1,4 +1,14 @@
 
+include CorType
+include CorSystem
+include CorDataStructure
+include CorMrubyInterface
+include CorCocos2dxConverter
+include CorCocos2dxMrubyInterface
+include Cocos2d
+include Cocos2dExtension
+include Cocosdenshion
+
 module Cor
   
   def self.u=(v)

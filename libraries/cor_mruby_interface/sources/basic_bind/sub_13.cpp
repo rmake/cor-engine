@@ -545,8 +545,8 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.add_convertable("MrubyExperimentalTemplateStructRInt32", "AnyWP");
-            binder.add_convertable("MrubyExperimentalTemplateStructRString", "AnyWP");
+                            binder.add_convertable("CorMrubyInterface::MrubyExperimentalTemplateStructRInt32", "CorMrubyInterface::AnyWP");
+            binder.add_convertable("CorMrubyInterface::MrubyExperimentalTemplateStructRString", "CorMrubyInterface::AnyWP");
 
           }
 

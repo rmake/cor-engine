@@ -1,3 +1,4 @@
+include Cor
 
 Project.load_eval "lib/cor_all.rb"
 

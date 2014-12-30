@@ -545,15 +545,15 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.add_convertable("CostGridSpace", "AnyWP");
-            binder.add_convertable("SharedPtrTable", "AnyWP");
-            binder.add_convertable("JobQueue", "AnyWP");
-            binder.add_convertable("MrubyExperimentalBindTestStruct", "AnyWP");
-            binder.add_convertable("MrubyExperimentalBindTestClassInherited", "AnyWP");
-            binder.add_convertable("MrubyExperimentalBindTestClassInherited", "MrubyExperimentalBindTestStruct");
-            binder.add_convertable("MrubyExperimentalBindTestClass", "AnyWP");
-            binder.add_convertable("MrubyRefContainer", "AnyWP");
-            binder.add_convertable("RCharArray", "AnyWP");
+                            binder.add_convertable("CorDataStructure::CostGridSpace", "CorMrubyInterface::AnyWP");
+            binder.add_convertable("CorDataStructure::SharedPtrTable", "CorMrubyInterface::AnyWP");
+            binder.add_convertable("CorSystem::JobQueue", "CorMrubyInterface::AnyWP");
+            binder.add_convertable("CorMrubyInterface::MrubyExperimentalBindTestStruct", "CorMrubyInterface::AnyWP");
+            binder.add_convertable("CorMrubyInterface::MrubyExperimentalBindTestClassInherited", "CorMrubyInterface::AnyWP");
+            binder.add_convertable("CorMrubyInterface::MrubyExperimentalBindTestClassInherited", "CorMrubyInterface::MrubyExperimentalBindTestStruct");
+            binder.add_convertable("CorMrubyInterface::MrubyExperimentalBindTestClass", "CorMrubyInterface::AnyWP");
+            binder.add_convertable("CorMrubyInterface::MrubyRefContainer", "CorMrubyInterface::AnyWP");
+            binder.add_convertable("Cor::RCharArray", "CorMrubyInterface::AnyWP");
 
           }
 
