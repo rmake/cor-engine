@@ -28,6 +28,16 @@ ifneq ($(WINDOWS), )
     MKDIR = mkdir -p
 endif
 
+ifneq ($(CLANG), )
+    INCDIRFLAGS += -I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/
+    INCDIRFLAGS += -I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/x86_64-redhat-linux/
+    CC := clang
+    CXX := clang++ 
+    AR := ar
+    MKDIR := mkdir -p
+endif
+
+
 CPPFLAGS = -std=c++11 -pg -Wall -O2 -DRMAKE_CUSTOM_NEW_OPERATOR \
     -I. -I.. -I../../ -I../../../ \
     $(INCDIRFLAGS)

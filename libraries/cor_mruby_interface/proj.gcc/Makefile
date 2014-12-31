@@ -26,6 +26,8 @@ ifneq ($(WINDOWS), )
 endif
 
 ifneq ($(CLANG), )
+    INCDIRFLAGS += -I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/
+    INCDIRFLAGS += -I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/x86_64-redhat-linux/
     CC := clang
     CXX := clang++ 
     AR := ar

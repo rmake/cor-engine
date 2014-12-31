@@ -55,6 +55,8 @@ ifneq ($(WINDOWS), )
 endif
 
 ifneq ($(CLANG), )
+    INCDIRFLAGS += -I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/
+    INCDIRFLAGS += -I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/x86_64-redhat-linux/
     CC := clang
     CXX := clang++ 
     AR := ar
@@ -235,7 +237,8 @@ flag = ""
 if RUBY_PLATFORM.include? "mswin32"
     flag = "WINDOWS=TRUE"
 else
-    #flag = "CLANG=TRUE"    
+  flag = "-j 4"
+    #flag = "-j 4 CLANG=TRUE"
 end
 
 paths.each do |path|
@@ -262,12 +265,15 @@ ts = []
 flag = ""
 if RUBY_PLATFORM.include? "mswin32"
     flag = "WINDOWS=TRUE"
+else
+    flag = "-j 4"
+    #flag = "-j 4 CLANG=TRUE"
 end
 
 paths.each do |path|
   ts << Thread.new do
     print "Start build\\n"
-    system("make -C \#{path}/proj.gcc clean \#{flag}")
+    system("make -C \#{path}/proj.gcc \#{flag} clean")
     print "End build\\n"
   end
 end

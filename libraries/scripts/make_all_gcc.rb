@@ -7,7 +7,8 @@ flag = ""
 if RUBY_PLATFORM.include? "mswin32"
     flag = "WINDOWS=TRUE"
 else
-    #flag = "CLANG=TRUE"    
+  flag = "-j 4"
+    #flag = "-j 4 CLANG=TRUE"
 end
 
 paths.each do |path|

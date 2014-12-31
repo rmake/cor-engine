@@ -20,6 +20,10 @@ DeployListWin.list = [
     :out_path => "cor_engine_release_win/cocos2dx_simples/touch",
     :source => "../cocos2dx_simples/touch",
   },
+  {
+    :out_path => "majitai_running_test",
+    :source => "../test_projects/majitai_running_test",
+  },
 
 ]
 
