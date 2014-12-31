@@ -7803,7 +7803,7 @@ namespace cor
         bool Cocos2dxBind_cocos2d__FileUtils_remove_directory(cocos2d::FileUtils* c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__FileUtils_remove_file(cocos2d::FileUtils* c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__FileUtils_rename_file(cocos2d::FileUtils* c, std::basic_string<char> a0, std::basic_string<char> a1, std::basic_string<char> a2);
-        long Cocos2dxBind_cocos2d__FileUtils_get_file_size(cocos2d::FileUtils* c, std::basic_string<char> a0);
+        int Cocos2dxBind_cocos2d__FileUtils_get_file_size(cocos2d::FileUtils* c, std::basic_string<char> a0);
         std::unordered_map<std::string,std::string> Cocos2dxBind_cocos2d__FileUtils_get_full_path_cache(cocos2d::FileUtils* c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> Cocos2dxBind_cocos2d__AnimationCache_get_instance();
         void Cocos2dxBind_cocos2d__AnimationCache_destroy_instance();

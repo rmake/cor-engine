@@ -153,6 +153,11 @@ module COR
     
 
     def self.parse_token(line)
+      line = line.gsub(/col\:\d* used /, "").gsub(/line\:\d*:\d* used /, "")
+      line = line.gsub(/col\:\d* implicit (used )?/, "").gsub(/line\:\d*:\d* implicit (used )?/, "")      
+      line = line.gsub(/col\:\d* referenced /, "").gsub(/line\:\d*:\d* referenced /, "")
+      line = line.gsub(/col\:\d* /, "").gsub(/line\:\d*:\d* /, "")
+      
       a = line.scan(/(('[^']*':'[^']*')|('[^']*')|(<[^<^>]*([^<^>]*<[^<^>]*>[^<^>]*)*[^<^>]*>)|(\S+))/)
       a.map{|v| v[0]}
     end
@@ -360,6 +365,9 @@ module COR
               a = parse_token c[:line]
               if a[0] == 'ParmVarDecl'
                 arg_type = self.parse_separated(a.last)
+                if arg_type[:val] == 'cinit'
+                  arg_type = self.parse_separated(a[-2])
+                end
                 args << arg_type
               elsif a[0] == 'FinalAttr'
                 f[:is_final] = true
@@ -387,6 +395,9 @@ module COR
               a = parse_token c[:line]
               if a[0] == 'ParmVarDecl'
                 arg_type = self.parse_separated(a.last)
+                if arg_type[:val] == 'cinit'
+                  arg_type = self.parse_separated(a[-2])
+                end
                 args << arg_type
               end
             end
@@ -438,6 +449,9 @@ module COR
                   a = parse_token c[:line]
                   if a[0] == 'ParmVarDecl'
                     arg_type = self.parse_separated(a.last)
+                    if arg_type[:val] == 'cinit'
+                      arg_type = self.parse_separated(a[-2])
+                    end
                     args << arg_type
                   end
                 end
@@ -463,6 +477,9 @@ module COR
                   a = parse_token c[:line]
                   if a[0] == 'ParmVarDecl'
                     arg_type = self.parse_separated(a.last)
+                    if arg_type[:val] == 'cinit'
+                      arg_type = self.parse_separated(a[-2])
+                    end
                     args << arg_type
                   end
                 end

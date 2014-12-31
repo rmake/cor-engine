@@ -46,7 +46,7 @@ CPPFLAGS = -std=c++11 -pg -Wall -O2 -DRMAKE_CUSTOM_NEW_OPERATOR \
     $(INCDIRFLAGS)
 
 ifneq ($(CLANG), )
-  CPPFLAGS += -stdlib=libc++
+  CPPFLAGS += -stdlib=libstdc++
 endif
 
 ifneq ($(DEBUG), )

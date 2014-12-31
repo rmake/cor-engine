@@ -59,6 +59,10 @@ def gen_code option
     includes += ' ' + (COCOS2DX_INCPATH + ipath).map{|v| "-I#{v}"}.join(' ')
   end
   
+  includes += ' ' + ["-I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/",
+    "-I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/x86_64-redhat-linux/"
+    ].join(' ')
+  
   cmd_clang = "clang++ -Xclang -ast-dump -fsyntax-only -std=c++11 -pg -Wall -DLINUX -DCC_STATIC #{includes} data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp"
   
   str = `#{cmd_clang}`
@@ -94,6 +98,9 @@ def gen_code option
     "unsigned char" => "int", 
     "const _Bool" => "const bool",
     "RBool" => "bool",
+    "cinit" => "delete",
+    "long" => "int",
+    "__va_list_tag *" => "delete",
     "std::shared_ptr<void>" => "std::weak_ptr<void>",
     "std::function<void (EventCustom *)>" => "mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventCustom>)>",
     "Touch::DispatchMode" => "cocos2d::Touch::DispatchMode",
