@@ -182,7 +182,7 @@ class MajitaiGame
     ed = self.layer.get_event_dispatcher
     listener = EventListenerKeyboard.create
     listener.on_key_pressed = Proc.new do |c, e|
-      if c == 146
+      if c == 149
         if contacting > 0
           pressed = 16
         end
@@ -190,7 +190,7 @@ class MajitaiGame
     end
     
     listener.on_key_released = Proc.new do |c, e|
-      if c == 146
+      if c == 149
         pressed = 0
       end
     end

@@ -705,6 +705,14 @@ COCOS2DX_MRUBY_INTERFACE = [
       :value => :cocos_ptr,
     },
     {
+      :name => "cocos2d::Animation3D",
+      :value => :cocos_ptr,
+    },
+    {
+      :name => "cocos2d::Animate3D",
+      :value => :cocos_ptr,
+    },
+    {
       :name => "cocos2d::AnimationCache",
       :value => :cocos_ptr,
     },
@@ -726,6 +734,22 @@ COCOS2DX_MRUBY_INTERFACE = [
     },
     {
       :name => "cocos2d::Sprite3D",
+      :value => :cocos_ptr,
+    },
+    {
+      :name => "cocos2d::Camera",
+      :value => :cocos_ptr,
+    },
+    {
+      :name => "cocos2d::BaseLight",
+      :value => :cocos_ptr,
+    },
+    {
+      :name => "cocos2d::AmbientLight",
+      :value => :cocos_ptr,
+    },
+    {
+      :name => "cocos2d::DirectionLight",
       :value => :cocos_ptr,
     },
     {

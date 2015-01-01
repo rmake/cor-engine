@@ -208,9 +208,6 @@
     <Filter Include="extension\GUI\CCControlExtensions">
       <UniqueIdentifier>{118d80ca-ccf2-480c-b87d-25220af23440}</UniqueIdentifier>
     </Filter>
-    <Filter Include="audioengine">
-      <UniqueIdentifier>{e916e2b4-0a6e-4d25-8b36-66fa03719f48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocostudio\TimelineAction\trigger">
       <UniqueIdentifier>{0554a5b1-03a1-4d38-87a5-976dbe9a39d9}</UniqueIdentifier>
     </Filter>
@@ -237,6 +234,9 @@
     </Filter>
     <Filter Include="cocostudio\reader\WidgetReader\SpriteReader">
       <UniqueIdentifier>{9aee531c-f935-4836-bf84-be42e78e38bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3d\audioengine">
+      <UniqueIdentifier>{e916e2b4-0a6e-4d25-8b36-66fa03719f48}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1211,16 +1211,16 @@
       <Filter>ui\UIWidgets</Filter>
     </ClCompile>
     <ClCompile Include="..\audio\AudioEngine.cpp">
-      <Filter>audioengine</Filter>
+      <Filter>3d\audioengine</Filter>
     </ClCompile>
     <ClCompile Include="..\audio\win32\AudioCache.cpp">
-      <Filter>audioengine</Filter>
+      <Filter>3d\audioengine</Filter>
     </ClCompile>
     <ClCompile Include="..\audio\win32\AudioEngine-win32.cpp">
-      <Filter>audioengine</Filter>
+      <Filter>3d\audioengine</Filter>
     </ClCompile>
     <ClCompile Include="..\audio\win32\AudioPlayer.cpp">
-      <Filter>audioengine</Filter>
+      <Filter>3d\audioengine</Filter>
     </ClCompile>
     <ClCompile Include="..\editor-support\cocostudio\ActionTimeline\CCNodeReader.cpp" />
     <ClCompile Include="..\editor-support\cocostudio\ActionTimeline\CSLoader.cpp">
@@ -2436,16 +2436,16 @@
       <Filter>ui\UIWidgets</Filter>
     </ClInclude>
     <ClInclude Include="..\audio\include\AudioEngine.h">
-      <Filter>audioengine</Filter>
+      <Filter>3d\audioengine</Filter>
     </ClInclude>
     <ClInclude Include="..\audio\win32\AudioCache.h">
-      <Filter>audioengine</Filter>
+      <Filter>3d\audioengine</Filter>
     </ClInclude>
     <ClInclude Include="..\audio\win32\AudioEngine-win32.h">
-      <Filter>audioengine</Filter>
+      <Filter>3d\audioengine</Filter>
     </ClInclude>
     <ClInclude Include="..\audio\win32\AudioPlayer.h">
-      <Filter>audioengine</Filter>
+      <Filter>3d\audioengine</Filter>
     </ClInclude>
     <ClInclude Include="..\editor-support\cocostudio\ActionTimeline\CCNodeReader.h" />
     <ClInclude Include="..\editor-support\cocostudio\ActionTimeline\CSLoader.h">
