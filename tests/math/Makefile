@@ -57,7 +57,7 @@ LDFLAGS = \
     -L../../libraries/cor_type/proj.gcc/ -lcor_type \
     -L../../libraries/cor_system/proj.gcc/ -lcor_system \
     -L../../libraries/cor_mruby_interface/proj.gcc/ -lcor_mruby_interface \
-    -L/opt/rh/devtoolset-2/root/usr/lib/gcc/x86_64-redhat-linux/4.8.2/
+    #-L/opt/rh/devtoolset-2/root/usr/lib/gcc/x86_64-redhat-linux/4.8.2/
 ARFLAGS = crsv
 
 ifneq ($(PROFILING), )

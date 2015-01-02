@@ -1,4 +1,4 @@
 #define BOOST_TEST_MAIN
-#include </usr/include/fenv.h>
+extern int putenv(char*);
 #include <boost/test/included/unit_test.hpp>
 
