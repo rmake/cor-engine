@@ -721,18 +721,27 @@ namespace cor
             itnl->parabora_h = (dp).get_magnitude() * 0.75f;
             std::shared_ptr<Tmp> tmp = std::make_shared<Tmp>();
 
-            if(itnl->walks.size() > 0 && dp.get_magnitude() > 0.0f)
+            if(itnl->move_first_callback)
             {
-                RFloat tha = atan2f(dp.y, -dp.x);
-                auto th = (static_cast<int>((tha + PI * 1.5f) * 8 / (2 * PI) + 0.5f) + 1) % 8;
-                if(itnl->past_th != th)
-                {
-                    start_animation(cocos2d::Animate::create(itnl->walks.at(th)));
-                    flip_on_right(th);
-					set_past_th(th);
-                }
-
+                itnl->move_first_callback(this->shared_from_this(), tp);
             }
+
+            auto animation_func = [=](type::Vector2F dp){
+                if(itnl->walks.size() > 0 && dp.get_magnitude() > 0.0f)
+                {
+                    RFloat tha = atan2f(dp.y, -dp.x);
+                    auto th = (static_cast<int>((tha + PI * 1.5f) * 8 / (2 * PI) + 0.5f) + 1) % 8;
+                    if(itnl->past_th != th)
+                    {
+                        start_animation(cocos2d::Animate::create(itnl->walks.at(th)));
+                        flip_on_right(th);
+                        set_past_th(th);
+                    }
+
+                }
+            };
+            
+            animation_func(dp);
 
             if(itnl->move_warp)
             {
@@ -786,6 +795,12 @@ namespace cor
                 if(auto og = itnl->object_group.lock())
                 {
                     auto p = tp;
+
+                    if(itnl->move_target_filter_callback)
+                    {
+                        p = itnl->move_target_filter_callback(this->shared_from_this(), p);
+                    }
+
                     auto cp = get_position();
                     auto dp = p - cp;
                     auto d = dp.get_magnitude();
@@ -793,6 +808,8 @@ namespace cor
                     n.normalize();
                     auto dv = (velocity * og->get_dt());
                     auto mv = n * dv;
+
+                    animation_func(dp);
 
                     auto np = mv + cp;
                     if(mv.get_magnitude() < d)
@@ -947,6 +964,28 @@ namespace cor
                 itnl->current_move_action->stop();
                 itnl->current_move_action.reset();
             }
+        }
+
+        void RtsObject::set_up_spacing_move()
+        {
+            struct Tmp
+            {
+                type::Vector2F p;
+
+            };
+
+            auto tmp = std::make_shared<Tmp>();
+
+            this->set_move_first_callback([=](RtsObjectSP obj, type::Vector2F p){
+                tmp->p = p;
+
+            });
+            this->set_move_target_filter_callback([=](RtsObjectSP obj, type::Vector2F p){
+                
+
+                return p;
+            });
+
         }
 
         void RtsObject::stop_animation()
