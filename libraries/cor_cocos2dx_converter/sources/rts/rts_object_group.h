@@ -32,6 +32,9 @@ namespace cor
             void set_dt(RFloat dt);
             RFloat get_dt();
 
+            void set_debug_draw_node(cocos2d::DrawNode* debug_draw_node);
+            cocos2d::DrawNode* get_debug_draw_node();
+
             RInt32 get_internal_state();
 
             RtsObjectSP search_from_node(cocos2d::Node* node);

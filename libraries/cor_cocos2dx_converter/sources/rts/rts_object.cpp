@@ -971,17 +971,168 @@ namespace cor
             struct Tmp
             {
                 type::Vector2F p;
-
+                std::vector<RtsObjectWP> objects;
             };
 
             auto tmp = std::make_shared<Tmp>();
+            static const RFloat range = 64.0f;
 
             this->set_move_first_callback([=](RtsObjectSP obj, type::Vector2F p){
+
                 tmp->p = p;
+                tmp->objects.clear();
+                
+
+                auto o = this->shared_from_this();
+
+                auto og = o->get_object_group();
+                auto& contact_pair = og->ref_contact_pair_table();
+                auto collision = og->get_collision();
+                auto m = o->itnl->node_ref.get_transform();
+                auto cp = o->get_position();
+                m.set_o_vec(type::Vector3F(cp));
+
+                auto r = o->get_node_ref();
+
+                auto id0 = r.get_type_id();
+
+                RFloat rsz = 64.0f;
+
+                if(r.is_box())
+                {
+                    auto box = r.get_box();
+                    box.box.p.x -= rsz;
+                    box.box.p.y -= rsz;
+                    box.box.w.x += rsz * 2;
+                    box.box.w.y += rsz * 2;
+
+                    if(false)
+                    {
+                        auto debug_draw_node = og->get_debug_draw_node();
+
+                        if(debug_draw_node)
+                        {
+                            auto a = box.get_vertices();
+                            RSize i, isz;
+
+                            auto tr = og->get_collision()->get_transform_to_render();
+                            for(auto& v : a)
+                            {
+                                v = tr.transform(type::Vector3F(v.x, v.y, 0.0f)).xy();
+                            }
+
+                            isz = a.size();
+                            for(i = 0; i < isz; i++)
+                            {
+                                auto& v0 = a[i];
+                                auto& v1 = a[(i + 1) % isz];
+                                debug_draw_node->drawSegment(cocos2d::Vec2(v0.x, v0.y), cocos2d::Vec2(v1.x, v1.y), 1.0f, cocos2d::Color4F(1.0f, 0.0f, 0.0f, 0.5f));
+                            }
+
+                        }
+                        
+                    }
+
+                    collision->find_o_box(m, id0, box.box, [&](cocos2d::Node* n1){
+                        
+                        auto o1 = og->search_from_node(n1);
+                        if(!o1 || o == o1)
+                        {
+                            return;
+                        }
+                        tmp->objects.push_back(o1);
+                    });
+                }
 
             });
             this->set_move_target_filter_callback([=](RtsObjectSP obj, type::Vector2F p){
                 
+                auto cp = obj->get_position();
+                auto dp = p - cp;
+
+                if(dp.get_magnitude() < range || tmp->objects.empty())
+                {
+                    return p;
+                }
+                else
+                {
+                    
+                    auto o = this->shared_from_this();
+                    auto og = o->get_object_group();
+
+                    type::Vector2F cp1_sum;
+                    RSize sz = 0;
+                    type::Vector2F cp1c;
+                    RFloat w = 0.0f;
+
+                    for(auto o1w : tmp->objects)
+                    {
+                        if(auto o1 = o1w.lock())
+                        {
+                            if(!o1->is_valid())
+                            {
+                                continue;
+                            }
+                            auto cp1 = o1->get_position();
+                            auto dcp = cp - cp1;
+                           
+                            auto cp1d = dcp.get_magnitude();
+                            if(cp1d < range)
+                            { 
+
+                                if(false)
+                                {
+                                    auto debug_draw_node = og->get_debug_draw_node();
+
+                                    if(debug_draw_node)
+                                    {
+                                        auto tr = og->get_collision()->get_transform_to_render();
+
+                                        auto v0 = tr.transform(type::Vector3F(cp.x, cp.y, 0.0f)).xy();
+                                        auto v1 = tr.transform(type::Vector3F(cp1.x, cp1.y, 0.0f)).xy();
+                                        debug_draw_node->drawSegment(
+                                            cocos2d::Vec2(v0.x, v0.y),
+                                            cocos2d::Vec2(v1.x, v1.y),
+                                            1.0f, cocos2d::Color4F(1.0f, 0.5f, 0.5f, 1.0f));
+                                    }
+
+                                }
+
+                                w += (range - cp1d) / range;
+
+                                cp1_sum += cp1;
+                                sz++;
+                            }
+                        }
+                    }
+
+                    if(sz <= 0)
+                    {
+                        return p;
+                    }
+
+                    cp1c = cp1_sum * (1.0f / sz);
+                    w *= (1.0f / sz) * 3.0f;
+                    auto dp1 = cp - cp1c;
+
+                    auto ndp = dp;
+                    ndp.normalize();
+
+                    auto ndp1 = dp1;
+                    while(!ndp1.normalize())
+                    {
+                        ndp1.x += 1.0f;
+                    }
+
+                    auto cdp = ndp + ndp1 * w;
+                    auto ncdp = cdp;
+                    while(!ncdp.normalize())
+                    {
+                        ncdp.x += 1.0f;
+                    }
+
+                    return cp + ncdp * 100.0f;
+                }
 
                 return p;
             });

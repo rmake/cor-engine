@@ -1,6 +1,7 @@
 
 #include "rts_object_group.h"
 #include "cor_data_structure/sources/geometry/r_tree_pool_tmpl_impl.h"
+#include "base/CCRefPtr.h"
 
 #include <boost/multi_index_container.hpp>
 #include <boost/multi_index/sequenced_index.hpp>
@@ -30,6 +31,7 @@ namespace cor
             RFloat dt;
             type::Matrix4x4F transform_to_render;
             RInt32 state;
+            cocos2d::RefPtr<cocos2d::DrawNode> debug_draw_node;
 
             RtsObjectGroupItnl()
             {
@@ -93,6 +95,16 @@ namespace cor
         RFloat RtsObjectGroup::get_dt()
         {
             return itnl->dt;
+        }
+
+        void RtsObjectGroup::set_debug_draw_node(cocos2d::DrawNode* debug_draw_node)
+        {
+            itnl->debug_draw_node = debug_draw_node;
+        }
+
+        cocos2d::DrawNode* RtsObjectGroup::get_debug_draw_node()
+        {
+            return itnl->debug_draw_node.get();
         }
 
         RInt32 RtsObjectGroup::get_internal_state()
