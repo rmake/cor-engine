@@ -708,6 +708,8 @@ namespace cor
                 RInt32 ct;
                 RBool move_ended;
                 RBool first;
+                type::Vector2F dp;
+                type::Vector2F st_cp;
 
                 Tmp()
                 {
@@ -716,15 +718,8 @@ namespace cor
                     first = rtrue;
                 }
             };
-            auto st_cp = get_position();
-            auto dp = tp - st_cp;
-            itnl->parabora_h = (dp).get_magnitude() * 0.75f;
-            std::shared_ptr<Tmp> tmp = std::make_shared<Tmp>();
 
-            if(itnl->move_first_callback)
-            {
-                itnl->move_first_callback(this->shared_from_this(), tp);
-            }
+            std::shared_ptr<Tmp> tmp = std::make_shared<Tmp>();
 
             auto animation_func = [=](type::Vector2F dp){
                 if(itnl->walks.size() > 0 && dp.get_magnitude() > 0.0f)
@@ -740,26 +735,45 @@ namespace cor
 
                 }
             };
-            
-            animation_func(dp);
 
-            if(itnl->move_warp)
-            {
-                auto dcv = convert_to_render();
-                itnl->old_render_pos = dcv;
-                itnl->new_render_pos = dcv;
-                itnl->move_warp = false;
-            }
+            
             auto a = add_action([=](RtsObjectActionSP a, RtsObjectSP o){
+
+                type::Vector2F dp;
 
                 if(tmp->first)
                 {
+                    auto st_cp = get_position();
+                    tmp->dp = tp - st_cp;
+                    dp = tmp->dp;
+                    tmp->st_cp = st_cp;
+                    itnl->parabora_h = (dp).get_magnitude() * 0.75f;
+                    
+                    if(itnl->move_first_callback)
+                    {
+                        itnl->move_first_callback(this->shared_from_this(), tp);
+                    }
+
+                    animation_func(dp);
+
+                    if(itnl->move_warp)
+                    {
+                        auto dcv = convert_to_render();
+                        itnl->old_render_pos = dcv;
+                        itnl->new_render_pos = dcv;
+                        itnl->move_warp = false;
+                    }
+
                     itnl->new_render_pos = convert_to_render(get_position() - dp * 0.0001f);
                     itnl->mv_t = 0.0f;
                     itnl->new_mv_t = -0.0001f;
                     tmp->first = rfalse;
                     return;
 
+                }
+                else
+                {
+                    dp = tmp->dp;
                 }
 
                 if(tmp->move_ended)
@@ -851,6 +865,7 @@ namespace cor
                         np = nnp;
 
                     }
+                    auto st_cp = tmp->st_cp;
                     itnl->mv_t = (np - st_cp).get_magnitude() / (tp - st_cp).get_magnitude();
                 }
                 
@@ -1112,7 +1127,7 @@ namespace cor
                     }
 
                     cp1c = cp1_sum * (1.0f / sz);
-                    w *= (1.0f / sz) * 3.0f;
+                    w *= (1.0f / sz) * 2.0f;
                     auto dp1 = cp - cp1c;
 
                     auto ndp = dp;

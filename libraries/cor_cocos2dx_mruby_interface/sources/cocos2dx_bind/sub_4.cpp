@@ -1872,6 +1872,8 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_set_contact_pair(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, int a0, int a1, int a2);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_solve_contact_1(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, int a0, int a1, std::weak_ptr<cor::cocos2dx_converter::RtsObject> a2, std::weak_ptr<cor::cocos2dx_converter::RtsObject> a3);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_solve_contact_2(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_delay_call(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, float a0, mrubybind::FuncPtr<void ()> a1);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_poll_delay_call(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_poll(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_set_wall_kind(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c, int a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_set_index_convert(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c, cor::type::Vector2Tmpl<float> a0, cor::type::Vector2Tmpl<float> a1);
@@ -10455,6 +10457,8 @@ namespace cor
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "set_contact_pair", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_set_contact_pair);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "solve_contact_1", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_solve_contact_1);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "solve_contact_2", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_solve_contact_2);
+            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "delay_call", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_delay_call);
+            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "poll_delay_call", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_poll_delay_call);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectGroup", "poll", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_poll);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectCostGridSpace", "set_wall_kind", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_set_wall_kind);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectCostGridSpace", "set_index_convert", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_set_index_convert);

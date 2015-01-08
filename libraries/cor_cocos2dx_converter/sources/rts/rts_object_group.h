@@ -18,6 +18,7 @@ namespace cor
             std::unique_ptr<RtsObjectGroupItnl> itnl;
         
         public:
+            typedef std::function<void()> NoArgCallback;
         
             RtsObjectGroup();
             RtsObjectGroup(Collision2dNodeSP collision);
@@ -48,6 +49,9 @@ namespace cor
             void solve_contact(RInt32 id0, RInt32 id1, const RtsObjectSP& o0, const RtsObjectSP& o1);
             void solve_contact();
 
+            void delay_call(RFloat interval, NoArgCallback end_callback);
+
+            void poll_delay_call();
             void poll();
         };
     }
