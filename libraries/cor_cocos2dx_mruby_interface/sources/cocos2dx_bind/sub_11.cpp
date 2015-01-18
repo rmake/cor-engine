@@ -1850,6 +1850,7 @@ namespace cor
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectAction> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_interval_call_no_arg(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, float a0, mrubybind::FuncPtr<void ()> a1);
         std::weak_ptr<cor::cocos2dx_converter::RtsObjectAction> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_interval_call(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, float a0, mrubybind::FuncPtr<void (std::weak_ptr<cor::cocos2dx_converter::RtsObject>)> a1);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_move(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_up_spacing_move(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_flip_on_right(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_stop_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_start_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate> a0);
@@ -1861,6 +1862,8 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_release_object(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_set_dt(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, float a0);
         float Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_get_dt(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_set_debug_draw_node(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a0);
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_get_debug_draw_node(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
         int Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_get_internal_state(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
         std::weak_ptr<cor::cocos2dx_converter::RtsObject> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_search_from_node(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0);
         std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_get_collision(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
@@ -1869,6 +1872,8 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_set_contact_pair(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, int a0, int a1, int a2);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_solve_contact_1(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, int a0, int a1, std::weak_ptr<cor::cocos2dx_converter::RtsObject> a2, std::weak_ptr<cor::cocos2dx_converter::RtsObject> a3);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_solve_contact_2(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_delay_call(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c, float a0, mrubybind::FuncPtr<void ()> a1);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_poll_delay_call(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectGroup_poll(std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_set_wall_kind(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c, int a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_set_index_convert(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c, cor::type::Vector2Tmpl<float> a0, cor::type::Vector2Tmpl<float> a1);

@@ -59,7 +59,7 @@ a.each do |fn|
   
   ca = img.get_pixels 0, 0, img.columns, img.rows
   ca = ca.map do |pixel|
-    if pixel.opacity > 65535 - 256 * 10
+    if pixel.opacity > 65535 - 256 * 40
       pixel.opacity = 65535
     end
     pixel

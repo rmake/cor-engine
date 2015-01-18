@@ -708,6 +708,8 @@ namespace cor
                 RInt32 ct;
                 RBool move_ended;
                 RBool first;
+                type::Vector2F dp;
+                type::Vector2F st_cp;
 
                 Tmp()
                 {
@@ -716,41 +718,62 @@ namespace cor
                     first = rtrue;
                 }
             };
-            auto st_cp = get_position();
-            auto dp = tp - st_cp;
-            itnl->parabora_h = (dp).get_magnitude() * 0.75f;
+
             std::shared_ptr<Tmp> tmp = std::make_shared<Tmp>();
 
-            if(itnl->walks.size() > 0 && dp.get_magnitude() > 0.0f)
-            {
-                RFloat tha = atan2f(dp.y, -dp.x);
-                auto th = (static_cast<int>((tha + PI * 1.5f) * 8 / (2 * PI) + 0.5f) + 1) % 8;
-                if(itnl->past_th != th)
+            auto animation_func = [=](type::Vector2F dp){
+                if(itnl->walks.size() > 0 && dp.get_magnitude() > 0.0f)
                 {
-                    start_animation(cocos2d::Animate::create(itnl->walks.at(th)));
-                    flip_on_right(th);
-					set_past_th(th);
+                    RFloat tha = atan2f(dp.y, -dp.x);
+                    auto th = (static_cast<int>((tha + PI * 1.5f) * 8 / (2 * PI) + 0.5f) + 1) % 8;
+                    if(itnl->past_th != th)
+                    {
+                        start_animation(cocos2d::Animate::create(itnl->walks.at(th)));
+                        flip_on_right(th);
+                        set_past_th(th);
+                    }
+
                 }
+            };
 
-            }
-
-            if(itnl->move_warp)
-            {
-                auto dcv = convert_to_render();
-                itnl->old_render_pos = dcv;
-                itnl->new_render_pos = dcv;
-                itnl->move_warp = false;
-            }
+            
             auto a = add_action([=](RtsObjectActionSP a, RtsObjectSP o){
+
+                type::Vector2F dp;
 
                 if(tmp->first)
                 {
+                    auto st_cp = get_position();
+                    tmp->dp = tp - st_cp;
+                    dp = tmp->dp;
+                    tmp->st_cp = st_cp;
+                    itnl->parabora_h = (dp).get_magnitude() * 0.75f;
+                    
+                    if(itnl->move_first_callback)
+                    {
+                        itnl->move_first_callback(this->shared_from_this(), tp);
+                    }
+
+                    animation_func(dp);
+
+                    if(itnl->move_warp)
+                    {
+                        auto dcv = convert_to_render();
+                        itnl->old_render_pos = dcv;
+                        itnl->new_render_pos = dcv;
+                        itnl->move_warp = false;
+                    }
+
                     itnl->new_render_pos = convert_to_render(get_position() - dp * 0.0001f);
                     itnl->mv_t = 0.0f;
                     itnl->new_mv_t = -0.0001f;
                     tmp->first = rfalse;
                     return;
 
+                }
+                else
+                {
+                    dp = tmp->dp;
                 }
 
                 if(tmp->move_ended)
@@ -786,6 +809,12 @@ namespace cor
                 if(auto og = itnl->object_group.lock())
                 {
                     auto p = tp;
+
+                    if(itnl->move_target_filter_callback)
+                    {
+                        p = itnl->move_target_filter_callback(this->shared_from_this(), p);
+                    }
+
                     auto cp = get_position();
                     auto dp = p - cp;
                     auto d = dp.get_magnitude();
@@ -793,6 +822,8 @@ namespace cor
                     n.normalize();
                     auto dv = (velocity * og->get_dt());
                     auto mv = n * dv;
+
+                    animation_func(dp);
 
                     auto np = mv + cp;
                     if(mv.get_magnitude() < d)
@@ -834,6 +865,7 @@ namespace cor
                         np = nnp;
 
                     }
+                    auto st_cp = tmp->st_cp;
                     itnl->mv_t = (np - st_cp).get_magnitude() / (tp - st_cp).get_magnitude();
                 }
                 
@@ -947,6 +979,179 @@ namespace cor
                 itnl->current_move_action->stop();
                 itnl->current_move_action.reset();
             }
+        }
+
+        void RtsObject::set_up_spacing_move()
+        {
+            struct Tmp
+            {
+                type::Vector2F p;
+                std::vector<RtsObjectWP> objects;
+            };
+
+            auto tmp = std::make_shared<Tmp>();
+            static const RFloat range = 64.0f;
+
+            this->set_move_first_callback([=](RtsObjectSP obj, type::Vector2F p){
+
+                tmp->p = p;
+                tmp->objects.clear();
+                
+
+                auto o = this->shared_from_this();
+
+                auto og = o->get_object_group();
+                auto& contact_pair = og->ref_contact_pair_table();
+                auto collision = og->get_collision();
+                auto m = o->itnl->node_ref.get_transform();
+                auto cp = o->get_position();
+                m.set_o_vec(type::Vector3F(cp));
+
+                auto r = o->get_node_ref();
+
+                auto id0 = r.get_type_id();
+
+                RFloat rsz = 64.0f;
+
+                if(r.is_box())
+                {
+                    auto box = r.get_box();
+                    box.box.p.x -= rsz;
+                    box.box.p.y -= rsz;
+                    box.box.w.x += rsz * 2;
+                    box.box.w.y += rsz * 2;
+
+                    if(false)
+                    {
+                        auto debug_draw_node = og->get_debug_draw_node();
+
+                        if(debug_draw_node)
+                        {
+                            auto a = box.get_vertices();
+                            RSize i, isz;
+
+                            auto tr = og->get_collision()->get_transform_to_render();
+                            for(auto& v : a)
+                            {
+                                v = tr.transform(type::Vector3F(v.x, v.y, 0.0f)).xy();
+                            }
+
+                            isz = a.size();
+                            for(i = 0; i < isz; i++)
+                            {
+                                auto& v0 = a[i];
+                                auto& v1 = a[(i + 1) % isz];
+                                debug_draw_node->drawSegment(cocos2d::Vec2(v0.x, v0.y), cocos2d::Vec2(v1.x, v1.y), 1.0f, cocos2d::Color4F(1.0f, 0.0f, 0.0f, 0.5f));
+                            }
+
+                        }
+                        
+                    }
+
+                    collision->find_o_box(m, id0, box.box, [&](cocos2d::Node* n1){
+                        
+                        auto o1 = og->search_from_node(n1);
+                        if(!o1 || o == o1)
+                        {
+                            return;
+                        }
+                        tmp->objects.push_back(o1);
+                    });
+                }
+
+            });
+            this->set_move_target_filter_callback([=](RtsObjectSP obj, type::Vector2F p){
+                
+                auto cp = obj->get_position();
+                auto dp = p - cp;
+
+                if(dp.get_magnitude() < range || tmp->objects.empty())
+                {
+                    return p;
+                }
+                else
+                {
+                    
+                    auto o = this->shared_from_this();
+                    auto og = o->get_object_group();
+
+                    type::Vector2F cp1_sum;
+                    RSize sz = 0;
+                    type::Vector2F cp1c;
+                    RFloat w = 0.0f;
+
+                    for(auto o1w : tmp->objects)
+                    {
+                        if(auto o1 = o1w.lock())
+                        {
+                            if(!o1->is_valid())
+                            {
+                                continue;
+                            }
+                            auto cp1 = o1->get_position();
+                            auto dcp = cp - cp1;
+                           
+                            auto cp1d = dcp.get_magnitude();
+                            if(cp1d < range)
+                            { 
+
+                                if(false)
+                                {
+                                    auto debug_draw_node = og->get_debug_draw_node();
+
+                                    if(debug_draw_node)
+                                    {
+                                        auto tr = og->get_collision()->get_transform_to_render();
+
+                                        auto v0 = tr.transform(type::Vector3F(cp.x, cp.y, 0.0f)).xy();
+                                        auto v1 = tr.transform(type::Vector3F(cp1.x, cp1.y, 0.0f)).xy();
+                                        debug_draw_node->drawSegment(
+                                            cocos2d::Vec2(v0.x, v0.y),
+                                            cocos2d::Vec2(v1.x, v1.y),
+                                            1.0f, cocos2d::Color4F(1.0f, 0.5f, 0.5f, 1.0f));
+                                    }
+
+                                }
+
+                                w += (range - cp1d) / range;
+
+                                cp1_sum += cp1;
+                                sz++;
+                            }
+                        }
+                    }
+
+                    if(sz <= 0)
+                    {
+                        return p;
+                    }
+
+                    cp1c = cp1_sum * (1.0f / sz);
+                    w *= (1.0f / sz) * 2.0f;
+                    auto dp1 = cp - cp1c;
+
+                    auto ndp = dp;
+                    ndp.normalize();
+
+                    auto ndp1 = dp1;
+                    while(!ndp1.normalize())
+                    {
+                        ndp1.x += 1.0f;
+                    }
+
+                    auto cdp = ndp + ndp1 * w;
+                    auto ncdp = cdp;
+                    while(!ncdp.normalize())
+                    {
+                        ncdp.x += 1.0f;
+                    }
+
+                    return cp + ncdp * 100.0f;
+                }
+
+                return p;
+            });
+
         }
 
         void RtsObject::stop_animation()

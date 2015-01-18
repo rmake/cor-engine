@@ -1,6 +1,7 @@
 
 #include "rts_object_group.h"
 #include "cor_data_structure/sources/geometry/r_tree_pool_tmpl_impl.h"
+#include "base/CCRefPtr.h"
 
 #include <boost/multi_index_container.hpp>
 #include <boost/multi_index/sequenced_index.hpp>
@@ -21,20 +22,33 @@ namespace cor
             boost::multi_index::sequenced<>
             > > RtsObjectTable;
 
+        typedef std::pair<RInt32, std::shared_ptr<RtsObjectGroup::NoArgCallback> > RtsObjectDelayCallTableItem;
+        typedef boost::multi_index::multi_index_container<RtsObjectDelayCallTableItem,
+            boost::multi_index::indexed_by<
+            boost::multi_index::ordered_unique<
+            boost::multi_index::member<RtsObjectDelayCallTableItem, std::shared_ptr<RtsObjectGroup::NoArgCallback>, 
+                &RtsObjectDelayCallTableItem::second> >,
+            boost::multi_index::sequenced<>
+            > > RtsObjectDelayCallTable;
+
         struct RtsObjectGroupItnl
         {
             Collision2dNodeSP collision;
             RtsObjectTable object_table;
             RtsObjectTable::nth_index<1>::type::iterator object_table_past_iteration;
             type::Collision2dGroupPairTable contact_group_pair_table;
+            RtsObjectDelayCallTable delay_call_table;
             RFloat dt;
             type::Matrix4x4F transform_to_render;
             RInt32 state;
+            cocos2d::RefPtr<cocos2d::DrawNode> debug_draw_node;
+            RInt32 frame_index;
 
             RtsObjectGroupItnl()
             {
                 dt = 1.0f / 30.0f;
                 state = 0;
+                frame_index = 0;
             }
         };
 
@@ -93,6 +107,16 @@ namespace cor
         RFloat RtsObjectGroup::get_dt()
         {
             return itnl->dt;
+        }
+
+        void RtsObjectGroup::set_debug_draw_node(cocos2d::DrawNode* debug_draw_node)
+        {
+            itnl->debug_draw_node = debug_draw_node;
+        }
+
+        cocos2d::DrawNode* RtsObjectGroup::get_debug_draw_node()
+        {
+            return itnl->debug_draw_node.get();
         }
 
         RInt32 RtsObjectGroup::get_internal_state()
@@ -301,12 +325,39 @@ namespace cor
 
         }
 
+        void RtsObjectGroup::delay_call(RFloat interval, NoArgCallback end_callback)
+        {
+            RInt32 ct = std::max(static_cast<RInt32>(interval / 0.1), 0) + 1;
+            itnl->delay_call_table.insert(RtsObjectDelayCallTableItem(itnl->frame_index + ct, std::make_shared<RtsObjectGroup::NoArgCallback>(end_callback)));
+        }
+
+        void RtsObjectGroup::poll_delay_call()
+        {
+            auto& table = itnl->delay_call_table.get<0>();
+            for(auto i = itnl->delay_call_table.get<1>().begin(); i != itnl->delay_call_table.get<1>().end();)
+            {
+                auto ti = i;
+                ti++;
+                if(i->first == itnl->frame_index)
+                {
+                    (*i->second.get())();
+
+                    table.erase(i->second);
+                }
+                i = ti;
+            }
+        }
+
         void RtsObjectGroup::poll()
         {
             auto& groups = itnl->collision->ref_groups();
 
             if(itnl->state == 0)
             {
+                poll_delay_call();
+
+                itnl->frame_index++;
+
                 for(auto& g : groups)
                 {
                     auto tp = g.second.get_tree_pool();
@@ -396,6 +447,8 @@ namespace cor
                 }
                 i = ti;
             }
+
+            
 
         }
 
