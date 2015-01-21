@@ -56,7 +56,7 @@ resource_only = false
 
 ma.each do |v|
   if v == "--resource-only"
-    resource_only = true
+    #resource_only = true
   end
 end
 
@@ -83,6 +83,13 @@ end
 unless resource_only
 
   destination_projects = "../cor_lib_test_main/"
+  
+  source_projects = "default_copy_source/project_file"
+  puts "source_projects #{source_projects}"
+  if Dir.exists? "default_copy_source/project_file"
+    puts "project_file copy #{source_projects} -> #{destination_projects}"
+    FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
+  end
   
   CorProject.includes.each do |inc|
     source_projects = "#{inc}/project_file"
