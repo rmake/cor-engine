@@ -110,6 +110,13 @@ unless resource_only
   end
 end
 
+find_path = "../../licenses/"
+list += Cor.u.file_list(find_path).map{|fn|
+  {
+    :n => fn.gsub("#{find_path}", "licenses/"),
+    :fn => fn,
+  }
+}
 
 CorProject.includes.each do |inc_path|
   find_path = "#{inc_path}/resources/"
