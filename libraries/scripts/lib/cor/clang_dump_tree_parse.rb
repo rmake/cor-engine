@@ -12,6 +12,7 @@ module COR
       attr_accessor :class_templates
       attr_accessor :typedefs
       attr_accessor :methods
+      attr_accessor :enum_constants
       
       attr_accessor :typedef_table
       
@@ -77,6 +78,20 @@ module COR
           s += "  template_args = [#{t[:template_args].join(", ")}]\n"
           s += "  template_public_start = #{t[:public_start]}\n"
           s += "  template_fields = #{t[:fields].map{|v| v[:field_name] + ':' + v[:field_type][:val] }.join(',')}\n"
+          s += "]\n"
+          str << s
+        end
+        str.join('')
+      end
+      
+      def print_enum_constants
+        str = []
+        
+        self.enum_constants.each do |t|
+          s = ""
+          s += "[\n"
+          s += "  name = #{t[:name]}\n"
+          s += "  type = #{t[:type]}\n"
           s += "]\n"
           str << s
         end
@@ -261,6 +276,7 @@ module COR
       class_pattern = /(class (\S+) definition)|(struct (\S+) definition)/
       namespace = []
       class_templates = []
+      enum_constants = []
       traverse_tree tree do |t|
         match = t[:line].match(class_pattern)
         a = parse_token t[:line]
@@ -321,6 +337,10 @@ module COR
           using_method = a.last.split '::'
           t[:parent][:using_method] ||= []
           t[:parent][:using_method] << using_method
+        elsif a[0] == "EnumConstantDecl"
+          t[:name] = a[-2]
+          t[:type] = self.parse_separated(a[-1])
+          enum_constants << t
         end
         
         true
@@ -506,6 +526,7 @@ module COR
       td.typedefs = typedefs
       td.methods = methods
       td.class_templates = class_templates
+      td.enum_constants = enum_constants
       
       td.gen_typedef_table
       

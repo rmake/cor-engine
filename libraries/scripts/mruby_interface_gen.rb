@@ -88,6 +88,10 @@ def gen_code option
   class_templates = tree.print_class_templates
   Utility.file_write "log/#{option[:name]}/tree_class_templates.log", class_templates
   
+  enum_constants = tree.print_enum_constants
+  Utility.file_write "log/#{option[:name]}/tree_enum_constants.log", enum_constants
+  
+  
   require 'gen_info/mruby_interface'
   
   target_classes = MRUBY_INTERFACE_TAGET_CLASSES
