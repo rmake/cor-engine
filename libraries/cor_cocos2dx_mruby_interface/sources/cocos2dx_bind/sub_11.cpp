@@ -50,6 +50,15 @@ namespace cor
         cocos2d::Vec3 Cocos2dxBind_Vec3_create_2(const float * a0);
         cocos2d::Vec3 Cocos2dxBind_Vec3_create_3(cocos2d::Vec3 a0, cocos2d::Vec3 a1);
         cocos2d::Vec3 Cocos2dxBind_Vec3_create_4(cocos2d::Vec3 a0);
+        cocos2d::Vec4 Cocos2dxBind_Vec4_create_0();
+        cocos2d::Vec4 Cocos2dxBind_Vec4_create_1(float a0, float a1, float a2, float a3);
+        cocos2d::Vec4 Cocos2dxBind_Vec4_create_2(const float * a0);
+        cocos2d::Vec4 Cocos2dxBind_Vec4_create_3(cocos2d::Vec4 a0, cocos2d::Vec4 a1);
+        cocos2d::Vec4 Cocos2dxBind_Vec4_create_4(cocos2d::Vec4 a0);
+        cocos2d::Mat4 Cocos2dxBind_Mat4_create_0();
+        cocos2d::Mat4 Cocos2dxBind_Mat4_create_1(float a0, float a1, float a2, float a3, float a4, float a5, float a6, float a7, float a8, float a9, float a10, float a11, float a12, float a13, float a14, float a15);
+        cocos2d::Mat4 Cocos2dxBind_Mat4_create_2(const float * a0);
+        cocos2d::Mat4 Cocos2dxBind_Mat4_create_3(cocos2d::Mat4 a0);
         cocos2d::Size Cocos2dxBind_Size_create_0();
         cocos2d::Size Cocos2dxBind_Size_create_1(float a0, float a1);
         cocos2d::Size Cocos2dxBind_Size_create_2(cocos2d::Size a0);
@@ -390,6 +399,66 @@ namespace cor
         cocos2d::Vec3 Cocos2dxBind_cocos2d__Vec3_operator__plus__0(cocos2d::Vec3 & a0, cocos2d::Vec3 a1);
         cocos2d::Vec3 Cocos2dxBind_cocos2d__Vec3_operator__minus__0(cocos2d::Vec3 & a0, cocos2d::Vec3 a1);
         cocos2d::Vec3 Cocos2dxBind_cocos2d__Vec3_operator__minus_self__0(cocos2d::Vec3 & a0);
+        cocos2d::Vec4 Cocos2dxBind_cocos2d__Vec4_from_color(unsigned int a0);
+        bool Cocos2dxBind_cocos2d__Vec4_is_zero(cocos2d::Vec4& c);
+        bool Cocos2dxBind_cocos2d__Vec4_is_one(cocos2d::Vec4& c);
+        float Cocos2dxBind_cocos2d__Vec4_angle(cocos2d::Vec4 a0, cocos2d::Vec4 a1);
+        void Cocos2dxBind_cocos2d__Vec4_add(cocos2d::Vec4& c, cocos2d::Vec4 a0);
+        void Cocos2dxBind_cocos2d__Vec4_clamp(cocos2d::Vec4& c, cocos2d::Vec4 a0, cocos2d::Vec4 a1);
+        float Cocos2dxBind_cocos2d__Vec4_distance(cocos2d::Vec4& c, cocos2d::Vec4 a0);
+        float Cocos2dxBind_cocos2d__Vec4_distance_squared(cocos2d::Vec4& c, cocos2d::Vec4 a0);
+        float Cocos2dxBind_cocos2d__Vec4_dot(cocos2d::Vec4& c, cocos2d::Vec4 a0);
+        float Cocos2dxBind_cocos2d__Vec4_dot_2(cocos2d::Vec4 a0, cocos2d::Vec4 a1);
+        float Cocos2dxBind_cocos2d__Vec4_length(cocos2d::Vec4& c);
+        float Cocos2dxBind_cocos2d__Vec4_length_squared(cocos2d::Vec4& c);
+        void Cocos2dxBind_cocos2d__Vec4_negate(cocos2d::Vec4& c);
+        void Cocos2dxBind_cocos2d__Vec4_normalize(cocos2d::Vec4& c);
+        cocos2d::Vec4 Cocos2dxBind_cocos2d__Vec4_get_normalized(cocos2d::Vec4& c);
+        void Cocos2dxBind_cocos2d__Vec4_scale(cocos2d::Vec4& c, float a0);
+        void Cocos2dxBind_cocos2d__Vec4_set_1(cocos2d::Vec4& c, float a0, float a1, float a2, float a3);
+        void Cocos2dxBind_cocos2d__Vec4_set_2(cocos2d::Vec4& c, const float * a0);
+        void Cocos2dxBind_cocos2d__Vec4_set_3(cocos2d::Vec4& c, cocos2d::Vec4 a0);
+        void Cocos2dxBind_cocos2d__Vec4_set_4(cocos2d::Vec4& c, cocos2d::Vec4 a0, cocos2d::Vec4 a1);
+        void Cocos2dxBind_cocos2d__Vec4_subtract(cocos2d::Vec4& c, cocos2d::Vec4 a0);
+        cocos2d::Vec4 Cocos2dxBind_cocos2d__Vec4_operator__asterisk__0(cocos2d::Vec4 & a0, float a1);
+        cocos2d::Vec4 Cocos2dxBind_cocos2d__Vec4_operator__plus__0(cocos2d::Vec4 & a0, cocos2d::Vec4 a1);
+        cocos2d::Vec4 Cocos2dxBind_cocos2d__Vec4_operator__minus__0(cocos2d::Vec4 & a0, cocos2d::Vec4 a1);
+        cocos2d::Vec4 Cocos2dxBind_cocos2d__Vec4_operator__minus_self__0(cocos2d::Vec4 & a0);
+        void Cocos2dxBind_cocos2d__Mat4_add_1(cocos2d::Mat4& c, float a0);
+        void Cocos2dxBind_cocos2d__Mat4_add_3(cocos2d::Mat4& c, cocos2d::Mat4 a0);
+        float Cocos2dxBind_cocos2d__Mat4_determinant(cocos2d::Mat4& c);
+        bool Cocos2dxBind_cocos2d__Mat4_get_rotation(cocos2d::Mat4& c, cocos2d::Quaternion * a0);
+        bool Cocos2dxBind_cocos2d__Mat4_inverse(cocos2d::Mat4& c);
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Mat4_get_inversed(cocos2d::Mat4& c);
+        bool Cocos2dxBind_cocos2d__Mat4_is_identity(cocos2d::Mat4& c);
+        void Cocos2dxBind_cocos2d__Mat4_multiply_1(cocos2d::Mat4& c, float a0);
+        void Cocos2dxBind_cocos2d__Mat4_multiply_4(cocos2d::Mat4& c, cocos2d::Mat4 a0);
+        void Cocos2dxBind_cocos2d__Mat4_negate(cocos2d::Mat4& c);
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Mat4_get_negated(cocos2d::Mat4& c);
+        void Cocos2dxBind_cocos2d__Mat4_rotate_1(cocos2d::Mat4& c, cocos2d::Quaternion a0);
+        void Cocos2dxBind_cocos2d__Mat4_rotate_3(cocos2d::Mat4& c, cocos2d::Vec3 a0, float a1);
+        void Cocos2dxBind_cocos2d__Mat4_rotate_x_1(cocos2d::Mat4& c, float a0);
+        void Cocos2dxBind_cocos2d__Mat4_rotate_y_1(cocos2d::Mat4& c, float a0);
+        void Cocos2dxBind_cocos2d__Mat4_rotate_z_1(cocos2d::Mat4& c, float a0);
+        void Cocos2dxBind_cocos2d__Mat4_scale_1(cocos2d::Mat4& c, float a0);
+        void Cocos2dxBind_cocos2d__Mat4_scale_3(cocos2d::Mat4& c, float a0, float a1, float a2);
+        void Cocos2dxBind_cocos2d__Mat4_scale_5(cocos2d::Mat4& c, cocos2d::Vec3 a0);
+        void Cocos2dxBind_cocos2d__Mat4_set_1(cocos2d::Mat4& c, float a0, float a1, float a2, float a3, float a4, float a5, float a6, float a7, float a8, float a9, float a10, float a11, float a12, float a13, float a14, float a15);
+        void Cocos2dxBind_cocos2d__Mat4_set_2(cocos2d::Mat4& c, const float * a0);
+        void Cocos2dxBind_cocos2d__Mat4_set_3(cocos2d::Mat4& c, cocos2d::Mat4 a0);
+        void Cocos2dxBind_cocos2d__Mat4_set_identity(cocos2d::Mat4& c);
+        void Cocos2dxBind_cocos2d__Mat4_set_zero(cocos2d::Mat4& c);
+        void Cocos2dxBind_cocos2d__Mat4_subtract(cocos2d::Mat4& c, cocos2d::Mat4 a0);
+        void Cocos2dxBind_cocos2d__Mat4_translate_1(cocos2d::Mat4& c, float a0, float a1, float a2);
+        void Cocos2dxBind_cocos2d__Mat4_translate_3(cocos2d::Mat4& c, cocos2d::Vec3 a0);
+        void Cocos2dxBind_cocos2d__Mat4_transpose(cocos2d::Mat4& c);
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Mat4_get_transposed(cocos2d::Mat4& c);
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Mat4_operator__asterisk__0(cocos2d::Mat4 & a0, cocos2d::Mat4 a1);
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__Mat4_operator__asterisk__1(cocos2d::Mat4 & a0, cocos2d::Vec3 a1);
+        cocos2d::Vec4 Cocos2dxBind_cocos2d__Mat4_operator__asterisk__2(cocos2d::Mat4 & a0, cocos2d::Vec4 a1);
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Mat4_operator__plus__0(cocos2d::Mat4 & a0, cocos2d::Mat4 a1);
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Mat4_operator__minus__0(cocos2d::Mat4 & a0, cocos2d::Mat4 a1);
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Mat4_operator__minus_self__0(cocos2d::Mat4 & a0);
         void Cocos2dxBind_cocos2d__Size_set_size(cocos2d::Size& c, float a0, float a1);
         bool Cocos2dxBind_cocos2d__Size_equals(cocos2d::Size& c, cocos2d::Size a0);
         void Cocos2dxBind_cocos2d__Size_accessor_set_width(cocos2d::Size& c, float a);
@@ -660,7 +729,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Node_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Node_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Node_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__Node_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__Node_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__Node_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__Node_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c, cocos2d::Component * a0);
@@ -870,7 +938,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__DrawNode_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__DrawNode_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__DrawNode_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__DrawNode_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__DrawNode_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__DrawNode_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__DrawNode_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c, cocos2d::Component * a0);
@@ -2036,7 +2103,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cor__cocos2dx_converter__TexturedTriangleNode_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::TexturedTriangleNode> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cor__cocos2dx_converter__TexturedTriangleNode_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::TexturedTriangleNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cor__cocos2dx_converter__TexturedTriangleNode_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::TexturedTriangleNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cor__cocos2dx_converter__TexturedTriangleNode_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::TexturedTriangleNode> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cor__cocos2dx_converter__TexturedTriangleNode_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::TexturedTriangleNode> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cor__cocos2dx_converter__TexturedTriangleNode_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::TexturedTriangleNode> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cor__cocos2dx_converter__TexturedTriangleNode_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::TexturedTriangleNode> c, cocos2d::Component * a0);
@@ -2253,7 +2319,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Sprite_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Sprite_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Sprite_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__Sprite_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__Sprite_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__Sprite_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__Sprite_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c, cocos2d::Component * a0);
@@ -2448,7 +2513,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Scene_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Scene_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Scene_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__Scene_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__Scene_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__Scene_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__Scene_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c, cocos2d::Component * a0);
@@ -2635,7 +2699,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cor__cocos2dx_converter__StepSizeScene_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::StepSizeScene> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cor__cocos2dx_converter__StepSizeScene_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::StepSizeScene> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cor__cocos2dx_converter__StepSizeScene_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::StepSizeScene> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cor__cocos2dx_converter__StepSizeScene_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::StepSizeScene> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cor__cocos2dx_converter__StepSizeScene_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::StepSizeScene> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cor__cocos2dx_converter__StepSizeScene_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::StepSizeScene> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cor__cocos2dx_converter__StepSizeScene_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::StepSizeScene> c, cocos2d::Component * a0);
@@ -2824,7 +2887,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Layer_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Layer_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Layer_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__Layer_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__Layer_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__Layer_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__Layer_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, cocos2d::Component * a0);
@@ -3019,7 +3081,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__LayerColor_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__LayerColor_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__LayerColor_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__LayerColor_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__LayerColor_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__LayerColor_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__LayerColor_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, cocos2d::Component * a0);
@@ -5409,7 +5470,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__AtlasNode_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__AtlasNode_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__AtlasNode_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__AtlasNode_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__AtlasNode_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__AtlasNode_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__AtlasNode_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c, cocos2d::Component * a0);
@@ -5602,7 +5662,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__LabelAtlas_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__LabelAtlas_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__LabelAtlas_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__LabelAtlas_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__LabelAtlas_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__LabelAtlas_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__LabelAtlas_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, cocos2d::Component * a0);
@@ -5794,7 +5853,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__SpriteBatchNode_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__SpriteBatchNode_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__SpriteBatchNode_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__SpriteBatchNode_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__SpriteBatchNode_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__SpriteBatchNode_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__SpriteBatchNode_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cocos2d::Component * a0);
@@ -6063,7 +6121,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Label_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Label_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Label_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__Label_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__Label_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__Label_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__Label_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c, cocos2d::Component * a0);
@@ -6244,7 +6301,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__ClippingNode_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ClippingNode> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__ClippingNode_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ClippingNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__ClippingNode_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ClippingNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__ClippingNode_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ClippingNode> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__ClippingNode_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ClippingNode> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__ClippingNode_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ClippingNode> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__ClippingNode_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ClippingNode> c, cocos2d::Component * a0);
@@ -6436,7 +6492,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__MotionStreak_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::MotionStreak> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__MotionStreak_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::MotionStreak> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__MotionStreak_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::MotionStreak> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__MotionStreak_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::MotionStreak> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__MotionStreak_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::MotionStreak> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__MotionStreak_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::MotionStreak> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__MotionStreak_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::MotionStreak> c, cocos2d::Component * a0);
@@ -6667,7 +6722,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__RenderTexture_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__RenderTexture_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__RenderTexture_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__RenderTexture_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Component * a0);
@@ -6941,7 +6995,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__ParticleSystem_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystem> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__ParticleSystem_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystem> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__ParticleSystem_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystem> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__ParticleSystem_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystem> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__ParticleSystem_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystem> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__ParticleSystem_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystem> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__ParticleSystem_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystem> c, cocos2d::Component * a0);
@@ -7216,7 +7269,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__ParticleSystemQuad_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__ParticleSystemQuad_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__ParticleSystemQuad_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__ParticleSystemQuad_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Component * a0);
@@ -7402,7 +7454,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__Camera_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__Camera_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__Camera_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__Camera_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Component * a0);
@@ -7586,7 +7637,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__BaseLight_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__BaseLight_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__BaseLight_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__BaseLight_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__BaseLight_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__BaseLight_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__BaseLight_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cocos2d::Component * a0);
@@ -7774,7 +7824,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__DirectionLight_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DirectionLight> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__DirectionLight_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DirectionLight> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__DirectionLight_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DirectionLight> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__DirectionLight_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DirectionLight> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__DirectionLight_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DirectionLight> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__DirectionLight_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DirectionLight> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__DirectionLight_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DirectionLight> c, cocos2d::Component * a0);
@@ -7959,7 +8008,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__AmbientLight_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__AmbientLight_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__AmbientLight_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__AmbientLight_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__AmbientLight_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__AmbientLight_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__AmbientLight_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> c, cocos2d::Component * a0);
@@ -8801,7 +8849,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__TextFieldTTF_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextFieldTTF> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__TextFieldTTF_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextFieldTTF> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__TextFieldTTF_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextFieldTTF> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__TextFieldTTF_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextFieldTTF> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__TextFieldTTF_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextFieldTTF> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__TextFieldTTF_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextFieldTTF> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__TextFieldTTF_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextFieldTTF> c, cocos2d::Component * a0);
@@ -9037,7 +9084,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__TMXLayer_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__TMXLayer_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__TMXLayer_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__TMXLayer_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__TMXLayer_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__TMXLayer_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__TMXLayer_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cocos2d::Component * a0);
@@ -9230,7 +9276,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__TMXTiledMap_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__TMXTiledMap_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__TMXTiledMap_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__TMXTiledMap_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__TMXTiledMap_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__TMXTiledMap_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__TMXTiledMap_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, cocos2d::Component * a0);
@@ -9425,7 +9470,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Sprite3D_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Sprite3D_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__Sprite3D_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__Sprite3D_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__Sprite3D_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__Sprite3D_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__Sprite3D_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, cocos2d::Component * a0);
@@ -9695,7 +9739,6 @@ namespace cor
         cocos2d::Vec2 Cocos2dxBind_cocos2d__extension__ScrollView_convert_to_world_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, cocos2d::Vec2 a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__extension__ScrollView_convert_touch_to_node_space_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__extension__ScrollView_convert_touch_to_node_space_ar_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0);
-        void Cocos2dxBind_cocos2d__extension__ScrollView_set_additional_transform_51(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, cocos2d::Mat4 * a0);
         void Cocos2dxBind_cocos2d__extension__ScrollView_set_additional_transform_52(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, cocos2d::AffineTransform a0);
         cocos2d::Component* Cocos2dxBind_cocos2d__extension__ScrollView_get_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, std::basic_string<char> a0);
         bool Cocos2dxBind_cocos2d__extension__ScrollView_add_component_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, cocos2d::Component * a0);
@@ -10031,16 +10074,6 @@ namespace cor
             binder.add_convertable("Cocos2d::EaseSineIn", "Cocos2d::FiniteTimeAction");
             binder.add_convertable("Cocos2d::EaseSineIn", "Cocos2d::Action");
             binder.add_convertable("Cocos2d::EaseSineIn", "Cocos2d::Ref");
-            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::ActionEase");
-            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::ActionInterval");
-            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::FiniteTimeAction");
-            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::Action");
-            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::Ref");
-            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::ActionEase");
-            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::ActionInterval");
-            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::FiniteTimeAction");
-            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::Action");
-            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::Ref");
 
           }
 

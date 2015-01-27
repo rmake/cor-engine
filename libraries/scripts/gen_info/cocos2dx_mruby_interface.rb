@@ -139,6 +139,46 @@ COCOS2DX_MRUBY_INTERFACE = [
       ],
     },
     {
+      :name => "cocos2d::Vec4",
+      :value => :value,
+      :create_function => "create",
+      :operator => [
+        { :name => "*", :args => [
+          {:ret => "cocos2d::Vec4", :arg => ["float"]},
+        ]},
+        { :name => "+", :args => [
+          {:ret => "cocos2d::Vec4", :arg => ["cocos2d::Vec4"]},
+        ]},
+        { :name => "-", :args => [
+          {:ret => "cocos2d::Vec4", :arg => ["cocos2d::Vec4"]},
+        ]},
+        { :name => "-@", :args => [
+          {:ret => "cocos2d::Vec4", :arg => []},
+        ]},
+      ],
+    },
+    {
+      :name => "cocos2d::Mat4",
+      :value => :value,
+      :create_function => "create",
+      :operator => [
+        { :name => "*", :args => [
+          {:ret => "cocos2d::Mat4", :arg => ["cocos2d::Mat4"]},
+          {:ret => "cocos2d::Vec3", :arg => ["cocos2d::Vec3"]},
+          {:ret => "cocos2d::Vec4", :arg => ["cocos2d::Vec4"]},
+        ]},
+        { :name => "+", :args => [
+          {:ret => "cocos2d::Mat4", :arg => ["cocos2d::Mat4"]},
+        ]},
+        { :name => "-", :args => [
+          {:ret => "cocos2d::Mat4", :arg => ["cocos2d::Mat4"]},
+        ]},
+        { :name => "-@", :args => [
+          {:ret => "cocos2d::Mat4", :arg => []},
+        ]},
+      ],
+    },
+    {
       :name => "cocos2d::Size",
       :value => :value,
       :create_function => "create",
