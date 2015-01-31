@@ -110,10 +110,10 @@ unless resource_only
   end
 end
 
-find_path = "../../licenses/"
+find_path = "../../licenses"
 list += Cor.u.file_list(find_path).map{|fn|
   {
-    :n => fn.gsub("#{find_path}", "licenses/"),
+    :n => fn.gsub("#{find_path}", "licenses"),
     :fn => fn,
   }
 }
@@ -155,7 +155,6 @@ puts "project copy"
 list.each do |fn|
   dfn = "#{destination_resource_path}/#{fn[:n]}"
   
-  
   if !File.exist?(dfn) || past_copy_table[fn[:fn]] != File.mtime(fn[:fn]).to_s  || File.size(fn[:fn]) != File.size(dfn)
     puts "do copy #{fn} -> #{dfn}"
     FileUtils.mkpath File.dirname(dfn)
@@ -182,6 +181,7 @@ File.open "#{destination_resource_path}/copy_date.txt", "w" do |f|
   f.write Time.now.strftime("%Y-%m-%d %H:%M:%S")
 end
 
+FileUtils.copy "../../LICENSE", "#{destination_resource_path}/licenses/"
 
 sleep 1
 
