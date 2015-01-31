@@ -10074,6 +10074,21 @@ namespace cor
             binder.add_convertable("Cocos2d::EaseSineIn", "Cocos2d::FiniteTimeAction");
             binder.add_convertable("Cocos2d::EaseSineIn", "Cocos2d::Action");
             binder.add_convertable("Cocos2d::EaseSineIn", "Cocos2d::Ref");
+            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::ActionEase");
+            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::ActionInterval");
+            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::FiniteTimeAction");
+            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::Action");
+            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::Ref");
+            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::ActionEase");
+            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::ActionInterval");
+            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::FiniteTimeAction");
+            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::Action");
+            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::Ref");
+            binder.add_convertable("Cocos2d::EaseElastic", "Cocos2d::ActionEase");
+            binder.add_convertable("Cocos2d::EaseElastic", "Cocos2d::ActionInterval");
+            binder.add_convertable("Cocos2d::EaseElastic", "Cocos2d::FiniteTimeAction");
+            binder.add_convertable("Cocos2d::EaseElastic", "Cocos2d::Action");
+            binder.add_convertable("Cocos2d::EaseElastic", "Cocos2d::Ref");
 
           }
 

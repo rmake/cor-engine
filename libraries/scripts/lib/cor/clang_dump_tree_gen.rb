@@ -1729,6 +1729,52 @@ EOS
         
       end
       
+      constant_registrations = []
+      
+      target_enums = option[:target_enums]
+      
+      target_enums_table = {}
+      
+      target_enums.each do |te|
+        target_enums_table[te[:enum_name]] = te
+      end
+      
+      tree.enum_constants.each do |cst|
+        
+        
+        te = target_enums_table[cst[:type][:val]]
+        
+        next unless te
+        
+        
+        name = Cor.u.underscore(cst[:name]).upcase
+        val = cst[:type][:val].split('::')
+        unless cst[:is_class]
+          val.pop
+        end
+        
+        type_name = val
+        
+        val << cst[:name]
+        val = val.join('::')
+        
+        #
+        
+        mruby_module_name = string_literals_register.call(te[:mruby_module])
+        mruby_class_name = string_literals_register.call(te[:mruby_class])
+        
+        str = <<EOS
+            binder.bind_const(#{
+                mruby_module_name
+              }, #{
+                mruby_class_name
+              }, "#{name}", (int)#{val});
+EOS
+        constant_registrations << str
+      
+      end
+      
+      
       method_overload_define = []
       
       classes.each do |k, c|
@@ -1971,17 +2017,19 @@ EOS
       
       class_defines = class_defines.join
       
-      l = method_registrations.length + class_registrations.length + class_convertables.length
+      
+      l = method_registrations.length + class_registrations.length + class_convertables.length + constant_registrations.length
       
       l = [l / (12), 1].max
       
       method_registrations = Utility.interval_slice(method_registrations, l).map{|v| v.join}
       class_registrations = Utility.interval_slice(class_registrations, l).map{|v| v.join}
       class_convertables = Utility.interval_slice(class_convertables, l).map{|v| v.join}
+      constant_registrations = Utility.interval_slice(constant_registrations, l).map{|v| v.join}
       
       
       calls_a = []
-      (class_registrations + method_registrations + class_convertables).each_with_index do |s, ct|
+      (class_registrations + method_registrations + class_convertables + constant_registrations).each_with_index do |s, ct|
         calls_a << {
           :fname => "#{class_name}_bind_func_#{ct}",
           :def => <<EOS,
@@ -2002,6 +2050,7 @@ EOS
       method_registrations = method_registrations.join
       class_registrations = class_registrations.join
       class_convertables = class_convertables.join
+      constant_registrations = constant_registrations.join
       
       call_defs = calls_a.map{|v| v[:def] }
       call_calls = calls_a.map{|v| v[:call] }.join

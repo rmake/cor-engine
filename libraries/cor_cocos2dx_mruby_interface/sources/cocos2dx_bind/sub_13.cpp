@@ -9846,19 +9846,7 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.add_convertable("Cocos2d::AmbientLight", "Cocos2d::BaseLight");
-            binder.add_convertable("Cocos2d::AmbientLight", "Cocos2d::Node");
-            binder.add_convertable("Cocos2d::AmbientLight", "Cocos2d::Ref");
-            binder.add_convertable("Cocos2d::TextureCache", "Cocos2d::Ref");
-            binder.add_convertable("Cocos2d::PhysicsShape", "Cocos2d::Ref");
-            binder.add_convertable("Cocos2d::PhysicsShapeCircle", "Cocos2d::PhysicsShape");
-            binder.add_convertable("Cocos2d::PhysicsShapeCircle", "Cocos2d::Ref");
-            binder.add_convertable("Cocos2d::PhysicsShapePolygon", "Cocos2d::PhysicsShape");
-            binder.add_convertable("Cocos2d::PhysicsShapePolygon", "Cocos2d::Ref");
-            binder.add_convertable("Cocos2d::PhysicsShapeBox", "Cocos2d::PhysicsShapePolygon");
-            binder.add_convertable("Cocos2d::PhysicsShapeBox", "Cocos2d::PhysicsShape");
-            binder.add_convertable("Cocos2d::PhysicsShapeBox", "Cocos2d::Ref");
-            binder.add_convertable("Cocos2d::PhysicsShapeEdgeSegment", "Cocos2d::PhysicsShape");
+                            binder.add_convertable("Cocos2d::PhysicsShapeEdgeSegment", "Cocos2d::PhysicsShape");
             binder.add_convertable("Cocos2d::PhysicsShapeEdgeSegment", "Cocos2d::Ref");
             binder.add_convertable("Cocos2d::PhysicsShapeEdgePolygon", "Cocos2d::PhysicsShape");
             binder.add_convertable("Cocos2d::PhysicsShapeEdgePolygon", "Cocos2d::Ref");

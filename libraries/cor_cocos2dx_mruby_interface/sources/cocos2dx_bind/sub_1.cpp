@@ -9846,13 +9846,7 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseSineOut> >("Cocos2d", "EaseSineOut");
-            binder.bind_custom_method("Cocos2d", "EaseSineOut", "valid?", Cocos2dxBind_EaseSineOut_valid_question);
-            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseSineInOut> >("Cocos2d", "EaseSineInOut");
-            binder.bind_custom_method("Cocos2d", "EaseSineInOut", "valid?", Cocos2dxBind_EaseSineInOut_valid_question);
-            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseElastic> >("Cocos2d", "EaseElastic");
-            binder.bind_custom_method("Cocos2d", "EaseElastic", "valid?", Cocos2dxBind_EaseElastic_valid_question);
-            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseElasticIn> >("Cocos2d", "EaseElasticIn");
+                            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseElasticIn> >("Cocos2d", "EaseElasticIn");
             binder.bind_custom_method("Cocos2d", "EaseElasticIn", "valid?", Cocos2dxBind_EaseElasticIn_valid_question);
             binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseElasticOut> >("Cocos2d", "EaseElasticOut");
             binder.bind_custom_method("Cocos2d", "EaseElasticOut", "valid?", Cocos2dxBind_EaseElasticOut_valid_question);
@@ -10027,6 +10021,18 @@ namespace cor
             binder.bind_custom_method("Cocos2d", "BaseLight", "valid?", Cocos2dxBind_BaseLight_valid_question);
             binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DirectionLight> >("Cocos2d", "DirectionLight");
             binder.bind_custom_method("Cocos2d", "DirectionLight", "valid?", Cocos2dxBind_DirectionLight_valid_question);
+            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> >("Cocos2d", "AmbientLight");
+            binder.bind_custom_method("Cocos2d", "AmbientLight", "valid?", Cocos2dxBind_AmbientLight_valid_question);
+            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextureCache> >("Cocos2d", "TextureCache");
+            binder.bind_custom_method("Cocos2d", "TextureCache", "valid?", Cocos2dxBind_TextureCache_valid_question);
+            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> >("Cocos2d", "PhysicsShape");
+            binder.bind_custom_method("Cocos2d", "PhysicsShape", "valid?", Cocos2dxBind_PhysicsShape_valid_question);
+            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeCircle> >("Cocos2d", "PhysicsShapeCircle");
+            binder.bind_custom_method("Cocos2d", "PhysicsShapeCircle", "valid?", Cocos2dxBind_PhysicsShapeCircle_valid_question);
+            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapePolygon> >("Cocos2d", "PhysicsShapePolygon");
+            binder.bind_custom_method("Cocos2d", "PhysicsShapePolygon", "valid?", Cocos2dxBind_PhysicsShapePolygon_valid_question);
+            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeBox> >("Cocos2d", "PhysicsShapeBox");
+            binder.bind_custom_method("Cocos2d", "PhysicsShapeBox", "valid?", Cocos2dxBind_PhysicsShapeBox_valid_question);
 
           }
 

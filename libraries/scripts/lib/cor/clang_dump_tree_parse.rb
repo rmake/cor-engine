@@ -92,6 +92,7 @@ module COR
           s += "[\n"
           s += "  name = #{t[:name]}\n"
           s += "  type = #{t[:type]}\n"
+          s += "  is_class = #{t[:is_class]}\n"
           s += "]\n"
           str << s
         end
@@ -268,7 +269,7 @@ module COR
       
 
       #
-      
+      enum_class_mode = false
 
       selected = []
       classes = []
@@ -337,9 +338,16 @@ module COR
           using_method = a.last.split '::'
           t[:parent][:using_method] ||= []
           t[:parent][:using_method] << using_method
+        elsif a[0] == "EnumDecl"
+          if a[-3] == "class"
+            enum_class_mode = true
+          else
+            enum_class_mode = false
+          end
         elsif a[0] == "EnumConstantDecl"
           t[:name] = a[-2]
           t[:type] = self.parse_separated(a[-1])
+          t[:is_class] = enum_class_mode
           enum_constants << t
         end
         

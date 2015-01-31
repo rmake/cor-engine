@@ -9846,19 +9846,7 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> >("Cocos2d", "AmbientLight");
-            binder.bind_custom_method("Cocos2d", "AmbientLight", "valid?", Cocos2dxBind_AmbientLight_valid_question);
-            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextureCache> >("Cocos2d", "TextureCache");
-            binder.bind_custom_method("Cocos2d", "TextureCache", "valid?", Cocos2dxBind_TextureCache_valid_question);
-            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShape> >("Cocos2d", "PhysicsShape");
-            binder.bind_custom_method("Cocos2d", "PhysicsShape", "valid?", Cocos2dxBind_PhysicsShape_valid_question);
-            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeCircle> >("Cocos2d", "PhysicsShapeCircle");
-            binder.bind_custom_method("Cocos2d", "PhysicsShapeCircle", "valid?", Cocos2dxBind_PhysicsShapeCircle_valid_question);
-            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapePolygon> >("Cocos2d", "PhysicsShapePolygon");
-            binder.bind_custom_method("Cocos2d", "PhysicsShapePolygon", "valid?", Cocos2dxBind_PhysicsShapePolygon_valid_question);
-            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeBox> >("Cocos2d", "PhysicsShapeBox");
-            binder.bind_custom_method("Cocos2d", "PhysicsShapeBox", "valid?", Cocos2dxBind_PhysicsShapeBox_valid_question);
-            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeEdgeSegment> >("Cocos2d", "PhysicsShapeEdgeSegment");
+                            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeEdgeSegment> >("Cocos2d", "PhysicsShapeEdgeSegment");
             binder.bind_custom_method("Cocos2d", "PhysicsShapeEdgeSegment", "valid?", Cocos2dxBind_PhysicsShapeEdgeSegment_valid_question);
             binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeEdgePolygon> >("Cocos2d", "PhysicsShapeEdgePolygon");
             binder.bind_custom_method("Cocos2d", "PhysicsShapeEdgePolygon", "valid?", Cocos2dxBind_PhysicsShapeEdgePolygon_valid_question);

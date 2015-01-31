@@ -10795,6 +10795,32 @@ namespace cor
             binder.bind_custom_method("Cocos2d", "Sequence", "release_172", Cocos2dxBind_cocos2d__Sequence_release_172);
             binder.bind_custom_method("Cocos2d", "Sequence", "autorelease_172", Cocos2dxBind_cocos2d__Sequence_autorelease_172);
             binder.bind_custom_method("Cocos2d", "Sequence", "get_reference_count_172", Cocos2dxBind_cocos2d__Sequence_get_reference_count_172);
+            binder.bind_static_method("Cocos2d", "Repeat", "create", Cocos2dxBind_cocos2d__Repeat_create);
+            binder.bind_custom_method("Cocos2d", "Repeat", "set_inner_action", Cocos2dxBind_cocos2d__Repeat_set_inner_action);
+            binder.bind_custom_method("Cocos2d", "Repeat", "get_inner_action", Cocos2dxBind_cocos2d__Repeat_get_inner_action);
+            binder.bind_custom_method("Cocos2d", "Repeat", "clone", Cocos2dxBind_cocos2d__Repeat_clone);
+            binder.bind_custom_method("Cocos2d", "Repeat", "reverse", Cocos2dxBind_cocos2d__Repeat_reverse);
+            binder.bind_custom_method("Cocos2d", "Repeat", "start_with_target", Cocos2dxBind_cocos2d__Repeat_start_with_target);
+            binder.bind_custom_method("Cocos2d", "Repeat", "stop", Cocos2dxBind_cocos2d__Repeat_stop);
+            binder.bind_custom_method("Cocos2d", "Repeat", "update", Cocos2dxBind_cocos2d__Repeat_update);
+            binder.bind_custom_method("Cocos2d", "Repeat", "is_done", Cocos2dxBind_cocos2d__Repeat_is_done);
+            binder.bind_custom_method("Cocos2d", "Repeat", "get_elapsed_90", Cocos2dxBind_cocos2d__Repeat_get_elapsed_90);
+            binder.bind_custom_method("Cocos2d", "Repeat", "set_amplitude_rate_85", Cocos2dxBind_cocos2d__Repeat_set_amplitude_rate_85);
+            binder.bind_custom_method("Cocos2d", "Repeat", "get_amplitude_rate_85", Cocos2dxBind_cocos2d__Repeat_get_amplitude_rate_85);
+            binder.bind_custom_method("Cocos2d", "Repeat", "step_88", Cocos2dxBind_cocos2d__Repeat_step_88);
+            binder.bind_custom_method("Cocos2d", "Repeat", "get_duration_103", Cocos2dxBind_cocos2d__Repeat_get_duration_103);
+            binder.bind_custom_method("Cocos2d", "Repeat", "set_duration_103", Cocos2dxBind_cocos2d__Repeat_set_duration_103);
+            binder.bind_custom_method("Cocos2d", "Repeat", "description_106", Cocos2dxBind_cocos2d__Repeat_description_106);
+            binder.bind_custom_method("Cocos2d", "Repeat", "get_target_106", Cocos2dxBind_cocos2d__Repeat_get_target_106);
+            binder.bind_custom_method("Cocos2d", "Repeat", "set_target_106", Cocos2dxBind_cocos2d__Repeat_set_target_106);
+            binder.bind_custom_method("Cocos2d", "Repeat", "get_original_target_106", Cocos2dxBind_cocos2d__Repeat_get_original_target_106);
+            binder.bind_custom_method("Cocos2d", "Repeat", "set_original_target_106", Cocos2dxBind_cocos2d__Repeat_set_original_target_106);
+            binder.bind_custom_method("Cocos2d", "Repeat", "get_tag_106", Cocos2dxBind_cocos2d__Repeat_get_tag_106);
+            binder.bind_custom_method("Cocos2d", "Repeat", "set_tag_106", Cocos2dxBind_cocos2d__Repeat_set_tag_106);
+            binder.bind_custom_method("Cocos2d", "Repeat", "retain_172", Cocos2dxBind_cocos2d__Repeat_retain_172);
+            binder.bind_custom_method("Cocos2d", "Repeat", "release_172", Cocos2dxBind_cocos2d__Repeat_release_172);
+            binder.bind_custom_method("Cocos2d", "Repeat", "autorelease_172", Cocos2dxBind_cocos2d__Repeat_autorelease_172);
+            binder.bind_custom_method("Cocos2d", "Repeat", "get_reference_count_172", Cocos2dxBind_cocos2d__Repeat_get_reference_count_172);
 
           }
 

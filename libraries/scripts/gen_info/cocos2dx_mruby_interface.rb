@@ -1,5 +1,5 @@
 
-COCOS2DX_MRUBY_INTERFACE = [
+COCOS2DX_MRUBY_INTERFACE_TAGET_CLASSES = [
     {
       :name => "cor::cocos2dx_converter::StepSizeScene",
       :value => :cocos_ptr,
@@ -981,6 +981,19 @@ COCOS2DX_MRUBY_INTERFACE = [
     {
       :name => "CocosDenshion::SimpleAudioEngine",
       :value => :pointer,
+    },
+  ]
+  
+COCOS2DX_MRUBY_INTERFACE_TAGET_ENUMS = [
+    {
+      :enum_name => "cocos2d::MATRIX_STACK_TYPE",
+      :mruby_module => "Cocos2d",
+      :mruby_class => "MatrixStackType",
+    },
+    {
+      :enum_name => "cocos2d::Texture2D::PixelFormat",
+      :mruby_module => "Cocos2d",
+      :mruby_class => "Texture2DPixelFormat",
     },
   ]
     

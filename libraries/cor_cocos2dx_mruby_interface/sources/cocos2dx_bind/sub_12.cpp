@@ -9846,22 +9846,7 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::ActionEase");
-            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::ActionInterval");
-            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::FiniteTimeAction");
-            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::Action");
-            binder.add_convertable("Cocos2d::EaseSineOut", "Cocos2d::Ref");
-            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::ActionEase");
-            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::ActionInterval");
-            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::FiniteTimeAction");
-            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::Action");
-            binder.add_convertable("Cocos2d::EaseSineInOut", "Cocos2d::Ref");
-            binder.add_convertable("Cocos2d::EaseElastic", "Cocos2d::ActionEase");
-            binder.add_convertable("Cocos2d::EaseElastic", "Cocos2d::ActionInterval");
-            binder.add_convertable("Cocos2d::EaseElastic", "Cocos2d::FiniteTimeAction");
-            binder.add_convertable("Cocos2d::EaseElastic", "Cocos2d::Action");
-            binder.add_convertable("Cocos2d::EaseElastic", "Cocos2d::Ref");
-            binder.add_convertable("Cocos2d::EaseElasticIn", "Cocos2d::EaseElastic");
+                            binder.add_convertable("Cocos2d::EaseElasticIn", "Cocos2d::EaseElastic");
             binder.add_convertable("Cocos2d::EaseElasticIn", "Cocos2d::ActionEase");
             binder.add_convertable("Cocos2d::EaseElasticIn", "Cocos2d::ActionInterval");
             binder.add_convertable("Cocos2d::EaseElasticIn", "Cocos2d::FiniteTimeAction");
@@ -10194,6 +10179,18 @@ namespace cor
             binder.add_convertable("Cocos2d::DirectionLight", "Cocos2d::BaseLight");
             binder.add_convertable("Cocos2d::DirectionLight", "Cocos2d::Node");
             binder.add_convertable("Cocos2d::DirectionLight", "Cocos2d::Ref");
+            binder.add_convertable("Cocos2d::AmbientLight", "Cocos2d::BaseLight");
+            binder.add_convertable("Cocos2d::AmbientLight", "Cocos2d::Node");
+            binder.add_convertable("Cocos2d::AmbientLight", "Cocos2d::Ref");
+            binder.add_convertable("Cocos2d::TextureCache", "Cocos2d::Ref");
+            binder.add_convertable("Cocos2d::PhysicsShape", "Cocos2d::Ref");
+            binder.add_convertable("Cocos2d::PhysicsShapeCircle", "Cocos2d::PhysicsShape");
+            binder.add_convertable("Cocos2d::PhysicsShapeCircle", "Cocos2d::Ref");
+            binder.add_convertable("Cocos2d::PhysicsShapePolygon", "Cocos2d::PhysicsShape");
+            binder.add_convertable("Cocos2d::PhysicsShapePolygon", "Cocos2d::Ref");
+            binder.add_convertable("Cocos2d::PhysicsShapeBox", "Cocos2d::PhysicsShapePolygon");
+            binder.add_convertable("Cocos2d::PhysicsShapeBox", "Cocos2d::PhysicsShape");
+            binder.add_convertable("Cocos2d::PhysicsShapeBox", "Cocos2d::Ref");
 
           }
 

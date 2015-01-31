@@ -10067,6 +10067,12 @@ namespace cor
             binder.bind_custom_method("Cocos2d", "EaseExponentialInOut", "valid?", Cocos2dxBind_EaseExponentialInOut_valid_question);
             binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseSineIn> >("Cocos2d", "EaseSineIn");
             binder.bind_custom_method("Cocos2d", "EaseSineIn", "valid?", Cocos2dxBind_EaseSineIn_valid_question);
+            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseSineOut> >("Cocos2d", "EaseSineOut");
+            binder.bind_custom_method("Cocos2d", "EaseSineOut", "valid?", Cocos2dxBind_EaseSineOut_valid_question);
+            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseSineInOut> >("Cocos2d", "EaseSineInOut");
+            binder.bind_custom_method("Cocos2d", "EaseSineInOut", "valid?", Cocos2dxBind_EaseSineInOut_valid_question);
+            binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseElastic> >("Cocos2d", "EaseElastic");
+            binder.bind_custom_method("Cocos2d", "EaseElastic", "valid?", Cocos2dxBind_EaseElastic_valid_question);
 
           }
 

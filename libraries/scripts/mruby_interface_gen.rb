@@ -95,6 +95,7 @@ def gen_code option
   require 'gen_info/mruby_interface'
   
   target_classes = MRUBY_INTERFACE_TAGET_CLASSES
+  target_enums = MRUBY_INTERFACE_TAGET_ENUMS
   
   type_assoc_table = {
     "std::vector<char>" => "cor::RCharArray",
@@ -183,7 +184,8 @@ def gen_code option
     
     require 'gen_info/cocos2dx_mruby_interface'
   
-    target_classes = COCOS2DX_MRUBY_INTERFACE
+    target_classes = COCOS2DX_MRUBY_INTERFACE_TAGET_CLASSES
+    target_enums = COCOS2DX_MRUBY_INTERFACE_TAGET_ENUMS
     
     name_space = "cocos2dx_mruby_interface"
   end
@@ -194,6 +196,7 @@ def gen_code option
     :path => option[:path],
     :name_space => name_space,
     :target_classes => target_classes,
+    :target_enums => target_enums,
     :type_assoc_table => type_assoc_table,
     :reject_method_table => reject_method_table,
   })
