@@ -15,4 +15,8 @@ Project.load_eval "triangle/triangle.rb"
 
 Project.load_eval "menu/menu.rb"
 
+Project.load_eval "release_sample/release_sample_menu.rb"
+
+
+
 CorMenu.new

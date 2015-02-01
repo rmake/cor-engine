@@ -29,6 +29,12 @@ class CorMenu
         end),
       },
       {
+        :text => "release_sample",
+        :proc => (Proc.new do
+          ReleaseSampleMenu.new
+        end),
+      },
+      {
         :text => "basic/basic.rb",
         :proc => (Proc.new do
           BasicTest.new
@@ -55,23 +61,7 @@ class CorMenu
       
     ]
     
-    lv = CorListView.new list, {:size => Size.create(@visible_size.width - 100, @visible_size.height)} do |data|
-      r = Rect.create(-96 * 4 / 2, -96 / 2, 96 * 4, 96)
-      sp = CorSprite.create_sprite_9 :texture => "menu/sp9bg_dark.png", :rect => r
-      button = CorPanel.new :text => data[:text], :rect => r, 
-        :font_name => "fonts/MTLc3m.ttf",
-        :text_scale => 1.0, :sprite => sp, :disable_swallow => true
-      button.sprite.set_scale 1.0
-      button.on_tap do |t, e|
-        Project.start_ruby_project_proc &data[:proc]
-      end
-      
-      button.sprite
-    end
-    
-    lv.node.set_position 0, 0
-    
-    self.scene.add_child lv.node
+    CorSimpleMenu.create_and_show list
     
   end
 

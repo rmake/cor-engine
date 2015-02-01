@@ -20,3 +20,12 @@ module Cor
   end
 end
 
+class RtsMessageView
+  def self.simple_show(text)
+    view = RtsMessageView.new :text => text, :image => "lib/resources/sp9bg_dark.png"
+    Project.get_current_scene.add_child view.node
+  end
+
+end
+
+

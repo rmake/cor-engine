@@ -22,7 +22,7 @@ class RtsMessageView
     h = bb.size.height + 32 + 10
     
     r = Rect.create(-w / 2, -h / 2, w, h)
-    sp = RtsSprite.create_sprite_9 :texture => "data_test_2/sp9bg_dark.png", :rect => r
+    sp = RtsSprite.create_sprite_9 :texture => options[:image] || "data_test_2/sp9bg_dark.png", :rect => r
     b = RtsButton.new :text => "", :sprite => sp
     #b.set_z_order 0.0
     b.on_tap do |t, e|
