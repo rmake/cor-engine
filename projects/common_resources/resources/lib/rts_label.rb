@@ -11,6 +11,9 @@ class RtsLabel
   @@all_label = {}
   @@enable_set_text = true
   
+  @@loading_st = Proc.new {}
+  @@loading_ed = Proc.new {}
+  
   WIDTH = 512
   
   attr_accessor :font_name
@@ -67,12 +70,18 @@ class RtsLabel
       
       proc = Proc.new do
       
+        Logger.debug "start regenerate"
+      
+        if ct == 0
+          @@loading_st.call
+        end
+      
         canceled = false
         ct += 1
       
         Project.delay_call 0.1 do
         
-          Project.delay_call 0.3 do
+          #Project.delay_call 0.3 do
           
             ct -= 1
             
@@ -80,17 +89,25 @@ class RtsLabel
             if ct <= 0
               #self.create_texture
               
+              Texture2D.set_default_alpha_pixel_format Texture2DPixelFormat::BGRA8888
+    
               aft = RenderTexture.create 32, 32#, 2, 35056
               aft.retain
+              
+              Texture2D.set_default_alpha_pixel_format Texture2DPixelFormat::RGBA4444
               
               Project.delay_call 0.1 do
                 aft.release
                 regenerate_proc.call
+                
+                Logger.debug "end regenerate"
+                
+                @@loading_ed.call
               end
               
             end
           
-          end
+          #end
         end
       end
       
@@ -100,6 +117,7 @@ class RtsLabel
         @@enable_set_text = false
         
         @@all_label.values.each do |l|
+          l.store_z_order
           l.release_text
         end
         
@@ -177,6 +195,14 @@ class RtsLabel
     @@last_label
   end
   
+  def self.on_loading_st(&block)
+    @@loading_st = block
+  end
+  
+  def self.on_loading_ed(&block)
+    @@loading_ed = block
+  end
+  
   def make_label(c)
     label = Label.create_with_ttf c, self.font_name, self.font_size,
         Size.create(0, 0), 2, 0
@@ -207,7 +233,7 @@ class RtsLabel
   def create_texture
     Logger.debug "pre create render texture"
   
-    Texture2D.set_default_alpha_pixel_format 1
+    Texture2D.set_default_alpha_pixel_format Texture2DPixelFormat::BGRA8888
     
     if @@all_back_font_textures.empty?
       aft = RenderTexture.create WIDTH, WIDTH#, 2, 35056
@@ -226,7 +252,7 @@ class RtsLabel
     
     @@max_line = 0
     
-    Texture2D.set_default_alpha_pixel_format 8
+    Texture2D.set_default_alpha_pixel_format Texture2DPixelFormat::RGBA4444
     
     Logger.debug "post create render texture"
     
@@ -239,6 +265,10 @@ class RtsLabel
     
     
     texture
+  end
+  
+  def store_z_order
+    @node_z = self.node.get_global_z_order
   end
   
   def set_text(text)
@@ -370,14 +400,20 @@ class RtsLabel
     l = 0
     t = 0
     
-    bath_node_mode = true
+    batch_node_mode = true
     
-    if bath_node_mode
+    @node_z ||= self.node.get_global_z_order
+    self.node.set_global_z_order @node_z
+    
+    if batch_node_mode
       
       sp = Sprite.create_with_texture texture
       dummy = SpriteBatchNode.create_with_texture texture, 29
       batch_node = SpriteBatchNode.create_with_texture texture, 100
       self.node.add_child batch_node
+      
+      batch_node.set_global_z_order @node_z
+      
       #RtsObjectSystem.setup_sprite_round batch_node
     end
     
@@ -405,7 +441,7 @@ class RtsLabel
       r = h[:rect]
       sf = SpriteFrame.create_with_texture h[:texture], r
       #sf = SpriteFrame.create_with_texture h[:texture], Rect.create(0, 0, WIDTH, WIDTH)
-      if bath_node_mode
+      if batch_node_mode
         tl = sp
         tl.set_batch_node dummy
       else 
@@ -420,8 +456,8 @@ class RtsLabel
       #RtsObjectSystem.setup_sprite_round tl
       l += r.size.width
       
-      if bath_node_mode
-        mxw = [mxw, l + r.size.width / 2].max
+      if batch_node_mode
+        mxw = [mxw, l].max
         mxh = [mxh, t + r.size.height].max
         
         batch_node.insert_quad_from_sprite tl, ct
@@ -435,7 +471,7 @@ class RtsLabel
       
     end
     
-    if bath_node_mode
+    if batch_node_mode
       batch_node.set_content_size Size.create(mxw, mxh)
     end
     

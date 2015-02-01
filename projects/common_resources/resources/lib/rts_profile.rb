@@ -1,7 +1,7 @@
 
 class RtsProfile
 
-  ENABLED = true
+  ENABLED = false
 
   attr_accessor :interval
 

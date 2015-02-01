@@ -31,6 +31,10 @@ class RtsUtilities
     Vec2.create (p.x + 0.5 - 20) * self.tile_x, (p.y + 0.5 - 20) * self.tile_y
   end
   
+  def index_to_tile_position_l x, y
+    Vec2.create (x + 0.5) * self.tile_x, (y + 0.5) * self.tile_y
+  end
+  
   def each_node_itnl(n, depth, &block)
   
     block.call n, depth

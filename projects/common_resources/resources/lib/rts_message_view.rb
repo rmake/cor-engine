@@ -72,10 +72,8 @@ class RtsMessageView
     
     b2 = nil
     
-    director = Director.get_instance
-    visible_size = director.get_visible_size
     sp = LayerColor.create(Color4B.create(0, 0, 0, 127), 
-      visible_size.width, visible_size.height)
+      @visible_size.width, @visible_size.height)
     b = RtsButton.new :sprite => sp, :text => ""
     b.sprite.set_position @visible_size.width / 2, @visible_size.height / 2
     b.sprite.set_scale 20000.0

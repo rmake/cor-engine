@@ -21,11 +21,11 @@ class RtsSprite
   def self.create_texture_animation(a)
     sfs = []
     animation = Animation.create
+    animation.retain
     a.each do |v|
       animation.add_sprite_frame_with_file v
     end
     animation.set_delay_per_unit 0.033
-    animation.retain
     s = self.create_simple :texture => a.first
     s.set_on_enter_callback do
       action = s.run_action RepeatForever.create(Animate.create(animation))
@@ -113,7 +113,7 @@ class RtsSprite
     
     frames = 9.times.map do |i|
       nm = "grid9/grid9_0#{i + 1}.png"
-      frame = RtsCharacterAnimation.get_frame nm
+      frame = RtsCharacterAnimationPool.get_frame nm
       frame
     end
     
@@ -141,20 +141,20 @@ class RtsSprite
         r = frame.get_rect
         ra = r
         r = Rect.create r.origin.x + 0.5, r.origin.y + 0.5, 
-          r.size.width <= 1 ? r.size.width - 0.95 : r.size.width, 
-          r.size.height <= 1 ? r.size.height - 0.95 : r.size.height
+          r.size.width <= 1 ? r.size.width - 0.95 : r.size.width - 1.0, 
+          r.size.height <= 1 ? r.size.height - 0.95 : r.size.height - 1.0
         s = Sprite.create_with_sprite_frame SpriteFrame.create_with_texture(frame.get_texture, r)
         RtsObjectSystem.setup_sprite_round s
         
         y = -(ty + (h / 2) - rect.size.height / 2)
         x = (tx + (w / 2) - rect.size.width / 2)
         
-        if ix >= 1
-          x -= 1
-        end
-        if iy >= 1
-          y += 0.5
-        end
+        #if ix >= 1
+        #  x -= 1
+        #end
+        #if iy >= 1
+        #  y += 0.5
+        #end
         
         s.set_position x, y
         s.set_scale ((w) / r.size.width), ((h) / r.size.height)
@@ -176,7 +176,7 @@ class RtsSprite
   end
   
   def self.create_sprite_from_all(name)
-    frame = RtsCharacterAnimation.get_frame name
+    frame = RtsCharacterAnimationPool.get_frame name
     r = frame.get_rect
     r = Rect.create r.origin.x, r.origin.y, r.size.width, r.size.height
     s = Sprite.create_with_sprite_frame SpriteFrame.create_with_texture(frame.get_texture, r)
@@ -184,8 +184,12 @@ class RtsSprite
     s
   end
   
+  def self.get_sprite_frame_from_all(name)
+    RtsCharacterAnimationPool.get_frame name
+  end
+  
   def self.create_sprite_from_all_origin(name)
-    frame = RtsCharacterAnimation.get_frame name
+    frame = RtsCharacterAnimationPool.get_frame name
     s = Sprite.create_with_sprite_frame frame
     RtsObjectSystem.setup_sprite_round s
     s
@@ -196,7 +200,7 @@ class RtsSprite
     
     frames = 3.times.map do |i|
       nm = "num_bg/num_0#{i + 1}.png"
-      frame = RtsCharacterAnimation.get_frame nm
+      frame = RtsCharacterAnimationPool.get_frame nm
       frame
     end
     
@@ -219,8 +223,8 @@ class RtsSprite
       r = frame.get_rect
       ra = r
       r = Rect.create r.origin.x + 0.5, r.origin.y + 0.5, 
-        r.size.width <= 1 ? r.size.width - 0.95 : r.size.width, 
-        r.size.height <= 1 ? r.size.height - 0.95 : r.size.height
+        r.size.width <= 1 ? r.size.width - 0.95 : r.size.width - 1.0, 
+        r.size.height <= 1 ? r.size.height - 0.95 : r.size.height - 1.0
       s = Sprite.create_with_sprite_frame SpriteFrame.create_with_texture(frame.get_texture, r)
       RtsObjectSystem.setup_sprite_round s
       
@@ -248,7 +252,7 @@ class RtsSprite
     animation ||= "explosion_128"
     a = s.run_action( 
       Animate.create(
-        (RtsCharacterAnimation.new({:walk => animation})).walks[0])
+        (RtsCharacterAnimationPool.create({:walk => animation})).walks[0])
     )
     a
   end
