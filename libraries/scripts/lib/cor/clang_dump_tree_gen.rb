@@ -498,7 +498,7 @@ module COR
         post = tps.last
         
         puts "match st #{t[:source_type]}"
-        match = t[:source_type].match(/<([^<^>]*(<[^<^>]*(.*?)*>)*)*>/)
+        match = t[:source_type].match(/<([^<^>]*(<[^<^>]*(<[^<^>]*>)*>)*)*>/)
         puts "match ed"
         if match
         
@@ -507,7 +507,7 @@ module COR
           tmpl_args = match[0]
           tmpl_args = tmpl_args.gsub(/^</, "").gsub(/>$/, "")
           puts "scan st"
-          tmpl_args = tmpl_args.scan(/([^<^>^,^ ]+(<[^<^>]*(.*?)*>)*)/)
+          tmpl_args = tmpl_args.scan(/([^<^>^,^ ]+(<[^<^>]*(<[^<^>]*>)*>)*)/)
           puts "scan ed #{tmpl_args}"
           
           tmpl_args = tmpl_args.map{|t| t[0]}
