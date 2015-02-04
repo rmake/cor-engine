@@ -169,8 +169,11 @@ module COR
     
 
     def self.parse_token(line)
+      line = line.gsub(/C\:\\Program Files \(x86\)\\Microsoft Visual Studio /, "VCPATH")
+      line = line.gsub(/VCPATH[^:]+:/, "line:")
+      line = line.gsub(/ inline noexcept.unevaluated 0x(\w+)/, "")
       line = line.gsub(/col\:\d* used /, "").gsub(/line\:\d*:\d* used /, "")
-      line = line.gsub(/col\:\d* implicit (used )?/, "").gsub(/line\:\d*:\d* implicit (used )?/, "")      
+      line = line.gsub(/col\:\d* implicit (used )?/, "").gsub(/line\:\d*:\d* implicit (used )?/, "")
       line = line.gsub(/col\:\d* referenced /, "").gsub(/line\:\d*:\d* referenced /, "")
       line = line.gsub(/col\:\d* /, "").gsub(/line\:\d*:\d* /, "")
       
@@ -371,6 +374,7 @@ module COR
           elsif a[0] == 'CXXMethodDecl'
             #next unless pbl
             method_name = a[3]
+            
             c[:method_name] = method_name
             args = []
             method_ret = self.parse_method_return a[4]

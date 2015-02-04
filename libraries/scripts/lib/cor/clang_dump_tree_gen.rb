@@ -102,8 +102,8 @@ module COR
       self.typedef_assoc_base class_name, type, option
       
     end
-  
-    def self.type_filter(m, tp, option)
+    
+    def self.type_filter_common(m, tp, option, &block)
       type = tp[:val]
       
       return "void" unless type
@@ -131,13 +131,15 @@ module COR
         "bool" => true,
         "std::string" => true,
         "std::basic_string<char>" => true,
+        "std::basic_string<char, std::char_traits<char>, std::allocator<char> >" => true,
         "RString" => true,
         "cor::RString" => true,
         "RBool" => true,
         "cor::RBool" => true,
       }
       
-      type = self.typedef_assoc m, type, option
+      type = yield m, type, option
+      #type = self.typedef_assoc m, type, option
       
       return nil unless type
       
@@ -152,51 +154,20 @@ module COR
       end
       return type
     end
+  
+    def self.type_filter(m, tp, option)
+    
+      self.type_filter_common m, tp, option do |m, type, option|
+        self.typedef_assoc m, type, option
+      end
+      
+    end
     
     def self.type_filter_base(base, tp, option)
-      type = tp[:val]
       
-      return "void" unless type
-      
-      @tail_amp ||= / \&$/
-      @top_const ||= /^const /
-    
-      if type.match(@top_const) && type.match(@tail_amp)
-        type = type.gsub(@top_const, "").gsub(@tail_amp, "")
+      self.type_filter_common base, tp, option do |m, type, option|
+        self.typedef_assoc_base m, type, option
       end
-      
-      if (!type.match(@top_const) && type.match(/\&$/)) || type.match(/::\*/) #|| type.match(/std::vector/)
-        return nil
-      end
-      
-      direct_type = {
-        "void" => true,
-        "int" => true,
-        "float" => true,
-        "double" => true,
-        "bool" => true,
-        "std::string" => true,
-        "std::basic_string<char>" => true,
-        "RString" => true,
-        "cor::RString" => true,
-        "RBool" => true,
-        "cor::RBool" => true,
-      }
-      
-      type = self.typedef_assoc_base base, type, option
-      
-      return nil unless type
-      
-      type = type.gsub("<_Bool", "<bool")
-      
-      if direct_type[type] || tp[:is_enum] || type.match(/\*$/)
-        return type
-      elsif type.match(/^std\:\:function/)
-        return type.gsub(/^std\:\:function/, "mrubybind::FuncPtr").gsub("(void)", "()")
-      elsif type.match(/^const std\:\:function/)
-        return type.gsub(/^const std\:\:function/, "mrubybind::FuncPtr").gsub("(void)", "()")
-      end
-      return type
     end
     
     def self.gather_methods_super(c, reject_table)
@@ -324,7 +295,8 @@ module COR
         func_args = arg.gsub(/^mrubybind::FuncPtr</, "").gsub(/>$/, "")
         ret = func_args.match(/^[^(]*\(/)[0].gsub(/\(/,"")
         func_args = func_args.gsub(/^[^(]*\(/, "").gsub(/\)$/, "")
-        func_args = func_args.scan(/([^<^>^,]+(<[^<^>]*(<[^<^>]*(<[^<^>]*[^<^>]*>)*[^<^>]*>)*[^<^>]*>)*[^<^>^,]*)|([^<^>^,]+)/)
+        func_args = func_args.scan(/([^<^>^,]+(<(([^<^>^,]+(<[^<^>]*(<[^<^>]*(<[^<^>]*[^<^>]*>)*[^<^>]*>)*[^<^>]*>)*[^<^>^,]*)|([^<^>]*(<[^<^>]*(<[^<^>]*[^<^>]*>)*[^<^>]*>)*[^<^>]*))*>)*[^<^>^,]*)|([^<^>^,]+)/)
+        
         cva = func_args.map do |v|
         
           is_nil, targ, call_arg = self.convert_value(class_replace_table, is_nil, v[0], {
@@ -525,14 +497,19 @@ module COR
         pre = tps[0...-1]
         post = tps.last
         
-        match = t[:source_type].match(/<([^<^>]*(<[^<^>]*(<[^<^>]*>)*>)*)*>/)
+        puts "match st #{t[:source_type]}"
+        match = t[:source_type].match(/<([^<^>]*(<[^<^>]*(.*?)*>)*)*>/)
+        puts "match ed"
         if match
         
           tmpl = class_template_table[tp]
         
           tmpl_args = match[0]
           tmpl_args = tmpl_args.gsub(/^</, "").gsub(/>$/, "")
-          tmpl_args = tmpl_args.scan(/([^<^>^,^ ]+(<[^<^>]*(<[^<^>]*>)*>)*)/)
+          puts "scan st"
+          tmpl_args = tmpl_args.scan(/([^<^>^,^ ]+(<[^<^>]*(.*?)*>)*)/)
+          puts "scan ed #{tmpl_args}"
+          
           tmpl_args = tmpl_args.map{|t| t[0]}
           
           tmpl_args_table = {}

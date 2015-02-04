@@ -1,3 +1,4 @@
+#undef __SSE__
 #include "../../cor_mruby_interface/sources/basic_bind.h"
 #include "../../cor_mruby_interface/sources/mruby_array.h"
 #include "../../cor_mruby_interface/sources/mruby_array_tmpl.h"

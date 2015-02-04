@@ -42,7 +42,8 @@ def gen_code option
     ]
   end
 
-  src = a.map{|v| "#include \"../#{v}\"\n" }.join("") +
+  src = "#undef __SSE__\n" +
+    a.map{|v| "#include \"../#{v}\"\n" }.join("") +
     "#undef RELATIVE\n#undef ABSOLUTE\n" +
     a2.map{|v| "#include \"../#{v}\"\n" }.join("")
 
@@ -120,6 +121,7 @@ def gen_code option
     "TexParams *" => "delete",
     "const TexParams *" => "delete",
     " char*" => "std::string",
+    "float [16]" => "delete",
     "std::vector<Touch *>" => "std::vector<cocos2d::Touch *>",
     "std::vector<Touch*>" => "std::vector<cocos2d::Touch*>",
     "std::vector<Vec2 *>" => "delete",
@@ -158,6 +160,7 @@ def gen_code option
     "std::unordered_map<ssize_t,Texture2D*>" => "delete",
     "std::hash<string>" => "std::hash<std::string>",
     "std::unordered_map<std::basic_string<char>, cocos2d::Value, std::hash<string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >" => "std::unordered_map<std::basic_string<char>, cocos2d::Value, std::hash<std::string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >",
+    "std::unordered_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >, cocos2d::Value, std::hash<string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >" => "std::unordered_map<std::basic_string<char>, cocos2d::Value, std::hash<std::string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >",
     "std::map<enum cocos2d::Texture2D::PixelFormat, const cocos2d::Texture2D::PixelFormatInfo, std::less<enum cocos2d::Texture2D::PixelFormat>, std::allocator<std::pair<const enum cocos2d::Texture2D::PixelFormat, const cocos2d::Texture2D::PixelFormatInfo> > >" => "delete",
   }
   
@@ -263,7 +266,8 @@ else
   threads = []
   options.each do |option|
     threads << Thread.new do
-      puts `ruby mruby_interface_gen.rb #{option[:name]}`
+      #puts `ruby mruby_interface_gen.rb #{option[:name]}`
+      system "ruby mruby_interface_gen.rb #{option[:name]}"
     end
   end
 
