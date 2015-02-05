@@ -48,6 +48,8 @@ def gen_code option
     a2.map{|v| "#include \"../#{v}\"\n" }.join("")
 
   Utility.file_write "data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp", src
+  
+  src = src.gsub(/#undef.*?\n/m, "")
 
   inc_path = ALL_INCPATH + ["../"]
   includes = inc_path.map{|v| "-I#{v}"}.join(' ')
