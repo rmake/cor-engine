@@ -453,7 +453,7 @@ namespace cor
             return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::data_structure::SharedPtrTable::create());
         }
         
-        void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char, std::char_traits<char>, std::allocator<char> > a0, cor::mruby_interface::AnyWP a1)
+        void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)
@@ -465,7 +465,7 @@ namespace cor
             tmp_c->set(a0, a1.lock());
         }
         
-        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char, std::char_traits<char>, std::allocator<char> > a0)
+        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)
@@ -513,16 +513,16 @@ namespace cor
             tmp_c->step();
         }
         
-        void BasicBind_cor__system__Logger_add_print_func_1(cor::system::Logger* c, mrubybind::FuncPtr<void (int, const std::basic_string<char, std::char_traits<char>, std::allocator<char> > &)> a0)
+        void BasicBind_cor__system__Logger_add_print_func_1(cor::system::Logger* c, mrubybind::FuncPtr<void (int, const std::string &)> a0)
         {
 
-            c->add_print_func([=](cor::system::LogType::Enum b0, const std::basic_string<char, std::char_traits<char>, std::allocator<char> > & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a0.is_living()) { a0.func()((int)b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
+            c->add_print_func([=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a0.is_living()) { a0.func()((int)b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
         }
         
-        void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::basic_string<char, std::char_traits<char>, std::allocator<char> > a0, mrubybind::FuncPtr<void (int, const std::basic_string<char, std::char_traits<char>, std::allocator<char> > &)> a1)
+        void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::string a0, mrubybind::FuncPtr<void (int, const std::string &)> a1)
         {
 
-            c->add_print_func(a0, [=](cor::system::LogType::Enum b0, const std::basic_string<char, std::char_traits<char>, std::allocator<char> > & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a1.is_living()) { a1.func()((int)b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
+            c->add_print_func(a0, [=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a1.is_living()) { a1.func()((int)b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
         }
         
         void BasicBind_cor__system__Logger_pop_print_func(cor::system::Logger* c)
@@ -531,43 +531,43 @@ namespace cor
             c->pop_print_func();
         }
         
-        void BasicBind_cor__system__Logger_clear_print_func(cor::system::Logger* c, mrubybind::FuncPtr<void (int, const std::basic_string<char, std::char_traits<char>, std::allocator<char> > &)> a0)
+        void BasicBind_cor__system__Logger_clear_print_func(cor::system::Logger* c, mrubybind::FuncPtr<void (int, const std::string &)> a0)
         {
 
-            c->clear_print_func([=](cor::system::LogType::Enum b0, const std::basic_string<char, std::char_traits<char>, std::allocator<char> > & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a0.is_living()) { a0.func()((int)b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
+            c->clear_print_func([=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a0.is_living()) { a0.func()((int)b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
         }
         
-        void BasicBind_cor__system__Logger_call_print_func(cor::system::Logger* c, int a0, std::basic_string<char, std::char_traits<char>, std::allocator<char> > a1)
+        void BasicBind_cor__system__Logger_call_print_func(cor::system::Logger* c, int a0, std::string a1)
         {
 
             c->call_print_func((cor::system::LogType::Enum)a0, a1);
         }
         
-        void BasicBind_cor__system__Logger_info(std::basic_string<char, std::char_traits<char>, std::allocator<char> > a0)
+        void BasicBind_cor__system__Logger_info(std::string a0)
         {
 
             cor::system::Logger::info(a0);
         }
         
-        void BasicBind_cor__system__Logger_debug(std::basic_string<char, std::char_traits<char>, std::allocator<char> > a0)
+        void BasicBind_cor__system__Logger_debug(std::string a0)
         {
 
             cor::system::Logger::debug(a0);
         }
         
-        void BasicBind_cor__system__Logger_warn(std::basic_string<char, std::char_traits<char>, std::allocator<char> > a0)
+        void BasicBind_cor__system__Logger_warn(std::string a0)
         {
 
             cor::system::Logger::warn(a0);
         }
         
-        void BasicBind_cor__system__Logger_error(std::basic_string<char, std::char_traits<char>, std::allocator<char> > a0)
+        void BasicBind_cor__system__Logger_error(std::string a0)
         {
 
             cor::system::Logger::error(a0);
         }
         
-        void BasicBind_cor__system__Logger_fatal(std::basic_string<char, std::char_traits<char>, std::allocator<char> > a0)
+        void BasicBind_cor__system__Logger_fatal(std::string a0)
         {
 
             cor::system::Logger::fatal(a0);
@@ -669,7 +669,7 @@ namespace cor
             return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::mruby_interface::MrubyExperimentalBindTestClass::create());
         }
         
-        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_2(std::basic_string<char, std::char_traits<char>, std::allocator<char> > a0)
+        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_2(std::string a0)
         {
 
             return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::mruby_interface::MrubyExperimentalBindTestClass::create(a0));
@@ -3038,13 +3038,13 @@ namespace cor
             tmp_c->set_n(a0);
         }
         
-        std::basic_string<char, std::char_traits<char>, std::allocator<char> > BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add(std::basic_string<char, std::char_traits<char>, std::allocator<char> > a0, std::basic_string<char, std::char_traits<char>, std::allocator<char> > a1)
+        std::string BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add(std::string a0, std::string a1)
         {
 
             return cor::mruby_interface::MrubyExperimentalTemplateStructRString::add(a0, a1);
         }
         
-        std::basic_string<char, std::char_traits<char>, std::allocator<char> > BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::basic_string<char, std::char_traits<char>, std::allocator<char> > a0, std::basic_string<char, std::char_traits<char>, std::allocator<char> > a1, std::basic_string<char, std::char_traits<char>, std::allocator<char> > a2)
+        std::string BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::string a0, std::string a1, std::string a2)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)
@@ -3056,7 +3056,7 @@ namespace cor
             return tmp_c->add2(a0, a1, a2);
         }
         
-        void BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_set_n(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::basic_string<char, std::char_traits<char>, std::allocator<char> > a0)
+        void BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_set_n(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::string a0)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)

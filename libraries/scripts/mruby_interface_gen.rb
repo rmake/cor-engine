@@ -205,17 +205,23 @@ def gen_code option
     :type_assoc_table => type_assoc_table,
     :reject_method_table => reject_method_table,
   })
+  
+  source_filter = Proc.new do |src|
+    src.gsub("std::basic_string<char, std::char_traits<char>, std::allocator<char> >", "std::string").
+      gsub("std::basic_string<char>", "std::string")
+  end
+  
   Utility.file_write "log/#{option[:name]}/tree_code_header.log", code_header
-  Utility.file_write "log/#{option[:name]}/tree_code_cpp.log", src.gsub("../../", "") + code_cpp
+  Utility.file_write "log/#{option[:name]}/tree_code_cpp.log", src.gsub("../../", "") + source_filter.call(code_cpp)
   code_sub_cpp.each_with_index do |v, i|
-    Utility.file_write "log/#{option[:name]}/sub/cpp_#{i}.log", src.gsub("../../", "") + v
+    Utility.file_write "log/#{option[:name]}/sub/cpp_#{i}.log", src.gsub("../../", "") + source_filter.call(v)
   end
   
   Utility.file_write "#{option[:path]}.h", code_header
-  Utility.file_write "#{option[:path]}.cpp", src.gsub("../../", "") + code_cpp
+  Utility.file_write "#{option[:path]}.cpp", src.gsub("../../", "") + source_filter.call(code_cpp)
   code_sub_cpp.each_with_index do |v, i|
     if v != ""
-      Utility.file_write "#{option[:path]}/sub_#{i}.cpp", src.gsub("../../", "") + v
+      Utility.file_write "#{option[:path]}/sub_#{i}.cpp", src.gsub("../../", "") + source_filter.call(v)
     else
       Utility.file_write "#{option[:path]}/sub_#{i}.cpp", v
     end
