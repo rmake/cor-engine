@@ -13,6 +13,56 @@ module COR
       "[]" => "_brackets_",
       "[]=" => "_brackets_equal_",
     }
+    
+    def self.get_template_args(s)
+      
+      a = s.scan(/((<)|(>)|(,)|([^<^>^,]*))/).map{|v| v[0]}
+      
+      b = 0
+      args = nil
+      cs = nil
+      a.each do |v|
+        if v == '<'
+          
+          b += 1
+          if b == 1
+            args = []
+            cs = nil
+          else
+            cs ||= ""
+            cs += v
+          end
+        elsif v == '>'
+          if (b == 1)
+            if cs
+              args << cs
+              cs = nil
+            end
+          else
+            cs ||= ""
+            cs += v
+          end
+          b -= 1
+        elsif v == ','
+          if b == 1 && cs
+            args << cs
+            cs = nil
+          else
+            cs ||= ""
+            cs += v
+          end
+        else
+          cs ||= ""
+          cs += v
+        end
+        
+      end
+      
+      if args
+        args.map!{|v| v.gsub(/(^\s+)|(\s+$)/, "")}
+      end
+      return args
+    end
   
     def self.typedef_assoc_base(base, type, option)
     
@@ -497,20 +547,12 @@ module COR
         pre = tps[0...-1]
         post = tps.last
         
-        puts "match st #{t[:source_type]}"
-        match = t[:source_type].match(/<([^<^>]*(<[^<^>]*(<[^<^>]*>)*>)*)*>/)
-        puts "match ed"
+        match = self.get_template_args t[:source_type] #t[:source_type].match(/<([^<^>]*(<[^<^>]*(<[^<^>]*>)*>)*)*>/)
         if match
         
           tmpl = class_template_table[tp]
         
-          tmpl_args = match[0]
-          tmpl_args = tmpl_args.gsub(/^</, "").gsub(/>$/, "")
-          puts "scan st"
-          tmpl_args = tmpl_args.scan(/([^<^>^,^ ]+(<[^<^>]*(<[^<^>]*>)*>)*)/)
-          puts "scan ed #{tmpl_args}"
-          
-          tmpl_args = tmpl_args.map{|t| t[0]}
+          tmpl_args = match
           
           tmpl_args_table = {}
           

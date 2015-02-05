@@ -74,6 +74,12 @@ namespace cor
         {
             type::Matrix4x4F m;
             auto tm = node->getNodeToWorldTransform() * collision->get_current_transform();
+            if(tm.m[12] < 0.1f && tm.m[12] > -0.1f &&
+                tm.m[13] < 0.1f && tm.m[13] > -0.1f)
+            {
+                static int a;
+                a++;
+            }
             convert(tm, m);
             if(auto o_box = boost::get<type::OBox2F>(&this->shape))
             {

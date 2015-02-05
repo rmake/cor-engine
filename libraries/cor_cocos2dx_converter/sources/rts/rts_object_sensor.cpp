@@ -33,13 +33,13 @@ namespace cor
             auto collision = o->get_object_group()->get_collision();
             itnl->node = cocos2d::Node::create();
             itnl->node->retain();
+            o->get_node_ref().get_node()->addChild(itnl->node);
             itnl->node_ref = collision->add_o_sphere(itnl->node, type_id, type::Sphere2F(p, r), [=](cocos2d::Node* n0, cocos2d::Node* n1){
                 if(itnl->collision_callback)
                 {
                     itnl->collision_callback(n0, n1);
                 }
             });
-            o->get_node_ref().get_node()->addChild(itnl->node);
         }
         
         RtsObjectSensor::~RtsObjectSensor()
