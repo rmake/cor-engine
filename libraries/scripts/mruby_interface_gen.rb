@@ -209,8 +209,8 @@ def gen_code option
   source_filter = Proc.new do |src|
     src.gsub("std::basic_string<char, std::char_traits<char>, std::allocator<char> >", "std::string").
       gsub("std::basic_string<char>", "std::string").
-      gsub("std::basic_string<unsigned short, std::char_traits<unsigned short>, std::allocator<unsigned short> >", "std::wstring").
-      gsub("std::basic_string<unsigned short>", "std::wstring")
+      gsub("std::basic_string<unsigned short, std::char_traits<unsigned short>, std::allocator<unsigned short> >", "std::u16string").
+      gsub("std::basic_string<unsigned short>", "std::u16string")
   end
   
   Utility.file_write "log/#{option[:name]}/tree_code_header.log", code_header
