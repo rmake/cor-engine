@@ -21,7 +21,7 @@ end
 load "list_conf.rb"
 
 if Dir.exists? "build_tmp/cor_engine_release_win"
-  FileUtils.remove_dir "build_tmp/cor_engine_release_win"
+  FileUtils.rm_rf "build_tmp/cor_engine_release_win"
 end
 
 if File.exists? "build_tmp/cor_engine_release_win.zip"
