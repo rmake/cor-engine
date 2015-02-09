@@ -124,6 +124,7 @@ def gen_code option
     "const TexParams *" => "delete",
     " char*" => "std::string",
     "float [16]" => "delete",
+    "std::function<void (Sprite3D *, void *)>" => "mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D>, void *)>",
     "std::vector<Touch *>" => "std::vector<cocos2d::Touch *>",
     "std::vector<Touch*>" => "std::vector<cocos2d::Touch*>",
     "std::vector<Vec2 *>" => "delete",

@@ -830,7 +830,7 @@ void Parser::ParseDecl() {
         Error("either all fields or no fields must have an 'id' attribute");
       // Simply sort by id, then the fields are the same as if no ids had
       // been specified.
-      std::sort(fields.begin(), fields.end(),
+      std::stable_sort(fields.begin(), fields.end(),
         [](const FieldDef *a, const FieldDef *b) -> bool {
           auto a_id = atoi(a->attributes.Lookup("id")->constant.c_str());
           auto b_id = atoi(b->attributes.Lookup("id")->constant.c_str());
