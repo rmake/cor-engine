@@ -41,35 +41,70 @@ namespace cor
 
         void rts_object_system_load_shader()
         {
+            static const char* alphatest_frag_shader = STRINGIFY(
+
+                \n#ifdef GL_ES\n
+                precision lowp float;
+            \n#endif\n
+
+                varying vec4 v_fragmentColor;
+            varying vec2 v_texCoord;
+            /*uniform float cc_alpha_value;*/
+
+            void main()
             {
-                static const char* my_frag_shader = STRINGIFY(
+                vec4 texColor = texture2D(CC_Texture0, v_texCoord);
+                float cc_alpha_value = 0.5;
+                if(texColor.a <= cc_alpha_value)
+                    discard;
 
-                    \n#ifdef GL_ES\n
-                    precision lowp float;
-                    \n#endif\n
+                if(texColor.a <= 0.75)
+                {
+                    texColor.a = 0.5;
+                }
+                else
+                {
+                    texColor.a = 1.0;
+                }
+                gl_FragColor = texColor * v_fragmentColor;
+            }
+            );
 
-                        varying vec4 v_fragmentColor;
-                    varying vec2 v_texCoord;
-                    /*uniform float cc_alpha_value;*/
+            static const char* round_vertex_shader = STRINGIFY(
+                attribute vec4 a_position;
+            attribute vec2 a_texCoord;
+            attribute vec4 a_color;
 
-                    void main()
-                    {
-                        vec4 texColor = texture2D(CC_Texture0, v_texCoord);
-                        float cc_alpha_value = 0.5;
-                        if(texColor.a <= cc_alpha_value)
-                            discard;
+            \n#ifdef GL_ES\n
+                varying lowp vec4 v_fragmentColor;
+            varying mediump vec2 v_texCoord;
+            \n#else\n
+                varying vec4 v_fragmentColor;
+            varying vec2 v_texCoord;
+            \n#endif\n
 
-                        texColor.a = 1.0;
-                        gl_FragColor = texColor * v_fragmentColor;
-                    }
-                );
+                void main()
+            {
+                gl_Position = CC_PMatrix * a_position;
+                gl_Position.x *= 400.0;
+                gl_Position.y *= 240.0;
+                gl_Position.xy = floor(gl_Position.xy + vec2(0.5, 0.5));
+                gl_Position.x /= 400.0;
+                gl_Position.y /= 240.0;
+                v_fragmentColor = a_color;
+                v_texCoord = a_texCoord;
+            }
+            );
+
+            {
+                static const char* my_frag_shader = alphatest_frag_shader;
 
                 if(rts_object_system_alpha_test_shader)
                 {
                     rts_object_system_alpha_test_shader->release();
                 }
 
-                auto ss = cocos2d::GLProgram::createWithByteArrays(cocos2d::ccPositionTextureColor_noMVP_vert, my_frag_shader);
+                auto ss = cocos2d::GLProgram::createWithByteArrays(round_vertex_shader, my_frag_shader);
                 rts_object_system_alpha_test_shader = ss;
                 ss->retain();
 
@@ -77,38 +112,15 @@ namespace cor
             
 
             {
-                const char* my_vert_shader = STRINGIFY(
-                    attribute vec4 a_position;
-                    attribute vec2 a_texCoord;
-                    attribute vec4 a_color;
-
-                    \n#ifdef GL_ES\n
-                        varying lowp vec4 v_fragmentColor;
-                    varying mediump vec2 v_texCoord;
-                    \n#else\n
-                        varying vec4 v_fragmentColor;
-                    varying vec2 v_texCoord;
-                    \n#endif\n
-
-                        void main()
-                    {
-                        gl_Position = CC_PMatrix * a_position;
-                        gl_Position.x *= 400.0;
-                        gl_Position.y *= 240.0;
-                        gl_Position.xy = floor(gl_Position.xy + vec2(0.5, 0.5));
-                        gl_Position.x /= 400.0;
-                        gl_Position.y /= 240.0;
-                        v_fragmentColor = a_color;
-                        v_texCoord = a_texCoord;
-                    }
-                );
+                const char* my_vert_shader = round_vertex_shader;
 
                 if(rts_object_system_round_shader)
                 {
                     rts_object_system_round_shader->release();
                 }
-
+                
                 auto ss = cocos2d::GLProgram::createWithByteArrays(my_vert_shader, cocos2d::ccPositionTextureColor_noMVP_frag);
+                //auto ss = cocos2d::GLProgram::createWithByteArrays(my_vert_shader, alphatest_frag_shader);
                 rts_object_system_round_shader = ss;
                 ss->retain();
 
