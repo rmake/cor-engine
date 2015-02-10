@@ -28,7 +28,7 @@ namespace cor
 
         void RtsObjectSystem::setup_rts_rendering_state()
         {
-            cocos2d::Director::getInstance()->setDepthTest(false);
+            cocos2d::Director::getInstance()->setDepthTest(true);
             cocos2d::Director::getInstance()->setAlphaBlending(true);
 
         }
@@ -133,13 +133,72 @@ namespace cor
         void RtsObjectSystem::setup_sprite_alphatest(cocos2d::Sprite* sprite)
         {
             static cocos2d::GLProgramState* s = NULL;
+            static RBool need_reset = rfalse;
+            auto p_need_reset = &need_reset;
+            auto ps = &s;
             if(!s)
             {
+                auto shader = &rts_object_system_alpha_test_shader;
                 rts_object_system_load_shader();
-                s = cocos2d::GLProgramStateCache::getInstance()->getGLProgramState(rts_object_system_alpha_test_shader);
+                s = cocos2d::GLProgramStateCache::getInstance()->getGLProgramState(*shader);
                 s->retain();
+                auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+                    *p_need_reset = rtrue;
+
+                });
+                cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -2);
+                {
+                    auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+                        auto scn = cocos2d::Director::getInstance()->getRunningScene();
+                        scn->enumerateChildren("//.*", [&](cocos2d::Node* n){
+                            if(n->getGLProgramState() == s)
+                            {
+                                n->setGLProgramState(
+                                    cocos2d::GLProgramState::getOrCreateWithGLProgramName(
+                                    cocos2d::GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP));
+                            }
+                            return false;
+                        });
+                    });
+
+                    cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -3);
+                }
             }
             sprite->setGLProgramState(s);
+            {
+                auto shader = &rts_object_system_alpha_test_shader;
+                auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+
+                    RtsObjectSystem::delay_call(sprite, 0.01f, [=](){
+                        if(*p_need_reset)
+                        {
+                            auto s = *ps;
+                            s->release();
+                            cocos2d::GLProgramStateCache::getInstance()->removeUnusedGLProgramState();
+                            rts_object_system_load_shader();
+                            s = cocos2d::GLProgramStateCache::getInstance()->getGLProgramState(*shader);
+                            s->retain();
+                            *ps = s;
+
+                            *p_need_reset = rfalse;
+                        }
+
+                        sprite->setGLProgramState(*ps);
+                    });
+                });
+                sprite->getEventDispatcher()->addEventListenerWithSceneGraphPriority(backToForegroundlistener, sprite);
+
+
+            }
+
+            //static cocos2d::GLProgramState* s = NULL;
+            //if(!s)
+            //{
+            //    rts_object_system_load_shader();
+            //    s = cocos2d::GLProgramStateCache::getInstance()->getGLProgramState(rts_object_system_alpha_test_shader);
+            //    s->retain();
+            //}
+            //sprite->setGLProgramState(s);
         }
 
         void RtsObjectSystem::setup_sprite_round(cocos2d::Node* sprite)
