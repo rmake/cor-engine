@@ -478,7 +478,7 @@ namespace cor
                 auto dcv = (itnl->new_render_pos * t + itnl->old_render_pos * (3 - t)) / 3.0f;
 
                 auto z = -10000.0 + 100.0f + dcv.z / 10.0f + itnl->z_offset;
-                itnl->node_render_z->setGlobalZOrder(z);
+                //itnl->node_render_z->setGlobalZOrder(z);
 
                 auto parabora_f = [&]( RFloat t)
                 {
