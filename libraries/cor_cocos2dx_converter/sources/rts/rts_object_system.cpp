@@ -58,14 +58,14 @@ namespace cor
                 if(texColor.a <= cc_alpha_value)
                     discard;
 
-                if(texColor.a <= 0.75)
-                {
-                    texColor.a = 0.5;
-                }
-                else
-                {
+                //if(texColor.a <= 0.75)
+                //{
+                //    texColor.a = 0.5;
+                //}
+                //else
+                //{
                     texColor.a = 1.0;
-                }
+                //}
                 gl_FragColor = texColor * v_fragmentColor;
             }
             );
