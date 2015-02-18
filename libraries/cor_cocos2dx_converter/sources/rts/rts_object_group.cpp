@@ -274,8 +274,8 @@ namespace cor
                                 }
 
                                 if(contact &&
-                                    itnl->object_table.find(r0.get_node()) != itnl->object_table.end() &&
-                                    itnl->object_table.find(r1.get_node()) != itnl->object_table.end())
+                                    r0.is_valid() && itnl->object_table.find(r0.get_node()) != itnl->object_table.end() &&
+                                    r1.is_valid() && itnl->object_table.find(r1.get_node()) != itnl->object_table.end())
                                 {
                                     
                                     auto o0 = search_from_node(r0.get_node());
