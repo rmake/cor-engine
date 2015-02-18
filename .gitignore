@@ -53,6 +53,7 @@ obj/
 gen/
 assets/
 local.properties
+ant.properties
 
 #
 build_tmp/
