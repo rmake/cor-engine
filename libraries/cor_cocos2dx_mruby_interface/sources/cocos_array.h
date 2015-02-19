@@ -59,6 +59,10 @@ namespace cor
                 for(i = 0; i < l; i++)
                 {
                     mrb_value v = mrb_ary_ref(mrb, ma, i);
+                    if(!mrb_test(v))
+                    {
+                        throw std::runtime_error("cor::cocos2dx_mruby_interface::CocosArray::convert_to_from_cocos_vec. array has nil ptr.");
+                    }
                     WP tv = Type::get(mrb, v);
                     a.pushBack(tv.get());
                 }
