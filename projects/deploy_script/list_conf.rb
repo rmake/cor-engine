@@ -24,6 +24,10 @@ DeployListWin.list = [
     :out_path => "majitai_running_test",
     :source => "../test_projects/majitai_running_test",
   },
+  {
+    :out_path => "simple_3d_world",
+    :source => "../experimental_projects/simple_3d_world",
+  },
 
 ]
 

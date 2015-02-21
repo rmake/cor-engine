@@ -1,6 +1,6 @@
 # Blender v2.70 (sub 0) OBJ File: 'sky.blend'
 # www.blender.org
-mtllib project_resource/box.mtl
+mtllib box.mtl
 o Cube
 v -1.000000 -1.000000 1.000000
 v -1.000000 -1.000000 -1.000000
