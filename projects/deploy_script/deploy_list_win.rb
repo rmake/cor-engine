@@ -37,8 +37,10 @@ DeployListWin.list.each do |v|
   
   if File.exist? "deploy_local_conf.rb"
     load "deploy_local_conf.rb"
-    FileUtils.copy "#{OUTPUT_PATH_WIN}/msvcp120.dll", "build_tmp/#{v[:out_path]}/"
-    FileUtils.copy "#{OUTPUT_PATH_WIN}/msvcr120.dll", "build_tmp/#{v[:out_path]}/"
+    #FileUtils.copy "#{OUTPUT_PATH_WIN}/msvcp120.dll", "build_tmp/#{v[:out_path]}/"
+    #FileUtils.copy "#{OUTPUT_PATH_WIN}/msvcr120.dll", "build_tmp/#{v[:out_path]}/"
+    FileUtils.copy "C:\\Windows\\System32\\msvcp120.dll", "build_tmp/#{v[:out_path]}/"
+    FileUtils.copy "C:\\Windows\\System32\\msvcr120.dll", "build_tmp/#{v[:out_path]}/"
   end
 
 end

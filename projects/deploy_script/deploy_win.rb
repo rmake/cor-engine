@@ -15,6 +15,8 @@ FileUtils.cp_r Dir.glob("../cor_lib_test_main/Resources/*"), "build_tmp/rts_test
 if File.exist? "deploy_local_conf.rb"
   load "deploy_local_conf.rb"
   FileUtils.cp_r Dir.glob("build_tmp/rts_test_win/*"), OUTPUT_PATH_WIN
+  FileUtils.copy "/c/Windows/System32/msvcp120.dll", OUTPUT_PATH_WIN
+  FileUtils.copy "/c/Windows/System32/msvcr120.dll", OUTPUT_PATH_WIN
 end
 
 
