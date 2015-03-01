@@ -40,6 +40,14 @@ class CorProject
     @import_cpp
   end
   
+  def self.set_import_cpp_filter(&block)
+    @import_cpp_filter = block
+  end
+  
+  def self.import_cpp_filter
+    @import_cpp_filter
+  end
+  
 end
 
 
@@ -112,7 +120,14 @@ unless resource_only
     end
     
     if CorProject.import_cpp && Dir.exists?("#{inc}/cpp")
-      cpp_list += Cor.u.file_list("#{inc}/cpp")
+      tmpcpp_list = Cor.u.file_list("#{inc}/cpp") do |v|
+        next CorProject.import_cpp_filter.call v if CorProject.import_cpp_filter
+        true
+      end
+      tmpcpp_list = tmpcpp_list.map do |v|
+        {:fn => v, :base => "#{inc}/cpp"}
+      end
+      cpp_list += tmpcpp_list
     end
   end
   
@@ -125,7 +140,16 @@ unless resource_only
   end
   
   if CorProject.import_cpp && Dir.exists?("#{source_path}/cpp")
-    cpp_list += Cor.u.file_list("#{source_path}/cpp")
+  
+    tmpcpp_list = Cor.u.file_list("#{source_path}/cpp") do |v|
+      next CorProject.import_cpp_filter.call v if CorProject.import_cpp_filter
+      true
+    end
+    tmpcpp_list = tmpcpp_list.map do |v|
+      {:fn => v, :base => "#{source_path}/cpp"}
+    end
+    cpp_list += tmpcpp_list
+    
   end
 end
 
@@ -185,20 +209,24 @@ list.each do |fn|
   d_table.delete dfn
 end
 
-puts "cpp_list #{cpp_list}"
 prject_structure_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(__FILE__))
 import_cpp_file = "#{prject_structure_path}/sources/import/external_code_import_local_conf.h"
-puts "import_cpp_file #{import_cpp_file}"
+import_cpp_copy_dest = "#{prject_structure_path}/sources/import/cpp"
+FileUtils.rmdir import_cpp_copy_dest
 
 if CorProject.import_cpp
 
   import_cpp_include_from = Pathname(File.dirname(import_cpp_file))
   import_cpp_includes = cpp_list.map do |v|
-    import_cpp_include_to = Pathname(File.absolute_path(v))
-    import_cpp_include_to.relative_path_from(import_cpp_include_from)
+    dfn = v[:fn].gsub(v[:base], import_cpp_copy_dest)
+    FileUtils.mkpath File.dirname(dfn)
+    FileUtils.copy v[:fn], dfn
+    import_cpp_include_to = Pathname(File.absolute_path(dfn))
+    r = import_cpp_include_to.relative_path_from(import_cpp_include_from)
+    r.to_s
   end
   
-  puts "import_cpp_includes #{import_cpp_includes}"
+  import_cpp_includes = import_cpp_includes.select do |v| v.match(/\.cpp$/) end
   
   import_cpp_includes = import_cpp_includes.map do |v|
     "#include \"#{v}\""

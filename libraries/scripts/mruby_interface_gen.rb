@@ -28,6 +28,9 @@ def gen_code option
   a = a.select do |p|
     !p.match(/^\.\.\/cor_.*_tmpl_impl.h/)
   end
+  a = a.select do |p|
+    !p.match(/^\.\.\/cor_project_structure\/sources\/import\/cpp/)
+  end
   
   cocos2dx = option[:cocos2dx]
   

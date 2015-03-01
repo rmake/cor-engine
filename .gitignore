@@ -69,3 +69,5 @@ gmon.out
 
 projects/cor_lib_test_main/proj.android/AndroidManifest.xml
 projects/cor_lib_test_main/Resources/
+
+libraries/cor_project_structure/sources/import/cpp

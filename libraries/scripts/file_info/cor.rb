@@ -340,7 +340,13 @@ def cor_file_list
       :action => [:sync, :force_create, :delete][0],
       :no_template => true,
     },
-    
+    #{
+    #  :project => "build_tmp",
+    #  :path => "eigen_experimental",
+    #  :namespace => ["cor", "project_structure"],
+    #  :action => [:sync, :force_create, :delete][0],
+    #  :no_template => true,
+    #},
     
 
   ]
