@@ -14,6 +14,7 @@
 #include "application.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "renderer/CCGLProgramStateCache.h"
+#include "import/external_code_importer.h"
 
 
 #if defined(ANDROID_NDK) && defined(PROFILING)
@@ -491,6 +492,11 @@ namespace cor
                 });
             }
 
+            static RString get_import_name()
+            {
+                return ExternalCodeImporter::get_imported_name();
+            }
+
             static RString get_platform_name()
             {
 #ifdef CC_PLATFORM_WIN32
@@ -574,6 +580,8 @@ namespace cor
                 first = rfalse;
                 mruby_interface::BasicBind::bind(mrb);
                 cocos2dx_mruby_interface::Cocos2dxBind::bind(mrb);
+                ExternalCodeImporter::init_first();
+
             }
             
             itnl->current_scene = this->get_scene();
@@ -620,6 +628,7 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "load_image_async", ProjectMrubyCallItnl::load_image_async);
             binder.bind_static_method("Cor", "Project", "load_image_data_async", ProjectMrubyCallItnl::load_image_data_async);
             binder.bind_static_method("Cor", "Project", "make_image_from_data_async", ProjectMrubyCallItnl::make_image_from_data_async);
+            binder.bind_static_method("Cor", "Project", "get_import_name", ProjectMrubyCallItnl::get_import_name);
             binder.bind_static_method("Cor", "Project", "get_platform_name", ProjectMrubyCallItnl::get_platform_name);
             
 

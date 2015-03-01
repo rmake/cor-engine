@@ -24,6 +24,9 @@ namespace cor
         
         Application::Application() : itnl(new ApplicationItnl())
         {
+#if defined(_DEBUG) && defined(CC_PLATFORM_WIN32)
+            ShellExecute(NULL, TEXT("open"), TEXT("cmd"), TEXT("/c ruby ../../project_script/copy_project.rb"), NULL, SW_SHOWNORMAL);
+#endif
 
             auto eventDispatcher = Director::getInstance()->getEventDispatcher();
 

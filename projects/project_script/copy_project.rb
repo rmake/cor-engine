@@ -7,6 +7,7 @@ $LOAD_PATH.push("../../libraries/scripts/lib")
 
 require 'cor/utility'
 require 'json'
+require 'pathname'
 
 class CorProject
 
@@ -29,6 +30,14 @@ class CorProject
   
   def self.add_include(v)
     self.includes << "#{self.source_path}/#{v}"
+  end
+  
+  def self.import_cpp=(v)
+    @import_cpp = v
+  end
+  
+  def self.import_cpp
+    @import_cpp
   end
   
 end
@@ -80,6 +89,8 @@ if File.exists? source_conf_path
   load source_conf_path
 end
 
+cpp_list = []
+
 unless resource_only
 
   destination_projects = "../cor_lib_test_main/"
@@ -99,6 +110,10 @@ unless resource_only
       puts "project_file copy #{source_projects} -> #{destination_projects}"
       FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
     end
+    
+    if CorProject.import_cpp && Dir.exists?("#{inc}/cpp")
+      cpp_list += Cor.u.file_list("#{inc}/cpp")
+    end
   end
   
   source_projects = "#{source_path}/project_file"
@@ -107,6 +122,10 @@ unless resource_only
   if Dir.exists? "#{source_path}/project_file"
     puts "project_file copy #{source_projects} -> #{destination_projects}"
     FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
+  end
+  
+  if CorProject.import_cpp && Dir.exists?("#{source_path}/cpp")
+    cpp_list += Cor.u.file_list("#{source_path}/cpp")
   end
 end
 
@@ -166,6 +185,46 @@ list.each do |fn|
   d_table.delete dfn
 end
 
+puts "cpp_list #{cpp_list}"
+prject_structure_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(__FILE__))
+import_cpp_file = "#{prject_structure_path}/sources/import/external_code_import_local_conf.h"
+puts "import_cpp_file #{import_cpp_file}"
+
+if CorProject.import_cpp
+
+  import_cpp_include_from = Pathname(File.dirname(import_cpp_file))
+  import_cpp_includes = cpp_list.map do |v|
+    import_cpp_include_to = Pathname(File.absolute_path(v))
+    import_cpp_include_to.relative_path_from(import_cpp_include_from)
+  end
+  
+  puts "import_cpp_includes #{import_cpp_includes}"
+  
+  import_cpp_includes = import_cpp_includes.map do |v|
+    "#include \"#{v}\""
+  end
+  import_cpp_includes = import_cpp_includes.join "\n"
+
+  import_cpp_code = <<EOS
+#include "cor_type/sources/basic_types.h"
+
+namespace cor
+{
+    namespace project_structure
+    {
+        static const char* imported_name = "copy source is #{source_path}";
+    }
+}
+
+#{import_cpp_includes}
+
+EOS
+
+  Cor.u.file_write import_cpp_file, import_cpp_code
+else
+  FileUtils.remove import_cpp_file
+  
+end
 
 
 past_copy_json = JSON.pretty_generate past_copy_table

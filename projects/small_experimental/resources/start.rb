@@ -13,6 +13,8 @@ Project.load_eval "graph/graph.rb"
 
 Project.load_eval "triangle/triangle.rb"
 
+Project.load_eval "import_test/import_test.rb"
+
 Project.load_eval "menu/menu.rb"
 
 Project.load_eval "release_sample/release_sample_menu.rb"

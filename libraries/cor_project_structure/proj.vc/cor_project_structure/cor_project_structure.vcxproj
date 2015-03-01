@@ -91,12 +91,12 @@
     
     
     
-  <ClInclude Include='../../sources/application.h'/><ClInclude Include='../../sources/project_base.h'/><ClInclude Include='../../sources/project_group.h'/><ClInclude Include='../../sources/project_group_scene.h'/><ClInclude Include='../../sources/project_mruby_call.h'/></ItemGroup>
+  <ClInclude Include='../../sources/application.h'/><ClInclude Include='../../sources/import/external_code_importer.h'/><ClInclude Include='../../sources/project_base.h'/><ClInclude Include='../../sources/project_group.h'/><ClInclude Include='../../sources/project_group_scene.h'/><ClInclude Include='../../sources/project_mruby_call.h'/></ItemGroup>
   <ItemGroup>
     
     
     
     
     
-  <ClCompile Include='../../sources/application.cpp'/><ClCompile Include='../../sources/project_base.cpp'/><ClCompile Include='../../sources/project_group.cpp'/><ClCompile Include='../../sources/project_group_scene.cpp'/><ClCompile Include='../../sources/project_mruby_call.cpp'/></ItemGroup>
+  <ClCompile Include='../../sources/application.cpp'/><ClCompile Include='../../sources/import/external_code_importer.cpp'/><ClCompile Include='../../sources/project_base.cpp'/><ClCompile Include='../../sources/project_group.cpp'/><ClCompile Include='../../sources/project_group_scene.cpp'/><ClCompile Include='../../sources/project_mruby_call.cpp'/></ItemGroup>
 </Project>

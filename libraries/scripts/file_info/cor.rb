@@ -333,6 +333,13 @@ def cor_file_list
       :action => [:sync, :force_create, :delete][0],
       :no_template => true,
     },
+    {
+      :project => "cor_project_structure",
+      :path => "import/external_code_importer",
+      :namespace => ["cor", "project_structure"],
+      :action => [:sync, :force_create, :delete][0],
+      :no_template => true,
+    },
     
     
 

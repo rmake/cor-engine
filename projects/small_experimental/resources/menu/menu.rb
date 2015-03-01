@@ -35,6 +35,12 @@ class CorMenu
         end),
       },
       {
+        :text => "import_test",
+        :proc => (Proc.new do
+          ImportCodeTest.new
+        end),
+      },
+      {
         :text => "basic/basic.rb",
         :proc => (Proc.new do
           BasicTest.new
