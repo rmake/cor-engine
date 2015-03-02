@@ -212,7 +212,7 @@ end
 prject_structure_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(__FILE__))
 import_cpp_file = "#{prject_structure_path}/sources/import/external_code_import_local_conf.h"
 import_cpp_copy_dest = "#{prject_structure_path}/sources/import/cpp"
-FileUtils.rmdir import_cpp_copy_dest
+FileUtils.rmtree import_cpp_copy_dest
 
 if CorProject.import_cpp
 
@@ -250,8 +250,9 @@ EOS
 
   Cor.u.file_write import_cpp_file, import_cpp_code
 else
-  FileUtils.remove import_cpp_file
-  
+  if File.exist? import_cpp_file
+    FileUtils.remove import_cpp_file
+  end
 end
 
 

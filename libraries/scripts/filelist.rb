@@ -285,6 +285,11 @@ end
 
 EOS
 
+def file_list_filter(fn)
+  !fn.match(/cor_project_structure\/sources\/import\/cpp/) &&
+  !fn.match(/cor_project_structure\/sources\/import\/external_code_import_local_conf.h/)
+end
+
 
 def file_list_path(path)
   file_list = []
@@ -299,7 +304,7 @@ def file_list_path(path)
       print "dir #{fpath}\n"
       file_list += file_list_path(fpath)
     else
-      if File.extname(fpath) == ".cpp"
+      if File.extname(fpath) == ".cpp" && file_list_filter(fpath)
         print "file #{fpath}\n"
         file_list << fpath
       end
@@ -324,7 +329,7 @@ def file_list_all_path(path)
       print "dir #{fpath}\n"
       file_list += file_list_all_path(fpath)
     else
-      if File.extname(fpath) == ".cpp" || File.extname(fpath) == ".h"
+      if (File.extname(fpath) == ".cpp" || File.extname(fpath) == ".h") && file_list_filter(fpath)
         print "file #{fpath}\n"
         file_list << fpath
       end

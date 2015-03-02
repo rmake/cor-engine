@@ -430,6 +430,36 @@ namespace cor
                 )));
         }
 
+        void RtsObjectSystem::set_scroll_view_on_scroll(cocos2d::extension::ScrollView* scroll_view, std::function<void()> callback)
+        {
+            class Deligate : public cocos2d::extension::ScrollViewDelegate
+            {
+            public:
+                std::function<void()> callback;
+                Deligate()
+                {
+                    
+                }
+
+                virtual void scrollViewDidScroll(cocos2d::extension::ScrollView* view)
+                {
+                    callback();
+                }
+            };
+
+            class DeligateRef : public cocos2d::Ref
+            {
+            public:
+                Deligate d;
+            };
+
+            auto ref = new DeligateRef();
+            ref->d.callback = callback;
+            scroll_view->setUserObject(ref);
+            scroll_view->setDelegate(&ref->d);
+            ref->release();
+        }
+
         void RtsObjectSystem::on_active()
         {
             //log_debug("RtsObjectSystem::on_active");

@@ -3,6 +3,7 @@
 
 #include "cor_type/sources/basic_types.h"
 #include "2d/CCSprite.h"
+#include "extensions/GUI/CCScrollView/CCScrollView.h"
 
 namespace cor
 {
@@ -29,6 +30,7 @@ namespace cor
             static cocos2d::Rect nodes_rect(cocos2d::Vector<cocos2d::Node*> nodes);
             static cocos2d::Action* delay_call(cocos2d::Node* node, RFloat interval, std::function<void()> callback);
             static cocos2d::Action* interval_call(cocos2d::Node* node, RFloat interval, std::function<void()> callback);
+            static void set_scroll_view_on_scroll(cocos2d::extension::ScrollView* scroll_view, std::function<void()> callback);
 
 
             static void on_active();
