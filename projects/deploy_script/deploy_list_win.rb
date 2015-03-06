@@ -5,7 +5,7 @@ require 'cor/utility'
 
 require 'json'
 
-system "cmd /c build_win.bat"
+#system "cmd /c build_win.bat"
 
 class DeployListWin
   
@@ -30,6 +30,7 @@ end
 
 DeployListWin.list.each do |v|
   system "ruby ../project_script/copy_project.rb #{v[:source]}"
+  system "cmd /c build_win.bat"
   FileUtils.mkpath "build_tmp/#{v[:out_path]}"
   FileUtils.cp_r Dir.glob("../cor_lib_test_main/proj.win32/Release.win32/*.exe"), "build_tmp/#{v[:out_path]}/"
   FileUtils.cp_r Dir.glob("../cor_lib_test_main/proj.win32/Release.win32/*.dll"), "build_tmp/#{v[:out_path]}/"
