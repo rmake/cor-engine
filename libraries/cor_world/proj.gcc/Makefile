@@ -35,6 +35,11 @@ ifneq ($(WINDOWS), )
     CXX := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\x86_64-w64-mingw32-g++.exe" -m32 -static 
     AR := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\ar.exe"
     MKDIR := mkdir -p
+    
+    #CC := clang -D_HAS_EXCEPTIONS=0
+    #CXX := clang++ -D_HAS_EXCEPTIONS=0
+    #AR := ar
+    #MKDIR := mkdir -p
 endif
 
 ifneq ($(CLANG), )

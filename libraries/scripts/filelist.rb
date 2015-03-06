@@ -52,6 +52,11 @@ ifneq ($(WINDOWS), )
     CXX := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\\Mingw64\\mingw64_4_8_1_5\\bin\\x86_64-w64-mingw32-g++.exe" -m32 -static 
     AR := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\\Mingw64\\mingw64_4_8_1_5\\bin\\ar.exe"
     MKDIR := mkdir -p
+    
+    #CC := clang -D_HAS_EXCEPTIONS=0
+    #CXX := clang++ -D_HAS_EXCEPTIONS=0
+    #AR := ar
+    #MKDIR := mkdir -p
 endif
 
 ifneq ($(CLANG), )
@@ -301,11 +306,9 @@ def file_list_path(path)
 
     if File::ftype(fpath) == "directory"
 
-      print "dir #{fpath}\n"
       file_list += file_list_path(fpath)
     else
       if File.extname(fpath) == ".cpp" && file_list_filter(fpath)
-        print "file #{fpath}\n"
         file_list << fpath
       end
 
@@ -326,11 +329,9 @@ def file_list_all_path(path)
 
     if File::ftype(fpath) == "directory"
 
-      print "dir #{fpath}\n"
       file_list += file_list_all_path(fpath)
     else
       if (File.extname(fpath) == ".cpp" || File.extname(fpath) == ".h") && file_list_filter(fpath)
-        print "file #{fpath}\n"
         file_list << fpath
       end
 
@@ -377,14 +378,8 @@ def vc_project_filter(libname, project_path, proj_vc_path, file_list_all)
       doc.root.add e_src
     end
     
-    #print "e_inc #{e_inc.to_s}\n"
-    #print "e_src #{e_src.to_s}\n"
-    
     e_inc.elements.delete_all "*"
     e_src.elements.delete_all "*"
-    
-    #print "e_inc #{e_inc.to_s}\n"
-    #print "e_src #{e_src.to_s}\n"
     
     file_list_all.each do |fn|
       if File.extname(fn) == ".h"
@@ -402,10 +397,6 @@ def vc_project_filter(libname, project_path, proj_vc_path, file_list_all)
       end
     end
     
-    #print "e_inc #{e_inc.to_s}\n"
-    #print "e_src #{e_src.to_s}\n"
-    
-    #print "doc #{doc}\n"
     
     File.open proj_file, "w" do |f|
       doc.write f
@@ -446,17 +437,9 @@ def vc_project_filter(libname, project_path, proj_vc_path, file_list_all)
       doc.root.add e_filter
     end
     
-    #print "e_inc #{e_inc.to_s}\n"
-    #print "e_src #{e_src.to_s}\n"
-    #print "e_filter #{e_filter.to_s}\n"
-    
     e_inc.elements.delete_all "*"
     e_src.elements.delete_all "*"
     e_filter.elements.delete_all "*"
-    
-    #print "e_inc #{e_inc.to_s}\n"
-    #print "e_src #{e_src.to_s}\n"
-    #print "e_filter #{e_filter.to_s}\n"
     
     dirs = {}
     
@@ -493,11 +476,6 @@ def vc_project_filter(libname, project_path, proj_vc_path, file_list_all)
       fe.add_attribute("Include", k.gsub('/', "\\"))
     end
     
-    #print "e_inc #{e_inc.to_s}\n"
-    #print "e_src #{e_src.to_s}\n"
-    
-    #print "doc #{doc}\n"
-    
     File.open filter_file, "w" do |f|
       doc.write f
     end
@@ -529,9 +507,6 @@ def file_list_project(libname, project_path)
     File.open file_list_file_name, "wb" do |f|
         f.write "PRJSRCS=#{file_list.map{|n| "../#{n}"}.join "\\\n    "}\n"
     end
-    
-    #old_proj_host_gcc_path = "#{project_path}/proj.host.gcc"
-    #FileUtils.remove_dir old_proj_host_gcc_path, true
     
     proj_host_gcc_path = "#{project_path}/proj.gcc"
     FileUtils.mkpath proj_host_gcc_path
