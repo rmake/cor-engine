@@ -56,7 +56,7 @@ def run_test run_dir, clean, path, cmd
   mkcmd = "make"
   if RUBY_PLATFORM.include? "mswin32"
       flag = "WINDOWS=TRUE"
-      mkcmd = "/c/Mingw64/mingw64_4_8_1_5/bin/mingw32-make.exe"
+      mkcmd = "/c/MinGW/msys/opt/windows_64/bin/mingw32-make.exe"
   end
   
   

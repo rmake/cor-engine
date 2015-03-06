@@ -17,9 +17,14 @@ AR := ar
 MKDIR := mkdir -p
 
 ifneq ($(WINDOWS), )
-    CC := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\x86_64-w64-mingw32-gcc.exe" -m32 -static 
-    CXX := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\x86_64-w64-mingw32-g++.exe" -m32 -static 
-    AR := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\ar.exe"
+    #CC := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\x86_64-w64-mingw32-gcc.exe" -m32 -static 
+    #CXX := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\x86_64-w64-mingw32-g++.exe" -m32 -static 
+    #AR := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\ar.exe"
+    #MKDIR := mkdir -p
+    
+    CC := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\MinGW\msys\opt\windows_64\bin\gcc.exe" -static 
+    CXX := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\MinGW\msys\opt\windows_64\bin\g++.exe" -static 
+    AR := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\MinGW\msys\opt\windows_64\bin\ar.exe"
     MKDIR := mkdir -p
     
     #CC := clang -D_HAS_EXCEPTIONS=0
