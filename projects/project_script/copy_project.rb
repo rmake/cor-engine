@@ -211,6 +211,7 @@ end
 
 prject_structure_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(__FILE__))
 import_cpp_file = "#{prject_structure_path}/sources/import/external_code_import_local_conf.h"
+import_cpp_importer_file = "#{prject_structure_path}/sources/import/external_code_importer.cpp"
 import_cpp_copy_dest = "#{prject_structure_path}/sources/import/cpp"
 FileUtils.rmtree import_cpp_copy_dest
 
@@ -248,6 +249,9 @@ namespace cor
 
 EOS
 
+  imporer_txt = Cor.u.file_read import_cpp_importer_file
+  Cor.u.file_write import_cpp_importer_file, imporer_txt
+  
   Cor.u.file_write import_cpp_file, import_cpp_code
 else
   if File.exist? import_cpp_file
