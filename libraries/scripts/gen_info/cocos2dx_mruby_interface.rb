@@ -995,6 +995,11 @@ COCOS2DX_MRUBY_INTERFACE_TAGET_ENUMS = [
       :mruby_module => "Cocos2d",
       :mruby_class => "Texture2DPixelFormat",
     },
+    {
+      :enum_name => "cocos2d::extension::ScrollView::Direction",
+      :mruby_module => "Cocos2d",
+      :mruby_class => "ScrollViewDirection",
+    },
   ]
     
 

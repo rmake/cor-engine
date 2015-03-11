@@ -10002,6 +10002,10 @@ namespace cor
             binder.bind_const("Cocos2d", "Texture2DPixelFormat", "ATC_INTERPOLATED_ALPHA", (int)cocos2d::Texture2D::PixelFormat::ATC_INTERPOLATED_ALPHA);
             binder.bind_const("Cocos2d", "Texture2DPixelFormat", "DEFAULT", (int)cocos2d::Texture2D::PixelFormat::DEFAULT);
             binder.bind_const("Cocos2d", "Texture2DPixelFormat", "NONE", (int)cocos2d::Texture2D::PixelFormat::NONE);
+            binder.bind_const("Cocos2d", "ScrollViewDirection", "NONE", (int)cocos2d::extension::ScrollView::Direction::NONE);
+            binder.bind_const("Cocos2d", "ScrollViewDirection", "HORIZONTAL", (int)cocos2d::extension::ScrollView::Direction::HORIZONTAL);
+            binder.bind_const("Cocos2d", "ScrollViewDirection", "VERTICAL", (int)cocos2d::extension::ScrollView::Direction::VERTICAL);
+            binder.bind_const("Cocos2d", "ScrollViewDirection", "BOTH", (int)cocos2d::extension::ScrollView::Direction::BOTH);
             binder.bind_const("Cocos2d", "MatrixStackType", "MATRIX_STACK_MODELVIEW", (int)cocos2d::MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
             binder.bind_const("Cocos2d", "MatrixStackType", "MATRIX_STACK_PROJECTION", (int)cocos2d::MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
             binder.bind_const("Cocos2d", "MatrixStackType", "MATRIX_STACK_TEXTURE", (int)cocos2d::MATRIX_STACK_TYPE::MATRIX_STACK_TEXTURE);
