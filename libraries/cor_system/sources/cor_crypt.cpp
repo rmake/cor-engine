@@ -7,10 +7,11 @@ namespace cor
     {
         struct CorCryptItnl
         {
-            static const RSize encode_size = 1024;
+            static const RSize encode_size;
             static const RString key;
             static RBool enabled;
         };
+        const RSize CorCryptItnl::encode_size = 1024;
         RBool CorCryptItnl::enabled = rfalse;
         const RString CorCryptItnl::key("ak8tm.mj");
         
