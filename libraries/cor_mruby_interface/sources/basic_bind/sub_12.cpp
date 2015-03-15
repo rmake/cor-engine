@@ -38,6 +38,7 @@
 #include "cor_algorithm/sources/utilities.h"
 #include "cor_algorithm/sources/utilities_tmpl.h"
 #include "cor_system/sources/allocation_monitor.h"
+#include "cor_system/sources/cor_crypt.h"
 #include "cor_system/sources/cor_time.h"
 #include "cor_system/sources/job_queue.h"
 #include "cor_system/sources/logger.h"
@@ -130,6 +131,10 @@ namespace cor
         std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
         void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1);
         cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0);
+        void BasicBind_cor__system__CorCrypt_set_enabled(int a0);
+        int BasicBind_cor__system__CorCrypt_get_enabled();
+        void BasicBind_cor__system__CorCrypt_encode(RByte * a0, unsigned int a1);
+        void BasicBind_cor__system__CorCrypt_decode(RByte * a0, unsigned int a1);
         int BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c);
         void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0);
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c);

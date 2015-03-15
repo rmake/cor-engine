@@ -38,6 +38,7 @@
 #include "cor_algorithm/sources/utilities.h"
 #include "cor_algorithm/sources/utilities_tmpl.h"
 #include "cor_system/sources/allocation_monitor.h"
+#include "cor_system/sources/cor_crypt.h"
 #include "cor_system/sources/cor_time.h"
 #include "cor_system/sources/job_queue.h"
 #include "cor_system/sources/logger.h"
@@ -130,6 +131,10 @@ namespace cor
         std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
         void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1);
         cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0);
+        void BasicBind_cor__system__CorCrypt_set_enabled(int a0);
+        int BasicBind_cor__system__CorCrypt_get_enabled();
+        void BasicBind_cor__system__CorCrypt_encode(RByte * a0, unsigned int a1);
+        void BasicBind_cor__system__CorCrypt_decode(RByte * a0, unsigned int a1);
         int BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c);
         void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0);
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c);
@@ -563,20 +568,13 @@ namespace cor
             binder.bind_static_method("CorDataStructure", "SharedPtrTable", "create", BasicBind_cor__data_structure__SharedPtrTable_create);
             binder.bind_custom_method("CorDataStructure", "SharedPtrTable", "set", BasicBind_cor__data_structure__SharedPtrTable_set);
             binder.bind_custom_method("CorDataStructure", "SharedPtrTable", "get", BasicBind_cor__data_structure__SharedPtrTable_get);
+            binder.bind_static_method("CorSystem", "CorCrypt", "set_enabled", BasicBind_cor__system__CorCrypt_set_enabled);
+            binder.bind_static_method("CorSystem", "CorCrypt", "get_enabled", BasicBind_cor__system__CorCrypt_get_enabled);
+            binder.bind_static_method("CorSystem", "CorCrypt", "encode", BasicBind_cor__system__CorCrypt_encode);
+            binder.bind_static_method("CorSystem", "CorCrypt", "decode", BasicBind_cor__system__CorCrypt_decode);
             binder.bind_custom_method("CorSystem", "JobQueue", "empty", BasicBind_cor__system__JobQueue_empty);
             binder.bind_custom_method("CorSystem", "JobQueue", "add_job", BasicBind_cor__system__JobQueue_add_job);
             binder.bind_custom_method("CorSystem", "JobQueue", "step", BasicBind_cor__system__JobQueue_step);
-            binder.bind_custom_method("CorSystem", "Logger", "add_print_func_1", BasicBind_cor__system__Logger_add_print_func_1);
-            binder.bind_custom_method("CorSystem", "Logger", "add_print_func_2", BasicBind_cor__system__Logger_add_print_func_2);
-            binder.bind_custom_method("CorSystem", "Logger", "pop_print_func", BasicBind_cor__system__Logger_pop_print_func);
-            binder.bind_custom_method("CorSystem", "Logger", "clear_print_func", BasicBind_cor__system__Logger_clear_print_func);
-            binder.bind_custom_method("CorSystem", "Logger", "call_print_func", BasicBind_cor__system__Logger_call_print_func);
-            binder.bind_static_method("CorSystem", "Logger", "info", BasicBind_cor__system__Logger_info);
-            binder.bind_static_method("CorSystem", "Logger", "debug", BasicBind_cor__system__Logger_debug);
-            binder.bind_static_method("CorSystem", "Logger", "warn", BasicBind_cor__system__Logger_warn);
-            binder.bind_static_method("CorSystem", "Logger", "error", BasicBind_cor__system__Logger_error);
-            binder.bind_static_method("CorSystem", "Logger", "fatal", BasicBind_cor__system__Logger_fatal);
-            binder.bind_static_method("CorSystem", "Logger", "get_instance", BasicBind_cor__system__Logger_get_instance);
 
           }
 

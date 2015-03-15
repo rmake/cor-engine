@@ -9,11 +9,12 @@ USING_NS_CC;
 AppDelegate::AppDelegate() {
     cor::log_debug("AppDelegate::AppDelegate()");
     app.set_did_finish_launching_func([=](){
-        ProjectTest1::init_mruby_call(&app);
+        //ProjectTest1::init_mruby_call(&app);
         //auto project =
         //    std::make_shared<ProjectTest1>();
         auto project =
             std::make_shared<cor::project_structure::ProjectMrubyCall>();
+        cor::project_structure::ProjectMrubyCall::first_init(&app);
         project->set_start_file("start.rb");
 
         app.start_with_project("main", project);

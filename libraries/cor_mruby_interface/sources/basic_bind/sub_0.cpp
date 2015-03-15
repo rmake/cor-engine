@@ -38,6 +38,7 @@
 #include "cor_algorithm/sources/utilities.h"
 #include "cor_algorithm/sources/utilities_tmpl.h"
 #include "cor_system/sources/allocation_monitor.h"
+#include "cor_system/sources/cor_crypt.h"
 #include "cor_system/sources/cor_time.h"
 #include "cor_system/sources/job_queue.h"
 #include "cor_system/sources/logger.h"
@@ -130,6 +131,10 @@ namespace cor
         std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
         void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1);
         cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0);
+        void BasicBind_cor__system__CorCrypt_set_enabled(int a0);
+        int BasicBind_cor__system__CorCrypt_get_enabled();
+        void BasicBind_cor__system__CorCrypt_encode(RByte * a0, unsigned int a1);
+        void BasicBind_cor__system__CorCrypt_decode(RByte * a0, unsigned int a1);
         int BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c);
         void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0);
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c);
@@ -552,6 +557,7 @@ namespace cor
             binder.bind_static_method("CorDataStructure", "CostGridSpace", "create", BasicBind_CostGridSpace_create);
             binder.bind_class<std::weak_ptr<cor::data_structure::SharedPtrTable> >("CorDataStructure", "SharedPtrTable");
             binder.bind_custom_method("CorDataStructure", "SharedPtrTable", "valid?", BasicBind_SharedPtrTable_valid_question);
+            binder.bind_class<cor::system::CorCrypt* >("CorSystem", "CorCrypt");
             binder.bind_class<std::weak_ptr<cor::system::JobQueue> >("CorSystem", "JobQueue");
             binder.bind_custom_method("CorSystem", "JobQueue", "valid?", BasicBind_JobQueue_valid_question);
             binder.bind_static_method("CorSystem", "JobQueue", "create", BasicBind_JobQueue_create);
@@ -578,10 +584,6 @@ namespace cor
             binder.bind_static_method("CorType", "Vector2F", "create_0", BasicBind_Vector2F_create_0);
             binder.bind_static_method("CorType", "Vector2F", "create_1", BasicBind_Vector2F_create_1);
             binder.bind_static_method("CorType", "Vector2F", "create_2", BasicBind_Vector2F_create_2);
-            binder.bind_class<cor::type::Vector2I >("CorType", "Vector2I");
-            binder.bind_static_method("CorType", "Vector2I", "create_0", BasicBind_Vector2I_create_0);
-            binder.bind_static_method("CorType", "Vector2I", "create_1", BasicBind_Vector2I_create_1);
-            binder.bind_static_method("CorType", "Vector2I", "create_2", BasicBind_Vector2I_create_2);
 
           }
 

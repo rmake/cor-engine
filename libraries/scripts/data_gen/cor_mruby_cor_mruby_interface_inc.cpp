@@ -39,6 +39,7 @@
 #include "../../cor_algorithm/sources/utilities.h"
 #include "../../cor_algorithm/sources/utilities_tmpl.h"
 #include "../../cor_system/sources/allocation_monitor.h"
+#include "../../cor_system/sources/cor_crypt.h"
 #include "../../cor_system/sources/cor_time.h"
 #include "../../cor_system/sources/job_queue.h"
 #include "../../cor_system/sources/logger.h"

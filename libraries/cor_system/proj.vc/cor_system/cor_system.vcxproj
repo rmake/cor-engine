@@ -89,11 +89,11 @@
     
     
     
-  <ClInclude Include='../../sources/allocation_monitor.h'/><ClInclude Include='../../sources/cor_time.h'/><ClInclude Include='../../sources/job_queue.h'/><ClInclude Include='../../sources/logger.h'/><ClInclude Include='../../sources/parallel_processor.h'/><ClInclude Include='../../sources/thread_pool.h'/></ItemGroup>
+  <ClInclude Include='../../sources/allocation_monitor.h'/><ClInclude Include='../../sources/cor_crypt.h'/><ClInclude Include='../../sources/cor_time.h'/><ClInclude Include='../../sources/job_queue.h'/><ClInclude Include='../../sources/logger.h'/><ClInclude Include='../../sources/parallel_processor.h'/><ClInclude Include='../../sources/thread_pool.h'/></ItemGroup>
   <ItemGroup>
     
     
     
     
-  <ClCompile Include='../../sources/allocation_monitor.cpp'/><ClCompile Include='../../sources/cor_time.cpp'/><ClCompile Include='../../sources/job_queue.cpp'/><ClCompile Include='../../sources/logger.cpp'/><ClCompile Include='../../sources/parallel_processor.cpp'/><ClCompile Include='../../sources/thread_pool.cpp'/></ItemGroup>
+  <ClCompile Include='../../sources/allocation_monitor.cpp'/><ClCompile Include='../../sources/cor_crypt.cpp'/><ClCompile Include='../../sources/cor_time.cpp'/><ClCompile Include='../../sources/job_queue.cpp'/><ClCompile Include='../../sources/logger.cpp'/><ClCompile Include='../../sources/parallel_processor.cpp'/><ClCompile Include='../../sources/thread_pool.cpp'/></ItemGroup>
 </Project>

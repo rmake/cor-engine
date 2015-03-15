@@ -9,6 +9,7 @@
 #include "cocos2d.h"
 #include "project_group_scene.h"
 #include "cor_system/sources/allocation_monitor.h"
+#include "cor_system/sources/cor_crypt.h"
 #include "cor_cocos2dx_converter/sources/collision_2d_node.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_group.h"
 #include "application.h"
@@ -17,12 +18,17 @@
 #include "import/external_code_importer.h"
 
 
+
 #if defined(ANDROID_NDK) && defined(PROFILING)
 #include <prof.h>
 #endif
 
 #ifdef WIN32
 #include <fstream>
+#endif
+
+#ifdef CC_PLATFORM_WIN32
+#include "platform/win32/CCFileUtils-win32.h"
 #endif
 
 
@@ -558,6 +564,27 @@ namespace cor
         ProjectMrubyCallItnl* ProjectMrubyCall::get_itnl()
         {
             return itnl.get();
+        }
+
+        void ProjectMrubyCall::first_init(cor::project_structure::ApplicationPtr app)
+        {
+            auto f = cocos2d::FileUtils::getInstance();
+            if(f->isFileExist("crypted.txt"))
+            {
+                auto s = f->getStringFromFile("crypted.txt");
+                if(s == "1")
+                {
+                    system::CorCrypt::set_enabled(rtrue);
+                    cocos2d::FileUtils::decoder() = [=](const std::string& fn, unsigned char* d, size_t sz){
+                        auto pos = fn.rfind('.');
+                        auto ext = fn.substr(pos, fn.length());
+                        if(ext == ".rb" || ext == ".png")
+                        {
+                            system::CorCrypt::decode(d, sz);
+                        }
+                    };
+                }
+            }
         }
 
         void ProjectMrubyCall::start()

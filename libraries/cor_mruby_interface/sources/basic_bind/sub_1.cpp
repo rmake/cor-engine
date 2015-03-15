@@ -38,6 +38,7 @@
 #include "cor_algorithm/sources/utilities.h"
 #include "cor_algorithm/sources/utilities_tmpl.h"
 #include "cor_system/sources/allocation_monitor.h"
+#include "cor_system/sources/cor_crypt.h"
 #include "cor_system/sources/cor_time.h"
 #include "cor_system/sources/job_queue.h"
 #include "cor_system/sources/logger.h"
@@ -130,6 +131,10 @@ namespace cor
         std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
         void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1);
         cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0);
+        void BasicBind_cor__system__CorCrypt_set_enabled(int a0);
+        int BasicBind_cor__system__CorCrypt_get_enabled();
+        void BasicBind_cor__system__CorCrypt_encode(RByte * a0, unsigned int a1);
+        void BasicBind_cor__system__CorCrypt_decode(RByte * a0, unsigned int a1);
         int BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c);
         void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0);
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c);
@@ -547,7 +552,11 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_class<cor::type::Vector3F >("CorType", "Vector3F");
+                            binder.bind_class<cor::type::Vector2I >("CorType", "Vector2I");
+            binder.bind_static_method("CorType", "Vector2I", "create_0", BasicBind_Vector2I_create_0);
+            binder.bind_static_method("CorType", "Vector2I", "create_1", BasicBind_Vector2I_create_1);
+            binder.bind_static_method("CorType", "Vector2I", "create_2", BasicBind_Vector2I_create_2);
+            binder.bind_class<cor::type::Vector3F >("CorType", "Vector3F");
             binder.bind_static_method("CorType", "Vector3F", "create_0", BasicBind_Vector3F_create_0);
             binder.bind_static_method("CorType", "Vector3F", "create_1", BasicBind_Vector3F_create_1);
             binder.bind_static_method("CorType", "Vector3F", "create_2", BasicBind_Vector3F_create_2);
@@ -585,8 +594,6 @@ namespace cor
             binder.bind_class<cor::type::Sphere2I >("CorType", "Sphere2I");
             binder.bind_static_method("CorType", "Sphere2I", "create_0", BasicBind_Sphere2I_create_0);
             binder.bind_static_method("CorType", "Sphere2I", "create_1", BasicBind_Sphere2I_create_1);
-            binder.bind_class<cor::type::OSphere2F >("CorType", "OSphere2F");
-            binder.bind_static_method("CorType", "OSphere2F", "create", BasicBind_OSphere2F_create);
 
           }
 

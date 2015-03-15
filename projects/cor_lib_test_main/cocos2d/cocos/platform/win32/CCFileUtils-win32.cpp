@@ -195,6 +195,7 @@ static Data getData(const std::string& filename, bool forString)
     }
     else
     {
+        FileUtils::decoder()(filename, buffer, size);
         ret.fastSet(buffer, size);
     }
     return ret;

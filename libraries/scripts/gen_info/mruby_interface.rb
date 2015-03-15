@@ -215,6 +215,10 @@ MRUBY_INTERFACE_TAGET_CLASSES = [
       :create_function => "create",
     },
     {
+      :name => "cor::system::CorCrypt",
+      :value => :pointer, # :value, :pointer, :shared_ptr, :weak_ptr, :cocos_ptr
+    },
+    {
       :name => "cor::mruby_interface::MrubyRefContainer",
       :value => :shared_ptr,
       :create_function => "create",

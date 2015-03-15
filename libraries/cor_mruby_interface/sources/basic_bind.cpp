@@ -38,6 +38,7 @@
 #include "cor_algorithm/sources/utilities.h"
 #include "cor_algorithm/sources/utilities_tmpl.h"
 #include "cor_system/sources/allocation_monitor.h"
+#include "cor_system/sources/cor_crypt.h"
 #include "cor_system/sources/cor_time.h"
 #include "cor_system/sources/job_queue.h"
 #include "cor_system/sources/logger.h"
@@ -475,6 +476,30 @@ namespace cor
             }
 
             return tmp_c->get(a0);
+        }
+        
+        void BasicBind_cor__system__CorCrypt_set_enabled(int a0)
+        {
+
+            cor::system::CorCrypt::set_enabled(a0);
+        }
+        
+        int BasicBind_cor__system__CorCrypt_get_enabled()
+        {
+
+            return cor::system::CorCrypt::get_enabled();
+        }
+        
+        void BasicBind_cor__system__CorCrypt_encode(RByte * a0, unsigned int a1)
+        {
+
+            cor::system::CorCrypt::encode(a0, a1);
+        }
+        
+        void BasicBind_cor__system__CorCrypt_decode(RByte * a0, unsigned int a1)
+        {
+
+            cor::system::CorCrypt::decode(a0, a1);
         }
         
         int BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c)

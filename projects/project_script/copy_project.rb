@@ -9,6 +9,8 @@ require 'cor/utility'
 require 'json'
 require 'pathname'
 
+key = "ak8tm.mj"
+
 class CorProject
 
   def self.source_path=(v)
@@ -38,6 +40,14 @@ class CorProject
   
   def self.import_cpp
     @import_cpp
+  end
+  
+  def self.crypt=(v)
+    @crypt = v
+  end
+  
+  def self.crypt
+    @crypt
   end
   
   def self.set_import_cpp_filter(&block)
@@ -195,13 +205,34 @@ end
 
 puts "project copy"
 
+
+def resource_file_copy key, src, dst
+  ext = File.extname(src)
+  if CorProject::crypt && ([".rb", ".png"].index ext)
+    ley_len = key.length
+    File.open src, "rb" do |f|
+      d = f.read
+      1024.times do |i|
+        if d.getbyte(i)
+          d.setbyte i, d.getbyte(i) ^ key.getbyte(i % ley_len)
+        end
+      end
+      File.open dst, "wb" do |f|
+        f.write d
+      end
+    end
+  else
+    FileUtils.copy src, dst
+  end
+end
+
 list.each do |fn|
   dfn = "#{destination_resource_path}/#{fn[:n]}"
   
   if !File.exist?(dfn) || past_copy_table[fn[:fn]] != File.mtime(fn[:fn]).to_s  || File.size(fn[:fn]) != File.size(dfn)
     puts "do copy #{fn} -> #{dfn}"
     FileUtils.mkpath File.dirname(dfn)
-    FileUtils.copy fn[:fn], dfn
+    resource_file_copy key, fn[:fn], dfn
   end
   
   past_copy_table[fn[:fn]] = File.mtime(fn[:fn]).to_s
@@ -273,7 +304,11 @@ File.open "#{destination_resource_path}/copy_date.txt", "w" do |f|
   f.write Time.now.strftime("%Y-%m-%d %H:%M:%S")
 end
 
-FileUtils.copy "../../LICENSE", "#{destination_resource_path}/licenses/"
+File.open "#{destination_resource_path}/crypted.txt", "w" do |f|
+  f.write(CorProject::crypt ? "1" : "0")
+end
+
+resource_file_copy key, "../../LICENSE", "#{destination_resource_path}/licenses/LICENSE"
 
 sleep 1
 

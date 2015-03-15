@@ -28,6 +28,8 @@ namespace cor
 
             void set_start_file(const RString& file_name);
             ProjectMrubyCallItnl* get_itnl();
+
+            static void first_init(cor::project_structure::ApplicationPtr app);
             
 
             virtual void start();

@@ -38,6 +38,7 @@
 #include "cor_algorithm/sources/utilities.h"
 #include "cor_algorithm/sources/utilities_tmpl.h"
 #include "cor_system/sources/allocation_monitor.h"
+#include "cor_system/sources/cor_crypt.h"
 #include "cor_system/sources/cor_time.h"
 #include "cor_system/sources/job_queue.h"
 #include "cor_system/sources/logger.h"
@@ -130,6 +131,10 @@ namespace cor
         std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
         void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1);
         cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0);
+        void BasicBind_cor__system__CorCrypt_set_enabled(int a0);
+        int BasicBind_cor__system__CorCrypt_get_enabled();
+        void BasicBind_cor__system__CorCrypt_encode(RByte * a0, unsigned int a1);
+        void BasicBind_cor__system__CorCrypt_decode(RByte * a0, unsigned int a1);
         int BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c);
         void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0);
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c);
@@ -547,7 +552,50 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_custom_method("CorType", "Vector3F", "set", BasicBind_cor__type__Vector3F_set);
+                            binder.bind_custom_method("CorType", "Vector2I", "set", BasicBind_cor__type__Vector2I_set);
+            binder.bind_custom_method("CorType", "Vector2I", "begin_1", BasicBind_cor__type__Vector2I_begin_1);
+            binder.bind_custom_method("CorType", "Vector2I", "end_1", BasicBind_cor__type__Vector2I_end_1);
+            binder.bind_custom_method("CorType", "Vector2I", "begin_2", BasicBind_cor__type__Vector2I_begin_2);
+            binder.bind_custom_method("CorType", "Vector2I", "end_2", BasicBind_cor__type__Vector2I_end_2);
+            binder.bind_custom_method("CorType", "Vector2I", "size", BasicBind_cor__type__Vector2I_size);
+            binder.bind_custom_method("CorType", "Vector2I", "get_p_1", BasicBind_cor__type__Vector2I_get_p_1);
+            binder.bind_custom_method("CorType", "Vector2I", "get_p_2", BasicBind_cor__type__Vector2I_get_p_2);
+            binder.bind_custom_method("CorType", "Vector2I", "get_square_magnitude", BasicBind_cor__type__Vector2I_get_square_magnitude);
+            binder.bind_custom_method("CorType", "Vector2I", "get_magnitude", BasicBind_cor__type__Vector2I_get_magnitude);
+            binder.bind_custom_method("CorType", "Vector2I", "normalize", BasicBind_cor__type__Vector2I_normalize);
+            binder.bind_custom_method("CorType", "Vector2I", "dot", BasicBind_cor__type__Vector2I_dot);
+            binder.bind_custom_method("CorType", "Vector2I", "cross", BasicBind_cor__type__Vector2I_cross);
+            binder.bind_custom_method("CorType", "Vector2I", "distance", BasicBind_cor__type__Vector2I_distance);
+            binder.bind_static_method("CorType", "Vector2I", "zero", BasicBind_cor__type__Vector2I_zero);
+            binder.bind_static_method("CorType", "Vector2I", "one", BasicBind_cor__type__Vector2I_one);
+            binder.bind_custom_method("CorType", "Vector2I", "max_vec", BasicBind_cor__type__Vector2I_max_vec);
+            binder.bind_custom_method("CorType", "Vector2I", "min_vec", BasicBind_cor__type__Vector2I_min_vec);
+            binder.bind_custom_method("CorType", "Vector2I", "all_less", BasicBind_cor__type__Vector2I_all_less);
+            binder.bind_custom_method("CorType", "Vector2I", "some_less", BasicBind_cor__type__Vector2I_some_less);
+            binder.bind_custom_method("CorType", "Vector2I", "all_greater", BasicBind_cor__type__Vector2I_all_greater);
+            binder.bind_custom_method("CorType", "Vector2I", "some_greater", BasicBind_cor__type__Vector2I_some_greater);
+            binder.bind_custom_method("CorType", "Vector2I", "all_less_equal", BasicBind_cor__type__Vector2I_all_less_equal);
+            binder.bind_custom_method("CorType", "Vector2I", "some_less_equal", BasicBind_cor__type__Vector2I_some_less_equal);
+            binder.bind_custom_method("CorType", "Vector2I", "all_greater_equal", BasicBind_cor__type__Vector2I_all_greater_equal);
+            binder.bind_custom_method("CorType", "Vector2I", "some_greater_equal", BasicBind_cor__type__Vector2I_some_greater_equal);
+            binder.bind_custom_method("CorType", "Vector2I", "sum", BasicBind_cor__type__Vector2I_sum);
+            binder.bind_custom_method("CorType", "Vector2I", "x=", BasicBind_cor__type__Vector2I_accessor_set_x);
+            binder.bind_custom_method("CorType", "Vector2I", "x", BasicBind_cor__type__Vector2I_accessor_get_x);
+            binder.bind_custom_method("CorType", "Vector2I", "y=", BasicBind_cor__type__Vector2I_accessor_set_y);
+            binder.bind_custom_method("CorType", "Vector2I", "y", BasicBind_cor__type__Vector2I_accessor_get_y);
+            binder.bind_custom_method("CorType", "Vector2I", "_asterisk__0", BasicBind_cor__type__Vector2I_operator__asterisk__0);
+            binder.bind_custom_method("CorType", "Vector2I", "*", BasicBind_cor__type__Vector2I_operator__asterisk__0);
+            binder.bind_custom_method("CorType", "Vector2I", "_plus__0", BasicBind_cor__type__Vector2I_operator__plus__0);
+            binder.bind_custom_method("CorType", "Vector2I", "+", BasicBind_cor__type__Vector2I_operator__plus__0);
+            binder.bind_custom_method("CorType", "Vector2I", "_minus__0", BasicBind_cor__type__Vector2I_operator__minus__0);
+            binder.bind_custom_method("CorType", "Vector2I", "-", BasicBind_cor__type__Vector2I_operator__minus__0);
+            binder.bind_custom_method("CorType", "Vector2I", "_minus_self__0", BasicBind_cor__type__Vector2I_operator__minus_self__0);
+            binder.bind_custom_method("CorType", "Vector2I", "-@", BasicBind_cor__type__Vector2I_operator__minus_self__0);
+            binder.bind_custom_method("CorType", "Vector2I", "_brackets__0", BasicBind_cor__type__Vector2I_operator__brackets__0);
+            binder.bind_custom_method("CorType", "Vector2I", "[]", BasicBind_cor__type__Vector2I_operator__brackets__0);
+            binder.bind_custom_method("CorType", "Vector2I", "_brackets_equal__0", BasicBind_cor__type__Vector2I_operator__brackets_equal__0);
+            binder.bind_custom_method("CorType", "Vector2I", "[]=", BasicBind_cor__type__Vector2I_operator__brackets_equal__0);
+            binder.bind_custom_method("CorType", "Vector3F", "set", BasicBind_cor__type__Vector3F_set);
             binder.bind_custom_method("CorType", "Vector3F", "begin_1", BasicBind_cor__type__Vector3F_begin_1);
             binder.bind_custom_method("CorType", "Vector3F", "end_1", BasicBind_cor__type__Vector3F_end_1);
             binder.bind_custom_method("CorType", "Vector3F", "begin_2", BasicBind_cor__type__Vector3F_begin_2);
@@ -691,56 +739,6 @@ namespace cor
             binder.bind_custom_method("CorType", "Vector4F", "[]", BasicBind_cor__type__Vector4F_operator__brackets__0);
             binder.bind_custom_method("CorType", "Vector4F", "_brackets_equal__0", BasicBind_cor__type__Vector4F_operator__brackets_equal__0);
             binder.bind_custom_method("CorType", "Vector4F", "[]=", BasicBind_cor__type__Vector4F_operator__brackets_equal__0);
-            binder.bind_custom_method("CorType", "Vector4I", "set", BasicBind_cor__type__Vector4I_set);
-            binder.bind_custom_method("CorType", "Vector4I", "begin_1", BasicBind_cor__type__Vector4I_begin_1);
-            binder.bind_custom_method("CorType", "Vector4I", "end_1", BasicBind_cor__type__Vector4I_end_1);
-            binder.bind_custom_method("CorType", "Vector4I", "begin_2", BasicBind_cor__type__Vector4I_begin_2);
-            binder.bind_custom_method("CorType", "Vector4I", "end_2", BasicBind_cor__type__Vector4I_end_2);
-            binder.bind_custom_method("CorType", "Vector4I", "size", BasicBind_cor__type__Vector4I_size);
-            binder.bind_custom_method("CorType", "Vector4I", "get_p_1", BasicBind_cor__type__Vector4I_get_p_1);
-            binder.bind_custom_method("CorType", "Vector4I", "get_p_2", BasicBind_cor__type__Vector4I_get_p_2);
-            binder.bind_custom_method("CorType", "Vector4I", "get_square_magnitude", BasicBind_cor__type__Vector4I_get_square_magnitude);
-            binder.bind_custom_method("CorType", "Vector4I", "get_magnitude", BasicBind_cor__type__Vector4I_get_magnitude);
-            binder.bind_custom_method("CorType", "Vector4I", "xy_1", BasicBind_cor__type__Vector4I_xy_1);
-            binder.bind_custom_method("CorType", "Vector4I", "xy_2", BasicBind_cor__type__Vector4I_xy_2);
-            binder.bind_custom_method("CorType", "Vector4I", "xyz_1", BasicBind_cor__type__Vector4I_xyz_1);
-            binder.bind_custom_method("CorType", "Vector4I", "xyz_2", BasicBind_cor__type__Vector4I_xyz_2);
-            binder.bind_custom_method("CorType", "Vector4I", "normalize", BasicBind_cor__type__Vector4I_normalize);
-            binder.bind_custom_method("CorType", "Vector4I", "dot", BasicBind_cor__type__Vector4I_dot);
-            binder.bind_custom_method("CorType", "Vector4I", "distance", BasicBind_cor__type__Vector4I_distance);
-            binder.bind_static_method("CorType", "Vector4I", "zero", BasicBind_cor__type__Vector4I_zero);
-            binder.bind_static_method("CorType", "Vector4I", "one", BasicBind_cor__type__Vector4I_one);
-            binder.bind_custom_method("CorType", "Vector4I", "max_vec", BasicBind_cor__type__Vector4I_max_vec);
-            binder.bind_custom_method("CorType", "Vector4I", "min_vec", BasicBind_cor__type__Vector4I_min_vec);
-            binder.bind_custom_method("CorType", "Vector4I", "all_less", BasicBind_cor__type__Vector4I_all_less);
-            binder.bind_custom_method("CorType", "Vector4I", "some_less", BasicBind_cor__type__Vector4I_some_less);
-            binder.bind_custom_method("CorType", "Vector4I", "all_greater", BasicBind_cor__type__Vector4I_all_greater);
-            binder.bind_custom_method("CorType", "Vector4I", "some_greater", BasicBind_cor__type__Vector4I_some_greater);
-            binder.bind_custom_method("CorType", "Vector4I", "all_less_equal", BasicBind_cor__type__Vector4I_all_less_equal);
-            binder.bind_custom_method("CorType", "Vector4I", "some_less_equal", BasicBind_cor__type__Vector4I_some_less_equal);
-            binder.bind_custom_method("CorType", "Vector4I", "all_greater_equal", BasicBind_cor__type__Vector4I_all_greater_equal);
-            binder.bind_custom_method("CorType", "Vector4I", "some_greater_equal", BasicBind_cor__type__Vector4I_some_greater_equal);
-            binder.bind_custom_method("CorType", "Vector4I", "sum", BasicBind_cor__type__Vector4I_sum);
-            binder.bind_custom_method("CorType", "Vector4I", "x=", BasicBind_cor__type__Vector4I_accessor_set_x);
-            binder.bind_custom_method("CorType", "Vector4I", "x", BasicBind_cor__type__Vector4I_accessor_get_x);
-            binder.bind_custom_method("CorType", "Vector4I", "y=", BasicBind_cor__type__Vector4I_accessor_set_y);
-            binder.bind_custom_method("CorType", "Vector4I", "y", BasicBind_cor__type__Vector4I_accessor_get_y);
-            binder.bind_custom_method("CorType", "Vector4I", "z=", BasicBind_cor__type__Vector4I_accessor_set_z);
-            binder.bind_custom_method("CorType", "Vector4I", "z", BasicBind_cor__type__Vector4I_accessor_get_z);
-            binder.bind_custom_method("CorType", "Vector4I", "w=", BasicBind_cor__type__Vector4I_accessor_set_w);
-            binder.bind_custom_method("CorType", "Vector4I", "w", BasicBind_cor__type__Vector4I_accessor_get_w);
-            binder.bind_custom_method("CorType", "Vector4I", "_asterisk__0", BasicBind_cor__type__Vector4I_operator__asterisk__0);
-            binder.bind_custom_method("CorType", "Vector4I", "*", BasicBind_cor__type__Vector4I_operator__asterisk__0);
-            binder.bind_custom_method("CorType", "Vector4I", "_plus__0", BasicBind_cor__type__Vector4I_operator__plus__0);
-            binder.bind_custom_method("CorType", "Vector4I", "+", BasicBind_cor__type__Vector4I_operator__plus__0);
-            binder.bind_custom_method("CorType", "Vector4I", "_minus__0", BasicBind_cor__type__Vector4I_operator__minus__0);
-            binder.bind_custom_method("CorType", "Vector4I", "-", BasicBind_cor__type__Vector4I_operator__minus__0);
-            binder.bind_custom_method("CorType", "Vector4I", "_minus_self__0", BasicBind_cor__type__Vector4I_operator__minus_self__0);
-            binder.bind_custom_method("CorType", "Vector4I", "-@", BasicBind_cor__type__Vector4I_operator__minus_self__0);
-            binder.bind_custom_method("CorType", "Vector4I", "_brackets__0", BasicBind_cor__type__Vector4I_operator__brackets__0);
-            binder.bind_custom_method("CorType", "Vector4I", "[]", BasicBind_cor__type__Vector4I_operator__brackets__0);
-            binder.bind_custom_method("CorType", "Vector4I", "_brackets_equal__0", BasicBind_cor__type__Vector4I_operator__brackets_equal__0);
-            binder.bind_custom_method("CorType", "Vector4I", "[]=", BasicBind_cor__type__Vector4I_operator__brackets_equal__0);
 
           }
 
