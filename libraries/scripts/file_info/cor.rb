@@ -119,6 +119,13 @@ def cor_file_list
     },
     {
       :project => "cor_system",
+      :path => "cor_crypt",
+      :namespace => ["cor", "system"],
+      :action => [:sync, :force_create, :delete][0],
+      :no_template => true,
+    },
+    {
+      :project => "cor_system",
       :path => "job_queue",
       :namespace => ["cor", "system"],
       :action => [:sync, :force_create, :delete][0],
