@@ -911,6 +911,10 @@ COCOS2DX_MRUBY_INTERFACE_TAGET_CLASSES = [
       :value => :cocos_ptr,
     },
     {
+      :name => "cocos2d::_ttfConfig",
+      :value => :value,
+    },
+    {
       :name => "cocos2d::Label",
       :value => :cocos_ptr,
     },

@@ -3,6 +3,7 @@
 
 #include "cor_type/sources/basic_types.h"
 #include "2d/CCSprite.h"
+#include "2d/CCLabel.h"
 #include "extensions/GUI/CCScrollView/CCScrollView.h"
 
 namespace cor
@@ -24,6 +25,7 @@ namespace cor
             static void setup_sprite_alphatest(cocos2d::Sprite* sprite);
             static void setup_sprite_round(cocos2d::Node* sprite);
             static void setup_avoid_blur_texture(cocos2d::Texture2D* texture);
+            static void set_blending_premultipled(cocos2d::Label* sprite);
             static cocos2d::Image* create_empty_image(RInt32 w, RInt32 h);
             static void copy_rect_image(cocos2d::Image* src, cocos2d::Image* dst, RInt32 x, RInt32 y);
             static cocos2d::Rect node_rect(cocos2d::Node* node);

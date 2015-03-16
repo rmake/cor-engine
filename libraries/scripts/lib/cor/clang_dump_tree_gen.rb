@@ -1419,6 +1419,7 @@ EOS
           tp = f[:field_type]
           type = self.type_filter_base c[:original_class_name], tp, option
           
+          
           source_type = type
           
           if class_replace_table[type]
@@ -1470,7 +1471,10 @@ EOS
             vb = "#{type}(#{vb})"
           end
           
-          
+          if tp[:is_enum]
+            #va = "(#{type})#{va}"
+            vb = "(int)#{vb}"
+          end
           
           
           if is_value_std_array

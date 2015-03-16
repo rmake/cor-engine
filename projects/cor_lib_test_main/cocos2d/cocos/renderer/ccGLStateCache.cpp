@@ -114,7 +114,7 @@ static void SetBlending(GLenum sfactor, GLenum dfactor)
     {
 		glEnable(GL_BLEND);
 		//glBlendFunc(sfactor, dfactor);
-        glBlendFuncSeparate(sfactor, dfactor, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+        glBlendFuncSeparate(sfactor, dfactor, GL_SRC_ALPHA, GL_ONE);
 	}
 }
 

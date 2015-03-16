@@ -282,6 +282,11 @@ namespace cor
             p.wrapT = GL_CLAMP_TO_EDGE;
             texture->setTexParameters(p);
         }
+        
+        void RtsObjectSystem::set_blending_premultipled(cocos2d::Label* sprite)
+        {
+            sprite->setBlendFunc(cocos2d::BlendFunc::ALPHA_NON_PREMULTIPLIED);
+        }
 
         cocos2d::Image* RtsObjectSystem::create_empty_image(RInt32 w, RInt32 h)
         {
