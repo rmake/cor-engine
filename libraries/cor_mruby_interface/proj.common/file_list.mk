@@ -1,3 +1,5 @@
+PRJINCS=
+-include cor_mruby_interface_local_conf.mk
 PRJSRCS=../../cor_mruby_interface/sources/basic_bind/sub_0.cpp\
     ../../cor_mruby_interface/sources/basic_bind/sub_1.cpp\
     ../../cor_mruby_interface/sources/basic_bind/sub_10.cpp\

@@ -510,6 +510,8 @@ def file_list_project(libname, project_path)
     file_list_all = file_list_all_path sources_path
     
     File.open file_list_file_name, "wb" do |f|
+        f.write "PRJINCS=\n"
+        f.write "-include #{libname}_local_conf.mk\n"
         f.write "PRJSRCS=#{file_list.map{|n| "../#{n}"}.join "\\\n    "}\n"
     end
     

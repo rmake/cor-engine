@@ -108,6 +108,7 @@ if File.exists? source_conf_path
 end
 
 cpp_list = []
+import_cpp_props_includes = []
 
 unless resource_only
 
@@ -130,6 +131,7 @@ unless resource_only
     end
     
     if CorProject.import_cpp && Dir.exists?("#{inc}/cpp")
+      import_cpp_props_includes << "#{inc}/cpp"
       tmpcpp_list = Cor.u.file_list("#{inc}/cpp") do |v|
         next CorProject.import_cpp_filter.call v if CorProject.import_cpp_filter
         true
@@ -150,7 +152,8 @@ unless resource_only
   end
   
   if CorProject.import_cpp && Dir.exists?("#{source_path}/cpp")
-  
+    import_cpp_props_includes << "#{source_path}/cpp"
+    
     tmpcpp_list = Cor.u.file_list("#{source_path}/cpp") do |v|
       next CorProject.import_cpp_filter.call v if CorProject.import_cpp_filter
       true
@@ -241,6 +244,8 @@ list.each do |fn|
 end
 
 prject_structure_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(__FILE__))
+import_cpp_props_file = "#{prject_structure_path}/proj.vc/cor_project_structure/cor_project_structure_local_conf.props"
+import_cpp_local_conf_mk = "#{prject_structure_path}/proj.common/cor_project_structure_local_conf.mk"
 import_cpp_file = "#{prject_structure_path}/sources/import/external_code_import_local_conf.h"
 import_cpp_importer_file = "#{prject_structure_path}/sources/import/external_code_importer.cpp"
 import_cpp_copy_dest = "#{prject_structure_path}/sources/import/cpp"
@@ -250,10 +255,10 @@ if CorProject.import_cpp
 
   import_cpp_include_from = Pathname(File.dirname(import_cpp_file))
   import_cpp_includes = cpp_list.map do |v|
-    dfn = v[:fn].gsub(v[:base], import_cpp_copy_dest)
-    FileUtils.mkpath File.dirname(dfn)
-    FileUtils.copy v[:fn], dfn
-    import_cpp_include_to = Pathname(File.absolute_path(dfn))
+    #dfn = v[:fn].gsub(v[:base], import_cpp_copy_dest)
+    #FileUtils.mkpath File.dirname(dfn)
+    #FileUtils.copy v[:fn], dfn
+    import_cpp_include_to = Pathname(File.absolute_path(v[:fn]))
     r = import_cpp_include_to.relative_path_from(import_cpp_include_from)
     r.to_s
   end
@@ -284,10 +289,46 @@ EOS
   Cor.u.file_write import_cpp_importer_file, imporer_txt
   
   Cor.u.file_write import_cpp_file, import_cpp_code
+  
+  Cor.u.file_write import_cpp_props_file, <<EOS
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>#{import_cpp_props_includes.map{|v| "../../#{v}"}.join(';')}</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>
+EOS
+  
+  Cor.u.file_write import_cpp_local_conf_mk, <<EOS
+PRJINCS = #{import_cpp_props_includes.map{|v| "../../#{v}"}.join(' ')}
+EOS
+
 else
   if File.exist? import_cpp_file
     FileUtils.remove import_cpp_file
   end
+  
+  Cor.u.file_write import_cpp_props_file, <<EOS
+<?xml version="1.0" encoding="utf-8"?> 
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup />
+  <ItemGroup />
+</Project>
+EOS
+
+  Cor.u.file_write import_cpp_local_conf_mk, <<EOS
+PRJINCS = 
+EOS
+
 end
 
 

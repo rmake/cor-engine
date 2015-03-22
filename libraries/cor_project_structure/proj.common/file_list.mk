@@ -1,3 +1,5 @@
+PRJINCS=
+-include cor_project_structure_local_conf.mk
 PRJSRCS=../../cor_project_structure/sources/application.cpp\
     ../../cor_project_structure/sources/import/external_code_importer.cpp\
     ../../cor_project_structure/sources/project_base.cpp\

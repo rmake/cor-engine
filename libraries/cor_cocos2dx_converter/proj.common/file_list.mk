@@ -1,3 +1,5 @@
+PRJINCS=
+-include cor_cocos2dx_converter_local_conf.mk
 PRJSRCS=../../cor_cocos2dx_converter/sources/cocos2dx_experimental.cpp\
     ../../cor_cocos2dx_converter/sources/collision_2d_node.cpp\
     ../../cor_cocos2dx_converter/sources/easy_http_client.cpp\

@@ -1,53 +1,55 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<Project DefaultTargets='Build' ToolsVersion='12.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
-  <ItemGroup Label='ProjectConfigurations'>
-    <ProjectConfiguration Include='Debug|Win32'>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include='Release|Win32'>
+    <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <PropertyGroup Label='Globals'>
+  <PropertyGroup Label="Globals">
     <ProjectGuid>{814ED64A-D7DA-41B2-8D88-1968691F7179}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>cor_project_structure</RootNamespace>
   </PropertyGroup>
-  <Import Project='$(VCTargetsPath)\Microsoft.Cpp.Default.props'/>
-  <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;' Label='Configuration'>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;' Label='Configuration'>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <Import Project='$(VCTargetsPath)\Microsoft.Cpp.props'/>
-  <ImportGroup Label='ExtensionSettings'>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;' Label='PropertySheets'>
-    <Import Condition='exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)' Label='LocalAppDataPlatform' Project='$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props'/>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+    <Import Project="cor_project_structure_local_conf.props" />
   </ImportGroup>
-  <ImportGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;' Label='PropertySheets'>
-    <Import Condition='exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)' Label='LocalAppDataPlatform' Project='$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props'/>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+    <Import Project="cor_project_structure_local_conf.props" />
   </ImportGroup>
-  <PropertyGroup Label='UserMacros'/>
-  <PropertyGroup/>
-  <ItemDefinitionGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;'>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_LIB;COCOS2DXWIN32_EXPORTS;GL_GLEXT_PROTOTYPES;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_USE3DDLL;_EXPORT_DLL_;_USRSTUDIODLL;_USREXDLL;_USEGUIDLL;CC_ENABLE_CHIPMUNK_INTEGRATION=1;PROTOBUF_USE_DLLS;LIBPROTOBUF_EXPORTS;MRB_ENABLE_CXX_EXCEPTION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../;../../../../projects/cor_lib_test_main/cocos2d/;../../../../projects/cor_lib_test_main/cocos2d/cocos/;../../../../projects/cor_lib_test_main/cocos2d/cocos/2d;../../../../projects/cor_lib_test_main/cocos2d/cocos/audio/include;../../../../projects/cor_lib_test_main/cocos2d/cocos/math;../../../../projects/cor_lib_test_main/cocos2d/cocos/renderer;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/desktop;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/win32;../../../../projects/cor_lib_test_main/cocos2d/cocos/base;../../../../projects/cor_lib_test_main/cocos2d/cocos/physics;../../../../projects/cor_lib_test_main/cocos2d/cocos/math/kazmath;../../../../projects/cor_lib_test_main/cocos2d/external/win32-specific/gles/include/OGLES;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include/win32;../../../../projects/cor_lib_test_main/cocos2d/extensions/;../../../../projects/cor_lib_test_main/cocos2d/external;../../../../external/mrubybind;../../../../external/mruby/include;../../../../external/boost;../../sources/import/cpp</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../;../../../../projects/cor_lib_test_main/cocos2d/;../../../../projects/cor_lib_test_main/cocos2d/cocos/;../../../../projects/cor_lib_test_main/cocos2d/cocos/2d;../../../../projects/cor_lib_test_main/cocos2d/cocos/audio/include;../../../../projects/cor_lib_test_main/cocos2d/cocos/math;../../../../projects/cor_lib_test_main/cocos2d/cocos/renderer;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/desktop;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/win32;../../../../projects/cor_lib_test_main/cocos2d/cocos/base;../../../../projects/cor_lib_test_main/cocos2d/cocos/physics;../../../../projects/cor_lib_test_main/cocos2d/cocos/math/kazmath;../../../../projects/cor_lib_test_main/cocos2d/external/win32-specific/gles/include/OGLES;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include/win32;../../../../projects/cor_lib_test_main/cocos2d/extensions/;../../../../projects/cor_lib_test_main/cocos2d/external;../../../../external/mrubybind;../../../../external/mruby/include;../../../../external/boost;../../sources/import/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
@@ -56,7 +58,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;'>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
@@ -65,7 +67,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_LIB;COCOS2DXWIN32_EXPORTS;GL_GLEXT_PROTOTYPES;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_USE3DDLL;_EXPORT_DLL_;_USRSTUDIODLL;_USREXDLL;_USEGUIDLL;CC_ENABLE_CHIPMUNK_INTEGRATION=1;PROTOBUF_USE_DLLS;LIBPROTOBUF_EXPORTS;MRB_ENABLE_CXX_EXCEPTION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../;../../../../projects/cor_lib_test_main/cocos2d/;../../../../projects/cor_lib_test_main/cocos2d/cocos/;../../../../projects/cor_lib_test_main/cocos2d/cocos/2d;../../../../projects/cor_lib_test_main/cocos2d/cocos/audio/include;../../../../projects/cor_lib_test_main/cocos2d/cocos/math;../../../../projects/cor_lib_test_main/cocos2d/cocos/renderer;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/desktop;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/win32;../../../../projects/cor_lib_test_main/cocos2d/cocos/base;../../../../projects/cor_lib_test_main/cocos2d/cocos/physics;../../../../projects/cor_lib_test_main/cocos2d/cocos/math/kazmath;../../../../projects/cor_lib_test_main/cocos2d/external/win32-specific/gles/include/OGLES;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include/win32;../../../../projects/cor_lib_test_main/cocos2d/extensions/;../../../../projects/cor_lib_test_main/cocos2d/external;../../../../external/mrubybind;../../../../external/mruby/include;../../../../external/boost;../../sources/import/cpp</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../;../../../../projects/cor_lib_test_main/cocos2d/;../../../../projects/cor_lib_test_main/cocos2d/cocos/;../../../../projects/cor_lib_test_main/cocos2d/cocos/2d;../../../../projects/cor_lib_test_main/cocos2d/cocos/audio/include;../../../../projects/cor_lib_test_main/cocos2d/cocos/math;../../../../projects/cor_lib_test_main/cocos2d/cocos/renderer;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/desktop;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/win32;../../../../projects/cor_lib_test_main/cocos2d/cocos/base;../../../../projects/cor_lib_test_main/cocos2d/cocos/physics;../../../../projects/cor_lib_test_main/cocos2d/cocos/math/kazmath;../../../../projects/cor_lib_test_main/cocos2d/external/win32-specific/gles/include/OGLES;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include/win32;../../../../projects/cor_lib_test_main/cocos2d/extensions/;../../../../projects/cor_lib_test_main/cocos2d/external;../../../../external/mrubybind;../../../../external/mruby/include;../../../../external/boost;../../sources/import/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -80,26 +82,25 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include='ReadMe.txt'/>
+    <Text Include="ReadMe.txt" />
   </ItemGroup>
-  <Import Project='$(VCTargetsPath)\Microsoft.Cpp.targets'/>
-  <ImportGroup Label='ExtensionTargets'>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ItemGroup>
-    
-    
-    
-    
-    
-    
-    
-  <ClInclude Include='../../sources/application.h'/><ClInclude Include='../../sources/import/external_code_importer.h'/><ClInclude Include='../../sources/project_base.h'/><ClInclude Include='../../sources/project_group.h'/><ClInclude Include='../../sources/project_group_scene.h'/><ClInclude Include='../../sources/project_mruby_call.h'/></ItemGroup>
+    <ClInclude Include="../../sources/application.h" />
+    <ClInclude Include="../../sources/import/external_code_importer.h" />
+    <ClInclude Include="../../sources/project_base.h" />
+    <ClInclude Include="../../sources/project_group.h" />
+    <ClInclude Include="../../sources/project_group_scene.h" />
+    <ClInclude Include="../../sources/project_mruby_call.h" />
+  </ItemGroup>
   <ItemGroup>
-    
-    
-    
-    
-    
-    
-  <ClCompile Include='../../sources/application.cpp'/><ClCompile Include='../../sources/import/external_code_importer.cpp'/><ClCompile Include='../../sources/project_base.cpp'/><ClCompile Include='../../sources/project_group.cpp'/><ClCompile Include='../../sources/project_group_scene.cpp'/><ClCompile Include='../../sources/project_mruby_call.cpp'/></ItemGroup>
+    <ClCompile Include="../../sources/application.cpp" />
+    <ClCompile Include="../../sources/import/external_code_importer.cpp" />
+    <ClCompile Include="../../sources/project_base.cpp" />
+    <ClCompile Include="../../sources/project_group.cpp" />
+    <ClCompile Include="../../sources/project_group_scene.cpp" />
+    <ClCompile Include="../../sources/project_mruby_call.cpp" />
+  </ItemGroup>
 </Project>

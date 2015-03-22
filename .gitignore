@@ -66,6 +66,8 @@ gmon.out
 *_local_conf.rb
 *_local_conf.txt
 *_local_conf.h
+*_local_conf.props
+*_local_conf.mk
 
 projects/cor_lib_test_main/proj.android/AndroidManifest.xml
 projects/cor_lib_test_main/Resources/
