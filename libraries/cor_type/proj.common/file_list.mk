@@ -1,5 +1,5 @@
-PRJINCS=
--include cor_type_local_conf.mk
+PRJINCS:=
+-include ../../../libraries/cor_type/proj.common/cor_type_local_conf.mk
 PRJSRCS=../../cor_type/sources/collision/collision_2d.cpp\
     ../../cor_type/sources/cor_type.cpp\
     ../../cor_type/sources/math/matrix4x4.cpp\

@@ -306,7 +306,7 @@ EOS
 EOS
   
   Cor.u.file_write import_cpp_local_conf_mk, <<EOS
-PRJINCS = #{import_cpp_props_includes.map{|v| "../../#{v}"}.join(' ')}
+PRJINCS += #{import_cpp_props_includes.map{|v| "../#{v}"}.join(' ')}
 EOS
 
 else

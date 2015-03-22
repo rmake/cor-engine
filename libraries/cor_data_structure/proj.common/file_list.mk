@@ -1,5 +1,5 @@
-PRJINCS=
--include cor_data_structure_local_conf.mk
+PRJINCS:=
+-include ../../../libraries/cor_data_structure/proj.common/cor_data_structure_local_conf.mk
 PRJSRCS=../../cor_data_structure/sources/ai/cost_grid_space.cpp\
     ../../cor_data_structure/sources/ai/priority_queue.cpp\
     ../../cor_data_structure/sources/ai/stack_decoder.cpp\

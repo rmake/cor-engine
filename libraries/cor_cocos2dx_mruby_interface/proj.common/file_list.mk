@@ -1,5 +1,5 @@
-PRJINCS=
--include cor_cocos2dx_mruby_interface_local_conf.mk
+PRJINCS:=
+-include ../../../libraries/cor_cocos2dx_mruby_interface/proj.common/cor_cocos2dx_mruby_interface_local_conf.mk
 PRJSRCS=../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/sub_0.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/sub_1.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/sub_10.cpp\

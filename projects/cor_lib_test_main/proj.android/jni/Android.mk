@@ -201,19 +201,21 @@ ifeq ($(PROFILE),1)
   LOCAL_CPPFLAGS += -pg -DPROFILING
 endif
 COCOS2D_PATH := ../../../projects/cor_lib_test_main/cocos2d
+include ../../../libraries/$(PATH_NAME)/proj.common/file_list.mk
+
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(LIB_SRC_PATH)/sources \
     $(LOCAL_PATH)/$(LIB_SRC_PATH)/ \
     $(LOCAL_PATH)/$(LIB_BASE_PATH) \
     $(LOCAL_PATH)/../../../../external/mruby/include \
     $(LOCAL_PATH)/../../../../external/mrubybind \
     $(LOCAL_PATH)/../../../../external/boost \
+    $(PRJINCS) \
     $(COCOS2D_PATH)/cocos $(COCOS2D_PATH)/cocos/audio/include $(COCOS2D_PATH)/cocos/2d $(COCOS2D_PATH)/cocos/renderer $(COCOS2D_PATH)/cocos/platform $(COCOS2D_PATH)/cocos/platform/desktop $(COCOS2D_PATH)/cocos/platform/android $(COCOS2D_PATH)/cocos/base $(COCOS2D_PATH)/cocos/physics $(COCOS2D_PATH)/cocos/editor-support $(COCOS2D_PATH)/cocos/math $(COCOS2D_PATH)/extensions $(COCOS2D_PATH)
 
 ifeq ($(PROFILE),1)
     LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../../external/android-ndk-profiler
 endif
     
-include ../../../libraries/$(PATH_NAME)/proj.common/file_list.mk
 LOCAL_SRC_FILES:= $(addprefix ../../../../libraries/$(PATH_NAME)/proj.common/,$(PRJSRCS))
 
 include $(BUILD_STATIC_LIBRARY)

@@ -1,5 +1,5 @@
-PRJINCS=
--include cor_system_local_conf.mk
+PRJINCS:=
+-include ../../../libraries/cor_system/proj.common/cor_system_local_conf.mk
 PRJSRCS=../../cor_system/sources/allocation_monitor.cpp\
     ../../cor_system/sources/cor_crypt.cpp\
     ../../cor_system/sources/cor_time.cpp\
