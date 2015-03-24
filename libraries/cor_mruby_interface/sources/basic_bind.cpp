@@ -538,16 +538,16 @@ namespace cor
             tmp_c->step();
         }
         
-        void BasicBind_cor__system__Logger_add_print_func_1(cor::system::Logger* c, mrubybind::FuncPtr<void (int, const std::string &)> a0)
+        void BasicBind_cor__system__Logger_add_print_func_1(cor::system::Logger* c, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a0)
         {
 
-            c->add_print_func([=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a0.is_living()) { a0.func()((int)b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
+            c->add_print_func([=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a0.is_living()) { a0.func()(b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
         }
         
-        void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::string a0, mrubybind::FuncPtr<void (int, const std::string &)> a1)
+        void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::string a0, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a1)
         {
 
-            c->add_print_func(a0, [=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a1.is_living()) { a1.func()((int)b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
+            c->add_print_func(a0, [=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a1.is_living()) { a1.func()(b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
         }
         
         void BasicBind_cor__system__Logger_pop_print_func(cor::system::Logger* c)
@@ -556,10 +556,10 @@ namespace cor
             c->pop_print_func();
         }
         
-        void BasicBind_cor__system__Logger_clear_print_func(cor::system::Logger* c, mrubybind::FuncPtr<void (int, const std::string &)> a0)
+        void BasicBind_cor__system__Logger_clear_print_func(cor::system::Logger* c, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a0)
         {
 
-            c->clear_print_func([=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a0.is_living()) { a0.func()((int)b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
+            c->clear_print_func([=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a0.is_living()) { a0.func()(b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
         }
         
         void BasicBind_cor__system__Logger_call_print_func(cor::system::Logger* c, int a0, std::string a1)

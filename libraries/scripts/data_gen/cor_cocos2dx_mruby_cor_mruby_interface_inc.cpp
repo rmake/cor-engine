@@ -30,6 +30,7 @@
 #undef RELATIVE
 #undef ABSOLUTE
 #include "../../../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
+#include "../../../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../../../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
 #include "../../../projects/cor_lib_test_main/cocos2d/cocos/audio/include/SimpleAudioEngine.h"
 #include "../../cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"

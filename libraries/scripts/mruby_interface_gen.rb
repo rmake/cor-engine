@@ -38,6 +38,7 @@ def gen_code option
   if cocos2dx
     a2 = [
       "#{COCOS2DX_PATH}/cocos/cocos2d.h",
+      "#{COCOS2DX_PATH}/cocos/ui/UIEditBox/UIEditBox.h",
       #"#{COCOS2DX_PATH}/extensions/cocos-ext.h",
       "#{COCOS2DX_PATH}/extensions/GUI/CCScrollView/CCScrollView.h",
       "#{COCOS2DX_PATH}/cocos/audio/include/SimpleAudioEngine.h",

@@ -138,10 +138,10 @@ namespace cor
         int BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c);
         void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0);
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c);
-        void BasicBind_cor__system__Logger_add_print_func_1(cor::system::Logger* c, mrubybind::FuncPtr<void (int, const std::string &)> a0);
-        void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::string a0, mrubybind::FuncPtr<void (int, const std::string &)> a1);
+        void BasicBind_cor__system__Logger_add_print_func_1(cor::system::Logger* c, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a0);
+        void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::string a0, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a1);
         void BasicBind_cor__system__Logger_pop_print_func(cor::system::Logger* c);
-        void BasicBind_cor__system__Logger_clear_print_func(cor::system::Logger* c, mrubybind::FuncPtr<void (int, const std::string &)> a0);
+        void BasicBind_cor__system__Logger_clear_print_func(cor::system::Logger* c, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a0);
         void BasicBind_cor__system__Logger_call_print_func(cor::system::Logger* c, int a0, std::string a1);
         void BasicBind_cor__system__Logger_info(std::string a0);
         void BasicBind_cor__system__Logger_debug(std::string a0);

@@ -198,7 +198,7 @@ module COR
       if direct_type[type] || tp[:is_enum] || type.match(/\*$/)
         return type
       elsif type.match(/^std\:\:function/)
-        return type.gsub(/^std\:\:function/, "mrubybind::FuncPtr").gsub("(void)", "()")
+        return type.gsub(/^std\:\:function/, "mrubybind::FuncPtr").gsub("(void)", "()").gsub(/enum /, "")
       elsif type.match(/^const std\:\:function/)
         return type.gsub(/^const std\:\:function/, "mrubybind::FuncPtr").gsub("(void)", "()")
       end
@@ -399,7 +399,13 @@ module COR
         if ret.gsub(" ", "") == "void"
           call_arg = "[=](#{func_args_def.join(", ")}){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a#{i}.is_living()) { a#{i}.func()(#{func_args_list.join(", ")}); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } }"
         else
-          call_arg = "[=](#{func_args_def.join(", ")}){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a#{i}.is_living()) { #{ret} r = a#{i}.func()(#{func_args_list.join(", ")}); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); return r; } else return #{ret}() ; } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); return #{ret}(); }}"
+          empty_ret = ret
+          if empty_ret.match(/.*?\*/)
+            empty_ret = "(#{ret})nullptr"
+          else
+            empty_ret = "#{ret}()"
+          end
+          call_arg = "[=](#{func_args_def.join(", ")}){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a#{i}.is_living()) { #{ret} r = a#{i}.func()(#{func_args_list.join(", ")}); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); return r; } else return #{empty_ret} ; } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); return #{empty_ret}; }}"
         end
         arg = "mrubybind::FuncPtr<#{ret}(#{cva.map{|v| v[0]}.join(', ')})>"
       elsif tp[:is_enum]

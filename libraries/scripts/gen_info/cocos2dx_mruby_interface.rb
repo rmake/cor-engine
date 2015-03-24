@@ -931,6 +931,14 @@ COCOS2DX_MRUBY_INTERFACE_TAGET_CLASSES = [
       :value => :cocos_ptr,
     },
     {
+      :name => "cocos2d::ProtectedNode",
+      :value => :cocos_ptr,
+    },
+    {
+      :name => "cocos2d::ui::Widget",
+      :value => :cocos_ptr,
+    },
+    {
       :name => "cocos2d::ui::EditBox",
       :value => :cocos_ptr,
     },
@@ -1003,6 +1011,21 @@ COCOS2DX_MRUBY_INTERFACE_TAGET_ENUMS = [
       :enum_name => "cocos2d::extension::ScrollView::Direction",
       :mruby_module => "Cocos2d",
       :mruby_class => "ScrollViewDirection",
+    },
+    {
+      :enum_name => "cocos2d::ui::EditBox::KeyboardReturnType",
+      :mruby_module => "Cocos2d",
+      :mruby_class => "EditBoxKeyboardReturnType",
+    },
+    {
+      :enum_name => "cocos2d::ui::EditBox::InputMode",
+      :mruby_module => "Cocos2d",
+      :mruby_class => "EditBoxInputMode",
+    },
+    {
+      :enum_name => "cocos2d::ui::EditBox::InputFlag",
+      :mruby_module => "Cocos2d",
+      :mruby_class => "EditBoxInputFlag",
     },
   ]
     
