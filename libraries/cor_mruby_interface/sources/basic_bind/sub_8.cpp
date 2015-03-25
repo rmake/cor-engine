@@ -131,6 +131,15 @@ namespace cor
         std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
         void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1);
         cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c);
+        std::string BasicBind_cor__system__AllocationMonitor_get_status_text(cor::system::AllocationMonitor* c);
+        cor::system::AllocationMonitor* BasicBind_cor__system__AllocationMonitor_get_instance();
+        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned int a0);
+        void BasicBind_cor__system__AllocationMonitor_al_free(void * a0);
+        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned int a1);
         void BasicBind_cor__system__CorCrypt_set_enabled(int a0);
         int BasicBind_cor__system__CorCrypt_get_enabled();
         void BasicBind_cor__system__CorCrypt_encode(RByte * a0, unsigned int a1);
@@ -552,7 +561,19 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_custom_method("CorType", "OBox2F", "is_include", BasicBind_cor__type__OBox2F_is_include);
+                            binder.bind_custom_method("CorType", "Box2I", "set_1", BasicBind_cor__type__Box2I_set_1);
+            binder.bind_custom_method("CorType", "Box2I", "set_2", BasicBind_cor__type__Box2I_set_2);
+            binder.bind_custom_method("CorType", "Box2I", "get_max", BasicBind_cor__type__Box2I_get_max);
+            binder.bind_custom_method("CorType", "Box2I", "set_max", BasicBind_cor__type__Box2I_set_max);
+            binder.bind_custom_method("CorType", "Box2I", "get_center", BasicBind_cor__type__Box2I_get_center);
+            binder.bind_custom_method("CorType", "Box2I", "is_include", BasicBind_cor__type__Box2I_is_include);
+            binder.bind_custom_method("CorType", "Box2I", "get_distance", BasicBind_cor__type__Box2I_get_distance);
+            binder.bind_custom_method("CorType", "Box2I", "get_width_size", BasicBind_cor__type__Box2I_get_width_size);
+            binder.bind_custom_method("CorType", "Box2I", "p=", BasicBind_cor__type__Box2I_accessor_set_p);
+            binder.bind_custom_method("CorType", "Box2I", "p", BasicBind_cor__type__Box2I_accessor_get_p);
+            binder.bind_custom_method("CorType", "Box2I", "w=", BasicBind_cor__type__Box2I_accessor_set_w);
+            binder.bind_custom_method("CorType", "Box2I", "w", BasicBind_cor__type__Box2I_accessor_get_w);
+            binder.bind_custom_method("CorType", "OBox2F", "is_include", BasicBind_cor__type__OBox2F_is_include);
             binder.bind_custom_method("CorType", "OBox2F", "get_distance", BasicBind_cor__type__OBox2F_get_distance);
             binder.bind_custom_method("CorType", "OBox2F", "get_vertices", BasicBind_cor__type__OBox2F_get_vertices);
             binder.bind_custom_method("CorType", "OBox2F", "get_aabb", BasicBind_cor__type__OBox2F_get_aabb);
@@ -567,13 +588,6 @@ namespace cor
             binder.bind_custom_method("CorType", "Sphere2F", "p", BasicBind_cor__type__Sphere2F_accessor_get_p);
             binder.bind_custom_method("CorType", "Sphere2F", "r=", BasicBind_cor__type__Sphere2F_accessor_set_r);
             binder.bind_custom_method("CorType", "Sphere2F", "r", BasicBind_cor__type__Sphere2F_accessor_get_r);
-            binder.bind_custom_method("CorType", "Sphere2I", "set", BasicBind_cor__type__Sphere2I_set);
-            binder.bind_custom_method("CorType", "Sphere2I", "is_include_point", BasicBind_cor__type__Sphere2I_is_include_point);
-            binder.bind_custom_method("CorType", "Sphere2I", "get_distance", BasicBind_cor__type__Sphere2I_get_distance);
-            binder.bind_custom_method("CorType", "Sphere2I", "p=", BasicBind_cor__type__Sphere2I_accessor_set_p);
-            binder.bind_custom_method("CorType", "Sphere2I", "p", BasicBind_cor__type__Sphere2I_accessor_get_p);
-            binder.bind_custom_method("CorType", "Sphere2I", "r=", BasicBind_cor__type__Sphere2I_accessor_set_r);
-            binder.bind_custom_method("CorType", "Sphere2I", "r", BasicBind_cor__type__Sphere2I_accessor_get_r);
 
           }
 

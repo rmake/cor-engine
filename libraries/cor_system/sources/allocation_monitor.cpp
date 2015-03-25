@@ -1,7 +1,17 @@
+#ifdef WIN32
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#endif
+
 #include "allocation_monitor.h"
 #include "cor_algorithm/sources/bit_operation.h"
 #include <mutex>
 #include <string.h>
+
+
+//#define COR_ALLOCATION_MONITOR_INDEX_COUNT
+//#define COR_ALLOCATION_MONITOR_LEAK_CHECK
 
 namespace cor
 {
@@ -13,6 +23,9 @@ namespace cor
             typedef Header* HeaderPtr;
             struct Header
             {
+#ifdef COR_ALLOCATION_MONITOR_INDEX_COUNT
+                size_t count;
+#endif
                 size_t size;
                 size_t n;
                 HeaderPtr next;
@@ -109,9 +122,36 @@ namespace cor
             PAllocationMonitor& am = ref_instance_pointer();
             return am;
         }
+        
+#ifdef COR_ALLOCATION_MONITOR_LEAK_CHECK
+#ifdef WIN32
+        struct LeakCheck
+        {
+            LeakCheck()
+            {
+                _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+            }
+
+            ~LeakCheck()
+            {
+                //_CrtDumpMemoryLeaks();
+            }
+        };
+        LeakCheck lc;
+#endif
+#endif
+
 
         void* AllocationMonitor::alloc(size_t n)
         {
+            {
+#ifdef COR_ALLOCATION_MONITOR_LEAK_CHECK
+#ifdef WIN32
+                static LeakCheck lx;
+#endif
+#endif
+            }
+
             PAllocationMonitor& am = ref_instance_pointer();
             void* p = nullptr;
             auto s = algorithm::BitOperation::ciel_pow_two(n);
@@ -136,6 +176,16 @@ namespace cor
             }
             auto bp = static_cast<RBytePtr>(p);
             auto h = static_cast<AllocationMonitorItnl::HeaderPtr>(p);
+#ifdef COR_ALLOCATION_MONITOR_INDEX_COUNT
+            static size_t count = 0;
+            h->count = count;
+            //if(count == 0x5BC3)
+            //{
+            //    static int a;
+            //    a++;
+            //}
+            count++;
+#endif
             h->size = sz;
             h->n = n;
             h->freed = rfalse;
@@ -154,7 +204,7 @@ namespace cor
             return static_cast<void*>(bp);
         }
 
-        void AllocationMonitor::free(void* p)
+        void AllocationMonitor::al_free(void* p)
         {
             PAllocationMonitor& am = ref_instance_pointer();
             if(am)
@@ -208,7 +258,7 @@ namespace cor
             
         }
 
-        void* AllocationMonitor::realloc(void* p, size_t n)
+        void* AllocationMonitor::al_realloc(void* p, size_t n)
         {
             PAllocationMonitor& am = ref_instance_pointer();
             if(am)
@@ -237,7 +287,7 @@ namespace cor
                         {
                             ::memmove(np, p, h->n < n ? h->n : n);
                         }
-                        AllocationMonitor::free(p);
+                        AllocationMonitor::al_free(p);
                     }
                     
                 }
@@ -245,7 +295,7 @@ namespace cor
             else
             {
                 np = nullptr;
-                AllocationMonitor::free(p);
+                AllocationMonitor::al_free(p);
             }
 
             if(am)
@@ -269,7 +319,7 @@ void* operator new(size_t n) throw(std::bad_alloc)
 
 void operator delete(void* p) throw()
 {
-    return cor::system::AllocationMonitor::free(p);
+    return cor::system::AllocationMonitor::al_free(p);
 }
 
 void* operator new[](size_t n) throw(std::bad_alloc)
@@ -279,7 +329,7 @@ void* operator new[](size_t n) throw(std::bad_alloc)
 
 void operator delete[](void* p) throw()
 {
-    return cor::system::AllocationMonitor::free(p);
+    return cor::system::AllocationMonitor::al_free(p);
 }
 //#endif
 

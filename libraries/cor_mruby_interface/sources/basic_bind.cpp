@@ -478,6 +478,60 @@ namespace cor
             return tmp_c->get(a0);
         }
         
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c)
+        {
+
+            return c->get_new_count();
+        }
+        
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c)
+        {
+
+            return c->get_delete_count();
+        }
+        
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c)
+        {
+
+            return c->get_alloc_count();
+        }
+        
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c)
+        {
+
+            return c->get_alloc_size();
+        }
+        
+        std::string BasicBind_cor__system__AllocationMonitor_get_status_text(cor::system::AllocationMonitor* c)
+        {
+
+            return c->get_status_text();
+        }
+        
+        cor::system::AllocationMonitor* BasicBind_cor__system__AllocationMonitor_get_instance()
+        {
+
+            return cor::system::AllocationMonitor::get_instance();
+        }
+        
+        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned int a0)
+        {
+
+            return cor::system::AllocationMonitor::alloc(a0);
+        }
+        
+        void BasicBind_cor__system__AllocationMonitor_al_free(void * a0)
+        {
+
+            cor::system::AllocationMonitor::al_free(a0);
+        }
+        
+        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned int a1)
+        {
+
+            return cor::system::AllocationMonitor::al_realloc(a0, a1);
+        }
+        
         void BasicBind_cor__system__CorCrypt_set_enabled(int a0)
         {
 

@@ -31,8 +31,8 @@ namespace cor
             static PAllocationMonitor get_instance();
 
             static void* alloc(size_t n);
-            static void free(void* p);
-            static void* realloc(void* p, size_t n);
+            static void al_free(void* p);
+            static void* al_realloc(void* p, size_t n);
 
         };
     }

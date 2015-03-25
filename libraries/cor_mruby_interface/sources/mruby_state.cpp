@@ -50,11 +50,11 @@ namespace cor
         {
             if(size == 0)
             {
-                system::AllocationMonitor::free(p);
+                system::AllocationMonitor::al_free(p);
             }
             else
             {
-                void* pa = system::AllocationMonitor::realloc(p, size);
+                void* pa = system::AllocationMonitor::al_realloc(p, size);
                 return pa;
             }
         }

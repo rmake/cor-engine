@@ -131,6 +131,15 @@ namespace cor
         std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
         void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1);
         cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c);
+        std::string BasicBind_cor__system__AllocationMonitor_get_status_text(cor::system::AllocationMonitor* c);
+        cor::system::AllocationMonitor* BasicBind_cor__system__AllocationMonitor_get_instance();
+        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned int a0);
+        void BasicBind_cor__system__AllocationMonitor_al_free(void * a0);
+        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned int a1);
         void BasicBind_cor__system__CorCrypt_set_enabled(int a0);
         int BasicBind_cor__system__CorCrypt_get_enabled();
         void BasicBind_cor__system__CorCrypt_encode(RByte * a0, unsigned int a1);

@@ -5,6 +5,10 @@ MRUBY_INTERFACE_TAGET_CLASSES = [
       :value => :value, # :value, :pointer, :shared_ptr, :weak_ptr, :cocos_ptr
     },
     {
+      :name => "cor::system::AllocationMonitor",
+      :value => :pointer,
+    },
+    {
       :name => "cor::type::Vector2F",
       :value => :value, # :value, :pointer, :shared_ptr, :weak_ptr, :cocos_ptr
       :create_function => "create",

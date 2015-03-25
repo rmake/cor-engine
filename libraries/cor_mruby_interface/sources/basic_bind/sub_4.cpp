@@ -131,6 +131,15 @@ namespace cor
         std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
         void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1);
         cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c);
+        std::string BasicBind_cor__system__AllocationMonitor_get_status_text(cor::system::AllocationMonitor* c);
+        cor::system::AllocationMonitor* BasicBind_cor__system__AllocationMonitor_get_instance();
+        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned int a0);
+        void BasicBind_cor__system__AllocationMonitor_al_free(void * a0);
+        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned int a1);
         void BasicBind_cor__system__CorCrypt_set_enabled(int a0);
         int BasicBind_cor__system__CorCrypt_get_enabled();
         void BasicBind_cor__system__CorCrypt_encode(RByte * a0, unsigned int a1);
@@ -552,7 +561,10 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_custom_method("CorSystem", "Logger", "add_print_func_1", BasicBind_cor__system__Logger_add_print_func_1);
+                            binder.bind_custom_method("CorSystem", "JobQueue", "empty", BasicBind_cor__system__JobQueue_empty);
+            binder.bind_custom_method("CorSystem", "JobQueue", "add_job", BasicBind_cor__system__JobQueue_add_job);
+            binder.bind_custom_method("CorSystem", "JobQueue", "step", BasicBind_cor__system__JobQueue_step);
+            binder.bind_custom_method("CorSystem", "Logger", "add_print_func_1", BasicBind_cor__system__Logger_add_print_func_1);
             binder.bind_custom_method("CorSystem", "Logger", "add_print_func_2", BasicBind_cor__system__Logger_add_print_func_2);
             binder.bind_custom_method("CorSystem", "Logger", "pop_print_func", BasicBind_cor__system__Logger_pop_print_func);
             binder.bind_custom_method("CorSystem", "Logger", "clear_print_func", BasicBind_cor__system__Logger_clear_print_func);
@@ -570,12 +582,6 @@ namespace cor
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClassInherited", "test_2", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_test_2);
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClassInherited", "a=", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_accessor_set_a);
             binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClassInherited", "a", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_accessor_get_a);
-            binder.bind_static_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "create_1", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_1);
-            binder.bind_static_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "create_2", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_2);
-            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "get_null", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_get_null);
-            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "recieve", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve);
-            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "test", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test);
-            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "tmpl_test", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test);
 
           }
 

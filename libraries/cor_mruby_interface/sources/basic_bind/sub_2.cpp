@@ -131,6 +131,15 @@ namespace cor
         std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
         void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1);
         cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c);
+        std::string BasicBind_cor__system__AllocationMonitor_get_status_text(cor::system::AllocationMonitor* c);
+        cor::system::AllocationMonitor* BasicBind_cor__system__AllocationMonitor_get_instance();
+        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned int a0);
+        void BasicBind_cor__system__AllocationMonitor_al_free(void * a0);
+        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned int a1);
         void BasicBind_cor__system__CorCrypt_set_enabled(int a0);
         int BasicBind_cor__system__CorCrypt_get_enabled();
         void BasicBind_cor__system__CorCrypt_encode(RByte * a0, unsigned int a1);
@@ -552,7 +561,10 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_class<cor::type::OSphere2F >("CorType", "OSphere2F");
+                            binder.bind_class<cor::type::Sphere2I >("CorType", "Sphere2I");
+            binder.bind_static_method("CorType", "Sphere2I", "create_0", BasicBind_Sphere2I_create_0);
+            binder.bind_static_method("CorType", "Sphere2I", "create_1", BasicBind_Sphere2I_create_1);
+            binder.bind_class<cor::type::OSphere2F >("CorType", "OSphere2F");
             binder.bind_static_method("CorType", "OSphere2F", "create", BasicBind_OSphere2F_create);
             binder.bind_class<cor::type::OSphere2I >("CorType", "OSphere2I");
             binder.bind_static_method("CorType", "OSphere2I", "create", BasicBind_OSphere2I_create);
