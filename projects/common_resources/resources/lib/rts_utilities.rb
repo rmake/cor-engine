@@ -64,6 +64,16 @@ class RtsUtilities
     
     n.set_position p
   end
+  
+  def time_to_s(tm)
+    "#{tm.year} #{tm.mon} #{tm.day} #{tm.hour} #{tm.min} #{tm.sec} #{tm.usec}"
+  end
+  
+  def s_to_time(s)
+    return Time.now unless s
+    a = s.split(' ').map{|v| v.to_i}
+    Time.new a[0], a[1], a[2], a[3], a[4], a[5], a[6]
+  end
 
 end
 

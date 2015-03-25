@@ -113,7 +113,7 @@ class RtsSprite
     
     frames = 9.times.map do |i|
       nm = "grid9/grid9_0#{i + 1}.png"
-      frame = RtsCharacterAnimationPool.get_frame nm
+      frame = RtsCharacterAnimationCurrent.get_frame nm
       frame
     end
     
@@ -141,20 +141,13 @@ class RtsSprite
         r = frame.get_rect
         ra = r
         r = Rect.create r.origin.x + 0.5, r.origin.y + 0.5, 
-          r.size.width <= 1 ? r.size.width - 0.95 : r.size.width - 1.0, 
-          r.size.height <= 1 ? r.size.height - 0.95 : r.size.height - 1.0
+          r.size.width <= 1 ? r.size.width - 0.995 : r.size.width - 1.0, 
+          r.size.height <= 1 ? r.size.height - 0.995 : r.size.height - 1.0
         s = Sprite.create_with_sprite_frame SpriteFrame.create_with_texture(frame.get_texture, r)
         RtsObjectSystem.setup_sprite_round s
         
         y = -(ty + (h / 2) - rect.size.height / 2)
         x = (tx + (w / 2) - rect.size.width / 2)
-        
-        #if ix >= 1
-        #  x -= 1
-        #end
-        #if iy >= 1
-        #  y += 0.5
-        #end
         
         s.set_position x, y
         s.set_scale ((w) / r.size.width), ((h) / r.size.height)
@@ -171,12 +164,97 @@ class RtsSprite
       iy += 1
     end
     
+    node
+  end
+  
+  def self.create_window_by_list(options = {})
+    
+    node = Node.create
+    rect = options[:rect] || Rect.create(0, 0, 16, 16)
+    
+    file_names = options[:file_names]
+    unless file_names
+      file_names = [
+        "bg_window/bg_leftTop.png",
+        "bg_window/bg_top_center.png",
+        "bg_window/bg_rightTop.png",
+        "bg_window/bg_white_left.png",
+        "bg_window/bg_white.png",
+        "bg_window/bg_white_right.png",
+        "bg_window/bg_leftBottom.png",
+        "bg_window/bg_white_bottom.png",
+        "bg_window/bg_rightBottom.png",
+      ]
+    end
+    
+    frames = file_names.map do |fn|
+      next nil unless fn
+      frame = RtsCharacterAnimationCurrent.get_frame fn
+      frame
+    end
+    
+    wp = 16
+    
+    csxa = [frames[3] ? frames[3].get_rect.size.width : 0]
+    csxa << (rect.size.width - (frames[3] ? frames[3].get_rect.size.width : 0) - (frames[5] ? frames[5].get_rect.size.width : 0))
+    csxa << (frames[5] ? frames[5].get_rect.size.width : 0)
+    
+    csya = [frames[1] ? frames[1].get_rect.size.height : 0]
+    csya << (rect.size.height - (frames[1] ? frames[1].get_rect.size.height : 0) - (frames[7] ? frames[7].get_rect.size.height : 0))
+    csya << (frames[7] ? frames[7].get_rect.size.height : 0)
+    
+    if csxa[1] < 0
+      rate0 = csxa[0] / (csxa[0] + csxa[2])
+      rate2 = csxa[2] / (csxa[0] + csxa[2])
+      csxa[0] -= rate0 * csxa[1]
+      csxa[2] -= rate2 * csxa[1]
+      csxa[1] = 0
+    end
+    
+    ct = 0
+    
+    ty = 0
+    iy = 0
+    csya.each do |h|
+    
+      tx = 0
+      ix = 0
+      csxa.each do |w|
+        
+        frame = frames[ct]
+        if frame
+          r = frame.get_rect
+          ra = r
+          r = Rect.create r.origin.x + 0.5, r.origin.y + 0.5, 
+            r.size.width <= 1 ? r.size.width - 0.995 : r.size.width - 1.0, 
+            r.size.height <= 1 ? r.size.height - 0.995 : r.size.height - 1.0
+          s = Sprite.create_with_sprite_frame SpriteFrame.create_with_texture(frame.get_texture, r)
+          RtsObjectSystem.setup_sprite_round s
+          
+          x = (tx + (w / 2) - rect.size.width / 2)
+          y = -(ty + (h / 2) - rect.size.height / 2)
+          
+          s.set_position x, y
+          s.set_scale ((w) / r.size.width), ((h) / r.size.height)
+          
+          node.add_child s
+        end
+        
+        tx += w
+        ix += 1
+        
+        ct += 1
+      end
+    
+      ty += h
+      iy += 1
+    end
     
     node
   end
   
   def self.create_sprite_from_all(name)
-    frame = RtsCharacterAnimationPool.get_frame name
+    frame = RtsCharacterAnimationCurrent.get_frame name
     r = frame.get_rect
     r = Rect.create r.origin.x, r.origin.y, r.size.width, r.size.height
     s = Sprite.create_with_sprite_frame SpriteFrame.create_with_texture(frame.get_texture, r)
@@ -185,11 +263,11 @@ class RtsSprite
   end
   
   def self.get_sprite_frame_from_all(name)
-    RtsCharacterAnimationPool.get_frame name
+    RtsCharacterAnimationCurrent.get_frame name
   end
   
   def self.create_sprite_from_all_origin(name)
-    frame = RtsCharacterAnimationPool.get_frame name
+    frame = RtsCharacterAnimationCurrent.get_frame name
     s = Sprite.create_with_sprite_frame frame
     RtsObjectSystem.setup_sprite_round s
     s
@@ -200,7 +278,7 @@ class RtsSprite
     
     frames = 3.times.map do |i|
       nm = "num_bg/num_0#{i + 1}.png"
-      frame = RtsCharacterAnimationPool.get_frame nm
+      frame = RtsCharacterAnimationCurrent.get_frame nm
       frame
     end
     
@@ -252,7 +330,7 @@ class RtsSprite
     animation ||= "explosion_128"
     a = s.run_action( 
       Animate.create(
-        (RtsCharacterAnimationPool.create({:walk => animation})).walks[0])
+        (RtsCharacterAnimationCurrent.create({:walk => animation})).walks[0])
     )
     a
   end
@@ -320,15 +398,97 @@ class RtsSprite
     label
   end
   
+  def self.create_star_view(num)
+    
+    node = Node.create
+    
+    if num <= 3
+    
+      w = 0
+      
+      sps = num.times.map do |i|
+        sp = RtsSprite.create_sprite_from_all_origin "character_info/level_starMark.png"
+        #sp.set_global_z_order Rts::Z_ORDER_OFFSET + 5252.0
+        w += (sp.get_bounding_box.size.width + 1)
+        node.add_child sp
+        sp
+      end
+      
+      sps.each_with_index do |sp, i|
+        sp.set_position (w / 2 - sp.get_bounding_box.size.width / 2).to_i - i * (sp.get_bounding_box.size.width + 1), 0
+      end
+      
+    else
+    
+      w = 0
+      wa = []
+      sps = []
+      num.to_s.reverse.each_char do |s|
+        sp = RtsSprite.create_sprite_from_all_origin "character_info/#{s}.png"
+        #sp.set_global_z_order Rts::Z_ORDER_OFFSET + 5252.0
+        wa << w
+        w += (sp.get_bounding_box.size.width + 1)
+        node.add_child sp
+        sp.set_color Color3B.create(255, 255, 0)
+        sps << sp
+      end
+      
+      sp = RtsSprite.create_sprite_from_all_origin "character_info/level_starMark.png"
+      #sp.set_global_z_order Rts::Z_ORDER_OFFSET + 5252.0
+      wa << w
+      w += (sp.get_bounding_box.size.width + 1)
+      node.add_child sp
+      sps << sp
+      
+      sps.each_with_index do |sp, i|
+        sp.set_position (w / 2 - sp.get_bounding_box.size.width / 2).to_i - wa[i], 0
+      end
+      
+    end
+    
+    node
+  end
+  
+  def self.create_num_image(num)
+    
+    node = Node.create
+    
+    w = 0
+    wa = []
+    sps = []
+    num.to_s.reverse.each_char do |s|
+      sp = RtsSprite.create_sprite_from_all_origin "character_info/#{s}.png"
+      #sp.set_global_z_order Rts::Z_ORDER_OFFSET + 5252.0
+      wa << w
+      w += (sp.get_bounding_box.size.width + 1)
+      node.add_child sp
+      #sp.set_color Color3B.create(255, 255, 0)
+      sps << sp
+    end
+    
+    sps.each_with_index do |sp, i|
+      sp.set_position (w / 2 - sp.get_bounding_box.size.width / 2).to_i - wa[i], 0
+    end
+  
+    node
+  end
+  
+  def self.set_z_order_all(node, z)
+    Rts.u.each_node node do |n|
+      n.set_global_z_order z 
+    end
+  end
+  
+  
   def self.delay_action(node, interval, &callback)
     node.run_action(
         #RepeatForever.create(
-          Sequence.create([
+          Sequence.create_with_two_actions(
             DelayTime.create(interval),
             (CallFunc.create do
               yield
-            end),
-          ])
+            end)
+          )
         #)
       )
   end
@@ -336,12 +496,12 @@ class RtsSprite
   def self.interval_action(node, interval, &callback)
     node.run_action(
         RepeatForever.create(
-          Sequence.create([
+          Sequence.create_with_two_actions(
             DelayTime.create(interval),
             (CallFunc.create do
               yield
-            end),
-          ])
+            end)
+          )
         )
       )
   end

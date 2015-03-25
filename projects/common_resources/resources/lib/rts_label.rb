@@ -10,6 +10,7 @@ class RtsLabel
   @@last_label = nil
   @@all_label = {}
   @@enable_set_text = true
+  @@current_id = 1
   
   @@loading_st = Proc.new {}
   @@loading_ed = Proc.new {}
@@ -20,6 +21,7 @@ class RtsLabel
   attr_accessor :font_size
   attr_accessor :all_size
   attr_accessor :edge_size
+  attr_accessor :bold_size
   attr_accessor :node
   attr_accessor :text
   attr_accessor :setted_text
@@ -52,7 +54,7 @@ class RtsLabel
         end
         
         @@all_font_textures.each do |aft|
-          aft.release
+          aft[:texture].release
         end
         
         #@@all_back_font_textures += @@all_font_textures
@@ -122,7 +124,7 @@ class RtsLabel
         end
         
         @@all_font_textures.each do |aft|
-          aft.release
+          aft[:texture].release
         end
         
         #@@all_back_font_textures += @@all_font_textures
@@ -139,9 +141,6 @@ class RtsLabel
       
       Director.get_instance.get_event_dispatcher.add_event_listener_with_fixed_priority(el, -1);
       
-      
-      
-      
       el = EventListenerCustom.create "event_renderer_recreated" do |e|
         
       end
@@ -154,6 +153,10 @@ class RtsLabel
         
       end
       
+      
+      @@all_label[self.object_id] = self
+      
+      
       Director.get_instance.get_event_dispatcher.add_event_listener_with_fixed_priority(el, -1);
       
       @@first = false
@@ -161,6 +164,7 @@ class RtsLabel
     
     self.font_name = options[:font_name] || "fonts/MTLc3m.ttf"
     self.edge_size = options[:edge_size] || 0
+    self.bold_size = 0 #options[:bold_size] || 0
     self.font_size = options[:font_size] || 34
     self.color = options[:color] || Color3B.create(255, 255, 255)
     self.line_height = nil
@@ -183,7 +187,7 @@ class RtsLabel
       self.set_text " "
     end
     
-    @@all_label[self.object_id] = self
+    
     
   end
   
@@ -206,6 +210,9 @@ class RtsLabel
   def make_label(c)
     label = Label.create_with_ttf c, self.font_name, self.font_size,
         Size.create(0, 0), 2, 0
+    #config = label.get_ttf_config
+    #config.outline_size = self.edge_size
+    #label.set_ttf_config config
     label
   end
   
@@ -244,7 +251,14 @@ class RtsLabel
     
     aft.clear 0.0, 0.0, 0.0, 0.0
     
-    @@all_font_textures << aft
+    
+    
+    @@all_font_textures << {
+      :id => @@current_id,
+      :texture => aft,
+    }
+    
+    @@current_id += 1
     
     texture = aft.get_sprite.get_texture
     
@@ -282,28 +296,27 @@ class RtsLabel
       return
     end
     
-    labels = []
+    bw = self.bold_size * 2 + 1
+    ew = self.edge_size * 2 + bw
+    ew = 0 if self.edge_size <= 0
     
-    ew = self.edge_size * 2 + 1
+    
+    
+    render_textures = {}
+    use_textures = {}
     
     text.each_char do |c|
     
-      key = [c, self.font_name, self.all_size]
+      key = [c, self.font_name, self.all_size, self.edge_size, self.bold_size]
     
       if @@all_chatacter[key]
         
         h = @@all_chatacter[key]
         h[:ref_count] += 1
+        char_h = h
       else
       
-        if @@all_font_textures.empty? || (@@max_line > WIDTH - self.all_size)
         
-          texture = self.create_texture
-    
-          
-        else
-          texture = @@all_font_textures.last.get_sprite.get_texture
-        end
         
         @@all_line[self.all_size] ||= []
         a = @@all_line[self.all_size]
@@ -311,22 +324,45 @@ class RtsLabel
         generatable = a.find {|v| v[:left] < WIDTH - self.all_size}
         
         unless generatable
+        
+          if @@all_font_textures.empty? || (@@max_line + (self.all_size * 1.5).to_i + 1 > WIDTH)
+        
+            texture = self.create_texture
+            
+          else
+            texture = @@all_font_textures.last[:texture].get_sprite.get_texture
+          end
+        
           h = {
             :chars => {},
             :left => 0,
             :top => @@max_line,
+            :texture_info => @@all_font_textures.last,
           }
+          texture_info = @@all_font_textures.last
           a << h
           @@max_line += (self.all_size * 1.5).to_i + 1
         else
           
           h = generatable
+          texture_info = h[:texture_info]
         end
+        
+        texture = texture_info[:texture].get_sprite.get_texture
+        
+        texture_id = texture_info[:id]
+        render_textures[texture_id] ||= {
+          :texture => texture,
+          :texture_info => texture_info,
+          :labels => [],
+        }
+        labels = render_textures[texture_id][:labels]
         
         chars = h[:chars]
         
         label = self.make_label c
         bb = label.get_bounding_box
+        
         
         wa = ((bb.size.width + 1) / 2).to_i * 2 + self.edge_size * 2
         ha = ((bb.size.height + 1) / 2).to_i * 2 + self.edge_size * 2 + 2
@@ -334,12 +370,14 @@ class RtsLabel
         char_h = {
           :key => key,
           :rect => Rect.create(h[:left], h[:top], wa, ha),
+          :bb => bb,
           :ref_count => 1,
           :texture => texture,
+          :texture_info => texture_info,
         }
         
-        x = h[:left] + (wa / 2 - self.edge_size)
-        y = h[:top] + (ha / 2 - self.edge_size)
+        x = h[:left] + (wa / 2 - self.edge_size).to_i
+        y = h[:top] + (ha / 2 - self.edge_size).to_i
         label.set_position x + self.edge_size, y + self.edge_size
         
         ew.times do |i|
@@ -350,8 +388,22 @@ class RtsLabel
             end
           
             lb = self.make_label c
+            RtsObjectSystem.set_blending_premultipled lb
             lb.set_position x + i, y + j
             lb.set_color Color3B.create(0, 0, 0)
+            #Project::set_label_blend_func lb
+            labels << lb
+          end
+        end
+        
+        bw.times do |i|
+          bw.times do |j|
+            
+          
+            lb = self.make_label c
+            RtsObjectSystem.set_blending_premultipled lb
+            lb.set_position x + i + self.edge_size, y + j + self.edge_size
+            lb.set_color Color3B.create(255, 255, 255)
             #Project::set_label_blend_func lb
             labels << lb
           end
@@ -360,42 +412,51 @@ class RtsLabel
         char_h[:line_height] = label.get_line_height
         
         label.set_color Color3B.create(255, 255, 255)
+        RtsObjectSystem.set_blending_premultipled label
         #Project::set_label_blend_func label
-        labels << label
+        #labels << label
         
         @@last_label = label
         
         chars[char_h] = char_h
         @@all_chatacter[key] = char_h
         
-        h[:left] += bb.size.width + self.edge_size * 2 + 2
+        h[:left] += wa + 1
         
       end
+      
+      use_textures[char_h[:texture_info][:id]] = char_h
     
     end
     
-    unless labels.empty?
+    
+    render_textures.each do |k, v|
+    
+      labels = v[:labels]
       
-      # todo: multiple texture
-      
-      tmp_node = Node.create
-      
-      labels.each do |label|
-        tmp_node.add_child label
+      unless labels.empty?
+        
+        tmp_node = Node.create 
+        
+        labels.each do |label|
+          tmp_node.add_child label
+        end
+        
+        v[:texture_info][:texture].begin
+        
+        director = Director.get_instance
+        
+        tmp_node.set_position 0, 0
+        2.times do
+          tmp_node.visit
+        end
+        
+        v[:texture_info][:texture].end
+        
+        v[:labels] = []
       end
       
-      @@all_font_textures.last.begin
-      
-      director = Director.get_instance
-      
-      tmp_node.set_position 0, 0
-      tmp_node.visit
-      
-      @@all_font_textures.last.end
-      
     end
-    
-    texture = @@all_font_textures.last.get_sprite.get_texture
     
     l = 0
     t = 0
@@ -406,15 +467,34 @@ class RtsLabel
     self.node.set_global_z_order @node_z
     
     if batch_node_mode
+    
+      batch_node_table = {}
       
-      sp = Sprite.create_with_texture texture
-      dummy = SpriteBatchNode.create_with_texture texture, 29
-      batch_node = SpriteBatchNode.create_with_texture texture, 100
-      self.node.add_child batch_node
+      use_textures.each do |k, v|
       
-      batch_node.set_global_z_order @node_z
+        texture = v[:texture_info][:texture].get_sprite.get_texture
+        sp = Sprite.create_with_texture texture
+        dummy = SpriteBatchNode.create_with_texture texture, 29
+        batch_node = SpriteBatchNode.create_with_texture texture, 100
+        self.node.add_child batch_node
+        
+        batch_node.set_global_z_order @node_z
       
-      #RtsObjectSystem.setup_sprite_round batch_node
+        batch_node_table[k] = {
+          :sp => sp,
+          :dummy => dummy,
+          :batch_node => batch_node,
+        }
+      end
+      
+      #texture = @@all_font_textures.last[:texture].get_sprite.get_texture
+      #sp = Sprite.create_with_texture texture
+      #dummy = SpriteBatchNode.create_with_texture texture, 29
+      #batch_node = SpriteBatchNode.create_with_texture texture, 100
+      #self.node.add_child batch_node
+      #
+      #batch_node.set_global_z_order @node_z
+      
     end
     
     ct = 0
@@ -424,7 +504,7 @@ class RtsLabel
     
     text.each_char do |c|
       
-      key = [c, self.font_name, self.all_size]
+      key = [c, self.font_name, self.all_size, self.edge_size, self.bold_size]
     
       h = @@all_chatacter[key]
       
@@ -442,15 +522,16 @@ class RtsLabel
       sf = SpriteFrame.create_with_texture h[:texture], r
       #sf = SpriteFrame.create_with_texture h[:texture], Rect.create(0, 0, WIDTH, WIDTH)
       if batch_node_mode
-        tl = sp
-        tl.set_batch_node dummy
+        bnh = batch_node_table[h[:texture_info][:id]]
+        tl = bnh[:sp]
+        tl.set_batch_node bnh[:dummy]
       else 
         tl = Sprite.create_with_sprite_frame sf
         
       end
       
       tl.set_sprite_frame_2 sf
-      tl.set_position l + (r.size.width / 2), t
+      tl.set_position l + (r.size.width / 2).to_i + 0.5, t + 0.5
       tl.set_scale 1.0, -1.0
       tl.set_color self.color
       #RtsObjectSystem.setup_sprite_round tl
@@ -460,7 +541,7 @@ class RtsLabel
         mxw = [mxw, l].max
         mxh = [mxh, t + r.size.height].max
         
-        batch_node.insert_quad_from_sprite tl, ct
+        bnh[:batch_node].insert_quad_from_sprite tl, ct
         
       else
         RtsObjectSystem.setup_sprite_round tl
@@ -472,7 +553,9 @@ class RtsLabel
     end
     
     if batch_node_mode
-      batch_node.set_content_size Size.create(mxw, mxh)
+      batch_node_table.each do |k, v|
+        v[:batch_node].set_content_size Size.create(mxw, mxh)
+      end
     end
     
   end

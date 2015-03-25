@@ -9,10 +9,16 @@ class RtsButton
   attr_accessor :text_labels
   attr_accessor :font_name
   attr_accessor :font_color
+  attr_accessor :font_size
+  attr_accessor :edge_size
+  attr_accessor :bold_size
   attr_accessor :all_nodes
   attr_accessor :rect
   attr_accessor :text_scale
   attr_accessor :align
+  attr_accessor :clipping_node
+  attr_accessor :clipping_rect
+  
   
   TAP_RANGE = 3.0 * 8  
   
@@ -34,6 +40,10 @@ class RtsButton
     
     self.font_name = options[:font_name] || "fonts/MTLc3m.ttf"
     self.font_color = options[:font_color] || Color3B.create(255, 255, 255)
+    self.font_size = options[:font_size] || 34
+    self.edge_size = options[:edge_size] || 2
+    self.bold_size = options[:bold_size] || 0
+    self.text_scale = options[:text_scale] || 0.7
     
     spa = nil
     if options[:texture_all]
@@ -86,6 +96,13 @@ class RtsButton
       clp = prnt.convert_to_node_space lp
       bb = rect || s.get_bounding_box
       
+      if clipping_node && clipping_rect
+        tclp = self.clipping_node.convert_to_node_space lp
+        unless self.clipping_rect.contains_point tclp
+          next
+        end
+      end
+      
       if @on_tap && bb.contains_point(clp)
       
         if @on_touch_began
@@ -118,6 +135,7 @@ class RtsButton
       end
       
       if old_l && @on_tap
+      
         @on_tap.call t, e
       end
       
@@ -132,8 +150,6 @@ class RtsButton
       l = listener.clone
       ed.add_event_listener_with_scene_graph_priority l, n
     end
-    
-    self.text_scale = options[:text_scale] || 0.7
     
     self.sprite = s
     self.all_nodes << s
@@ -199,8 +215,8 @@ class RtsButton
       texts.each do |text|
         #t = RtsSprite.create_label_atlas text
         #t = RtsSprite.create_label_ttf text
-        t = RtsLabel.new :font_name => self.font_name, :font_size => 34, :text => text, :edge_size => 2, 
-          :color => self.font_color
+        t = RtsLabel.new :font_name => self.font_name, :font_size => self.font_size, :text => text, 
+          :edge_size => self.edge_size, :bold_size => self.bold_size, :color => self.font_color
         line_height = t.line_height * sc
         
         #tb = t.get_bounding_box
