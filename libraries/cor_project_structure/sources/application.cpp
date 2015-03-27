@@ -129,6 +129,7 @@ namespace cor
 
                 Node* f = getChildByTag(0xFADEFADE);
                 f->setGlobalZOrder(FloatMax);
+                f->setPosition3D(Vec3(0.0f, 0.0f, 300.0f));
             }
 
             virtual void onExit()
