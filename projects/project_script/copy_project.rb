@@ -200,11 +200,22 @@ d_list.each do |fn|
 end
 
 past_copy = "past_copy.log"
-past_copy_table = {}
+past_copy_data = {
+  "past_crypt" => false,
+  "file_table" => {},
+}
+past_copy_table = past_copy_data["file_table"]
+force_update = false
 if File.exist? past_copy
   past_copy_json = Cor.u.file_read past_copy
-  past_copy_table = JSON.parse past_copy_json
+  past_copy_data = JSON.parse past_copy_json
+  past_copy_table = past_copy_data["file_table"]
 end
+
+if CorProject::crypt != past_copy_data["past_crypt"]
+  force_update = true
+end
+past_copy_data["past_crypt"] = CorProject::crypt
 
 puts "project copy"
 
@@ -232,7 +243,7 @@ end
 list.each do |fn|
   dfn = "#{destination_resource_path}/#{fn[:n]}"
   
-  if !File.exist?(dfn) || past_copy_table[fn[:fn]] != File.mtime(fn[:fn]).to_s  || File.size(fn[:fn]) != File.size(dfn)
+  if !File.exist?(dfn) || past_copy_table[fn[:fn]] != File.mtime(fn[:fn]).to_s  || File.size(fn[:fn]) != File.size(dfn) || force_update
     puts "do copy #{fn} -> #{dfn}"
     FileUtils.mkpath File.dirname(dfn)
     resource_file_copy key, fn[:fn], dfn
@@ -332,7 +343,7 @@ EOS
 end
 
 
-past_copy_json = JSON.pretty_generate past_copy_table
+past_copy_json = JSON.pretty_generate past_copy_data
 Cor.u.file_write past_copy, past_copy_json
 
 sleep 1
