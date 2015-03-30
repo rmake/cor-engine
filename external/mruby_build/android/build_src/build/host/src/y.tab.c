@@ -1063,7 +1063,7 @@ heredoc_end(parser_state *p)
 
 
 /* Line 189 of yacc.c  */
-#line 1067 "c:/cocos2dx/cor-engine/external/mruby/build/host/src/y.tab.c"
+#line 1067 "c:/work/cor-engine/external/mruby/build/host/src/y.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -1236,7 +1236,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 1240 "c:/cocos2dx/cor-engine/external/mruby/build/host/src/y.tab.c"
+#line 1240 "c:/work/cor-engine/external/mruby/build/host/src/y.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -1248,7 +1248,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 1252 "c:/cocos2dx/cor-engine/external/mruby/build/host/src/y.tab.c"
+#line 1252 "c:/work/cor-engine/external/mruby/build/host/src/y.tab.c"
 
 #ifdef short
 # undef short
@@ -5966,7 +5966,7 @@ yyreduce:
 /* Line 1464 of yacc.c  */
 #line 1470 "src/parse.y"
     {
-                      (yyval.nd) = list1((yyvsp[(2) - (3)].nd));
+                      (yyval.nd) = (yyvsp[(2) - (3)].nd);
                     ;}
     break;
 
@@ -6065,7 +6065,7 @@ yyreduce:
 /* Line 1464 of yacc.c  */
 #line 1519 "src/parse.y"
     {
-                      (yyval.nd) = (yyvsp[(2) - (3)].nd);
+                      (yyval.nd) = new_masgn(p, (yyvsp[(2) - (3)].nd), NULL);
                     ;}
     break;
 
@@ -9256,7 +9256,7 @@ yyreduce:
 
 
 /* Line 1464 of yacc.c  */
-#line 9260 "c:/cocos2dx/cor-engine/external/mruby/build/host/src/y.tab.c"
+#line 9260 "c:/work/cor-engine/external/mruby/build/host/src/y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -12521,10 +12521,9 @@ mrb_parser_dump(mrb_state *mrb, node *tree, int offset)
         printf("post mandatory args:\n");
         dump_recur(mrb, n->car, offset+2);
       }
-      n = n->cdr;
-      if (n) {
+      if (n->cdr) {
         dump_prefix(n, offset+1);
-        printf("blk=&%s\n", mrb_sym2name(mrb, sym(n)));
+        printf("blk=&%s\n", mrb_sym2name(mrb, sym(n->cdr)));
       }
     }
     mrb_parser_dump(mrb, tree->cdr->car, offset+1);

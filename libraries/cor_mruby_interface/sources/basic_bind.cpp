@@ -3311,6 +3311,8 @@ namespace cor
 
             
             
+/* dumped in little endian order.
+   use `mrbc -E` option for big endian CPU. */
 static const uint8_t
 #if defined __GNUC__
 __attribute__((aligned(4)))

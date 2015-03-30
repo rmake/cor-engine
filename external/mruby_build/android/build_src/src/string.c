@@ -162,7 +162,7 @@ str_new(mrb_state *mrb, const char *p, size_t len)
 {
   struct RString *s;
 
-  if (mrb_ro_data_p(p)) {
+  if (p && mrb_ro_data_p(p)) {
     return str_new_static(mrb, p, len);
   }
   s = mrb_obj_alloc_string(mrb);
@@ -776,7 +776,12 @@ num_index:
           return mrb_nil_value();
         }
       }
+    case MRB_TT_FLOAT:
     default:
+      indx = mrb_Integer(mrb, indx);
+      if (mrb_nil_p(indx)) {
+        mrb_raise(mrb, E_TYPE_ERROR, "can't convert to Fixnum");
+      }
       idx = mrb_fixnum(indx);
       goto num_index;
   }
@@ -813,6 +818,7 @@ num_index:
  *
  *     a = "hello there"
  *     a[1]                   #=> 101(1.8.7) "e"(1.9.2)
+ *     a[1.1]                 #=>            "e"(1.9.2)
  *     a[1,3]                 #=> "ell"
  *     a[1..3]                #=> "ell"
  *     a[-3,2]                #=> "er"
@@ -1304,7 +1310,7 @@ mrb_str_index_m(mrb_state *mrb, mrb_value str)
 
   switch (mrb_type(sub)) {
     case MRB_TT_FIXNUM: {
-      int c = mrb_fixnum(sub);
+      mrb_int c = mrb_fixnum(sub);
       mrb_int len = RSTRING_LEN(str);
       unsigned char *p = (unsigned char*)RSTRING_PTR(str);
 
@@ -1650,7 +1656,7 @@ mrb_str_rindex_m(mrb_state *mrb, mrb_value str)
 
   switch (mrb_type(sub)) {
     case MRB_TT_FIXNUM: {
-      int c = mrb_fixnum(sub);
+      mrb_int c = mrb_fixnum(sub);
       unsigned char *p = (unsigned char*)RSTRING_PTR(str);
 
       for (pos=len-1;pos>=0;pos--) {

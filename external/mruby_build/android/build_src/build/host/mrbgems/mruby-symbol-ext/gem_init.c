@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include "mruby.h"
 #include "mruby/irep.h"
+/* dumped in little endian order.
+   use `mrbc -E` option for big endian CPU. */
 #include <stdint.h>
 const uint8_t
 #if defined __GNUC__

@@ -99,6 +99,12 @@ namespace cor
 
         void Logger::call_print_func(LogType::Enum type, const RString& str)
         {
+            if(str.substr(0, 18) == "RtsButton.set_text")
+            {
+                static int a;
+                a++;
+            }
+
             std::for_each(itnl->print_funcs.begin(), itnl->print_funcs.end(), [&](NamePrintFunc print_func){
                 if(print_func.second)
                 {
