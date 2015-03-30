@@ -27,33 +27,6 @@ LOCAL_SRC_FILES:= $(MRUBY_PATH)/build_src/build/host/mrbgems/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-toplevel-ext/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrblib/mrblib.c \
   $(MRUBY_PATH)/build_src/build/host/src/y.tab.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-array-ext/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-enum-ext/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-enum-lazy/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-enumerator/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-eval/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-fiber/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-hash-ext/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-json/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-kernel-ext/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-math/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-numeric-ext/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-object-ext/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-objectspace/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-print/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-proc-ext/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-random/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-range-ext/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-sprintf/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-string-ext/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-string-utf8/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-struct/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-symbol-ext/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-time/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-toplevel-ext/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/mrblib/mrblib.c \
-  $(MRUBY_PATH)/build_src/build/host-debug/src/y.tab.c \
   $(MRUBY_PATH)/build_src/build/mrbgems/mruby-json/src/mrb_json.c \
   $(MRUBY_PATH)/build_src/build/mrbgems/mruby-json/src/parson.c \
   $(MRUBY_PATH)/build_src/doc/api/mruby.h.md \
