@@ -508,6 +508,18 @@ namespace cor
             return c->get_status_text();
         }
         
+        void BasicBind_cor__system__AllocationMonitor_set_captured_status(cor::system::AllocationMonitor* c, int a0)
+        {
+
+            c->set_captured_status(a0);
+        }
+        
+        int BasicBind_cor__system__AllocationMonitor_get_captured_status(cor::system::AllocationMonitor* c)
+        {
+
+            return c->get_captured_status();
+        }
+        
         cor::system::AllocationMonitor* BasicBind_cor__system__AllocationMonitor_get_instance()
         {
 

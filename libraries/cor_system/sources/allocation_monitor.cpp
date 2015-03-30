@@ -13,6 +13,8 @@
 //#define COR_ALLOCATION_MONITOR_INDEX_COUNT
 //#define COR_ALLOCATION_MONITOR_LEAK_CHECK
 
+#define COR_ALLOCATION_MONITOR_CAPTURE_MODE
+
 namespace cor
 {
     namespace system
@@ -25,6 +27,9 @@ namespace cor
             {
 #ifdef COR_ALLOCATION_MONITOR_INDEX_COUNT
                 size_t count;
+#endif
+#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+                size_t captured_index;
 #endif
                 size_t size;
                 size_t n;
@@ -40,6 +45,17 @@ namespace cor
 
             static const RSize freed_table_size = 64 + 1;
             HeaderPtr freed_table[freed_table_size];
+
+#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+            RSize captured_count;
+            RInt32 captured_status;
+            struct Captured
+            {
+                HeaderPtr p;
+                RInt32 status;
+            };
+            Captured captured_list[1024 * 1024];
+#endif
 
             std::recursive_mutex mutex;
 
@@ -66,6 +82,10 @@ namespace cor
             {
                 itnl->freed_table[i] = nullptr;
             }
+#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+            itnl->captured_count = 0;
+            itnl->captured_status = 0;
+#endif
         }
         
         AllocationMonitor::~AllocationMonitor()
@@ -115,6 +135,20 @@ namespace cor
             s << "alloc_count " << get_alloc_count();
             s << ", alloc_size " << get_alloc_size();
             return s.str();
+        }
+
+        void AllocationMonitor::set_captured_status(RInt32 captured_status)
+        {
+#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+            itnl->captured_status = captured_status;
+#endif
+        }
+
+        RInt32 AllocationMonitor::get_captured_status()
+        {
+#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+            return itnl->captured_status;
+#endif
         }
 
         PAllocationMonitor AllocationMonitor::get_instance()
@@ -195,6 +229,16 @@ namespace cor
 
             if(am)
             {
+#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+                if(am->itnl->captured_status)
+                {
+                    auto ct = am->itnl->captured_count;
+                    am->itnl->captured_list[ct].p = h;
+                    am->itnl->captured_list[ct].status = am->itnl->captured_status;
+                    h->captured_index = ct;
+                    am->itnl->captured_count++;
+                }
+#endif
                 AllocationMonitorItnl* itnl = am->itnl.get();
                 itnl->mutex.unlock();
                 itnl->alloc_size += sz;
