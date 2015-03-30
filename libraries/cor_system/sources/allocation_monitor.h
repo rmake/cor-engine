@@ -28,6 +28,9 @@ namespace cor
             RSize get_alloc_size();
             RString get_status_text();
 
+            void set_captured_status(RInt32 captured_status);
+            RInt32 get_captured_status();
+
             static PAllocationMonitor get_instance();
 
             static void* alloc(size_t n);

@@ -136,6 +136,8 @@ namespace cor
         unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c);
         unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c);
         std::string BasicBind_cor__system__AllocationMonitor_get_status_text(cor::system::AllocationMonitor* c);
+        void BasicBind_cor__system__AllocationMonitor_set_captured_status(cor::system::AllocationMonitor* c, int a0);
+        int BasicBind_cor__system__AllocationMonitor_get_captured_status(cor::system::AllocationMonitor* c);
         cor::system::AllocationMonitor* BasicBind_cor__system__AllocationMonitor_get_instance();
         void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned int a0);
         void BasicBind_cor__system__AllocationMonitor_al_free(void * a0);
@@ -582,6 +584,8 @@ namespace cor
             binder.bind_custom_method("CorSystem", "AllocationMonitor", "get_alloc_count", BasicBind_cor__system__AllocationMonitor_get_alloc_count);
             binder.bind_custom_method("CorSystem", "AllocationMonitor", "get_alloc_size", BasicBind_cor__system__AllocationMonitor_get_alloc_size);
             binder.bind_custom_method("CorSystem", "AllocationMonitor", "get_status_text", BasicBind_cor__system__AllocationMonitor_get_status_text);
+            binder.bind_custom_method("CorSystem", "AllocationMonitor", "set_captured_status", BasicBind_cor__system__AllocationMonitor_set_captured_status);
+            binder.bind_custom_method("CorSystem", "AllocationMonitor", "get_captured_status", BasicBind_cor__system__AllocationMonitor_get_captured_status);
             binder.bind_static_method("CorSystem", "AllocationMonitor", "get_instance", BasicBind_cor__system__AllocationMonitor_get_instance);
             binder.bind_static_method("CorSystem", "AllocationMonitor", "alloc", BasicBind_cor__system__AllocationMonitor_alloc);
             binder.bind_static_method("CorSystem", "AllocationMonitor", "al_free", BasicBind_cor__system__AllocationMonitor_al_free);
