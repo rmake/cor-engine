@@ -362,7 +362,6 @@ namespace cor
             auto s = std::make_shared<RtsObjectSensor>(shared_from_this(), type_id, p, r);
             s->set_collision_callback(collision_callback);
 
-            //itnl->sensors[s.get()] = s;
             itnl->sensors.insert(RtsObjectItnl::SensorsItem(s.get(), s));
 
             return s;

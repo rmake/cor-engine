@@ -3,16 +3,20 @@
 #include "cor_algorithm/sources/utilities.h"
 #include "cor_data_structure/sources/geometry/r_tree_pool_tmpl_impl.h"
 #include "base/CCRefPtr.h"
+#include "cor_system/sources/logger.h"
 
 namespace cor
 {
     namespace cocos2dx_converter
     {
+        RInt32 Collision2dNodeObjectCt = 0;
+
         Collision2dNodeObject::Collision2dNodeObject()
         {
             this->node = NULL;
             this->tag = 0;
             this->collision = nullptr;
+            Collision2dNodeObjectCt++;
         }
 
         Collision2dNodeObject::Collision2dNodeObject(Collision2dNodePtr collision, cocos2d::Node* node, type::Box2F box, CollisionCallback callback)
@@ -25,6 +29,7 @@ namespace cor
 
             this->shape = type::OBox2F(type::Matrix4x4F(), box);
             update_shape();
+            Collision2dNodeObjectCt++;
         }
 
         Collision2dNodeObject::Collision2dNodeObject(Collision2dNodePtr collision, cocos2d::Node* node, type::Sphere2F sphere, CollisionCallback callback)
@@ -37,6 +42,7 @@ namespace cor
 
             this->shape = type::OSphere2F(type::Matrix4x4F(), sphere);
             update_shape();
+            Collision2dNodeObjectCt++;
         }
 
         Collision2dNodeObject::~Collision2dNodeObject()
@@ -46,6 +52,8 @@ namespace cor
                 node->release();
                 node = NULL;
             }
+            Collision2dNodeObjectCt--;
+            log_debug("Collision2dNodeObjectCt ", Collision2dNodeObjectCt);
         }
 
         cocos2d::Node* Collision2dNodeObject::get_node()
@@ -281,14 +289,18 @@ namespace cor
             }
         };
         
+        RInt32 Collision2dNodeCt = 0;
+
         Collision2dNode::Collision2dNode() : itnl(new Collision2dNodeItnl())
         {
-            
+            Collision2dNodeCt++;
+            log_debug("Collision2dNodeCt(+) ", Collision2dNodeCt);
         }
         
         Collision2dNode::~Collision2dNode()
         {
-            
+            Collision2dNodeCt--;
+            log_debug("Collision2dNodeCt ", Collision2dNodeCt);
         }
 
         void Collision2dNode::update_current_transform()

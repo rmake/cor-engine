@@ -3,6 +3,7 @@
 #include "collision_2d.h"
 #include "cor_data_structure/sources/geometry/r_tree_pool_tmpl_impl.h"
 #include "cor_algorithm/sources/utilities.h"
+#include "cor_system/sources/logger.h"
 
 namespace cor
 {
@@ -24,9 +25,12 @@ namespace cor
         }
 
         
+        RInt32 Collision2dShapeCt = 0;
+
         Collision2dShape::Collision2dShape()
         {
-            
+            Collision2dShapeCt++;
+            log_debug("Collision2dShapeCt(+) ", Collision2dShapeCt);
         }
 
         Collision2dShape::Collision2dShape(Collision2dObjectBaseSP obj, Collision2dCallback callback, Shape shape)
@@ -34,11 +38,15 @@ namespace cor
             this->obj = obj;
             this->callback = callback;
             this->shape = shape;
+
+            Collision2dShapeCt++;
+            log_debug("Collision2dShapeCt(+) ", Collision2dShapeCt);
         }
 
         Collision2dShape::~Collision2dShape()
         {
-            
+            Collision2dShapeCt--;
+            log_debug("Collision2dShapeCt ", Collision2dShapeCt);
         }
 
         Box2F Collision2dShape::get_box()
@@ -78,12 +86,12 @@ namespace cor
 
         Collision2dGroup::Collision2dGroup()
         {
-            set_changed();
+            
         }
 
         Collision2dGroup::~Collision2dGroup()
         {
-        
+            
         }
 
         Collision2dRTreePoolPtr Collision2dGroup::get_tree_pool()

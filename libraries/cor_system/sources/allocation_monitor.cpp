@@ -2,6 +2,7 @@
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
+#include <windows.h>
 #endif
 
 #include "allocation_monitor.h"
@@ -14,7 +15,11 @@
 //#define COR_ALLOCATION_MONITOR_INDEX_COUNT
 //#define COR_ALLOCATION_MONITOR_LEAK_CHECK
 
-//#define COR_ALLOCATION_MONITOR_CAPTURE_MODE
+#define COR_ALLOCATION_MONITOR_CAPTURE_MODE
+
+#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+#include <iostream>
+#endif
 
 namespace cor
 {
@@ -30,6 +35,7 @@ namespace cor
                 size_t count;
 #endif
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+                RInt32 mark;
                 RInt32 captured_index;
 #endif
                 size_t size;
@@ -55,7 +61,7 @@ namespace cor
                 HeaderPtr p;
                 RInt32 status;
             };
-            Captured captured_list[1024 * 1024];
+            Captured captured_list[1024 * 1024 * 20];
 #endif
 
             std::recursive_mutex mutex;
@@ -154,9 +160,19 @@ namespace cor
 #endif      
         }
 
+#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+        class AllocationMonitorBaseT
+        {
+            AllocationMonitorBaseT(){}
+            virtual ~AllocationMonitorBaseT(){}
+        };
+#endif
+
         RString AllocationMonitor::get_captured_data()
         {
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+            
+
             std::vector<RString> data;
             RSize sz = itnl->captured_count;
             for(RSize i = 0 ; i < sz ; i++)
@@ -166,9 +182,31 @@ namespace cor
                     RStringStream s;
                     RBytePtr bp = (RBytePtr)itnl->captured_list[i].p;
                     bp += sizeof(AllocationMonitorItnl::Header);
-                    s << (RSize)bp;
+                    //s << (RSize)bp;
+                    //s << ":";
+                    s << i;
                     s << ":";
+                    s << itnl->captured_list[i].p->captured_index;
+                    s << ":";
+                    s << itnl->captured_list[i].p->n;
+                    s << ":";
+                    //try
+                    //{
+                    //    s << typeid(*(AllocationMonitorBaseT*)bp).name();
+                    //    s << ":";
+                    //}
+                    //catch(std::__non_rtti_object& bt)
+                    //{
+                    //    s << "no rtti";
+                    //    s << ":";
+                    //}
+                    //catch(std::bad_typeid& bt)
+                    //{
+                    //    s << "no name";
+                    //    s << ":";
+                    //}
                     s << itnl->captured_list[i].status;
+                    //OutputDebugStringA((s.str() + "\n").c_str());
                     data.push_back(s.str());
                 }
                 
@@ -256,6 +294,10 @@ namespace cor
             h->count = count;
             count++;
 #endif
+#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+            h->mark = 0xABCDEEFF;
+            h->captured_index = -1;
+#endif
             h->size = sz;
             h->n = n;
             h->freed = rfalse;
@@ -273,10 +315,6 @@ namespace cor
                     am->itnl->captured_list[ct].status = am->itnl->captured_status;
                     h->captured_index = ct;
                     am->itnl->captured_count++;
-                }
-                else
-                {
-                    h->captured_index = -1;
                 }
 #endif
                 AllocationMonitorItnl* itnl = am->itnl.get();
@@ -321,10 +359,11 @@ namespace cor
                     bp -= sizeof(AllocationMonitorItnl::Header);
                     auto h = static_cast<AllocationMonitorItnl::HeaderPtr>((void*)bp);
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
-                    if(h->captured_index >= 0)
+                    if(h->mark == 0xABCDEEFF && h->captured_index >= 0)
                     {
                         am->itnl->captured_list[h->captured_index].p = nullptr;
                         am->itnl->captured_list[h->captured_index].status = 0xffffffff;
+                        h->captured_index = -1;
                     }
 #endif
 

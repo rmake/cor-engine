@@ -2,11 +2,14 @@
 #include "rts_object_sensor.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_group.h"
+#include "cor_system/sources/logger.h"
 
 namespace cor
 {
     namespace cocos2dx_converter
     {
+        RInt32 RtsObjectSensorItnlCt = 0;
+
         struct RtsObjectSensorItnl
         {
             RtsObjectWP o;
@@ -19,6 +22,12 @@ namespace cor
             {
                 node = nullptr;
                 erased = rfalse;
+
+            }
+
+            ~RtsObjectSensorItnl()
+            {
+                
             }
         };
         
