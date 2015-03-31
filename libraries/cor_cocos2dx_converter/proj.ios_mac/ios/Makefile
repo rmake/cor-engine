@@ -13,5 +13,5 @@ clean:
 	make -C . -f Makefile.dev.armv7s.ios clean
 	make -C . -f Makefile.sim.i386.ios clean
 	make -C . -f Makefile.sim.x86_64.ios clean
-	rm libcor_cocos2dx_converter.a
+	-rm -f libcor_cocos2dx_converter.a
 
