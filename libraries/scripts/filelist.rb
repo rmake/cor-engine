@@ -232,7 +232,7 @@ all:
 
 clean:
 	%LIBCLEANS%
-	rm %LIBFILENAME%
+	-rm -f %LIBFILENAME%
 
 EOS
 

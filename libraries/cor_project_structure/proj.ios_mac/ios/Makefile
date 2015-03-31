@@ -13,5 +13,5 @@ clean:
 	make -C . -f Makefile.dev.armv7s.ios clean
 	make -C . -f Makefile.sim.i386.ios clean
 	make -C . -f Makefile.sim.x86_64.ios clean
-	rm libcor_project_structure.a
+	-rm -f libcor_project_structure.a
 
