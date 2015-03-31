@@ -9,11 +9,12 @@
 #include <mutex>
 #include <string.h>
 
+#include <typeinfo.h>
 
 //#define COR_ALLOCATION_MONITOR_INDEX_COUNT
 //#define COR_ALLOCATION_MONITOR_LEAK_CHECK
 
-#define COR_ALLOCATION_MONITOR_CAPTURE_MODE
+//#define COR_ALLOCATION_MONITOR_CAPTURE_MODE
 
 namespace cor
 {
@@ -29,7 +30,7 @@ namespace cor
                 size_t count;
 #endif
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
-                size_t captured_index;
+                RInt32 captured_index;
 #endif
                 size_t size;
                 size_t n;
@@ -148,6 +149,46 @@ namespace cor
         {
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
             return itnl->captured_status;
+#else
+            return 0;
+#endif      
+        }
+
+        RString AllocationMonitor::get_captured_data()
+        {
+#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+            std::vector<RString> data;
+            RSize sz = itnl->captured_count;
+            for(RSize i = 0 ; i < sz ; i++)
+            {
+                if(itnl->captured_list[i].p)
+                { 
+                    RStringStream s;
+                    RBytePtr bp = (RBytePtr)itnl->captured_list[i].p;
+                    bp += sizeof(AllocationMonitorItnl::Header);
+                    s << (RSize)bp;
+                    s << ":";
+                    s << itnl->captured_list[i].status;
+                    data.push_back(s.str());
+                }
+                
+            }
+            RString str;
+            for(auto i : data)
+            {
+                str += i;
+                str += "\n";
+            }
+            return str;
+#else
+            return RString();
+#endif        
+        }
+
+        void AllocationMonitor::clear_caputred_data()
+        {
+#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+            itnl->captured_count = 0;
 #endif
         }
 
@@ -213,11 +254,6 @@ namespace cor
 #ifdef COR_ALLOCATION_MONITOR_INDEX_COUNT
             static size_t count = 0;
             h->count = count;
-            //if(count == 0x5BC3)
-            //{
-            //    static int a;
-            //    a++;
-            //}
             count++;
 #endif
             h->size = sz;
@@ -237,6 +273,10 @@ namespace cor
                     am->itnl->captured_list[ct].status = am->itnl->captured_status;
                     h->captured_index = ct;
                     am->itnl->captured_count++;
+                }
+                else
+                {
+                    h->captured_index = -1;
                 }
 #endif
                 AllocationMonitorItnl* itnl = am->itnl.get();
@@ -280,6 +320,14 @@ namespace cor
                     auto bp = static_cast<RBytePtr>(p);
                     bp -= sizeof(AllocationMonitorItnl::Header);
                     auto h = static_cast<AllocationMonitorItnl::HeaderPtr>((void*)bp);
+#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+                    if(h->captured_index >= 0)
+                    {
+                        am->itnl->captured_list[h->captured_index].p = nullptr;
+                        am->itnl->captured_list[h->captured_index].status = 0xffffffff;
+                    }
+#endif
+
                     if(!h->freed)
                     {
                         h->freed = rtrue;

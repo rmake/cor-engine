@@ -30,6 +30,8 @@ namespace cor
 
             void set_captured_status(RInt32 captured_status);
             RInt32 get_captured_status();
+            RString get_captured_data();
+            void clear_caputred_data();
 
             static PAllocationMonitor get_instance();
 

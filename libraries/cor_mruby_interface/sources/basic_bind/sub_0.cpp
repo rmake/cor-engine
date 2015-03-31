@@ -138,6 +138,8 @@ namespace cor
         std::string BasicBind_cor__system__AllocationMonitor_get_status_text(cor::system::AllocationMonitor* c);
         void BasicBind_cor__system__AllocationMonitor_set_captured_status(cor::system::AllocationMonitor* c, int a0);
         int BasicBind_cor__system__AllocationMonitor_get_captured_status(cor::system::AllocationMonitor* c);
+        std::string BasicBind_cor__system__AllocationMonitor_get_captured_data(cor::system::AllocationMonitor* c);
+        void BasicBind_cor__system__AllocationMonitor_clear_caputred_data(cor::system::AllocationMonitor* c);
         cor::system::AllocationMonitor* BasicBind_cor__system__AllocationMonitor_get_instance();
         void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned int a0);
         void BasicBind_cor__system__AllocationMonitor_al_free(void * a0);

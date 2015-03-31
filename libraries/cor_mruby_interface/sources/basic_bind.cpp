@@ -520,6 +520,18 @@ namespace cor
             return c->get_captured_status();
         }
         
+        std::string BasicBind_cor__system__AllocationMonitor_get_captured_data(cor::system::AllocationMonitor* c)
+        {
+
+            return c->get_captured_data();
+        }
+        
+        void BasicBind_cor__system__AllocationMonitor_clear_caputred_data(cor::system::AllocationMonitor* c)
+        {
+
+            c->clear_caputred_data();
+        }
+        
         cor::system::AllocationMonitor* BasicBind_cor__system__AllocationMonitor_get_instance()
         {
 

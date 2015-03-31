@@ -138,6 +138,8 @@ namespace cor
         std::string BasicBind_cor__system__AllocationMonitor_get_status_text(cor::system::AllocationMonitor* c);
         void BasicBind_cor__system__AllocationMonitor_set_captured_status(cor::system::AllocationMonitor* c, int a0);
         int BasicBind_cor__system__AllocationMonitor_get_captured_status(cor::system::AllocationMonitor* c);
+        std::string BasicBind_cor__system__AllocationMonitor_get_captured_data(cor::system::AllocationMonitor* c);
+        void BasicBind_cor__system__AllocationMonitor_clear_caputred_data(cor::system::AllocationMonitor* c);
         cor::system::AllocationMonitor* BasicBind_cor__system__AllocationMonitor_get_instance();
         void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned int a0);
         void BasicBind_cor__system__AllocationMonitor_al_free(void * a0);
@@ -586,6 +588,8 @@ namespace cor
             binder.bind_custom_method("CorSystem", "AllocationMonitor", "get_status_text", BasicBind_cor__system__AllocationMonitor_get_status_text);
             binder.bind_custom_method("CorSystem", "AllocationMonitor", "set_captured_status", BasicBind_cor__system__AllocationMonitor_set_captured_status);
             binder.bind_custom_method("CorSystem", "AllocationMonitor", "get_captured_status", BasicBind_cor__system__AllocationMonitor_get_captured_status);
+            binder.bind_custom_method("CorSystem", "AllocationMonitor", "get_captured_data", BasicBind_cor__system__AllocationMonitor_get_captured_data);
+            binder.bind_custom_method("CorSystem", "AllocationMonitor", "clear_caputred_data", BasicBind_cor__system__AllocationMonitor_clear_caputred_data);
             binder.bind_static_method("CorSystem", "AllocationMonitor", "get_instance", BasicBind_cor__system__AllocationMonitor_get_instance);
             binder.bind_static_method("CorSystem", "AllocationMonitor", "alloc", BasicBind_cor__system__AllocationMonitor_alloc);
             binder.bind_static_method("CorSystem", "AllocationMonitor", "al_free", BasicBind_cor__system__AllocationMonitor_al_free);
