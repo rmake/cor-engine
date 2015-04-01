@@ -10,7 +10,7 @@
 #include <mutex>
 #include <string.h>
 
-#include <typeinfo.h>
+//#include <typeinfo.h>
 
 //#define COR_ALLOCATION_MONITOR_INDEX_COUNT
 //#define COR_ALLOCATION_MONITOR_LEAK_CHECK
