@@ -10,14 +10,14 @@
 #include <mutex>
 #include <string.h>
 
-//#include <typeinfo.h>
 
 //#define COR_ALLOCATION_MONITOR_INDEX_COUNT
 //#define COR_ALLOCATION_MONITOR_LEAK_CHECK
 
-//#define COR_ALLOCATION_MONITOR_CAPTURE_MODE
+#define COR_ALLOCATION_MONITOR_CAPTURE_MODE
 
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
+#include <typeinfo.h>
 #include <iostream>
 #endif
 
@@ -206,7 +206,7 @@ namespace cor
                     //    s << ":";
                     //}
                     s << itnl->captured_list[i].status;
-                    //OutputDebugStringA((s.str() + "\n").c_str());
+                    OutputDebugStringA((s.str() + "\n").c_str());
                     data.push_back(s.str());
                 }
                 

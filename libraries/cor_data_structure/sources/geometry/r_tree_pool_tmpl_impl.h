@@ -394,6 +394,10 @@ namespace cor
 
         template<class T, class Vec, class VecI, class Data, class Func> void RTreePoolTmpl<T, Vec, VecI, Data, Func>::find(const typename RTreePoolTmpl<T, Vec, VecI, Data, Func>::Box& box, std::function<void(typename RTreePoolTmpl<T, Vec, VecI, Data, Func>::Ref&)> f)
         {
+            if(!root_node.get())
+            {  
+                return;
+            }
             root_node->traverse_traverser([&](typename NodePool::Traverser& t){
                 auto r = t.get_current();
                 if(r->get()->box.is_cross(box))

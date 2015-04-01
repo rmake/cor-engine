@@ -80,6 +80,11 @@ cor_lib_test_main.exe
 ```
 SOURCE_PATH = "../majitai_running"
 ```
+- run following command(for the first time from changing project source path)
+```
+cd projects/project_script
+ruby copy_project.rb
+```
 - select Debug target
 - press F5 key
    - copy_project.rb called on debug-built application
