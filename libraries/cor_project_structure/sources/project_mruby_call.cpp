@@ -498,6 +498,26 @@ namespace cor
                 });
             }
 
+            static void debug_gc()
+            {
+#if 0
+                cocos2dx_mruby_interface::MrubyScriptEnginePtr instance = cocos2dx_mruby_interface::MrubyScriptEngine::get_instance();
+                auto& mrb = instance->ref_mrb();
+
+                auto mb = mrb.get_mrb();
+                auto dp = mrubybind::MrubyBindStatus::search(mb);
+
+                for(auto p : dp->object_id_table)
+                {
+                    if(p.second.ref_count > 0 && p.second.captured_status == 1)
+                    {
+                        MrubyRef v(mb, mrb_obj_value(p.first));
+                        log_debug("debug_gc ", v.call("inspect").to_s());
+                    }
+                }
+#endif
+            }
+
             static RString get_import_name()
             {
                 return ExternalCodeImporter::get_imported_name();
@@ -655,6 +675,7 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "load_image_async", ProjectMrubyCallItnl::load_image_async);
             binder.bind_static_method("Cor", "Project", "load_image_data_async", ProjectMrubyCallItnl::load_image_data_async);
             binder.bind_static_method("Cor", "Project", "make_image_from_data_async", ProjectMrubyCallItnl::make_image_from_data_async);
+            binder.bind_static_method("Cor", "Project", "debug_gc", ProjectMrubyCallItnl::debug_gc);
             binder.bind_static_method("Cor", "Project", "get_import_name", ProjectMrubyCallItnl::get_import_name);
             binder.bind_static_method("Cor", "Project", "get_platform_name", ProjectMrubyCallItnl::get_platform_name);
             
