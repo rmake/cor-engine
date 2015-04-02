@@ -71,13 +71,16 @@ namespace cor
 
         PAllocationMonitor& AllocationMonitor::ref_instance_pointer()
         {
-            static PAllocationMonitor am = nullptr;
+            //static AllocationMonitor amo;
+            static PAllocationMonitor am;
             return am;
         }
         
-        AllocationMonitor::AllocationMonitor() : itnl(new AllocationMonitorItnl())
+        AllocationMonitor::AllocationMonitor()
         {
-            ref_instance_pointer() = this;
+            static AllocationMonitorItnl itnl_;
+            itnl = &itnl_;
+            //ref_instance_pointer() = this;
 
             itnl->new_count = 0;
             itnl->delete_count = 0;
@@ -110,7 +113,7 @@ namespace cor
             }
 
 
-            ref_instance_pointer() = NULL;
+            //ref_instance_pointer() = NULL;
         }
 
         RSize AllocationMonitor::get_new_count()
@@ -232,8 +235,9 @@ namespace cor
 
         PAllocationMonitor AllocationMonitor::get_instance()
         {
-            PAllocationMonitor& am = ref_instance_pointer();
-            return am;
+            //PAllocationMonitor& am = ref_instance_pointer();
+            static AllocationMonitor amo;
+            return &amo;
         }
         
 #ifdef COR_ALLOCATION_MONITOR_LEAK_CHECK
@@ -265,13 +269,13 @@ namespace cor
 #endif
             }
 
-            PAllocationMonitor& am = ref_instance_pointer();
+            PAllocationMonitor am = get_instance();
             void* p = nullptr;
             auto s = algorithm::BitOperation::ciel_pow_two(n);
             auto ns = 1 << s;
             if(am)
             {
-                AllocationMonitorItnl* itnl = am->itnl.get();
+                AllocationMonitorItnl* itnl = am->itnl;
                 itnl->mutex.lock();
 
                 if(itnl->freed_table[s])
@@ -317,7 +321,7 @@ namespace cor
                     am->itnl->captured_count++;
                 }
 #endif
-                AllocationMonitorItnl* itnl = am->itnl.get();
+                AllocationMonitorItnl* itnl = am->itnl;
                 itnl->mutex.unlock();
                 itnl->alloc_size += sz;
                 itnl->new_count++;
@@ -328,10 +332,10 @@ namespace cor
 
         void AllocationMonitor::al_free(void* p)
         {
-            PAllocationMonitor& am = ref_instance_pointer();
+            PAllocationMonitor am = get_instance();
             if(am)
             {
-                AllocationMonitorItnl* itnl = am->itnl.get();
+                AllocationMonitorItnl* itnl = am->itnl;
                 itnl->mutex.lock();
             }
 
@@ -351,7 +355,7 @@ namespace cor
 
             if(am)
             {
-                AllocationMonitorItnl* itnl = am->itnl.get();
+                AllocationMonitorItnl* itnl = am->itnl;
 
                 if(p)
                 {
@@ -373,6 +377,11 @@ namespace cor
                         sz = h->size;
 
                         auto s = algorithm::BitOperation::ciel_pow_two(h->n);
+                        if(s == 0)
+                        {
+                            static int a;
+                            a++;
+                        }
                         h->next = itnl->freed_table[s];
                         itnl->freed_table[s] = h;
                     }
@@ -391,10 +400,10 @@ namespace cor
 
         void* AllocationMonitor::al_realloc(void* p, size_t n)
         {
-            PAllocationMonitor& am = ref_instance_pointer();
+            PAllocationMonitor am = get_instance();
             if(am)
             {
-                AllocationMonitorItnl* itnl = am->itnl.get();
+                AllocationMonitorItnl* itnl = am->itnl;
                 itnl->mutex.lock();
             }
 
@@ -431,7 +440,7 @@ namespace cor
 
             if(am)
             {
-                AllocationMonitorItnl* itnl = am->itnl.get();
+                AllocationMonitorItnl* itnl = am->itnl;
                 itnl->mutex.unlock();
             }
 

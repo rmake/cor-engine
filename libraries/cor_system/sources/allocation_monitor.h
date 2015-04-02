@@ -14,7 +14,7 @@ namespace cor
 
         class AllocationMonitor
         {
-            std::unique_ptr<AllocationMonitorItnl> itnl;
+            AllocationMonitorItnl* itnl;
         
             static PAllocationMonitor& ref_instance_pointer();
         public:

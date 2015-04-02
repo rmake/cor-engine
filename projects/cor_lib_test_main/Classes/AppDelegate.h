@@ -15,7 +15,7 @@ The reason for implement as private inheritance is to hide some interface call b
 class  AppDelegate : private cocos2d::Application
 {
     cor::project_structure::Application app;
-    cor::system::AllocationMonitor am;
+    //cor::system::AllocationMonitor am;
 public:
     AppDelegate();
     virtual ~AppDelegate();
