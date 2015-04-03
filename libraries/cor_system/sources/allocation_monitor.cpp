@@ -377,11 +377,6 @@ namespace cor
                         sz = h->size;
 
                         auto s = algorithm::BitOperation::ciel_pow_two(h->n);
-                        if(s == 0)
-                        {
-                            static int a;
-                            a++;
-                        }
                         h->next = itnl->freed_table[s];
                         itnl->freed_table[s] = h;
                     }

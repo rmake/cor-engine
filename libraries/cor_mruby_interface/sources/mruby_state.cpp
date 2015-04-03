@@ -51,6 +51,7 @@ namespace cor
             if(size == 0)
             {
                 system::AllocationMonitor::al_free(p);
+                return NULL;
             }
             else
             {
@@ -61,8 +62,8 @@ namespace cor
 
         RBool MrubyState::init()
         {
-            //itnl->mrb = mrb_open();
-            itnl->mrb = mrb_open_allocf(alloc, this);
+            itnl->mrb = mrb_open();
+            //itnl->mrb = mrb_open_allocf(alloc, this);
 
             itnl->binder = std::unique_ptr<mrubybind::MrubyBind>(new mrubybind::MrubyBind(itnl->mrb));
 
