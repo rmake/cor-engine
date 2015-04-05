@@ -253,6 +253,136 @@ class RtsSprite
     node
   end
   
+  def self.create_window_repeat_by_list(options = {})
+    
+    node = Node.create
+    rect = options[:rect] || Rect.create(0, 0, 16, 16)
+    
+    file_names = options[:file_names]
+    unless file_names
+      file_names = [
+        "stone_window/window_bg_lt.png",
+        "stone_window/window_bg_ct.png",
+        "stone_window/window_bg_rt.png",
+        "stone_window/window_bg_lm.png",
+        "stone_window/window_bg_cm.png",
+        "stone_window/window_bg_rm.png",
+        "stone_window/window_bg_lb.png",
+        "stone_window/window_bg_cb.png",
+        "stone_window/window_bg_rb.png",
+      ]
+    end
+    
+    frames = file_names.map do |fn|
+      next nil unless fn
+      frame = RtsCharacterAnimationCurrent.get_frame fn
+      frame
+    end
+    
+    wp = 16
+    
+    csxa = [frames[3] ? frames[3].get_rect.size.width : 0]
+    csxa << (rect.size.width - (frames[3] ? frames[3].get_rect.size.width : 0) - (frames[5] ? frames[5].get_rect.size.width : 0))
+    csxa << (frames[5] ? frames[5].get_rect.size.width : 0)
+    
+    csya = [frames[1] ? frames[1].get_rect.size.height : 0]
+    csya << (rect.size.height - (frames[1] ? frames[1].get_rect.size.height : 0) - (frames[7] ? frames[7].get_rect.size.height : 0))
+    csya << (frames[7] ? frames[7].get_rect.size.height : 0)
+    
+    if csxa[1] < 0
+      rate0 = csxa[0] / (csxa[0] + csxa[2])
+      rate2 = csxa[2] / (csxa[0] + csxa[2])
+      csxa[0] -= rate0 * csxa[1]
+      csxa[2] -= rate2 * csxa[1]
+      csxa[1] = 0
+    end
+    
+    nsxa = []
+    nsxa << csxa[0]
+    nsw = csxa[1]
+    while nsw > 0
+      if nsw > (frames[4].get_rect.size.width)
+        nsxa << (frames[4].get_rect.size.width)
+        nsw -= (frames[4].get_rect.size.width - 1)
+      else
+        nsxa << nsw
+        nsw = 0
+      end
+    end
+    nsxa << csxa[2]
+    
+    Logger.debug "csxa #{csxa}"
+    Logger.debug "nsxa #{nsxa}"
+    
+    nsya = []
+    nsya << csya[0]
+    nsh = csya[1]
+    while nsh > 0
+      if nsh > (frames[4].get_rect.size.height)
+        nsya << (frames[4].get_rect.size.height)
+        nsh -= (frames[4].get_rect.size.height - 1)
+      else
+        nsya << nsh
+        nsh = 0
+      end
+    end
+    nsya << csya[2]
+    
+    Logger.debug "csya #{csya}"
+    Logger.debug "nsya #{nsya}"
+    
+    ct = 0
+    
+    ty = 0
+    iy = 0
+    nsya.each_with_index do |h, yi|
+    
+      if yi == 0
+        ct = 0
+      elsif yi == nsya.length - 1
+        ct = 6
+      else
+        ct = 3
+      end
+    
+      tx = 0
+      ix = 0
+      nsxa.each_with_index do |w, xi|
+        
+        frame = frames[ct]
+        if frame
+          r = frame.get_rect
+          ra = r
+          Logger.debug "r.origin #{r.origin.x}, #{r.origin.y}"
+          r = Rect.create r.origin.x + 0.5, r.origin.y + 0.5, 
+            w <= 1 ? w - 0.995 : w - 1.0, 
+            h <= 1 ? h - 0.995 : h - 1.0
+          s = Sprite.create_with_sprite_frame SpriteFrame.create_with_texture(frame.get_texture, r)
+          RtsObjectSystem.setup_sprite_round s
+          
+          x = (tx + (w / 2) - rect.size.width / 2)
+          y = -(ty + (h / 2) - rect.size.height / 2)
+          
+          s.set_position x, y
+          
+          node.add_child s
+        end
+        
+        tx += w - 1
+        ix += 1
+        
+        if xi == 0 || xi == csxa.length - 2
+          ct += 1
+        end
+      end
+    
+      ty += h - 1
+      iy += 1
+    end
+    
+    node
+  end
+  
   def self.create_sprite_from_all(name)
     frame = RtsCharacterAnimationCurrent.get_frame name
     r = frame.get_rect

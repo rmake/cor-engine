@@ -15,8 +15,8 @@ FileUtils.mkpath "build_tmp/rts_test_android/"
 FileUtils.copy "../cor_lib_test_main/proj.android/bin/cor_lib_test_main-release.apk", "build_tmp/rts_test_android/"
 
 if File.exist? "deploy_local_conf.rb"
-  load "deploy_local_conf.rb"
-  FileUtils.copy "../cor_lib_test_main/proj.android/bin/cor_lib_test_main-release.apk", OUTPUT_PATH_ANDROID
+  #load "deploy_local_conf.rb"
+  #FileUtils.copy "../cor_lib_test_main/proj.android/bin/cor_lib_test_main-release.apk", OUTPUT_PATH_ANDROID
 end
 
 

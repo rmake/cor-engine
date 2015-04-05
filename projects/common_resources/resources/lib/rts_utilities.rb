@@ -74,6 +74,21 @@ class RtsUtilities
     a = s.split(' ').map{|v| v.to_i}
     Time.new a[0], a[1], a[2], a[3], a[4], a[5], a[6]
   end
+  
+  def recursive_merge(dh, sh)
+    
+    nh = dh
+    
+    sh.each do |k, v|
+      if v.kind_of?(Hash) && nh[k].kind_of?(Hash)
+        self.recursive_merge nh[k], v
+        
+      else
+        nh[k] = v
+      end
+    end
+    
+  end
 
 end
 

@@ -170,6 +170,7 @@ class RtsButton
     
     self.text_labels = []
     self.set_text text
+    
   end
   
   def set_texture_all(name)
@@ -191,7 +192,7 @@ class RtsButton
   end
   
   def set_text(text)
-  
+    
     s = self.sprite
     rect = self.rect
     align = self.align
@@ -200,23 +201,27 @@ class RtsButton
       self.all_nodes.delete l
       l.remove_from_parent
     end
+    
     self.text_labels = []
     if text
       text = text.to_s
       texts = text.split("\n")
-    
+      
       sb = rect || s.get_bounding_box
       sc = self.text_scale
       
       line_height = nil
       
       tbs = []
-    
+      
       texts.each do |text|
+      
         #t = RtsSprite.create_label_atlas text
         #t = RtsSprite.create_label_ttf text
+        
         t = RtsLabel.new :font_name => self.font_name, :font_size => self.font_size, :text => text, 
           :edge_size => self.edge_size, :bold_size => self.bold_size, :color => self.font_color
+        
         line_height = t.line_height * sc
         
         #tb = t.get_bounding_box
@@ -233,6 +238,7 @@ class RtsButton
         s.add_child t.node
         self.text_labels << t.node
         self.all_nodes << t.node
+        
       end
       
       h = 0

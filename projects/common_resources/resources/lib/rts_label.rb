@@ -17,6 +17,8 @@ class RtsLabel
   
   WIDTH = 512
   
+  USE_LABEL_MODE = true
+  
   attr_accessor :font_name
   attr_accessor :font_size
   attr_accessor :all_size
@@ -29,6 +31,34 @@ class RtsLabel
   attr_accessor :line_height
   
   def initialize(options = {})
+  
+    if USE_LABEL_MODE
+      
+      self.node = Node.create
+      
+      self.font_name = options[:font_name] || "fonts/MTLc3m.ttf"
+      self.edge_size = options[:edge_size] || 0
+      self.bold_size = 0 #options[:bold_size] || 0
+      self.font_size = options[:font_size] || 34
+      self.color = options[:color] || Color3B.create(255, 255, 255)
+      self.line_height = nil
+      
+      self.all_size = self.font_size + self.edge_size * 2
+      self.line_height ||= self.all_size
+      
+      @label = Label.create_with_ttf " ", self.font_name, self.font_size, Size.create(0, 0), 0, 0
+      
+      config = @label.get_ttf_config
+      config.outline_size = self.edge_size
+      @label.set_ttf_config config
+      @label.set_color self.color
+      
+      self.node.add_child @label
+      
+      self.set_text options[:text]
+      
+      return
+    end
     
     #if !@@all_font_texture
     #  @@all_font_texture = RenderTexture.create WIDTH, WIDTH, 2, 35056
@@ -217,6 +247,12 @@ class RtsLabel
   end
   
   def release_text
+  
+    if USE_LABEL_MODE
+      
+      return
+    end
+  
     
     if self.node.valid?
       self.node.remove_all_children
@@ -286,6 +322,14 @@ class RtsLabel
   end
   
   def set_text(text)
+  
+    if USE_LABEL_MODE
+      
+      @label.set_string text
+      @label.set_position @label.get_bounding_box.size.width / 2, 0
+      
+      return
+    end
   
     self.release_text
     

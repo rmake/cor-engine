@@ -11,6 +11,7 @@ class RtsListView
   attr_accessor :direction_type
   
   def initialize(world, list_data, options = {}, &item_block)
+  
     self.world = world
     self.list_data = list_data
     self.list_items = []
@@ -47,12 +48,16 @@ class RtsListView
     list_data.each do |data|
       n = item_block.call data
       
+      r = nil
+      
       if n.kind_of? RtsButton
         buttons << n
+        r = n.rect
         n = n.sprite
+        
       end
       
-      r = Rts.u.node_rect n
+      r ||= Rts.u.node_rect n
       p = n.get_position
       #bb = n.get_bounding_box
       bb = r
@@ -66,6 +71,7 @@ class RtsListView
       self.container_node.add_child n
       self.list_items << n
     end
+    
     y = y.abs
     self.list_items.each do |n|
       p = n.get_position
@@ -75,11 +81,13 @@ class RtsListView
         n.set_position p.x, p.y
       end
     end
+    
     if self.direction == :vertical
       scroll_view.set_content_size Size.create(self.size.width, y.abs)
     elsif self.direction == :horizontal
       scroll_view.set_content_size Size.create(y.abs, self.size.height)
     end
+    
     scroll_view.set_view_size self.size
     scroll_view.set_direction self.direction_type
     if self.direction == :vertical
