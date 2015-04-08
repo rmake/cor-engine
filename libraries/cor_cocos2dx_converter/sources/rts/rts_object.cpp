@@ -76,8 +76,10 @@ namespace cor
             RtsObjectGroupWP object_group;
             Collision2dNodeRef node_ref;
             cocos2d::Node* node;
-            cocos2d::RefPtr<cocos2d::Node> node_render;
-            cocos2d::RefPtr<cocos2d::Node> node_render_z;
+            cocos2d::Node* node_render;
+            cocos2d::Node* node_render_z;
+            //cocos2d::RefPtr<cocos2d::Node> node_render;
+            //cocos2d::RefPtr<cocos2d::Node> node_render_z;
             cocos2d::Vec3 old_render_pos;
             cocos2d::Vec3 new_render_pos;
             type::Vector2F render_offset;
