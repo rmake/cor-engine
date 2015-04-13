@@ -491,6 +491,9 @@ namespace cor
                     auto at = (itnl->new_mv_t * t + itnl->old_mv_t * (3 - t)) / 3.0f;
                     dcv.y += parabora_f(at);
                 }
+                dcv.x = std::floor(dcv.x);
+                dcv.y = std::floor(dcv.y);
+                dcv.z = std::floor(dcv.z);
                 itnl->node_render->setPosition3D(dcv);
     
                 if(itnl->render_time == 1 && itnl->rotate_animation)
