@@ -3539,6 +3539,7 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_setup_rts_rendering_state();
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_setup_sprite_alphatest(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_setup_sprite_round(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_setup_sprite_gray(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_setup_avoid_blur_texture(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_set_blending_premultipled(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> a0);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Image> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_create_empty_image(int a0, int a1);

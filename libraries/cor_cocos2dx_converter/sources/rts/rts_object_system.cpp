@@ -35,6 +35,7 @@ namespace cor
 
         cocos2d::GLProgram* rts_object_system_alpha_test_shader = NULL;
         cocos2d::GLProgram* rts_object_system_round_shader = NULL;
+        cocos2d::GLProgram* rts_object_system_gray_shader = NULL;
 
 
 #define STRINGIFY(A)  #A
@@ -67,6 +68,25 @@ namespace cor
                     texColor.a = 1.0;
                 //}
                 gl_FragColor = texColor * v_fragmentColor;
+            }
+            );
+
+            static const char* gray_frag_shader = STRINGIFY(
+
+                \n#ifdef GL_ES\n
+                precision lowp float;
+            \n#endif\n
+
+                varying vec4 v_fragmentColor;
+            varying vec2 v_texCoord;
+            
+            void main()
+            {
+                vec4 texColor = texture2D(CC_Texture0, v_texCoord);
+                float cc_alpha_value = 0.5;
+                vec4 rgba = texColor * v_fragmentColor;
+                float c = (rgba.r + rgba.g + rgba.b) / 3;
+                gl_FragColor = vec4(c, c, c, rgba.w);
             }
             );
 
@@ -125,6 +145,20 @@ namespace cor
                 ss->retain();
 
                 
+
+            }
+
+            {
+                static const char* my_frag_shader = gray_frag_shader;
+
+                if(rts_object_system_gray_shader)
+                {
+                    rts_object_system_gray_shader->release();
+                }
+
+                auto ss = cocos2d::GLProgram::createWithByteArrays(round_vertex_shader, my_frag_shader);
+                rts_object_system_gray_shader = ss;
+                ss->retain();
 
             }
             
@@ -270,6 +304,69 @@ namespace cor
                 sprite->getEventDispatcher()->addEventListenerWithSceneGraphPriority(backToForegroundlistener, sprite);
                 
                 
+            }
+        }
+
+        void RtsObjectSystem::setup_sprite_gray(cocos2d::Node* sprite)
+        {
+            static cocos2d::GLProgramState* s = NULL;
+            static RBool need_reset = rfalse;
+            auto p_need_reset = &need_reset;
+            auto ps = &s;
+            if(!s)
+            {
+                auto shader = &rts_object_system_gray_shader;
+                rts_object_system_load_shader();
+                s = cocos2d::GLProgramStateCache::getInstance()->getGLProgramState(*shader);
+                s->retain();
+                auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+                    *p_need_reset = rtrue;
+
+                });
+                cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -2);
+                {
+                    auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+                        auto scn = cocos2d::Director::getInstance()->getRunningScene();
+                        scn->enumerateChildren("//.*", [&](cocos2d::Node* n){
+                            if(n->getGLProgramState() == s)
+                            {
+                                n->setGLProgramState(
+                                    cocos2d::GLProgramState::getOrCreateWithGLProgramName(
+                                    cocos2d::GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP));
+                            }
+                            return false;
+                        });
+                    });
+
+                    cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(backToForegroundlistener, -3);
+                }
+            }
+            sprite->setGLProgramState(s);
+            
+            {
+                auto shader = &rts_object_system_gray_shader;
+                auto backToForegroundlistener = cocos2d::EventListenerCustom::create(EVENT_RENDERER_RECREATED, [=](cocos2d::EventCustom*) {
+
+                    RtsObjectSystem::delay_call(sprite, 0.01f, [=](){
+                        if(*p_need_reset)
+                        {
+                            auto s = *ps;
+                            s->release();
+                            cocos2d::GLProgramStateCache::getInstance()->removeUnusedGLProgramState();
+                            rts_object_system_load_shader();
+                            s = cocos2d::GLProgramStateCache::getInstance()->getGLProgramState(*shader);
+                            s->retain();
+                            *ps = s;
+
+                            *p_need_reset = rfalse;
+                        }
+
+                        sprite->setGLProgramState(*ps);
+                    });
+                });
+                sprite->getEventDispatcher()->addEventListenerWithSceneGraphPriority(backToForegroundlistener, sprite);
+
+
             }
         }
 
