@@ -85,7 +85,7 @@ namespace cor
                 vec4 texColor = texture2D(CC_Texture0, v_texCoord);
                 float cc_alpha_value = 0.5;
                 vec4 rgba = texColor * v_fragmentColor;
-                float c = (rgba.r + rgba.g + rgba.b) / 3;
+                float c = (rgba.r + rgba.g + rgba.b) * 0.3333;
                 gl_FragColor = vec4(c, c, c, rgba.w);
             }
             );
