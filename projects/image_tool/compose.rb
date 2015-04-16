@@ -152,6 +152,9 @@ frames = []
         })
       i += 1
       lt = left_tops[i]
+      unless lt
+        raise "cannot find space #{table.inspect}"
+      end
     end
       
     croped = img.crop r[:x], r[:y], r[:w], r[:h], true
