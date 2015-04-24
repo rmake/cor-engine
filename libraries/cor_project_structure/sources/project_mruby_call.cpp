@@ -252,6 +252,13 @@ namespace cor
                 return fu->isFileExist(path);
             }
 
+            static bool remove_writable_file(const RString& name)
+            {
+                auto fu = cocos2d::FileUtils::getInstance();
+                auto path = convert_path_char_code(fu->getWritablePath()) + "/data_" + name + ".log";
+                return fu->removeFile(path);
+            }
+
             static void write_text_to_file(const RString& name, const RString& data)
             {
                 auto fu = cocos2d::FileUtils::getInstance();
@@ -655,6 +662,7 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "test_str", ProjectMrubyCallItnl::test_str); 
             binder.bind_static_method("Cor", "Project", "convert_to_writable_path", ProjectMrubyCallItnl::convert_to_writable_path);
             binder.bind_static_method("Cor", "Project", "exist_writable_file", ProjectMrubyCallItnl::exist_writable_file);
+            binder.bind_static_method("Cor", "Project", "remove_writable_file", ProjectMrubyCallItnl::remove_writable_file);
             binder.bind_static_method("Cor", "Project", "write_text_to_file", ProjectMrubyCallItnl::write_text_to_file);
             binder.bind_static_method("Cor", "Project", "write_text_to_file_path", ProjectMrubyCallItnl::write_text_to_file_path);
             binder.bind_static_method("Cor", "Project", "read_text_from_file", ProjectMrubyCallItnl::read_text_from_file);
