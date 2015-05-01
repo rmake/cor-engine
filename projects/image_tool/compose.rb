@@ -4,7 +4,7 @@ $LOAD_PATH.push('../../libraries/scripts/lib')
 require 'cor/utility'
 
 require 'rubygems'
-require 'RMagick'
+require 'rmagick'
 require 'json'
 
 source_path = ARGV[0] || "build_tmp/composite_source"

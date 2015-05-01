@@ -4,7 +4,7 @@ $LOAD_PATH.push('../../libraries/scripts/lib')
 require 'cor/utility'
 
 require 'rubygems'
-require 'RMagick'
+require 'rmagick'
 require 'json'
 
 a = Cor.u.file_list 'build_tmp/decomposite_source'

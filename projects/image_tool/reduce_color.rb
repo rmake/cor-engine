@@ -5,7 +5,7 @@ $LOAD_PATH.push('../../libraries/scripts/lib')
 require 'cor/utility'
 
 require 'rubygems'
-require 'RMagick'
+require 'rmagick'
 require 'json'
 
 FileUtils.mkpath "build_tmp/reduce_color_destination"
