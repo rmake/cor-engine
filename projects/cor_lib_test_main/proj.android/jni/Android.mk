@@ -248,7 +248,7 @@ include ../../../external/mruby_build/android/FileList.mk
 
 include $(BUILD_STATIC_LIBRARY)
 
-
+#
 
 include $(CLEAR_VARS)
 
@@ -259,13 +259,6 @@ $(call import-add-path,$(LOCAL_PATH)/../../cocos2d/cocos)
 LOCAL_MODULE := cocos2dcpp_shared
 
 LOCAL_MODULE_FILENAME := libcocos2dcpp
-
-LOCAL_CPPFLAGS := -fexceptions -frtti -O3
-ifeq ($(PROFILE),1)
-  LOCAL_CFLAGS += -pg -DPROFILING
-  LOCAL_CPPFLAGS += -pg -DPROFILING
-  LOCAL_STATIC_LIBRARIES := android-ndk-profiler
-endif
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
@@ -278,6 +271,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
     $(LOCAL_PATH)/../../../../external/mrubybind \
     $(LOCAL_PATH)/../../../../external/boost \
     $(COCOS2D_PATH)/cocos $(COCOS2D_PATH)/cocos/audio/include $(COCOS2D_PATH)/cocos/2d $(COCOS2D_PATH)/cocos/renderer $(COCOS2D_PATH)/cocos/platform $(COCOS2D_PATH)/cocos/platform/desktop $(COCOS2D_PATH)/cocos/platform/android $(COCOS2D_PATH)/cocos/base $(COCOS2D_PATH)/cocos/physics $(COCOS2D_PATH)/cocos/editor-support $(COCOS2D_PATH)/cocos/math $(COCOS2D_PATH)/extensions $(COCOS2D_PATH)
+
 
 # _COCOS_HEADER_ANDROID_BEGIN
 # _COCOS_HEADER_ANDROID_END
@@ -296,7 +290,6 @@ LOCAL_WHOLE_STATIC_LIBRARIES += cor_cocos2dx_converter
 LOCAL_WHOLE_STATIC_LIBRARIES += cor_cocos2dx_mruby_interface
 LOCAL_WHOLE_STATIC_LIBRARIES += cor_project_structure
 
-
 # _COCOS_LIB_ANDROID_BEGIN
 # _COCOS_LIB_ANDROID_END
 
@@ -310,4 +303,3 @@ $(call import-module,.)
 ifeq ($(PROFILE),1)
   $(call import-module,android-ndk-profiler)
 endif
-

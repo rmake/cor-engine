@@ -6,7 +6,7 @@ cor-engine
 This is framework for making game.
 
 - mruby binding generator
-- cocos2d-x 3.4
+- cocos2d-x 3.6
 - some utilities
 
 # Status

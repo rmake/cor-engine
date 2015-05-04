@@ -320,10 +320,10 @@ Vec2 TableView::__offsetFromIndex(ssize_t index)
     switch (this->getDirection())
     {
         case Direction::HORIZONTAL:
-            offset = Vec2(_vCellsPositions[index], 0.0f);
+            offset.set(_vCellsPositions[index], 0.0f);
             break;
         default:
-            offset = Vec2(0.0f, _vCellsPositions[index]);
+            offset.set(0.0f, _vCellsPositions[index]);
             break;
     }
 
@@ -459,7 +459,7 @@ void TableView::scrollViewDidScroll(ScrollView* view)
     if (_isUsedCellsDirty)
     {
         _isUsedCellsDirty = false;
-        std::stable_sort(_cellsUsed.begin(), _cellsUsed.end(), [](TableViewCell *a, TableViewCell *b) -> bool{
+        std::sort(_cellsUsed.begin(), _cellsUsed.end(), [](TableViewCell *a, TableViewCell *b) -> bool{
             return a->getIdx() < b->getIdx();
         });
     }

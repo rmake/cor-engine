@@ -165,6 +165,7 @@ def gen_code option
     "cocos2d::Texture2D::PixelFormatInfoMap" => "delete",
     #"enum cocos2d::TextHAlignment" => "int",
     "std::unordered_map<ssize_t,Texture2D*>" => "delete",
+    "std::unordered_map<std::string,Curve*>" => "delete",
     "std::hash<string>" => "std::hash<std::string>",
     "std::unordered_map<std::basic_string<char>, cocos2d::Value, std::hash<string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >" => "std::unordered_map<std::basic_string<char>, cocos2d::Value, std::hash<std::string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >",
     "std::unordered_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >, cocos2d::Value, std::hash<string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >" => "std::unordered_map<std::basic_string<char>, cocos2d::Value, std::hash<std::string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >",

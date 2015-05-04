@@ -71,6 +71,9 @@ cocos2d.cpp \
 2d/CCSpriteBatchNode.cpp \
 2d/CCSpriteFrame.cpp \
 2d/CCSpriteFrameCache.cpp \
+2d/MarchingSquare.cpp \
+2d/SpritePolygon.cpp \
+2d/SpritePolygonCache.cpp \
 2d/CCTMXLayer.cpp \
 2d/CCFastTMXLayer.cpp \
 2d/CCTMXObjectGroup.cpp \
@@ -192,7 +195,12 @@ physics/CCPhysicsWorld.cpp \
 ../external/unzip/ioapi.cpp \
 ../external/unzip/unzip.cpp \
 ../external/edtaa3func/edtaa3func.cpp \
-../external/xxhash/xxhash.c
+../external/xxhash/xxhash.c \
+../external/poly2tri/common/shapes.cc \
+../external/poly2tri/sweep/advancing_front.cc \
+../external/poly2tri/sweep/cdt.cc \
+../external/poly2tri/sweep/sweep_context.cc \
+../external/poly2tri/sweep/sweep.cc
 
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
@@ -205,7 +213,10 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
                     $(LOCAL_PATH)/../external/unzip \
                     $(LOCAL_PATH)/../external/chipmunk/include/chipmunk \
                     $(LOCAL_PATH)/../external/xxhash \
-                    $(LOCAL_PATH)/../external/nslog
+                    $(LOCAL_PATH)/../external/nslog \
+                    $(LOCAL_PATH)/../external/poly2tri \
+                    $(LOCAL_PATH)/../external/poly2tri/common \
+                    $(LOCAL_PATH)/../external/poly2tri/sweep
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH) \
                     $(LOCAL_PATH)/. \
@@ -217,11 +228,13 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH) \
                     $(LOCAL_PATH)/../external/edtaa3func \
                     $(LOCAL_PATH)/../external/xxhash \
                     $(LOCAL_PATH)/../external/ConvertUTF \
-                    $(LOCAL_PATH)/../external/nslog
+                    $(LOCAL_PATH)/../external/nslog \
+                    $(LOCAL_PATH)/../external/poly2tri \
+                    $(LOCAL_PATH)/../external/poly2tri/common \
+                    $(LOCAL_PATH)/../external/poly2tri/sweep
 
 LOCAL_EXPORT_LDLIBS := -lGLESv2 \
                        -llog \
-                       -lz \
                        -landroid
 
 LOCAL_STATIC_LIBRARIES := cocos_freetype2_static
@@ -230,11 +243,13 @@ LOCAL_STATIC_LIBRARIES += cocos_jpeg_static
 LOCAL_STATIC_LIBRARIES += cocos_tiff_static
 LOCAL_STATIC_LIBRARIES += cocos_webp_static
 LOCAL_STATIC_LIBRARIES += cocos_chipmunk_static
+LOCAL_STATIC_LIBRARIES += cocos_zlib_static
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dxandroid_static
 
 # define the macro to compile through support/zip_support/ioapi.c
 LOCAL_CFLAGS   :=  -DUSE_FILE32API
+LOCAL_CFLAGS   +=  -fexceptions
 LOCAL_CPPFLAGS := -Wno-deprecated-declarations -Wno-extern-c-compat
 LOCAL_EXPORT_CFLAGS   := -DUSE_FILE32API
 LOCAL_EXPORT_CPPFLAGS := -Wno-deprecated-declarations -Wno-extern-c-compat
@@ -260,6 +275,7 @@ include $(BUILD_STATIC_LIBRARY)
 $(call import-module,freetype2/prebuilt/android)
 $(call import-module,platform/android)
 $(call import-module,png/prebuilt/android)
+$(call import-module,zlib/prebuilt/android)
 $(call import-module,jpeg/prebuilt/android)
 $(call import-module,tiff/prebuilt/android)
 $(call import-module,webp/prebuilt/android)

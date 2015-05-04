@@ -255,7 +255,7 @@ void ProtectedNode::insertProtectedChild(cocos2d::Node *child, int z)
 void ProtectedNode::sortAllProtectedChildren()
 {
     if( _reorderProtectedChildDirty ) {
-        std::stable_sort( std::begin(_protectedChildren), std::end(_protectedChildren), nodeComparisonLess );
+        std::sort( std::begin(_protectedChildren), std::end(_protectedChildren), nodeComparisonLess );
         _reorderProtectedChildDirty = false;
     }
 }
@@ -429,6 +429,19 @@ void ProtectedNode::disableCascadeOpacity()
     for(auto child : _protectedChildren){
         child->updateDisplayedOpacity(255);
     }
+}
+
+void ProtectedNode::setCameraMask(unsigned short mask, bool applyChildren)
+{
+    Node::setCameraMask(mask, applyChildren);
+    if (applyChildren)
+    {
+        for (auto& iter: _protectedChildren)
+        {
+            iter->setCameraMask(mask);
+        }
+    }
+    
 }
 
 NS_CC_END
