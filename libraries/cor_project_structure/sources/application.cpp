@@ -25,9 +25,9 @@ namespace cor
         Application::Application() : itnl(new ApplicationItnl())
         {
 #if defined(_DEBUG) && defined(CC_PLATFORM_WIN32)
-            ShellExecute(NULL, TEXT("open"), TEXT("cmd"), TEXT("/c ruby ../../project_script/copy_project.rb"), NULL, SW_SHOWNORMAL);
+            ShellExecute(NULL, TEXT("open"), TEXT("cmd"), TEXT("/c ruby ../../project_script/copy_project.rb --resource-only --win32-copy "), NULL, SW_SHOWNORMAL);
+            Sleep(3000);
 #endif
-
             auto eventDispatcher = Director::getInstance()->getEventDispatcher();
 
             FileUtils::getInstance()->addSearchPath("project_resource");

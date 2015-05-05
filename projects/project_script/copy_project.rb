@@ -1,5 +1,8 @@
 
 require 'fileutils'
+
+prject_structure_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(File.absolute_path(__FILE__)))
+
 FileUtils.chdir "#{File.dirname __FILE__}"
 
 $LOAD_PATH.push(".")
@@ -10,6 +13,7 @@ require 'json'
 require 'pathname'
 
 key = "ak8tm.mj"
+begin
 
 class CorProject
 
@@ -80,10 +84,13 @@ ARGV.each do |v|
 end
 
 resource_only = false
+win32_copy = false
 
 ma.each do |v|
   if v == "--resource-only"
-    #resource_only = true
+    resource_only = true
+  elsif v == "--win32-copy"
+    win32_copy = true
   end
 end
 
@@ -96,7 +103,7 @@ CorProject.source_path = source_path
 destination_resource_path = "../cor_lib_test_main/Resources/project_resource"
 source_conf_path = "#{source_path}/conf.rb"
 source_resource_path = "#{source_path}/resources"
-
+win32_copy_destination = File.expand_path("../../proj.win32/Debug.win32", destination_resource_path)
 
 FileUtils.mkpath destination_resource_path
 
@@ -222,6 +229,7 @@ puts "project copy"
 
 def resource_file_copy key, src, dst
   ext = File.extname(src)
+  
   if CorProject::crypt && ([".rb", ".png"].index ext)
     ley_len = key.length
     File.open src, "rb" do |f|
@@ -247,6 +255,12 @@ list.each do |fn|
     puts "do copy #{fn} -> #{dfn}"
     FileUtils.mkpath File.dirname(dfn)
     resource_file_copy key, fn[:fn], dfn
+    
+    if win32_copy
+      dfn2 = "#{win32_copy_destination}/#{fn[:n]}"
+      FileUtils.mkpath File.dirname(dfn2)
+      resource_file_copy key, fn[:fn], dfn2
+    end
   end
   
   past_copy_table[fn[:fn]] = File.mtime(fn[:fn]).to_s
@@ -254,7 +268,6 @@ list.each do |fn|
   d_table.delete dfn
 end
 
-prject_structure_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(__FILE__))
 import_cpp_props_file = "#{prject_structure_path}/proj.vc/cor_project_structure/cor_project_structure_local_conf.props"
 import_cpp_local_conf_mk = "#{prject_structure_path}/proj.common/cor_project_structure_local_conf.mk"
 import_cpp_file = "#{prject_structure_path}/sources/import/external_code_import_local_conf.h"
@@ -262,26 +275,27 @@ import_cpp_importer_file = "#{prject_structure_path}/sources/import/external_cod
 import_cpp_copy_dest = "#{prject_structure_path}/sources/import/cpp"
 FileUtils.rmtree import_cpp_copy_dest
 
-if CorProject.import_cpp
+unless resource_only
+  if CorProject.import_cpp &&
 
-  import_cpp_include_from = Pathname(File.dirname(import_cpp_file))
-  import_cpp_includes = cpp_list.map do |v|
-    #dfn = v[:fn].gsub(v[:base], import_cpp_copy_dest)
-    #FileUtils.mkpath File.dirname(dfn)
-    #FileUtils.copy v[:fn], dfn
-    import_cpp_include_to = Pathname(File.absolute_path(v[:fn]))
-    r = import_cpp_include_to.relative_path_from(import_cpp_include_from)
-    r.to_s
-  end
-  
-  import_cpp_includes = import_cpp_includes.select do |v| v.match(/\.cpp$/) end
-  
-  import_cpp_includes = import_cpp_includes.map do |v|
-    "#include \"#{v}\""
-  end
-  import_cpp_includes = import_cpp_includes.join "\n"
+    import_cpp_include_from = Pathname(File.dirname(import_cpp_file))
+    import_cpp_includes = cpp_list.map do |v|
+      #dfn = v[:fn].gsub(v[:base], import_cpp_copy_dest)
+      #FileUtils.mkpath File.dirname(dfn)
+      #FileUtils.copy v[:fn], dfn
+      import_cpp_include_to = Pathname(File.absolute_path(v[:fn]))
+      r = import_cpp_include_to.relative_path_from(import_cpp_include_from)
+      r.to_s
+    end
+    
+    import_cpp_includes = import_cpp_includes.select do |v| v.match(/\.cpp$/) end
+    
+    import_cpp_includes = import_cpp_includes.map do |v|
+      "#include \"#{v}\""
+    end
+    import_cpp_includes = import_cpp_includes.join "\n"
 
-  import_cpp_code = <<EOS
+    import_cpp_code = <<EOS
 #include "cor_type/sources/basic_types.h"
 
 namespace cor
@@ -296,12 +310,12 @@ namespace cor
 
 EOS
 
-  imporer_txt = Cor.u.file_read import_cpp_importer_file
-  Cor.u.file_write import_cpp_importer_file, imporer_txt
-  
-  Cor.u.file_write import_cpp_file, import_cpp_code
-  
-  Cor.u.file_write import_cpp_props_file, <<EOS
+    imporer_txt = Cor.u.file_read import_cpp_importer_file
+    Cor.u.file_write import_cpp_importer_file, imporer_txt
+    
+    Cor.u.file_write import_cpp_file, import_cpp_code
+    
+    Cor.u.file_write import_cpp_props_file, <<EOS
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
@@ -316,16 +330,16 @@ EOS
 </Project>
 EOS
   
-  Cor.u.file_write import_cpp_local_conf_mk, <<EOS
+    Cor.u.file_write import_cpp_local_conf_mk, <<EOS
 PRJINCS += #{import_cpp_props_includes.map{|v| "../#{v}"}.join(' ')}
 EOS
 
-else
-  if File.exist? import_cpp_file
-    FileUtils.remove import_cpp_file
-  end
-  
-  Cor.u.file_write import_cpp_props_file, <<EOS
+  else
+    if File.exist? import_cpp_file
+      FileUtils.remove import_cpp_file
+    end
+    
+    Cor.u.file_write import_cpp_props_file, <<EOS
 <?xml version="1.0" encoding="utf-8"?> 
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
@@ -336,10 +350,11 @@ else
 </Project>
 EOS
 
-  Cor.u.file_write import_cpp_local_conf_mk, <<EOS
+    Cor.u.file_write import_cpp_local_conf_mk, <<EOS
 PRJINCS = 
 EOS
 
+  end
 end
 
 
@@ -371,4 +386,13 @@ dir_list.reverse.each do |d|
     FileUtils.rmdir d
   end
   
+end
+
+rescue => e
+  puts "e #{e}"
+  puts "#{e.backtrace}"
+  
+  sleep 100
+  
+  raise e
 end
