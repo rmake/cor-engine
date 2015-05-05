@@ -546,13 +546,28 @@
 					"$(inherited)",
 					"$(SRCROOT)/../cocos2d/cocos/platform/ios",
 					"$(SRCROOT)/../cocos2d/cocos/platform/ios/Simulation",
+					"$(SRCROOT)/../../../libraries",
+					"$(SRCROOT)/../../../external/mruby/include",
+					"$(SRCROOT)/../../../external/mrubybind",
+					"$(SRCROOT)/../../../external/boost",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					../../../external/mruby_build/builded/ios_debug/lib,
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_algorithm/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_cocos2dx_converter/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_data_structure/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_project_structure/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_system/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_type/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_mruby_interface/proj.ios_mac/ios",
+				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
+					"-lmruby_combined",
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -580,13 +595,28 @@
 					"$(inherited)",
 					"$(SRCROOT)/../cocos2d/cocos/platform/ios",
 					"$(SRCROOT)/../cocos2d/cocos/platform/ios/Simulation",
+					"$(SRCROOT)/../../../libraries",
+					"$(SRCROOT)/../../../external/mruby/include",
+					"$(SRCROOT)/../../../external/mrubybind",
+					"$(SRCROOT)/../../../external/boost",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					../../../external/mruby_build/builded/ios_release/lib,
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_algorithm/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_cocos2dx_converter/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_data_structure/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_project_structure/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_system/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_type/proj.ios_mac/ios",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_mruby_interface/proj.ios_mac/ios",
+				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
+					"-lmruby_combined",
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -617,12 +647,27 @@
 					"$(inherited)",
 					"$(SRCROOT)/../cocos2d/cocos/platform/mac",
 					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
+					"$(SRCROOT)/../../../libraries",
+					"$(SRCROOT)/../../../external/mruby/include",
+					"$(SRCROOT)/../../../external/mrubybind",
+					"$(SRCROOT)/../../../external/boost",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_algorithm/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_cocos2dx_converter/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_data_structure/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_mruby_interface/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_project_structure/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_system/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_type/proj.ios_mac/osx",
+					../../../external/mruby_build/builded/mac_debug/lib,
+				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
+					"-lmruby",
 				);
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
@@ -648,12 +693,27 @@
 					"$(inherited)",
 					"$(SRCROOT)/../cocos2d/cocos/platform/mac",
 					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
+					"$(SRCROOT)/../../../libraries",
+					"$(SRCROOT)/../../../external/mruby/include",
+					"$(SRCROOT)/../../../external/mrubybind",
+					"$(SRCROOT)/../../../external/boost",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_algorithm/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_cocos2dx_converter/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_data_structure/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_mruby_interface/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_project_structure/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_system/proj.ios_mac/osx",
+					"/Users/kurodadaisuke/projects/cor-engine/libraries/cor_type/proj.ios_mac/osx",
+					../../../external/mruby_build/builded/mac_release/lib,
+				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
+					"-lmruby",
 				);
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
