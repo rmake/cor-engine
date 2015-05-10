@@ -15,9 +15,12 @@ class RtsButton
   attr_accessor :all_nodes
   attr_accessor :rect
   attr_accessor :text_scale
+  attr_accessor :text_width
+  attr_accessor :text_height
   attr_accessor :align
   attr_accessor :clipping_node
   attr_accessor :clipping_rect
+  attr_accessor :additional_line_space
   
   
   TAP_RANGE = 3.0 * 8  
@@ -44,6 +47,7 @@ class RtsButton
     self.edge_size = options[:edge_size] || 2
     self.bold_size = options[:bold_size] || 0
     self.text_scale = options[:text_scale] || 0.7
+    self.additional_line_space = options[:additional_line_space] || 2
     
     spa = nil
     if options[:texture_all]
@@ -173,6 +177,28 @@ class RtsButton
     
   end
   
+  def correct_position
+    p = self.sprite.get_position
+    prnt = self.sprite.get_parent
+    if prnt && prnt.valid?
+      tp = prnt.convert_to_world_space p
+      p.x -= tp.x - tp.x.to_i
+      p.y -= tp.y - tp.y.to_i
+      self.sprite.set_position p.x, p.y
+    else
+      self.sprite.set_position p.x.to_i, p.y.to_i
+    end
+  end
+  
+  def set_position(x, y)
+    self.sprite.set_position x, y
+    self.correct_position
+  end
+  
+  def get_position
+    self.sprite.get_position
+  end
+  
   def set_texture_all(name)
     if self.texture_all_sprite
       self.texture_all_sprite.remove_from_parent
@@ -253,7 +279,7 @@ class RtsButton
       
       h = line_height if line_height
       
-      ah = self.text_labels.length * h
+      ah = self.text_labels.length * h + self.additional_line_space * (self.text_labels.length - 1)
       
       self.text_labels.each_with_index do |t, i|
         #tb = t.get_bounding_box
@@ -266,10 +292,13 @@ class RtsButton
         elsif align == :right
           p.x = sb.origin.x + sb.size.width - tb.size.width * sc
         end
-        p.y = sb.origin.y + (sb.size.height - ah) / 2 + ((self.text_labels.length - i - 1) * h) + h / 2
+        p.y = sb.origin.y + (sb.size.height - ah) / 2 + ((self.text_labels.length - i - 1) * (h + self.additional_line_space)) + h / 2
         
         t.set_position p
       end
+      
+      self.text_width = aw
+      self.text_height = ah
       
     end
     
@@ -332,6 +361,7 @@ class RtsButton
   
   def add_child button
     self.sprite.add_child button.sprite
+    button.correct_position
   end
   
   def remove

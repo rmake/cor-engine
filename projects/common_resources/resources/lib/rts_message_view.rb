@@ -75,7 +75,7 @@ class RtsMessageView
     sp = LayerColor.create(Color4B.create(0, 0, 0, 127), 
       @visible_size.width, @visible_size.height)
     b = RtsButton.new :sprite => sp, :text => ""
-    b.sprite.set_position @visible_size.width / 2, @visible_size.height / 2
+    b.set_position @visible_size.width / 2, @visible_size.height / 2
     b.sprite.set_scale 20000.0
     #b.set_z_order 0.0
     b.on_tap do |t, e|
@@ -84,7 +84,7 @@ class RtsMessageView
     end
     
     b2 = RtsButton.new :text => ""
-    b2.sprite.set_position @visible_size.width / 2, @visible_size.height / 2
+    b2.set_position @visible_size.width / 2, @visible_size.height / 2
     b2.on_tap do |t, e|
       @on_close.call
       self.base_button.remove

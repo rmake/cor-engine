@@ -171,6 +171,10 @@ class RtsSprite
     
     node = Node.create
     rect = options[:rect] || Rect.create(0, 0, 16, 16)
+    height_no_scale = options[:height_no_scale]
+    width_no_scale = options[:width_no_scale]
+    alpha_test_masking = options[:alpha_test_masking]
+    offset_y_list = options[:offset_y_list]
     
     file_names = options[:file_names]
     unless file_names
@@ -206,8 +210,8 @@ class RtsSprite
     if csxa[1] < 0
       rate0 = csxa[0] / (csxa[0] + csxa[2])
       rate2 = csxa[2] / (csxa[0] + csxa[2])
-      csxa[0] -= rate0 * csxa[1]
-      csxa[2] -= rate2 * csxa[1]
+      csxa[0] = rate0 * rect.size.width
+      csxa[2] = rate2 * rect.size.width
       csxa[1] = 0
     end
     
@@ -219,23 +223,54 @@ class RtsSprite
     
       tx = 0
       ix = 0
-      csxa.each do |w|
+      csxa.each_with_index do |w, i|
         
         frame = frames[ct]
         if frame
           r = frame.get_rect
           ra = r
-          r = Rect.create r.origin.x + 0.5, r.origin.y + 0.5, 
-            r.size.width <= 1 ? r.size.width - 0.995 : r.size.width - 1.0, 
-            r.size.height <= 1 ? r.size.height - 0.995 : r.size.height - 1.0
+          
+          xta = r.origin.x + 0.5
+          yta = r.origin.y + 0.5
+          wta = r.size.width <= 1 ? r.size.width - 0.995 : r.size.width - 1.0
+          hta = r.size.height <= 1 ? r.size.height - 0.995 : r.size.height - 1.0
+          if wta > w - 1
+            if i == 0
+              wta = w - 1
+            elsif i == csxa.length - 1
+              xta += wta - (w - 1) 
+              wta = w - 1
+            end
+          end
+          r = Rect.create xta, yta, wta, hta
           s = Sprite.create_with_sprite_frame SpriteFrame.create_with_texture(frame.get_texture, r)
-          RtsObjectSystem.setup_sprite_round s
+          if alpha_test_masking
+            RtsObjectSystem.setup_sprite_alphatest s
+          else
+            RtsObjectSystem.setup_sprite_round s
+          end
           
           x = (tx + (w / 2) - rect.size.width / 2)
           y = -(ty + (h / 2) - rect.size.height / 2)
           
+          if offset_y_list
+            y += offset_y_list[ct]
+          end
+          ha = h / hta
+          wa = w / wta
+          if height_no_scale
+            ha = 1.0
+          end
+          #if width_no_scale && i != 1
+          #  wa = 1.0
+          #end
+          
           s.set_position x, y
-          s.set_scale ((w) / r.size.width), ((h) / r.size.height)
+          if wta > 0 && hta > 0
+            s.set_scale wa, ha
+          else
+            s.set_scale 0, 0
+          end
           
           node.add_child s
         end
@@ -311,9 +346,6 @@ class RtsSprite
     end
     nsxa << csxa[2]
     
-    Logger.debug "csxa #{csxa}"
-    Logger.debug "nsxa #{nsxa}"
-    
     nsya = []
     nsya << csya[0]
     nsh = csya[1]
@@ -327,9 +359,6 @@ class RtsSprite
       end
     end
     nsya << csya[2]
-    
-    Logger.debug "csya #{csya}"
-    Logger.debug "nsya #{nsya}"
     
     ct = 0
     
@@ -353,7 +382,6 @@ class RtsSprite
         if frame
           r = frame.get_rect
           ra = r
-          Logger.debug "r.origin #{r.origin.x}, #{r.origin.y}"
           r = Rect.create r.origin.x + 0.5, r.origin.y + 0.5, 
             w <= 1 ? w - 0.995 : w - 1.0, 
             h <= 1 ? h - 0.995 : h - 1.0
@@ -371,7 +399,7 @@ class RtsSprite
         tx += w - 1
         ix += 1
         
-        if xi == 0 || xi == csxa.length - 2
+        if xi == 0 || xi == nsxa.length - 2
           ct += 1
         end
       end
@@ -385,6 +413,9 @@ class RtsSprite
   
   def self.create_sprite_from_all(name)
     frame = RtsCharacterAnimationCurrent.get_frame name
+    unless frame
+      Logger.error "frame not found: #{name}"
+    end
     r = frame.get_rect
     r = Rect.create r.origin.x, r.origin.y, r.size.width, r.size.height
     s = Sprite.create_with_sprite_frame SpriteFrame.create_with_texture(frame.get_texture, r)
@@ -578,6 +609,7 @@ class RtsSprite
     
     node
   end
+  
   
   def self.create_num_image(num)
     

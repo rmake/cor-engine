@@ -65,6 +65,14 @@ class RtsUtilities
     n.set_position p
   end
   
+  def node_position_round(nd)
+    self.each_node nd do |n|
+      p = n.get_position
+      p = Vec2.create(p.x.to_i, p.y.to_i)
+      n.set_position p
+    end
+  end
+  
   def time_to_s(tm)
     "#{tm.year} #{tm.mon} #{tm.day} #{tm.hour} #{tm.min} #{tm.sec} #{tm.usec}"
   end

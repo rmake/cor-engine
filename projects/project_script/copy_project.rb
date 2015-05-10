@@ -367,12 +367,27 @@ d_table.keys.each do |fn|
   FileUtils.remove fn
 end
 
+date_str = Time.now.strftime("%Y-%m-%d %H:%M:%S")
 File.open "#{destination_resource_path}/copy_date.txt", "w" do |f|
-  f.write Time.now.strftime("%Y-%m-%d %H:%M:%S")
+  f.write date_str
 end
 
+if win32_copy
+  File.open "#{win32_copy_destination}/copy_date.txt", "w" do |f|
+    f.write date_str
+  end
+end
+
+crypted_str = CorProject::crypt ? "1" : "0"
+
 File.open "#{destination_resource_path}/crypted.txt", "w" do |f|
-  f.write(CorProject::crypt ? "1" : "0")
+  f.write crypted_str
+end
+
+if win32_copy
+  File.open "#{win32_copy_destination}/crypted.txt", "w" do |f|
+    f.write crypted_str
+  end
 end
 
 resource_file_copy key, "../../LICENSE", "#{destination_resource_path}/licenses/LICENSE"

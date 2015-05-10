@@ -9,6 +9,7 @@ class RtsListView
   attr_accessor :size
   attr_accessor :direction
   attr_accessor :direction_type
+  attr_accessor :centering
   
   def initialize(world, list_data, options = {}, &item_block)
   
@@ -42,6 +43,8 @@ class RtsListView
     #  self.direction = :both
     end
     
+    self.centering = options[:centering]
+    
     buttons = []
     
     y = 0
@@ -73,12 +76,23 @@ class RtsListView
     end
     
     y = y.abs
+    
+    oy = 0
+    if self.centering
+      if self.direction == :vertical
+        oy = [self.size.height - y, 0].max / 2
+      elsif self.direction == :horizontal
+        oy = [self.size.width - y, 0].max / 2
+      end
+      
+    end
+    
     self.list_items.each do |n|
       p = n.get_position
       if self.direction == :vertical
-        n.set_position p.x, p.y + y
+        n.set_position (p.x).to_i, (p.y + y + oy).to_i
       elsif self.direction == :horizontal
-        n.set_position p.x, p.y
+        n.set_position (p.x + oy).to_i, (p.y).to_i
       end
     end
     
