@@ -454,7 +454,7 @@ namespace cor
             return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::data_structure::SharedPtrTable::create());
         }
         
-        void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1)
+        void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, cor::mruby_interface::AnyWP a1)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)
@@ -466,7 +466,7 @@ namespace cor
             tmp_c->set(a0, a1.lock());
         }
         
-        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0)
+        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)
@@ -622,7 +622,7 @@ namespace cor
             c->add_print_func([=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a0.is_living()) { a0.func()(b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
         }
         
-        void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::string a0, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a1)
+        void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a1)
         {
 
             c->add_print_func(a0, [=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a1.is_living()) { a1.func()(b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
@@ -772,7 +772,7 @@ namespace cor
             return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::mruby_interface::MrubyExperimentalBindTestClass::create());
         }
         
-        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_2(std::string a0)
+        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_2(std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0)
         {
 
             return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::mruby_interface::MrubyExperimentalBindTestClass::create(a0));
@@ -3141,13 +3141,13 @@ namespace cor
             tmp_c->set_n(a0);
         }
         
-        std::string BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add(std::string a0, std::string a1)
+        std::basic_string<char, std::char_traits<char>, std::allocator<char>> BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add(std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a1)
         {
 
             return cor::mruby_interface::MrubyExperimentalTemplateStructRString::add(a0, a1);
         }
         
-        std::string BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::string a0, std::string a1, std::string a2)
+        std::basic_string<char, std::char_traits<char>, std::allocator<char>> BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a1, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a2)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)
@@ -3159,7 +3159,7 @@ namespace cor
             return tmp_c->add2(a0, a1, a2);
         }
         
-        void BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_set_n(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::string a0)
+        void BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_set_n(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)
@@ -3267,16 +3267,16 @@ namespace cor
             return c.cost;
         }
         
-        void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, MrubyRef a)
+        void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, std::vector<cor::type::Vector2Tmpl<int>, std::allocator<cor::type::Vector2Tmpl<int>>> a)
         {
 
-            c.path = cor::mruby_interface::MrubyArray::convert_to_from_std_vec<cor::type::Vector2Tmpl<int> >(a);
+            c.path = a;
         }
         
-        MrubyRef BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_path(cor::data_structure::CostGridSpacePath& c)
+        std::vector<cor::type::Vector2Tmpl<int>, std::allocator<cor::type::Vector2Tmpl<int>>> BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_path(cor::data_structure::CostGridSpacePath& c)
         {
 
-            return cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby(c.path);
+            return c.path;
         }
         
 

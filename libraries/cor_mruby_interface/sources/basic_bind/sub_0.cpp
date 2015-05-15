@@ -129,8 +129,8 @@ namespace cor
         cor::data_structure::CostGridSpacePath BasicBind_cor__data_structure__CostGridSpace_search_nearest_path(std::weak_ptr<cor::data_structure::CostGridSpace> c, cor::type::Vector2I a0);
         cor::type::Vector2I BasicBind_cor__data_structure__CostGridSpace_get_first_corner(std::weak_ptr<cor::data_structure::CostGridSpace> c, cor::data_structure::CostGridSpacePath a0);
         std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
-        void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1);
-        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0);
+        void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, cor::mruby_interface::AnyWP a1);
+        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0);
         unsigned int BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c);
         unsigned int BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c);
         unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c);
@@ -152,7 +152,7 @@ namespace cor
         void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0);
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c);
         void BasicBind_cor__system__Logger_add_print_func_1(cor::system::Logger* c, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a0);
-        void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::string a0, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a1);
+        void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a1);
         void BasicBind_cor__system__Logger_pop_print_func(cor::system::Logger* c);
         void BasicBind_cor__system__Logger_clear_print_func(cor::system::Logger* c, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a0);
         void BasicBind_cor__system__Logger_call_print_func(cor::system::Logger* c, int a0, std::string a1);
@@ -170,7 +170,7 @@ namespace cor
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_accessor_set_a(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> c, int a);
         int BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_accessor_get_a(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> c);
         std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_1();
-        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_2(std::string a0);
+        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_2(std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0);
         std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_get_null(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> a0);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c);
@@ -537,9 +537,9 @@ namespace cor
         int BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRInt32_add(int a0, int a1);
         int BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRInt32_add2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRInt32> c, int a0, int a1, int a2);
         void BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRInt32_set_n(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRInt32> c, int a0);
-        std::string BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add(std::string a0, std::string a1);
-        std::string BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::string a0, std::string a1, std::string a2);
-        void BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_set_n(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::string a0);
+        std::basic_string<char, std::char_traits<char>, std::allocator<char>> BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add(std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a1);
+        std::basic_string<char, std::char_traits<char>, std::allocator<char>> BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a1, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a2);
+        void BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_set_n(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0);
         void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_terminated(cor::data_structure::CostGridSpaceItem& c, int a);
         int BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_terminated(cor::data_structure::CostGridSpaceItem& c);
         void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_passable(cor::data_structure::CostGridSpaceItem& c, int a);
@@ -556,8 +556,8 @@ namespace cor
         cor::mruby_interface::AnyWP BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_any(cor::data_structure::CostGridSpaceItem& c);
         void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_cost(cor::data_structure::CostGridSpacePath& c, float a);
         float BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_cost(cor::data_structure::CostGridSpacePath& c);
-        void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, MrubyRef a);
-        MrubyRef BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_path(cor::data_structure::CostGridSpacePath& c);
+        void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, std::vector<cor::type::Vector2Tmpl<int>, std::allocator<cor::type::Vector2Tmpl<int>>> a);
+        std::vector<cor::type::Vector2Tmpl<int>, std::allocator<cor::type::Vector2Tmpl<int>>> BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_path(cor::data_structure::CostGridSpacePath& c);
 
     
         

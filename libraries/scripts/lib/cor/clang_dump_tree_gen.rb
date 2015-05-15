@@ -14,15 +14,28 @@ module COR
       "[]=" => "_brackets_equal_",
     }
     
+    def self.is_function(s)
+      s.index(")") && (!s.index(">") || (s.index(">") < s.index(")")))
+    end
+    
     def self.get_template_args(s)
       
-      a = s.scan(/((<)|(>)|(,)|([^<^>^,]*))/).map{|v| v[0]}
+      a = s.scan(/((<)|(>)|([(])|([)])|(,)|([^(^)^<^>^,]*))/).map{|v| v[0]}
       
       b = 0
       args = nil
       cs = nil
+      brace_count = 0
       a.each do |v|
-        if v == '<'
+        if v == '('
+          brace_count += 1
+          cs ||= ""
+          cs += v
+        elsif v == ')'
+          cs ||= ""
+          cs += v
+          brace_count -= 1
+        elsif brace_count <= 0 && v == '<'
           
           b += 1
           if b == 1
@@ -32,7 +45,7 @@ module COR
             cs ||= ""
             cs += v
           end
-        elsif v == '>'
+        elsif brace_count <= 0 && v == '>'
           if (b == 1)
             if cs
               args << cs
@@ -43,7 +56,7 @@ module COR
             cs += v
           end
           b -= 1
-        elsif v == ','
+        elsif brace_count <= 0 && v == ','
           if b == 1 && cs
             args << cs
             cs = nil
@@ -62,6 +75,85 @@ module COR
         args.map!{|v| v.gsub(/(^\s+)|(\s+$)/, "")}
       end
       return args
+    end
+    
+    def self.get_function_args(s)
+      
+      a = s.scan(/((<)|(>)|([(])|([)])|(,)|([^(^)^<^>^,]*))/).map{|v| v[0]}
+      
+      b = 0
+      args = nil
+      cs = nil
+      brace_count = 0
+      a.each do |v|
+        if v == '<'
+          brace_count += 1
+          cs ||= ""
+          cs += v
+        elsif v == '>'
+          cs ||= ""
+          cs += v
+          brace_count -= 1
+        elsif brace_count <= 0 && v == '('
+          
+          b += 1
+          if b == 1
+            args = []
+            cs = nil
+          else
+            cs ||= ""
+            cs += v
+          end
+        elsif brace_count <= 0 && v == ')'
+          if (b == 1)
+            if cs
+              args << cs
+              cs = nil
+            end
+          else
+            cs ||= ""
+            cs += v
+          end
+          b -= 1
+        elsif brace_count <= 0 && v == ','
+          if b == 1 && cs
+            args << cs
+            cs = nil
+          else
+            cs ||= ""
+            cs += v
+          end
+        else
+          cs ||= ""
+          cs += v
+        end
+        
+      end
+      
+      if args
+        args.map!{|v| v.gsub(/(^\s+)|(\s+$)/, "")}
+      end
+      return args
+    end
+    
+    def self.template_decomposition(s)
+    
+      tmpl_name = s.scan(/^.*?</).first
+      tmpl_name = tmpl_name.gsub("<", "") if tmpl_name
+      tmpl_args = self.get_template_args s
+      
+      [tmpl_name, tmpl_args]
+    
+    end
+    
+    def self.func_decomposition(s)
+    
+      tmpl_name = s.scan(/^.*?[(]/).first
+      tmpl_name = tmpl_name.gsub("(", "") if tmpl_name
+      tmpl_args = self.get_function_args s
+      
+      [tmpl_name, tmpl_args]
+    
     end
   
     def self.typedef_assoc_base(base, type, option)
@@ -84,6 +176,36 @@ module COR
       @tail_aster ||= /\*$/
       
       ct = 0
+      
+      functioned = false
+      if self.is_function type
+      
+        tmpl_name, tmpl_args = self.func_decomposition type
+        functioned = true
+      else
+      
+        tmpl_name, tmpl_args = self.template_decomposition type
+      end
+      if type == "std::vector<Sprite*>"
+        puts "type #{type}"
+        puts "tmpl_name #{tmpl_name}"
+        puts "tmpl_args #{tmpl_args}"
+      end
+      
+      if tmpl_name && tmpl_args
+        tmpl_args = tmpl_args.map{|v| self.typedef_assoc_base(base, v, option)}
+        if functioned
+          type = "#{tmpl_name}(#{tmpl_args.join(', ')})"
+        else
+          type = "#{tmpl_name}<#{tmpl_args.join(', ')}>"
+        end
+      end
+      
+      if type == "std::vector<Sprite*>"
+        puts "tmpl_name #{tmpl_name}"
+        puts "tmpl_args #{tmpl_args}"
+        puts "re type #{type}"
+      end
       
       while true
         old_type = type
@@ -182,6 +304,7 @@ module COR
         "std::string" => true,
         "std::basic_string<char>" => true,
         "std::basic_string<char, std::char_traits<char>, std::allocator<char> >" => true,
+        "std::basic_string<char, std::char_traits<char>, std::allocator<char>>" => true,
         "RString" => true,
         "cor::RString" => true,
         "RBool" => true,
@@ -343,15 +466,20 @@ module COR
       
       if arg.match(/^mrubybind::FuncPtr/)
         func_args = arg.gsub(/^mrubybind::FuncPtr</, "").gsub(/>$/, "")
-        ret = func_args.match(/^[^(]*\(/)[0].gsub(/\(/,"")
-        func_args = func_args.gsub(/^[^(]*\(/, "").gsub(/\)$/, "")
-        func_args = func_args.scan(/([^<^>^,]+(<(([^<^>^,]+(<[^<^>]*(<[^<^>]*(<[^<^>]*[^<^>]*>)*[^<^>]*>)*[^<^>]*>)*[^<^>^,]*)|([^<^>]*(<[^<^>]*(<[^<^>]*[^<^>]*>)*[^<^>]*>)*[^<^>]*))*>)*[^<^>^,]*)|([^<^>^,]+)/)
+        
+        #ret = func_args.match(/^[^(]*\(/)[0].gsub(/\(/,"")
+        #func_args = func_args.gsub(/^[^(]*\(/, "").gsub(/\)$/, "")
+        #func_args = func_args.scan(/([^<^>^,]+(<(([^<^>^,]+(<[^<^>]*(<[^<^>]*(<[^<^>]*[^<^>]*>)*[^<^>]*>)*[^<^>]*>)*[^<^>^,]*)|([^<^>]*(<[^<^>]*(<[^<^>]*[^<^>]*>)*[^<^>]*>)*[^<^>]*))*>)*[^<^>^,]*)|([^<^>^,]+)/)
+        
+        ret, func_args = self.func_decomposition(func_args)
+        func_args ||= []
+        
         
         cva = func_args.map do |v|
         
-          is_nil, targ, call_arg = self.convert_value(class_replace_table, is_nil, v[0], {
-            :val => v[0],
-            :is_enum => v[0].match(/^enum /) || v[0].match(/^const enum /),
+          is_nil, targ, call_arg = self.convert_value(class_replace_table, is_nil, v, {
+            :val => v,
+            :is_enum => v.match(/^enum /) || v.match(/^const enum /),
           }, i)
           [targ]
         end
@@ -359,7 +487,7 @@ module COR
         func_args_def = []
         func_args_list = []
         func_args.each_with_index do |b, j|
-          tb = b[0].gsub(/^ /, "")
+          tb = b.gsub(/^ /, "")
           
           
           if tb.match(/^enum /)
@@ -407,7 +535,7 @@ module COR
           end
           call_arg = "[=](#{func_args_def.join(", ")}){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a#{i}.is_living()) { #{ret} r = a#{i}.func()(#{func_args_list.join(", ")}); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); return r; } else return #{empty_ret} ; } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); return #{empty_ret}; }}"
         end
-        arg = "mrubybind::FuncPtr<#{ret}(#{cva.map{|v| v[0]}.join(', ')})>"
+        arg = "mrubybind::FuncPtr<#{ret}(#{cva.map{|v| v}.join(', ')})>"
       elsif tp[:is_enum]
         call_arg = "(#{arg})a#{i}"
         arg = "int"
