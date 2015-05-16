@@ -173,7 +173,8 @@ module COR
       keys = []
       keys << key
       
-      @tail_aster ||= /\*$/
+      @tail_aster = /\*$/
+      tail_amp_aster = type.match(/([&*]| )*$/)
       
       ct = 0
       
@@ -186,25 +187,21 @@ module COR
       
         tmpl_name, tmpl_args = self.template_decomposition type
       end
-      if type == "std::vector<Sprite*>"
-        puts "type #{type}"
-        puts "tmpl_name #{tmpl_name}"
-        puts "tmpl_args #{tmpl_args}"
-      end
       
       if tmpl_name && tmpl_args
-        tmpl_args = tmpl_args.map{|v| self.typedef_assoc_base(base, v, option)}
+        tmpl_args = tmpl_args.map do |v| 
+          rv = self.typedef_assoc_base(base, v, option)
+          rv
+        end
         if functioned
           type = "#{tmpl_name}(#{tmpl_args.join(', ')})"
         else
           type = "#{tmpl_name}<#{tmpl_args.join(', ')}>"
         end
-      end
-      
-      if type == "std::vector<Sprite*>"
-        puts "tmpl_name #{tmpl_name}"
-        puts "tmpl_args #{tmpl_args}"
-        puts "re type #{type}"
+        
+        if tail_amp_aster
+          type = type + tail_amp_aster.to_s
+        end
       end
       
       while true
@@ -226,16 +223,25 @@ module COR
         tree = option[:tree]
         typedef_table = tree.typedef_table
         
+        type_tail = type.match(/([&*]| )*$/).to_s
+        removed_tail_type = type.gsub(/([&*]| )*$/, "")
         (class_layer.length).downto(0) do |i|
           namespace = class_layer[0...i].join("::")
-          assoc_type = (class_layer[0...i] + [type]).join("::")
+          assoc_type = (class_layer[0...i] + [removed_tail_type]).join("::")
           if typedef_table[assoc_type]
-            type = typedef_table[assoc_type][:source][:val]
+            removed_tail_type = typedef_table[assoc_type][:source][:val]
+            class_name = assoc_type
+            break
+          end
+          
+          if @target_class_table[assoc_type]
+            removed_tail_type = assoc_type
             class_name = assoc_type
             break
           end
           
         end
+        type = removed_tail_type + type_tail
         
         if is_pointer
           type += "*"
@@ -608,6 +614,8 @@ module COR
         target_class_table[c[:name]] = c
       end
       
+      @target_class_table = target_class_table
+      
       reject_method_table = option[:reject_method_table]
       
       selected_methods = tree.methods.select do |m|
@@ -831,7 +839,6 @@ module COR
         m[:class] = classes[method_class]
         
       end
-      
       
       classes.each do |k, v|
       

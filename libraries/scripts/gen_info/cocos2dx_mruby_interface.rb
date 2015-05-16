@@ -1,7 +1,7 @@
 
 COCOS2DX_MRUBY_INTERFACE_TAGET_CLASSES = [
     {
-      :name => "cor::cocos2dx_converter::StepSizeScene",
+      :name => "corcor::cocos2dx_converter::StepSizeScene",
       :value => :cocos_ptr,
     },
     {
@@ -774,6 +774,14 @@ COCOS2DX_MRUBY_INTERFACE_TAGET_CLASSES = [
     },
     {
       :name => "cocos2d::Sprite3D",
+      :value => :cocos_ptr,
+    },
+    {
+      :name => "cocos2d::MeshVertexAttrib",
+      :value => :value,
+    },
+    {
+      :name => "cocos2d::Mesh",
       :value => :cocos_ptr,
     },
     {

@@ -568,13 +568,13 @@ namespace cor
             return cor::system::CorCrypt::get_enabled();
         }
         
-        void BasicBind_cor__system__CorCrypt_encode(RByte * a0, unsigned int a1)
+        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, unsigned int a1)
         {
 
             cor::system::CorCrypt::encode(a0, a1);
         }
         
-        void BasicBind_cor__system__CorCrypt_decode(RByte * a0, unsigned int a1)
+        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, unsigned int a1)
         {
 
             cor::system::CorCrypt::decode(a0, a1);

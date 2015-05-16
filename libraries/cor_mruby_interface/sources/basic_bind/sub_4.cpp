@@ -146,8 +146,8 @@ namespace cor
         void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned int a1);
         void BasicBind_cor__system__CorCrypt_set_enabled(int a0);
         int BasicBind_cor__system__CorCrypt_get_enabled();
-        void BasicBind_cor__system__CorCrypt_encode(RByte * a0, unsigned int a1);
-        void BasicBind_cor__system__CorCrypt_decode(RByte * a0, unsigned int a1);
+        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, unsigned int a1);
+        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, unsigned int a1);
         int BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c);
         void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0);
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c);
