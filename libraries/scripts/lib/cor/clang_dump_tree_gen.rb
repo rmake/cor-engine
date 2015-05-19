@@ -1148,6 +1148,8 @@ module COR
             class_replace_table["std::vector<#{v[:original_class_name]} >"] = ch
             class_replace_table["const std::vector<#{assoced}, std::allocator<#{assoced} > >"] = ch
             class_replace_table["std::vector<#{assoced}, std::allocator<#{assoced} > >"] = ch
+            class_replace_table["const std::vector<#{assoced}, std::allocator<#{assoced}>>"] = ch
+            class_replace_table["std::vector<#{assoced}, std::allocator<#{assoced}>>"] = ch
           
           end
           

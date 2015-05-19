@@ -3267,16 +3267,16 @@ namespace cor
             return c.cost;
         }
         
-        void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, std::vector<cor::type::Vector2Tmpl<int>, std::allocator<cor::type::Vector2Tmpl<int>>> a)
+        void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, MrubyRef a)
         {
 
-            c.path = a;
+            c.path = cor::mruby_interface::MrubyArray::convert_to_from_std_vec<cor::type::Vector2Tmpl<int> >(a);
         }
         
-        std::vector<cor::type::Vector2Tmpl<int>, std::allocator<cor::type::Vector2Tmpl<int>>> BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_path(cor::data_structure::CostGridSpacePath& c)
+        MrubyRef BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_path(cor::data_structure::CostGridSpacePath& c)
         {
 
-            return c.path;
+            return cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby(c.path);
         }
         
 
