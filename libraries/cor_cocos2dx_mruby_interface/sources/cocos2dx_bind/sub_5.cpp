@@ -3557,6 +3557,7 @@ namespace cor
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_delay_call(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, float a1, mrubybind::FuncPtr<void ()> a2);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_interval_call(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, float a1, mrubybind::FuncPtr<void ()> a2);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_set_scroll_view_on_scroll(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> a0, mrubybind::FuncPtr<void ()> a1);
+        void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_set_additional_transform(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, cor::type::Matrix4x4Tmpl<float> a1);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_on_active();
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> Cocos2dxBind_cocos2d__Scene_create();
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> Cocos2dxBind_cocos2d__Scene_create_with_size(cocos2d::Size a0);
@@ -11812,6 +11813,7 @@ namespace cor
             binder.bind_static_method("CorCocos2dxConverter", "RtsObjectSystem", "delay_call", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_delay_call);
             binder.bind_static_method("CorCocos2dxConverter", "RtsObjectSystem", "interval_call", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_interval_call);
             binder.bind_static_method("CorCocos2dxConverter", "RtsObjectSystem", "set_scroll_view_on_scroll", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_set_scroll_view_on_scroll);
+            binder.bind_static_method("CorCocos2dxConverter", "RtsObjectSystem", "set_additional_transform", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_set_additional_transform);
             binder.bind_static_method("CorCocos2dxConverter", "RtsObjectSystem", "on_active", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSystem_on_active);
             binder.bind_static_method("Cocos2d", "Scene", "create", Cocos2dxBind_cocos2d__Scene_create);
             binder.bind_static_method("Cocos2d", "Scene", "create_with_size", Cocos2dxBind_cocos2d__Scene_create_with_size);

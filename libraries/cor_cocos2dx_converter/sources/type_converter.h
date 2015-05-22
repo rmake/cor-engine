@@ -12,7 +12,7 @@ namespace cor
         struct TypeConverterItnl;
 
         void convert(const cocos2d::Mat4& src, type::Matrix4x4F& dst);
-        void convert(const type::Matrix4x4F& src, cocos2d::Mat4 dst);
+        void convert(const type::Matrix4x4F& src, cocos2d::Mat4& dst);
     
         class TypeConverter
         {

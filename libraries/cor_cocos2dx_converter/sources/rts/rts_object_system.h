@@ -2,6 +2,7 @@
 #define ____COR_COCOS2DX_CONVERTER_SOURCES_RTS_RTS_OBJECT_SYSTEM_H_
 
 #include "cor_type/sources/basic_types.h"
+#include "cor_type/sources/math/matrix4x4.h"
 #include "2d/CCSprite.h"
 #include "2d/CCLabel.h"
 #include "extensions/GUI/CCScrollView/CCScrollView.h"
@@ -34,6 +35,7 @@ namespace cor
             static cocos2d::Action* delay_call(cocos2d::Node* node, RFloat interval, std::function<void()> callback);
             static cocos2d::Action* interval_call(cocos2d::Node* node, RFloat interval, std::function<void()> callback);
             static void set_scroll_view_on_scroll(cocos2d::extension::ScrollView* scroll_view, std::function<void()> callback);
+            static void set_additional_transform(cocos2d::Node* node, type::Matrix4x4F m);
 
 
             static void on_active();

@@ -562,6 +562,13 @@ namespace cor
             ref->release();
         }
 
+        void RtsObjectSystem::set_additional_transform(cocos2d::Node* node, type::Matrix4x4F m)
+        {
+            cocos2d::Mat4 cm;
+            convert(m, cm);
+            node->setAdditionalTransform(&cm);
+        }
+
         void RtsObjectSystem::on_active()
         {
             //log_debug("RtsObjectSystem::on_active");
