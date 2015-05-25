@@ -135,6 +135,7 @@ frames = []
 
 #begin
   images.each do |table|
+  
     
     img = table[:img]
     r = table[:r]
@@ -159,7 +160,7 @@ frames = []
       
     croped = img.crop r[:x], r[:y], r[:w], r[:h], true
     
-    packed.composite! croped, lt[:x], lt[:y], Magick::OverCompositeOp
+    packed.composite! croped, lt[:x], lt[:y], Magick::CopyCompositeOp
     
     past_rects << {
       :x => lt[:x],
