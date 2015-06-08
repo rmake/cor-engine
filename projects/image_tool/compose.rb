@@ -53,6 +53,8 @@ a.each do |fn|
   #ofn = fn.gsub(/^#{source_path}\/.*?\//, "")
   ofn = fn.gsub(/^#{source_path}\//, "")
   
+  # need this on centos 7 on vagrant. why?
+  GC.start
   
   iw = img.columns
   ih = img.rows
