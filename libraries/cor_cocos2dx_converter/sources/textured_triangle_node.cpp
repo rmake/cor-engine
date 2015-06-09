@@ -41,6 +41,7 @@ namespace cor
         {
             itnl->dirty = true;
             itnl->bufferCount = 0;
+            itnl->texture = nullptr;
         }
         
         TexturedTriangleNode::~TexturedTriangleNode()
@@ -48,6 +49,11 @@ namespace cor
          
             glDeleteBuffers(1, &itnl->vbo);
             itnl->vbo = 0;
+
+            if(itnl->texture)
+            {
+                itnl->texture->release();
+            }
 
             if(Configuration::getInstance()->supportsShareableVAO())
             {
@@ -90,7 +96,18 @@ namespace cor
         void TexturedTriangleNode::set_texuter(cocos2d::Texture2D* texture)
         {
             itnl->dirty = true;
+
+            if(itnl->texture)
+            {
+                itnl->texture->release();
+            }
+
             itnl->texture = texture;
+            
+            if(itnl->texture)
+            {
+                itnl->texture->retain();
+            }
         }
 
         cocos2d::Texture2D* TexturedTriangleNode::get_texture()
