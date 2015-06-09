@@ -208,6 +208,7 @@ end
 
 past_copy = "past_copy.log"
 past_copy_data = {
+  "current_project" => source_path,
   "past_crypt" => false,
   "file_table" => {},
 }
@@ -219,10 +220,15 @@ if File.exist? past_copy
   past_copy_table = past_copy_data["file_table"]
 end
 
+if source_path != past_copy_data["current_project"]
+  force_update = true
+end
+
 if CorProject::crypt != past_copy_data["past_crypt"]
   force_update = true
 end
 past_copy_data["past_crypt"] = CorProject::crypt
+past_copy_data["current_project"] = source_path
 
 puts "project copy"
 
