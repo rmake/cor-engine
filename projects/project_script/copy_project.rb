@@ -54,6 +54,14 @@ class CorProject
     @crypt
   end
   
+  def self.administrator=(v)
+    @administrator = v
+  end
+  
+  def self.administrator
+    @administrator
+  end
+  
   def self.set_import_cpp_filter(&block)
     @import_cpp_filter = block
   end
@@ -387,6 +395,18 @@ end
 if win32_copy
   File.open "#{win32_copy_destination}/crypted.txt", "w" do |f|
     f.write crypted_str
+  end
+end
+
+administrator_str = CorProject::administrator ? "1" : "0"
+
+File.open "#{destination_resource_path}/administrator.txt", "w" do |f|
+  f.write administrator_str
+end
+
+if win32_copy
+  File.open "#{win32_copy_destination}/administrator.txt", "w" do |f|
+    f.write administrator_str
   end
 end
 

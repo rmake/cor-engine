@@ -38,6 +38,7 @@ namespace cor
     {
         ProjectMrubyCall* project_mruby_call_instance = nullptr;
         ProjectMrubyCallItnl* project_mruby_call_itnl_instance = nullptr;
+        RBool project_mruby_call_administrator = rfalse;
 
         struct ProjectMrubyCallItnl
         {
@@ -113,6 +114,19 @@ namespace cor
                 RString code = cocos2d::FileUtils::getInstance()->getStringFromFile(file_name);
                 log_debug("load_eval ", file_name);
                 mrb.load_string_error_log(file_name, code);
+            }
+
+            static void eval(RString code)
+            {
+                if(!project_mruby_call_administrator)
+                {
+                    log_error("no parmission.");
+                    return;
+                }
+                cocos2dx_mruby_interface::MrubyScriptEnginePtr instance = cocos2dx_mruby_interface::MrubyScriptEngine::get_instance();
+                auto& mrb = instance->ref_mrb();
+
+                mrb.load_string_error_log(code);
             }
 
             static RString load_text(RString file_name)
@@ -530,6 +544,21 @@ namespace cor
                 return ExternalCodeImporter::get_imported_name();
             }
 
+            static RString get_argument_string()
+            {
+#ifdef CC_PLATFORM_WIN32
+                auto cmdline = GetCommandLine();
+                WCHAR *cmdlineEnd = wcsstr(cmdline, L" ");
+                if(cmdlineEnd){
+                    char utf8[256 * 16] = { 0 };
+                    int nNum = WideCharToMultiByte(CP_UTF8, 0, cmdlineEnd, -1, utf8, sizeof(utf8), nullptr, nullptr);
+                    return RString(utf8);
+                }
+                return "";
+#endif
+                return "";
+            }
+
             static RString get_platform_name()
             {
 #ifdef CC_PLATFORM_WIN32
@@ -612,6 +641,16 @@ namespace cor
                     };
                 }
             }
+
+            if(f->isFileExist("administrator.txt"))
+            {
+                auto s = f->getStringFromFile("administrator.txt");
+                if(s == "1")
+                {
+                    project_mruby_call_administrator = true;
+                }
+            }
+            
         }
 
         void ProjectMrubyCall::start()
@@ -647,6 +686,7 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "get_current_scene", ProjectMrubyCallItnl::get_current_scene);
             binder.bind_static_method("Cor", "Project", "get_current_layer", ProjectMrubyCallItnl::get_current_layer);
             binder.bind_static_method("Cor", "Project", "load_eval", ProjectMrubyCallItnl::load_eval);
+            binder.bind_static_method("Cor", "Project", "eval", ProjectMrubyCallItnl::eval);
             binder.bind_static_method("Cor", "Project", "load_text", ProjectMrubyCallItnl::load_text);
             binder.bind_static_method("Cor", "Project", "c_null_value", ProjectMrubyCallItnl::c_null_value);
             binder.bind_static_method("Cor", "Project", "create_allocation_state_label", ProjectMrubyCallItnl::create_allocation_state_label);
@@ -685,6 +725,7 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "make_image_from_data_async", ProjectMrubyCallItnl::make_image_from_data_async);
             binder.bind_static_method("Cor", "Project", "debug_gc", ProjectMrubyCallItnl::debug_gc);
             binder.bind_static_method("Cor", "Project", "get_import_name", ProjectMrubyCallItnl::get_import_name);
+            binder.bind_static_method("Cor", "Project", "get_argument_string", ProjectMrubyCallItnl::get_argument_string);
             binder.bind_static_method("Cor", "Project", "get_platform_name", ProjectMrubyCallItnl::get_platform_name);
             
 
