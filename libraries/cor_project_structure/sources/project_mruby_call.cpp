@@ -310,36 +310,42 @@ namespace cor
             static void write_text_to_file_direct(const RString& name, const RString& data)
             {
 #ifdef WIN32
-                auto f = std::ofstream(name);
-                f.write(data.c_str(), data.size());
+                if(project_mruby_call_administrator)
+                {
+                    auto f = std::ofstream(name);
+                    f.write(data.c_str(), data.size());
+                }
 #endif
             }
 
             static MrubyRef enum_files(const RString& path)
             {
 #ifdef WIN32
-                std::vector<RString> a;
-                WIN32_FIND_DATAA d;
-                RString n;
-                for(auto i : path)
+                if(project_mruby_call_administrator)
                 {
-                    if(i == '/')
+                    std::vector<RString> a;
+                    WIN32_FIND_DATAA d;
+                    RString n;
+                    for(auto i : path)
                     {
-                        n +='\\';
+                        if(i == '/')
+                        {
+                            n += '\\';
+                        }
+                        else
+                        {
+                            n += i;
+                        }
                     }
-                    else
-                    {
-                        n += i;
-                    }
-                }
-                auto h = FindFirstFileA(n.c_str(), &d);
+                    auto h = FindFirstFileA(n.c_str(), &d);
 
-                do {
-                    if(!(d.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
-                        a.push_back(d.cFileName);
-                    }
-                } while(FindNextFileA(h, &d));
-                return mruby_interface::MrubyArray::convert_std_vec_to_mruby(a);
+                    do {
+                        if(!(d.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+                            a.push_back(d.cFileName);
+                        }
+                    } while(FindNextFileA(h, &d));
+                    return mruby_interface::MrubyArray::convert_std_vec_to_mruby(a);
+                }
 #endif
                 return mruby_interface::MrubyArray::convert_std_vec_to_mruby(std::vector<RString>());
             }
