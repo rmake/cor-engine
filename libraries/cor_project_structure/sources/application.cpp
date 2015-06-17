@@ -4,7 +4,6 @@
 #include "network/HttpClient.h"
 #include "cor_cocos2dx_converter/sources/rts/rts_object_system.h"
 
-
 USING_NS_CC;
 
 namespace cor
@@ -21,12 +20,49 @@ namespace cor
             ApplicationDidEnterBackgroundFunc did_enter_back_ground_func;
             ApplicationWillEnterForegroundFunc will_enter_foreground_func;
         };
+
+        void Application_get_command_line_arg(std::function<void(const char **argv, int argc)> f)
+        {
+#if defined(_DEBUG) && defined(CC_PLATFORM_WIN32)
+            auto cmdline = GetCommandLine();
+            LPWSTR *arg_list;
+            int arg_count;
+            arg_list = CommandLineToArgvW(GetCommandLine(), &arg_count);
+            RStringArray sa;
+            std::vector<const char*> argv_list;
+            for(auto i = 0; i < arg_count; i++)
+            {
+                char utf8[256 * 16] = { 0 };
+                int nNum = WideCharToMultiByte(CP_UTF8, 0, arg_list[i], -1, utf8, sizeof(utf8), nullptr, nullptr);
+                sa.push_back(RString(utf8));
+                argv_list.push_back(sa.back().c_str());
+            }
+            f(&argv_list[0], argv_list.size());
+#endif
+        }
         
         Application::Application() : itnl(new ApplicationItnl())
         {
+
 #if defined(_DEBUG) && defined(CC_PLATFORM_WIN32)
-            ShellExecute(NULL, TEXT("open"), TEXT("cmd"), TEXT("/c ruby ../../project_script/copy_project.rb --resource-only --win32-copy "), NULL, SW_SHOWNORMAL);
-            Sleep(3000);
+            RBool copy_mode = rfalse;
+
+            Application_get_command_line_arg([&](const char **argv, int argc){
+                for(auto i = 0; i < argc; i++)
+                {
+                    RString s(argv[i]);
+                    if(s == "--runtime-copy-projecy")
+                    {
+                        copy_mode = rtrue;
+                    }
+                }
+            });
+            
+            if(copy_mode)
+            {
+                ShellExecute(NULL, TEXT("open"), TEXT("cmd"), TEXT("/c ruby ../../project_script/copy_project.rb --resource-only --win32-copy "), NULL, SW_SHOWNORMAL);
+                Sleep(3000);
+            }
 #endif
             auto eventDispatcher = Director::getInstance()->getEventDispatcher();
 
