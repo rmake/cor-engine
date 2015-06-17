@@ -218,6 +218,7 @@ past_copy = "past_copy.log"
 past_copy_data = {
   "current_project" => source_path,
   "past_crypt" => false,
+  "past_win32_copy" => false,
   "file_table" => {},
 }
 past_copy_table = past_copy_data["file_table"]
@@ -232,14 +233,22 @@ if source_path != past_copy_data["current_project"]
   force_update = true
 end
 
+if win32_copy != past_copy_data["past_win32_copy"]
+  force_update = true
+end
+
 if CorProject::crypt != past_copy_data["past_crypt"]
   force_update = true
 end
 past_copy_data["past_crypt"] = CorProject::crypt
+past_copy_data["past_win32_copy"] = win32_copy
 past_copy_data["current_project"] = source_path
 
 puts "project copy"
 
+if win32_copy && force_update
+  FileUtils.rm_r win32_copy_destination
+end
 
 def resource_file_copy key, src, dst
   ext = File.extname(src)
