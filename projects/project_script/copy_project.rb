@@ -73,7 +73,6 @@ class CorProject
 end
 
 
-
 source_path = "../small_experimental"
 if File.exist? "project_source_path_local_conf.rb"
   load "project_source_path_local_conf.rb"
@@ -191,20 +190,24 @@ list += Cor.u.file_list(find_path).map{|fn|
 
 CorProject.includes.each do |inc_path|
   find_path = "#{inc_path}/resources/"
-  list += Cor.u.file_list("#{inc_path}/resources").map{|fn|
+  if Dir.exists? find_path
+    list += Cor.u.file_list("#{inc_path}/resources").map{|fn|
+      {
+        :n => fn.gsub("#{find_path}", ""),
+        :fn => fn,
+      }
+    }
+  end
+end
+
+if Dir.exists? source_resource_path
+  list += Cor.u.file_list(source_resource_path).map{|fn| 
     {
-      :n => fn.gsub("#{find_path}", ""),
+      :n => fn.gsub("#{source_resource_path}/", ""),
       :fn => fn,
     }
   }
 end
-
-list += Cor.u.file_list(source_resource_path).map{|fn| 
-  {
-    :n => fn.gsub("#{source_resource_path}/", ""),
-    :fn => fn,
-  }
-}
 d_list = Cor.u.file_list destination_resource_path do |fn|
   !fn.include? ".gitignore"
 end
