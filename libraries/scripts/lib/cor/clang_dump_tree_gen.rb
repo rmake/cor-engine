@@ -653,6 +653,7 @@ module COR
         
       end
       
+      inv_selected_typedefs = {}
       
       selected_typedefs = []
       tree.typedefs.each do  |t|
@@ -666,6 +667,7 @@ module COR
           h[:source_type] = self.typedef_assoc_base "", h[:source_type], option
         
           selected_typedefs << h
+          inv_selected_typedefs[t[:source][:val]] = h
         end
       end
       
@@ -731,9 +733,36 @@ module COR
             
           end
           
+          tmpl[:typedefs].each do |v|
+            sub_tmpl_name, sub_tmpl_args = self.template_decomposition v[:source][:val]
+            if sub_tmpl_name && sub_tmpl_args
+              sub_tmpl_args = sub_tmpl_args.map do |k|
+                tmpl_args_table[k]
+              end
+              sub_tp_self_key = "#{sub_tmpl_name}<#{sub_tmpl_args.join(', ')}>"
+              sub_tp_self_value = v[:typedef_name]
+            else
+              sub_tp_self_key = v[:source][:val]
+              sub_tp_self_value = v[:typedef_name]
+            end
+            tp_self_key = sub_tp_self_value
+            tp_self_value = t[:typedef_name].match(/^.*::/)[0] + sub_tp_self_key
+            if inv_selected_typedefs[tp_self_value]
+              tmpl_args_table[tp_self_key] = tp_self_value
+              tmpl_args_table["const #{tp_self_key}&"] = "const #{tp_self_value}&"
+              tmpl_args_table["const #{tp_self_key}*"] = "const #{tp_self_value}*"
+              tmpl_args_table["#{tp_self_key}*"] = "#{tp_self_value}*"
+              tmpl_args_table["const #{tp_self_key} &"] = "const #{tp_self_value} &"
+              tmpl_args_table["const #{tp_self_key} *"] = "const #{tp_self_value} *"
+              tmpl_args_table["#{tp_self_key} *"] = "#{tp_self_value} *"
+            end
+          end
+          
           t[:tmpl_args_table] ||= {}
           t[:tmpl_args_table].merge! tmpl_args_table
           t[:tmpl] = tmpl
+          
+          
           
         end
         
@@ -775,7 +804,13 @@ module COR
           next if args.find{|a| !a[:val]} 
           
           method_ret = method_ret.clone
-          method_ret[:val] = tmpl_args_table[method_ret[:val]]
+          if method_ret[:val] != "void"
+            new_val = tmpl_args_table[method_ret[:val]]
+            if !new_val && method_ret[:val].match(/\&$/) && !method_ret[:val].match(/^const /)
+              next
+            end
+            method_ret[:val] = new_val
+          end
           
           nm = {
             :method_name => m[:method_name],
