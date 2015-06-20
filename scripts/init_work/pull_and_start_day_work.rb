@@ -12,6 +12,9 @@ Dir.chdir run_dir
 def run_cmd(cmd)
   puts "run -> #{cmd}"
   r = system cmd
+  unless r
+    puts "faild on -> #{cmd}"
+  end
   @result &= r
   r
 end
