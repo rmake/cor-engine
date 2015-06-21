@@ -78,6 +78,7 @@ module COR
           s += "  template_args = [#{t[:template_args].join(", ")}]\n"
           s += "  template_public_start = #{t[:public_start]}\n"
           s += "  template_fields = #{t[:fields].map{|v| v[:field_name] + ':' + v[:field_type][:val] }.join(',')}\n"
+          s += "  template_typedefs = #{t[:typedefs].map{|v| v[:typedef_name].inspect + ':' + v[:source].inspect }.join(',')}\n"
           s += "]\n"
           str << s
         end
@@ -313,6 +314,7 @@ module COR
           tp = {}
           tp[:typedef_name] = get_name_layer(t) + a[3]
           tp[:source] = self.parse_separated(a[4])
+          
           typedefs << tp
           
         elsif a[0] == "ClassTemplateDecl"
@@ -321,6 +323,7 @@ module COR
           t[:public_start] = public_start
           t[:super_classes] = [] 
           t[:fields] = []
+          t[:typedefs] = []
           class_templates << t
           
         elsif a[0] == "TemplateTypeParmDecl"
@@ -523,6 +526,14 @@ module COR
                   :field_name => a[3],
                   :field_type => self.parse_separated(a[4]),
                 }
+              elsif a[0] == "TypedefDecl"
+                
+                tp = {}
+                tp[:typedef_name] = a[3]
+                tp[:source] = self.parse_separated(a[4])
+                
+                t[:typedefs] << tp
+              
               end
               
             end
