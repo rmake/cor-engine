@@ -53,5 +53,5 @@ run_cmd "git reset --hard origin/devel"
 
 Dir.chdir "../../"
 
-
+exit @result
 
