@@ -552,7 +552,7 @@ namespace cor
 
             static RString get_argument_string()
             {
-#ifdef CC_PLATFORM_WIN32
+#if defined CC_PLATFORM_WIN32 && defined WIN32
                 auto cmdline = GetCommandLine();
                 WCHAR *cmdlineEnd = wcsstr(cmdline, L" ");
                 if(cmdlineEnd){

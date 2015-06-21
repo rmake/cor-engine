@@ -8,7 +8,7 @@ require 'fileutils'
 
 system "ruby ../project_script/copy_project.rb"
 
-system("sh build_android.sh")
+system("ruby build_android.rb")
 #system("sh package_android.sh")
 
 FileUtils.mkpath "build_tmp/rts_test_android/"
