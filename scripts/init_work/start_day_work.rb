@@ -22,7 +22,7 @@ end
 source_branch = `git rev-parse --abbrev-ref HEAD`
 puts "source_branch = #{source_branch}"
 
-run_cmd "sh ./update_all.sh"
+run_cmd "ruby update_all.rb"
 
 if RUBY_PLATFORM.include? "mswin32"
   WINDOWS = true
