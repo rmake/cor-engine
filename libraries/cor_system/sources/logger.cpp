@@ -13,6 +13,7 @@ namespace cor
         struct LoggerItnl
         {
             RSize ct;
+            RSize count[LogType::count];
             Logger::ArrayPrintFunc print_funcs;
         };
         
@@ -64,7 +65,10 @@ namespace cor
                 }
             });
 #endif
-
+            for(auto& v : itnl->count)
+            {
+                v = 0;
+            }
             itnl->ct = 0;
         }
         
@@ -99,18 +103,73 @@ namespace cor
 
         void Logger::call_print_func(LogType::Enum type, const RString& str)
         {
-            if(str.substr(0, 18) == "RtsButton.set_text")
-            {
-                static int a;
-                a++;
-            }
-
+            itnl->count[type] += 1;
             std::for_each(itnl->print_funcs.begin(), itnl->print_funcs.end(), [&](NamePrintFunc print_func){
                 if(print_func.second)
                 {
                     print_func.second(type, str);
                 }
             });
+        }
+
+        RSize Logger::get_local_count(LogType::Enum type)
+        {
+            return itnl->count[type];
+        }
+
+        RSize Logger::get_local_debug_count()
+        {
+            return Logger::get_count(LogType::debug);
+        }
+
+        RSize Logger::get_local_info_count()
+        {
+            return Logger::get_count(LogType::info);
+        }
+
+        RSize Logger::get_local_warn_count()
+        {
+            return Logger::get_count(LogType::warn);
+        }
+
+        RSize Logger::get_local_error_count()
+        {
+            return Logger::get_count(LogType::error);
+        }
+
+        RSize Logger::get_local_fatal_count()
+        {
+            return Logger::get_count(LogType::fatal);
+        }
+
+        RSize Logger::get_count(LogType::Enum type)
+        {
+            return get_instance()->get_local_count(type);
+        }
+
+        RSize Logger::get_debug_count()
+        {
+            return get_instance()->get_local_debug_count();
+        }
+
+        RSize Logger::get_info_count()
+        {
+            return get_instance()->get_local_info_count();
+        }
+
+        RSize Logger::get_warn_count()
+        {
+            return get_instance()->get_local_warn_count();
+        }
+
+        RSize Logger::get_error_count()
+        {
+            return get_instance()->get_local_error_count();
+        }
+
+        RSize Logger::get_fatal_count()
+        {
+            return get_instance()->get_local_fatal_count();
         }
 
 

@@ -19,6 +19,7 @@ namespace cor
                 warn,
                 error,
                 fatal,
+                count,
                 force_4byte = 0xffffffff
             };
         };
@@ -46,6 +47,22 @@ namespace cor
             void pop_print_func();
             void clear_print_func(PrintFunc print_func);
             void call_print_func(LogType::Enum type, const RString& str);
+
+            RSize get_local_count(LogType::Enum type);
+            RSize get_local_debug_count();
+            RSize get_local_info_count();
+            RSize get_local_warn_count();
+            RSize get_local_error_count();
+            RSize get_local_fatal_count();
+
+            static RSize get_count(LogType::Enum type);
+            static RSize get_debug_count();
+            static RSize get_info_count();
+            static RSize get_warn_count();
+            static RSize get_error_count();
+            static RSize get_fatal_count();
+
+
 
             void print_impl(RStringStream& s)
             {
