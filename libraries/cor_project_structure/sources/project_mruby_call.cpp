@@ -581,6 +581,12 @@ namespace cor
                 return "";
 #endif
             }
+
+            static void catch_break()
+            {
+                static int a;
+                a++;  // you set breakpoint here
+            }
             
         };
         
@@ -733,6 +739,7 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "get_import_name", ProjectMrubyCallItnl::get_import_name);
             binder.bind_static_method("Cor", "Project", "get_argument_string", ProjectMrubyCallItnl::get_argument_string);
             binder.bind_static_method("Cor", "Project", "get_platform_name", ProjectMrubyCallItnl::get_platform_name);
+            binder.bind_static_method("Cor", "Project", "catch_break", ProjectMrubyCallItnl::catch_break);
             
 
             //
