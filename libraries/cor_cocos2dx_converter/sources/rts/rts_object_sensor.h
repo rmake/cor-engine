@@ -43,6 +43,7 @@ namespace cor
             
             cocos2d::Node* get_node();
             void set_collision_callback(CollisionCallback collision_callback);
+            RSize get_index();
 
             RBool is_erased();
             void remove();

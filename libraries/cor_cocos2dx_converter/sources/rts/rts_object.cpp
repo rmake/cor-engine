@@ -173,6 +173,7 @@ namespace cor
 
         void RtsObject::release()
         {
+            itnl->sensors.clear();
             itnl->released = rtrue;
         }
 
@@ -353,6 +354,10 @@ namespace cor
         {
             auto a = std::make_shared<RtsObjectAction>(shared_from_this(), step_callback);
 
+            if(itnl->actions.get<0>().find(a.get()) != itnl->actions.get<0>().end())
+            {
+                itnl->actions.get<0>().erase(a.get());
+            }
             //itnl->actions[a.get()] = a;
             itnl->actions.insert(RtsObjectItnl::ActionsItem(a.get(), a));
 
@@ -364,6 +369,10 @@ namespace cor
             auto s = std::make_shared<RtsObjectSensor>(shared_from_this(), type_id, p, r);
             s->set_collision_callback(collision_callback);
 
+            if(itnl->sensors.get<0>().find(s.get()) != itnl->sensors.get<0>().end())
+            {
+                itnl->sensors.get<0>().erase(s.get());
+            }
             itnl->sensors.insert(RtsObjectItnl::SensorsItem(s.get(), s));
 
             return s;

@@ -68,7 +68,7 @@ namespace cor
 
         public:
             Collision2dNodeRef();
-            Collision2dNodeRef(const type::Collision2dRef& ref);
+            Collision2dNodeRef(Collision2dNodePtr collision_system, const type::Collision2dRef& ref);
             ~Collision2dNodeRef();
 
             void release();
@@ -78,6 +78,7 @@ namespace cor
             RInt32 get_tag() const;
             RFloat get_distance(const type::Vector2F& p) const;
             RInt32 get_type_id() const;
+            RSize get_index() const;
             type::Matrix4x4F get_transform() const;
             Collision2dNodeObjectSP get_object() const;
             
@@ -90,8 +91,12 @@ namespace cor
         class Collision2dNode
         {
             std::unique_ptr<Collision2dNodeItnl> itnl;
+
+            void add_ref(std::shared_ptr<Collision2dNodeRefItnl> ref_itnl);
+            void remove_ref(std::shared_ptr<Collision2dNodeRefItnl> ref_itnl);
+            std::shared_ptr<Collision2dNodeRefItnl> find_ref(void* p);
         
-            
+            friend class Collision2dNodeRef;
         public:
             typedef Collision2dNodeObject::CollisionCallback CollisionCallback;
         
@@ -108,6 +113,8 @@ namespace cor
 
             void set_collision_group_pair(RInt32 id0, RInt32 id1, RBool collidable);
             RBool get_collision_group_pair(RInt32 id0, RInt32 id1);
+
+            
 
             Collision2dNodeRef add_o_box(cocos2d::Node* node, RInt32 type_id, type::Box2F box, CollisionCallback callback);
             Collision2dNodeRef add_o_sphere(cocos2d::Node* node, RInt32 type_id, type::Sphere2F sphere, CollisionCallback callback);

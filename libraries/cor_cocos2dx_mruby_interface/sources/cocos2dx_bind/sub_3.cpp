@@ -1004,6 +1004,7 @@ namespace cor
         int Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_tag(cor::cocos2dx_converter::Collision2dNodeRef& c);
         float Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_distance(cor::cocos2dx_converter::Collision2dNodeRef& c, cor::type::Vector2Tmpl<float> a0);
         int Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_type_id(cor::cocos2dx_converter::Collision2dNodeRef& c);
+        unsigned int Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_index(cor::cocos2dx_converter::Collision2dNodeRef& c);
         cor::type::Matrix4x4Tmpl<float> Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_transform(cor::cocos2dx_converter::Collision2dNodeRef& c);
         std::shared_ptr<cor::cocos2dx_converter::Collision2dNodeObject> Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_object(cor::cocos2dx_converter::Collision2dNodeRef& c);
         bool Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_is_box(cor::cocos2dx_converter::Collision2dNodeRef& c);
@@ -1033,6 +1034,7 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__EasyHttpClient_get_text(std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, mrubybind::FuncPtr<void (std::string, std::string)> a1);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_get_node(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_set_collision_callback(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a0);
+        unsigned int Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_get_index(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c);
         int Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_is_erased(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_remove(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c);
         int Cocos2dxBind_cocos2d__Value_as_byte(cocos2d::Value c);
@@ -11562,6 +11564,7 @@ namespace cor
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "get_tag", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_tag);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "get_distance", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_distance);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "get_type_id", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_type_id);
+            binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "get_index", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_index);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "get_transform", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_transform);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "get_object", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_object);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "is_box", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_is_box);
@@ -11591,6 +11594,7 @@ namespace cor
             binder.bind_static_method("CorCocos2dxConverter", "EasyHttpClient", "get_text", Cocos2dxBind_cor__cocos2dx_converter__EasyHttpClient_get_text);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectSensor", "get_node", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_get_node);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectSensor", "set_collision_callback", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_set_collision_callback);
+            binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectSensor", "get_index", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_get_index);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectSensor", "is_erased", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_is_erased);
             binder.bind_custom_method("CorCocos2dxConverter", "RtsObjectSensor", "remove", Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_remove);
             binder.bind_custom_method("Cocos2d", "Value", "as_byte", Cocos2dxBind_cocos2d__Value_as_byte);

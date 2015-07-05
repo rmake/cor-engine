@@ -85,7 +85,10 @@ namespace cor
             auto node = node_ref.get_node();
             if(itnl->object_table.get<0>().find(node) != itnl->object_table.get<0>().end())
             {
-                itnl->object_table.get<0>().replace(itnl->object_table.get<0>().find(node), RtsObjectTableItem(node_ref.get_node(), o));
+                itnl->object_table.get<0>().erase(node);
+                itnl->object_table.insert(RtsObjectTableItem(node_ref.get_node(), o));
+                //itnl->object_table.get<0>().replace(itnl->object_table.get<0>().find(node), RtsObjectTableItem(node_ref.get_node(), o));
+
             }
             else
             {

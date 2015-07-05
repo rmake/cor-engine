@@ -77,6 +77,11 @@ namespace cor
             itnl->collision_callback = collision_callback;
         }
 
+        RSize RtsObjectSensor::get_index()
+        {
+            return itnl->node_ref.get_index();
+        }
+
         RBool RtsObjectSensor::is_erased()
         {
             return itnl->erased;

@@ -169,6 +169,7 @@ namespace cor
 
         struct Collision2dNodeRefItnl
         {
+            Collision2dNodePtr collision_system;
             type::Collision2dRef ref;
 
         };
@@ -178,9 +179,17 @@ namespace cor
             
         }
 
-        Collision2dNodeRef::Collision2dNodeRef(const type::Collision2dRef& ref) : itnl(std::make_shared<Collision2dNodeRefItnl>())
+        Collision2dNodeRef::Collision2dNodeRef(Collision2dNodePtr collision_system, const type::Collision2dRef& ref) : itnl(std::make_shared<Collision2dNodeRefItnl>())
         {
+            itnl->collision_system = collision_system;
+            auto r = collision_system->find_ref(ref.get_p());
+            if(r)
+            {
+                itnl = r;
+                return;
+            }
             itnl->ref = ref;
+            itnl->collision_system->add_ref(itnl);
         }
 
         Collision2dNodeRef::~Collision2dNodeRef()
@@ -190,6 +199,7 @@ namespace cor
 
         void Collision2dNodeRef::release()
         {
+            itnl->collision_system->remove_ref(itnl);
             itnl->ref.release();
         }
 
@@ -227,6 +237,11 @@ namespace cor
         RInt32 Collision2dNodeRef::get_type_id() const
         {
             return itnl->ref->data.group->get_type_id();
+        }
+
+        RSize Collision2dNodeRef::get_index() const
+        {
+            return itnl->ref.get_p()->index;
         }
 
         type::Matrix4x4F Collision2dNodeRef::get_transform() const
@@ -270,6 +285,7 @@ namespace cor
             cocos2d::RefPtr<cocos2d::Node> transform_to;
             cocos2d::Mat4 current_transform;
             type::Matrix4x4F transform_to_render;
+            std::map<void*, std::weak_ptr<Collision2dNodeRefItnl> > ref_itnl_table;
 
             Collision2dNodeItnl()
             {
@@ -341,6 +357,21 @@ namespace cor
             return itnl->collision.get_collision_group_pair(id0, id1);
         }
 
+        void Collision2dNode::add_ref(std::shared_ptr<Collision2dNodeRefItnl> ref_itnl)
+        {
+            itnl->ref_itnl_table[ref_itnl->ref.get_p()] = ref_itnl;
+        }
+
+        void Collision2dNode::remove_ref(std::shared_ptr<Collision2dNodeRefItnl> ref_itnl)
+        {
+            itnl->ref_itnl_table.erase(ref_itnl->ref.get_p());
+        }
+
+        std::shared_ptr<Collision2dNodeRefItnl> Collision2dNode::find_ref(void* p)
+        {
+            return itnl->ref_itnl_table[p].lock();
+        }
+
         Collision2dNodeRef Collision2dNode::add_o_box(cocos2d::Node* node, RInt32 type_id, type::Box2F box, CollisionCallback callback)
         {
             auto cb = [=](type::Collision2dCrossInfo& cross_info){
@@ -350,7 +381,7 @@ namespace cor
             };
             type::Collision2dObjectBaseSP obj = std::make_shared<Collision2dNodeObject>(this, node, box, callback);
             auto r = itnl->collision.create_o_box(type_id, obj, cb, type::OBox2F());
-            return Collision2dNodeRef(r);
+            return Collision2dNodeRef(this, r);
         }
 
         Collision2dNodeRef Collision2dNode::add_o_sphere(cocos2d::Node* node, RInt32 type_id, type::Sphere2F sphere, CollisionCallback callback)
@@ -362,7 +393,7 @@ namespace cor
             };
             type::Collision2dObjectBaseSP obj = std::make_shared<Collision2dNodeObject>(this, node, sphere, callback);
             auto r = itnl->collision.create_o_sphere(type_id, obj, cb, type::OSphere2F());
-            return Collision2dNodeRef(r);
+            return Collision2dNodeRef(this, r);
         }
 
         type::Collision2dShape Collision2dNode_get_shape(Collision2dNodePtr collision, cocos2d::Node* node, type::Box2F box, type::Collision2dObjectBaseSP& obj)
@@ -439,8 +470,8 @@ namespace cor
             update_current_transform();
 
             itnl->collision.find_pair(id0, id1, [&](type::Collision2dRef& r0, type::Collision2dRef& r1){
-                Collision2dNodeRef nr0(r0);
-                Collision2dNodeRef nr1(r1);
+                Collision2dNodeRef nr0(this, r0);
+                Collision2dNodeRef nr1(this, r1);
                 callback(nr0, nr1);
             });
         }
@@ -450,8 +481,8 @@ namespace cor
             update_current_transform();
 
             itnl->collision.all_find_pair([&](type::Collision2dRef& r0, type::Collision2dRef& r1){
-                Collision2dNodeRef nr0(r0);
-                Collision2dNodeRef nr1(r1);
+                Collision2dNodeRef nr0(this, r0);
+                Collision2dNodeRef nr1(this, r1);
                 callback(nr0, nr1);
             });
         }
@@ -473,7 +504,8 @@ namespace cor
                 auto o = std::static_pointer_cast<Collision2dNodeObject>(r->data->obj);
                 if(o->get_tag() & tag_mask)
                 {
-                    callback(d, r, o->get_node());
+                    Collision2dNodeRef nr(this, r);
+                    callback(d, nr, o->get_node());
                     founded = rtrue;
                     return rtrue;
                 }
