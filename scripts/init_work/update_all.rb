@@ -33,7 +33,6 @@ run_cmd "git checkout work"
 run_cmd "git submodule init"
 run_cmd "git submodule update"
 
-#run_cmd "git pull origin work"
 run_cmd "git fetch"
 run_cmd "git reset --hard origin/work"
 
@@ -47,7 +46,6 @@ run_cmd "git checkout devel"
 run_cmd "git submodule init"
 run_cmd "git submodule update"
 
-#run_cmd "git pull origin devel"
 run_cmd "git fetch"
 run_cmd "git reset --hard origin/devel"
 
