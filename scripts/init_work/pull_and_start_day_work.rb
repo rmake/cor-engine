@@ -22,7 +22,7 @@ end
 source_branch = `git rev-parse --abbrev-ref HEAD`
 puts "source_branch = #{source_branch}"
 
-run_cmd "git pull --rebase origin devel"
+#run_cmd "git pull origin devel"
 run_cmd "git pull --rebase origin #{source_branch}"
 
 run_cmd "ruby start_day_work.rb"

@@ -19,7 +19,7 @@ if $?.exitstatus != 0
   exit 1
 end
 
-print `git pull --rebase origin devel`
+print `git pull origin devel`
 if $?.exitstatus != 0
   print "error on \"git pull origin devel\" file:#{__FILE__}, line:#{__LINE__}\n"
   exit 1
