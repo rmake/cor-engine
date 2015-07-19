@@ -42,7 +42,7 @@ class RtsButton
     self.name = options[:name]
     
     self.font_name = options[:font_name] || "fonts/MTLc3m.ttf"
-    self.font_color = options[:font_color] || Color3B.create(255, 255, 255)
+    @font_color = options[:font_color] || Color3B.create(255, 255, 255)
     self.font_size = options[:font_size] || 34
     self.edge_size = options[:edge_size] || 2
     self.bold_size = options[:bold_size] || 0
@@ -170,11 +170,45 @@ class RtsButton
     
     ref = CocosMrubyRef.create
     ref.set_value self
+    ref.set_on_delete do
+      self.name = nil
+    end
     self.sprite.set_user_object ref
     
     self.text_labels = []
+    @labels = []
     self.set_text text
     
+  end
+  
+  def self.name_table
+    @name_table ||= {}
+    @name_table
+  end
+  
+  def self.find(name)
+    self.name_table[name]
+  end
+  
+  def name=(v)
+    if @name
+      self.class.name_table.delete @name
+    end
+    @name = v
+    if v
+      self.class.name_table[v] = self
+    end
+  end
+  
+  def name
+    @name
+  end
+  
+  def font_color=(c)
+    @labels.each do |v|
+      v.color = c
+    end
+    @font_color = c
   end
   
   def correct_position
@@ -229,6 +263,7 @@ class RtsButton
     end
     
     self.text_labels = []
+    @labels  = []
     if text
       text = text.to_s
       texts = text.split("\n")
@@ -263,6 +298,7 @@ class RtsButton
         
         s.add_child t.node
         self.text_labels << t.node
+        @labels << t
         self.all_nodes << t.node
         
       end

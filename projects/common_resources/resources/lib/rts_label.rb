@@ -40,7 +40,7 @@ class RtsLabel
       self.edge_size = options[:edge_size] || 0
       self.bold_size = 0 #options[:bold_size] || 0
       self.font_size = options[:font_size] || 34
-      self.color = options[:color] || Color3B.create(255, 255, 255)
+      @color = options[:color] || Color3B.create(255, 255, 255)
       self.line_height = nil
       
       self.all_size = self.font_size + self.edge_size * 2
@@ -196,7 +196,7 @@ class RtsLabel
     self.edge_size = options[:edge_size] || 0
     self.bold_size = 0 #options[:bold_size] || 0
     self.font_size = options[:font_size] || 34
-    self.color = options[:color] || Color3B.create(255, 255, 255)
+    @color = options[:color] || Color3B.create(255, 255, 255)
     self.line_height = nil
     
     self.all_size = self.font_size + self.edge_size * 2
@@ -219,6 +219,11 @@ class RtsLabel
     
     
     
+  end
+  
+  def color=(c)
+    @label.set_color c
+    @color = c
   end
   
   def self.all_font_textures

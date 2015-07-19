@@ -6,6 +6,8 @@ CorPanel = RtsButton
 CorLabel = RtsLabel
 CorMessageView = RtsMessageView
 CorProfile = RtsProfile
+CorProcChain = RtsProcChain
+CorTestCase = RtsTestCase
 
 
 class CorListView < RtsListView
