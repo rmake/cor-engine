@@ -10,7 +10,7 @@ LIB_SRC_PATH := $(LIB_BASE_PATH)/$(PATH_NAME)
 LOCAL_ARM_MODE := arm
 LOCAL_MODULE := $(PATH_NAME)
 LOCAL_CFLAGS := -DANDROID_NDK -O3
-LOCAL_CPPFLAGS := -DANDROID_NDK -fexceptions -frtti -O3 
+LOCAL_CPPFLAGS := -DANDROID_NDK -fexceptions -frtti -O3
 ifeq ($(PROFILE),1)
   LOCAL_CFLAGS += -pg -DPROFILING
   LOCAL_CPPFLAGS += -pg -DPROFILING
@@ -215,7 +215,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(LIB_SRC_PATH)/sources \
 ifeq ($(PROFILE),1)
     LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../../external/android-ndk-profiler
 endif
-    
+
 LOCAL_SRC_FILES:= $(addprefix ../../../../libraries/$(PATH_NAME)/proj.common/,$(PRJSRCS))
 
 include $(BUILD_STATIC_LIBRARY)
@@ -235,12 +235,12 @@ ifeq ($(PROFILE),1)
   LOCAL_CFLAGS += -pg -DPROFILING
   LOCAL_CPPFLAGS += -pg -DPROFILING
 endif
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(MRUBY_SRC_PATH)/include $(LOCAL_PATH)/$(MRUBY_SRC_PATH)/src
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(MRUBY_SRC_PATH)/include $(LOCAL_PATH)/$(MRUBY_SRC_PATH)/src $(LOCAL_PATH)/$(MRUBY_SRC_PATH)/mrbgems/mruby-compiler/core
 
 
 ifeq ($(TARGET_ARCH),arm)
     #LOCAL_CFLAGS +=  -mtune=xscale -msoft-float
-endif 
+endif
 
 
 MRUBY_PATH = ../../../../external/mruby_build/android/
