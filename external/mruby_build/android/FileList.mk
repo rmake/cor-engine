@@ -1,9 +1,11 @@
 # mruby_make_begin
 LOCAL_SRC_FILES:= $(MRUBY_PATH)/build_src/build/host/mrbgems/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-array-ext/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-compiler/core/y.tab.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-enum-ext/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-enum-lazy/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-enumerator/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-error/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-eval/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-exit/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-fiber/gem_init.c \
@@ -26,11 +28,42 @@ LOCAL_SRC_FILES:= $(MRUBY_PATH)/build_src/build/host/mrbgems/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-time/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-toplevel-ext/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrblib/mrblib.c \
-  $(MRUBY_PATH)/build_src/build/host/src/y.tab.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-array-ext/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-compiler/core/y.tab.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-enum-ext/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-enum-lazy/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-enumerator/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-eval/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-fiber/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-hash-ext/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-json/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-kernel-ext/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-math/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-numeric-ext/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-object-ext/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-objectspace/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-print/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-proc-ext/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-random/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-range-ext/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-sprintf/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-string-ext/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-string-utf8/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-struct/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-symbol-ext/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-time/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrbgems/mruby-toplevel-ext/gem_init.c \
+  $(MRUBY_PATH)/build_src/build/host-debug/mrblib/mrblib.c \
   $(MRUBY_PATH)/build_src/build/mrbgems/mruby-json/src/mrb_json.c \
   $(MRUBY_PATH)/build_src/build/mrbgems/mruby-json/src/parson.c \
+  $(MRUBY_PATH)/build_src/doc/api/mruby/array.h.md \
+  $(MRUBY_PATH)/build_src/doc/api/mruby/hash.h.md \
+  $(MRUBY_PATH)/build_src/doc/api/mruby/value.h.md \
   $(MRUBY_PATH)/build_src/doc/api/mruby.h.md \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-array-ext/src/array.c \
+  $(MRUBY_PATH)/build_src/mrbgems/mruby-compiler/core/codegen.c \
+  $(MRUBY_PATH)/build_src/mrbgems/mruby-error/src/exception.c \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-eval/src/eval.c \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-exit/src/mruby-exit.c \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-fiber/src/fiber.c \
@@ -55,7 +88,7 @@ LOCAL_SRC_FILES:= $(MRUBY_PATH)/build_src/build/host/mrbgems/gem_init.c \
   $(MRUBY_PATH)/build_src/src/array.c \
   $(MRUBY_PATH)/build_src/src/backtrace.c \
   $(MRUBY_PATH)/build_src/src/class.c \
-  $(MRUBY_PATH)/build_src/src/codegen.c \
+  $(MRUBY_PATH)/build_src/src/codedump.c \
   $(MRUBY_PATH)/build_src/src/compar.c \
   $(MRUBY_PATH)/build_src/src/crc.c \
   $(MRUBY_PATH)/build_src/src/debug.c \

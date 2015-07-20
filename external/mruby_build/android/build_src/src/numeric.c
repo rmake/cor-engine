@@ -110,8 +110,8 @@ num_div(mrb_state *mrb, mrb_value x)
  *
  *  Returns a string containing a representation of self. As well as a
  *  fixed or exponential form of the number, the call may return
- *  ``<code>NaN</code>'', ``<code>Infinity</code>'', and
- *  ``<code>-Infinity</code>''.
+ *  "<code>NaN</code>", "<code>Infinity</code>", and
+ *  "<code>-Infinity</code>".
  */
 
 static mrb_value
@@ -436,7 +436,7 @@ flo_round(mrb_state *mrb, mrb_value num)
 {
   double number, f;
   mrb_int ndigits = 0;
-  int i;
+  mrb_int i;
 
   mrb_get_args(mrb, "|i", &ndigits);
   number = mrb_float(num);
@@ -451,7 +451,7 @@ flo_round(mrb_state *mrb, mrb_value num)
   }
 
   f = 1.0;
-  i = abs(ndigits);
+  i = ndigits >= 0 ? ndigits : -ndigits;
   while  (--i >= 0)
     f = f*10.0;
 
