@@ -20,56 +20,56 @@ class CorProject
   def self.source_path=(v)
     @source_path = v
   end
-  
+
   def self.source_path
     @source_path
   end
-  
+
   def self.includes=(a)
     @includes = a
   end
-  
+
   def self.includes
     @includes ||= []
     @includes
   end
-  
+
   def self.add_include(v)
     self.includes << "#{self.source_path}/#{v}"
   end
-  
+
   def self.import_cpp=(v)
     @import_cpp = v
   end
-  
+
   def self.import_cpp
     @import_cpp
   end
-  
+
   def self.crypt=(v)
     @crypt = v
   end
-  
+
   def self.crypt
     @crypt
   end
-  
+
   def self.administrator=(v)
     @administrator = v
   end
-  
+
   def self.administrator
     @administrator
   end
-  
+
   def self.set_import_cpp_filter(&block)
     @import_cpp_filter = block
   end
-  
+
   def self.import_cpp_filter
     @import_cpp_filter
   end
-  
+
 end
 
 
@@ -107,7 +107,8 @@ end
 
 CorProject.source_path = source_path
 
-destination_resource_path = "../cor_lib_test_main/Resources/project_resource"
+destination_resource_root_path = "../cor_lib_test_main/Resources"
+destination_resource_path = "#{destination_resource_root_path}/project_resource"
 source_conf_path = "#{source_path}/conf.rb"
 source_resource_path = "#{source_path}/resources"
 win32_copy_destination = File.expand_path("../../proj.win32/Debug.win32/project_resource", destination_resource_path)
@@ -121,20 +122,22 @@ if File.exists? source_conf_path
   load source_conf_path
 end
 
+FileUtils.rm Dir.glob("#{destination_resource_root_path}/*.log")
+
 cpp_list = []
 import_cpp_props_includes = []
 
 unless resource_only
 
   destination_projects = "../cor_lib_test_main/"
-  
+
   source_projects = "default_copy_source/project_file"
   puts "source_projects #{source_projects}"
   if Dir.exists? "default_copy_source/project_file"
     puts "project_file copy #{source_projects} -> #{destination_projects}"
     FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
   end
-  
+
   CorProject.includes.each do |inc|
     source_projects = "#{inc}/project_file"
     puts "source_projects #{source_projects}"
@@ -143,7 +146,7 @@ unless resource_only
       puts "project_file copy #{source_projects} -> #{destination_projects}"
       FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
     end
-    
+
     if CorProject.import_cpp && Dir.exists?("#{inc}/cpp")
       import_cpp_props_includes << "#{inc}/cpp"
       tmpcpp_list = Cor.u.file_list("#{inc}/cpp") do |v|
@@ -156,18 +159,18 @@ unless resource_only
       cpp_list += tmpcpp_list
     end
   end
-  
+
   source_projects = "#{source_path}/project_file"
   puts "source_projects #{source_projects}"
-  
+
   if Dir.exists? "#{source_path}/project_file"
     puts "project_file copy #{source_projects} -> #{destination_projects}"
     FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
   end
-  
+
   if CorProject.import_cpp && Dir.exists?("#{source_path}/cpp")
     import_cpp_props_includes << "#{source_path}/cpp"
-    
+
     tmpcpp_list = Cor.u.file_list("#{source_path}/cpp") do |v|
       next CorProject.import_cpp_filter.call v if CorProject.import_cpp_filter
       true
@@ -176,7 +179,7 @@ unless resource_only
       {:fn => v, :base => "#{source_path}/cpp"}
     end
     cpp_list += tmpcpp_list
-    
+
   end
 end
 
@@ -201,7 +204,7 @@ CorProject.includes.each do |inc_path|
 end
 
 if Dir.exists? source_resource_path
-  list += Cor.u.file_list(source_resource_path).map{|fn| 
+  list += Cor.u.file_list(source_resource_path).map{|fn|
     {
       :n => fn.gsub("#{source_resource_path}/", ""),
       :fn => fn,
@@ -255,7 +258,7 @@ end
 
 def resource_file_copy key, src, dst
   ext = File.extname(src)
-  
+
   if CorProject::crypt && ([".rb", ".png"].index ext)
     ley_len = key.length
     File.open src, "rb" do |f|
@@ -276,21 +279,21 @@ end
 
 list.each do |fn|
   dfn = "#{destination_resource_path}/#{fn[:n]}"
-  
+
   if !File.exist?(dfn) || past_copy_table[fn[:fn]] != File.mtime(fn[:fn]).to_s  || File.size(fn[:fn]) != File.size(dfn) || force_update
     puts "do copy #{fn} -> #{dfn}"
     FileUtils.mkpath File.dirname(dfn)
     resource_file_copy key, fn[:fn], dfn
-    
+
     if win32_copy
       dfn2 = "#{win32_copy_destination}/#{fn[:n]}"
       FileUtils.mkpath File.dirname(dfn2)
       resource_file_copy key, fn[:fn], dfn2
     end
   end
-  
+
   past_copy_table[fn[:fn]] = File.mtime(fn[:fn]).to_s
-  
+
   d_table.delete dfn
 end
 
@@ -313,9 +316,9 @@ unless resource_only
       r = import_cpp_include_to.relative_path_from(import_cpp_include_from)
       r.to_s
     end
-    
+
     import_cpp_includes = import_cpp_includes.select do |v| v.match(/\.cpp$/) end
-    
+
     import_cpp_includes = import_cpp_includes.map do |v|
       "#include \"#{v}\""
     end
@@ -338,9 +341,9 @@ EOS
 
     imporer_txt = Cor.u.file_read import_cpp_importer_file
     Cor.u.file_write import_cpp_importer_file, imporer_txt
-    
+
     Cor.u.file_write import_cpp_file, import_cpp_code
-    
+
     Cor.u.file_write import_cpp_props_file, <<EOS
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -355,7 +358,7 @@ EOS
   <ItemGroup />
 </Project>
 EOS
-  
+
     Cor.u.file_write import_cpp_local_conf_mk, <<EOS
 PRJINCS += #{import_cpp_props_includes.map{|v| "../#{v}"}.join(' ')}
 EOS
@@ -364,9 +367,9 @@ EOS
     if File.exist? import_cpp_file
       FileUtils.remove import_cpp_file
     end
-    
+
     Cor.u.file_write import_cpp_props_file, <<EOS
-<?xml version="1.0" encoding="utf-8"?> 
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
@@ -377,7 +380,7 @@ EOS
 EOS
 
     Cor.u.file_write import_cpp_local_conf_mk, <<EOS
-PRJINCS = 
+PRJINCS =
 EOS
 
   end
@@ -438,14 +441,14 @@ dir_list.reverse.each do |d|
   if fl.empty?
     FileUtils.rmdir d
   end
-  
+
 end
 
 rescue => e
   puts "e #{e}"
   puts "#{e.backtrace}"
-  
+
   sleep 100
-  
+
   raise e
 end
