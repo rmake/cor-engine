@@ -20,13 +20,16 @@ namespace cor
         {
         public:
             typedef std::function<void(cocos2d::Node*, cocos2d::Node*)> CollisionCallback;
+            typedef std::map<RInt32 , CollisionCallback> FilteredCollisionCallback;
 
         private:
             cocos2d::Node* node;
             Collision2dNodePtr collision;
             boost::variant<type::OBox2F, type::OSphere2F> shape;
             CollisionCallback callback;
+            FilteredCollisionCallback filtered_callback;
             RInt32 tag;
+            bool enable_collision;
         public:
 
             Collision2dNodeObject();
@@ -36,9 +39,13 @@ namespace cor
 
             cocos2d::Node* get_node();
             CollisionCallback get_callback();
+            void set_enable_collision(bool enable_collision);
+            bool get_enable_collision();
             void set_box(type::Box2F box);
             void set_sphere(type::Sphere2F spher);
             void update_shape();
+            void add_filtered_callback(RInt32 type, CollisionCallback callback);
+            void call_filtered_callback(RInt32 type, cocos2d::Node* node0, cocos2d::Node* node1);
             virtual void update(type::Collision2dShapePtr shape);
             void draw(cocos2d::DrawNode* draw_node);
             void set_tag(RInt32 tag);
@@ -64,6 +71,8 @@ namespace cor
         class Collision2dNodeRef
         {
             std::shared_ptr<Collision2dNodeRefItnl> itnl;
+            typedef Collision2dNodeObject::CollisionCallback CollisionCallback;
+            typedef Collision2dNodeObject::FilteredCollisionCallback FilteredCollisionCallback;
             
 
         public:
@@ -81,6 +90,9 @@ namespace cor
             RSize get_index() const;
             type::Matrix4x4F get_transform() const;
             Collision2dNodeObjectSP get_object() const;
+            void add_filtered_callback(RInt32 type, CollisionCallback callback) const;
+            void set_enable_collision(bool enable_collision) const;
+            bool get_enable_collision() const;
             
             bool is_box() const;
             const type::OBox2F& get_box() const;
@@ -118,6 +130,8 @@ namespace cor
 
             Collision2dNodeRef add_o_box(cocos2d::Node* node, RInt32 type_id, type::Box2F box, CollisionCallback callback);
             Collision2dNodeRef add_o_sphere(cocos2d::Node* node, RInt32 type_id, type::Sphere2F sphere, CollisionCallback callback);
+            Collision2dNodeRef add_o_box_filtered(cocos2d::Node* node, RInt32 type_id, type::Box2F box);
+            Collision2dNodeRef add_o_sphere_filtered(cocos2d::Node* node, RInt32 type_id, type::Sphere2F sphere);
             void find_o_box(cocos2d::Node* node, RInt32 type_id, type::Box2F box, CollisionCallback callback);
             void find_o_box(const type::Matrix4x4F& m, RInt32 type_id, type::Box2F box, std::function<void(cocos2d::Node*)> callback);
             void find_pair(RInt32 id0, RInt32 id1, std::function<void(Collision2dNodeRef& r0, Collision2dNodeRef& r1)> callback);

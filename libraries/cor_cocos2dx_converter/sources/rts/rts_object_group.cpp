@@ -265,14 +265,22 @@ namespace cor
                                     auto n0 = r0.get_node();
                                     auto n1 = r1.get_node();
 
-                                    if(cl0)
+                                    if(cl0 && o0->get_enable_collision())
                                     {
                                         cl0(n0, n1);
                                     }
+                                    else
+                                    {
+                                        //o0->call_filtered_callback(j, n0, n1);
+                                    }
 
-                                    if(cl1)
+                                    if(cl1 && o1->get_enable_collision())
                                     {
                                         cl1(n1, n0);
+                                    }
+                                    else
+                                    {
+                                        //o1->call_filtered_callback(i, n1, n0);
                                     }
                                 }
 

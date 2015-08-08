@@ -14,6 +14,7 @@ namespace cor
             this->node = NULL;
             this->tag = 0;
             this->collision = nullptr;
+            this->enable_collision = true;
         }
 
         Collision2dNodeObject::Collision2dNodeObject(Collision2dNodePtr collision, cocos2d::Node* node, type::Box2F box, CollisionCallback callback)
@@ -21,6 +22,7 @@ namespace cor
             this->node = node;
             this->tag = 0;
             this->collision = collision;
+            this->enable_collision = true;
             this->callback = callback;
             node->retain();
 
@@ -33,6 +35,7 @@ namespace cor
             this->node = node;
             this->tag = 0;
             this->collision = collision;
+            this->enable_collision = true;
             this->callback = callback;
             node->retain();
 
@@ -57,6 +60,16 @@ namespace cor
         Collision2dNodeObject::CollisionCallback Collision2dNodeObject::get_callback()
         {
             return callback;
+        }
+
+        void Collision2dNodeObject::set_enable_collision(bool enable_collision)
+        {
+            this->enable_collision = enable_collision;
+        }
+
+        bool Collision2dNodeObject::get_enable_collision()
+        {
+            return this->enable_collision;
         }
 
         void Collision2dNodeObject::set_box(type::Box2F box)
@@ -89,6 +102,19 @@ namespace cor
             else if(auto o_sphere = boost::get<type::OSphere2F>(&this->shape))
             {
                 this->shape = type::OSphere2F(m, o_sphere->sphere);
+            }
+        }
+
+        void Collision2dNodeObject::add_filtered_callback(RInt32 type, CollisionCallback callback)
+        {
+            filtered_callback[type] = callback;
+        }
+
+        void Collision2dNodeObject::call_filtered_callback(RInt32 type, cocos2d::Node* node0, cocos2d::Node* node1)
+        {
+            if(filtered_callback.find(type) != filtered_callback.end())
+            {
+                filtered_callback[type](node0, node1);
             }
         }
 
@@ -258,6 +284,27 @@ namespace cor
             return osp;
         }
 
+        void Collision2dNodeRef::add_filtered_callback(RInt32 type, CollisionCallback callback) const
+        {
+            auto o = itnl->ref->data.obj;
+            Collision2dNodeObjectSP osp = std::static_pointer_cast<Collision2dNodeObject>(o);
+            osp->add_filtered_callback(type, callback);
+        }
+
+        void Collision2dNodeRef::set_enable_collision(bool enable_collision) const
+        {
+            auto o = itnl->ref->data.obj;
+            Collision2dNodeObjectSP osp = std::static_pointer_cast<Collision2dNodeObject>(o);
+            osp->set_enable_collision(enable_collision);
+        }
+
+        bool Collision2dNodeRef::get_enable_collision() const
+        {
+            auto o = itnl->ref->data.obj;
+            Collision2dNodeObjectSP osp = std::static_pointer_cast<Collision2dNodeObject>(o);
+            return osp->get_enable_collision();
+        }
+
         bool Collision2dNodeRef::is_box() const
         {
             return boost::get<type::OBox2F>(&itnl->ref->data.shape);
@@ -392,6 +439,30 @@ namespace cor
                 callback(o0->get_node(), o1->get_node());
             };
             type::Collision2dObjectBaseSP obj = std::make_shared<Collision2dNodeObject>(this, node, sphere, callback);
+            auto r = itnl->collision.create_o_sphere(type_id, obj, cb, type::OSphere2F());
+            return Collision2dNodeRef(this, r);
+        }
+
+        Collision2dNodeRef Collision2dNode::add_o_box_filtered(cocos2d::Node* node, RInt32 type_id, type::Box2F box)
+        {
+            auto cb = [=](type::Collision2dCrossInfo& cross_info){
+                auto o0 = std::static_pointer_cast<Collision2dNodeObject>(cross_info.s0->data->obj);
+                auto o1 = std::static_pointer_cast<Collision2dNodeObject>(cross_info.s1->data->obj);
+                o0->call_filtered_callback(cross_info.s1->data->group->get_type_id(), o0->get_node(), o1->get_node());
+            };
+            type::Collision2dObjectBaseSP obj = std::make_shared<Collision2dNodeObject>(this, node, box, nullptr);
+            auto r = itnl->collision.create_o_box(type_id, obj, cb, type::OBox2F());
+            return Collision2dNodeRef(this, r);
+        }
+
+        Collision2dNodeRef Collision2dNode::add_o_sphere_filtered(cocos2d::Node* node, RInt32 type_id, type::Sphere2F sphere)
+        {
+            auto cb = [=](type::Collision2dCrossInfo& cross_info){
+                auto o0 = std::static_pointer_cast<Collision2dNodeObject>(cross_info.s0->data->obj);
+                auto o1 = std::static_pointer_cast<Collision2dNodeObject>(cross_info.s1->data->obj);
+                o0->call_filtered_callback(cross_info.s1->data->group->get_type_id(), o0->get_node(), o1->get_node());
+            };
+            type::Collision2dObjectBaseSP obj = std::make_shared<Collision2dNodeObject>(this, node, sphere, nullptr);
             auto r = itnl->collision.create_o_sphere(type_id, obj, cb, type::OSphere2F());
             return Collision2dNodeRef(this, r);
         }

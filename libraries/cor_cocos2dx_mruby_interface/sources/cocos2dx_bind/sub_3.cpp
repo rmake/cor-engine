@@ -1007,6 +1007,9 @@ namespace cor
         unsigned int Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_index(cor::cocos2dx_converter::Collision2dNodeRef& c);
         cor::type::Matrix4x4Tmpl<float> Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_transform(cor::cocos2dx_converter::Collision2dNodeRef& c);
         std::shared_ptr<cor::cocos2dx_converter::Collision2dNodeObject> Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_object(cor::cocos2dx_converter::Collision2dNodeRef& c);
+        void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_add_filtered_callback(cor::cocos2dx_converter::Collision2dNodeRef& c, int a0, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a1);
+        void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_set_enable_collision(cor::cocos2dx_converter::Collision2dNodeRef& c, bool a0);
+        bool Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_enable_collision(cor::cocos2dx_converter::Collision2dNodeRef& c);
         bool Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_is_box(cor::cocos2dx_converter::Collision2dNodeRef& c);
         cor::type::OBoxTmpl<float, cor::type::Vector2Tmpl<float> > Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_box(cor::cocos2dx_converter::Collision2dNodeRef& c);
         bool Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_is_sphere(cor::cocos2dx_converter::Collision2dNodeRef& c);
@@ -1021,6 +1024,8 @@ namespace cor
         int Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_get_collision_group_pair(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, int a1);
         cor::cocos2dx_converter::Collision2dNodeRef Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_add_o_box(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, cor::type::BoxTmpl<float, cor::type::Vector2Tmpl<float>> a2, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a3);
         cor::cocos2dx_converter::Collision2dNodeRef Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_add_o_sphere(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, cor::type::SphereTmpl<float, cor::type::Vector2Tmpl<float>> a2, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a3);
+        cor::cocos2dx_converter::Collision2dNodeRef Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_add_o_box_filtered(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, cor::type::BoxTmpl<float, cor::type::Vector2Tmpl<float>> a2);
+        cor::cocos2dx_converter::Collision2dNodeRef Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_add_o_sphere_filtered(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, cor::type::SphereTmpl<float, cor::type::Vector2Tmpl<float>> a2);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_find_o_box_1(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, cor::type::BoxTmpl<float, cor::type::Vector2Tmpl<float>> a2, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a3);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_find_o_box_2(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::type::Matrix4x4Tmpl<float> a0, int a1, cor::type::BoxTmpl<float, cor::type::Vector2Tmpl<float>> a2, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a3);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_find_pair(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, int a1, mrubybind::FuncPtr<void (cor::cocos2dx_converter::Collision2dNodeRef, cor::cocos2dx_converter::Collision2dNodeRef)> a2);
@@ -11567,6 +11572,9 @@ namespace cor
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "get_index", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_index);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "get_transform", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_transform);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "get_object", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_object);
+            binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "add_filtered_callback", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_add_filtered_callback);
+            binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "set_enable_collision", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_set_enable_collision);
+            binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "get_enable_collision", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_enable_collision);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "is_box", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_is_box);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "get_box", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_box);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNodeRef", "is_sphere", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_is_sphere);
@@ -11581,6 +11589,8 @@ namespace cor
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNode", "get_collision_group_pair", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_get_collision_group_pair);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNode", "add_o_box", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_add_o_box);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNode", "add_o_sphere", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_add_o_sphere);
+            binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNode", "add_o_box_filtered", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_add_o_box_filtered);
+            binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNode", "add_o_sphere_filtered", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_add_o_sphere_filtered);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNode", "find_o_box_1", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_find_o_box_1);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNode", "find_o_box_2", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_find_o_box_2);
             binder.bind_custom_method("CorCocos2dxConverter", "Collision2dNode", "find_pair", Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_find_pair);
