@@ -49,6 +49,7 @@ namespace cor
             RSize alloced_size;
             RSize illigal_free_count;
             RSize alloc_size;
+            RBool available;
 
             static const RSize freed_table_size = 64 + 1;
             HeaderPtr freed_table[freed_table_size];
@@ -85,6 +86,7 @@ namespace cor
             itnl->new_count = 0;
             itnl->delete_count = 0;
             itnl->alloc_size = 0;
+            itnl->available = rtrue;
 
             RSize i, isz;
             isz = AllocationMonitorItnl::freed_table_size;
@@ -112,6 +114,7 @@ namespace cor
                 }
             }
 
+            itnl->available = rfalse;
 
             //ref_instance_pointer() = NULL;
         }
@@ -276,12 +279,15 @@ namespace cor
             if(am)
             {
                 AllocationMonitorItnl* itnl = am->itnl;
-                itnl->mutex.lock();
-
-                if(itnl->freed_table[s])
+                if(itnl->available)
                 {
-                    p = itnl->freed_table[s];
-                    itnl->freed_table[s] = itnl->freed_table[s]->next;
+                    itnl->mutex.lock();
+
+                    if(itnl->freed_table[s])
+                    {
+                        p = itnl->freed_table[s];
+                        itnl->freed_table[s] = itnl->freed_table[s]->next;
+                    }
                 }
             }
 
@@ -322,9 +328,12 @@ namespace cor
                 }
 #endif
                 AllocationMonitorItnl* itnl = am->itnl;
-                itnl->mutex.unlock();
-                itnl->alloc_size += sz;
-                itnl->new_count++;
+                if(itnl->available)
+                {
+                    itnl->mutex.unlock();
+                    itnl->alloc_size += sz;
+                    itnl->new_count++;
+                }
             }
 
             return static_cast<void*>(bp);
@@ -336,7 +345,10 @@ namespace cor
             if(am)
             {
                 AllocationMonitorItnl* itnl = am->itnl;
-                itnl->mutex.lock();
+                if(itnl->available)
+                {
+                    itnl->mutex.lock();
+                }
             }
 
             size_t sz = 0;
@@ -357,6 +369,7 @@ namespace cor
             {
                 AllocationMonitorItnl* itnl = am->itnl;
 
+                
                 if(p)
                 {
                     auto bp = static_cast<RBytePtr>(p);
@@ -371,23 +384,33 @@ namespace cor
                     }
 #endif
 
-                    if(!h->freed)
+                    if(itnl->available)
                     {
-                        h->freed = rtrue;
-                        sz = h->size;
+                        if(!h->freed)
+                        {
+                            h->freed = rtrue;
+                            sz = h->size;
 
-                        auto s = algorithm::BitOperation::ciel_pow_two(h->n);
-                        h->next = itnl->freed_table[s];
-                        itnl->freed_table[s] = h;
+                            auto s = algorithm::BitOperation::ciel_pow_two(h->n);
+                            h->next = itnl->freed_table[s];
+                            itnl->freed_table[s] = h;
+                        }
+                    }
+                    else
+                    {
+                        ::free(h);
                     }
                     
                 }
 
-                itnl->mutex.unlock();
-                if(p)
+                if(itnl->available)
                 {
-                    itnl->delete_count++;
-                    itnl->alloc_size -= sz;
+                    itnl->mutex.unlock();
+                    if(p)
+                    {
+                        itnl->delete_count++;
+                        itnl->alloc_size -= sz;
+                    }
                 }
             }
             
