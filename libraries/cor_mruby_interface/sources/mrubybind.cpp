@@ -78,7 +78,7 @@ void MrubyBind::Initialize() {
                                      mrb_intern_cstr(mrb_, untouchable_table));
   } else {
     mrb_const_set(mrb_, mrb_obj_value(mrb_->kernel_module), sym_mrubybind, mrb_obj_value(mrubybind));
-    
+
     {
         avoid_gc_table_ = mrb_ary_new(mrb_);
         mrb_obj_iv_set(mrb_, (RObject*)mrubybind,
@@ -93,6 +93,61 @@ void MrubyBind::Initialize() {
   }
 }
 
+std::vector<std::string> MrubyBind::SplitModule(const char* module_name)
+{
+    std::vector<std::string> splited;
+    if(!module_name){
+        return splited;
+    }
+    std::string str(module_name);
+    std::string d("::");
+    size_t c = 0, f, dsz = d.size();
+    while((f = str.find(d, c)) != std::string::npos){
+        splited.push_back(str.substr(c, f - c));
+        c = f + dsz;
+    }
+    splited.push_back(str.substr(c, str.size() - c));
+    return splited;
+}
+
+struct RClass* MrubyBind::DefineModule(const char* module_name)
+{
+    std::vector<std::string> modules = SplitModule(module_name);
+    struct RClass* last_module = nullptr;
+    for(size_t i = 0 ; i < modules.size() ; i++){
+        auto m = modules[i];
+        if(i == 0){
+            last_module = mrb_define_module(mrb_, m.c_str());
+        }
+        else{
+            last_module = mrb_define_module_under(mrb_, last_module, m.c_str());
+        }
+    }
+    return last_module;
+}
+
+struct RClass* MrubyBind::DefineClass(const char* module_name, const char* class_name)
+{
+    struct RClass * tc;
+    mrb_value mod = mrb_obj_value(mod_);
+    std::string name;
+    if(module_name){
+      name = module_name;
+      name += "::";
+      name += class_name;
+      tc = mrb_define_class(mrb_, name.c_str(), mrb_->object_class);
+      struct RClass * mdp = DefineModule(module_name);
+      mod = mrb_obj_value(mdp);
+      mrb_define_const(mrb_, mdp, class_name, mrb_obj_value(tc));
+    }
+    else
+    {
+      name = class_name;
+      tc = mrb_define_class(mrb_, class_name, mrb_->object_class);
+    }
+    return tc;
+}
+
 struct RClass* MrubyBind::GetClass(const char* class_name) {
   mrb_value mod = mrb_obj_value(mod_);
   mrb_value klass_v = mrb_const_get(mrb_, mod, mrb_intern_cstr(mrb_, class_name));
@@ -102,7 +157,7 @@ struct RClass* MrubyBind::GetClass(const char* class_name) {
 struct RClass* MrubyBind::GetClass(const char* module_name, const char* class_name) {
   mrb_value mod = mrb_obj_value(mod_);
   if(module_name){
-    mod = mrb_obj_value(mrb_define_module(mrb_, module_name));
+    mod = mrb_obj_value(DefineModule(module_name));
   }
   mrb_value klass_v = mrb_const_get(mrb_, mod, mrb_intern_cstr(mrb_, class_name));
   return mrb_class_ptr(klass_v);
@@ -136,7 +191,7 @@ void MrubyBind::BindInstanceMethod(const char* module_name,
 MrubyRef load_string(mrb_state* mrb, std::string code)
 {
     mrubybind::MrubyArenaStore mas(mrb);
-    
+
     RClass* mrubybind = mrb_define_module(mrb, "MrubyBind");
     mrb->exc = NULL;
     mrb_value r = mrb_load_string(mrb,
@@ -150,12 +205,12 @@ MrubyRef load_string(mrb_state* mrb, std::string code)
         mrb_obj_iv_set(mrb, (RObject*)mrubybind,
                        mrb_intern_cstr(mrb, untouchable_last_exception), mrb_nil_value());
     }
-    
+
     return MrubyRef(mrb, r);
 }
 
 MrubyRef::MrubyRef(){
-    
+
 }
 
 MrubyRef::MrubyRef(mrb_state* mrb, const mrb_value& v){
@@ -166,7 +221,7 @@ MrubyRef::MrubyRef(mrb_state* mrb, const mrb_value& v){
 }
 
 MrubyRef::~MrubyRef(){
-    
+
 }
 
 bool MrubyRef::is_living() const{
