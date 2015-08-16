@@ -309,20 +309,17 @@ unless resource_only
 
     import_cpp_include_from = Pathname(File.dirname(import_cpp_file))
     import_cpp_includes = cpp_list.map do |v|
-      #dfn = v[:fn].gsub(v[:base], import_cpp_copy_dest)
-      #FileUtils.mkpath File.dirname(dfn)
-      #FileUtils.copy v[:fn], dfn
       import_cpp_include_to = Pathname(File.absolute_path(v[:fn]))
       r = import_cpp_include_to.relative_path_from(import_cpp_include_from)
       r.to_s
     end
 
-    import_cpp_includes = import_cpp_includes.select do |v| v.match(/\.cpp$/) end
+    import_cpp_list = import_cpp_includes.select do |v| v.match(/\.cpp$/) end
 
-    import_cpp_includes = import_cpp_includes.map do |v|
-      "#include \"#{v}\""
-    end
-    import_cpp_includes = import_cpp_includes.join "\n"
+    #import_cpp_includes = import_cpp_includes.map do |v|
+    #  "#include \"#{v}\""
+    #end
+    #import_cpp_includes = import_cpp_includes.join "\n"
 
     import_cpp_code = <<EOS
 #include "cor_type/sources/basic_types.h"
@@ -335,9 +332,15 @@ namespace cor
     }
 }
 
-#{import_cpp_includes}
+//#{import_cpp_includes}
 
 EOS
+
+    import_cpp_list_xml = import_cpp_list.map do |v|
+      <<EOS
+        <ClCompile Include='#{v}'/>
+EOS
+    end.join
 
     imporer_txt = Cor.u.file_read import_cpp_importer_file
     Cor.u.file_write import_cpp_importer_file, imporer_txt
@@ -352,15 +355,20 @@ EOS
   <PropertyGroup />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>#{import_cpp_props_includes.map{|v| "../../#{v}"}.join(';')}</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../sources;#{import_cpp_props_includes.map{|v| "../../#{v}"}.join(';')}</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup />
+  <ItemGroup>
+#{import_cpp_list_xml}
+
+  </ItemGroup>
 </Project>
 EOS
 
     Cor.u.file_write import_cpp_local_conf_mk, <<EOS
-PRJINCS += #{import_cpp_props_includes.map{|v| "../#{v}"}.join(' ')}
+PRJINCS += ../sources #{import_cpp_props_includes.map{|v| "../#{v}"}.join(' ')}
+PRJSRCS += #{import_cpp_list.map{|v| "#{v.gsub(/^..\//, "")}"}.join(' ')}
 EOS
 
   else
@@ -380,7 +388,8 @@ EOS
 EOS
 
     Cor.u.file_write import_cpp_local_conf_mk, <<EOS
-PRJINCS =
+PRJINCS +=
+PRJSRCS +=
 EOS
 
   end

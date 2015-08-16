@@ -40,7 +40,7 @@ namespace cor
             f(&argv_list[0], argv_list.size());
 #endif
         }
-        
+
         Application::Application() : itnl(new ApplicationItnl())
         {
 
@@ -57,7 +57,7 @@ namespace cor
                     }
                 }
             });
-            
+
             if(copy_mode)
             {
                 ShellExecute(NULL, TEXT("open"), TEXT("cmd"), TEXT("/c ruby ../../project_script/copy_project.rb --resource-only --win32-copy "), NULL, SW_SHOWNORMAL);
@@ -80,7 +80,7 @@ namespace cor
             eventDispatcher->addEventListenerWithFixedPriority(toForegroundListener, -3);
 
         }
-        
+
         Application::~Application()
         {
             cocos2d::network::HttpClient::destroyInstance();
@@ -231,7 +231,7 @@ namespace cor
             auto tsc = ApplicationFade::create(0.25f, project_group->get_scene().get(), Color3B(0, 0, 0));
             director->runWithScene(tsc);
 
-            
+
         }
 
         void Application::replace_to_project(const RString& name, const ProjectBaseSP& project)

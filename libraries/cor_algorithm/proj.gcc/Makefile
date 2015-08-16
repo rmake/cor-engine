@@ -17,16 +17,16 @@ AR := ar
 MKDIR := mkdir -p
 
 ifneq ($(WINDOWS), )
-    #CC := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\x86_64-w64-mingw32-gcc.exe" -m32 -static 
-    #CXX := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\x86_64-w64-mingw32-g++.exe" -m32 -static 
+    #CC := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\x86_64-w64-mingw32-gcc.exe" -m32 -static
+    #CXX := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\x86_64-w64-mingw32-g++.exe" -m32 -static
     #AR := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\Mingw64\mingw64_4_8_1_5\bin\ar.exe"
     #MKDIR := mkdir -p
-    
-    CC := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\MinGW\msys\opt\windows_64\bin\gcc.exe" -static 
-    CXX := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\MinGW\msys\opt\windows_64\bin\g++.exe" -static 
+
+    CC := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\MinGW\msys\opt\windows_64\bin\gcc.exe" -static
+    CXX := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\MinGW\msys\opt\windows_64\bin\g++.exe" -static
     AR := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\MinGW\msys\opt\windows_64\bin\ar.exe"
     MKDIR := mkdir -p
-    
+
     #CC := clang -D_HAS_EXCEPTIONS=0
     #CXX := clang++ -D_HAS_EXCEPTIONS=0
     #AR := ar
@@ -37,15 +37,15 @@ ifneq ($(CLANG), )
     INCDIRFLAGS += -I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/
     INCDIRFLAGS += -I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/x86_64-redhat-linux/
     CC := clang
-    CXX := clang++ 
+    CXX := clang++
     AR := ar
     MKDIR := mkdir -p
 endif
 
 
 #ifneq ($(WINDOWS), )
-#    CC := PATH=/c/TDM-GCC-64/bin:$$PATH "C:\TDM-GCC-64\bin\gcc.exe" -m32 -static 
-#    CXX := PATH=/c/TDM-GCC-64/bin:$$PATH "C:\TDM-GCC-64\bin\g++.exe" -m32 -static 
+#    CC := PATH=/c/TDM-GCC-64/bin:$$PATH "C:\TDM-GCC-64\bin\gcc.exe" -m32 -static
+#    CXX := PATH=/c/TDM-GCC-64/bin:$$PATH "C:\TDM-GCC-64\bin\g++.exe" -m32 -static
 #    AR := PATH=/c/TDM-GCC-64/bin:$$PATH "C:\TDM-GCC-64\bin\ar.exe"
 #    MKDIR := mkdir -p
 #endif
@@ -86,7 +86,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(AR) $(ARFLAGS) $(TARGET) $(OBJS)
-	
+
 %.$(TARGET).o: %.cpp
 	$(CXX) $(CPPFLAGS) $< -c -o $@
 
@@ -95,14 +95,14 @@ $(TARGET): $(OBJS)
 
 %.$(TARGET).o: %.c
 	$(CC) $(CCFLAGS) $< -c -o $@
-	
+
 %.$(TARGET).d: %.cpp
 	$(CXX) $(CPPFLAGS) -M $<  >  $@
 
 #%.$(TARGET).d: %.cc
 #	$(CXX) $(CPPFLAGS) -M $<  >  $@
 
-clean : 
+clean :
 	-$(RM) $(TARGET) $(OBJS) $(DEPENDS)
 
 -include $(DEPENDS)

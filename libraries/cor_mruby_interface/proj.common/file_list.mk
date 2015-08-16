@@ -1,6 +1,5 @@
 PRJINCS:=
--include ../../../libraries/cor_mruby_interface/proj.common/cor_mruby_interface_local_conf.mk
-PRJSRCS=../../cor_mruby_interface/sources/basic_bind/sub_0.cpp\
+PRJSRCS:=../../cor_mruby_interface/sources/basic_bind/sub_0.cpp\
     ../../cor_mruby_interface/sources/basic_bind/sub_1.cpp\
     ../../cor_mruby_interface/sources/basic_bind/sub_10.cpp\
     ../../cor_mruby_interface/sources/basic_bind/sub_11.cpp\
@@ -36,3 +35,4 @@ PRJSRCS=../../cor_mruby_interface/sources/basic_bind/sub_0.cpp\
     ../../cor_mruby_interface/sources/mruby_experimental.cpp\
     ../../cor_mruby_interface/sources/mruby_ref_container.cpp\
     ../../cor_mruby_interface/sources/mruby_state.cpp
+-include ../../../libraries/cor_mruby_interface/proj.common/cor_mruby_interface_local_conf.mk

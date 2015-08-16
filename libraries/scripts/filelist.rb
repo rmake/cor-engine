@@ -25,9 +25,9 @@ NEED_MRUBY = [
 ]
 
 NEED_COCOS2DX = [
-    'cor_cocos2dx_converter', 
-    'cor_world', 
-    'cor_project_structure', 
+    'cor_cocos2dx_converter',
+    'cor_world',
+    'cor_project_structure',
     'cor_cocos2dx_mruby_interface',
 ]
 
@@ -48,16 +48,16 @@ AR := ar
 MKDIR := mkdir -p
 
 ifneq ($(WINDOWS), )
-    #CC := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\\Mingw64\\mingw64_4_8_1_5\\bin\\x86_64-w64-mingw32-gcc.exe" -m32 -static 
-    #CXX := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\\Mingw64\\mingw64_4_8_1_5\\bin\\x86_64-w64-mingw32-g++.exe" -m32 -static 
+    #CC := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\\Mingw64\\mingw64_4_8_1_5\\bin\\x86_64-w64-mingw32-gcc.exe" -m32 -static
+    #CXX := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\\Mingw64\\mingw64_4_8_1_5\\bin\\x86_64-w64-mingw32-g++.exe" -m32 -static
     #AR := PATH=/c/Mingw64/mingw64_4_8_1_5/bin:$$PATH "C:\\Mingw64\\mingw64_4_8_1_5\\bin\\ar.exe"
     #MKDIR := mkdir -p
-    
-    CC := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\\MinGW\\msys\\opt\\windows_64\\bin\\gcc.exe" -static 
-    CXX := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\\MinGW\\msys\\opt\\windows_64\\bin\\g++.exe" -static 
+
+    CC := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\\MinGW\\msys\\opt\\windows_64\\bin\\gcc.exe" -static
+    CXX := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\\MinGW\\msys\\opt\\windows_64\\bin\\g++.exe" -static
     AR := PATH=/c/MinGW/msys/opt/windows_64/bin:$$PATH "C:\\MinGW\\msys\\opt\\windows_64\\bin\\ar.exe"
     MKDIR := mkdir -p
-    
+
     #CC := clang -D_HAS_EXCEPTIONS=0
     #CXX := clang++ -D_HAS_EXCEPTIONS=0
     #AR := ar
@@ -68,15 +68,15 @@ ifneq ($(CLANG), )
     INCDIRFLAGS += -I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/
     INCDIRFLAGS += -I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/x86_64-redhat-linux/
     CC := clang
-    CXX := clang++ 
+    CXX := clang++
     AR := ar
     MKDIR := mkdir -p
 endif
 
 
 #ifneq ($(WINDOWS), )
-#    CC := PATH=/c/TDM-GCC-64/bin:$$PATH "C:\\TDM-GCC-64\\bin\\gcc.exe" -m32 -static 
-#    CXX := PATH=/c/TDM-GCC-64/bin:$$PATH "C:\\TDM-GCC-64\\bin\\g++.exe" -m32 -static 
+#    CC := PATH=/c/TDM-GCC-64/bin:$$PATH "C:\\TDM-GCC-64\\bin\\gcc.exe" -m32 -static
+#    CXX := PATH=/c/TDM-GCC-64/bin:$$PATH "C:\\TDM-GCC-64\\bin\\g++.exe" -m32 -static
 #    AR := PATH=/c/TDM-GCC-64/bin:$$PATH "C:\\TDM-GCC-64\\bin\\ar.exe"
 #    MKDIR := mkdir -p
 #endif
@@ -117,7 +117,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(AR) $(ARFLAGS) $(TARGET) $(OBJS)
-	
+
 %.$(TARGET).o: %.cpp
 	$(CXX) $(CPPFLAGS) $< -c -o $@
 
@@ -126,14 +126,14 @@ $(TARGET): $(OBJS)
 
 %.$(TARGET).o: %.c
 	$(CC) $(CCFLAGS) $< -c -o $@
-	
+
 %.$(TARGET).d: %.cpp
 	$(CXX) $(CPPFLAGS) -M $<  >  $@
 
 #%.$(TARGET).d: %.cc
 #	$(CXX) $(CPPFLAGS) -M $<  >  $@
 
-clean : 
+clean :
 	-$(RM) $(TARGET) $(OBJS) $(DEPENDS)
 
 -include $(DEPENDS)
@@ -320,7 +320,7 @@ def file_list_path(path)
     end
 
   end
-  
+
   file_list
 end
 
@@ -343,24 +343,24 @@ def file_list_all_path(path)
     end
 
   end
-  
+
   file_list
 end
 
 def vc_project_filter(libname, project_path, proj_vc_path, file_list_all)
-  
+
   proj_file = "#{proj_vc_path}/#{libname}/#{libname}.vcxproj"
   filter_file = "#{proj_vc_path}/#{libname}/#{libname}.vcxproj.filters"
-  
+
   print "vcproj #{proj_file}\n"
-  
+
   if File.exist? proj_file
     print "exist\n"
-    
+
     doc = nil
     e_inc = nil
     e_src = nil
-    
+
     File.open proj_file, "r" do |f|
       doc = REXML::Document.new(f)
       doc.root.elements.each do |e|
@@ -368,24 +368,24 @@ def vc_project_filter(libname, project_path, proj_vc_path, file_list_all)
           e_inc = e if e.elements.first && e.elements.first.name == "ClInclude"
           e_src = e if e.elements.first && e.elements.first.name == "ClCompile"
         end
-        
+
       end
-      
+
     end
-    
+
     unless e_inc
       e_inc = REXML::Element.new("ItemGroup")
       doc.root.add e_inc
     end
-    
+
     unless e_src
       e_src = REXML::Element.new("ItemGroup")
       doc.root.add e_src
     end
-    
+
     e_inc.elements.delete_all "*"
     e_src.elements.delete_all "*"
-    
+
     file_list_all.each do |fn|
       if File.extname(fn) == ".h"
         e = e_inc << REXML::Element.new("ClInclude")
@@ -393,7 +393,7 @@ def vc_project_filter(libname, project_path, proj_vc_path, file_list_all)
         e.add_attribute("Include", nfn)
       end
     end
-    
+
     file_list_all.each do |fn|
       if File.extname(fn) == ".cpp"
         e = e_src << REXML::Element.new("ClCompile")
@@ -401,19 +401,19 @@ def vc_project_filter(libname, project_path, proj_vc_path, file_list_all)
         e.add_attribute("Include", nfn)
       end
     end
-    
-    
+
+
     File.open proj_file, "w" do |f|
       doc.write f
     end
-    
+
     #
-    
+
     doc = nil
     e_inc = nil
     e_src = nil
     e_filter = nil
-    
+
     File.open filter_file, "r" do |f|
       doc = REXML::Document.new(f)
       doc.root.elements.each do |e|
@@ -422,32 +422,32 @@ def vc_project_filter(libname, project_path, proj_vc_path, file_list_all)
           e_src = e if e.elements.first.name == "ClCompile"
           e_filter = e if e.elements.first.name == "Filter"
         end
-        
+
       end
-      
+
     end
-    
+
     unless e_inc
       e_inc = REXML::Element.new("ItemGroup")
       doc.root.add e_inc
     end
-    
+
     unless e_src
       e_src = REXML::Element.new("ItemGroup")
       doc.root.add e_src
     end
-    
+
     unless e_filter
       e_filter = REXML::Element.new("ItemGroup")
       doc.root.add e_filter
     end
-    
+
     e_inc.elements.delete_all "*"
     e_src.elements.delete_all "*"
     e_filter.elements.delete_all "*"
-    
+
     dirs = {}
-    
+
     file_list_all.each do |fn|
       if File.extname(fn) == ".h"
         e = e_inc << REXML::Element.new("ClInclude")
@@ -461,7 +461,7 @@ def vc_project_filter(libname, project_path, proj_vc_path, file_list_all)
         end
       end
     end
-    
+
     file_list_all.each do |fn|
       if File.extname(fn) == ".cpp"
         e = e_src << REXML::Element.new("ClCompile")
@@ -475,66 +475,67 @@ def vc_project_filter(libname, project_path, proj_vc_path, file_list_all)
         end
       end
     end
-    
+
     dirs.each_key do |k|
       fe = e_filter << REXML::Element.new("Filter")
       fe.add_attribute("Include", k.gsub('/', "\\"))
     end
-    
+
     File.open filter_file, "w" do |f|
       doc.write f
     end
-    
+
   end
-  
-  
-  
+
+
+
 end
 
 def file_list_project(libname, project_path)
 
     FileUtils.mkpath project_path
-    
+
     sources_path = "#{project_path}/sources"
     FileUtils.mkpath sources_path
     proj_common_path = "#{project_path}/proj.common"
     FileUtils.mkpath proj_common_path
     file_list_file_name = "#{proj_common_path}/file_list.mk"
-    
+
     print "project #{libname}\n"
-    
+
     print "file list\n"
     file_list = file_list_path sources_path
-    
+
     print "file list all\n"
     file_list_all = file_list_all_path sources_path
-    
+
     File.open file_list_file_name, "wb" do |f|
         f.write "PRJINCS:=\n"
+        f.write "PRJSRCS:=#{file_list.map{|n| "../#{n}"}.join "\\\n    "}\n"
         f.write "-include ../../../libraries/#{libname}/proj.common/#{libname}_local_conf.mk\n"
-        f.write "PRJSRCS=#{file_list.map{|n| "../#{n}"}.join "\\\n    "}\n"
+
     end
-    
+
     proj_host_gcc_path = "#{project_path}/proj.gcc"
     FileUtils.mkpath proj_host_gcc_path
-    
+
     make_host_gcc_path = "#{proj_host_gcc_path}/Makefile"
-    
+
     incpath = ALL_INCPATH
     mac_incpath = incpath.clone
-    
+
     if NEED_MRUBY.include? libname
       incpath += MRUBY_INCPATH
       mac_incpath += MRUBY_INCPATH
     end
-    
+
     if NEED_COCOS2DX.include? libname
       incpath += COCOS2DX_INCPATH
       mac_incpath += COCOS2DX_INCPATH + MAC_COCOS2DX_INCPATH
     end
-    
+
     macros = []
-    
+
     File.open make_host_gcc_path, "wb" do |f|
         str = HOST_GCC_LIB_MAKE_TEMPLATE.gsub('%INCDIRFLAGS%', incpath.map{|p| '-I../' + p }.join(" \\\n"))
         str = str.gsub('%LIBFILENAME%', "lib#{libname}.a")
@@ -542,14 +543,14 @@ def file_list_project(libname, project_path)
         str = str.gsub('%ADDITIONALFLAGS%', '')
         f.write str
     end
-    
+
     proj_vc_path = "#{project_path}/proj.vc"
     FileUtils.mkpath proj_vc_path
     vc_project_filter libname, project_path, proj_vc_path, file_list_all
-    
+
     proj_ios_mac_path = "#{project_path}/proj.ios_mac"
     FileUtils.mkpath proj_ios_mac_path
-    
+
     mac_path = "#{proj_ios_mac_path}/osx"
     FileUtils.mkpath mac_path
     mac_macros = macros + MAC_MACROS
@@ -564,7 +565,7 @@ def file_list_project(libname, project_path)
     ios_path = "#{proj_ios_mac_path}/ios"
     FileUtils.mkpath ios_path
     ios_macros = macros + IOS_MACROS
-    
+
     ios_sim_archs = ['i386', 'x86_64']
     ios_sim_archs.each do |arch|
         ios_sim_make_path = "#{ios_path}/Makefile.sim.#{arch}.ios"
@@ -579,7 +580,7 @@ def file_list_project(libname, project_path)
             f.write str
         end
     end
-    
+
     ios_dev_archs = ['arm64', 'armv7', 'armv7s']
     ios_dev_archs.each do |arch|
         ios_dev_make_path = "#{ios_path}/Makefile.dev.#{arch}.ios"
@@ -595,8 +596,8 @@ def file_list_project(libname, project_path)
         end
 
     end
-    
-    
+
+
     ios_make_path = "#{ios_path}/Makefile"
     File.open ios_make_path, "wb" do |f|
         str = MAKE_IOS_COMBINE.gsub('%LIBFILENAME%',"lib#{libname}.a")

@@ -1,6 +1,5 @@
 PRJINCS:=
--include ../../../libraries/cor_cocos2dx_mruby_interface/proj.common/cor_cocos2dx_mruby_interface_local_conf.mk
-PRJSRCS=../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/sub_0.cpp\
+PRJSRCS:=../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/sub_0.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/sub_1.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/sub_10.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/sub_11.cpp\
@@ -38,3 +37,4 @@ PRJSRCS=../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/sub_0.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/mruby_script_engine.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/sprite_experimental.cpp
+-include ../../../libraries/cor_cocos2dx_mruby_interface/proj.common/cor_cocos2dx_mruby_interface_local_conf.mk

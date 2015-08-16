@@ -1,6 +1,5 @@
 PRJINCS:=
--include ../../../libraries/cor_cocos2dx_converter/proj.common/cor_cocos2dx_converter_local_conf.mk
-PRJSRCS=../../cor_cocos2dx_converter/sources/cocos2dx_experimental.cpp\
+PRJSRCS:=../../cor_cocos2dx_converter/sources/cocos2dx_experimental.cpp\
     ../../cor_cocos2dx_converter/sources/collision_2d_node.cpp\
     ../../cor_cocos2dx_converter/sources/easy_http_client.cpp\
     ../../cor_cocos2dx_converter/sources/rts/rts_object.cpp\
@@ -13,3 +12,4 @@ PRJSRCS=../../cor_cocos2dx_converter/sources/cocos2dx_experimental.cpp\
     ../../cor_cocos2dx_converter/sources/step_size_scene.cpp\
     ../../cor_cocos2dx_converter/sources/textured_triangle_node.cpp\
     ../../cor_cocos2dx_converter/sources/type_converter.cpp
+-include ../../../libraries/cor_cocos2dx_converter/proj.common/cor_cocos2dx_converter_local_conf.mk
