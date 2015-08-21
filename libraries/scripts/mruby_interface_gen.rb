@@ -5,6 +5,7 @@ $LOAD_PATH.push('lib')
 require 'cor/utility'
 require 'cor/clang_dump_tree_parse'
 require 'cor/clang_dump_tree_gen'
+require 'cor/mruby_binding_gen'
 
 
 require 'inc_path.rb'
@@ -12,217 +13,7 @@ require 'inc_path.rb'
 Encoding.default_external = 'utf-8'
 
 
-def gen_code option
 
-  puts "generating #{option[:path]} ..."
-
-  lib_list = option[:lib_list]
-
-  a = []
-  lib_list.each do |p|
-    a += Utility.file_list "../#{p}/sources" do |path|
-      [".h"].index File.extname(path)
-    end
-  end
-  
-  a = a.select do |p|
-    !p.match(/^\.\.\/cor_.*_tmpl_impl.h/)
-  end
-  a = a.select do |p|
-    !p.match(/^\.\.\/cor_project_structure\/sources\/import\/cpp/)
-  end
-  
-  cocos2dx = option[:cocos2dx]
-  
-  a2 = []
-  if cocos2dx
-    a2 = [
-      "#{COCOS2DX_PATH}/cocos/cocos2d.h",
-      "#{COCOS2DX_PATH}/cocos/ui/UIEditBox/UIEditBox.h",
-      #"#{COCOS2DX_PATH}/extensions/cocos-ext.h",
-      "#{COCOS2DX_PATH}/extensions/GUI/CCScrollView/CCScrollView.h",
-      "#{COCOS2DX_PATH}/cocos/audio/include/SimpleAudioEngine.h",
-      "../cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h",
-    ]
-  end
-
-  src = "#undef __SSE__\n" +
-    a.map{|v| "#include \"../#{v}\"\n" }.join("") +
-    "#undef RELATIVE\n#undef ABSOLUTE\n" +
-    a2.map{|v| "#include \"../#{v}\"\n" }.join("")
-
-  Utility.file_write "data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp", src
-  
-  src = src.gsub(/#undef.*?\n/m, "")
-
-  inc_path = ALL_INCPATH + ["../"]
-  includes = inc_path.map{|v| "-I#{v}"}.join(' ')
-  
-  if cocos2dx
-    ipath = [
-      "#{COCOS2DX_PATH}/external/win32-specific/gles/include/OGLES",
-      "#{COCOS2DX_PATH}/external/glfw3/include/win32",
-    ]
-    includes += ' ' + (COCOS2DX_INCPATH + ipath).map{|v| "-I#{v}"}.join(' ')
-  end
-  
-  includes += ' ' + ["-I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/",
-    "-I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/x86_64-redhat-linux/"
-    ].join(' ')
-  
-  cmd_clang = "clang++ -Xclang -ast-dump -fsyntax-only -std=c++11 -pg -Wall -DLINUX -DCC_STATIC #{includes} data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp"
-  
-  str = `#{cmd_clang}`
-  
-  str = str.encode("UTF-16BE", "UTF-8", :invalid => :replace, :undef => :replace, :replace => '?').encode("UTF-8")
-
-  Utility.file_write "log/#{option[:name]}/tmp.log", str
-
-  tree = ClangDumpTree::parse_tree str
-
-  #str = tree.print_tree
-  #Utility.file_write "log/#{option[:name]}/print_tree.log", str
-
-  classes = tree.print_classes
-  Utility.file_write "log/#{option[:name]}/tree_classes.log", classes
-
-  typedefs = tree.print_typedefs
-  Utility.file_write "log/#{option[:name]}/tree_typedefs.log", typedefs
-
-  methods = tree.print_methods
-  Utility.file_write "log/#{option[:name]}/tree_methods.log", methods
-  
-  class_templates = tree.print_class_templates
-  Utility.file_write "log/#{option[:name]}/tree_class_templates.log", class_templates
-  
-  enum_constants = tree.print_enum_constants
-  Utility.file_write "log/#{option[:name]}/tree_enum_constants.log", enum_constants
-  
-  
-  require 'gen_info/mruby_interface'
-  
-  target_classes = MRUBY_INTERFACE_TAGET_CLASSES
-  target_enums = MRUBY_INTERFACE_TAGET_ENUMS
-  
-  type_assoc_table = {
-    "std::vector<char>" => "cor::RCharArray",
-    "_Bool" => "bool",
-    "unsigned char" => "int", 
-    "const _Bool" => "const bool",
-    "RBool" => "bool",
-    "cinit" => "delete",
-    "long" => "int",
-    "short" => "int",
-    "unsigned short" => "int",
-    "__va_list_tag *" => "delete",
-    "std::shared_ptr<void>" => "std::weak_ptr<void>",
-    "std::function<void (EventCustom *)>" => "mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventCustom>)>",
-    "Touch::DispatchMode" => "cocos2d::Touch::DispatchMode",
-    "std::function<_Bool (cocos2d::Touch *, cocos2d::Event *)>" => "mrubybind::FuncPtr<bool (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)>",
-    "std::function<void (cocos2d::Touch *, cocos2d::Event *)>" => "mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)>",
-    "std::function<void (Texture2D *)>" => "mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D>)>",
-    "std::function<void (Node *)>" => "mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)>",
-    "Texture2D::PixelFormat" => "cocos2d::Texture2D::PixelFormat",
-    "MipmapInfo *" => "delete",
-    "TexParams *" => "delete",
-    "const TexParams *" => "delete",
-    " char*" => "std::string",
-    "float [16]" => "delete",
-    "std::function<void (Sprite3D *, void *)>" => "mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D>, void *)>",
-    "std::vector<Touch *>" => "std::vector<cocos2d::Touch *>",
-    "std::vector<Touch*>" => "std::vector<cocos2d::Touch*>",
-    "std::vector<Vec2 *>" => "delete",
-    "std::vector<Vec2*>" => "delete",
-    "std::vector<Vec2 *> *" => "delete",
-    "std::vector<Vec2*>*" => "delete",
-    "const std::vector<Vec2 *> *" => "delete",
-    "const std::vector<Vec2*>*" => "delete",
-    #"std::vector<Mesh*>" => "std::vector<cocos2d::Mesh*>",
-    "cocos2d::Vec2 [4]" => "delete",
-    #"Vector<cocos2d::AnimationFrame*>" => "delete",
-    "tParticle *" => "delete",
-    #"Node" => "cocos2d::Node",
-    "Camera::Type" => "cocos2d::Camera::Type",
-    "va_list" => "delete",
-    "delete type" => "delete",
-    "PhysicsContactData" => "cocos2d::PhysicsContactData",
-    "const PhysicsContactData*" => "cocos2d::PhysicsContactData*",
-    "TMXTileFlags *" => "delete",
-    "cocos2d::Texture2D::PixelFormatInfoMap" => "delete",
-    #"enum cocos2d::TextHAlignment" => "int",
-    "std::unordered_map<ssize_t, Texture2D*>" => "delete",
-    "std::unordered_map<std::string, Curve*>" => "delete",
-    "std::unordered_map<std::basic_string<char>, Curve*>" => "delete",
-    "std::unordered_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >, Curve*>" => "delete",
-    "std::hash<string>" => "std::hash<std::string>",
-    "std::unordered_map<std::basic_string<char>, cocos2d::Value, std::hash<string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >" => "std::unordered_map<std::basic_string<char>, cocos2d::Value, std::hash<std::string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >",
-    "std::unordered_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >, cocos2d::Value, std::hash<string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >" => "std::unordered_map<std::basic_string<char>, cocos2d::Value, std::hash<std::string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >",
-    "std::map<enum cocos2d::Texture2D::PixelFormat, const cocos2d::Texture2D::PixelFormatInfo, std::less<enum cocos2d::Texture2D::PixelFormat>, std::allocator<std::pair<const enum cocos2d::Texture2D::PixelFormat, const cocos2d::Texture2D::PixelFormatInfo> > >" => "delete",
-  }
-  
-  reject_method_table = {
-    #"cocos2d::EventListenerTouchAllAtOnce" => {
-    #  "onTouchesBegan" => true,
-    #  "onTouchesMoved" => true,
-    #  "onTouchesEnded" => true,
-    #  "onTouchesCancelled" => true,
-    #}
-  }
-  
-  #reject_method_table = {
-  #  "cocos2d::PhysicsWorld" => {
-  #    "rayCast" => true,
-  #    "queryRect" => true,
-  #    "queryPoint" => true,
-  #  },
-  #}
-  
-  name_space = "mruby_interface"
-  
-  if cocos2dx
-    
-    require 'gen_info/cocos2dx_mruby_interface'
-  
-    target_classes = COCOS2DX_MRUBY_INTERFACE_TAGET_CLASSES
-    target_enums = COCOS2DX_MRUBY_INTERFACE_TAGET_ENUMS
-    
-    name_space = "cocos2dx_mruby_interface"
-  end
-  
-  code_header, code_cpp, code_sub_cpp = ClangDumpTree.gen_code({
-    :name => option[:name],
-    :tree => tree,
-    :path => option[:path],
-    :name_space => name_space,
-    :target_classes => target_classes,
-    :target_enums => target_enums,
-    :type_assoc_table => type_assoc_table,
-    :reject_method_table => reject_method_table,
-  })
-  
-  source_filter = Proc.new do |src|
-    src.gsub("std::basic_string<char, std::char_traits<char>, std::allocator<char> >", "std::string").
-      gsub("std::basic_string<char>", "std::string").
-      gsub("std::basic_string<unsigned short, std::char_traits<unsigned short>, std::allocator<unsigned short> >", "std::u16string").
-      gsub("std::basic_string<unsigned short>", "std::u16string")
-  end
-  
-  Utility.file_write "log/#{option[:name]}/tree_code_header.log", code_header
-  Utility.file_write "log/#{option[:name]}/tree_code_cpp.log", src.gsub("../../", "") + source_filter.call(code_cpp)
-  code_sub_cpp.each_with_index do |v, i|
-    Utility.file_write "log/#{option[:name]}/sub/cpp_#{i}.log", src.gsub("../../", "") + source_filter.call(v)
-  end
-  
-  Utility.file_write "#{option[:path]}.h", code_header
-  Utility.file_write "#{option[:path]}.cpp", src.gsub("../../", "") + source_filter.call(code_cpp)
-  code_sub_cpp.each_with_index do |v, i|
-    if v != ""
-      Utility.file_write "#{option[:path]}/sub_#{i}.cpp", src.gsub("../../", "") + source_filter.call(v)
-    else
-      Utility.file_write "#{option[:path]}/sub_#{i}.cpp", v
-    end
-  end
-end
 
 options = [
   {
@@ -252,38 +43,27 @@ options = [
   },
 ]
 
-if ARGV.length > 0
-  ops = ARGV.map do |ag|
-    options.find do |op|
-      op[:name] == ag
-    end
+tasks = [
+  "gen_task/mruby_interface.rb",
+  "gen_task/cocos2dx_mruby_interface.rb",
+]
+
+threads = []
+tasks.each do |task|
+  threads << Thread.new do
+    #puts `ruby mruby_interface_gen.rb #{option[:name]}`
+    system "ruby generate_mruby_interface.rb #{task}"
   end
-  
-  ops.each do |option|
-    gen_code(option)
-  end
-  
-  puts "generate success!"
-
-else
-
-  threads = []
-  options.each do |option|
-    threads << Thread.new do
-      #puts `ruby mruby_interface_gen.rb #{option[:name]}`
-      system "ruby mruby_interface_gen.rb #{option[:name]}"
-    end
-  end
-
-  threads.each do |thread|
-    thread.join
-  end
-
-  `ruby create_source.rb`
-
-  puts "all success!"
-
 end
+
+threads.each do |thread|
+  thread.join
+end
+
+`ruby create_source.rb`
+
+puts "all success!"
+
 
 
 

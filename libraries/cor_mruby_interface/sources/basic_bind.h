@@ -10,13 +10,15 @@ namespace cor
         class BasicBind
         {
         public:
-            
+
             static void bind(mruby_interface::MrubyState& mrb);
-        
+
         };
-        
-        
+
+
     }
+
 }
+
 
 #endif

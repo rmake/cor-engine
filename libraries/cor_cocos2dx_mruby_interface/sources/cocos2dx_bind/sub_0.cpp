@@ -10841,7 +10841,7 @@ namespace cor
         void Cocos2dxBind_cocos2d__PhysicsRayCastInfo_accessor_set_data(cocos2d::PhysicsRayCastInfo& c, void * a);
         void * Cocos2dxBind_cocos2d__PhysicsRayCastInfo_accessor_get_data(cocos2d::PhysicsRayCastInfo& c);
 
-    
+
         
           void Cocos2dxBind_bind_func_0(mruby_interface::MrubyState& mrb)
           {

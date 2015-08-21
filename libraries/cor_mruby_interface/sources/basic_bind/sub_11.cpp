@@ -578,7 +578,7 @@ namespace cor
         void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, MrubyRef a);
         MrubyRef BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_path(cor::data_structure::CostGridSpacePath& c);
 
-    
+
         
           void BasicBind_bind_func_11(mruby_interface::MrubyState& mrb)
           {
