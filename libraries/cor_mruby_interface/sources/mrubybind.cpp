@@ -117,10 +117,22 @@ struct RClass* MrubyBind::DefineModule(const char* module_name)
     for(size_t i = 0 ; i < modules.size() ; i++){
         auto m = modules[i];
         if(i == 0){
-            last_module = mrb_define_module(mrb_, m.c_str());
+            if(mrb_const_defined_at(mrb_, mrb_obj_value(mrb_->object_class), mrb_intern_cstr(mrb_, m.c_str()))){
+                mrb_value mdl = mrb_const_get(mrb_, mrb_obj_value(mrb_->object_class), mrb_intern_cstr(mrb_, m.c_str()));
+                last_module = mrb_class_ptr(mdl);
+            }
+            else {
+                last_module = mrb_define_module(mrb_, m.c_str());
+            }
         }
         else{
-            last_module = mrb_define_module_under(mrb_, last_module, m.c_str());
+            if(mrb_const_defined_at(mrb_, mrb_obj_value(mrb_->object_class), mrb_intern_cstr(mrb_, m.c_str()))){
+                mrb_value mdl = mrb_const_get(mrb_, mrb_obj_value(last_module), mrb_intern_cstr(mrb_, m.c_str()));
+                last_module = mrb_class_ptr(mdl);
+            }
+            else {
+                last_module = mrb_define_module_under(mrb_, last_module, m.c_str());
+            }
         }
     }
     return last_module;
