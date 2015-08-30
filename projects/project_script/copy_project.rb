@@ -4,6 +4,7 @@ require 'fileutils'
 prject_structure_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(File.absolute_path(__FILE__)))
 
 FileUtils.chdir "#{File.dirname __FILE__}"
+here = Dir::getwd
 
 $LOAD_PATH.push(".")
 $LOAD_PATH.push("../../libraries/scripts/lib")
@@ -70,6 +71,22 @@ class CorProject
     @import_cpp_filter
   end
 
+  def self.binding_confs=(a)
+    @binding_confs = a
+  end
+
+  def self.binding_confs
+    @binding_confs
+  end
+
+  def self.current_project_path=(v)
+    @current_project_path = v
+  end
+
+  def self.current_project_path
+    @current_project_path
+  end
+
 end
 
 
@@ -127,62 +144,6 @@ FileUtils.rm Dir.glob("#{destination_resource_root_path}/*.log")
 cpp_list = []
 import_cpp_props_includes = []
 
-unless resource_only
-
-  destination_projects = "../cor_lib_test_main/"
-
-  source_projects = "default_copy_source/project_file"
-  puts "source_projects #{source_projects}"
-  if Dir.exists? "default_copy_source/project_file"
-    puts "project_file copy #{source_projects} -> #{destination_projects}"
-    FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
-  end
-
-  CorProject.includes.each do |inc|
-    source_projects = "#{inc}/project_file"
-    puts "source_projects #{source_projects}"
-
-    if Dir.exists? "#{inc}/project_file"
-      puts "project_file copy #{source_projects} -> #{destination_projects}"
-      FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
-    end
-
-    if CorProject.import_cpp && Dir.exists?("#{inc}/cpp")
-      import_cpp_props_includes << "#{inc}/cpp"
-      tmpcpp_list = Cor.u.file_list("#{inc}/cpp") do |v|
-        next CorProject.import_cpp_filter.call v if CorProject.import_cpp_filter
-        true
-      end
-      tmpcpp_list = tmpcpp_list.map do |v|
-        {:fn => v, :base => "#{inc}/cpp"}
-      end
-      cpp_list += tmpcpp_list
-    end
-  end
-
-  source_projects = "#{source_path}/project_file"
-  puts "source_projects #{source_projects}"
-
-  if Dir.exists? "#{source_path}/project_file"
-    puts "project_file copy #{source_projects} -> #{destination_projects}"
-    FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
-  end
-
-  if CorProject.import_cpp && Dir.exists?("#{source_path}/cpp")
-    import_cpp_props_includes << "#{source_path}/cpp"
-
-    tmpcpp_list = Cor.u.file_list("#{source_path}/cpp") do |v|
-      next CorProject.import_cpp_filter.call v if CorProject.import_cpp_filter
-      true
-    end
-    tmpcpp_list = tmpcpp_list.map do |v|
-      {:fn => v, :base => "#{source_path}/cpp"}
-    end
-    cpp_list += tmpcpp_list
-
-  end
-end
-
 find_path = "../../licenses"
 list += Cor.u.file_list(find_path).map{|fn|
   {
@@ -226,6 +187,7 @@ past_copy_data = {
   "past_crypt" => false,
   "past_win32_copy" => false,
   "file_table" => {},
+  "past_cpps" => {},
 }
 past_copy_table = past_copy_data["file_table"]
 force_update = false
@@ -249,6 +211,112 @@ end
 past_copy_data["past_crypt"] = CorProject::crypt
 past_copy_data["past_win32_copy"] = win32_copy
 past_copy_data["current_project"] = source_path
+past_copy_data["past_cpps"] ||= {}
+
+
+binding_gen = Proc.new do |path|
+  CorProject.current_project_path = path
+  binding_conf = "#{path}/binding_conf.rb"
+  if File.exists?(binding_conf)
+    #FileUtils.chdir File.dirname(binding_conf)
+
+    past_cpps = past_copy_data["past_cpps"]
+    cpps = Cor.u.file_list("#{path}/cpp")
+
+    is_run_gen = false
+
+    cpps.each do |cpp_name|
+      next unless cpp_name.match(/\.h$/)
+      if !File.exist?(cpp_name) || past_cpps[cpp_name] != File.mtime(cpp_name).to_s || force_update
+        puts "is_run_gen true ->#{past_cpps[cpp_name]}<- #{File.mtime(cpp_name).to_s}"
+        is_run_gen = true
+      end
+      past_cpps[cpp_name] = File.mtime(cpp_name)
+    end
+
+    next unless is_run_gen
+
+    mruby_binging_generator_script_path = "../../libraries/scripts"
+    base_path = Pathname(File.expand_path(mruby_binging_generator_script_path))
+    conf_path = Pathname(File.expand_path(path))
+    conf_path_for_gen = conf_path.relative_path_from base_path
+
+    puts "conf_path_for_gen #{conf_path_for_gen}"
+
+    cmd = "ruby #{mruby_binging_generator_script_path}/generate_mruby_interface.rb #{conf_path_for_gen.to_s}/binding_conf.rb"
+    puts "cmd #{cmd}"
+    system(cmd)
+
+    cpps.each do |cpp_name|
+      next unless cpp_name.match(/\.h$/)
+      past_cpps[cpp_name] = File.mtime(cpp_name).to_s
+    end
+
+    #FileUtils.chdir here
+  end
+end
+
+unless resource_only
+
+  destination_projects = "../cor_lib_test_main/"
+
+  source_projects = "default_copy_source/project_file"
+  puts "source_projects #{source_projects}"
+  if Dir.exists? "default_copy_source/project_file"
+    puts "project_file copy #{source_projects} -> #{destination_projects}"
+    FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
+  end
+
+  CorProject.includes.each do |inc|
+    source_projects = "#{inc}/project_file"
+    puts "source_projects #{source_projects}"
+
+    if Dir.exists? "#{inc}/project_file"
+      puts "project_file copy #{source_projects} -> #{destination_projects}"
+      FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
+    end
+
+    if CorProject.import_cpp && Dir.exists?("#{inc}/cpp")
+
+      binding_gen.call inc
+
+      import_cpp_props_includes << "#{inc}/cpp"
+      tmpcpp_list = Cor.u.file_list("#{inc}/cpp") do |v|
+        next CorProject.import_cpp_filter.call v if CorProject.import_cpp_filter
+        true
+      end
+      tmpcpp_list = tmpcpp_list.map do |v|
+        {:fn => v, :base => "#{inc}/cpp"}
+      end
+      cpp_list += tmpcpp_list
+    end
+  end
+
+  source_projects = "#{source_path}/project_file"
+  puts "source_projects #{source_projects}"
+
+  if Dir.exists? "#{source_path}/project_file"
+    puts "project_file copy #{source_projects} -> #{destination_projects}"
+    FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
+  end
+
+  if CorProject.import_cpp && Dir.exists?("#{source_path}/cpp")
+
+    binding_gen.call source_path
+
+    import_cpp_props_includes << "#{source_path}/cpp"
+
+    tmpcpp_list = Cor.u.file_list("#{source_path}/cpp") do |v|
+      next CorProject.import_cpp_filter.call v if CorProject.import_cpp_filter
+      true
+    end
+    tmpcpp_list = tmpcpp_list.map do |v|
+      {:fn => v, :base => "#{source_path}/cpp"}
+    end
+    cpp_list += tmpcpp_list
+
+  end
+end
 
 puts "project copy"
 

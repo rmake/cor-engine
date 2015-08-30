@@ -1,5 +1,6 @@
 
 require 'cor/utility'
+require 'pathname'
 
 module COR
 
@@ -59,6 +60,13 @@ module COR
       @target_enums += enums
     end
 
+    def self.convert_relative_path(path)
+      base_path = Pathname(File.expand_path("./"))
+      target_path = Pathname(File.expand_path(path))
+      relative_path = target_path.relative_path_from base_path
+      relative_path.to_s
+    end
+
     def self.gen_code(option)
 
       option[:name] ||= @name
@@ -66,7 +74,7 @@ module COR
 
       puts "generating #{option[:path]} ..."
 
-      lib_list = option[:lib_list] || @lib_list
+      lib_list = option[:lib_list] || @lib_list || []
 
       a = []
       lib_list.each do |p|
