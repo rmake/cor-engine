@@ -311,6 +311,7 @@ module COR
         "std::basic_string<char>" => true,
         "std::basic_string<char, std::char_traits<char>, std::allocator<char> >" => true,
         "std::basic_string<char, std::char_traits<char>, std::allocator<char>>" => true,
+        "std::string" => true,
         "RString" => true,
         "cor::RString" => true,
         "RBool" => true,
@@ -695,7 +696,10 @@ module COR
         if match
 
           tmpl = class_template_table[tp]
-
+          unless tmpl
+            tmpl = class_template_table[tp.gsub(/std/, "std::inline")]
+          end
+          
           tmpl_args = match
 
           tmpl_args_table = {}

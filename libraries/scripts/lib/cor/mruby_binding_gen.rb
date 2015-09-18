@@ -133,8 +133,10 @@ module COR
       includes += ' ' + ["-I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/",
         "-I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/x86_64-redhat-linux/"
         ].join(' ')
-
+ 
       cmd_clang = "clang++ -Xclang -ast-dump -fsyntax-only -std=c++11 -pg -Wall -fno-color-diagnostics -DLINUX -DCC_STATIC #{includes} data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp"
+      
+      puts "cmd_clang #{cmd_clang}"
 
       str = `#{cmd_clang}`
 
@@ -171,6 +173,7 @@ module COR
       if @@use_default_assoc_table
         type_assoc_table = {
           "std::vector<char>" => "cor::RCharArray",
+          "std::__1::vector<char, std::__1::allocator<char>>" => "cor::RCharArray",
           "_Bool" => "bool",
           "unsigned char" => "int",
           "const _Bool" => "const bool",
@@ -216,6 +219,7 @@ module COR
           "cocos2d::Texture2D::PixelFormatInfoMap" => "delete",
           #"enum cocos2d::TextHAlignment" => "int",
           "std::unordered_map<ssize_t, Texture2D*>" => "delete",
+          "std::unordered_map<int, cocos2d::Texture2D*>" => "delete",
           "std::unordered_map<std::string, Curve*>" => "delete",
           "std::unordered_map<std::basic_string<char>, Curve*>" => "delete",
           "std::unordered_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >, Curve*>" => "delete",
@@ -223,6 +227,7 @@ module COR
           "std::unordered_map<std::basic_string<char>, cocos2d::Value, std::hash<string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >" => "std::unordered_map<std::basic_string<char>, cocos2d::Value, std::hash<std::string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >",
           "std::unordered_map<std::basic_string<char, std::char_traits<char>, std::allocator<char> >, cocos2d::Value, std::hash<string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >" => "std::unordered_map<std::basic_string<char>, cocos2d::Value, std::hash<std::string>, std::equal_to<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, cocos2d::Value> > >",
           "std::map<enum cocos2d::Texture2D::PixelFormat, const cocos2d::Texture2D::PixelFormatInfo, std::less<enum cocos2d::Texture2D::PixelFormat>, std::allocator<std::pair<const enum cocos2d::Texture2D::PixelFormat, const cocos2d::Texture2D::PixelFormatInfo> > >" => "delete",
+          "std::__1::map<enum cocos2d::Texture2D::PixelFormat, const cocos2d::Texture2D::PixelFormatInfo, std::__1::less<enum cocos2d::Texture2D::PixelFormat>, std::__1::allocator<std::__1::pair<const enum cocos2d::Texture2D::PixelFormat, const cocos2d::Texture2D::PixelFormatInfo> > >" => "delete",
         }
       else
         type_assoc_table = {}
