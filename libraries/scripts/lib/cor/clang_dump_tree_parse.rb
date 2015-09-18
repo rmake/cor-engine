@@ -136,6 +136,8 @@ module COR
       while index < len
         
         line = a[index]
+        line = line.gsub(/std\:\:__1/, "std")
+        a[index] = line
         
         d = line.scan(/^ */)[0].length / 2
         
@@ -172,6 +174,8 @@ module COR
     def self.parse_token(line)
       line = line.gsub(/C\:\\Program Files \(x86\)\\Microsoft Visual Studio /, "VCPATH")
       line = line.gsub(/VCPATH[^:]+:/, "line:")
+      line = line.gsub(/\/Applications\/Xcode.app\/Contents\/Developer/, "XCODEPATH")
+      line = line.gsub(/XCODEPATH[^:]+:/, "line:")
       line = line.gsub(/ inline noexcept.unevaluated 0x(\w+)/, "")
       line = line.gsub(/col\:\d* used /, "").gsub(/line\:\d*:\d* used /, "")
       line = line.gsub(/col\:\d* implicit (used )?/, "").gsub(/line\:\d*:\d* implicit (used )?/, "")
@@ -200,7 +204,7 @@ module COR
         end
         t = t[:parent]
       end
-      nm
+      nm.gsub(/std\:\:inline/, "std")
     end
     
     def self.get_current_template(t)
