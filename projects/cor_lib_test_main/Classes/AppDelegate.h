@@ -2,9 +2,6 @@
 #define  _APP_DELEGATE_H_
 
 #include "cocos2d.h"
-#include "cor_project_structure/sources/application.h"
-#include "cor_system/sources/allocation_monitor.h"
-#include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 
 /**
 @brief    The cocos2d Application.
@@ -13,7 +10,6 @@ The reason for implement as private inheritance is to hide some interface call b
 */
 class  AppDelegate : private cocos2d::Application
 {
-    cor::project_structure::Application app;
 public:
     AppDelegate();
     virtual ~AppDelegate();

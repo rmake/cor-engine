@@ -260,7 +260,7 @@ void PUDynamicAttributeCurved::processControlPoints(void)
     if (_controlPoints.empty())
         return;
 
-    std::stable_sort(_controlPoints.begin(), _controlPoints.end(), PUControlPointSorter());
+    std::sort(_controlPoints.begin(), _controlPoints.end(), PUControlPointSorter());
     _range = (*getLastValidIterator()).x - (*getFirstValidIterator()).x;
 
     if (_interpolationType == IT_SPLINE)
