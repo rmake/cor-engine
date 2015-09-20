@@ -76,6 +76,8 @@ public:
     /** @deprecated Use destroyInstance() instead */
     CC_DEPRECATED_ATTRIBUTE static void purgeFileUtils() { destroyInstance(); }
 
+    static std::function<void(const std::string&, unsigned char*, size_t)>& decoder();
+
     /**
      *  The destructor of FileUtils.
      * @js NA

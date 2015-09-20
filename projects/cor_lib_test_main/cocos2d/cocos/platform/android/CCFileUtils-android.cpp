@@ -355,6 +355,7 @@ Data FileUtilsAndroid::getData(const std::string& filename, bool forString)
     }
     else
     {
+        FileUtils::decoder()(filename, data, size);
         ret.fastSet(data, size);
         cocosplay::notifyFileLoaded(fullPath);
     }

@@ -1360,7 +1360,7 @@ namespace ui {
         }
         if( _reorderProtectedChildDirty )
         {
-            std::sort( std::begin(_protectedChildren),
+            std::stable_sort( std::begin(_protectedChildren),
                        std::end(_protectedChildren),
                        nodeComparisonLess );
             _reorderProtectedChildDirty = false;

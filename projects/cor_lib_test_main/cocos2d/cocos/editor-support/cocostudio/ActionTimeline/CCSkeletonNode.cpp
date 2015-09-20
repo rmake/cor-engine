@@ -363,7 +363,7 @@ void SkeletonNode::updateOrderedAllbones()
 
 void SkeletonNode::sortOrderedAllBones()
 {
-    std::sort(_subOrderedAllBones.begin(), _subOrderedAllBones.end(), cocos2d::nodeComparisonLess);
+    std::stable_sort(_subOrderedAllBones.begin(), _subOrderedAllBones.end(), cocos2d::nodeComparisonLess);
 }
 
 NS_TIMELINE_END

@@ -372,8 +372,8 @@ void btSimulationIslandManager::buildAndProcessIslands(btDispatcher* dispatcher,
 	else
 	{
 		// Sort manifolds, based on islands
-		// Sort the vector using predicate and std::sort
-		//std::sort(islandmanifold.begin(), islandmanifold.end(), btPersistentManifoldSortPredicate);
+		// Sort the vector using predicate and std::stable_sort
+		//std::stable_sort(islandmanifold.begin(), islandmanifold.end(), btPersistentManifoldSortPredicate);
 
 		int numManifolds = int (m_islandmanifold.size());
 

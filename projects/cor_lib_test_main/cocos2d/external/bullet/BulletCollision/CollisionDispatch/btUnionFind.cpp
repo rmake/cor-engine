@@ -75,8 +75,8 @@ void	btUnionFind::sortIslands()
 #endif //STATIC_SIMULATION_ISLAND_OPTIMIZATION
 	}
 	
-	 // Sort the vector using predicate and std::sort
-	  //std::sort(m_elements.begin(), m_elements.end(), btUnionFindElementSortPredicate);
+	 // Sort the vector using predicate and std::stable_sort
+	  //std::stable_sort(m_elements.begin(), m_elements.end(), btUnionFindElementSortPredicate);
 	  m_elements.quickSort(btUnionFindElementSortPredicate());
 
 }

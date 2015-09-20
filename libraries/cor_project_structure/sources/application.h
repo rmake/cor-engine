@@ -2,6 +2,7 @@
 #define ____COR_PROJECT_STRUCTURE_SOURCES_APPLICATION_H_
 
 #include "project_group_scene.h"
+#include "platform/CCApplicationProtocol.h"
 
 namespace cor
 {
@@ -12,13 +13,13 @@ namespace cor
         typedef std::function<bool()> ApplicationDidFinishLaunchingFunc;
         typedef std::function<void()> ApplicationDidEnterBackgroundFunc;
         typedef std::function<void()> ApplicationWillEnterForegroundFunc;
-    
+
         class Application
         {
             std::unique_ptr<ApplicationItnl> itnl;
-        
+
         public:
-        
+
             Application();
             virtual ~Application();
 
@@ -35,7 +36,7 @@ namespace cor
             virtual void applicationDidEnterBackground();
             virtual void applicationWillEnterForeground();
 
-            void start_with_project(const RString& name, const ProjectBaseSP& project);
+            void start_with_project(const RString& name, const ProjectBaseSP& project, std::function<void()> callback);
             void replace_to_project(const RString& name, const ProjectBaseSP& project);
         };
     }

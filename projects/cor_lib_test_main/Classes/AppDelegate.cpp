@@ -1,5 +1,8 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include "ProjectTest1.h"
+#include "cor_project_structure/sources/project_mruby_call.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -9,11 +12,16 @@ static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
 static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
 
 AppDelegate::AppDelegate() {
-
+    cor::log_debug("AppDelegate::AppDelegate()");
+    
 }
 
-AppDelegate::~AppDelegate() 
+AppDelegate::~AppDelegate()
 {
+    if(cor::system::AllocationMonitor::get_instance())
+    {
+        cor::log_info(cor::system::AllocationMonitor::get_instance()->get_status_text());
+    }
 }
 
 //if you want a different context,just modify the value of glContextAttrs
@@ -27,7 +35,7 @@ void AppDelegate::initGLContextAttrs()
     GLView::setGLContextAttrs(glContextAttrs);
 }
 
-// If you want to use packages manager to install more packages, 
+// If you want to use packages manager to install more packages,
 // don't modify or remove this function
 static int register_all_packages()
 {
@@ -35,52 +43,50 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
-    // initialize director
-    auto director = Director::getInstance();
-    auto glview = director->getOpenGLView();
-    if(!glview) {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect("cor_lib_test_main", Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
-#else
-        glview = GLViewImpl::create("cor_lib_test_main");
-#endif
-        director->setOpenGLView(glview);
-    }
 
-    // turn on display FPS
-    director->setDisplayStats(true);
+    cor::system::Logger::get_instance()->add_print_func([](cor::system::LogType::Enum type, const cor::RString& str){
 
-    // set FPS. the default value is 1.0/60 if you don't call this
-    director->setAnimationInterval(1.0 / 60);
+        cor::RString top;
 
-    // Set the design resolution
-    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
-    Size frameSize = glview->getFrameSize();
-    // if the frame's height is larger than the height of medium size.
-    if (frameSize.height > mediumResolutionSize.height)
-    {        
-        director->setContentScaleFactor(MIN(largeResolutionSize.height/designResolutionSize.height, largeResolutionSize.width/designResolutionSize.width));
-    }
-    // if the frame's height is larger than the height of small size.
-    else if (frameSize.height > smallResolutionSize.height)
-    {        
-        director->setContentScaleFactor(MIN(mediumResolutionSize.height/designResolutionSize.height, mediumResolutionSize.width/designResolutionSize.width));
-    }
-    // if the frame's height is smaller than the height of medium size.
-    else
-    {        
-        director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
-    }
+        switch(type)
+        {
+        case cor::system::LogType::debug:
+            top = "debug: ";
+            break;
+        case cor::system::LogType::info:
+            top = "info: ";
+            break;
+        case cor::system::LogType::warn:
+            top = "warn: ";
+            break;
+        case cor::system::LogType::error:
+            top = "error: ";
+            break;
+        case cor::system::LogType::fatal:
+            top = "fatal: ";
+            break;
+        default:;
+        }
+        log("%s", (top + str).c_str());
+    });
 
-    register_all_packages();
+    cor::log_debug("AppDelegate::applicationDidFinishLaunching()");
+    cor::cocos2dx_mruby_interface::MrubyScriptEngine* engine = new cor::cocos2dx_mruby_interface::MrubyScriptEngine();
+    ScriptEngineManager::getInstance()->setScriptEngine(engine);
 
-    // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    app.set_did_finish_launching_func([=](){
+        auto project =
+            std::make_shared<cor::project_structure::ProjectMrubyCall>();
+        cor::project_structure::ProjectMrubyCall::first_init(&app);
+        project->set_start_file("start.rb");
 
-    // run
-    director->runWithScene(scene);
+        app.start_with_project("main", project, [&](){
+            register_all_packages();
+        });
+        return true;
+    });
 
-    return true;
+    return app.applicationDidFinishLaunching();
 }
 
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
@@ -88,7 +94,9 @@ void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
 
     // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+    CocosDenshion::SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+
+    app.applicationDidEnterBackground();
 }
 
 // this function will be called when the app is active again
@@ -96,5 +104,7 @@ void AppDelegate::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+    CocosDenshion::SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+
+    app.applicationWillEnterForeground();
 }

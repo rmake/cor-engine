@@ -91,7 +91,7 @@ void SweepContext::InitTriangulation()
   tail_ = new Point(xmin - dx, ymin - dy);
 
   // Sort points along y-axis
-  std::sort(points_.begin(), points_.end(), cmp);
+  std::stable_sort(points_.begin(), points_.end(), cmp);
 
 }
 

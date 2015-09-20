@@ -133,9 +133,9 @@ module COR
       includes += ' ' + ["-I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/",
         "-I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/x86_64-redhat-linux/"
         ].join(' ')
- 
+
       cmd_clang = "clang++ -Xclang -ast-dump -fsyntax-only -std=c++11 -pg -Wall -fno-color-diagnostics -DLINUX -DCC_STATIC #{includes} data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp"
-      
+
       puts "cmd_clang #{cmd_clang}"
 
       str = `#{cmd_clang}`
@@ -218,6 +218,11 @@ module COR
           "TMXTileFlags *" => "delete",
           "cocos2d::Texture2D::PixelFormatInfoMap" => "delete",
           #"enum cocos2d::TextHAlignment" => "int",
+          "experimental::Viewport" => "cocos2d::experimental::Viewport",
+          "experimental::FrameBuffer" => "cocos2d::experimental::FrameBuffer",
+          "experimental::FrameBuffer *" => "cocos2d::experimental::FrameBuffer *",
+          "ListenerID" => "cocos2d::EventListener::ListenerID",
+          "const ValueMap*" => "delete",
           "std::unordered_map<ssize_t, Texture2D*>" => "delete",
           "std::unordered_map<int, cocos2d::Texture2D*>" => "delete",
           "std::unordered_map<std::string, Curve*>" => "delete",

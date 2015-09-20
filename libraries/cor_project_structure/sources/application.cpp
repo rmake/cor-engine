@@ -64,20 +64,7 @@ namespace cor
                 Sleep(3000);
             }
 #endif
-            auto eventDispatcher = Director::getInstance()->getEventDispatcher();
 
-            FileUtils::getInstance()->addSearchPath("project_resource");
-
-            //auto rendererRecreatedListener = EventListenerCustom::create(EVENT_RENDERER_RECREATED, [](EventCustom* e){
-            //    cocos2dx_converter::RtsObjectSystem::on_active();
-            //});
-            //
-            //eventDispatcher->addEventListenerWithFixedPriority(rendererRecreatedListener, -3);
-
-            auto toForegroundListener = EventListenerCustom::create(EVENT_COME_TO_FOREGROUND, [](EventCustom* e){
-                cocos2dx_converter::RtsObjectSystem::on_active();
-            });
-            eventDispatcher->addEventListenerWithFixedPriority(toForegroundListener, -3);
 
         }
 
@@ -174,18 +161,55 @@ namespace cor
             }
         };
 
-        void Application::start_with_project(const RString& name, const ProjectBaseSP& project)
+        static cocos2d::Size designResolutionSize = cocos2d::Size(800, 480);
+        //static cocos2d::Size designResolutionSize = cocos2d::Size(1024, 1024 * 480 / 800);
+        static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
+        static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
+        static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
+
+        void Application::start_with_project(const RString& name, const ProjectBaseSP& project, std::function<void()> callback)
         {
+
+            // initialize director
             auto director = Director::getInstance();
             auto glview = director->getOpenGLView();
             if(!glview) {
-                //glview = GLView::createWithRect("Code on Rmake", Rect(0.0f, 0.0f, 480.0f, 800.0f));
-				glview = GLViewImpl::createWithRect("Code on Rmake", Rect(0.0f, 0.0f, 800.0f, 480.0f));
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+                glview = GLViewImpl::createWithRect("cor_lib_test_main", Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
+#else
+                glview = GLViewImpl::create("cor_lib_test_main");
+#endif
                 director->setOpenGLView(glview);
             }
 
-            //glview->setDesignResolutionSize(480, 800, ResolutionPolicy::SHOW_ALL);
-            glview->setDesignResolutionSize(800, 480, ResolutionPolicy::SHOW_ALL);
+            // turn on display FPS
+            director->setDisplayStats(true);
+
+            // set FPS. the default value is 1.0/60 if you don't call this
+            director->setAnimationInterval(1.0 / 30);
+
+            // Set the design resolution
+            //glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
+            glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::SHOW_ALL);
+            Size frameSize = glview->getFrameSize();
+            // if the frame's height is larger than the height of medium size.
+            if (frameSize.height > mediumResolutionSize.height)
+            {
+                director->setContentScaleFactor(MIN(largeResolutionSize.height/designResolutionSize.height, largeResolutionSize.width/designResolutionSize.width));
+            }
+            // if the frame's height is larger than the height of small size.
+            else if (frameSize.height > smallResolutionSize.height)
+            {
+                director->setContentScaleFactor(MIN(mediumResolutionSize.height/designResolutionSize.height, mediumResolutionSize.width/designResolutionSize.width));
+            }
+            // if the frame's height is smaller than the height of medium size.
+            else
+            {
+                director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
+            }
+            director->setContentScaleFactor(1.0f);
+
+            callback();
 
             cor::system::Logger::get_instance()->add_print_func([](cor::system::LogType::Enum type, const cor::RString& str){
 
@@ -215,17 +239,29 @@ namespace cor
 
             cor::log_debug("Project start.");
 
-            director->setDisplayStats(true);
+            //
+            auto eventDispatcher = Director::getInstance()->getEventDispatcher();
 
-            //director->setAnimationInterval(1.0 / 60);
+            FileUtils::getInstance()->addSearchPath("project_resource");
 
-            director->setAnimationInterval(1.0 / 30);
+            //auto rendererRecreatedListener = EventListenerCustom::create(EVENT_RENDERER_RECREATED, [](EventCustom* e){
+            //    cocos2dx_converter::RtsObjectSystem::on_active();
+            //});
+            //
+            //eventDispatcher->addEventListenerWithFixedPriority(rendererRecreatedListener, -3);
+
+            auto toForegroundListener = EventListenerCustom::create(EVENT_COME_TO_FOREGROUND, [](EventCustom* e){
+                cocos2dx_converter::RtsObjectSystem::on_active();
+            });
+            eventDispatcher->addEventListenerWithFixedPriority(toForegroundListener, -3);
+            //
 
             auto project_group = ProjectGroup::create();
             project_group->set_app(this);
             project_group->add_project("main", project);
             project_group->start();
             itnl->current_project_group = project_group;
+
 
 
             auto tsc = ApplicationFade::create(0.25f, project_group->get_scene().get(), Color3B(0, 0, 0));

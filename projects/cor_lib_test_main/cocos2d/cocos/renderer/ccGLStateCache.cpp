@@ -77,7 +77,7 @@ void invalidateStateCache( void )
     s_blendingDest = -1;
     s_GLServerState = 0;
     s_VAO = 0;
-    
+
 #endif // CC_ENABLE_GL_STATE_CACHE
 }
 
@@ -115,7 +115,8 @@ static void SetBlending(GLenum sfactor, GLenum dfactor)
     else
     {
 		glEnable(GL_BLEND);
-		glBlendFunc(sfactor, dfactor);
+		//glBlendFunc(sfactor, dfactor);
+        glBlendFuncSeparate(sfactor, dfactor, GL_SRC_ALPHA, GL_ONE);
 
         RenderState::StateBlock::_defaultState->setBlend(true);
         RenderState::StateBlock::_defaultState->setBlendSrc((RenderState::Blend)sfactor);
@@ -196,7 +197,7 @@ void deleteTexture(GLuint textureId)
         }
     }
 #endif // CC_ENABLE_GL_STATE_CACHE
-    
+
 	glDeleteTextures(1, &textureId);
 }
 
@@ -221,7 +222,7 @@ void bindVAO(GLuint vaoId)
 {
     if (Configuration::getInstance()->supportsShareableVAO())
     {
-    
+
 #if CC_ENABLE_GL_STATE_CACHE
         if (s_VAO != vaoId)
         {
@@ -231,7 +232,7 @@ void bindVAO(GLuint vaoId)
 #else
         glBindVertexArray(vaoId);
 #endif // CC_ENABLE_GL_STATE_CACHE
-    
+
     }
 }
 
@@ -247,7 +248,7 @@ void enableVertexAttribs(uint32_t flags)
         //FIXME:Cache is disabled, try to enable cache as before
         bool enabled = (flags & bit) != 0;
         bool enabledBefore = (s_attributeFlags & bit) != 0;
-        if(enabled != enabledBefore) 
+        if(enabled != enabledBefore)
         {
             if( enabled )
                 glEnableVertexAttribArray(i);

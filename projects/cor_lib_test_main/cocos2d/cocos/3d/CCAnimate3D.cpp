@@ -407,7 +407,7 @@ void Animate3D::update(float t)
                                 frameEvent->setUserData((void*)eventInfo);
                             }
                     }
-                    std::sort(eventInfos.begin(), eventInfos.end(), _playReverse ? cmpEventInfoDes : cmpEventInfoAsc);
+                    std::stable_sort(eventInfos.begin(), eventInfos.end(), _playReverse ? cmpEventInfoDes : cmpEventInfoAsc);
                     for (auto eventInfo : eventInfos) {
                         Director::getInstance()->getEventDispatcher()->dispatchEvent(_keyFrameEvent[eventInfo->frame]);
                     }

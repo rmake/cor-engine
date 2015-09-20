@@ -553,6 +553,12 @@ void FileUtils::setDelegate(FileUtils *delegate)
     s_sharedFileUtils = delegate;
 }
 
+std::function<void(const std::string&, unsigned char*, size_t)>& FileUtils::decoder()
+{
+    static std::function<void(const std::string&, unsigned char*, size_t)> f = [&](const std::string&, unsigned char*, size_t){};
+    return f;
+}
+
 FileUtils::FileUtils()
     : _writablePath("")
 {
@@ -661,6 +667,7 @@ static Data getData(const std::string& filename, bool forString)
     }
     else
     {
+        FileUtils::decoder()(filename, buffer, readsize);
         ret.fastSet(buffer, readsize);
     }
 
