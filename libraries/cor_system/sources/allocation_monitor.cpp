@@ -469,6 +469,7 @@ namespace cor
 }
 
 
+#if 0
 //#ifdef COR_CUSTOM_NEW_OPERATOR
 void* operator new(size_t n) throw(std::bad_alloc)
 {
@@ -490,5 +491,6 @@ void operator delete[](void* p) throw()
     return cor::system::AllocationMonitor::al_free(p);
 }
 //#endif
+#endif
 
 
