@@ -77,10 +77,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     app.set_did_finish_launching_func([=](){
         auto project =
             std::make_shared<cor::project_structure::ProjectMrubyCall>();
-        cor::project_structure::ProjectMrubyCall::first_init(&app);
         project->set_start_file("start.rb");
 
         app.start_with_project("main", project, [&](){
+            cor::project_structure::ProjectMrubyCall::first_init(&app);
             register_all_packages();
         });
         return true;

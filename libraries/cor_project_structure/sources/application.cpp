@@ -209,8 +209,6 @@ namespace cor
             }
             director->setContentScaleFactor(1.0f);
 
-            callback();
-
             cor::system::Logger::get_instance()->add_print_func([](cor::system::LogType::Enum type, const cor::RString& str){
 
                 cor::RString top;
@@ -243,6 +241,8 @@ namespace cor
             auto eventDispatcher = Director::getInstance()->getEventDispatcher();
 
             FileUtils::getInstance()->addSearchPath("project_resource");
+
+            callback();
 
             //auto rendererRecreatedListener = EventListenerCustom::create(EVENT_RENDERER_RECREATED, [](EventCustom* e){
             //    cocos2dx_converter::RtsObjectSystem::on_active();
