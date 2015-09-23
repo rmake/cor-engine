@@ -1,7 +1,7 @@
 
 require 'fileutils'
 
-prject_structure_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(File.absolute_path(__FILE__)))
+project_structure_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(File.absolute_path(__FILE__)))
 
 FileUtils.chdir "#{File.dirname __FILE__}"
 here = Dir::getwd
@@ -10,6 +10,7 @@ $LOAD_PATH.push(".")
 $LOAD_PATH.push("../../libraries/scripts/lib")
 
 require 'cor/utility'
+require 'cor/gen_project'
 require 'json'
 require 'pathname'
 
@@ -228,7 +229,6 @@ binding_gen = Proc.new do |path|
     cpps.each do |cpp_name|
       next unless cpp_name.match(/\.h$/)
       if !File.exist?(cpp_name) || past_cpps[cpp_name] != File.mtime(cpp_name).to_s || force_update
-        puts "is_run_gen true ->#{past_cpps[cpp_name]}<- #{File.mtime(cpp_name).to_s}"
         is_run_gen = true
       end
       past_cpps[cpp_name] = File.mtime(cpp_name)
@@ -365,11 +365,12 @@ list.each do |fn|
   d_table.delete dfn
 end
 
-import_cpp_props_file = "#{prject_structure_path}/proj.vc/cor_project_structure/cor_project_structure_local_conf.props"
-import_cpp_local_conf_mk = "#{prject_structure_path}/proj.common/cor_project_structure_local_conf.mk"
-import_cpp_file = "#{prject_structure_path}/sources/import/external_code_import_local_conf.h"
-import_cpp_importer_file = "#{prject_structure_path}/sources/import/external_code_importer.cpp"
-import_cpp_copy_dest = "#{prject_structure_path}/sources/import/cpp"
+import_cpp_props_file = "#{project_structure_path}/proj.vc/cor_project_structure/cor_project_structure_local_conf.props"
+import_cpp_local_conf_mk = "#{project_structure_path}/proj.common/cor_project_structure_local_conf.mk"
+import_cpp_local_conf_txt = "#{project_structure_path}/proj.common/cor_project_structure_local_conf.txt"
+import_cpp_file = "#{project_structure_path}/sources/import/external_code_import_local_conf.h"
+import_cpp_importer_file = "#{project_structure_path}/sources/import/external_code_importer.cpp"
+import_cpp_copy_dest = "#{project_structure_path}/sources/import/cpp"
 FileUtils.rmtree import_cpp_copy_dest
 
 unless resource_only
@@ -439,6 +440,17 @@ PRJINCS += ../sources #{import_cpp_props_includes.map{|v| "../#{v}"}.join(' ')}
 PRJSRCS += #{import_cpp_list.map{|v| "#{v.gsub(/^..\//, "")}"}.join(' ')}
 EOS
 
+    FileUtils.chdir project_structure_path
+
+    proj_file_list = Cor.u.file_list("../cor_project_structure/sources").select{ |v|
+      v.match(/(\.h$)|(\.cpp$)/)
+    }
+    GenProject.vc_project_filter "cor_project_structure", "../cor_project_structure",
+      "../cor_project_structure/proj.vc", proj_file_list + import_cpp_includes, true
+    Cor.u.file_write import_cpp_local_conf_txt, import_cpp_includes.map{|v| v.gsub(/^\.\.\//, "")}.join(";")
+
+    FileUtils.chdir here
+
   else
     if File.exist? import_cpp_file
       FileUtils.remove import_cpp_file
@@ -459,6 +471,8 @@ EOS
 PRJINCS +=
 PRJSRCS +=
 EOS
+
+    Cor.u.file_write import_cpp_local_conf_txt, ""
 
   end
 end

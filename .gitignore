@@ -74,6 +74,7 @@ projects/cor_lib_test_main/proj.android/res
 projects/cor_lib_test_main/Resources/
 
 libraries/cor_project_structure/sources/import/cpp
+libraries/scripts/data_gen
 
 generated_binding*
 

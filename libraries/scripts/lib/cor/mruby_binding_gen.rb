@@ -299,10 +299,10 @@ module COR
       end
 
       Utility.file_write "#{option[:path]}.h", code_header
-      Utility.file_write "#{option[:path]}.cpp", src.gsub("../../", "") + source_filter.call(code_cpp)
+      Utility.file_write "#{option[:path]}.cpp", src.gsub(/^..\/..\//, "") + source_filter.call(code_cpp)
       code_sub_cpp.each_with_index do |v, i|
         if v != ""
-          Utility.file_write "#{option[:path]}/sub_#{i}.cpp", src.gsub("../../", "") + source_filter.call(v)
+          Utility.file_write "#{option[:path]}/sub_#{i}.cpp", src.gsub(/^..\/..\//, "") + source_filter.call(v)
         else
           Utility.file_write "#{option[:path]}/sub_#{i}.cpp", v
         end

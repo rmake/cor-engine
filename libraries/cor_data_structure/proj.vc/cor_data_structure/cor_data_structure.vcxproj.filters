@@ -4,7 +4,7 @@
     
     
     
-  <Filter Include='sources\ai'/><Filter Include='sources'/><Filter Include='sources\basic'/><Filter Include='sources\geometry'/></ItemGroup>
+  <Filter Include='sources'/><Filter Include='sources\ai'/><Filter Include='sources\basic'/><Filter Include='sources\geometry'/></ItemGroup>
   <ItemGroup>
     <Text Include='ReadMe.txt'/>
   </ItemGroup>
