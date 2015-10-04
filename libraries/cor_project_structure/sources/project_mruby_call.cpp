@@ -388,6 +388,22 @@ namespace cor
                 
             }
 
+            static void set_keybord_event(cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> node, 
+                mrubybind::FuncPtr<void(int)> key_pressed,
+                mrubybind::FuncPtr<void(int)> key_released) {
+                auto ed = node->getEventDispatcher();
+                auto listener = cocos2d::EventListenerKeyboard::create();
+                listener->onKeyPressed = [=](cocos2d::EventKeyboard::KeyCode c, cocos2d::Event* e){
+                    key_pressed.func()((int)c);
+                };
+                listener->onKeyReleased = [=](cocos2d::EventKeyboard::KeyCode c, cocos2d::Event* e){
+                    key_released.func()((int)c);
+                };
+
+                ed->addEventListenerWithSceneGraphPriority(listener, node.get());
+
+            }
+
             static RInt32 get_time_ms()
             {
                 return static_cast<RInt32>(system::Time::get_time_ms());
@@ -740,7 +756,7 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "get_argument_string", ProjectMrubyCallItnl::get_argument_string);
             binder.bind_static_method("Cor", "Project", "get_platform_name", ProjectMrubyCallItnl::get_platform_name);
             binder.bind_static_method("Cor", "Project", "catch_break", ProjectMrubyCallItnl::catch_break);
-            
+            binder.bind_static_method("Cor", "Project", "set_keybord_event", ProjectMrubyCallItnl::set_keybord_event);
 
             //
             itnl->table_sp = data_structure::SharedPtrTable::create();

@@ -409,13 +409,16 @@ def file_list_project(libname, project_path)
     FileUtils.mkpath proj_vc_path
 
     proj_local_file_list_path = "#{project_path}/proj.common/#{libname}_local_conf.txt"
+
+    GenProject.vc_project_filter libname, project_path, proj_vc_path, file_list_all
+
     if File.exists? proj_local_file_list_path
       proj_local_file_list = Cor.u.file_read proj_local_file_list_path
-      proj_local_file_list = proj_local_file_list.split(";")
+      proj_local_file_list = proj_local_file_list.split(";").map{|v| "../#{v}"}
       file_list_all += proj_local_file_list
     end
 
-    GenProject.vc_project_filter libname, project_path, proj_vc_path, file_list_all
+    GenProject.vc_project_filter libname, project_path, proj_vc_path, file_list_all, true
 
     proj_ios_mac_path = "#{project_path}/proj.ios_mac"
     FileUtils.mkpath proj_ios_mac_path

@@ -699,7 +699,7 @@ module COR
           unless tmpl
             tmpl = class_template_table[tp.gsub(/std/, "std::inline")]
           end
-          
+
           tmpl_args = match
 
           tmpl_args_table = {}
@@ -2296,8 +2296,31 @@ end
 #endif
 EOS
 
+      proto_header = <<EOS
+#include "#{header_path}.h"
+
+#{
+if option[:cor_name_space]
+"namespace cor
+{"
+end
+}
+    namespace #{name_space}
+    {
+        #{"\n" + call_protos.to_s}
+        #{"\n" + cf_protos.join}
+    }
+#{
+if option[:cor_name_space]
+"}"
+end
+}
+
+EOS
+
       src = <<EOS
 #include "#{header_path}.h"
+#include "#{header_path}/sub_binding_generated.h"
 
 #{
 if option[:cor_name_space]
@@ -2311,7 +2334,7 @@ end
 
         #{"\n" + method_defines.to_s}
 
-        #{"\n" + call_protos.to_s}
+
 
         void #{class_name}::bind(mruby_interface::MrubyState& mrb)
         {
@@ -2348,6 +2371,7 @@ EOS
       sub_src = call_defs.map do |cd|
         tsrc = <<EOS
 #include "#{header_path}.h"
+#include "sub_binding_generated.h"
 
 #{
 if option[:cor_name_space]
@@ -2357,7 +2381,6 @@ end
 }
     namespace #{name_space}
     {
-        #{"\n" + cf_protos.join}
 
         #{"\n" + cd.to_s}
     }
@@ -2375,7 +2398,7 @@ EOS
       end
 
 
-      [header, src, sub_src]
+      [header, src, sub_src, proto_header]
     end
 
 

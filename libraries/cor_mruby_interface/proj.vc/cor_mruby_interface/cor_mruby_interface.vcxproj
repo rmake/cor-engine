@@ -131,5 +131,5 @@
     
     
     
-  <ClInclude Include='../../sources/basic_bind.h'/><ClInclude Include='../../sources/mruby_array.h'/><ClInclude Include='../../sources/mruby_array_tmpl.h'/><ClInclude Include='../../sources/mruby_array_tmpl_impl.h'/><ClInclude Include='../../sources/mruby_experimental.h'/><ClInclude Include='../../sources/mruby_ref_container.h'/><ClInclude Include='../../sources/mruby_state.h'/></ItemGroup>
+  <ClInclude Include='../../sources/basic_bind/sub_binding_generated.h'/><ClInclude Include='../../sources/basic_bind.h'/><ClInclude Include='../../sources/mruby_array.h'/><ClInclude Include='../../sources/mruby_array_tmpl.h'/><ClInclude Include='../../sources/mruby_array_tmpl_impl.h'/><ClInclude Include='../../sources/mruby_experimental.h'/><ClInclude Include='../../sources/mruby_ref_container.h'/><ClInclude Include='../../sources/mruby_state.h'/></ItemGroup>
 </Project>

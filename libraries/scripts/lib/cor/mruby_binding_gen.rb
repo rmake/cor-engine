@@ -87,6 +87,9 @@ module COR
         !p.match(/^\.\.\/cor_.*_tmpl_impl.h/)
       end
       a = a.select do |p|
+        !p.match(/^\.\.\/cor_.*_binding_generated.h/)
+      end
+      a = a.select do |p|
         !p.match(/^\.\.\/cor_project_structure\/sources\/import\/cpp/)
       end
 
@@ -273,7 +276,7 @@ module COR
 
       cor_name_space = @@use_cor_name_space
 
-      code_header, code_cpp, code_sub_cpp = ClangDumpTree.gen_code({
+      code_header, code_cpp, code_sub_cpp, proto_header = ClangDumpTree.gen_code({
         :name => option[:name],
         :tree => tree,
         :path => option[:path],
@@ -294,15 +297,18 @@ module COR
 
       Utility.file_write "log/#{option[:name]}/tree_code_header.log", code_header
       Utility.file_write "log/#{option[:name]}/tree_code_cpp.log", src.gsub("../../", "") + source_filter.call(code_cpp)
+      Utility.file_write "log/#{option[:name]}/tree_code_sub_binding_generated.h", src.gsub(/^..\/..\//, "") + source_filter.call(proto_header)
+
       code_sub_cpp.each_with_index do |v, i|
         Utility.file_write "log/#{option[:name]}/sub/cpp_#{i}.log", src.gsub("../../", "") + source_filter.call(v)
       end
 
       Utility.file_write "#{option[:path]}.h", code_header
-      Utility.file_write "#{option[:path]}.cpp", src.gsub(/^..\/..\//, "") + source_filter.call(code_cpp)
+      Utility.file_write "#{option[:path]}.cpp", src.gsub(/\"..\/..\//, "\"") + source_filter.call(code_cpp)
+      Utility.file_write "#{option[:path]}/sub_binding_generated.h", src.gsub(/\"..\/..\//, "\"") + source_filter.call(proto_header)
       code_sub_cpp.each_with_index do |v, i|
         if v != ""
-          Utility.file_write "#{option[:path]}/sub_#{i}.cpp", src.gsub(/^..\/..\//, "") + source_filter.call(v)
+          Utility.file_write "#{option[:path]}/sub_#{i}.cpp", src.gsub(/\"..\/..\//, "\"") + source_filter.call(v)
         else
           Utility.file_write "#{option[:path]}/sub_#{i}.cpp", v
         end

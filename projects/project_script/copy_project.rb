@@ -130,6 +130,7 @@ destination_resource_path = "#{destination_resource_root_path}/project_resource"
 source_conf_path = "#{source_path}/conf.rb"
 source_resource_path = "#{source_path}/resources"
 win32_copy_destination = File.expand_path("../../proj.win32/Debug.win32/project_resource", destination_resource_path)
+mruby_binging_generator_script_path = "../../libraries/scripts"
 
 FileUtils.mkpath destination_resource_path
 
@@ -236,7 +237,6 @@ binding_gen = Proc.new do |path|
 
     next unless is_run_gen
 
-    mruby_binging_generator_script_path = "../../libraries/scripts"
     base_path = Pathname(File.expand_path(mruby_binging_generator_script_path))
     conf_path = Pathname(File.expand_path(path))
     conf_path_for_gen = conf_path.relative_path_from base_path
@@ -374,7 +374,16 @@ import_cpp_copy_dest = "#{project_structure_path}/sources/import/cpp"
 FileUtils.rmtree import_cpp_copy_dest
 
 unless resource_only
-  if CorProject.import_cpp &&
+
+  cpp_list_changed = false
+  if File.exists? import_cpp_local_conf_txt
+    old_import_cpp_local_conf_txt_data = Cor.u.file_read import_cpp_local_conf_txt
+  else
+    old_import_cpp_local_conf_txt_data = nil
+    cpp_list_changed = true
+  end
+
+  if CorProject.import_cpp
 
     import_cpp_include_from = Pathname(File.dirname(import_cpp_file))
     import_cpp_includes = cpp_list.map do |v|
@@ -384,6 +393,7 @@ unless resource_only
     end
 
     import_cpp_list = import_cpp_includes.select do |v| v.match(/\.cpp$/) end
+    import_h_list = import_cpp_includes.select do |v| !v.match(/\.cpp$/) end
 
     #import_cpp_includes = import_cpp_includes.map do |v|
     #  "#include \"#{v}\""
@@ -404,6 +414,12 @@ namespace cor
 //#{import_cpp_includes}
 
 EOS
+
+    import_h_list_xml = import_h_list.map do |v|
+      <<EOS
+        <ClInclude Include='#{v}'/>
+EOS
+    end.join
 
     import_cpp_list_xml = import_cpp_list.map do |v|
       <<EOS
@@ -429,8 +445,10 @@ EOS
   </ItemDefinitionGroup>
   <ItemGroup />
   <ItemGroup>
-#{import_cpp_list_xml}
-
+    #{import_h_list_xml}
+  </ItemGroup>
+  <ItemGroup>
+    #{import_cpp_list_xml}
   </ItemGroup>
 </Project>
 EOS
@@ -447,6 +465,8 @@ EOS
     }
     GenProject.vc_project_filter "cor_project_structure", "../cor_project_structure",
       "../cor_project_structure/proj.vc", proj_file_list + import_cpp_includes, true
+
+    new_import_cpp_local_conf_txt_data = import_cpp_includes.map{|v| v.gsub(/^\.\.\//, "")}.join(";")
     Cor.u.file_write import_cpp_local_conf_txt, import_cpp_includes.map{|v| v.gsub(/^\.\.\//, "")}.join(";")
 
     FileUtils.chdir here
@@ -472,9 +492,23 @@ PRJINCS +=
 PRJSRCS +=
 EOS
 
-    Cor.u.file_write import_cpp_local_conf_txt, ""
+    new_import_cpp_local_conf_txt_data = ""
+    Cor.u.file_write import_cpp_local_conf_txt, new_import_cpp_local_conf_txt_data
 
   end
+
+  if old_import_cpp_local_conf_txt_data != new_import_cpp_local_conf_txt_data
+    cpp_list_changed = true
+  end
+
+  if cpp_list_changed || force_update
+    Dir.chdir mruby_binging_generator_script_path
+    cmd = "ruby filelist.rb"
+    puts "cmd #{cmd}"
+    system(cmd)
+    Dir.chdir here
+  end
+
 end
 
 

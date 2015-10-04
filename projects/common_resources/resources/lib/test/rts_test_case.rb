@@ -53,6 +53,17 @@ class RtsTestCase
   def self.log_result
     str = self.output_result.join("\n")
     Logger.info str
+
+    @log_result_count ||= 0
+    all_results = (self.all_records.map do |v|
+      "{\n" + (v.map do |k, v|
+        "  #{k} -> #{v}\n"
+      end).join + "},\n"
+    end).join
+    Project.write_text_to_file_direct "log_result_#{@log_result_count}.log", all_results
+    @log_result_count += 1
+
+
     str
   end
 

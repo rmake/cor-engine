@@ -51,6 +51,7 @@
 #include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
+#include "cor_mruby_interface/sources/basic_bind/sub_binding_generated.h"
 
 namespace cor
 {
@@ -3395,21 +3396,6 @@ namespace cor
 
 
 
-        
-          void BasicBind_bind_func_0(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_1(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_2(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_3(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_4(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_5(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_6(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_7(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_8(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_9(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_10(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_11(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_12(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_13(mruby_interface::MrubyState& mrb);
 
 
         void BasicBind::bind(mruby_interface::MrubyState& mrb)

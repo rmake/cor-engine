@@ -95,7 +95,7 @@
     
     
     
-  <ClInclude Include='../../sources/cocos2dx_bind.h'/><ClInclude Include='../../sources/cocos2dx_experimental.h'/><ClInclude Include='../../sources/cocos_array.h'/><ClInclude Include='../../sources/cocos_mruby_ref.h'/><ClInclude Include='../../sources/cocos_value.h'/><ClInclude Include='../../sources/cocos_weak_ptr.h'/><ClInclude Include='../../sources/mruby_script_engine.h'/><ClInclude Include='../../sources/sprite_experimental.h'/></ItemGroup>
+  <ClInclude Include='../../sources/cocos2dx_bind/sub_binding_generated.h'/><ClInclude Include='../../sources/cocos2dx_bind.h'/><ClInclude Include='../../sources/cocos2dx_experimental.h'/><ClInclude Include='../../sources/cocos_array.h'/><ClInclude Include='../../sources/cocos_mruby_ref.h'/><ClInclude Include='../../sources/cocos_value.h'/><ClInclude Include='../../sources/cocos_weak_ptr.h'/><ClInclude Include='../../sources/mruby_script_engine.h'/><ClInclude Include='../../sources/sprite_experimental.h'/></ItemGroup>
   <ItemGroup>
     
     
