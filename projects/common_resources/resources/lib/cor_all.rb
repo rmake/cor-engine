@@ -14,4 +14,4 @@ Project.load_eval "lib/rts_message_view.rb"
 Project.load_eval "lib/cor_base.rb"
 Project.load_eval "lib/cor_simple_menu.rb"
 Project.load_eval "lib/cor_simple_menu_scene.rb"
-
+Project.load_eval "lib/cor_simple_scene.rb"

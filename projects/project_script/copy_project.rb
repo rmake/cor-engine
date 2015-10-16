@@ -393,7 +393,7 @@ unless resource_only
     end
 
     import_cpp_list = import_cpp_includes.select do |v| v.match(/\.cpp$/) end
-    import_h_list = import_cpp_includes.select do |v| !v.match(/\.cpp$/) end
+    import_h_list = import_cpp_includes.select do |v| v.match(/\.h$/) end
 
     #import_cpp_includes = import_cpp_includes.map do |v|
     #  "#include \"#{v}\""
