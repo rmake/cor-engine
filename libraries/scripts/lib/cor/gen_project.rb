@@ -7,6 +7,7 @@ module COR
 
       proj_file = "#{proj_vc_path}/#{libname}/#{libname}.vcxproj"
       filter_file = "#{proj_vc_path}/#{libname}/#{libname}.vcxproj.filters"
+      filter_template_file = "#{proj_vc_path}/#{libname}/#{libname}_template.vcxproj.filters"
 
       print "vcproj #{proj_file}\n"
 
@@ -71,7 +72,7 @@ module COR
         e_src = nil
         e_filter = nil
 
-        File.open filter_file, "r" do |f|
+        read_file_proc = Proc.new do |f|
           doc = REXML::Document.new(f)
           doc.root.elements.each do |e|
             if e.name == "ItemGroup" && e.elements.first
@@ -81,8 +82,19 @@ module COR
             end
 
           end
-
         end
+
+        if File.exists? filter_template_file
+          File.open filter_template_file, "r" do |f|
+            read_file_proc.call f
+          end
+        else
+          File.open filter_file, "r" do |f|
+            read_file_proc.call f
+          end
+        end
+
+
 
         unless e_inc
           e_inc = REXML::Element.new("ItemGroup")
