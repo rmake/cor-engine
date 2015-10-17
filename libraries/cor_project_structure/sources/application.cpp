@@ -209,6 +209,7 @@ namespace cor
             }
             director->setContentScaleFactor(1.0f);
 
+            cor::system::Logger::get_instance()->clear_print_func();
             cor::system::Logger::get_instance()->add_print_func([](cor::system::LogType::Enum type, const cor::RString& str){
 
                 cor::RString top;

@@ -45,7 +45,7 @@ namespace cor
             void add_print_func(PrintFunc print_func);
             void add_print_func(RString name, PrintFunc print_func);
             void pop_print_func();
-            void clear_print_func(PrintFunc print_func);
+            void clear_print_func();
             void call_print_func(LogType::Enum type, const RString& str);
 
             RSize get_local_count(LogType::Enum type);

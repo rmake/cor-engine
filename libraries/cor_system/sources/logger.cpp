@@ -96,7 +96,7 @@ namespace cor
             itnl->print_funcs.pop_back();
         }
 
-        void Logger::clear_print_func(PrintFunc print_func)
+        void Logger::clear_print_func()
         {
             itnl->print_funcs.clear();
         }

@@ -170,7 +170,7 @@ namespace cor
         void BasicBind_cor__system__Logger_add_print_func_1(cor::system::Logger* c, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a0);
         void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a1);
         void BasicBind_cor__system__Logger_pop_print_func(cor::system::Logger* c);
-        void BasicBind_cor__system__Logger_clear_print_func(cor::system::Logger* c, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a0);
+        void BasicBind_cor__system__Logger_clear_print_func(cor::system::Logger* c);
         void BasicBind_cor__system__Logger_call_print_func(cor::system::Logger* c, int a0, std::string a1);
         unsigned int BasicBind_cor__system__Logger_get_local_count(cor::system::Logger* c, int a0);
         unsigned int BasicBind_cor__system__Logger_get_local_debug_count(cor::system::Logger* c);

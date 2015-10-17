@@ -11,11 +11,22 @@ namespace cor
           void GeneratedBinding_bind_func_2(mruby_interface::MrubyState& mrb);
           void GeneratedBinding_bind_func_3(mruby_interface::MrubyState& mrb);
           void GeneratedBinding_bind_func_4(mruby_interface::MrubyState& mrb);
+          void GeneratedBinding_bind_func_5(mruby_interface::MrubyState& mrb);
+          void GeneratedBinding_bind_func_6(mruby_interface::MrubyState& mrb);
+          void GeneratedBinding_bind_func_7(mruby_interface::MrubyState& mrb);
+          void GeneratedBinding_bind_func_8(mruby_interface::MrubyState& mrb);
+          void GeneratedBinding_bind_func_9(mruby_interface::MrubyState& mrb);
+          void GeneratedBinding_bind_func_10(mruby_interface::MrubyState& mrb);
+          void GeneratedBinding_bind_func_11(mruby_interface::MrubyState& mrb);
+          void GeneratedBinding_bind_func_12(mruby_interface::MrubyState& mrb);
+          void GeneratedBinding_bind_func_13(mruby_interface::MrubyState& mrb);
+          void GeneratedBinding_bind_func_14(mruby_interface::MrubyState& mrb);
 
         
         bool GeneratedBinding_RCharArray_valid_question(std::weak_ptr<cor::RCharArray> c);
         std::weak_ptr<cor::RCharArray> GeneratedBinding_RCharArray_create_0();
         std::weak_ptr<cor::RCharArray> GeneratedBinding_RCharArray_create_1(std::allocator<char> a0);
+        cor::matrix::Matrix GeneratedBinding_cor__matrix__Matrix_create_dense_by_array(mrubybind::MrubyRef a0);
         void GeneratedBinding_cor__RCharArray_capacity(std::weak_ptr<cor::RCharArray> c);
         void GeneratedBinding_cor__RCharArray_begin_1(std::weak_ptr<cor::RCharArray> c);
         void GeneratedBinding_cor__RCharArray_begin_2(std::weak_ptr<cor::RCharArray> c);
@@ -42,6 +53,9 @@ namespace cor
         void GeneratedBinding_cor__RCharArray_back_2(std::weak_ptr<cor::RCharArray> c);
         void GeneratedBinding_cor__RCharArray_pop_back(std::weak_ptr<cor::RCharArray> c);
         void GeneratedBinding_cor__RCharArray_clear(std::weak_ptr<cor::RCharArray> c);
+        void GeneratedBinding_cor__mruby_interface__AnyWP_reset(cor::mruby_interface::AnyWP& c);
+        void GeneratedBinding_cor__mruby_interface__AnyWP_expired(cor::mruby_interface::AnyWP& c);
+        void GeneratedBinding_cor__mruby_interface__AnyWP_lock(cor::mruby_interface::AnyWP& c);
 
     }
 }

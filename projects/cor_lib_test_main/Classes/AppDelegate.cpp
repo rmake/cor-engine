@@ -44,32 +44,6 @@ static int register_all_packages()
 
 bool AppDelegate::applicationDidFinishLaunching() {
 
-    cor::system::Logger::get_instance()->add_print_func([](cor::system::LogType::Enum type, const cor::RString& str){
-
-        cor::RString top;
-
-        switch(type)
-        {
-        case cor::system::LogType::debug:
-            top = "debug: ";
-            break;
-        case cor::system::LogType::info:
-            top = "info: ";
-            break;
-        case cor::system::LogType::warn:
-            top = "warn: ";
-            break;
-        case cor::system::LogType::error:
-            top = "error: ";
-            break;
-        case cor::system::LogType::fatal:
-            top = "fatal: ";
-            break;
-        default:;
-        }
-        log("%s", (top + str).c_str());
-    });
-
     cor::log_debug("AppDelegate::applicationDidFinishLaunching()");
     cor::cocos2dx_mruby_interface::MrubyScriptEngine* engine = new cor::cocos2dx_mruby_interface::MrubyScriptEngine();
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
