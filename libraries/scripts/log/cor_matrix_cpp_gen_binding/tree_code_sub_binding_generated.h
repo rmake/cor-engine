@@ -1,5 +1,5 @@
-#include "../../../../dycoon_labo/experimentals/cor_matrix/cpp//binding_interface/matrix.h"
-#include "../../dycoon_labo/experimentals/cor_matrix/cpp//generated_binding.h"
+#include "../../../../dycoon_labo/experimentals/cor_matrix/cpp/cor_matrix/binding_interface/matrix.h"
+#include "../../dycoon_labo/experimentals/cor_matrix/cpp/cor_matrix/generated_binding.h"
 
 namespace cor
 {
@@ -26,7 +26,10 @@ namespace cor
         bool GeneratedBinding_RCharArray_valid_question(std::weak_ptr<cor::RCharArray> c);
         std::weak_ptr<cor::RCharArray> GeneratedBinding_RCharArray_create_0();
         std::weak_ptr<cor::RCharArray> GeneratedBinding_RCharArray_create_1(std::allocator<char> a0);
+        cor::matrix::Matrix GeneratedBinding_cor__matrix__Matrix_create_dense_by_size(int a0, int a1);
         cor::matrix::Matrix GeneratedBinding_cor__matrix__Matrix_create_dense_by_array(mrubybind::MrubyRef a0);
+        double GeneratedBinding_cor__matrix__Matrix_get(cor::matrix::Matrix& c, int a0, int a1);
+        void GeneratedBinding_cor__matrix__Matrix_set(cor::matrix::Matrix& c, int a0, int a1, double a2);
         void GeneratedBinding_cor__RCharArray_capacity(std::weak_ptr<cor::RCharArray> c);
         void GeneratedBinding_cor__RCharArray_begin_1(std::weak_ptr<cor::RCharArray> c);
         void GeneratedBinding_cor__RCharArray_begin_2(std::weak_ptr<cor::RCharArray> c);
