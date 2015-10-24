@@ -5,7 +5,7 @@ namespace cor
 {
     namespace project_structure
     {
-        void ExternalCodeImporter::initialize(mruby_interface::MrubyState& mrb)
+        void simple_cpp_import_initialize(mruby_interface::MrubyState& mrb)
         {
             auto& binder = mrb.ref_binder();
 

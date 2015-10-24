@@ -10,7 +10,7 @@ namespace cor
             return a + b;
         }
 
-        void ExternalCodeImporter::initialize(mruby_interface::MrubyState& mrb)
+        void small_experimental_import_initialize(mruby_interface::MrubyState& mrb)
         {
             auto& binder = mrb.ref_binder();
 

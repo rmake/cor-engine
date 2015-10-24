@@ -48,6 +48,14 @@ class CorProject
     @import_cpp
   end
 
+  def self.import_cpp_entry=(v)
+    @import_cpp_entry = v
+  end
+
+  def self.import_cpp_entry
+    @import_cpp_entry
+  end
+
   def self.crypt=(v)
     @crypt = v
   end
@@ -400,6 +408,11 @@ unless resource_only
     #end
     #import_cpp_includes = import_cpp_includes.join "\n"
 
+    prototype_defs = CorProject.import_cpp_entry.map{|v|
+      "        void #{v}(mruby_interface::MrubyState& mrb);\n" }.join
+    call_entry_functions = CorProject.import_cpp_entry.map{|v|
+      "            #{v}(mrb);\n" }.join
+
     import_cpp_code = <<EOS
 #include "cor_type/sources/basic_types.h"
 
@@ -408,6 +421,13 @@ namespace cor
     namespace project_structure
     {
         static const char* imported_name = "copy source is #{source_path}";
+
+#{prototype_defs}
+
+        void ExternalCodeImporter::initialize(mruby_interface::MrubyState& mrb)
+        {
+#{call_entry_functions}
+        }
     }
 }
 
