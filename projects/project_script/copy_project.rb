@@ -143,11 +143,28 @@ mruby_binging_generator_script_path = "../../libraries/scripts"
 FileUtils.mkpath destination_resource_path
 
 list = []
+import_cpp_entries = []
 
 if File.exists? source_conf_path
+
   puts "load source conf #{source_conf_path}"
   load source_conf_path
+
+  import_cpp_entries << CorProject.import_cpp_entry
+
+  project_includes = CorProject.includes
+  project_includes.each do |project_include|
+    if File.exists? "#{project_include}/conf.rb"
+      load "#{project_include}/conf.rb"
+      import_cpp_entries << CorProject.import_cpp_entry
+    end
+  end
+
+  load source_conf_path
+
 end
+
+
 
 FileUtils.rm Dir.glob("#{destination_resource_root_path}/*.log")
 
@@ -408,9 +425,11 @@ unless resource_only
     #end
     #import_cpp_includes = import_cpp_includes.join "\n"
 
-    prototype_defs = CorProject.import_cpp_entry.map{|v|
+    puts "import_cpp_entries #{import_cpp_entries}"
+
+    prototype_defs = import_cpp_entries.map{|v|
       "        void #{v}(mruby_interface::MrubyState& mrb);\n" }.join
-    call_entry_functions = CorProject.import_cpp_entry.map{|v|
+    call_entry_functions = import_cpp_entries.map{|v|
       "            #{v}(mrb);\n" }.join
 
     import_cpp_code = <<EOS
