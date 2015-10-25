@@ -52,6 +52,8 @@
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "cor_mruby_interface/sources/basic_bind/sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 namespace cor
 {
@@ -602,7 +604,17 @@ namespace cor
                 mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
             }
 
-            tmp_c->add_job([=](){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a0.is_living()) { a0.func()(); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
+            tmp_c->add_job(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
         }
 
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c)
@@ -620,13 +632,33 @@ namespace cor
         void BasicBind_cor__system__Logger_add_print_func_1(cor::system::Logger* c, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a0)
         {
 
-            c->add_print_func([=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a0.is_living()) { a0.func()(b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
+            c->add_print_func(
+              [=](cor::system::LogType::Enum b0, const std::string & b1){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0, b1);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
         }
 
         void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a1)
         {
 
-            c->add_print_func(a0, [=](cor::system::LogType::Enum b0, const std::string & b1){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a1.is_living()) { a1.func()(b0, b1); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } });
+            c->add_print_func(a0, 
+              [=](cor::system::LogType::Enum b0, const std::string & b1){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a1.is_living()) {
+                          a1.func()(b0, b1);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
         }
 
         void BasicBind_cor__system__Logger_pop_print_func(cor::system::Logger* c)
@@ -3385,7 +3417,7 @@ namespace cor
         void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, MrubyRef a)
         {
 
-            c.path = cor::mruby_interface::MrubyArray::convert_to_from_std_vec<cor::type::Vector2Tmpl<int> >(a);
+            c.path = cor::mruby_interface::MrubyArray::convert_to_mruby_from_std_vec<cor::type::Vector2Tmpl<int> >(a);
         }
 
         MrubyRef BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_path(cor::data_structure::CostGridSpacePath& c)

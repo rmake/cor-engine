@@ -93,7 +93,7 @@ namespace cor
                 return MrubyRef(mrb, ma);
             }
 
-            template<class T>static std::vector<T *> convert_to_from_std_vec(MrubyRef mar)
+            template<class T>static std::vector<T *> convert_to_mruby_from_std_vec(MrubyRef mar)
             {
                 auto ms = mruby_interface::MrubyState::get_current();
                 mrb_state* mrb = ms->get_mrb();

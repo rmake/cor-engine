@@ -27,7 +27,7 @@ namespace cor
         public:
 
             typedef std::map<void*, AnySP> AnySPTable;
-        
+
             MrubyState();
             virtual ~MrubyState();
 
@@ -52,6 +52,9 @@ namespace cor
             MrubyRef load_string(const RString& code);
             MrubyRef load_string_log(const RString& code);
             MrubyRef load_string_error_log(const RString& code);
+
+            static void catch_error(std::function<void()> process, std::function<void()> error);
+            static void rescue_cpp_error(mrubybind::FuncPtr<void()> process, mrubybind::FuncPtr<void(RString)> error);
 
         private:
             void add_tmp_shared_itnl(AnySP v);
