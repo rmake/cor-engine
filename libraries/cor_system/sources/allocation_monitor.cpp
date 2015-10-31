@@ -61,7 +61,7 @@ namespace cor
                 }
             };
 
-            static const size_t AllocInfoTableSize = 257;
+            static const size_t AllocInfoTableSize = 4049;
             struct AllocInfoTable
             {
                 AllocInfo table[AllocInfoTableSize];
@@ -112,6 +112,15 @@ namespace cor
                         ::free(static_cast<void*>(ap));
                     }
                     
+                }
+
+                void remove(AllocInfoPtr ap)
+                {
+                    if(ap)
+                    {
+                        ap->remove();
+                        ::free(static_cast<void*>(ap));
+                    }
                 }
             };
 
@@ -383,6 +392,11 @@ namespace cor
 
         void AllocationMonitor::al_free(void* p)
         {
+            if(!p)
+            {
+                return;
+            }
+
             PAllocationMonitor am = get_instance();
             AllocationMonitorItnl* itnl = am->itnl;
             if(am && itnl->available)
@@ -393,7 +407,7 @@ namespace cor
                 if(ap)
                 {
                     itnl->alloc_size -= ap->n;
-                    itnl->alloc_info_table.remove(p);
+                    itnl->alloc_info_table.remove(ap);
                 }
 
             }
@@ -420,7 +434,7 @@ namespace cor
                 if(ap)
                 {
                     itnl->alloc_size -= ap->n;
-                    itnl->alloc_info_table.remove(p);
+                    itnl->alloc_info_table.remove(ap);
                 }
 
             }
