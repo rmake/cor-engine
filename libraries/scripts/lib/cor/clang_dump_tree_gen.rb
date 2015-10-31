@@ -1036,7 +1036,8 @@ EOS
         ch = {
           :value => :value,
           :class_type => "MrubyRef",
-          :access => "cor::mruby_interface::MrubyArray::convert_to_mruby_from_std_vec<#{v}>(source)",
+          :access => "cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec<#{v}>(source)",
+          :inv_access => "cor::mruby_interface::MrubyArray::convert_str_vec_to_mruby<#{v}>(source)",
           :is_value_std_array => true,
         }
 
@@ -1056,18 +1057,19 @@ EOS
         ch = {
           :value => :value,
           :class_type => "MrubyRef",
-          :access => "cor::mruby_interface::MrubyArray::convert_to_mruby_from_std_vec_2_dim<#{v}>(source)",
+          :access => "cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec_2_dim<#{v}>(source)",
+          :inv_access => "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby<#{v}>(source)",
           :is_value_std_array_2_dim => true,
         }
 
-        class_replace_table["const std::vector<const std::vector<#{v}>>&"] = ch
-        class_replace_table["std::vector<const std::vector<#{v}>>&"] = ch
-        class_replace_table["const std::vector<const std::vector<#{v}>>"] = ch
-        class_replace_table["std::vector<const std::vector<#{v}>>"] = ch
-        class_replace_table["const std::vector<const std::vector<#{v}> >&"] = ch
-        class_replace_table["std::vector<const std::vector<#{v}> >&"] = ch
-        class_replace_table["const std::vector<const std::vector<#{v}> >"] = ch
-        class_replace_table["std::vector<const std::vector<#{v}> >"] = ch
+        class_replace_table["const std::vector<std::vector<#{v}>>&"] = ch
+        class_replace_table["std::vector<std::vector<#{v}>>&"] = ch
+        class_replace_table["const std::vector<std::vector<#{v}>>"] = ch
+        class_replace_table["std::vector<std::vector<#{v}>>"] = ch
+        class_replace_table["const std::vector<std::vector<#{v}> >&"] = ch
+        class_replace_table["std::vector<std::vector<#{v}> >&"] = ch
+        class_replace_table["const std::vector<std::vector<#{v}> >"] = ch
+        class_replace_table["std::vector<std::vector<#{v}> >"] = ch
         class_replace_table["const std::vector<std::vector<#{v}, std::allocator<#{v}>, std::allocator<std::vector<#{v}, std::allocator<#{v}>> > >"] = ch
         class_replace_table["std::vector<std::vector<#{v}, std::allocator<#{v}>, std::allocator<std::vector<#{v}, std::allocator<#{v}>> > >"] = ch
         class_replace_table["const std::vector<std::vector<#{v}, std::allocator<#{v}>>, std::allocator<std::vector<#{v}, std::allocator<#{v}>>>>"] = ch
@@ -1191,7 +1193,7 @@ EOS
             ch = {
               :value => :value,
               :class_type => "MrubyRef",
-              :access => "cor::cocos2dx_mruby_interface::CocosArray::convert_to_from_cocos_vec<#{v[:original_class_name]}>(source)",
+              :access => "cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_cocos_vec<#{v[:original_class_name]}>(source)",
               :inv_access => "cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby<#{v[:original_class_name]}>(source)",
               :is_cocos_array => true,
             }
@@ -1218,7 +1220,7 @@ EOS
             ch = {
               :value => :value,
               :class_type => "MrubyRef",
-              :access => "cor::cocos2dx_mruby_interface::CocosArray::convert_to_mruby_from_std_vec<#{v[:original_class_name]}>(source)",
+              :access => "cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<#{v[:original_class_name]}>(source)",
               :inv_access => "cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby<#{v[:original_class_name]}>(source)",
               :is_std_array => true,
             }
@@ -1242,7 +1244,8 @@ EOS
             ch = {
               :value => :value,
               :class_type => "MrubyRef",
-              :access => "cor::mruby_interface::MrubyArray::convert_to_mruby_from_std_vec<#{v[:original_class_name]}>(source)",
+              :access => "cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec<#{v[:original_class_name]}>(source)",
+              :inv_access => "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby<#{v[:original_class_name]}>(source)",
               :is_value_std_array => true,
             }
 
@@ -1262,18 +1265,19 @@ EOS
             ch = {
               :value => :value,
               :class_type => "MrubyRef",
-              :access => "cor::mruby_interface::MrubyArray::convert_to_mruby_from_std_vec_2_dim<#{v[:original_class_name]}>(source)",
+              :access => "cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec_2_dim<#{v[:original_class_name]}>(source)",
+              :inv_access => "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby<#{v[:original_class_name]}>(source)",
               :is_value_std_array_2_dim => true,
             }
 
-            class_replace_table["const std::vector<const std::vector<#{v[:original_class_name]}>>&"] = ch
-            class_replace_table["std::vector<const std::vector<#{v[:original_class_name]}>>&"] = ch
-            class_replace_table["const std::vector<const std::vector<#{v[:original_class_name]}>>"] = ch
-            class_replace_table["std::vector<const std::vector<#{v[:original_class_name]}>>"] = ch
-            class_replace_table["const std::vector<const std::vector<#{v[:original_class_name]}> >&"] = ch
-            class_replace_table["std::vector<const std::vector<#{v[:original_class_name]}> >&"] = ch
-            class_replace_table["const std::vector<const std::vector<#{v[:original_class_name]}> >"] = ch
-            class_replace_table["std::vector<const std::vector<#{v[:original_class_name]}> >"] = ch
+            class_replace_table["const std::vector<std::vector<#{v[:original_class_name]}>>&"] = ch
+            class_replace_table["std::vector<std::vector<#{v[:original_class_name]}>>&"] = ch
+            class_replace_table["const std::vector<std::vector<#{v[:original_class_name]}>>"] = ch
+            class_replace_table["std::vector<std::vector<#{v[:original_class_name]}>>"] = ch
+            class_replace_table["const std::vector<std::vector<#{v[:original_class_name]}> >&"] = ch
+            class_replace_table["std::vector<std::vector<#{v[:original_class_name]}> >&"] = ch
+            class_replace_table["const std::vector<std::vector<#{v[:original_class_name]}> >"] = ch
+            class_replace_table["std::vector<std::vector<#{v[:original_class_name]}> >"] = ch
             class_replace_table["const std::vector<std::vector<#{assoced}, std::allocator<#{assoced}>, std::allocator<std::vector<#{assoced}> > >"] = ch
             class_replace_table["std::vector<std::vector<#{assoced}, std::allocator<#{assoced}>, std::allocator<std::vector<#{assoced}> > >"] = ch
             class_replace_table["const std::vector<std::vector<#{assoced}, std::allocator<#{assoced}>>, std::allocator<std::vector<#{assoced}>>>"] = ch
@@ -1616,15 +1620,15 @@ EOS
           end
 
           if is_value_std_array
-            call_method = "cor::mruby_interface::MrubyArray::convert_to_mruby_from_std_vec(#{call_method})"
+            call_method = "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby(#{call_method})"
           end
 
           if is_value_std_array_2_dim
-            call_method = "cor::mruby_interface::MrubyArray::convert_to_mruby_from_std_vec_2_dim(#{call_method})"
+            call_method = "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby(#{call_method})"
           end
 
           if is_cocos_value_array
-            call_method = "cor::cocos2dx_mruby_interface::CocosValue::convert_from_cocos_value_vec(#{call_method})"
+            call_method = "cor::cocos2dx_mruby_interface::CocosValue::convert_mruby_to_cocos_value_vec(#{call_method})"
           end
 
           if ret.match(/^std::shared_ptr/)
@@ -1755,12 +1759,12 @@ EOS
 
 
           if is_value_std_array
-            va = "cor::mruby_interface::MrubyArray::convert_to_mruby_from_std_vec<#{source_type.gsub(/^std::vector</, "").gsub(/, std::allocator<.*>$/, "")} >(#{va})"
+            va = "cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec<#{source_type.gsub(/^std::vector</, "").gsub(/, std::allocator<.*>$/, "")} >(#{va})"
             vb = "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby(#{vb})"
           end
 
           if is_value_std_array_2_dim
-            va = "cor::mruby_interface::MrubyArray::convert_to_mruby_from_std_vec<#{source_type.gsub(/^std::vector<\s*std::vector<\s*/, "").gsub(/>\s*, std::allocator<.*>$/, "")} >(#{va})"
+            va = "cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec<#{source_type.gsub(/^std::vector<\s*std::vector<\s*/, "").gsub(/>\s*, std::allocator<.*>$/, "")} >(#{va})"
             vb = "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby(#{vb})"
           end
 

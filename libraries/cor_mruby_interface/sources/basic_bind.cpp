@@ -3417,7 +3417,7 @@ namespace cor
         void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, MrubyRef a)
         {
 
-            c.path = cor::mruby_interface::MrubyArray::convert_to_mruby_from_std_vec<cor::type::Vector2Tmpl<int> >(a);
+            c.path = cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec<cor::type::Vector2Tmpl<int> >(a);
         }
 
         MrubyRef BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_path(cor::data_structure::CostGridSpacePath& c)

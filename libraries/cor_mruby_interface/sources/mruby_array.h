@@ -48,20 +48,19 @@ namespace cor
 
                 typedef mrubybind::Type<T > Type;
 
-                typename std::vector<T>::const_iterator i, ied;
-                i = a.begin();
-                ied = a.end();
+                auto i = a.begin();
+                auto ied = a.end();
                 for(; i != ied; i++)
                 {
                     auto ref = convert_std_vec_to_mruby(*i);
-                    mrb_ary_push(mrb, ma, ref);
+                    mrb_ary_push(mrb, ma, ref.get_v());
                 }
 
                 return MrubyRef(mrb, ma);
             }
 
 
-            template<class T>static std::vector<T> convert_to_mruby_from_std_vec(MrubyRef mar)
+            template<class T>static std::vector<T> convert_mruby_to_std_vec(MrubyRef mar)
             {
                 auto ms = mruby_interface::MrubyState::get_current();
                 mrb_state* mrb = ms->get_mrb();
@@ -83,7 +82,7 @@ namespace cor
                 return a;
             }
 
-            template<class T>static std::vector<std::vector<T> > convert_to_mruby_from_std_vec_2_dim(MrubyRef mar)
+            template<class T>static std::vector<std::vector<T> > convert_mruby_to_std_vec_2_dim(MrubyRef mar)
             {
                 auto ms = mruby_interface::MrubyState::get_current();
                 mrb_state* mrb = ms->get_mrb();
@@ -98,7 +97,7 @@ namespace cor
                 for(i = 0; i < l; i++)
                 {
                     mrb_value v = mrb_ary_ref(mrb, ma, i);
-                    auto tv = convert_to_mruby_from_std_vec<T>(MrubyRef(mrb, v));
+                    auto tv = convert_mruby_to_std_vec<T>(MrubyRef(mrb, v));
                     a.push_back(tv);
                 }
 
