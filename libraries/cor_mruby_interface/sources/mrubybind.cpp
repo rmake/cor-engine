@@ -240,10 +240,6 @@ bool MrubyRef::is_living() const{
     return MrubyBindStatus::is_living(mrb);
 }
 
-mrb_state* MrubyRef::get_mrb() const{
-    return this->mrb;
-}
-
 mrb_value MrubyRef::get_v() const{
     if(v.get()){
         return *(this->v.get());

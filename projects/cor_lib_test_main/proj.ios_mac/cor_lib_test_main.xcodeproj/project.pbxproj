@@ -65,8 +65,8 @@
 		65EB4D851BAFE1B900A755AA /* libcor_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D841BAFE1B900A755AA /* libcor_system.a */; };
 		65EB4D871BAFE1C800A755AA /* libcor_type.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D861BAFE1C800A755AA /* libcor_type.a */; };
 		65EB4D891BAFED3800A755AA /* libcor_cocos2dx_mruby_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D881BAFED3800A755AA /* libcor_cocos2dx_mruby_interface.a */; };
-		65EB4D8B1BB0003A00A755AA /* project_resource in Resources */ = {isa = PBXBuildFile; fileRef = 65EB4D8A1BB0003A00A755AA /* project_resource */; settings = {ASSET_TAGS = (); }; };
-		65EB4D8C1BB0003A00A755AA /* project_resource in Resources */ = {isa = PBXBuildFile; fileRef = 65EB4D8A1BB0003A00A755AA /* project_resource */; settings = {ASSET_TAGS = (); }; };
+		65EB4D8B1BB0003A00A755AA /* project_resource in Resources */ = {isa = PBXBuildFile; fileRef = 65EB4D8A1BB0003A00A755AA /* project_resource */; };
+		65EB4D8C1BB0003A00A755AA /* project_resource in Resources */ = {isa = PBXBuildFile; fileRef = 65EB4D8A1BB0003A00A755AA /* project_resource */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -523,7 +523,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_algorithm/proj.ios_mac/osx";
+			buildWorkingDirectory = ../../../libraries/cor_algorithm/proj.ios_mac/osx;
 			dependencies = (
 			);
 			name = cor_algorithm_osx;
@@ -537,7 +537,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_cocos2dx_converter/proj.ios_mac/osx";
+			buildWorkingDirectory = ../../../libraries/cor_cocos2dx_converter/proj.ios_mac/osx;
 			dependencies = (
 			);
 			name = cor_cocos2dx_converter_osx;
@@ -551,7 +551,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/osx";
+			buildWorkingDirectory = ../../../libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/osx;
 			dependencies = (
 			);
 			name = cor_cocos2dx_mruby_interface_osx;
@@ -565,7 +565,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_data_structure/proj.ios_mac/osx";
+			buildWorkingDirectory = ../../../libraries/cor_data_structure/proj.ios_mac/osx;
 			dependencies = (
 			);
 			name = cor_data_structure_osx;
@@ -579,7 +579,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_mruby_interface/proj.ios_mac/osx";
+			buildWorkingDirectory = ../../../libraries/cor_mruby_interface/proj.ios_mac/osx;
 			dependencies = (
 			);
 			name = cor_mruby_interface_osx;
@@ -593,7 +593,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_project_structure/proj.ios_mac/osx";
+			buildWorkingDirectory = ../../../libraries/cor_project_structure/proj.ios_mac/osx;
 			dependencies = (
 			);
 			name = cor_project_structure_osx;
@@ -607,7 +607,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_system/proj.ios_mac/osx";
+			buildWorkingDirectory = ../../../libraries/cor_system/proj.ios_mac/osx;
 			dependencies = (
 			);
 			name = cor_system_osx;
@@ -621,7 +621,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_type/proj.ios_mac/osx";
+			buildWorkingDirectory = ../../../libraries/cor_type/proj.ios_mac/osx;
 			dependencies = (
 			);
 			name = cor_type_osx;
@@ -635,7 +635,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_algorithm/proj.ios_mac/ios";
+			buildWorkingDirectory = ../../../libraries/cor_algorithm/proj.ios_mac/ios;
 			dependencies = (
 			);
 			name = cor_algorithm_ios;
@@ -649,7 +649,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_cocos2dx_converter/proj.ios_mac/ios";
+			buildWorkingDirectory = ../../../libraries/cor_cocos2dx_converter/proj.ios_mac/ios;
 			dependencies = (
 			);
 			name = cor_cocos2dx_converter_ios;
@@ -663,7 +663,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/ios";
+			buildWorkingDirectory = ../../../libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/ios;
 			dependencies = (
 			);
 			name = cor_cocos2dx_mruby_interface_ios;
@@ -677,7 +677,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_data_structure/proj.ios_mac/ios";
+			buildWorkingDirectory = ../../../libraries/cor_data_structure/proj.ios_mac/ios;
 			dependencies = (
 			);
 			name = cor_data_structure_ios;
@@ -691,7 +691,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_mruby_interface/proj.ios_mac/ios";
+			buildWorkingDirectory = ../../../libraries/cor_mruby_interface/proj.ios_mac/ios;
 			dependencies = (
 			);
 			name = cor_mruby_interface_ios;
@@ -705,7 +705,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_project_structure/proj.ios_mac/ios";
+			buildWorkingDirectory = "../../..//libraries/cor_project_structure/proj.ios_mac/ios";
 			dependencies = (
 			);
 			name = cor_project_structure_ios;
@@ -719,7 +719,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_system/proj.ios_mac/ios";
+			buildWorkingDirectory = ../../../libraries/cor_system/proj.ios_mac/ios;
 			dependencies = (
 			);
 			name = cor_system_ios;
@@ -733,7 +733,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/kurotadaisuke/projects/cor-engine/libraries/cor_type/proj.ios_mac/ios";
+			buildWorkingDirectory = ../../../libraries/cor_type/proj.ios_mac/ios;
 			dependencies = (
 			);
 			name = cor_type_ios;
