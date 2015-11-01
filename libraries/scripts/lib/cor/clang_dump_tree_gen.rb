@@ -2322,20 +2322,24 @@ EOS
       method_overload_define = Utility.file_read("log/#{option[:name]}/code.c.log").gsub(/#include.*?\n/m, "static ")
 
       string_literals = string_literals.map{|k, v| v[:def]}.join
-      method_defines = method_defines.join
 
-      class_defines = class_defines.join
+      method_registrations_length = method_registrations.length + class_registrations.length + class_convertables.length + constant_registrations.length
 
-
-      l = method_registrations.length + class_registrations.length + class_convertables.length + constant_registrations.length
-
-      l = [l / (12), 1].max
+      l = [(method_registrations_length / (12.0)).ceil, 1].max
 
       method_registrations = Utility.interval_slice(method_registrations, l).map{|v| v.join}
       class_registrations = Utility.interval_slice(class_registrations, l).map{|v| v.join}
       class_convertables = Utility.interval_slice(class_convertables, l).map{|v| v.join}
       constant_registrations = Utility.interval_slice(constant_registrations, l).map{|v| v.join}
 
+      total_length = method_registrations.length +
+        class_registrations.length + class_convertables.length +
+        constant_registrations.length
+
+      method_defines_length = [(method_defines.length / total_length.to_f).ceil, 1].max
+      class_defines_length = [(class_defines.length / total_length.to_f).ceil, 1].max
+      method_defines = Utility.interval_slice(method_defines, method_defines_length).map{|v| v.join}
+      class_defines = Utility.interval_slice(class_defines, class_defines_length).map{|v| v.join}
 
       calls_a = []
       (class_registrations + method_registrations + class_convertables + constant_registrations).each_with_index do |s, ct|
@@ -2436,11 +2440,6 @@ end
 }
     namespace #{name_space}
     {
-        #{"\n" + class_defines.to_s}
-
-        #{"\n" + method_defines.to_s}
-
-
 
         void #{class_name}::bind(mruby_interface::MrubyState& mrb)
         {
@@ -2474,10 +2473,14 @@ end
 }
 
 EOS
+
+      sub_index = 0
       sub_src = call_defs.map do |cd|
         tsrc = <<EOS
 #include "#{header_path}.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 #{
 if option[:cor_name_space]
@@ -2487,6 +2490,9 @@ end
 }
     namespace #{name_space}
     {
+        #{"\n" + method_defines[sub_index].to_s}
+
+        #{"\n" + class_defines[sub_index].to_s}
 
         #{"\n" + cd.to_s}
     }
@@ -2496,6 +2502,7 @@ if option[:cor_name_space]
 end
 }
 EOS
+        sub_index += 1
         tsrc
       end
 

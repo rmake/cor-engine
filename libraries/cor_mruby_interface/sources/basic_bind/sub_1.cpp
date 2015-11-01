@@ -57,17 +57,248 @@ namespace cor
 {
     namespace mruby_interface
     {
+        
+        void BasicBind_cor__system__CorCrypt_set_enabled(int a0)
+        {
+
+            cor::system::CorCrypt::set_enabled(a0);
+        }
+
+        int BasicBind_cor__system__CorCrypt_get_enabled()
+        {
+
+            return cor::system::CorCrypt::get_enabled();
+        }
+
+        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, unsigned int a1)
+        {
+
+            cor::system::CorCrypt::encode(a0, a1);
+        }
+
+        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, unsigned int a1)
+        {
+
+            cor::system::CorCrypt::decode(a0, a1);
+        }
+
+        int BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            return tmp_c->empty();
+        }
+
+        void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->add_job(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->step();
+        }
+
+        void BasicBind_cor__system__Logger_add_print_func_1(cor::system::Logger* c, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a0)
+        {
+
+            c->add_print_func(
+              [=](cor::system::LogType::Enum b0, const std::string & b1){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0, b1);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void BasicBind_cor__system__Logger_add_print_func_2(cor::system::Logger* c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, mrubybind::FuncPtr<void (cor::system::LogType::Enum, const std::string &)> a1)
+        {
+
+            c->add_print_func(a0, 
+              [=](cor::system::LogType::Enum b0, const std::string & b1){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a1.is_living()) {
+                          a1.func()(b0, b1);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void BasicBind_cor__system__Logger_pop_print_func(cor::system::Logger* c)
+        {
+
+            c->pop_print_func();
+        }
+
+        void BasicBind_cor__system__Logger_clear_print_func(cor::system::Logger* c)
+        {
+
+            c->clear_print_func();
+        }
+
+        void BasicBind_cor__system__Logger_call_print_func(cor::system::Logger* c, int a0, std::string a1)
+        {
+
+            c->call_print_func((cor::system::LogType::Enum)a0, a1);
+        }
+
+        unsigned int BasicBind_cor__system__Logger_get_local_count(cor::system::Logger* c, int a0)
+        {
+
+            return c->get_local_count((cor::system::LogType::Enum)a0);
+        }
+
+        unsigned int BasicBind_cor__system__Logger_get_local_debug_count(cor::system::Logger* c)
+        {
+
+            return c->get_local_debug_count();
+        }
+
+        unsigned int BasicBind_cor__system__Logger_get_local_info_count(cor::system::Logger* c)
+        {
+
+            return c->get_local_info_count();
+        }
+
+        unsigned int BasicBind_cor__system__Logger_get_local_warn_count(cor::system::Logger* c)
+        {
+
+            return c->get_local_warn_count();
+        }
+
+        unsigned int BasicBind_cor__system__Logger_get_local_error_count(cor::system::Logger* c)
+        {
+
+            return c->get_local_error_count();
+        }
+
+        unsigned int BasicBind_cor__system__Logger_get_local_fatal_count(cor::system::Logger* c)
+        {
+
+            return c->get_local_fatal_count();
+        }
+
+        unsigned int BasicBind_cor__system__Logger_get_count(int a0)
+        {
+
+            return cor::system::Logger::get_count((cor::system::LogType::Enum)a0);
+        }
+
+        unsigned int BasicBind_cor__system__Logger_get_debug_count()
+        {
+
+            return cor::system::Logger::get_debug_count();
+        }
+
+        unsigned int BasicBind_cor__system__Logger_get_info_count()
+        {
+
+            return cor::system::Logger::get_info_count();
+        }
+
+        unsigned int BasicBind_cor__system__Logger_get_warn_count()
+        {
+
+            return cor::system::Logger::get_warn_count();
+        }
+
+        unsigned int BasicBind_cor__system__Logger_get_error_count()
+        {
+
+            return cor::system::Logger::get_error_count();
+        }
+
+        unsigned int BasicBind_cor__system__Logger_get_fatal_count()
+        {
+
+            return cor::system::Logger::get_fatal_count();
+        }
+
+        void BasicBind_cor__system__Logger_info(std::string a0)
+        {
+
+            cor::system::Logger::info(a0);
+        }
+
+        void BasicBind_cor__system__Logger_debug(std::string a0)
+        {
+
+            cor::system::Logger::debug(a0);
+        }
+
+        void BasicBind_cor__system__Logger_warn(std::string a0)
+        {
+
+            cor::system::Logger::warn(a0);
+        }
+
+        void BasicBind_cor__system__Logger_error(std::string a0)
+        {
+
+            cor::system::Logger::error(a0);
+        }
+
+        void BasicBind_cor__system__Logger_fatal(std::string a0)
+        {
+
+            cor::system::Logger::fatal(a0);
+        }
+
+
+
+        
+        bool BasicBind_JobQueue_valid_question(std::weak_ptr<cor::system::JobQueue> c)
+        {
+            return !c.expired();
+        }
+        std::weak_ptr<cor::system::JobQueue> BasicBind_JobQueue_create()
+        {
+            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(std::make_shared<cor::system::JobQueue>());
+        }
+
 
         
           void BasicBind_bind_func_1(mruby_interface::MrubyState& mrb)
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_class<cor::type::Vector2F >("CorType", "Vector2F");
-            binder.bind_static_method("CorType", "Vector2F", "create_0", BasicBind_Vector2F_create_0);
-            binder.bind_static_method("CorType", "Vector2F", "create_1", BasicBind_Vector2F_create_1);
-            binder.bind_static_method("CorType", "Vector2F", "create_2", BasicBind_Vector2F_create_2);
-            binder.bind_class<cor::type::Vector2I >("CorType", "Vector2I");
+                            binder.bind_class<cor::type::Vector2I >("CorType", "Vector2I");
             binder.bind_static_method("CorType", "Vector2I", "create_0", BasicBind_Vector2I_create_0);
             binder.bind_static_method("CorType", "Vector2I", "create_1", BasicBind_Vector2I_create_1);
             binder.bind_static_method("CorType", "Vector2I", "create_2", BasicBind_Vector2I_create_2);
@@ -106,6 +337,11 @@ namespace cor
             binder.bind_class<cor::type::Sphere2F >("CorType", "Sphere2F");
             binder.bind_static_method("CorType", "Sphere2F", "create_0", BasicBind_Sphere2F_create_0);
             binder.bind_static_method("CorType", "Sphere2F", "create_1", BasicBind_Sphere2F_create_1);
+            binder.bind_class<cor::type::Sphere2I >("CorType", "Sphere2I");
+            binder.bind_static_method("CorType", "Sphere2I", "create_0", BasicBind_Sphere2I_create_0);
+            binder.bind_static_method("CorType", "Sphere2I", "create_1", BasicBind_Sphere2I_create_1);
+            binder.bind_class<cor::type::OSphere2F >("CorType", "OSphere2F");
+            binder.bind_static_method("CorType", "OSphere2F", "create", BasicBind_OSphere2F_create);
 
           }
 

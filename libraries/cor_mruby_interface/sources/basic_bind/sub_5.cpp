@@ -57,19 +57,264 @@ namespace cor
 {
     namespace mruby_interface
     {
+        
+        int BasicBind_cor__type__Vector2I_cross(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.cross(a0);
+        }
+
+        int BasicBind_cor__type__Vector2I_distance(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.distance(a0);
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_zero()
+        {
+
+            return cor::type::Vector2I::zero();
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_one()
+        {
+
+            return cor::type::Vector2I::one();
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_max_vec(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.max_vec(a0);
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_min_vec(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.min_vec(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_all_less(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.all_less(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_some_less(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.some_less(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_all_greater(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.all_greater(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_some_greater(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.some_greater(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_all_less_equal(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.all_less_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_some_less_equal(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.some_less_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_all_greater_equal(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.all_greater_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_some_greater_equal(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.some_greater_equal(a0);
+        }
+
+        int BasicBind_cor__type__Vector2I_sum(cor::type::Vector2I& c)
+        {
+
+            return c.sum();
+        }
+
+        void BasicBind_cor__type__Vector2I_accessor_set_x(cor::type::Vector2I& c, int a)
+        {
+
+            c.x = a;
+        }
+
+        int BasicBind_cor__type__Vector2I_accessor_get_x(cor::type::Vector2I& c)
+        {
+
+            return c.x;
+        }
+
+        void BasicBind_cor__type__Vector2I_accessor_set_y(cor::type::Vector2I& c, int a)
+        {
+
+            c.y = a;
+        }
+
+        int BasicBind_cor__type__Vector2I_accessor_get_y(cor::type::Vector2I& c)
+        {
+
+            return c.y;
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_operator__asterisk__0(cor::type::Vector2I & a0, int a1)
+        {
+            return a0*a1;
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_operator__plus__0(cor::type::Vector2I & a0, cor::type::Vector2I a1)
+        {
+            return a0+a1;
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_operator__minus__0(cor::type::Vector2I & a0, cor::type::Vector2I a1)
+        {
+            return a0-a1;
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_operator__minus_self__0(cor::type::Vector2I & a0)
+        {
+            return -a0;
+        }
+
+        int BasicBind_cor__type__Vector2I_operator__brackets__0(cor::type::Vector2I & a0, int a1)
+        {
+            return a0[a1];
+        }
+
+        int BasicBind_cor__type__Vector2I_operator__brackets_equal__0(cor::type::Vector2I & a0, int a1, int a2)
+        {
+            return a0[a1] = a2;
+        }
+
+        void BasicBind_cor__type__Vector3F_set(cor::type::Vector3F& c, float a0, float a1, float a2)
+        {
+
+            c.set(a0, a1, a2);
+        }
+
+        void BasicBind_cor__type__Vector3F_begin_1(cor::type::Vector3F& c)
+        {
+
+            c.begin();
+        }
+
+        void BasicBind_cor__type__Vector3F_end_1(cor::type::Vector3F& c)
+        {
+
+            c.end();
+        }
+
+        void BasicBind_cor__type__Vector3F_begin_2(cor::type::Vector3F& c)
+        {
+
+            c.begin();
+        }
+
+        void BasicBind_cor__type__Vector3F_end_2(cor::type::Vector3F& c)
+        {
+
+            c.end();
+        }
+
+        void BasicBind_cor__type__Vector3F_size(cor::type::Vector3F& c)
+        {
+
+            c.size();
+        }
+
+        float* BasicBind_cor__type__Vector3F_get_p_1(cor::type::Vector3F& c)
+        {
+
+            return c.get_p();
+        }
+
+        const float* BasicBind_cor__type__Vector3F_get_p_2(cor::type::Vector3F& c)
+        {
+
+            return const_cast<const float* >(c.get_p());
+        }
+
+        float BasicBind_cor__type__Vector3F_get_square_magnitude(cor::type::Vector3F& c)
+        {
+
+            return c.get_square_magnitude();
+        }
+
+        float BasicBind_cor__type__Vector3F_get_magnitude(cor::type::Vector3F& c)
+        {
+
+            return c.get_magnitude();
+        }
+
+        cor::type::Vector2F BasicBind_cor__type__Vector3F_xy(cor::type::Vector3F& c)
+        {
+
+            return c.xy();
+        }
+
+
+
+        
+        cor::type::Vector3I BasicBind_Vector3I_create_0()
+        {
+            return cor::type::Vector3I();
+        }
+        cor::type::Vector3I BasicBind_Vector3I_create_1(cor::type::Vector3I a0)
+        {
+            return cor::type::Vector3I(a0);
+        }
+        cor::type::Vector3I BasicBind_Vector3I_create_2(int a0, int a1, int a2)
+        {
+            return cor::type::Vector3I(a0, a1, a2);
+        }
+        cor::type::Vector4F BasicBind_Vector4F_create_0()
+        {
+            return cor::type::Vector4F();
+        }
+        cor::type::Vector4F BasicBind_Vector4F_create_1(cor::type::Vector4F a0)
+        {
+            return cor::type::Vector4F(a0);
+        }
+        cor::type::Vector4F BasicBind_Vector4F_create_2(float a0, float a1, float a2, float a3)
+        {
+            return cor::type::Vector4F(a0, a1, a2, a3);
+        }
+        cor::type::Vector4I BasicBind_Vector4I_create_0()
+        {
+            return cor::type::Vector4I();
+        }
+        cor::type::Vector4I BasicBind_Vector4I_create_1(cor::type::Vector4I a0)
+        {
+            return cor::type::Vector4I(a0);
+        }
+        cor::type::Vector4I BasicBind_Vector4I_create_2(int a0, int a1, int a2, int a3)
+        {
+            return cor::type::Vector4I(a0, a1, a2, a3);
+        }
+
 
         
           void BasicBind_bind_func_5(mruby_interface::MrubyState& mrb)
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_static_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "create_1", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_1);
-            binder.bind_static_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "create_2", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_2);
-            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "get_null", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_get_null);
-            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "recieve", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve);
-            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "test", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test);
-            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "tmpl_test", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test);
-            binder.bind_static_method("CorMrubyInterface", "MrubyRefContainer", "create_1", BasicBind_cor__mruby_interface__MrubyRefContainer_create_1);
+                            binder.bind_static_method("CorMrubyInterface", "MrubyRefContainer", "create_1", BasicBind_cor__mruby_interface__MrubyRefContainer_create_1);
             binder.bind_static_method("CorMrubyInterface", "MrubyRefContainer", "create_2", BasicBind_cor__mruby_interface__MrubyRefContainer_create_2);
             binder.bind_custom_method("CorMrubyInterface", "MrubyRefContainer", "set_value", BasicBind_cor__mruby_interface__MrubyRefContainer_set_value);
             binder.bind_custom_method("CorMrubyInterface", "MrubyRefContainer", "get_value", BasicBind_cor__mruby_interface__MrubyRefContainer_get_value);
@@ -102,6 +347,49 @@ namespace cor
             binder.bind_custom_method("CorMrubyInterface", "AnyWP", "reset", BasicBind_cor__mruby_interface__AnyWP_reset);
             binder.bind_custom_method("CorMrubyInterface", "AnyWP", "expired", BasicBind_cor__mruby_interface__AnyWP_expired);
             binder.bind_custom_method("CorMrubyInterface", "AnyWP", "lock", BasicBind_cor__mruby_interface__AnyWP_lock);
+            binder.bind_custom_method("CorType", "Vector2F", "set", BasicBind_cor__type__Vector2F_set);
+            binder.bind_custom_method("CorType", "Vector2F", "begin_1", BasicBind_cor__type__Vector2F_begin_1);
+            binder.bind_custom_method("CorType", "Vector2F", "end_1", BasicBind_cor__type__Vector2F_end_1);
+            binder.bind_custom_method("CorType", "Vector2F", "begin_2", BasicBind_cor__type__Vector2F_begin_2);
+            binder.bind_custom_method("CorType", "Vector2F", "end_2", BasicBind_cor__type__Vector2F_end_2);
+            binder.bind_custom_method("CorType", "Vector2F", "size", BasicBind_cor__type__Vector2F_size);
+            binder.bind_custom_method("CorType", "Vector2F", "get_p_1", BasicBind_cor__type__Vector2F_get_p_1);
+            binder.bind_custom_method("CorType", "Vector2F", "get_p_2", BasicBind_cor__type__Vector2F_get_p_2);
+            binder.bind_custom_method("CorType", "Vector2F", "get_square_magnitude", BasicBind_cor__type__Vector2F_get_square_magnitude);
+            binder.bind_custom_method("CorType", "Vector2F", "get_magnitude", BasicBind_cor__type__Vector2F_get_magnitude);
+            binder.bind_custom_method("CorType", "Vector2F", "normalize", BasicBind_cor__type__Vector2F_normalize);
+            binder.bind_custom_method("CorType", "Vector2F", "dot", BasicBind_cor__type__Vector2F_dot);
+            binder.bind_custom_method("CorType", "Vector2F", "cross", BasicBind_cor__type__Vector2F_cross);
+            binder.bind_custom_method("CorType", "Vector2F", "distance", BasicBind_cor__type__Vector2F_distance);
+            binder.bind_static_method("CorType", "Vector2F", "zero", BasicBind_cor__type__Vector2F_zero);
+            binder.bind_static_method("CorType", "Vector2F", "one", BasicBind_cor__type__Vector2F_one);
+            binder.bind_custom_method("CorType", "Vector2F", "max_vec", BasicBind_cor__type__Vector2F_max_vec);
+            binder.bind_custom_method("CorType", "Vector2F", "min_vec", BasicBind_cor__type__Vector2F_min_vec);
+            binder.bind_custom_method("CorType", "Vector2F", "all_less", BasicBind_cor__type__Vector2F_all_less);
+            binder.bind_custom_method("CorType", "Vector2F", "some_less", BasicBind_cor__type__Vector2F_some_less);
+            binder.bind_custom_method("CorType", "Vector2F", "all_greater", BasicBind_cor__type__Vector2F_all_greater);
+            binder.bind_custom_method("CorType", "Vector2F", "some_greater", BasicBind_cor__type__Vector2F_some_greater);
+            binder.bind_custom_method("CorType", "Vector2F", "all_less_equal", BasicBind_cor__type__Vector2F_all_less_equal);
+            binder.bind_custom_method("CorType", "Vector2F", "some_less_equal", BasicBind_cor__type__Vector2F_some_less_equal);
+            binder.bind_custom_method("CorType", "Vector2F", "all_greater_equal", BasicBind_cor__type__Vector2F_all_greater_equal);
+            binder.bind_custom_method("CorType", "Vector2F", "some_greater_equal", BasicBind_cor__type__Vector2F_some_greater_equal);
+            binder.bind_custom_method("CorType", "Vector2F", "sum", BasicBind_cor__type__Vector2F_sum);
+            binder.bind_custom_method("CorType", "Vector2F", "x=", BasicBind_cor__type__Vector2F_accessor_set_x);
+            binder.bind_custom_method("CorType", "Vector2F", "x", BasicBind_cor__type__Vector2F_accessor_get_x);
+            binder.bind_custom_method("CorType", "Vector2F", "y=", BasicBind_cor__type__Vector2F_accessor_set_y);
+            binder.bind_custom_method("CorType", "Vector2F", "y", BasicBind_cor__type__Vector2F_accessor_get_y);
+            binder.bind_custom_method("CorType", "Vector2F", "_asterisk__0", BasicBind_cor__type__Vector2F_operator__asterisk__0);
+            binder.bind_custom_method("CorType", "Vector2F", "*", BasicBind_cor__type__Vector2F_operator__asterisk__0);
+            binder.bind_custom_method("CorType", "Vector2F", "_plus__0", BasicBind_cor__type__Vector2F_operator__plus__0);
+            binder.bind_custom_method("CorType", "Vector2F", "+", BasicBind_cor__type__Vector2F_operator__plus__0);
+            binder.bind_custom_method("CorType", "Vector2F", "_minus__0", BasicBind_cor__type__Vector2F_operator__minus__0);
+            binder.bind_custom_method("CorType", "Vector2F", "-", BasicBind_cor__type__Vector2F_operator__minus__0);
+            binder.bind_custom_method("CorType", "Vector2F", "_minus_self__0", BasicBind_cor__type__Vector2F_operator__minus_self__0);
+            binder.bind_custom_method("CorType", "Vector2F", "-@", BasicBind_cor__type__Vector2F_operator__minus_self__0);
+            binder.bind_custom_method("CorType", "Vector2F", "_brackets__0", BasicBind_cor__type__Vector2F_operator__brackets__0);
+            binder.bind_custom_method("CorType", "Vector2F", "[]", BasicBind_cor__type__Vector2F_operator__brackets__0);
+            binder.bind_custom_method("CorType", "Vector2F", "_brackets_equal__0", BasicBind_cor__type__Vector2F_operator__brackets_equal__0);
+            binder.bind_custom_method("CorType", "Vector2F", "[]=", BasicBind_cor__type__Vector2F_operator__brackets_equal__0);
 
           }
 

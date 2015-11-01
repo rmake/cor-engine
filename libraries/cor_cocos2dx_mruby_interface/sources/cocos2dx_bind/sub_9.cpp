@@ -38,117 +38,5190 @@ namespace cor
 {
     namespace cocos2dx_mruby_interface
     {
+        
+        const void* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_user_data_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return const_cast<const void* >(c->getUserData());
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_user_data_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, void * a0)
+        {
+
+            c->setUserData(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__ParticleSystemQuad_get_user_object_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getUserObject();
+        }
+
+        const cocos2d::Ref* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_user_object_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return const_cast<const cocos2d::Ref* >(c->getUserObject());
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_user_object_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> a0)
+        {
+
+            c->setUserObject(a0.get());
+        }
+
+        cocos2d::GLProgram* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_gl_program_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getGLProgram();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_gl_program_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::GLProgram * a0)
+        {
+
+            c->setGLProgram(a0);
+        }
+
+        cocos2d::GLProgramState* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_gl_program_state_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getGLProgramState();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_gl_program_state_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::GLProgramState * a0)
+        {
+
+            c->setGLProgramState(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ParticleSystemQuad_is_running_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->isRunning();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_schedule_update_with_priority_lua_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, int a0, int a1)
+        {
+
+            c->scheduleUpdateWithPriorityLua(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_on_enter_transition_did_finish_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->onEnterTransitionDidFinish();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_on_exit_transition_did_start_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->onExitTransitionDidStart();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_cleanup_25(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->cleanup();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_visit_31(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Renderer * a0, cocos2d::Mat4 a1, unsigned int a2)
+        {
+
+            c->visit(a0, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_visit_32(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->visit();
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> Cocos2dxBind_cocos2d__ParticleSystemQuad_get_scene_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getScene();
+        }
+
+        cocos2d::Rect Cocos2dxBind_cocos2d__ParticleSystemQuad_get_bounding_box_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getBoundingBox();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_event_dispatcher_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventDispatcher> a0)
+        {
+
+            c->setEventDispatcher(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventDispatcher> Cocos2dxBind_cocos2d__ParticleSystemQuad_get_event_dispatcher_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getEventDispatcher();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_action_manager_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionManager> a0)
+        {
+
+            c->setActionManager(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionManager> Cocos2dxBind_cocos2d__ParticleSystemQuad_get_action_manager_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getActionManager();
+        }
+
+        const cocos2d::ActionManager* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_action_manager_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return const_cast<const cocos2d::ActionManager* >(c->getActionManager());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cocos2d__ParticleSystemQuad_run_action_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> a0)
+        {
+
+            return c->runAction(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_stop_all_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->stopAllActions();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_stop_action_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> a0)
+        {
+
+            c->stopAction(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_stop_action_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, int a0)
+        {
+
+            c->stopActionByTag(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_stop_all_actions_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, int a0)
+        {
+
+            c->stopAllActionsByTag(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_stop_actions_by_flags_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, unsigned int a0)
+        {
+
+            c->stopActionsByFlags(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cocos2d__ParticleSystemQuad_get_action_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, int a0)
+        {
+
+            return c->getActionByTag(a0);
+        }
+
+        ssize_t Cocos2dxBind_cocos2d__ParticleSystemQuad_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getNumberOfRunningActions();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_scheduler_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Scheduler * a0)
+        {
+
+            c->setScheduler(a0);
+        }
+
+        cocos2d::Scheduler* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_scheduler_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getScheduler();
+        }
+
+        const cocos2d::Scheduler* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_scheduler_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return const_cast<const cocos2d::Scheduler* >(c->getScheduler());
+        }
+
+        bool Cocos2dxBind_cocos2d__ParticleSystemQuad_is_scheduled_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, std::string a0)
+        {
+
+            return c->isScheduled(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_schedule_update_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->scheduleUpdate();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_schedule_update_with_priority_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, int a0)
+        {
+
+            c->scheduleUpdateWithPriority(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_unschedule_update_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->unscheduleUpdate();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_schedule_once_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, mrubybind::FuncPtr<void (float)> a0, float a1, std::string a2)
+        {
+
+            c->scheduleOnce(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_schedule_172(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, mrubybind::FuncPtr<void (float)> a0, std::string a1)
+        {
+
+            c->schedule(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_schedule_173(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, mrubybind::FuncPtr<void (float)> a0, float a1, std::string a2)
+        {
+
+            c->schedule(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_schedule_174(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, mrubybind::FuncPtr<void (float)> a0, float a1, unsigned int a2, float a3, std::string a4)
+        {
+
+            c->schedule(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1, a2, a3, a4);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_unschedule_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, std::string a0)
+        {
+
+            c->unschedule(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_unschedule_all_callbacks_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->unscheduleAllCallbacks();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_resume_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->resume();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_pause_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->pause();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_update_transform_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->updateTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__ParticleSystemQuad_get_node_to_parent_transform_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getNodeToParentTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__ParticleSystemQuad_get_node_to_parent_affine_transform_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getNodeToParentAffineTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__ParticleSystemQuad_get_node_to_parent_transform_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            return c->getNodeToParentTransform(a0.get());
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__ParticleSystemQuad_get_node_to_parent_affine_transform_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            return c->getNodeToParentAffineTransform(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_node_to_parent_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Mat4 a0)
+        {
+
+            c->setNodeToParentTransform(a0);
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__ParticleSystemQuad_get_parent_to_node_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getParentToNodeTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__ParticleSystemQuad_get_parent_to_node_affine_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getParentToNodeAffineTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__ParticleSystemQuad_get_node_to_world_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getNodeToWorldTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__ParticleSystemQuad_get_node_to_world_affine_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getNodeToWorldAffineTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__ParticleSystemQuad_get_world_to_node_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getWorldToNodeTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__ParticleSystemQuad_get_world_to_node_affine_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getWorldToNodeAffineTransform();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ParticleSystemQuad_convert_to_node_space_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToNodeSpace(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ParticleSystemQuad_convert_to_world_space_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToWorldSpace(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ParticleSystemQuad_convert_to_node_space_ar_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToNodeSpaceAR(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ParticleSystemQuad_convert_to_world_space_ar_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToWorldSpaceAR(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ParticleSystemQuad_convert_touch_to_node_space_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0)
+        {
+
+            return c->convertTouchToNodeSpace(a0.get());
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ParticleSystemQuad_convert_touch_to_node_space_ar_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0)
+        {
+
+            return c->convertTouchToNodeSpaceAR(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_additional_transform_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::AffineTransform a0)
+        {
+
+            c->setAdditionalTransform(a0);
+        }
+
+        cocos2d::Component* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_component_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, std::string a0)
+        {
+
+            return c->getComponent(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ParticleSystemQuad_add_component_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Component * a0)
+        {
+
+            return c->addComponent(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ParticleSystemQuad_remove_component_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, std::string a0)
+        {
+
+            return c->removeComponent(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ParticleSystemQuad_remove_component_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Component * a0)
+        {
+
+            return c->removeComponent(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_remove_all_components_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->removeAllComponents();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_physics_body_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> a0)
+        {
+
+            c->setPhysicsBody(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> Cocos2dxBind_cocos2d__ParticleSystemQuad_get_physics_body_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getPhysicsBody();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_remove_from_physics_world_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->removeFromPhysicsWorld();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_update_transform_from_physics_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Mat4 a0, unsigned int a1)
+        {
+
+            c->updateTransformFromPhysics(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_update_physics_body_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Mat4 a0, unsigned int a1, float a2, float a3)
+        {
+
+            c->updatePhysicsBodyTransform(a0, a1, a2, a3);
+        }
+
+        int Cocos2dxBind_cocos2d__ParticleSystemQuad_get_opacity_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getOpacity();
+        }
+
+        int Cocos2dxBind_cocos2d__ParticleSystemQuad_get_displayed_opacity_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getDisplayedOpacity();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_opacity_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, int a0)
+        {
+
+            c->setOpacity(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_update_displayed_opacity_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, int a0)
+        {
+
+            c->updateDisplayedOpacity(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ParticleSystemQuad_is_cascade_opacity_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->isCascadeOpacityEnabled();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_cascade_opacity_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, bool a0)
+        {
+
+            c->setCascadeOpacityEnabled(a0);
+        }
+
+        cocos2d::Color3B Cocos2dxBind_cocos2d__ParticleSystemQuad_get_color_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getColor();
+        }
+
+        cocos2d::Color3B Cocos2dxBind_cocos2d__ParticleSystemQuad_get_displayed_color_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getDisplayedColor();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_color_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Color3B a0)
+        {
+
+            c->setColor(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_update_displayed_color_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, cocos2d::Color3B a0)
+        {
+
+            c->updateDisplayedColor(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ParticleSystemQuad_is_cascade_color_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->isCascadeColorEnabled();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_cascade_color_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, bool a0)
+        {
+
+            c->setCascadeColorEnabled(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_on_enter_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setOnEnterCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_on_exit_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setOnExitCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_seton_enter_transition_did_finish_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setonEnterTransitionDidFinishCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_seton_exit_transition_did_start_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setonExitTransitionDidStartCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        int Cocos2dxBind_cocos2d__ParticleSystemQuad_get_camera_mask_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getCameraMask();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_camera_mask_22(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, int a0, bool a1)
+        {
+
+            c->setCameraMask(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->retain();
+        }
+
+        void Cocos2dxBind_cocos2d__ParticleSystemQuad_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            c->release();
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__ParticleSystemQuad_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->autorelease();
+        }
+
+        unsigned int Cocos2dxBind_cocos2d__ParticleSystemQuad_get_reference_count_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getReferenceCount();
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> Cocos2dxBind_cocos2d__ProtectedNode_create()
+        {
+
+            return cocos2d::ProtectedNode::create();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_add_protected_child_7(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            c->addProtectedChild(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_add_protected_child_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1)
+        {
+
+            c->addProtectedChild(a0.get(), a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_add_protected_child_9(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, int a2)
+        {
+
+            c->addProtectedChild(a0.get(), a1, a2);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cocos2d__ProtectedNode_get_protected_child_by_tag_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0)
+        {
+
+            return c->getProtectedChildByTag(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_protected_child_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, bool a1)
+        {
+
+            c->removeProtectedChild(a0.get(), a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_protected_child_by_tag_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0, bool a1)
+        {
+
+            c->removeProtectedChildByTag(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_all_protected_children_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->removeAllProtectedChildren();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_all_protected_children_with_cleanup_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, bool a0)
+        {
+
+            c->removeAllProtectedChildrenWithCleanup(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_reorder_protected_child_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1)
+        {
+
+            c->reorderProtectedChild(a0.get(), a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_sort_all_protected_children_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->sortAllProtectedChildren();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_visit(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Renderer * a0, cocos2d::Mat4 a1, unsigned int a2)
+        {
+
+            c->visit(a0, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_cleanup_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->cleanup();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_on_enter(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->onEnter();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_on_enter_transition_did_finish_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->onEnterTransitionDidFinish();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_on_exit(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->onExit();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_on_exit_transition_did_start_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->onExitTransitionDidStart();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_update_displayed_opacity_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0)
+        {
+
+            c->updateDisplayedOpacity(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_update_displayed_color_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Color3B a0)
+        {
+
+            c->updateDisplayedColor(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_disable_cascade_color_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->disableCascadeColor();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_disable_cascade_opacity_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->disableCascadeOpacity();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_camera_mask_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0, bool a1)
+        {
+
+            c->setCameraMask(a0, a1);
+        }
+
+        std::string Cocos2dxBind_cocos2d__ProtectedNode_get_description_15(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getDescription();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_local_z_order_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0)
+        {
+
+            c->setLocalZOrder(a0);
+        }
+
+        int Cocos2dxBind_cocos2d__ProtectedNode_get_local_z_order_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getLocalZOrder();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_global_z_order_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setGlobalZOrder(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_global_z_order_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getGlobalZOrder();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_scale_x_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setScaleX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_scale_x_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getScaleX();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_scale_y_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setScaleY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_scale_y_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getScaleY();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_scale_z_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setScaleZ(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_scale_z_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getScaleZ();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_scale_45(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setScale(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_scale_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getScale();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_scale_46(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0, float a1)
+        {
+
+            c->setScale(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_position_49(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Vec2 a0)
+        {
+
+            c->setPosition(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_normalized_position_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Vec2 a0)
+        {
+
+            c->setNormalizedPosition(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ProtectedNode_get_position_55(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getPosition();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ProtectedNode_get_normalized_position_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getNormalizedPosition();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_position_50(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0, float a1)
+        {
+
+            c->setPosition(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_get_position_56(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float * a0, float * a1)
+        {
+
+            c->getPosition(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_position_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setPositionX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_position_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getPositionX();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_position_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setPositionY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_position_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getPositionY();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_position3_d_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Vec3 a0)
+        {
+
+            c->setPosition3D(a0);
+        }
+
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__ProtectedNode_get_position3_d_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getPosition3D();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_position_z_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setPositionZ(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_position_z_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getPositionZ();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_skew_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setSkewX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_skew_x_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getSkewX();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_skew_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setSkewY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_skew_y_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getSkewY();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_anchor_point_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Vec2 a0)
+        {
+
+            c->setAnchorPoint(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ProtectedNode_get_anchor_point_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getAnchorPoint();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ProtectedNode_get_anchor_point_in_points_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getAnchorPointInPoints();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_content_size_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Size a0)
+        {
+
+            c->setContentSize(a0);
+        }
+
+        cocos2d::Size Cocos2dxBind_cocos2d__ProtectedNode_get_content_size_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getContentSize();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_visible_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, bool a0)
+        {
+
+            c->setVisible(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ProtectedNode_is_visible_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->isVisible();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_rotation_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setRotation(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_rotation_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getRotation();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_rotation3_d_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Vec3 a0)
+        {
+
+            c->setRotation3D(a0);
+        }
+
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__ProtectedNode_get_rotation3_d_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getRotation3D();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_rotation_quat_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Quaternion a0)
+        {
+
+            c->setRotationQuat(a0);
+        }
+
+        cocos2d::Quaternion Cocos2dxBind_cocos2d__ProtectedNode_get_rotation_quat_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getRotationQuat();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_rotation_skew_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setRotationSkewX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_rotation_skew_x_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getRotationSkewX();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_rotation_skew_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->setRotationSkewY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__ProtectedNode_get_rotation_skew_y_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getRotationSkewY();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_order_of_arrival_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0)
+        {
+
+            c->setOrderOfArrival(a0);
+        }
+
+        int Cocos2dxBind_cocos2d__ProtectedNode_get_order_of_arrival_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getOrderOfArrival();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_ignore_anchor_point_for_position_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, bool a0)
+        {
+
+            c->ignoreAnchorPointForPosition(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ProtectedNode_is_ignore_anchor_point_for_position_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->isIgnoreAnchorPointForPosition();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_add_child_113(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            c->addChild(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_add_child_114(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1)
+        {
+
+            c->addChild(a0.get(), a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_add_child_115(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, int a2)
+        {
+
+            c->addChild(a0.get(), a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_add_child_116(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, std::string a2)
+        {
+
+            c->addChild(a0.get(), a1, a2);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cocos2d__ProtectedNode_get_child_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0)
+        {
+
+            return c->getChildByTag(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cocos2d__ProtectedNode_get_child_by_name_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, std::string a0)
+        {
+
+            return c->getChildByName(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_enumerate_children_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, std::string a0, mrubybind::FuncPtr<bool (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a1)
+        {
+
+            c->enumerateChildren(a0, 
+              [=](cocos2d::Node * b0){
+                  bool  r;
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a1.is_living()) {
+                          r = a1.func()(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>(b0));
+                      }
+                  }, [&]() {
+                      r = bool ();
+                  });
+                  return r;
+              }
+);
+        }
+
+        MrubyRef Cocos2dxBind_cocos2d__ProtectedNode_get_children_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
+        }
+
+        ssize_t Cocos2dxBind_cocos2d__ProtectedNode_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getChildrenCount();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_parent_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            c->setParent(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cocos2d__ProtectedNode_get_parent_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getParent();
+        }
+
+        const cocos2d::Node* Cocos2dxBind_cocos2d__ProtectedNode_get_parent_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return const_cast<const cocos2d::Node* >(c->getParent());
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_from_parent_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->removeFromParent();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_from_parent_and_cleanup_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, bool a0)
+        {
+
+            c->removeFromParentAndCleanup(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_child_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, bool a1)
+        {
+
+            c->removeChild(a0.get(), a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_child_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0, bool a1)
+        {
+
+            c->removeChildByTag(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_child_by_name_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, std::string a0, bool a1)
+        {
+
+            c->removeChildByName(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_all_children_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->removeAllChildren();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_all_children_with_cleanup_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, bool a0)
+        {
+
+            c->removeAllChildrenWithCleanup(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_reorder_child_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1)
+        {
+
+            c->reorderChild(a0.get(), a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_sort_all_children_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->sortAllChildren();
+        }
+
+        int Cocos2dxBind_cocos2d__ProtectedNode_get_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getTag();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0)
+        {
+
+            c->setTag(a0);
+        }
+
+        std::string Cocos2dxBind_cocos2d__ProtectedNode_get_name_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getName();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_name_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, std::string a0)
+        {
+
+            c->setName(a0);
+        }
+
+        void* Cocos2dxBind_cocos2d__ProtectedNode_get_user_data_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getUserData();
+        }
+
+        const void* Cocos2dxBind_cocos2d__ProtectedNode_get_user_data_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return const_cast<const void* >(c->getUserData());
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_user_data_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, void * a0)
+        {
+
+            c->setUserData(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__ProtectedNode_get_user_object_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getUserObject();
+        }
+
+        const cocos2d::Ref* Cocos2dxBind_cocos2d__ProtectedNode_get_user_object_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return const_cast<const cocos2d::Ref* >(c->getUserObject());
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_user_object_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> a0)
+        {
+
+            c->setUserObject(a0.get());
+        }
+
+        cocos2d::GLProgram* Cocos2dxBind_cocos2d__ProtectedNode_get_gl_program_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getGLProgram();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_gl_program_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::GLProgram * a0)
+        {
+
+            c->setGLProgram(a0);
+        }
+
+        cocos2d::GLProgramState* Cocos2dxBind_cocos2d__ProtectedNode_get_gl_program_state_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getGLProgramState();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_gl_program_state_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::GLProgramState * a0)
+        {
+
+            c->setGLProgramState(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ProtectedNode_is_running_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->isRunning();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_schedule_update_with_priority_lua_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0, int a1)
+        {
+
+            c->scheduleUpdateWithPriorityLua(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_draw_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Renderer * a0, cocos2d::Mat4 a1, unsigned int a2)
+        {
+
+            c->draw(a0, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_draw_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->draw();
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> Cocos2dxBind_cocos2d__ProtectedNode_get_scene_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getScene();
+        }
+
+        cocos2d::Rect Cocos2dxBind_cocos2d__ProtectedNode_get_bounding_box_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getBoundingBox();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_event_dispatcher_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventDispatcher> a0)
+        {
+
+            c->setEventDispatcher(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventDispatcher> Cocos2dxBind_cocos2d__ProtectedNode_get_event_dispatcher_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getEventDispatcher();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_action_manager_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionManager> a0)
+        {
+
+            c->setActionManager(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionManager> Cocos2dxBind_cocos2d__ProtectedNode_get_action_manager_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getActionManager();
+        }
+
+        const cocos2d::ActionManager* Cocos2dxBind_cocos2d__ProtectedNode_get_action_manager_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return const_cast<const cocos2d::ActionManager* >(c->getActionManager());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cocos2d__ProtectedNode_run_action_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> a0)
+        {
+
+            return c->runAction(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_stop_all_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->stopAllActions();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_stop_action_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> a0)
+        {
+
+            c->stopAction(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_stop_action_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0)
+        {
+
+            c->stopActionByTag(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_stop_all_actions_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0)
+        {
+
+            c->stopAllActionsByTag(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_stop_actions_by_flags_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, unsigned int a0)
+        {
+
+            c->stopActionsByFlags(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cocos2d__ProtectedNode_get_action_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0)
+        {
+
+            return c->getActionByTag(a0);
+        }
+
+        ssize_t Cocos2dxBind_cocos2d__ProtectedNode_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getNumberOfRunningActions();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_scheduler_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Scheduler * a0)
+        {
+
+            c->setScheduler(a0);
+        }
+
+        cocos2d::Scheduler* Cocos2dxBind_cocos2d__ProtectedNode_get_scheduler_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getScheduler();
+        }
+
+        const cocos2d::Scheduler* Cocos2dxBind_cocos2d__ProtectedNode_get_scheduler_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return const_cast<const cocos2d::Scheduler* >(c->getScheduler());
+        }
+
+        bool Cocos2dxBind_cocos2d__ProtectedNode_is_scheduled_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, std::string a0)
+        {
+
+            return c->isScheduled(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_schedule_update_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->scheduleUpdate();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_schedule_update_with_priority_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0)
+        {
+
+            c->scheduleUpdateWithPriority(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_unschedule_update_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->unscheduleUpdate();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_schedule_once_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, mrubybind::FuncPtr<void (float)> a0, float a1, std::string a2)
+        {
+
+            c->scheduleOnce(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_schedule_172(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, mrubybind::FuncPtr<void (float)> a0, std::string a1)
+        {
+
+            c->schedule(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_schedule_173(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, mrubybind::FuncPtr<void (float)> a0, float a1, std::string a2)
+        {
+
+            c->schedule(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_schedule_174(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, mrubybind::FuncPtr<void (float)> a0, float a1, unsigned int a2, float a3, std::string a4)
+        {
+
+            c->schedule(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1, a2, a3, a4);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_unschedule_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, std::string a0)
+        {
+
+            c->unschedule(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_unschedule_all_callbacks_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->unscheduleAllCallbacks();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_resume_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->resume();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_pause_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->pause();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_update_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, float a0)
+        {
+
+            c->update(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_update_transform_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->updateTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__ProtectedNode_get_node_to_parent_transform_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getNodeToParentTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__ProtectedNode_get_node_to_parent_affine_transform_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getNodeToParentAffineTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__ProtectedNode_get_node_to_parent_transform_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            return c->getNodeToParentTransform(a0.get());
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__ProtectedNode_get_node_to_parent_affine_transform_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            return c->getNodeToParentAffineTransform(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_node_to_parent_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Mat4 a0)
+        {
+
+            c->setNodeToParentTransform(a0);
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__ProtectedNode_get_parent_to_node_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getParentToNodeTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__ProtectedNode_get_parent_to_node_affine_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getParentToNodeAffineTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__ProtectedNode_get_node_to_world_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getNodeToWorldTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__ProtectedNode_get_node_to_world_affine_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getNodeToWorldAffineTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__ProtectedNode_get_world_to_node_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getWorldToNodeTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__ProtectedNode_get_world_to_node_affine_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getWorldToNodeAffineTransform();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ProtectedNode_convert_to_node_space_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToNodeSpace(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ProtectedNode_convert_to_world_space_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToWorldSpace(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ProtectedNode_convert_to_node_space_ar_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToNodeSpaceAR(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ProtectedNode_convert_to_world_space_ar_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToWorldSpaceAR(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ProtectedNode_convert_touch_to_node_space_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0)
+        {
+
+            return c->convertTouchToNodeSpace(a0.get());
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__ProtectedNode_convert_touch_to_node_space_ar_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0)
+        {
+
+            return c->convertTouchToNodeSpaceAR(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_additional_transform_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::AffineTransform a0)
+        {
+
+            c->setAdditionalTransform(a0);
+        }
+
+        cocos2d::Component* Cocos2dxBind_cocos2d__ProtectedNode_get_component_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, std::string a0)
+        {
+
+            return c->getComponent(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ProtectedNode_add_component_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Component * a0)
+        {
+
+            return c->addComponent(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ProtectedNode_remove_component_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, std::string a0)
+        {
+
+            return c->removeComponent(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ProtectedNode_remove_component_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Component * a0)
+        {
+
+            return c->removeComponent(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_all_components_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->removeAllComponents();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_physics_body_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> a0)
+        {
+
+            c->setPhysicsBody(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> Cocos2dxBind_cocos2d__ProtectedNode_get_physics_body_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getPhysicsBody();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_remove_from_physics_world_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->removeFromPhysicsWorld();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_update_transform_from_physics_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Mat4 a0, unsigned int a1)
+        {
+
+            c->updateTransformFromPhysics(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_update_physics_body_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Mat4 a0, unsigned int a1, float a2, float a3)
+        {
+
+            c->updatePhysicsBodyTransform(a0, a1, a2, a3);
+        }
+
+        int Cocos2dxBind_cocos2d__ProtectedNode_get_opacity_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getOpacity();
+        }
+
+        int Cocos2dxBind_cocos2d__ProtectedNode_get_displayed_opacity_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getDisplayedOpacity();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_opacity_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, int a0)
+        {
+
+            c->setOpacity(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ProtectedNode_is_cascade_opacity_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->isCascadeOpacityEnabled();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_cascade_opacity_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, bool a0)
+        {
+
+            c->setCascadeOpacityEnabled(a0);
+        }
+
+        cocos2d::Color3B Cocos2dxBind_cocos2d__ProtectedNode_get_color_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getColor();
+        }
+
+        cocos2d::Color3B Cocos2dxBind_cocos2d__ProtectedNode_get_displayed_color_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getDisplayedColor();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_color_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, cocos2d::Color3B a0)
+        {
+
+            c->setColor(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ProtectedNode_is_cascade_color_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->isCascadeColorEnabled();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_cascade_color_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, bool a0)
+        {
+
+            c->setCascadeColorEnabled(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_opacity_modify_rgb_21(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, bool a0)
+        {
+
+            c->setOpacityModifyRGB(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__ProtectedNode_is_opacity_modify_rgb_21(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->isOpacityModifyRGB();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_on_enter_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setOnEnterCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_set_on_exit_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setOnExitCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_seton_enter_transition_did_finish_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setonEnterTransitionDidFinishCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_seton_exit_transition_did_start_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setonExitTransitionDidStartCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        int Cocos2dxBind_cocos2d__ProtectedNode_get_camera_mask_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getCameraMask();
+        }
+
+        bool Cocos2dxBind_cocos2d__ProtectedNode_init_13(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->init();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->retain();
+        }
+
+        void Cocos2dxBind_cocos2d__ProtectedNode_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            c->release();
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__ProtectedNode_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->autorelease();
+        }
+
+        unsigned int Cocos2dxBind_cocos2d__ProtectedNode_get_reference_count_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        {
+
+            return c->getReferenceCount();
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> Cocos2dxBind_cocos2d__RenderTexture_create_1(int a0, int a1, int a2, unsigned int a3)
+        {
+
+            return cocos2d::RenderTexture::create(a0, a1, (cocos2d::Texture2D::PixelFormat)a2, a3);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> Cocos2dxBind_cocos2d__RenderTexture_create_2(int a0, int a1, int a2)
+        {
+
+            return cocos2d::RenderTexture::create(a0, a1, (cocos2d::Texture2D::PixelFormat)a2);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> Cocos2dxBind_cocos2d__RenderTexture_create_3(int a0, int a1)
+        {
+
+            return cocos2d::RenderTexture::create(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_begin(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->begin();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_begin_with_clear_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0, float a1, float a2, float a3)
+        {
+
+            c->beginWithClear(a0, a1, a2, a3);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_begin_with_clear_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0, float a1, float a2, float a3, float a4)
+        {
+
+            c->beginWithClear(a0, a1, a2, a3, a4);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_begin_with_clear_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0, float a1, float a2, float a3, float a4, int a5)
+        {
+
+            c->beginWithClear(a0, a1, a2, a3, a4, a5);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_end_to_lua(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->endToLua();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_end(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->end();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_clear(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0, float a1, float a2, float a3)
+        {
+
+            c->clear(a0, a1, a2, a3);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_clear_depth(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->clearDepth(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_clear_stencil(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0)
+        {
+
+            c->clearStencil(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Image> Cocos2dxBind_cocos2d__RenderTexture_new_image(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, bool a0)
+        {
+
+            return c->newImage(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_save_to_file_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, std::string a0, bool a1, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture>, const std::string &)> a2)
+        {
+
+            return c->saveToFile(a0, a1, 
+              [=](cocos2d::RenderTexture * b0, const std::string & b1){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a2.is_living()) {
+                          a2.func()(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture>(b0), b1);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_save_to_file_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, std::string a0, int a1, bool a2, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture>, const std::string &)> a3)
+        {
+
+            return c->saveToFile(a0, (cocos2d::Image::Format)a1, a2, 
+              [=](cocos2d::RenderTexture * b0, const std::string & b1){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a3.is_living()) {
+                          a3.func()(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture>(b0), b1);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_listen_to_background(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventCustom> a0)
+        {
+
+            c->listenToBackground(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_listen_to_foreground(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventCustom> a0)
+        {
+
+            c->listenToForeground(a0.get());
+        }
+
+        unsigned int Cocos2dxBind_cocos2d__RenderTexture_get_clear_flags(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getClearFlags();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_clear_flags(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, unsigned int a0)
+        {
+
+            c->setClearFlags(a0);
+        }
+
+        cocos2d::Color4F Cocos2dxBind_cocos2d__RenderTexture_get_clear_color(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getClearColor();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_clear_color(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Color4F a0)
+        {
+
+            c->setClearColor(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_clear_depth(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getClearDepth();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_clear_depth(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setClearDepth(a0);
+        }
+
+        int Cocos2dxBind_cocos2d__RenderTexture_get_clear_stencil(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getClearStencil();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_clear_stencil(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0)
+        {
+
+            c->setClearStencil(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_is_auto_draw(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->isAutoDraw();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_auto_draw(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, bool a0)
+        {
+
+            c->setAutoDraw(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> Cocos2dxBind_cocos2d__RenderTexture_get_sprite(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getSprite();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_sprite(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0)
+        {
+
+            c->setSprite(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_visit(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Renderer * a0, cocos2d::Mat4 a1, unsigned int a2)
+        {
+
+            c->visit(a0, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_draw(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Renderer * a0, cocos2d::Mat4 a1, unsigned int a2)
+        {
+
+            c->draw(a0, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_keep_matrix(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, bool a0)
+        {
+
+            c->setKeepMatrix(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_virtual_viewport(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Vec2 a0, cocos2d::Rect a1, cocos2d::Rect a2)
+        {
+
+            c->setVirtualViewport(a0, a1, a2);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_init_with_width_and_height_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0, int a1, int a2)
+        {
+
+            return c->initWithWidthAndHeight(a0, a1, (cocos2d::Texture2D::PixelFormat)a2);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_init_with_width_and_height_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0, int a1, int a2, unsigned int a3)
+        {
+
+            return c->initWithWidthAndHeight(a0, a1, (cocos2d::Texture2D::PixelFormat)a2, a3);
+        }
+
+        std::string Cocos2dxBind_cocos2d__RenderTexture_get_description_15(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getDescription();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_local_z_order_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0)
+        {
+
+            c->setLocalZOrder(a0);
+        }
+
+        int Cocos2dxBind_cocos2d__RenderTexture_get_local_z_order_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getLocalZOrder();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_global_z_order_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setGlobalZOrder(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_global_z_order_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getGlobalZOrder();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_scale_x_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setScaleX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_scale_x_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getScaleX();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_scale_y_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setScaleY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_scale_y_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getScaleY();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_scale_z_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setScaleZ(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_scale_z_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getScaleZ();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_scale_45(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setScale(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_scale_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getScale();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_scale_46(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0, float a1)
+        {
+
+            c->setScale(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_position_49(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Vec2 a0)
+        {
+
+            c->setPosition(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_normalized_position_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Vec2 a0)
+        {
+
+            c->setNormalizedPosition(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_get_position_55(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getPosition();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_get_normalized_position_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getNormalizedPosition();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_position_50(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0, float a1)
+        {
+
+            c->setPosition(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_get_position_56(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float * a0, float * a1)
+        {
+
+            c->getPosition(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_position_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setPositionX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_position_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getPositionX();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_position_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setPositionY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_position_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getPositionY();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_position3_d_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Vec3 a0)
+        {
+
+            c->setPosition3D(a0);
+        }
+
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__RenderTexture_get_position3_d_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getPosition3D();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_position_z_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setPositionZ(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_position_z_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getPositionZ();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_skew_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setSkewX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_skew_x_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getSkewX();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_skew_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setSkewY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_skew_y_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getSkewY();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_anchor_point_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Vec2 a0)
+        {
+
+            c->setAnchorPoint(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_get_anchor_point_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getAnchorPoint();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_get_anchor_point_in_points_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getAnchorPointInPoints();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_content_size_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Size a0)
+        {
+
+            c->setContentSize(a0);
+        }
+
+        cocos2d::Size Cocos2dxBind_cocos2d__RenderTexture_get_content_size_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getContentSize();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_visible_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, bool a0)
+        {
+
+            c->setVisible(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_is_visible_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->isVisible();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_rotation_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setRotation(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_rotation_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getRotation();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_rotation3_d_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Vec3 a0)
+        {
+
+            c->setRotation3D(a0);
+        }
+
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__RenderTexture_get_rotation3_d_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getRotation3D();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_rotation_quat_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Quaternion a0)
+        {
+
+            c->setRotationQuat(a0);
+        }
+
+        cocos2d::Quaternion Cocos2dxBind_cocos2d__RenderTexture_get_rotation_quat_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getRotationQuat();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_rotation_skew_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setRotationSkewX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_rotation_skew_x_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getRotationSkewX();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_rotation_skew_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->setRotationSkewY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__RenderTexture_get_rotation_skew_y_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getRotationSkewY();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_order_of_arrival_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0)
+        {
+
+            c->setOrderOfArrival(a0);
+        }
+
+        int Cocos2dxBind_cocos2d__RenderTexture_get_order_of_arrival_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getOrderOfArrival();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_ignore_anchor_point_for_position_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, bool a0)
+        {
+
+            c->ignoreAnchorPointForPosition(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_is_ignore_anchor_point_for_position_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->isIgnoreAnchorPointForPosition();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_add_child_113(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            c->addChild(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_add_child_114(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1)
+        {
+
+            c->addChild(a0.get(), a1);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_add_child_115(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, int a2)
+        {
+
+            c->addChild(a0.get(), a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_add_child_116(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, std::string a2)
+        {
+
+            c->addChild(a0.get(), a1, a2);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cocos2d__RenderTexture_get_child_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0)
+        {
+
+            return c->getChildByTag(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cocos2d__RenderTexture_get_child_by_name_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, std::string a0)
+        {
+
+            return c->getChildByName(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_enumerate_children_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, std::string a0, mrubybind::FuncPtr<bool (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a1)
+        {
+
+            c->enumerateChildren(a0, 
+              [=](cocos2d::Node * b0){
+                  bool  r;
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a1.is_living()) {
+                          r = a1.func()(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>(b0));
+                      }
+                  }, [&]() {
+                      r = bool ();
+                  });
+                  return r;
+              }
+);
+        }
+
+        MrubyRef Cocos2dxBind_cocos2d__RenderTexture_get_children_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
+        }
+
+        ssize_t Cocos2dxBind_cocos2d__RenderTexture_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getChildrenCount();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_parent_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            c->setParent(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cocos2d__RenderTexture_get_parent_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getParent();
+        }
+
+        const cocos2d::Node* Cocos2dxBind_cocos2d__RenderTexture_get_parent_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return const_cast<const cocos2d::Node* >(c->getParent());
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_remove_from_parent_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->removeFromParent();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_remove_from_parent_and_cleanup_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, bool a0)
+        {
+
+            c->removeFromParentAndCleanup(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_remove_child_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, bool a1)
+        {
+
+            c->removeChild(a0.get(), a1);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_remove_child_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0, bool a1)
+        {
+
+            c->removeChildByTag(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_remove_child_by_name_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, std::string a0, bool a1)
+        {
+
+            c->removeChildByName(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_remove_all_children_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->removeAllChildren();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_remove_all_children_with_cleanup_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, bool a0)
+        {
+
+            c->removeAllChildrenWithCleanup(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_reorder_child_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1)
+        {
+
+            c->reorderChild(a0.get(), a1);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_sort_all_children_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->sortAllChildren();
+        }
+
+        int Cocos2dxBind_cocos2d__RenderTexture_get_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getTag();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0)
+        {
+
+            c->setTag(a0);
+        }
+
+        std::string Cocos2dxBind_cocos2d__RenderTexture_get_name_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getName();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_name_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, std::string a0)
+        {
+
+            c->setName(a0);
+        }
+
+        void* Cocos2dxBind_cocos2d__RenderTexture_get_user_data_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getUserData();
+        }
+
+        const void* Cocos2dxBind_cocos2d__RenderTexture_get_user_data_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return const_cast<const void* >(c->getUserData());
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_user_data_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, void * a0)
+        {
+
+            c->setUserData(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__RenderTexture_get_user_object_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getUserObject();
+        }
+
+        const cocos2d::Ref* Cocos2dxBind_cocos2d__RenderTexture_get_user_object_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return const_cast<const cocos2d::Ref* >(c->getUserObject());
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_user_object_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> a0)
+        {
+
+            c->setUserObject(a0.get());
+        }
+
+        cocos2d::GLProgram* Cocos2dxBind_cocos2d__RenderTexture_get_gl_program_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getGLProgram();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_gl_program_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::GLProgram * a0)
+        {
+
+            c->setGLProgram(a0);
+        }
+
+        cocos2d::GLProgramState* Cocos2dxBind_cocos2d__RenderTexture_get_gl_program_state_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getGLProgramState();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_gl_program_state_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::GLProgramState * a0)
+        {
+
+            c->setGLProgramState(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_is_running_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->isRunning();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_schedule_update_with_priority_lua_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0, int a1)
+        {
+
+            c->scheduleUpdateWithPriorityLua(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_on_enter_18(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->onEnter();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_on_enter_transition_did_finish_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->onEnterTransitionDidFinish();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_on_exit_18(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->onExit();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_on_exit_transition_did_start_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->onExitTransitionDidStart();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_cleanup_25(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->cleanup();
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> Cocos2dxBind_cocos2d__RenderTexture_get_scene_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getScene();
+        }
+
+        cocos2d::Rect Cocos2dxBind_cocos2d__RenderTexture_get_bounding_box_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getBoundingBox();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_event_dispatcher_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventDispatcher> a0)
+        {
+
+            c->setEventDispatcher(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventDispatcher> Cocos2dxBind_cocos2d__RenderTexture_get_event_dispatcher_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getEventDispatcher();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_action_manager_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionManager> a0)
+        {
+
+            c->setActionManager(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionManager> Cocos2dxBind_cocos2d__RenderTexture_get_action_manager_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getActionManager();
+        }
+
+        const cocos2d::ActionManager* Cocos2dxBind_cocos2d__RenderTexture_get_action_manager_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return const_cast<const cocos2d::ActionManager* >(c->getActionManager());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cocos2d__RenderTexture_run_action_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> a0)
+        {
+
+            return c->runAction(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_stop_all_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->stopAllActions();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_stop_action_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> a0)
+        {
+
+            c->stopAction(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_stop_action_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0)
+        {
+
+            c->stopActionByTag(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_stop_all_actions_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0)
+        {
+
+            c->stopAllActionsByTag(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_stop_actions_by_flags_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, unsigned int a0)
+        {
+
+            c->stopActionsByFlags(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cocos2d__RenderTexture_get_action_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0)
+        {
+
+            return c->getActionByTag(a0);
+        }
+
+        ssize_t Cocos2dxBind_cocos2d__RenderTexture_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getNumberOfRunningActions();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_scheduler_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Scheduler * a0)
+        {
+
+            c->setScheduler(a0);
+        }
+
+        cocos2d::Scheduler* Cocos2dxBind_cocos2d__RenderTexture_get_scheduler_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getScheduler();
+        }
+
+        const cocos2d::Scheduler* Cocos2dxBind_cocos2d__RenderTexture_get_scheduler_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return const_cast<const cocos2d::Scheduler* >(c->getScheduler());
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_is_scheduled_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, std::string a0)
+        {
+
+            return c->isScheduled(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_schedule_update_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->scheduleUpdate();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_schedule_update_with_priority_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0)
+        {
+
+            c->scheduleUpdateWithPriority(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_unschedule_update_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->unscheduleUpdate();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_schedule_once_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, mrubybind::FuncPtr<void (float)> a0, float a1, std::string a2)
+        {
+
+            c->scheduleOnce(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_schedule_172(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, mrubybind::FuncPtr<void (float)> a0, std::string a1)
+        {
+
+            c->schedule(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_schedule_173(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, mrubybind::FuncPtr<void (float)> a0, float a1, std::string a2)
+        {
+
+            c->schedule(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_schedule_174(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, mrubybind::FuncPtr<void (float)> a0, float a1, unsigned int a2, float a3, std::string a4)
+        {
+
+            c->schedule(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1, a2, a3, a4);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_unschedule_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, std::string a0)
+        {
+
+            c->unschedule(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_unschedule_all_callbacks_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->unscheduleAllCallbacks();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_resume_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->resume();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_pause_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->pause();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_update_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, float a0)
+        {
+
+            c->update(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_update_transform_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->updateTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__RenderTexture_get_node_to_parent_transform_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getNodeToParentTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__RenderTexture_get_node_to_parent_affine_transform_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getNodeToParentAffineTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__RenderTexture_get_node_to_parent_transform_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            return c->getNodeToParentTransform(a0.get());
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__RenderTexture_get_node_to_parent_affine_transform_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            return c->getNodeToParentAffineTransform(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_node_to_parent_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Mat4 a0)
+        {
+
+            c->setNodeToParentTransform(a0);
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__RenderTexture_get_parent_to_node_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getParentToNodeTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__RenderTexture_get_parent_to_node_affine_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getParentToNodeAffineTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__RenderTexture_get_node_to_world_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getNodeToWorldTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__RenderTexture_get_node_to_world_affine_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getNodeToWorldAffineTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__RenderTexture_get_world_to_node_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getWorldToNodeTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__RenderTexture_get_world_to_node_affine_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getWorldToNodeAffineTransform();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_convert_to_node_space_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToNodeSpace(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_convert_to_world_space_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToWorldSpace(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_convert_to_node_space_ar_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToNodeSpaceAR(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_convert_to_world_space_ar_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToWorldSpaceAR(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_convert_touch_to_node_space_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0)
+        {
+
+            return c->convertTouchToNodeSpace(a0.get());
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__RenderTexture_convert_touch_to_node_space_ar_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0)
+        {
+
+            return c->convertTouchToNodeSpaceAR(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_additional_transform_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::AffineTransform a0)
+        {
+
+            c->setAdditionalTransform(a0);
+        }
+
+        cocos2d::Component* Cocos2dxBind_cocos2d__RenderTexture_get_component_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, std::string a0)
+        {
+
+            return c->getComponent(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_add_component_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Component * a0)
+        {
+
+            return c->addComponent(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_remove_component_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, std::string a0)
+        {
+
+            return c->removeComponent(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_remove_component_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Component * a0)
+        {
+
+            return c->removeComponent(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_remove_all_components_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->removeAllComponents();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_physics_body_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> a0)
+        {
+
+            c->setPhysicsBody(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> Cocos2dxBind_cocos2d__RenderTexture_get_physics_body_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getPhysicsBody();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_remove_from_physics_world_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->removeFromPhysicsWorld();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_update_transform_from_physics_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Mat4 a0, unsigned int a1)
+        {
+
+            c->updateTransformFromPhysics(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_update_physics_body_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Mat4 a0, unsigned int a1, float a2, float a3)
+        {
+
+            c->updatePhysicsBodyTransform(a0, a1, a2, a3);
+        }
+
+        int Cocos2dxBind_cocos2d__RenderTexture_get_opacity_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getOpacity();
+        }
+
+        int Cocos2dxBind_cocos2d__RenderTexture_get_displayed_opacity_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getDisplayedOpacity();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_opacity_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0)
+        {
+
+            c->setOpacity(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_update_displayed_opacity_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0)
+        {
+
+            c->updateDisplayedOpacity(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_is_cascade_opacity_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->isCascadeOpacityEnabled();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_cascade_opacity_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, bool a0)
+        {
+
+            c->setCascadeOpacityEnabled(a0);
+        }
+
+        cocos2d::Color3B Cocos2dxBind_cocos2d__RenderTexture_get_color_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getColor();
+        }
+
+        cocos2d::Color3B Cocos2dxBind_cocos2d__RenderTexture_get_displayed_color_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getDisplayedColor();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_color_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Color3B a0)
+        {
+
+            c->setColor(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_update_displayed_color_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, cocos2d::Color3B a0)
+        {
+
+            c->updateDisplayedColor(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_is_cascade_color_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->isCascadeColorEnabled();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_cascade_color_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, bool a0)
+        {
+
+            c->setCascadeColorEnabled(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_opacity_modify_rgb_21(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, bool a0)
+        {
+
+            c->setOpacityModifyRGB(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_is_opacity_modify_rgb_21(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->isOpacityModifyRGB();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_on_enter_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setOnEnterCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_on_exit_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setOnExitCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_seton_enter_transition_did_finish_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setonEnterTransitionDidFinishCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_seton_exit_transition_did_start_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setonExitTransitionDidStartCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        int Cocos2dxBind_cocos2d__RenderTexture_get_camera_mask_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getCameraMask();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_set_camera_mask_22(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c, int a0, bool a1)
+        {
+
+            c->setCameraMask(a0, a1);
+        }
+
+        bool Cocos2dxBind_cocos2d__RenderTexture_init_13(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->init();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->retain();
+        }
+
+        void Cocos2dxBind_cocos2d__RenderTexture_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            c->release();
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__RenderTexture_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->autorelease();
+        }
+
+        unsigned int Cocos2dxBind_cocos2d__RenderTexture_get_reference_count_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        {
+
+            return c->getReferenceCount();
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> Cocos2dxBind_cocos2d__Camera_create_perspective(float a0, float a1, float a2, float a3)
+        {
+
+            return cocos2d::Camera::createPerspective(a0, a1, a2, a3);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> Cocos2dxBind_cocos2d__Camera_create_orthographic(float a0, float a1, float a2, float a3)
+        {
+
+            return cocos2d::Camera::createOrthographic(a0, a1, a2, a3);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> Cocos2dxBind_cocos2d__Camera_create()
+        {
+
+            return cocos2d::Camera::create();
+        }
+
+        cocos2d::Camera::Type Cocos2dxBind_cocos2d__Camera_get_type(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getType();
+        }
+
+        cocos2d::CameraFlag Cocos2dxBind_cocos2d__Camera_get_camera_flag(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getCameraFlag();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_camera_flag(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0)
+        {
+
+            c->setCameraFlag((cocos2d::CameraFlag)a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_look_at(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec3 a0, cocos2d::Vec3 a1)
+        {
+
+            c->lookAt(a0, a1);
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Camera_get_projection_matrix(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getProjectionMatrix();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Camera_get_view_matrix(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getViewMatrix();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Camera_get_view_projection_matrix(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getViewProjectionMatrix();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_project(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec3 a0)
+        {
+
+            return c->project(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_project_gl(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec3 a0)
+        {
+
+            return c->projectGL(a0);
+        }
+
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__Camera_unproject_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec3 a0)
+        {
+
+            return c->unproject(a0);
+        }
+
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__Camera_unproject_gl_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec3 a0)
+        {
+
+            return c->unprojectGL(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_is_visible_in_frustum(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, const cocos2d::AABB * a0)
+        {
+
+            return c->isVisibleInFrustum(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_depth_in_view(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Mat4 a0)
+        {
+
+            return c->getDepthInView(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_depth(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, signed char a0)
+        {
+
+            c->setDepth(a0);
+        }
+
+        signed char Cocos2dxBind_cocos2d__Camera_get_depth(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getDepth();
+        }
+
+        int Cocos2dxBind_cocos2d__Camera_get_render_order(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getRenderOrder();
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_far_plane(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getFarPlane();
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_near_plane(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getNearPlane();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_on_enter(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->onEnter();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_on_exit(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->onExit();
+        }
+
+        const cocos2d::Camera* Cocos2dxBind_cocos2d__Camera_get_visiting_camera()
+        {
+
+            return const_cast<const cocos2d::Camera* >(cocos2d::Camera::getVisitingCamera());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> Cocos2dxBind_cocos2d__Camera_get_default_camera()
+        {
+
+            return cocos2d::Camera::getDefaultCamera();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_clear_background(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->clearBackground();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_apply(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->apply();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_frame_buffer_object(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::experimental::FrameBuffer * a0)
+        {
+
+            c->setFrameBufferObject(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_viewport(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::experimental::Viewport a0)
+        {
+
+            c->setViewport(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_is_view_projection_updated(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->isViewProjectionUpdated();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_background_brush(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::CameraBackgroundBrush * a0)
+        {
+
+            c->setBackgroundBrush(a0);
+        }
+
+        cocos2d::CameraBackgroundBrush* Cocos2dxBind_cocos2d__Camera_get_background_brush(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getBackgroundBrush();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_visit(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Renderer * a0, cocos2d::Mat4 a1, unsigned int a2)
+        {
+
+            c->visit(a0, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_scene(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> a0)
+        {
+
+            c->setScene(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_additional_projection(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Mat4 a0)
+        {
+
+            c->setAdditionalProjection(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_init_default(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->initDefault();
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_init_perspective(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0, float a1, float a2, float a3)
+        {
+
+            return c->initPerspective(a0, a1, a2, a3);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_init_orthographic(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0, float a1, float a2, float a3)
+        {
+
+            return c->initOrthographic(a0, a1, a2, a3);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_apply_frame_buffer_object(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->applyFrameBufferObject();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_apply_viewport(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->applyViewport();
+        }
+
+        cocos2d::experimental::Viewport Cocos2dxBind_cocos2d__Camera_get_default_viewport()
+        {
+
+            return cocos2d::Camera::getDefaultViewport();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_default_viewport(cocos2d::experimental::Viewport a0)
+        {
+
+            cocos2d::Camera::setDefaultViewport(a0);
+        }
+
+        std::string Cocos2dxBind_cocos2d__Camera_get_description_15(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getDescription();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_local_z_order_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0)
+        {
+
+            c->setLocalZOrder(a0);
+        }
+
+        int Cocos2dxBind_cocos2d__Camera_get_local_z_order_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getLocalZOrder();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_global_z_order_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setGlobalZOrder(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_global_z_order_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getGlobalZOrder();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_scale_x_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setScaleX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_scale_x_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getScaleX();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_scale_y_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setScaleY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_scale_y_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getScaleY();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_scale_z_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setScaleZ(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_scale_z_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getScaleZ();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_scale_45(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setScale(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_scale_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getScale();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_scale_46(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0, float a1)
+        {
+
+            c->setScale(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_position_49(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec2 a0)
+        {
+
+            c->setPosition(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_normalized_position_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec2 a0)
+        {
+
+            c->setNormalizedPosition(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_get_position_55(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getPosition();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_get_normalized_position_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getNormalizedPosition();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_position_50(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0, float a1)
+        {
+
+            c->setPosition(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_get_position_56(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float * a0, float * a1)
+        {
+
+            c->getPosition(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_position_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setPositionX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_position_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getPositionX();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_position_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setPositionY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_position_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getPositionY();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_position3_d_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec3 a0)
+        {
+
+            c->setPosition3D(a0);
+        }
+
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__Camera_get_position3_d_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getPosition3D();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_position_z_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setPositionZ(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_position_z_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getPositionZ();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_skew_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setSkewX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_skew_x_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getSkewX();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_skew_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setSkewY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_skew_y_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getSkewY();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_anchor_point_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec2 a0)
+        {
+
+            c->setAnchorPoint(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_get_anchor_point_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getAnchorPoint();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_get_anchor_point_in_points_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getAnchorPointInPoints();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_content_size_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Size a0)
+        {
+
+            c->setContentSize(a0);
+        }
+
+        cocos2d::Size Cocos2dxBind_cocos2d__Camera_get_content_size_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getContentSize();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_visible_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, bool a0)
+        {
+
+            c->setVisible(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_is_visible_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->isVisible();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_rotation_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setRotation(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_rotation_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getRotation();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_rotation3_d_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec3 a0)
+        {
+
+            c->setRotation3D(a0);
+        }
+
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__Camera_get_rotation3_d_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getRotation3D();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_rotation_quat_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Quaternion a0)
+        {
+
+            c->setRotationQuat(a0);
+        }
+
+        cocos2d::Quaternion Cocos2dxBind_cocos2d__Camera_get_rotation_quat_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getRotationQuat();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_rotation_skew_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setRotationSkewX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_rotation_skew_x_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getRotationSkewX();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_rotation_skew_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->setRotationSkewY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__Camera_get_rotation_skew_y_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getRotationSkewY();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_order_of_arrival_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0)
+        {
+
+            c->setOrderOfArrival(a0);
+        }
+
+        int Cocos2dxBind_cocos2d__Camera_get_order_of_arrival_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getOrderOfArrival();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_ignore_anchor_point_for_position_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, bool a0)
+        {
+
+            c->ignoreAnchorPointForPosition(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_is_ignore_anchor_point_for_position_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->isIgnoreAnchorPointForPosition();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_add_child_113(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            c->addChild(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_add_child_114(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1)
+        {
+
+            c->addChild(a0.get(), a1);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_add_child_115(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, int a2)
+        {
+
+            c->addChild(a0.get(), a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_add_child_116(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, std::string a2)
+        {
+
+            c->addChild(a0.get(), a1, a2);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cocos2d__Camera_get_child_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0)
+        {
+
+            return c->getChildByTag(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cocos2d__Camera_get_child_by_name_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, std::string a0)
+        {
+
+            return c->getChildByName(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_enumerate_children_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, std::string a0, mrubybind::FuncPtr<bool (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a1)
+        {
+
+            c->enumerateChildren(a0, 
+              [=](cocos2d::Node * b0){
+                  bool  r;
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a1.is_living()) {
+                          r = a1.func()(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>(b0));
+                      }
+                  }, [&]() {
+                      r = bool ();
+                  });
+                  return r;
+              }
+);
+        }
+
+        MrubyRef Cocos2dxBind_cocos2d__Camera_get_children_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
+        }
+
+        ssize_t Cocos2dxBind_cocos2d__Camera_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getChildrenCount();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_parent_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            c->setParent(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cocos2d__Camera_get_parent_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getParent();
+        }
+
+        const cocos2d::Node* Cocos2dxBind_cocos2d__Camera_get_parent_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return const_cast<const cocos2d::Node* >(c->getParent());
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_remove_from_parent_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->removeFromParent();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_remove_from_parent_and_cleanup_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, bool a0)
+        {
+
+            c->removeFromParentAndCleanup(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_remove_child_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, bool a1)
+        {
+
+            c->removeChild(a0.get(), a1);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_remove_child_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0, bool a1)
+        {
+
+            c->removeChildByTag(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_remove_child_by_name_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, std::string a0, bool a1)
+        {
+
+            c->removeChildByName(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_remove_all_children_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->removeAllChildren();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_remove_all_children_with_cleanup_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, bool a0)
+        {
+
+            c->removeAllChildrenWithCleanup(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_reorder_child_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1)
+        {
+
+            c->reorderChild(a0.get(), a1);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_sort_all_children_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->sortAllChildren();
+        }
+
+        int Cocos2dxBind_cocos2d__Camera_get_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getTag();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0)
+        {
+
+            c->setTag(a0);
+        }
+
+        std::string Cocos2dxBind_cocos2d__Camera_get_name_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getName();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_name_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, std::string a0)
+        {
+
+            c->setName(a0);
+        }
+
+        void* Cocos2dxBind_cocos2d__Camera_get_user_data_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getUserData();
+        }
+
+        const void* Cocos2dxBind_cocos2d__Camera_get_user_data_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return const_cast<const void* >(c->getUserData());
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_user_data_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, void * a0)
+        {
+
+            c->setUserData(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__Camera_get_user_object_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getUserObject();
+        }
+
+        const cocos2d::Ref* Cocos2dxBind_cocos2d__Camera_get_user_object_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return const_cast<const cocos2d::Ref* >(c->getUserObject());
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_user_object_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> a0)
+        {
+
+            c->setUserObject(a0.get());
+        }
+
+        cocos2d::GLProgram* Cocos2dxBind_cocos2d__Camera_get_gl_program_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getGLProgram();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_gl_program_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::GLProgram * a0)
+        {
+
+            c->setGLProgram(a0);
+        }
+
+        cocos2d::GLProgramState* Cocos2dxBind_cocos2d__Camera_get_gl_program_state_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getGLProgramState();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_gl_program_state_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::GLProgramState * a0)
+        {
+
+            c->setGLProgramState(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_is_running_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->isRunning();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_schedule_update_with_priority_lua_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0, int a1)
+        {
+
+            c->scheduleUpdateWithPriorityLua(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_on_enter_transition_did_finish_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->onEnterTransitionDidFinish();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_on_exit_transition_did_start_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->onExitTransitionDidStart();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_cleanup_25(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->cleanup();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_draw_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Renderer * a0, cocos2d::Mat4 a1, unsigned int a2)
+        {
+
+            c->draw(a0, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_draw_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->draw();
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> Cocos2dxBind_cocos2d__Camera_get_scene_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getScene();
+        }
+
+        cocos2d::Rect Cocos2dxBind_cocos2d__Camera_get_bounding_box_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getBoundingBox();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_event_dispatcher_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventDispatcher> a0)
+        {
+
+            c->setEventDispatcher(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventDispatcher> Cocos2dxBind_cocos2d__Camera_get_event_dispatcher_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getEventDispatcher();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_action_manager_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionManager> a0)
+        {
+
+            c->setActionManager(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionManager> Cocos2dxBind_cocos2d__Camera_get_action_manager_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getActionManager();
+        }
+
+        const cocos2d::ActionManager* Cocos2dxBind_cocos2d__Camera_get_action_manager_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return const_cast<const cocos2d::ActionManager* >(c->getActionManager());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cocos2d__Camera_run_action_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> a0)
+        {
+
+            return c->runAction(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_stop_all_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->stopAllActions();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_stop_action_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> a0)
+        {
+
+            c->stopAction(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_stop_action_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0)
+        {
+
+            c->stopActionByTag(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_stop_all_actions_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0)
+        {
+
+            c->stopAllActionsByTag(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_stop_actions_by_flags_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, unsigned int a0)
+        {
+
+            c->stopActionsByFlags(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Action> Cocos2dxBind_cocos2d__Camera_get_action_by_tag_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0)
+        {
+
+            return c->getActionByTag(a0);
+        }
+
+        ssize_t Cocos2dxBind_cocos2d__Camera_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getNumberOfRunningActions();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_scheduler_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Scheduler * a0)
+        {
+
+            c->setScheduler(a0);
+        }
+
+        cocos2d::Scheduler* Cocos2dxBind_cocos2d__Camera_get_scheduler_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getScheduler();
+        }
+
+        const cocos2d::Scheduler* Cocos2dxBind_cocos2d__Camera_get_scheduler_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return const_cast<const cocos2d::Scheduler* >(c->getScheduler());
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_is_scheduled_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, std::string a0)
+        {
+
+            return c->isScheduled(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_schedule_update_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->scheduleUpdate();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_schedule_update_with_priority_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0)
+        {
+
+            c->scheduleUpdateWithPriority(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_unschedule_update_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->unscheduleUpdate();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_schedule_once_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, mrubybind::FuncPtr<void (float)> a0, float a1, std::string a2)
+        {
+
+            c->scheduleOnce(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_schedule_172(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, mrubybind::FuncPtr<void (float)> a0, std::string a1)
+        {
+
+            c->schedule(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_schedule_173(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, mrubybind::FuncPtr<void (float)> a0, float a1, std::string a2)
+        {
+
+            c->schedule(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1, a2);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_schedule_174(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, mrubybind::FuncPtr<void (float)> a0, float a1, unsigned int a2, float a3, std::string a4)
+        {
+
+            c->schedule(
+              [=](float b0){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()(b0);
+                      }
+                  }, [&]() {
+
+                  });
+              }
+, a1, a2, a3, a4);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_unschedule_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, std::string a0)
+        {
+
+            c->unschedule(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_unschedule_all_callbacks_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->unscheduleAllCallbacks();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_resume_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->resume();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_pause_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->pause();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_update_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, float a0)
+        {
+
+            c->update(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_update_transform_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->updateTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Camera_get_node_to_parent_transform_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getNodeToParentTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__Camera_get_node_to_parent_affine_transform_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getNodeToParentAffineTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Camera_get_node_to_parent_transform_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            return c->getNodeToParentTransform(a0.get());
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__Camera_get_node_to_parent_affine_transform_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0)
+        {
+
+            return c->getNodeToParentAffineTransform(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_node_to_parent_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Mat4 a0)
+        {
+
+            c->setNodeToParentTransform(a0);
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Camera_get_parent_to_node_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getParentToNodeTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__Camera_get_parent_to_node_affine_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getParentToNodeAffineTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Camera_get_node_to_world_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getNodeToWorldTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__Camera_get_node_to_world_affine_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getNodeToWorldAffineTransform();
+        }
+
+        cocos2d::Mat4 Cocos2dxBind_cocos2d__Camera_get_world_to_node_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getWorldToNodeTransform();
+        }
+
+        cocos2d::AffineTransform Cocos2dxBind_cocos2d__Camera_get_world_to_node_affine_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getWorldToNodeAffineTransform();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_convert_to_node_space_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToNodeSpace(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_convert_to_world_space_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToWorldSpace(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_convert_to_node_space_ar_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToNodeSpaceAR(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_convert_to_world_space_ar_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Vec2 a0)
+        {
+
+            return c->convertToWorldSpaceAR(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_convert_touch_to_node_space_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0)
+        {
+
+            return c->convertTouchToNodeSpace(a0.get());
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__Camera_convert_touch_to_node_space_ar_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0)
+        {
+
+            return c->convertTouchToNodeSpaceAR(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_additional_transform_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::AffineTransform a0)
+        {
+
+            c->setAdditionalTransform(a0);
+        }
+
+        cocos2d::Component* Cocos2dxBind_cocos2d__Camera_get_component_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, std::string a0)
+        {
+
+            return c->getComponent(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_add_component_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Component * a0)
+        {
+
+            return c->addComponent(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_remove_component_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, std::string a0)
+        {
+
+            return c->removeComponent(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_remove_component_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Component * a0)
+        {
+
+            return c->removeComponent(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_remove_all_components_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->removeAllComponents();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_physics_body_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> a0)
+        {
+
+            c->setPhysicsBody(a0.get());
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> Cocos2dxBind_cocos2d__Camera_get_physics_body_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getPhysicsBody();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_remove_from_physics_world_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->removeFromPhysicsWorld();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_update_transform_from_physics_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Mat4 a0, unsigned int a1)
+        {
+
+            c->updateTransformFromPhysics(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_update_physics_body_transform_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Mat4 a0, unsigned int a1, float a2, float a3)
+        {
+
+            c->updatePhysicsBodyTransform(a0, a1, a2, a3);
+        }
+
+        int Cocos2dxBind_cocos2d__Camera_get_opacity_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getOpacity();
+        }
+
+        int Cocos2dxBind_cocos2d__Camera_get_displayed_opacity_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getDisplayedOpacity();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_opacity_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0)
+        {
+
+            c->setOpacity(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_update_displayed_opacity_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0)
+        {
+
+            c->updateDisplayedOpacity(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_is_cascade_opacity_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->isCascadeOpacityEnabled();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_cascade_opacity_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, bool a0)
+        {
+
+            c->setCascadeOpacityEnabled(a0);
+        }
+
+        cocos2d::Color3B Cocos2dxBind_cocos2d__Camera_get_color_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getColor();
+        }
+
+        cocos2d::Color3B Cocos2dxBind_cocos2d__Camera_get_displayed_color_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getDisplayedColor();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_color_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Color3B a0)
+        {
+
+            c->setColor(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_update_displayed_color_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, cocos2d::Color3B a0)
+        {
+
+            c->updateDisplayedColor(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_is_cascade_color_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->isCascadeColorEnabled();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_cascade_color_enabled_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, bool a0)
+        {
+
+            c->setCascadeColorEnabled(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_opacity_modify_rgb_21(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, bool a0)
+        {
+
+            c->setOpacityModifyRGB(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_is_opacity_modify_rgb_21(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->isOpacityModifyRGB();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_on_enter_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setOnEnterCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_on_exit_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setOnExitCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_seton_enter_transition_did_finish_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setonEnterTransitionDidFinishCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_seton_exit_transition_did_start_callback_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, mrubybind::FuncPtr<void ()> a0)
+        {
+
+            c->setonExitTransitionDidStartCallback(
+              [=](){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a0.is_living()) {
+                          a0.func()();
+                      }
+                  }, [&]() {
+
+                  });
+              }
+);
+        }
+
+        int Cocos2dxBind_cocos2d__Camera_get_camera_mask_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getCameraMask();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_set_camera_mask_22(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c, int a0, bool a1)
+        {
+
+            c->setCameraMask(a0, a1);
+        }
+
+        bool Cocos2dxBind_cocos2d__Camera_init_13(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->init();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->retain();
+        }
+
+        void Cocos2dxBind_cocos2d__Camera_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            c->release();
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__Camera_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->autorelease();
+        }
+
+        unsigned int Cocos2dxBind_cocos2d__Camera_get_reference_count_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        {
+
+            return c->getReferenceCount();
+        }
+
+        cocos2d::LightType Cocos2dxBind_cocos2d__BaseLight_get_light_type(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getLightType();
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_intensity_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getIntensity();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_intensity_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setIntensity(a0);
+        }
+
+        cocos2d::LightFlag Cocos2dxBind_cocos2d__BaseLight_get_light_flag_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getLightFlag();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_light_flag_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, int a0)
+        {
+
+            c->setLightFlag((cocos2d::LightFlag)a0);
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_enabled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, bool a0)
+        {
+
+            c->setEnabled(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__BaseLight_is_enabled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->isEnabled();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_on_enter_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            c->onEnter();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_on_exit_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            c->onExit();
+        }
+
+        std::string Cocos2dxBind_cocos2d__BaseLight_get_description_15(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getDescription();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_local_z_order_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, int a0)
+        {
+
+            c->setLocalZOrder(a0);
+        }
+
+        int Cocos2dxBind_cocos2d__BaseLight_get_local_z_order_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getLocalZOrder();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_global_z_order_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setGlobalZOrder(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_global_z_order_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getGlobalZOrder();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_scale_x_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setScaleX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_scale_x_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getScaleX();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_scale_y_23(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setScaleY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_scale_y_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getScaleY();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_scale_z_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setScaleZ(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_scale_z_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getScaleZ();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_scale_45(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setScale(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_scale_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getScale();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_scale_46(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0, float a1)
+        {
+
+            c->setScale(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_position_49(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cocos2d::Vec2 a0)
+        {
+
+            c->setPosition(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_normalized_position_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cocos2d::Vec2 a0)
+        {
+
+            c->setNormalizedPosition(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__BaseLight_get_position_55(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getPosition();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__BaseLight_get_normalized_position_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getNormalizedPosition();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_position_50(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0, float a1)
+        {
+
+            c->setPosition(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_get_position_56(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float * a0, float * a1)
+        {
+
+            c->getPosition(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_position_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setPositionX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_position_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getPositionX();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_position_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setPositionY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_position_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getPositionY();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_position3_d_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cocos2d::Vec3 a0)
+        {
+
+            c->setPosition3D(a0);
+        }
+
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__BaseLight_get_position3_d_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getPosition3D();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_position_z_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setPositionZ(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_position_z_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getPositionZ();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_skew_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setSkewX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_skew_x_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getSkewX();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_skew_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setSkewY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_skew_y_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getSkewY();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_anchor_point_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cocos2d::Vec2 a0)
+        {
+
+            c->setAnchorPoint(a0);
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__BaseLight_get_anchor_point_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getAnchorPoint();
+        }
+
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__BaseLight_get_anchor_point_in_points_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getAnchorPointInPoints();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_content_size_24(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cocos2d::Size a0)
+        {
+
+            c->setContentSize(a0);
+        }
+
+        cocos2d::Size Cocos2dxBind_cocos2d__BaseLight_get_content_size_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getContentSize();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_visible_27(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, bool a0)
+        {
+
+            c->setVisible(a0);
+        }
+
+        bool Cocos2dxBind_cocos2d__BaseLight_is_visible_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->isVisible();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_rotation_26(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setRotation(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_rotation_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getRotation();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_rotation3_d_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cocos2d::Vec3 a0)
+        {
+
+            c->setRotation3D(a0);
+        }
+
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__BaseLight_get_rotation3_d_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getRotation3D();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_rotation_quat_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, cocos2d::Quaternion a0)
+        {
+
+            c->setRotationQuat(a0);
+        }
+
+        cocos2d::Quaternion Cocos2dxBind_cocos2d__BaseLight_get_rotation_quat_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getRotationQuat();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_rotation_skew_x_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setRotationSkewX(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_rotation_skew_x_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getRotationSkewX();
+        }
+
+        void Cocos2dxBind_cocos2d__BaseLight_set_rotation_skew_y_28(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, float a0)
+        {
+
+            c->setRotationSkewY(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__BaseLight_get_rotation_skew_y_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getRotationSkewY();
+        }
+
+
+
+        
+        bool Cocos2dxBind_StopGrid_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::StopGrid> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_ReuseGrid_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ReuseGrid> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_Waves3D_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Waves3D> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_FlipX3D_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FlipX3D> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_FlipY3D_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FlipY3D> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_Lens3D_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Lens3D> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_Ripple3D_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ripple3D> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_Shaky3D_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Shaky3D> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_Liquid_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Liquid> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_Waves_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Waves> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_Twirl_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Twirl> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_ActionManager_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionManager> c)
+        {
+            return c.is_valid();
+        }
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionManager> Cocos2dxBind_ActionManager_create()
+        {
+            return new cocos2d::ActionManager();
+        }
+        bool Cocos2dxBind_PageTurn3D_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PageTurn3D> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_ProgressTo_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProgressTo> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_ProgressFromTo_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProgressFromTo> c)
+        {
+            return c.is_valid();
+        }
+        bool Cocos2dxBind_ShakyTiles3D_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ShakyTiles3D> c)
+        {
+            return c.is_valid();
+        }
+
 
         
           void Cocos2dxBind_bind_func_9(mruby_interface::MrubyState& mrb)
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_static_method("Cocos2d", "PhysicsBody", "create_1", Cocos2dxBind_cocos2d__PhysicsBody_create_1);
-            binder.bind_static_method("Cocos2d", "PhysicsBody", "create_2", Cocos2dxBind_cocos2d__PhysicsBody_create_2);
-            binder.bind_static_method("Cocos2d", "PhysicsBody", "create_3", Cocos2dxBind_cocos2d__PhysicsBody_create_3);
-            binder.bind_static_method("Cocos2d", "PhysicsBody", "create_circle", Cocos2dxBind_cocos2d__PhysicsBody_create_circle);
-            binder.bind_static_method("Cocos2d", "PhysicsBody", "create_box", Cocos2dxBind_cocos2d__PhysicsBody_create_box);
-            binder.bind_static_method("Cocos2d", "PhysicsBody", "create_polygon", Cocos2dxBind_cocos2d__PhysicsBody_create_polygon);
-            binder.bind_static_method("Cocos2d", "PhysicsBody", "create_edge_segment", Cocos2dxBind_cocos2d__PhysicsBody_create_edge_segment);
-            binder.bind_static_method("Cocos2d", "PhysicsBody", "create_edge_box", Cocos2dxBind_cocos2d__PhysicsBody_create_edge_box);
-            binder.bind_static_method("Cocos2d", "PhysicsBody", "create_edge_polygon", Cocos2dxBind_cocos2d__PhysicsBody_create_edge_polygon);
-            binder.bind_static_method("Cocos2d", "PhysicsBody", "create_edge_chain", Cocos2dxBind_cocos2d__PhysicsBody_create_edge_chain);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "add_shape", Cocos2dxBind_cocos2d__PhysicsBody_add_shape);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "remove_shape_1", Cocos2dxBind_cocos2d__PhysicsBody_remove_shape_1);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "remove_shape_2", Cocos2dxBind_cocos2d__PhysicsBody_remove_shape_2);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "remove_all_shapes", Cocos2dxBind_cocos2d__PhysicsBody_remove_all_shapes);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_shapes", Cocos2dxBind_cocos2d__PhysicsBody_get_shapes);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_first_shape", Cocos2dxBind_cocos2d__PhysicsBody_get_first_shape);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_shape", Cocos2dxBind_cocos2d__PhysicsBody_get_shape);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "apply_force_1", Cocos2dxBind_cocos2d__PhysicsBody_apply_force_1);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "apply_force_2", Cocos2dxBind_cocos2d__PhysicsBody_apply_force_2);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "reset_forces", Cocos2dxBind_cocos2d__PhysicsBody_reset_forces);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "apply_impulse_1", Cocos2dxBind_cocos2d__PhysicsBody_apply_impulse_1);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "apply_impulse_2", Cocos2dxBind_cocos2d__PhysicsBody_apply_impulse_2);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "apply_torque", Cocos2dxBind_cocos2d__PhysicsBody_apply_torque);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_velocity", Cocos2dxBind_cocos2d__PhysicsBody_set_velocity);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_velocity", Cocos2dxBind_cocos2d__PhysicsBody_get_velocity);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_angular_velocity", Cocos2dxBind_cocos2d__PhysicsBody_set_angular_velocity);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_velocity_at_local_point", Cocos2dxBind_cocos2d__PhysicsBody_get_velocity_at_local_point);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_velocity_at_world_point", Cocos2dxBind_cocos2d__PhysicsBody_get_velocity_at_world_point);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_angular_velocity", Cocos2dxBind_cocos2d__PhysicsBody_get_angular_velocity);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_velocity_limit", Cocos2dxBind_cocos2d__PhysicsBody_set_velocity_limit);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_velocity_limit", Cocos2dxBind_cocos2d__PhysicsBody_get_velocity_limit);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_angular_velocity_limit", Cocos2dxBind_cocos2d__PhysicsBody_set_angular_velocity_limit);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_angular_velocity_limit", Cocos2dxBind_cocos2d__PhysicsBody_get_angular_velocity_limit);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "remove_from_world", Cocos2dxBind_cocos2d__PhysicsBody_remove_from_world);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_world", Cocos2dxBind_cocos2d__PhysicsBody_get_world);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_joints", Cocos2dxBind_cocos2d__PhysicsBody_get_joints);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_node", Cocos2dxBind_cocos2d__PhysicsBody_get_node);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_category_bitmask", Cocos2dxBind_cocos2d__PhysicsBody_set_category_bitmask);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_contact_test_bitmask", Cocos2dxBind_cocos2d__PhysicsBody_set_contact_test_bitmask);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_collision_bitmask", Cocos2dxBind_cocos2d__PhysicsBody_set_collision_bitmask);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_category_bitmask", Cocos2dxBind_cocos2d__PhysicsBody_get_category_bitmask);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_contact_test_bitmask", Cocos2dxBind_cocos2d__PhysicsBody_get_contact_test_bitmask);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_collision_bitmask", Cocos2dxBind_cocos2d__PhysicsBody_get_collision_bitmask);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_group", Cocos2dxBind_cocos2d__PhysicsBody_set_group);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_group", Cocos2dxBind_cocos2d__PhysicsBody_get_group);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_position", Cocos2dxBind_cocos2d__PhysicsBody_get_position);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_rotation", Cocos2dxBind_cocos2d__PhysicsBody_get_rotation);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_position_offset", Cocos2dxBind_cocos2d__PhysicsBody_set_position_offset);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_position_offset", Cocos2dxBind_cocos2d__PhysicsBody_get_position_offset);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_rotation_offset", Cocos2dxBind_cocos2d__PhysicsBody_set_rotation_offset);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_rotation_offset", Cocos2dxBind_cocos2d__PhysicsBody_get_rotation_offset);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "is_dynamic", Cocos2dxBind_cocos2d__PhysicsBody_is_dynamic);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_dynamic", Cocos2dxBind_cocos2d__PhysicsBody_set_dynamic);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_mass", Cocos2dxBind_cocos2d__PhysicsBody_set_mass);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_mass", Cocos2dxBind_cocos2d__PhysicsBody_get_mass);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "add_mass", Cocos2dxBind_cocos2d__PhysicsBody_add_mass);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_moment", Cocos2dxBind_cocos2d__PhysicsBody_set_moment);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_moment", Cocos2dxBind_cocos2d__PhysicsBody_get_moment);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "add_moment", Cocos2dxBind_cocos2d__PhysicsBody_add_moment);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_linear_damping", Cocos2dxBind_cocos2d__PhysicsBody_get_linear_damping);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_linear_damping", Cocos2dxBind_cocos2d__PhysicsBody_set_linear_damping);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_angular_damping", Cocos2dxBind_cocos2d__PhysicsBody_get_angular_damping);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_angular_damping", Cocos2dxBind_cocos2d__PhysicsBody_set_angular_damping);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "is_resting", Cocos2dxBind_cocos2d__PhysicsBody_is_resting);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_resting", Cocos2dxBind_cocos2d__PhysicsBody_set_resting);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "is_enabled", Cocos2dxBind_cocos2d__PhysicsBody_is_enabled);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_enable", Cocos2dxBind_cocos2d__PhysicsBody_set_enable);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "is_rotation_enabled", Cocos2dxBind_cocos2d__PhysicsBody_is_rotation_enabled);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_rotation_enable", Cocos2dxBind_cocos2d__PhysicsBody_set_rotation_enable);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "is_gravity_enabled", Cocos2dxBind_cocos2d__PhysicsBody_is_gravity_enabled);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_gravity_enable", Cocos2dxBind_cocos2d__PhysicsBody_set_gravity_enable);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_tag", Cocos2dxBind_cocos2d__PhysicsBody_get_tag);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "set_tag", Cocos2dxBind_cocos2d__PhysicsBody_set_tag);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "world2_local", Cocos2dxBind_cocos2d__PhysicsBody_world2_local);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "local2_world", Cocos2dxBind_cocos2d__PhysicsBody_local2_world);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_cp_body", Cocos2dxBind_cocos2d__PhysicsBody_get_cp_body);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "retain_176", Cocos2dxBind_cocos2d__PhysicsBody_retain_176);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "release_176", Cocos2dxBind_cocos2d__PhysicsBody_release_176);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "autorelease_176", Cocos2dxBind_cocos2d__PhysicsBody_autorelease_176);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "get_reference_count_176", Cocos2dxBind_cocos2d__PhysicsBody_get_reference_count_176);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "_id=", Cocos2dxBind_cocos2d__PhysicsBody_accessor_set__id);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "_id", Cocos2dxBind_cocos2d__PhysicsBody_accessor_get__id);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "_lua_id=", Cocos2dxBind_cocos2d__PhysicsBody_accessor_set__lua_id);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "_lua_id", Cocos2dxBind_cocos2d__PhysicsBody_accessor_get__lua_id);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "_script_object=", Cocos2dxBind_cocos2d__PhysicsBody_accessor_set__script_object);
-            binder.bind_custom_method("Cocos2d", "PhysicsBody", "_script_object", Cocos2dxBind_cocos2d__PhysicsBody_accessor_get__script_object);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "get_shape_a", Cocos2dxBind_cocos2d__PhysicsContact_get_shape_a);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "get_shape_b", Cocos2dxBind_cocos2d__PhysicsContact_get_shape_b);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "get_contact_data", Cocos2dxBind_cocos2d__PhysicsContact_get_contact_data);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "get_pre_contact_data", Cocos2dxBind_cocos2d__PhysicsContact_get_pre_contact_data);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "get_data", Cocos2dxBind_cocos2d__PhysicsContact_get_data);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "set_data", Cocos2dxBind_cocos2d__PhysicsContact_set_data);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "get_event_code", Cocos2dxBind_cocos2d__PhysicsContact_get_event_code);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "set_user_data_2", Cocos2dxBind_cocos2d__PhysicsContact_set_user_data_2);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "get_user_data_2", Cocos2dxBind_cocos2d__PhysicsContact_get_user_data_2);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "get_event_name_2", Cocos2dxBind_cocos2d__PhysicsContact_get_event_name_2);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "get_type_5", Cocos2dxBind_cocos2d__PhysicsContact_get_type_5);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "stop_propagation_5", Cocos2dxBind_cocos2d__PhysicsContact_stop_propagation_5);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "is_stopped_5", Cocos2dxBind_cocos2d__PhysicsContact_is_stopped_5);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "get_current_target_5", Cocos2dxBind_cocos2d__PhysicsContact_get_current_target_5);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "retain_176", Cocos2dxBind_cocos2d__PhysicsContact_retain_176);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "release_176", Cocos2dxBind_cocos2d__PhysicsContact_release_176);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "autorelease_176", Cocos2dxBind_cocos2d__PhysicsContact_autorelease_176);
-            binder.bind_custom_method("Cocos2d", "PhysicsContact", "get_reference_count_176", Cocos2dxBind_cocos2d__PhysicsContact_get_reference_count_176);
-            binder.bind_custom_method("Cocos2d", "PhysicsContactPreSolve", "get_restitution", Cocos2dxBind_cocos2d__PhysicsContactPreSolve_get_restitution);
+                            binder.bind_custom_method("Cocos2d", "PhysicsContactPreSolve", "get_restitution", Cocos2dxBind_cocos2d__PhysicsContactPreSolve_get_restitution);
             binder.bind_custom_method("Cocos2d", "PhysicsContactPreSolve", "get_friction", Cocos2dxBind_cocos2d__PhysicsContactPreSolve_get_friction);
             binder.bind_custom_method("Cocos2d", "PhysicsContactPreSolve", "get_surface_velocity", Cocos2dxBind_cocos2d__PhysicsContactPreSolve_get_surface_velocity);
             binder.bind_custom_method("Cocos2d", "PhysicsContactPreSolve", "set_restitution", Cocos2dxBind_cocos2d__PhysicsContactPreSolve_set_restitution);

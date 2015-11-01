@@ -57,6 +57,196 @@ namespace cor
 {
     namespace mruby_interface
     {
+        
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_transform_4(cor::type::Matrix4x4F a0, cor::type::Vector3F a1)
+        {
+
+            return cor::type::Matrix4x4F::transform(a0, a1);
+        }
+
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_transform_5(cor::type::Matrix4x4F& c, cor::type::Vector3F a0)
+        {
+
+            return c.transform(a0);
+        }
+
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_transform_6(cor::type::Matrix4x4F& c, cor::type::Vector3F a0)
+        {
+
+            return c.transform(a0);
+        }
+
+        cor::type::Vector4F BasicBind_cor__type__Matrix4x4F_transform_7(cor::type::Matrix4x4F a0, cor::type::Vector4F a1)
+        {
+
+            return cor::type::Matrix4x4F::transform(a0, a1);
+        }
+
+        cor::type::Vector4F BasicBind_cor__type__Matrix4x4F_transform_8(cor::type::Matrix4x4F& c, cor::type::Vector4F a0)
+        {
+
+            return c.transform(a0);
+        }
+
+        cor::type::Vector4F BasicBind_cor__type__Matrix4x4F_transform_9(cor::type::Matrix4x4F& c, cor::type::Vector4F a0)
+        {
+
+            return c.transform(a0);
+        }
+
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_transpose_inverse(cor::type::Matrix4x4F a0)
+        {
+
+            return cor::type::Matrix4x4F::transpose_inverse(a0);
+        }
+
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_transpose_inverse_2(cor::type::Matrix4x4F& c)
+        {
+
+            return c.transpose_inverse();
+        }
+
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_transpose_inverse_3(cor::type::Matrix4x4F& c)
+        {
+
+            return c.transpose_inverse();
+        }
+
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_affine_inverse(cor::type::Matrix4x4F a0)
+        {
+
+            return cor::type::Matrix4x4F::affine_inverse(a0);
+        }
+
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_affine_inverse_2(cor::type::Matrix4x4F& c)
+        {
+
+            return c.affine_inverse();
+        }
+
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_affine_inverse_3(cor::type::Matrix4x4F& c)
+        {
+
+            return c.affine_inverse();
+        }
+
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_transpose(cor::type::Matrix4x4F& c)
+        {
+
+            return c.transpose();
+        }
+
+        void BasicBind_cor__type__Matrix4x4F_equal(cor::type::Matrix4x4F& c, cor::type::Matrix4x4F a0, float a1)
+        {
+
+            c.equal(a0, a1);
+        }
+
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_operator__asterisk__0(cor::type::Matrix4x4F & a0, cor::type::Matrix4x4F a1)
+        {
+            return a0*a1;
+        }
+
+        void BasicBind_cor__type__Box2F_set_1(cor::type::Box2F& c, cor::type::Vector2F a0, cor::type::Vector2F a1)
+        {
+
+            c.set(a0, a1);
+        }
+
+        void BasicBind_cor__type__Box2F_set_2(cor::type::Box2F& c, float a0, float a1, float a2, float a3)
+        {
+
+            c.set(a0, a1, a2, a3);
+        }
+
+        cor::type::Vector2F BasicBind_cor__type__Box2F_get_max(cor::type::Box2F& c)
+        {
+
+            return c.get_max();
+        }
+
+        void BasicBind_cor__type__Box2F_set_max(cor::type::Box2F& c, cor::type::Vector2F a0)
+        {
+
+            c.set_max(a0);
+        }
+
+        cor::type::Vector2F BasicBind_cor__type__Box2F_get_center(cor::type::Box2F& c)
+        {
+
+            return c.get_center();
+        }
+
+        void BasicBind_cor__type__Box2F_is_include(cor::type::Box2F& c, cor::type::Vector2F a0)
+        {
+
+            c.is_include(a0);
+        }
+
+        float BasicBind_cor__type__Box2F_get_distance(cor::type::Box2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.get_distance(a0);
+        }
+
+        float BasicBind_cor__type__Box2F_get_width_size(cor::type::Box2F& c)
+        {
+
+            return c.get_width_size();
+        }
+
+        void BasicBind_cor__type__Box2F_accessor_set_p(cor::type::Box2F& c, cor::type::Vector2F a)
+        {
+
+            c.p = a;
+        }
+
+        cor::type::Vector2F BasicBind_cor__type__Box2F_accessor_get_p(cor::type::Box2F& c)
+        {
+
+            return c.p;
+        }
+
+        void BasicBind_cor__type__Box2F_accessor_set_w(cor::type::Box2F& c, cor::type::Vector2F a)
+        {
+
+            c.w = a;
+        }
+
+        cor::type::Vector2F BasicBind_cor__type__Box2F_accessor_get_w(cor::type::Box2F& c)
+        {
+
+            return c.w;
+        }
+
+        void BasicBind_cor__type__Box2I_set_1(cor::type::Box2I& c, cor::type::Vector2I a0, cor::type::Vector2I a1)
+        {
+
+            c.set(a0, a1);
+        }
+
+        void BasicBind_cor__type__Box2I_set_2(cor::type::Box2I& c, int a0, int a1, int a2, int a3)
+        {
+
+            c.set(a0, a1, a2, a3);
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Box2I_get_max(cor::type::Box2I& c)
+        {
+
+            return c.get_max();
+        }
+
+        void BasicBind_cor__type__Box2I_set_max(cor::type::Box2I& c, cor::type::Vector2I a0)
+        {
+
+            c.set_max(a0);
+        }
+
+
+
+        
+
 
         
           void BasicBind_bind_func_11(mruby_interface::MrubyState& mrb)

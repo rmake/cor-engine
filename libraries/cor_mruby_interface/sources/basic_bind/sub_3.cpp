@@ -57,6 +57,287 @@ namespace cor
 {
     namespace mruby_interface
     {
+        
+        void BasicBind_cor__RCharArray_shrink_to_fit(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->shrink_to_fit();
+        }
+
+        void BasicBind_cor__RCharArray_size(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->size();
+        }
+
+        void BasicBind_cor__RCharArray_max_size(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->max_size();
+        }
+
+        void BasicBind_cor__RCharArray_empty(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->empty();
+        }
+
+        std::allocator<char> BasicBind_cor__RCharArray_get_allocator(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            return tmp_c->get_allocator();
+        }
+
+        void BasicBind_cor__RCharArray_data_1(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->data();
+        }
+
+        void BasicBind_cor__RCharArray_data_2(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->data();
+        }
+
+        void BasicBind_cor__RCharArray_front_1(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->front();
+        }
+
+        void BasicBind_cor__RCharArray_front_2(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->front();
+        }
+
+        void BasicBind_cor__RCharArray_back_1(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->back();
+        }
+
+        void BasicBind_cor__RCharArray_back_2(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->back();
+        }
+
+        void BasicBind_cor__RCharArray_pop_back(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->pop_back();
+        }
+
+        void BasicBind_cor__RCharArray_clear(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->clear();
+        }
+
+        void BasicBind_cor__mruby_interface__AnyWP_reset(cor::mruby_interface::AnyWP& c)
+        {
+
+            c.reset();
+        }
+
+        void BasicBind_cor__mruby_interface__AnyWP_expired(cor::mruby_interface::AnyWP& c)
+        {
+
+            c.expired();
+        }
+
+        void BasicBind_cor__mruby_interface__AnyWP_lock(cor::mruby_interface::AnyWP& c)
+        {
+
+            c.lock();
+        }
+
+        void BasicBind_cor__type__Vector2F_set(cor::type::Vector2F& c, float a0, float a1)
+        {
+
+            c.set(a0, a1);
+        }
+
+        void BasicBind_cor__type__Vector2F_begin_1(cor::type::Vector2F& c)
+        {
+
+            c.begin();
+        }
+
+        void BasicBind_cor__type__Vector2F_end_1(cor::type::Vector2F& c)
+        {
+
+            c.end();
+        }
+
+        void BasicBind_cor__type__Vector2F_begin_2(cor::type::Vector2F& c)
+        {
+
+            c.begin();
+        }
+
+        void BasicBind_cor__type__Vector2F_end_2(cor::type::Vector2F& c)
+        {
+
+            c.end();
+        }
+
+        void BasicBind_cor__type__Vector2F_size(cor::type::Vector2F& c)
+        {
+
+            c.size();
+        }
+
+        float* BasicBind_cor__type__Vector2F_get_p_1(cor::type::Vector2F& c)
+        {
+
+            return c.get_p();
+        }
+
+        const float* BasicBind_cor__type__Vector2F_get_p_2(cor::type::Vector2F& c)
+        {
+
+            return const_cast<const float* >(c.get_p());
+        }
+
+        float BasicBind_cor__type__Vector2F_get_square_magnitude(cor::type::Vector2F& c)
+        {
+
+            return c.get_square_magnitude();
+        }
+
+        float BasicBind_cor__type__Vector2F_get_magnitude(cor::type::Vector2F& c)
+        {
+
+            return c.get_magnitude();
+        }
+
+        void BasicBind_cor__type__Vector2F_normalize(cor::type::Vector2F& c)
+        {
+
+            c.normalize();
+        }
+
+        float BasicBind_cor__type__Vector2F_dot(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.dot(a0);
+        }
+
+        float BasicBind_cor__type__Vector2F_cross(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.cross(a0);
+        }
+
+
+
+        
+        bool BasicBind_MrubyRefContainer_valid_question(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c)
+        {
+            return !c.expired();
+        }
+        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_MrubyRefContainer_create_0()
+        {
+            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(std::make_shared<cor::mruby_interface::MrubyRefContainer>());
+        }
+        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_MrubyRefContainer_create_1(mrubybind::MrubyRef a0)
+        {
+            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(std::make_shared<cor::mruby_interface::MrubyRefContainer>(a0));
+        }
+        bool BasicBind_RCharArray_valid_question(std::weak_ptr<cor::RCharArray> c)
+        {
+            return !c.expired();
+        }
+        std::weak_ptr<cor::RCharArray> BasicBind_RCharArray_create_0()
+        {
+            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(std::make_shared<cor::RCharArray>());
+        }
+        std::weak_ptr<cor::RCharArray> BasicBind_RCharArray_create_1(std::allocator<char> a0)
+        {
+            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(std::make_shared<cor::RCharArray>(a0));
+        }
+
 
         
           void BasicBind_bind_func_3(mruby_interface::MrubyState& mrb)
@@ -96,6 +377,9 @@ namespace cor
             binder.bind_static_method("CorSystem", "CorCrypt", "get_enabled", BasicBind_cor__system__CorCrypt_get_enabled);
             binder.bind_static_method("CorSystem", "CorCrypt", "encode", BasicBind_cor__system__CorCrypt_encode);
             binder.bind_static_method("CorSystem", "CorCrypt", "decode", BasicBind_cor__system__CorCrypt_decode);
+            binder.bind_custom_method("CorSystem", "JobQueue", "empty", BasicBind_cor__system__JobQueue_empty);
+            binder.bind_custom_method("CorSystem", "JobQueue", "add_job", BasicBind_cor__system__JobQueue_add_job);
+            binder.bind_custom_method("CorSystem", "JobQueue", "step", BasicBind_cor__system__JobQueue_step);
 
           }
 

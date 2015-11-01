@@ -57,6 +57,221 @@ namespace cor
 {
     namespace mruby_interface
     {
+        
+        cor::type::Vector2I BasicBind_cor__type__Box2I_get_center(cor::type::Box2I& c)
+        {
+
+            return c.get_center();
+        }
+
+        void BasicBind_cor__type__Box2I_is_include(cor::type::Box2I& c, cor::type::Vector2I a0)
+        {
+
+            c.is_include(a0);
+        }
+
+        int BasicBind_cor__type__Box2I_get_distance(cor::type::Box2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.get_distance(a0);
+        }
+
+        int BasicBind_cor__type__Box2I_get_width_size(cor::type::Box2I& c)
+        {
+
+            return c.get_width_size();
+        }
+
+        void BasicBind_cor__type__Box2I_accessor_set_p(cor::type::Box2I& c, cor::type::Vector2I a)
+        {
+
+            c.p = a;
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Box2I_accessor_get_p(cor::type::Box2I& c)
+        {
+
+            return c.p;
+        }
+
+        void BasicBind_cor__type__Box2I_accessor_set_w(cor::type::Box2I& c, cor::type::Vector2I a)
+        {
+
+            c.w = a;
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Box2I_accessor_get_w(cor::type::Box2I& c)
+        {
+
+            return c.w;
+        }
+
+        void BasicBind_cor__type__OBox2F_is_include(cor::type::OBox2F& c, cor::type::Vector2F a0)
+        {
+
+            c.is_include(a0);
+        }
+
+        float BasicBind_cor__type__OBox2F_get_distance(cor::type::OBox2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.get_distance(a0);
+        }
+
+        void BasicBind_cor__type__OBox2F_get_vertices(cor::type::OBox2F& c)
+        {
+
+            c.get_vertices();
+        }
+
+        void BasicBind_cor__type__OBox2F_get_aabb(cor::type::OBox2F& c)
+        {
+
+            c.get_aabb();
+        }
+
+        void BasicBind_cor__type__OBox2I_is_include(cor::type::OBox2I& c, cor::type::Vector2I a0)
+        {
+
+            c.is_include(a0);
+        }
+
+        int BasicBind_cor__type__OBox2I_get_distance(cor::type::OBox2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.get_distance(a0);
+        }
+
+        void BasicBind_cor__type__OBox2I_get_vertices(cor::type::OBox2I& c)
+        {
+
+            c.get_vertices();
+        }
+
+        void BasicBind_cor__type__OBox2I_get_aabb(cor::type::OBox2I& c)
+        {
+
+            c.get_aabb();
+        }
+
+        void BasicBind_cor__type__Sphere2F_set(cor::type::Sphere2F& c, cor::type::Vector2F a0, float a1)
+        {
+
+            c.set(a0, a1);
+        }
+
+        void BasicBind_cor__type__Sphere2F_is_include_point(cor::type::Sphere2F& c, cor::type::Vector2F a0)
+        {
+
+            c.is_include_point(a0);
+        }
+
+        float BasicBind_cor__type__Sphere2F_get_distance(cor::type::Sphere2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.get_distance(a0);
+        }
+
+        void BasicBind_cor__type__Sphere2F_accessor_set_p(cor::type::Sphere2F& c, cor::type::Vector2F a)
+        {
+
+            c.p = a;
+        }
+
+        cor::type::Vector2F BasicBind_cor__type__Sphere2F_accessor_get_p(cor::type::Sphere2F& c)
+        {
+
+            return c.p;
+        }
+
+        void BasicBind_cor__type__Sphere2F_accessor_set_r(cor::type::Sphere2F& c, float a)
+        {
+
+            c.r = a;
+        }
+
+        float BasicBind_cor__type__Sphere2F_accessor_get_r(cor::type::Sphere2F& c)
+        {
+
+            return c.r;
+        }
+
+        void BasicBind_cor__type__Sphere2I_set(cor::type::Sphere2I& c, cor::type::Vector2I a0, int a1)
+        {
+
+            c.set(a0, a1);
+        }
+
+        void BasicBind_cor__type__Sphere2I_is_include_point(cor::type::Sphere2I& c, cor::type::Vector2I a0)
+        {
+
+            c.is_include_point(a0);
+        }
+
+        int BasicBind_cor__type__Sphere2I_get_distance(cor::type::Sphere2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.get_distance(a0);
+        }
+
+        void BasicBind_cor__type__Sphere2I_accessor_set_p(cor::type::Sphere2I& c, cor::type::Vector2I a)
+        {
+
+            c.p = a;
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Sphere2I_accessor_get_p(cor::type::Sphere2I& c)
+        {
+
+            return c.p;
+        }
+
+        void BasicBind_cor__type__Sphere2I_accessor_set_r(cor::type::Sphere2I& c, int a)
+        {
+
+            c.r = a;
+        }
+
+        int BasicBind_cor__type__Sphere2I_accessor_get_r(cor::type::Sphere2I& c)
+        {
+
+            return c.r;
+        }
+
+        void BasicBind_cor__type__OSphere2F_is_include(cor::type::OSphere2F& c, cor::type::Vector2F a0)
+        {
+
+            c.is_include(a0);
+        }
+
+        float BasicBind_cor__type__OSphere2F_get_distance(cor::type::OSphere2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.get_distance(a0);
+        }
+
+        void BasicBind_cor__type__OSphere2F_get_draw_vertices(cor::type::OSphere2F& c)
+        {
+
+            c.get_draw_vertices();
+        }
+
+        void BasicBind_cor__type__OSphere2F_get_box(cor::type::OSphere2F& c)
+        {
+
+            c.get_box();
+        }
+
+        void BasicBind_cor__type__OSphere2I_is_include(cor::type::OSphere2I& c, cor::type::Vector2I a0)
+        {
+
+            c.is_include(a0);
+        }
+
+
+
+        
+
 
         
           void BasicBind_bind_func_12(mruby_interface::MrubyState& mrb)

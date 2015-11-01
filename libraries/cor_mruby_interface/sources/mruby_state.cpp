@@ -257,18 +257,19 @@ namespace cor
             }
         }
 
-        void MrubyState::rescue_cpp_error(mrubybind::FuncPtr<void()> process, mrubybind::FuncPtr<void(RString)> error)
+        void MrubyState::rescue_cpp_error(mrubybind::FuncPtr<void()> process)
         {
-            auto mrb = cor::mruby_interface::MrubyState::get_current();
-            mrubybind::MrubyArenaStore mas(mrb->get_mrb());
+            auto mrbs = cor::mruby_interface::MrubyState::get_current();
+            mrubybind::MrubyArenaStore mas(mrbs->get_mrb());
             try {
                 process.func()();
-                mrb->exception_store_log();
+                mrbs->exception_store_log();
             }
             catch(std::runtime_error e)
             {
-                error.func()(RString(e.what()));
-                mrb->exception_store_log();
+                mrbs->exception_store_log();
+                auto mrb = mrbs->get_mrb();
+                mrb_raisef(mrb, E_RUNTIME_ERROR, (RString("cpp runtime error: ") + e.what() + ".").c_str());
             }
         }
 
