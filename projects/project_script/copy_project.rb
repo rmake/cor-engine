@@ -244,6 +244,7 @@ past_copy_data["past_cpps"] ||= {}
 binding_gen = Proc.new do |path|
   CorProject.current_project_path = path
   binding_conf = "#{path}/binding_conf.rb"
+  puts "binding_conf #{binding_conf}"
   if File.exists?(binding_conf)
     #FileUtils.chdir File.dirname(binding_conf)
 
@@ -419,6 +420,9 @@ unless resource_only
 
     import_cpp_list = import_cpp_includes.select do |v| v.match(/\.cpp$/) end
     import_h_list = import_cpp_includes.select do |v| v.match(/\.h$/) end
+
+    import_cpp_list = import_cpp_list.uniq
+    import_h_list = import_h_list.uniq
 
     #import_cpp_includes = import_cpp_includes.map do |v|
     #  "#include \"#{v}\""

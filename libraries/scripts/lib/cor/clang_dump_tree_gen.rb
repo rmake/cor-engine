@@ -744,7 +744,7 @@ EOS
 
           tp_self_keys =
             [
-              "#{tmpl[:template_name].gsub(/^.*::/, "")}<#{tp_self_key.join(",")}>",
+              "#{tmpl[:template_name].gsub(/^.*::/, "")}<#{tp_self_key.join(", ")}>",
               "#{tmpl[:template_name].gsub(/^.*::/, "")}",
             ]
 
@@ -858,7 +858,6 @@ EOS
             selected_methods << nm
           end
         end
-
 
       end
 

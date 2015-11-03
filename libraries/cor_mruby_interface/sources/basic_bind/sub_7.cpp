@@ -52,54 +52,14 @@
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 namespace cor
 {
     namespace mruby_interface
     {
         
-        int BasicBind_cor__type__Vector3I_get_square_magnitude(cor::type::Vector3I& c)
-        {
-
-            return c.get_square_magnitude();
-        }
-
-        int BasicBind_cor__type__Vector3I_get_magnitude(cor::type::Vector3I& c)
-        {
-
-            return c.get_magnitude();
-        }
-
-        cor::type::Vector2I BasicBind_cor__type__Vector3I_xy(cor::type::Vector3I& c)
-        {
-
-            return c.xy();
-        }
-
-        void BasicBind_cor__type__Vector3I_normalize(cor::type::Vector3I& c)
-        {
-
-            c.normalize();
-        }
-
-        int BasicBind_cor__type__Vector3I_dot(cor::type::Vector3I& c, cor::type::Vector3I a0)
-        {
-
-            return c.dot(a0);
-        }
-
-        cor::type::Vector3I BasicBind_cor__type__Vector3I_cross(cor::type::Vector3I& c, cor::type::Vector3I a0)
-        {
-
-            return c.cross(a0);
-        }
-
-        int BasicBind_cor__type__Vector3I_distance(cor::type::Vector3I& c, cor::type::Vector3I a0)
-        {
-
-            return c.distance(a0);
-        }
-
         cor::type::Vector3I BasicBind_cor__type__Vector3I_zero()
         {
 
@@ -274,6 +234,54 @@ namespace cor
             c.end();
         }
 
+        void BasicBind_cor__type__Vector4F_size(cor::type::Vector4F& c)
+        {
+
+            c.size();
+        }
+
+        float* BasicBind_cor__type__Vector4F_get_p_1(cor::type::Vector4F& c)
+        {
+
+            return c.get_p();
+        }
+
+        const float* BasicBind_cor__type__Vector4F_get_p_2(cor::type::Vector4F& c)
+        {
+
+            return const_cast<const float* >(c.get_p());
+        }
+
+        float BasicBind_cor__type__Vector4F_get_square_magnitude(cor::type::Vector4F& c)
+        {
+
+            return c.get_square_magnitude();
+        }
+
+        float BasicBind_cor__type__Vector4F_get_magnitude(cor::type::Vector4F& c)
+        {
+
+            return c.get_magnitude();
+        }
+
+        cor::type::Vector2F BasicBind_cor__type__Vector4F_xy(cor::type::Vector4F& c)
+        {
+
+            return c.xy();
+        }
+
+        cor::type::Vector3F BasicBind_cor__type__Vector4F_xyz(cor::type::Vector4F& c)
+        {
+
+            return c.xyz();
+        }
+
+        void BasicBind_cor__type__Vector4F_normalize(cor::type::Vector4F& c)
+        {
+
+            c.normalize();
+        }
+
 
 
         
@@ -289,7 +297,11 @@ namespace cor
         {
             return cor::type::Sphere2F();
         }
-        cor::type::Sphere2F BasicBind_Sphere2F_create_1(cor::type::Vector2F a0, float a1)
+        cor::type::Sphere2F BasicBind_Sphere2F_create_1(cor::type::Sphere2F a0)
+        {
+            return cor::type::Sphere2F(a0);
+        }
+        cor::type::Sphere2F BasicBind_Sphere2F_create_2(cor::type::Vector2F a0, float a1)
         {
             return cor::type::Sphere2F(a0, a1);
         }
@@ -366,8 +378,12 @@ namespace cor
             binder.bind_custom_method("CorType", "Box2F", "set_2", BasicBind_cor__type__Box2F_set_2);
             binder.bind_custom_method("CorType", "Box2F", "get_max", BasicBind_cor__type__Box2F_get_max);
             binder.bind_custom_method("CorType", "Box2F", "set_max", BasicBind_cor__type__Box2F_set_max);
+            binder.bind_static_method("CorType", "Box2F", "change_corner", BasicBind_cor__type__Box2F_change_corner);
+            binder.bind_custom_method("CorType", "Box2F", "set_rect", BasicBind_cor__type__Box2F_set_rect);
+            binder.bind_custom_method("CorType", "Box2F", "add_rect", BasicBind_cor__type__Box2F_add_rect);
             binder.bind_custom_method("CorType", "Box2F", "get_center", BasicBind_cor__type__Box2F_get_center);
             binder.bind_custom_method("CorType", "Box2F", "is_include", BasicBind_cor__type__Box2F_is_include);
+            binder.bind_custom_method("CorType", "Box2F", "is_cross", BasicBind_cor__type__Box2F_is_cross);
             binder.bind_custom_method("CorType", "Box2F", "get_distance", BasicBind_cor__type__Box2F_get_distance);
             binder.bind_custom_method("CorType", "Box2F", "get_width_size", BasicBind_cor__type__Box2F_get_width_size);
             binder.bind_custom_method("CorType", "Box2F", "p=", BasicBind_cor__type__Box2F_accessor_set_p);
@@ -378,14 +394,19 @@ namespace cor
             binder.bind_custom_method("CorType", "Box2I", "set_2", BasicBind_cor__type__Box2I_set_2);
             binder.bind_custom_method("CorType", "Box2I", "get_max", BasicBind_cor__type__Box2I_get_max);
             binder.bind_custom_method("CorType", "Box2I", "set_max", BasicBind_cor__type__Box2I_set_max);
+            binder.bind_static_method("CorType", "Box2I", "change_corner", BasicBind_cor__type__Box2I_change_corner);
+            binder.bind_custom_method("CorType", "Box2I", "set_rect", BasicBind_cor__type__Box2I_set_rect);
+            binder.bind_custom_method("CorType", "Box2I", "add_rect", BasicBind_cor__type__Box2I_add_rect);
             binder.bind_custom_method("CorType", "Box2I", "get_center", BasicBind_cor__type__Box2I_get_center);
             binder.bind_custom_method("CorType", "Box2I", "is_include", BasicBind_cor__type__Box2I_is_include);
+            binder.bind_custom_method("CorType", "Box2I", "is_cross", BasicBind_cor__type__Box2I_is_cross);
             binder.bind_custom_method("CorType", "Box2I", "get_distance", BasicBind_cor__type__Box2I_get_distance);
             binder.bind_custom_method("CorType", "Box2I", "get_width_size", BasicBind_cor__type__Box2I_get_width_size);
             binder.bind_custom_method("CorType", "Box2I", "p=", BasicBind_cor__type__Box2I_accessor_set_p);
             binder.bind_custom_method("CorType", "Box2I", "p", BasicBind_cor__type__Box2I_accessor_get_p);
             binder.bind_custom_method("CorType", "Box2I", "w=", BasicBind_cor__type__Box2I_accessor_set_w);
             binder.bind_custom_method("CorType", "Box2I", "w", BasicBind_cor__type__Box2I_accessor_get_w);
+            binder.bind_custom_method("CorType", "OBox2F", "is_cross", BasicBind_cor__type__OBox2F_is_cross);
             binder.bind_custom_method("CorType", "OBox2F", "is_include", BasicBind_cor__type__OBox2F_is_include);
             binder.bind_custom_method("CorType", "OBox2F", "get_distance", BasicBind_cor__type__OBox2F_get_distance);
             binder.bind_custom_method("CorType", "OBox2F", "get_vertices", BasicBind_cor__type__OBox2F_get_vertices);

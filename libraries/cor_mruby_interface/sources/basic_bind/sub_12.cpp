@@ -52,36 +52,14 @@
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 namespace cor
 {
     namespace mruby_interface
     {
         
-        cor::type::Vector2I BasicBind_cor__type__Box2I_get_center(cor::type::Box2I& c)
-        {
-
-            return c.get_center();
-        }
-
-        void BasicBind_cor__type__Box2I_is_include(cor::type::Box2I& c, cor::type::Vector2I a0)
-        {
-
-            c.is_include(a0);
-        }
-
-        int BasicBind_cor__type__Box2I_get_distance(cor::type::Box2I& c, cor::type::Vector2I a0)
-        {
-
-            return c.get_distance(a0);
-        }
-
-        int BasicBind_cor__type__Box2I_get_width_size(cor::type::Box2I& c)
-        {
-
-            return c.get_width_size();
-        }
-
         void BasicBind_cor__type__Box2I_accessor_set_p(cor::type::Box2I& c, cor::type::Vector2I a)
         {
 
@@ -106,6 +84,12 @@ namespace cor
             return c.w;
         }
 
+        void BasicBind_cor__type__OBox2F_is_cross(cor::type::OBox2F& c, cor::type::OBox2F a0)
+        {
+
+            c.is_cross(a0);
+        }
+
         void BasicBind_cor__type__OBox2F_is_include(cor::type::OBox2F& c, cor::type::Vector2F a0)
         {
 
@@ -128,6 +112,12 @@ namespace cor
         {
 
             c.get_aabb();
+        }
+
+        void BasicBind_cor__type__OBox2I_is_cross(cor::type::OBox2I& c, cor::type::OBox2I a0)
+        {
+
+            c.is_cross(a0);
         }
 
         void BasicBind_cor__type__OBox2I_is_include(cor::type::OBox2I& c, cor::type::Vector2I a0)
@@ -158,6 +148,12 @@ namespace cor
         {
 
             c.set(a0, a1);
+        }
+
+        void BasicBind_cor__type__Sphere2F_is_collide(cor::type::Sphere2F& c, cor::type::Sphere2F a0)
+        {
+
+            c.is_collide(a0);
         }
 
         void BasicBind_cor__type__Sphere2F_is_include_point(cor::type::Sphere2F& c, cor::type::Vector2F a0)
@@ -202,6 +198,12 @@ namespace cor
             c.set(a0, a1);
         }
 
+        void BasicBind_cor__type__Sphere2I_is_collide(cor::type::Sphere2I& c, cor::type::Sphere2I a0)
+        {
+
+            c.is_collide(a0);
+        }
+
         void BasicBind_cor__type__Sphere2I_is_include_point(cor::type::Sphere2I& c, cor::type::Vector2I a0)
         {
 
@@ -238,6 +240,12 @@ namespace cor
             return c.r;
         }
 
+        void BasicBind_cor__type__OSphere2F_is_cross(cor::type::OSphere2F& c, cor::type::OSphere2F a0)
+        {
+
+            c.is_cross(a0);
+        }
+
         void BasicBind_cor__type__OSphere2F_is_include(cor::type::OSphere2F& c, cor::type::Vector2F a0)
         {
 
@@ -262,10 +270,10 @@ namespace cor
             c.get_box();
         }
 
-        void BasicBind_cor__type__OSphere2I_is_include(cor::type::OSphere2I& c, cor::type::Vector2I a0)
+        void BasicBind_cor__type__OSphere2I_is_cross(cor::type::OSphere2I& c, cor::type::OSphere2I a0)
         {
 
-            c.is_include(a0);
+            c.is_cross(a0);
         }
 
 

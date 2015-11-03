@@ -52,42 +52,14 @@
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 namespace cor
 {
     namespace mruby_interface
     {
         
-        int BasicBind_cor__type__Vector2I_cross(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            return c.cross(a0);
-        }
-
-        int BasicBind_cor__type__Vector2I_distance(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            return c.distance(a0);
-        }
-
-        cor::type::Vector2I BasicBind_cor__type__Vector2I_zero()
-        {
-
-            return cor::type::Vector2I::zero();
-        }
-
-        cor::type::Vector2I BasicBind_cor__type__Vector2I_one()
-        {
-
-            return cor::type::Vector2I::one();
-        }
-
-        cor::type::Vector2I BasicBind_cor__type__Vector2I_max_vec(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            return c.max_vec(a0);
-        }
-
         cor::type::Vector2I BasicBind_cor__type__Vector2I_min_vec(cor::type::Vector2I& c, cor::type::Vector2I a0)
         {
 
@@ -266,6 +238,42 @@ namespace cor
         {
 
             return c.xy();
+        }
+
+        void BasicBind_cor__type__Vector3F_normalize(cor::type::Vector3F& c)
+        {
+
+            c.normalize();
+        }
+
+        float BasicBind_cor__type__Vector3F_dot(cor::type::Vector3F& c, cor::type::Vector3F a0)
+        {
+
+            return c.dot(a0);
+        }
+
+        cor::type::Vector3F BasicBind_cor__type__Vector3F_cross(cor::type::Vector3F& c, cor::type::Vector3F a0)
+        {
+
+            return c.cross(a0);
+        }
+
+        float BasicBind_cor__type__Vector3F_distance(cor::type::Vector3F& c, cor::type::Vector3F a0)
+        {
+
+            return c.distance(a0);
+        }
+
+        cor::type::Vector3F BasicBind_cor__type__Vector3F_zero()
+        {
+
+            return cor::type::Vector3F::zero();
+        }
+
+        cor::type::Vector3F BasicBind_cor__type__Vector3F_one()
+        {
+
+            return cor::type::Vector3F::one();
         }
 
 

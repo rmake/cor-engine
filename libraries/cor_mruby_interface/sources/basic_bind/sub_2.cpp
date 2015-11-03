@@ -52,30 +52,14 @@
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 namespace cor
 {
     namespace mruby_interface
     {
         
-        cor::system::Logger* BasicBind_cor__system__Logger_get_instance()
-        {
-
-            return cor::system::Logger::get_instance();
-        }
-
-        int BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_test_2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> c)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            return tmp_c->test();
-        }
-
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_accessor_set_a(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> c, int a)
         {
             auto tmp_c = c.lock();
@@ -398,6 +382,42 @@ namespace cor
             }
 
             tmp_c->crend();
+        }
+
+        void BasicBind_cor__RCharArray_shrink_to_fit(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->shrink_to_fit();
+        }
+
+        void BasicBind_cor__RCharArray_size(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->size();
+        }
+
+        void BasicBind_cor__RCharArray_max_size(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->max_size();
         }
 
 

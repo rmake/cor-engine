@@ -52,48 +52,14 @@
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 namespace cor
 {
     namespace mruby_interface
     {
         
-        void BasicBind_cor__RCharArray_shrink_to_fit(std::weak_ptr<cor::RCharArray> c)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            tmp_c->shrink_to_fit();
-        }
-
-        void BasicBind_cor__RCharArray_size(std::weak_ptr<cor::RCharArray> c)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            tmp_c->size();
-        }
-
-        void BasicBind_cor__RCharArray_max_size(std::weak_ptr<cor::RCharArray> c)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            tmp_c->max_size();
-        }
-
         void BasicBind_cor__RCharArray_empty(std::weak_ptr<cor::RCharArray> c)
         {
             auto tmp_c = c.lock();
@@ -308,6 +274,30 @@ namespace cor
         {
 
             return c.cross(a0);
+        }
+
+        float BasicBind_cor__type__Vector2F_distance(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.distance(a0);
+        }
+
+        cor::type::Vector2F BasicBind_cor__type__Vector2F_zero()
+        {
+
+            return cor::type::Vector2F::zero();
+        }
+
+        cor::type::Vector2F BasicBind_cor__type__Vector2F_one()
+        {
+
+            return cor::type::Vector2F::one();
+        }
+
+        cor::type::Vector2F BasicBind_cor__type__Vector2F_max_vec(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.max_vec(a0);
         }
 
 

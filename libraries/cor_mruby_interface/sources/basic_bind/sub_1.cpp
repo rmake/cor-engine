@@ -52,18 +52,14 @@
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 namespace cor
 {
     namespace mruby_interface
     {
         
-        void BasicBind_cor__system__CorCrypt_set_enabled(int a0)
-        {
-
-            cor::system::CorCrypt::set_enabled(a0);
-        }
-
         int BasicBind_cor__system__CorCrypt_get_enabled()
         {
 
@@ -280,6 +276,24 @@ namespace cor
             cor::system::Logger::fatal(a0);
         }
 
+        cor::system::Logger* BasicBind_cor__system__Logger_get_instance()
+        {
+
+            return cor::system::Logger::get_instance();
+        }
+
+        int BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_test_2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            return tmp_c->test();
+        }
+
 
 
         
@@ -326,10 +340,12 @@ namespace cor
             binder.bind_static_method("CorType", "Box2F", "create_0", BasicBind_Box2F_create_0);
             binder.bind_static_method("CorType", "Box2F", "create_1", BasicBind_Box2F_create_1);
             binder.bind_static_method("CorType", "Box2F", "create_2", BasicBind_Box2F_create_2);
+            binder.bind_static_method("CorType", "Box2F", "create_3", BasicBind_Box2F_create_3);
             binder.bind_class<cor::type::Box2I >("CorType", "Box2I");
             binder.bind_static_method("CorType", "Box2I", "create_0", BasicBind_Box2I_create_0);
             binder.bind_static_method("CorType", "Box2I", "create_1", BasicBind_Box2I_create_1);
             binder.bind_static_method("CorType", "Box2I", "create_2", BasicBind_Box2I_create_2);
+            binder.bind_static_method("CorType", "Box2I", "create_3", BasicBind_Box2I_create_3);
             binder.bind_class<cor::type::OBox2F >("CorType", "OBox2F");
             binder.bind_static_method("CorType", "OBox2F", "create", BasicBind_OBox2F_create);
             binder.bind_class<cor::type::OBox2I >("CorType", "OBox2I");
@@ -337,9 +353,11 @@ namespace cor
             binder.bind_class<cor::type::Sphere2F >("CorType", "Sphere2F");
             binder.bind_static_method("CorType", "Sphere2F", "create_0", BasicBind_Sphere2F_create_0);
             binder.bind_static_method("CorType", "Sphere2F", "create_1", BasicBind_Sphere2F_create_1);
+            binder.bind_static_method("CorType", "Sphere2F", "create_2", BasicBind_Sphere2F_create_2);
             binder.bind_class<cor::type::Sphere2I >("CorType", "Sphere2I");
             binder.bind_static_method("CorType", "Sphere2I", "create_0", BasicBind_Sphere2I_create_0);
             binder.bind_static_method("CorType", "Sphere2I", "create_1", BasicBind_Sphere2I_create_1);
+            binder.bind_static_method("CorType", "Sphere2I", "create_2", BasicBind_Sphere2I_create_2);
             binder.bind_class<cor::type::OSphere2F >("CorType", "OSphere2F");
             binder.bind_static_method("CorType", "OSphere2F", "create", BasicBind_OSphere2F_create);
 

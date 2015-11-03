@@ -52,6 +52,8 @@
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 namespace cor
 {
@@ -320,6 +322,12 @@ namespace cor
         {
 
             return cor::system::AllocationMonitor::al_realloc(a0, a1);
+        }
+
+        void BasicBind_cor__system__CorCrypt_set_enabled(int a0)
+        {
+
+            cor::system::CorCrypt::set_enabled(a0);
         }
 
 

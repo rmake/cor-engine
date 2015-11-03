@@ -33,6 +33,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/cocos2dx_bind.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 namespace cor
 {

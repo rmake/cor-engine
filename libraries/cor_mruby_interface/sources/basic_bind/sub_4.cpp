@@ -52,36 +52,14 @@
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 namespace cor
 {
     namespace mruby_interface
     {
         
-        float BasicBind_cor__type__Vector2F_distance(cor::type::Vector2F& c, cor::type::Vector2F a0)
-        {
-
-            return c.distance(a0);
-        }
-
-        cor::type::Vector2F BasicBind_cor__type__Vector2F_zero()
-        {
-
-            return cor::type::Vector2F::zero();
-        }
-
-        cor::type::Vector2F BasicBind_cor__type__Vector2F_one()
-        {
-
-            return cor::type::Vector2F::one();
-        }
-
-        cor::type::Vector2F BasicBind_cor__type__Vector2F_max_vec(cor::type::Vector2F& c, cor::type::Vector2F a0)
-        {
-
-            return c.max_vec(a0);
-        }
-
         cor::type::Vector2F BasicBind_cor__type__Vector2F_min_vec(cor::type::Vector2F& c, cor::type::Vector2F a0)
         {
 
@@ -266,6 +244,36 @@ namespace cor
         {
 
             return c.dot(a0);
+        }
+
+        int BasicBind_cor__type__Vector2I_cross(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.cross(a0);
+        }
+
+        int BasicBind_cor__type__Vector2I_distance(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.distance(a0);
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_zero()
+        {
+
+            return cor::type::Vector2I::zero();
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_one()
+        {
+
+            return cor::type::Vector2I::one();
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_max_vec(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.max_vec(a0);
         }
 
 

@@ -52,12 +52,20 @@
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 namespace cor
 {
     namespace mruby_interface
     {
         
+        void BasicBind_cor__type__OSphere2I_is_include(cor::type::OSphere2I& c, cor::type::Vector2I a0)
+        {
+
+            c.is_include(a0);
+        }
+
         int BasicBind_cor__type__OSphere2I_get_distance(cor::type::OSphere2I& c, cor::type::Vector2I a0)
         {
 

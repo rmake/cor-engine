@@ -52,48 +52,14 @@
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 namespace cor
 {
     namespace mruby_interface
     {
         
-        void BasicBind_cor__type__Vector3F_normalize(cor::type::Vector3F& c)
-        {
-
-            c.normalize();
-        }
-
-        float BasicBind_cor__type__Vector3F_dot(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            return c.dot(a0);
-        }
-
-        cor::type::Vector3F BasicBind_cor__type__Vector3F_cross(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            return c.cross(a0);
-        }
-
-        float BasicBind_cor__type__Vector3F_distance(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            return c.distance(a0);
-        }
-
-        cor::type::Vector3F BasicBind_cor__type__Vector3F_zero()
-        {
-
-            return cor::type::Vector3F::zero();
-        }
-
-        cor::type::Vector3F BasicBind_cor__type__Vector3F_one()
-        {
-
-            return cor::type::Vector3F::one();
-        }
-
         cor::type::Vector3F BasicBind_cor__type__Vector3F_max_vec(cor::type::Vector3F& c, cor::type::Vector3F a0)
         {
 
@@ -274,6 +240,48 @@ namespace cor
             return const_cast<const int* >(c.get_p());
         }
 
+        int BasicBind_cor__type__Vector3I_get_square_magnitude(cor::type::Vector3I& c)
+        {
+
+            return c.get_square_magnitude();
+        }
+
+        int BasicBind_cor__type__Vector3I_get_magnitude(cor::type::Vector3I& c)
+        {
+
+            return c.get_magnitude();
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector3I_xy(cor::type::Vector3I& c)
+        {
+
+            return c.xy();
+        }
+
+        void BasicBind_cor__type__Vector3I_normalize(cor::type::Vector3I& c)
+        {
+
+            c.normalize();
+        }
+
+        int BasicBind_cor__type__Vector3I_dot(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            return c.dot(a0);
+        }
+
+        cor::type::Vector3I BasicBind_cor__type__Vector3I_cross(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            return c.cross(a0);
+        }
+
+        int BasicBind_cor__type__Vector3I_distance(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            return c.distance(a0);
+        }
+
 
 
         
@@ -293,11 +301,15 @@ namespace cor
         {
             return cor::type::Box2F();
         }
-        cor::type::Box2F BasicBind_Box2F_create_1(cor::type::Vector2F a0, cor::type::Vector2F a1)
+        cor::type::Box2F BasicBind_Box2F_create_1(cor::type::Box2F a0)
+        {
+            return cor::type::Box2F(a0);
+        }
+        cor::type::Box2F BasicBind_Box2F_create_2(cor::type::Vector2F a0, cor::type::Vector2F a1)
         {
             return cor::type::Box2F(a0, a1);
         }
-        cor::type::Box2F BasicBind_Box2F_create_2(float a0, float a1, float a2, float a3)
+        cor::type::Box2F BasicBind_Box2F_create_3(float a0, float a1, float a2, float a3)
         {
             return cor::type::Box2F(a0, a1, a2, a3);
         }
@@ -305,11 +317,15 @@ namespace cor
         {
             return cor::type::Box2I();
         }
-        cor::type::Box2I BasicBind_Box2I_create_1(cor::type::Vector2I a0, cor::type::Vector2I a1)
+        cor::type::Box2I BasicBind_Box2I_create_1(cor::type::Box2I a0)
+        {
+            return cor::type::Box2I(a0);
+        }
+        cor::type::Box2I BasicBind_Box2I_create_2(cor::type::Vector2I a0, cor::type::Vector2I a1)
         {
             return cor::type::Box2I(a0, a1);
         }
-        cor::type::Box2I BasicBind_Box2I_create_2(int a0, int a1, int a2, int a3)
+        cor::type::Box2I BasicBind_Box2I_create_3(int a0, int a1, int a2, int a3)
         {
             return cor::type::Box2I(a0, a1, a2, a3);
         }
