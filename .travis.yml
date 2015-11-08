@@ -15,10 +15,9 @@ install:
   - export PATH=$PATH:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
-  - wget https://github.com/cocos2d/cocos2d-x/archive/cocos2d-x-3.8.zip
-  - mv cocos2d-x-3.8.zip cocos2d-x.zip
-  - unzip cocos2d-x.zip
-  - cd ./cocos2d-x-cocos2d-x-3.8
+  - wget http://cocos2d-x.org/filedown/cocos2d-x-3.8.1.zip
+  - unzip -q cocos2d-x-3.8.1.zip
+  - cd ./cocos2d-x-3.8.1
   - python download-deps.py --remove-download=yes
   - python ./setup.py
   - export COCOS_CONSOLE_ROOT=`pwd`/tools/cocos2d-console/bin
@@ -27,15 +26,24 @@ install:
   - export PATH=$PATH:$COCOS_TEMPLATES_ROOT
   - export ANT_ROOT=/usr/share/ant/bin
   - export PATH=$PATH:$ANT_ROOT
+  - chmod a+x ./tools/cocos2d-console/bin/cocos
   - cd ..
   - printenv
 script:
+  - cocos --version
   - ruby scripts/auto_release/release_android.rb
+  - pwd
+  - ls projects/cor_lib_test_main/
+  - ls projects/cor_lib_test_main/bin/
+  - ls projects/cor_lib_test_main/bin/debug/
+  - ls projects/cor_lib_test_main/bin/debug/android/
+  - ls projects/cor_lib_test_main/proj.android/bin
 deploy:
   provider: releases
   api_key:
     secure: QEi1hnM7sP/N6OhnoDXlC9TWyFINGRt63OmEVoLyzBkTsunB/WO3seAwAEWnM5F1CrPXRCVr7TdXZCTnWhAznT41PF03n5nWt5Lz8UIK64JwrvPMDSiHU6NMCbbKJuUqGQT3aS1mKYnNbrXFhP8OhDen+x2XkB6hHArUv4tI0Pc=
   file: projects/cor_lib_test_main/bin/debug/android/cor_lib_test_main-debug.apk
+  skip_cleanup: true
   on:
     repo: rmake/cor-engine
     tags: true
