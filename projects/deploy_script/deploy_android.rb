@@ -5,8 +5,11 @@ require 'cor/utility'
 require 'json'
 require 'fileutils'
 
-
-system "ruby ../project_script/copy_project.rb"
+if ARGV[0]
+  system "ruby ../project_script/copy_project.rb #{ARGV[0]}"
+else
+  system "ruby ../project_script/copy_project.rb"
+end
 
 system("ruby build_android.rb")
 #system("sh package_android.sh")
