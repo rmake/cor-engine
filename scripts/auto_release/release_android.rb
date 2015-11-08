@@ -22,3 +22,4 @@ system "ruby ../project_script/copy_project.rb ../majitai_running"
 Dir.chdir "../cor_lib_test_main"
 system "cocos compile -p android -j 8 --ndk-mode release"
 
+puts "end of release_android.rb"

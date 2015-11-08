@@ -38,6 +38,6 @@ deploy:
   file: projects/cor_lib_test_main/bin/debug/android/cor_lib_test_main-debug.apk
   on:
     repo: rmake/cor-engine
-    branch: work_dycoon
+    tags: true
 notifications:
   email: false
