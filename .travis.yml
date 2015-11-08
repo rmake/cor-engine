@@ -32,12 +32,6 @@ install:
 script:
   - cocos --version
   - ruby scripts/auto_release/release_android.rb
-  - pwd
-  - ls projects/cor_lib_test_main/
-  - ls projects/cor_lib_test_main/bin/
-  - ls projects/cor_lib_test_main/bin/debug/
-  - ls projects/cor_lib_test_main/bin/debug/android/
-  - ls projects/cor_lib_test_main/proj.android/bin
 deploy:
   provider: releases
   api_key:
