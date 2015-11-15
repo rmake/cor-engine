@@ -67,6 +67,44 @@ module COR
       relative_path.to_s
     end
 
+    def self.set_templated_binding(file_path, option)
+
+      if option[:name]
+        name = option[:name]
+        MrubyBindingGen.name "#{name}_cpp_gen_binding"
+        MrubyBindingGen.namespace "#{name}_cpp_gen_binding"
+        package_path = "#{MrubyBindingGen.convert_relative_path File.dirname(file_path)}"
+        base_cpp_path = "#{package_path}/cpp"
+        cpp_path = "#{package_path}/cpp/#{name}"
+        MrubyBindingGen.output_path "#{cpp_path}/generated_binding"
+
+      end
+
+      if option[:include_files]
+        MrubyBindingGen.add_include_files option[:include_files]
+      end
+
+      if option[:include_paths]
+        MrubyBindingGen.add_include_files option[:include_paths]
+      end
+
+      binding_base_path = "#{cpp_path}/binding_interface"
+      finded_headers = Dir.glob("#{binding_base_path}/**/*.h")
+
+      MrubyBindingGen.add_include_files finded_headers
+
+      puts "finded_headers #{finded_headers}"
+
+      MrubyBindingGen.add_include_paths [
+        "#{base_cpp_path}/"
+      ]
+
+      puts "finded_headers #{base_cpp_path}"
+
+      load "gen_info/mruby_interface.rb"
+
+    end
+
     def self.gen_code(option)
 
       option[:name] ||= @name

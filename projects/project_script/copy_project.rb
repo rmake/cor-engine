@@ -27,6 +27,14 @@ class CorProject
     @source_path
   end
 
+  def self.engine_path=(v)
+    @engine_path = v
+  end
+
+  def self.engine_path
+    @engine_path
+  end
+
   def self.includes=(a)
     @includes = a
   end
@@ -133,6 +141,13 @@ end
 
 CorProject.source_path = source_path
 
+source_absolute_path = Pathname(File.expand_path(source_path))
+engine_base_path = Pathname(File.expand_path("../../"))
+relative_engine_path = engine_base_path.relative_path_from source_absolute_path
+CorProject.engine_path = relative_engine_path
+
+puts "CorProject.engine_path #{CorProject.engine_path}"
+
 destination_resource_root_path = "../cor_lib_test_main/Resources"
 destination_resource_path = "#{destination_resource_root_path}/project_resource"
 source_conf_path = "#{source_path}/conf.rb"
@@ -156,6 +171,13 @@ if File.exists? source_conf_path
   project_includes.each do |project_include|
     if File.exists? "#{project_include}/conf.rb"
       load "#{project_include}/conf.rb"
+
+      source_absolute_path = Pathname(File.expand_path(project_include))
+      relative_engine_path = engine_base_path.relative_path_from source_absolute_path
+      CorProject.engine_path = relative_engine_path
+
+      puts "CorProject.engine_path #{CorProject.engine_path}"
+
       import_cpp_entries << CorProject.import_cpp_entry
     end
   end
@@ -255,7 +277,7 @@ binding_gen = Proc.new do |path|
 
     cpps.each do |cpp_name|
       next unless cpp_name.match(/\.h$/)
-      if !File.exist?(cpp_name) || past_cpps[cpp_name] != File.mtime(cpp_name).to_s || force_update
+      if !File.exist?(cpp_name) || past_cpps[cpp_name].to_s != File.mtime(cpp_name).to_s || force_update
         is_run_gen = true
       end
       past_cpps[cpp_name] = File.mtime(cpp_name)
