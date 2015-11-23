@@ -60,7 +60,7 @@ namespace cor
 
             if(copy_mode)
             {
-                ShellExecute(NULL, TEXT("open"), TEXT("cmd"), TEXT("/c ruby ../../project_script/copy_project.rb --resource-only --win32-copy "), NULL, SW_SHOWNORMAL);
+                ShellExecute(NULL, TEXT("open"), TEXT("cmd"), TEXT("/c ruby ../../project_script/copy_project.rb --resource-only --win32-copy --ignore-local-conf"), NULL, SW_SHOWNORMAL);
                 Sleep(3000);
             }
 #endif

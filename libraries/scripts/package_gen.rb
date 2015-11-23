@@ -35,7 +35,7 @@ EOS
 
   Cor.u.write_file "#{base_path}/conf.rb", conf_rb
   Cor.u.write_file "#{base_path}/binding_conf.rb", binding_conf
-  Cor.u.write_file "#{base_path}/resouces/start.rb", start_rb
+  Cor.u.write_file "#{base_path}/resources/start.rb", start_rb
 
   import_setting_cpp = <<EOS
 #include "import/external_code_importer.h"
@@ -53,8 +53,10 @@ namespace cor
 }
 EOS
 
-  FileUtils.mkpath("#{base_path}/resouces/#{name}")
-  FileUtils.mkpath("#{base_path}/resouces/licenses")
+  Cor.u.write_file "#{base_path}/cpp/#{name}/import_setting.cpp", import_setting_cpp
+
+  FileUtils.mkpath("#{base_path}/resources/#{name}")
+  FileUtils.mkpath("#{base_path}/resources/licenses")
   FileUtils.mkpath("#{base_path}/cpp/#{name}/binding_interface")
   FileUtils.mkpath("#{base_path}/cpp/#{name}/src")
 

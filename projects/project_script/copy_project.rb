@@ -126,13 +126,38 @@ end
 
 resource_only = false
 win32_copy = false
+ignore_local_conf = false
 
 ma.each do |v|
   if v == "--resource-only"
     resource_only = true
   elsif v == "--win32-copy"
     win32_copy = true
+  elsif v == "--ignore-local-conf"
+    ignore_local_conf = true
   end
+end
+
+past_copy = "past_copy.log"
+if File.exist?(past_copy) && ignore_local_conf
+  past_copy_json = Cor.u.file_read past_copy
+  past_copy_data = JSON.parse past_copy_json
+  source_path = past_copy_data["current_project"] || source_path
+end
+puts "source_path #{source_path}"
+past_copy_data = {
+  "current_project" => source_path,
+  "past_crypt" => false,
+  "past_win32_copy" => false,
+  "file_table" => {},
+  "past_cpps" => {},
+}
+past_copy_table = past_copy_data["file_table"]
+force_update = false
+if File.exist? past_copy
+  past_copy_json = Cor.u.file_read past_copy
+  past_copy_data = JSON.parse past_copy_json
+  past_copy_table = past_copy_data["file_table"]
 end
 
 if va[0]
@@ -186,7 +211,8 @@ if File.exists? source_conf_path
 
 end
 
-
+CorProject.includes.uniq!{|v| File::expand_path(v)}
+puts "__CorProject.includes #{CorProject.includes}"
 
 FileUtils.rm Dir.glob("#{destination_resource_root_path}/*.log")
 
@@ -213,6 +239,8 @@ CorProject.includes.each do |inc_path|
   end
 end
 
+puts "source_resource_path #{source_resource_path}"
+
 if Dir.exists? source_resource_path
   list += Cor.u.file_list(source_resource_path).map{|fn|
     {
@@ -221,6 +249,8 @@ if Dir.exists? source_resource_path
     }
   }
 end
+puts "list #{list.select{|v| v[:n].match(/start\.rb/)} }"
+
 d_list = Cor.u.file_list destination_resource_path do |fn|
   !fn.include? ".gitignore"
 end
@@ -230,21 +260,6 @@ d_list.each do |fn|
   d_table[fn] = fn
 end
 
-past_copy = "past_copy.log"
-past_copy_data = {
-  "current_project" => source_path,
-  "past_crypt" => false,
-  "past_win32_copy" => false,
-  "file_table" => {},
-  "past_cpps" => {},
-}
-past_copy_table = past_copy_data["file_table"]
-force_update = false
-if File.exist? past_copy
-  past_copy_json = Cor.u.file_read past_copy
-  past_copy_data = JSON.parse past_copy_json
-  past_copy_table = past_copy_data["file_table"]
-end
 
 if source_path != past_copy_data["current_project"]
   force_update = true
@@ -261,6 +276,11 @@ past_copy_data["past_crypt"] = CorProject::crypt
 past_copy_data["past_win32_copy"] = win32_copy
 past_copy_data["current_project"] = source_path
 past_copy_data["past_cpps"] ||= {}
+
+if force_update
+  past_copy_data["file_table"] = {}
+  past_copy_table = past_copy_data["file_table"]
+end
 
 
 binding_gen = Proc.new do |path|
@@ -303,6 +323,8 @@ binding_gen = Proc.new do |path|
     #FileUtils.chdir here
   end
 end
+
+puts "CorProject.includes #{CorProject.includes}"
 
 unless resource_only
 

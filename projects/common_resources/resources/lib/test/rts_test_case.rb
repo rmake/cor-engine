@@ -145,6 +145,13 @@ class RtsTestCase
 
   end
 
+  def self.run_end(name, &block)
+    test = RtsTestCase.new name
+    @@running_count += 1
+    yield test
+    test.do_end
+  end
+
   def do_end
     self.check_equal(self.error_count, Logger.get_error_count)
     self.check_equal(self.fatal_count, Logger.get_fatal_count)
