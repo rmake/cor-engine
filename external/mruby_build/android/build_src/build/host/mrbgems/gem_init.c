@@ -52,8 +52,6 @@ void GENERATED_TMP_mrb_mruby_range_ext_gem_init(mrb_state*);
 void GENERATED_TMP_mrb_mruby_range_ext_gem_final(mrb_state*);
 void GENERATED_TMP_mrb_mruby_string_ext_gem_init(mrb_state*);
 void GENERATED_TMP_mrb_mruby_string_ext_gem_final(mrb_state*);
-void GENERATED_TMP_mrb_mruby_string_utf8_gem_init(mrb_state*);
-void GENERATED_TMP_mrb_mruby_string_utf8_gem_final(mrb_state*);
 void GENERATED_TMP_mrb_mruby_struct_gem_init(mrb_state*);
 void GENERATED_TMP_mrb_mruby_struct_gem_final(mrb_state*);
 void GENERATED_TMP_mrb_mruby_symbol_ext_gem_init(mrb_state*);
@@ -86,7 +84,6 @@ mrb_final_mrbgems(mrb_state *mrb) {
   GENERATED_TMP_mrb_mruby_random_gem_final(mrb);
   GENERATED_TMP_mrb_mruby_range_ext_gem_final(mrb);
   GENERATED_TMP_mrb_mruby_string_ext_gem_final(mrb);
-  GENERATED_TMP_mrb_mruby_string_utf8_gem_final(mrb);
   GENERATED_TMP_mrb_mruby_struct_gem_final(mrb);
   GENERATED_TMP_mrb_mruby_symbol_ext_gem_final(mrb);
   GENERATED_TMP_mrb_mruby_time_gem_final(mrb);
@@ -116,7 +113,6 @@ mrb_init_mrbgems(mrb_state *mrb) {
   GENERATED_TMP_mrb_mruby_random_gem_init(mrb);
   GENERATED_TMP_mrb_mruby_range_ext_gem_init(mrb);
   GENERATED_TMP_mrb_mruby_string_ext_gem_init(mrb);
-  GENERATED_TMP_mrb_mruby_string_utf8_gem_init(mrb);
   GENERATED_TMP_mrb_mruby_struct_gem_init(mrb);
   GENERATED_TMP_mrb_mruby_symbol_ext_gem_init(mrb);
   GENERATED_TMP_mrb_mruby_time_gem_init(mrb);

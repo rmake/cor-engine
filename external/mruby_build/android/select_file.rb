@@ -21,8 +21,9 @@ def list path
       files += list cpath
     else
 
-      if (fn.index(/(.*\.h)/) || fn.index(/(.*\.c)/)) && (cpath.index(/build\/mrbgems/) || 
-          cpath.index(/build\/host/) || !cpath.index(/build\//)) && !cpath.index(/test/) &&
+      if (fn.index(/(.*\.h)/) || fn.index(/(.*\.c)/)) && (cpath.index(/build\/mrbgems/) ||
+          (cpath.index(/build\/host/) && !cpath.index(/build\/host-debug/)) ||
+          !cpath.index(/build\//)) && !cpath.index(/test/) &&
           !cpath.index(/examples/) && !cpath.index(/mruby-bin-*/)
         print "added #{cpath}\n"
         files << cpath

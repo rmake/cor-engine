@@ -19,6 +19,6 @@ def run_cmd(cmd)
 end
 
 Dir.chdir "../cor_lib_test_main"
-run_cmd "cocos compile -p android -m release -j 8 --ndk-mode release"
+run_cmd "cocos compile -p android -m release -j 6 --ndk-mode release"
 
 exit @result

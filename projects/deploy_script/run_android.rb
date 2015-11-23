@@ -26,6 +26,6 @@ end
 
 Dir.chdir "../cor_lib_test_main"
 ENV.store 'V', '1'
-run_cmd "cocos run -p android -j 8 --ndk-mode release"
+run_cmd "cocos run -p android -j 6 --ndk-mode release"
 
 exit @result
