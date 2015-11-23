@@ -51,6 +51,7 @@ class RtsTestCase
   end
 
   def self.log_result
+    Logger.info self.get_error_log
     str = self.output_result.join("\n")
     Logger.info str
 
@@ -65,6 +66,33 @@ class RtsTestCase
 
 
     str
+  end
+
+  def self.get_error_log
+    info_text = ""
+    result = (self.all_records.select{|v| !v[:result] }.map do |v|
+      "{\n" + (v.map do |k, v|
+        if v.respond_to?(:map)
+          ta = v.select{|v| !v[:result] }
+          ta = ta.map do |v|
+            [" {"] + (v.map do |k, v|
+              "      #{k} -> #{v.respond_to?(:map) ? "\n" + v.map{|v| "        #{v}"}.join("\n") : v}"
+            end) + ["    },"]
+          end
+
+          nv = ta.join("\n")
+
+          "  #{k} -> #{nv}\n"
+        else
+          "  #{k} -> #{v}\n"
+        end
+
+
+      end).join + "},\n"
+    end).join
+
+    info_text += result
+    info_text
   end
 
   def back_trace
