@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\work\cor-engine\libraries\cor_algorithm\sources\bit_operation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\cor-engine\libraries\cor_algorithm\sources\utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\work\cor-engine\libraries\cor_algorithm\sources\bit_operation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\cor-engine\libraries\cor_algorithm\sources\bit_operation_tmpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\cor-engine\libraries\cor_algorithm\sources\bit_operation_tmpl_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\cor-engine\libraries\cor_algorithm\sources\utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\cor-engine\libraries\cor_algorithm\sources\utilities_tmpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\cor-engine\libraries\cor_algorithm\sources\utilities_tmpl_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\work\cor-engine\libraries\cor_algorithm\proj.cmake\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{F47D7A00-95C8-3A04-B8B0-7D3E0E2E9BF2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{39919264-1233-3B5A-9578-5B863198328F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
