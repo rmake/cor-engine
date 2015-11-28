@@ -49,6 +49,9 @@
 		521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6219F0C34300D177D7 /* Default-667h@2x.png */; };
 		521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
+		645132DB1C09A2FC0057407E /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FB17EB989F00D1A890 /* AppController.mm */; };
+		645137201C09A6280057407E /* project_resource in Resources */ = {isa = PBXBuildFile; fileRef = 6451371F1C09A6280057407E /* project_resource */; };
+		645137211C09A6280057407E /* project_resource in Resources */ = {isa = PBXBuildFile; fileRef = 6451371F1C09A6280057407E /* project_resource */; };
 		65EB4D371BAFDB9400A755AA /* libcor_algorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D361BAFDB9400A755AA /* libcor_algorithm.a */; };
 		65EB4D391BAFDBA500A755AA /* libcor_cocos2dx_converter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D381BAFDBA500A755AA /* libcor_cocos2dx_converter.a */; };
 		65EB4D3B1BAFDBB700A755AA /* libcor_cocos2dx_mruby_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D3A1BAFDBB700A755AA /* libcor_cocos2dx_mruby_interface.a */; };
@@ -65,8 +68,6 @@
 		65EB4D851BAFE1B900A755AA /* libcor_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D841BAFE1B900A755AA /* libcor_system.a */; };
 		65EB4D871BAFE1C800A755AA /* libcor_type.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D861BAFE1C800A755AA /* libcor_type.a */; };
 		65EB4D891BAFED3800A755AA /* libcor_cocos2dx_mruby_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D881BAFED3800A755AA /* libcor_cocos2dx_mruby_interface.a */; };
-		65EB4D8B1BB0003A00A755AA /* project_resource in Resources */ = {isa = PBXBuildFile; fileRef = 65EB4D8A1BB0003A00A755AA /* project_resource */; };
-		65EB4D8C1BB0003A00A755AA /* project_resource in Resources */ = {isa = PBXBuildFile; fileRef = 65EB4D8A1BB0003A00A755AA /* project_resource */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -268,6 +269,7 @@
 		521A8E6219F0C34300D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		6451371F1C09A6280057407E /* project_resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = project_resource; sourceTree = "<group>"; };
 		65EB4D361BAFDB9400A755AA /* libcor_algorithm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_algorithm.a; path = ../../../libraries/cor_algorithm/proj.ios_mac/osx/libcor_algorithm.a; sourceTree = "<group>"; };
 		65EB4D381BAFDBA500A755AA /* libcor_cocos2dx_converter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_cocos2dx_converter.a; path = ../../../libraries/cor_cocos2dx_converter/proj.ios_mac/osx/libcor_cocos2dx_converter.a; sourceTree = "<group>"; };
 		65EB4D3A1BAFDBB700A755AA /* libcor_cocos2dx_mruby_interface.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_cocos2dx_mruby_interface.a; path = ../../../libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/osx/libcor_cocos2dx_mruby_interface.a; sourceTree = "<group>"; };
@@ -284,7 +286,6 @@
 		65EB4D841BAFE1B900A755AA /* libcor_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_system.a; path = ../../../libraries/cor_system/proj.ios_mac/ios/libcor_system.a; sourceTree = "<group>"; };
 		65EB4D861BAFE1C800A755AA /* libcor_type.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_type.a; path = ../../../libraries/cor_type/proj.ios_mac/ios/libcor_type.a; sourceTree = "<group>"; };
 		65EB4D881BAFED3800A755AA /* libcor_cocos2dx_mruby_interface.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_cocos2dx_mruby_interface.a; path = ../../../libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/ios/libcor_cocos2dx_mruby_interface.a; sourceTree = "<group>"; };
-		65EB4D8A1BB0003A00A755AA /* project_resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = project_resource; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -448,7 +449,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				65EB4D8A1BB0003A00A755AA /* project_resource */,
+				6451371F1C09A6280057407E /* project_resource */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -883,7 +884,7 @@
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
-				65EB4D8B1BB0003A00A755AA /* project_resource in Resources */,
+				645137201C09A6280057407E /* project_resource in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
@@ -901,7 +902,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65EB4D8C1BB0003A00A755AA /* project_resource in Resources */,
+				645137211C09A6280057407E /* project_resource in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -926,6 +927,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				645132DB1C09A2FC0057407E /* AppController.mm in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 			);
