@@ -101,7 +101,7 @@ module COR
 
       puts "finded_headers #{base_cpp_path}"
 
-      load "gen_info/mruby_interface.rb"
+      #load "gen_info/mruby_interface.rb"
 
     end
 
