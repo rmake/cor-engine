@@ -375,11 +375,10 @@ namespace cor
             void* p = nullptr;
             p = ::malloc(n);
 
-            itnl->alloc_info_table.insert(p, n);
-
+            
             if(am && itnl->available)
             {
-                
+                itnl->alloc_info_table.insert(p, n);
                 itnl->alloc_size += n;
                 itnl->new_count++;
                 itnl->mutex.unlock();
@@ -453,16 +452,13 @@ namespace cor
                     }
                     if(np)
                     {
+                        itnl->alloc_size += n;
                         itnl->alloc_info_table.insert(np, n);
                         itnl->new_count++;
                     }
                 }
                 itnl->mutex.unlock();
                 
-                
-
-                //itnl->alloc_size -= sz;
-                //itnl->delete_count++;
 
             }
 
