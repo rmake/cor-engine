@@ -10,7 +10,6 @@
 		1AC6FB21180E996B004C840B /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAF9180E9839004C840B /* libcocos2d Mac.a */; };
 		1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FB07180E9839004C840B /* libcocos2d iOS.a */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
@@ -49,9 +48,9 @@
 		521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6219F0C34300D177D7 /* Default-667h@2x.png */; };
 		521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
-		645132DB1C09A2FC0057407E /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FB17EB989F00D1A890 /* AppController.mm */; };
 		645137201C09A6280057407E /* project_resource in Resources */ = {isa = PBXBuildFile; fileRef = 6451371F1C09A6280057407E /* project_resource */; };
 		645137211C09A6280057407E /* project_resource in Resources */ = {isa = PBXBuildFile; fileRef = 6451371F1C09A6280057407E /* project_resource */; };
+		65EAEB1E1C31339400C0367F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EAEB1D1C31339400C0367F /* UIKit.framework */; };
 		65EB4D371BAFDB9400A755AA /* libcor_algorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D361BAFDB9400A755AA /* libcor_algorithm.a */; };
 		65EB4D391BAFDBA500A755AA /* libcor_cocos2dx_converter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D381BAFDBA500A755AA /* libcor_cocos2dx_converter.a */; };
 		65EB4D3B1BAFDBB700A755AA /* libcor_cocos2dx_mruby_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D3A1BAFDBB700A755AA /* libcor_cocos2dx_mruby_interface.a */; };
@@ -270,6 +269,7 @@
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		6451371F1C09A6280057407E /* project_resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = project_resource; sourceTree = "<group>"; };
+		65EAEB1D1C31339400C0367F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		65EB4D361BAFDB9400A755AA /* libcor_algorithm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_algorithm.a; path = ../../../libraries/cor_algorithm/proj.ios_mac/osx/libcor_algorithm.a; sourceTree = "<group>"; };
 		65EB4D381BAFDBA500A755AA /* libcor_cocos2dx_converter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_cocos2dx_converter.a; path = ../../../libraries/cor_cocos2dx_converter/proj.ios_mac/osx/libcor_cocos2dx_converter.a; sourceTree = "<group>"; };
 		65EB4D3A1BAFDBB700A755AA /* libcor_cocos2dx_mruby_interface.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcor_cocos2dx_mruby_interface.a; path = ../../../libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/osx/libcor_cocos2dx_mruby_interface.a; sourceTree = "<group>"; };
@@ -303,6 +303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65EAEB1E1C31339400C0367F /* UIKit.framework in Frameworks */,
 				65EB4D891BAFED3800A755AA /* libcor_cocos2dx_mruby_interface.a in Frameworks */,
 				65EB4D871BAFE1C800A755AA /* libcor_type.a in Frameworks */,
 				65EB4D851BAFE1B900A755AA /* libcor_system.a in Frameworks */,
@@ -316,7 +317,6 @@
 				1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */,
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
 				BF1712471292920000B8313A /* libz.dylib in Frameworks */,
@@ -407,6 +407,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65EAEB1D1C31339400C0367F /* UIKit.framework */,
 				65EB4D881BAFED3800A755AA /* libcor_cocos2dx_mruby_interface.a */,
 				65EB4D861BAFE1C800A755AA /* libcor_type.a */,
 				65EB4D841BAFE1B900A755AA /* libcor_system.a */,
@@ -927,7 +928,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
-				645132DB1C09A2FC0057407E /* AppController.mm in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 			);
