@@ -5,7 +5,7 @@
 
 int main()
 {
-    std::cout << "cor console app." << std::endl;
+    std::cout << "cor console app start." << std::endl;
 
     cor::mruby_interface::MrubyState mrb;
     if (!mrb.init())
@@ -17,7 +17,7 @@ int main()
 
     cor::mruby_interface::BasicBind::bind(mrb);
 
-    mrb.load_string_log("puts 'test'");
+    mrb.load_string_log("puts 'cor_console_log ouput'");
 
 }
 
