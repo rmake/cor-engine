@@ -1,7 +1,6 @@
-$LOAD_PATH.push('.')
-require "build_common"
+$LOAD_PATH.push('../../../libraries/scripts/lib')
+require "cor/cmake_build_common"
 
-init_build "build/win64", "Visual Studio 14 2015 Win64"
-do_build
+build "win64"
 
 

@@ -16,7 +16,7 @@ add_executable (cor_console_app_main ${cor_console_app_main_scr})
 #target_link_libraries (cor_console_app_main mruby)
 
 if(MSVC)
-    if( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
         target_link_libraries (cor_console_app_main debug ${PROJECT_SOURCE_DIR}/../../../external/mruby_build/builded/vc_debug/lib/libmruby.lib)
         target_link_libraries (cor_console_app_main optimized ${PROJECT_SOURCE_DIR}/../../../external/mruby_build/builded/vc_release/lib/libmruby.lib)
     else()

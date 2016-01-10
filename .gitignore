@@ -81,4 +81,6 @@ libraries/scripts/log/
 
 generated_binding*
 
+*.VC.opendb
+
 Thumbs.db
