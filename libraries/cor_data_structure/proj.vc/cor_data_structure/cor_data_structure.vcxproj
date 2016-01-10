@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<Project DefaultTargets='Build' ToolsVersion='12.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+<Project DefaultTargets='Build' ToolsVersion='14.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
   <ItemGroup Label='ProjectConfigurations'>
     <ProjectConfiguration Include='Debug|Win32'>
       <Configuration>Debug</Configuration>
@@ -19,13 +19,13 @@
   <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;' Label='Configuration'>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;' Label='Configuration'>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -86,8 +86,10 @@
     
     
     
+    
   <ClCompile Include='../../sources/ai/cost_grid_space.cpp'/><ClCompile Include='../../sources/ai/priority_queue.cpp'/><ClCompile Include='../../sources/ai/stack_decoder.cpp'/><ClCompile Include='../../sources/array_pool.cpp'/><ClCompile Include='../../sources/basic/shared_ptr_table.cpp'/><ClCompile Include='../../sources/geometry/r_tree_pool.cpp'/><ClCompile Include='../../sources/geometry/uniform_grid.cpp'/><ClCompile Include='../../sources/tree_pool.cpp'/></ItemGroup>
   <ItemGroup>
+    
     
     
     
