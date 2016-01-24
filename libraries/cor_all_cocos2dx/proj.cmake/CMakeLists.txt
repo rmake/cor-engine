@@ -2,9 +2,8 @@ cmake_minimum_required(VERSION 3.4)
 project (cor_all_cocos2dx)
 if(MSVC)
 
-    set(CMAKE_CXX_FLAGS_DEBUG "/D_UNICODE -DCOCOS2D_DEBUG=1")
-    set(CMAKE_CXX_FLAGS_RELEASE "/D_UNICODE -DCOCOS2D_DEBUG=0")
-
+    set(CMAKE_CXX_FLAGS_DEBUG "/D_UNICODE /DCOCOS2D_DEBUG=1 /D_ITERATOR_DEBUG_LEVEL= /ZI")
+    set(CMAKE_CXX_FLAGS_RELEASE "/D_UNICODE /DCOCOS2D_DEBUG=0")
 
 
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Android")
@@ -35,7 +34,7 @@ endif()
 set(COCOS2D_PATH "../../../projects/cor_lib_test_main/cocos2d")
 file(GLOB_RECURSE cor_all_cocos2dx_scr
     "../../cor_cocos2dx_mruby_interface/sources/*.cpp"
-    "../../cor_algorithm/sources/*.h"
+    "../../cor_algorithm/sources/*.cpp"
     "../../cor_data_structure/sources/*.cpp"
     "../../cor_system/sources/*.cpp"
     "../../cor_type/sources/*.cpp"
