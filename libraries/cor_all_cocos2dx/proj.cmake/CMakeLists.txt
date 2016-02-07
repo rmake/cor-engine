@@ -42,6 +42,23 @@ file(GLOB_RECURSE cor_all_cocos2dx_scr
     "../../cor_cocos2dx_converter/sources/*.cpp"
     "../../cor_project_structure/sources/*.cpp"
 )
+message("test")
+
+if(EXISTS ${PROJECT_SOURCE_DIR}/../../cor_project_structure/proj.common/cor_project_structure_cmake_local_conf.txt)
+    message("found ../../cor_project_structure/proj.common/cor_project_structure_cmake_local_conf.txt")
+
+    include(${PROJECT_SOURCE_DIR}/../../cor_project_structure/proj.common/cor_project_structure_cmake_local_conf.txt)
+
+    message("cor_project_strucre_sources " ${cor_project_strucre_sources})
+
+    foreach(loop_var ${cor_project_strucre_sources})
+        message("loop_var " ${loop_var})
+        set(cor_all_cocos2dx_scr ${cor_all_cocos2dx_scr} ${PROJECT_SOURCE_DIR}/${loop_var})
+    endforeach(loop_var)
+
+    message("cor_all_cocos2dx_scr " ${cor_all_cocos2dx_scr})
+endif()
+
 add_library (cor_all_cocos2dx ${cor_all_cocos2dx_scr})
 include_directories (../../)
 include_directories (../../../external/boost)
@@ -77,7 +94,5 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Android")
 endif()
 
 target_include_directories (cor_all_cocos2dx PUBLIC ../../)
-
-
 
 

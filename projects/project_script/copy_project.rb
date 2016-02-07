@@ -437,6 +437,7 @@ end
 
 import_cpp_props_file = "#{project_structure_path}/proj.vc/cor_project_structure/cor_project_structure_local_conf.props"
 import_cpp_local_conf_mk = "#{project_structure_path}/proj.common/cor_project_structure_local_conf.mk"
+import_cpp_local_cmake_conf_mk = "#{project_structure_path}/proj.common/cor_project_structure_cmake_local_conf.txt"
 import_cpp_local_conf_txt = "#{project_structure_path}/proj.common/cor_project_structure_local_conf.txt"
 import_cpp_file = "#{project_structure_path}/sources/import/external_code_import_local_conf.h"
 import_cpp_importer_file = "#{project_structure_path}/sources/import/external_code_importer.cpp"
@@ -545,6 +546,12 @@ PRJINCS += ../sources #{import_cpp_props_includes.map{|v| "../#{v}"}.join(' ')}
 PRJSRCS += #{import_cpp_list.map{|v| "#{v.gsub(/^..\//, "")}"}.join(' ')}
 EOS
 
+    Cor.u.file_write import_cpp_local_cmake_conf_mk, <<EOS
+#{import_cpp_props_includes.map{|v| "include_directories(../#{v})"}.join("\n")}
+set(cor_project_strucre_sources
+#{import_cpp_list.map{|v| "  #{v.gsub(/^..\//, "")}"}.join("\n")})
+EOS
+
     FileUtils.chdir project_structure_path
 
     proj_file_list = Cor.u.file_list("../cor_project_structure/sources").select{ |v|
@@ -578,6 +585,8 @@ EOS
 PRJINCS +=
 PRJSRCS +=
 EOS
+
+    FileUtils.rm_f import_cpp_local_cmake_conf_mk
 
     new_import_cpp_local_conf_txt_data = ""
     Cor.u.file_write import_cpp_local_conf_txt, new_import_cpp_local_conf_txt_data
