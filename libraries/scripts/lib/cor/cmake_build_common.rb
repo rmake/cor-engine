@@ -35,8 +35,8 @@ def build type
   when "android"
     #configurations = ["Release", "Debug"]
     configurations = ["Release"]
-    #archs = ["armeabi", "armeabi-v7a", "x86"]
-    archs = ["x86"]
+    archs = ["armeabi", "armeabi-v7a", "x86"]
+    #archs = ["x86"]
     configurations.each do |configuration|
       archs.each do |arch|
         FileUtils.mkdir_p "#{arch}/#{configuration}"
@@ -46,6 +46,7 @@ def build type
           "-DCMAKE_TOOLCHAIN_FILE=../../../external/android_cmake/android.toolchain.cmake",
           "-DANDROID_NDK=#{ENV["NDK_ROOT"]}",
           "-DCMAKE_BUILD_TYPE=#{configuration}",
+          "-DANDROID_NATIVE_API_LEVEL=14",
           "-DANDROID_ABI=\"#{arch}\"",
           "-G\"Unix Makefiles\""
           ].join(" ")
