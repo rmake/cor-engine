@@ -43,7 +43,7 @@ def build type
         FileUtils.chdir "#{arch}/#{configuration}"
         cmd = [
           "cmake ../../../.. ",
-          "-DCOR_BUILD_TYPE=#{type}"
+          "-DCOR_BUILD_TYPE=#{type}",
           "-DCMAKE_TOOLCHAIN_FILE=../../../external/android_cmake/android.toolchain.cmake",
           "-DANDROID_NDK=#{ENV["NDK_ROOT"]}",
           "-DCMAKE_BUILD_TYPE=#{configuration}",
