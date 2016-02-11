@@ -16,4 +16,4 @@ set(SDK_ROOT "${DEV_ROOT}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFO
 #set(CMAKE_AR "${DEV_ROOT}/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar")
 #set(CMAKE_RANLIB "${DEV_ROOT}/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -miphoneos-version-min=5.0 -arch ${ARCH} -isysroot ${SDK_ROOT}")
+set(CMAKE_CXX_FLAGS "-miphoneos-version-min=5.0 -arch ${ARCH} -isysroot ${SDK_ROOT} ${CMAKE_CXX_FLAGS}")
