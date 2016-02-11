@@ -96,7 +96,7 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Android")
 
 elseif(${COR_BUILD_TYPE} MATCHES "osx")
     include_directories (${COCOS2D_PATH}/cocos/platform/mac)
-    include_directories (${COCOS2D_PATH}/cocos/external/glfw3/include/mac)
+    include_directories (${COCOS2D_PATH}/external/glfw3/include/mac)
 elseif({COR_BUILD_TYPE} MATCHES "ios")
     include_directories (${COCOS2D_PATH}/cocos/platform/ios)
     include_directories (${COCOS2D_PATH}/cocos/platform/ios/Simulation)
