@@ -30,8 +30,10 @@ if(MSVC)
 else()
 
     if(${COR_BUILD_TYPE} MATCHES "osx")
+        add_definitions(-DUSE_FILE32API)
         add_definitions(-DCC_TARGET_OS_MAC)
     elseif(${COR_BUILD_TYPE} MATCHES "ios")
+        add_definitions(-DUSE_FILE32API)
         add_definitions(-DCC_TARGET_OS_IPHONE)
     endif()
 
@@ -100,6 +102,7 @@ elseif(${COR_BUILD_TYPE} MATCHES "osx")
 elseif(${COR_BUILD_TYPE} MATCHES "ios")
     include_directories (${COCOS2D_PATH}/cocos/platform/ios)
     include_directories (${COCOS2D_PATH}/cocos/platform/ios/Simulation)
+    include_directories (${COCOS2D_PATH}/external/glfw3/include/mac)
 endif()
 
 target_include_directories (cor_all_cocos2dx PUBLIC ../../)
