@@ -10,7 +10,7 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Android")
     set(LIBRARY_OUTPUT_PATH_ROOT "${CMAKE_CURRENT_BINARY_DIR}" CACHE PATH "")
     set(EXECUTABLE_OUTPUT_PATH_ROOT "${CMAKE_CURRENT_BINARY_DIR}" CACHE PATH "")
 else()
-    set(CMAKE_CXX_FLAGS "-std=c++11  -stdlib=libc++ -fexceptions -frtti -fsigned-char ")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11  -stdlib=libc++ -fexceptions -frtti -fsigned-char ")
 endif()
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DCOCOS2D_DEBUG=1")

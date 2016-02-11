@@ -15,4 +15,4 @@ set(CMAKE_CXX_COMPILER "${DEV_ROOT}/Toolchains/XcodeDefault.xctoolchain/usr/bin/
 set(CMAKE_AR "${DEV_ROOT}/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar")
 set(CMAKE_RANLIB "${DEV_ROOT}/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib")
 
-set(CMAKE_CXX_FLAGS "-DBZ_HAVE_NAMESPACES -arch ${ARCH} -isysroot ${SDK_ROOT}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBZ_HAVE_NAMESPACES -arch ${ARCH} -isysroot ${SDK_ROOT}")
