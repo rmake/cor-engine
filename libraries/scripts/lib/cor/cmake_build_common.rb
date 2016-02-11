@@ -220,7 +220,7 @@ def build_ios(type)
           do_build_output "make -j 4"
         end
         FileUtils.chdir "../.."
-      end
+      #end
       #if platform == "iPhoneOS"
       #  source_a_list = Dir.glob("#{platform}/*/#{configuration}/*.a")
       #  a_name = File.basename source_a_list[0]
