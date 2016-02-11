@@ -190,11 +190,11 @@ def build_ios(type)
   platforms = ["iPhoneSimulator"]
   platforms.each do |platform|
     configurations.each do |configuration|
-      archs.each do |arch|
-        FileUtils.mkdir_p "#{arch}/#{configuration}"
-        FileUtils.chdir "#{arch}/#{configuration}"
+      archs[platform].each do |arch|
+        FileUtils.mkdir_p "#{platform}/#{arch}/#{configuration}"
+        FileUtils.chdir "#{platform}/#{arch}/#{configuration}"
         cmd = [
-          "cmake ../../../.. ",
+          "cmake ../../../../.. ",
           "-DCOR_BUILD_TYPE=#{type}",
           "-DCMAKE_TOOLCHAIN_FILE=../../../external/ios_cmake/ios.cmake",
           "-DPLATFORM=#{platform}",
@@ -210,7 +210,13 @@ def build_ios(type)
         else
           do_build_output "make -j 4"
         end
-        FileUtils.chdir "../.."
+        FileUtils.chdir "../../.."
+      end
+      if platform == "iPhoneOS"
+        source_a_list = Dir.glob("#{platform}/*/#{configuration}/*.a")
+        a_name = File.basename source_a_list[0]
+
+        do_build_output "lipo -create #{source_a_list.join(" ")} -output #{platform}/#{a_name}"
       end
     end
   end

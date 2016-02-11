@@ -1,15 +1,12 @@
 language: android
 git:
   submodules: false
-addons:
-  apt:
-    packages:
-      - cmake
-    sources:
-      - kalakris-cmake
 install:
   - printenv
   - echo `pwd`
+  - CMAKE_URL="http://www.cmake.org/files/v3.3/cmake-3.3.2-Linux-x86_64.tar.gz"
+  - mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
+  - export PATH=${DEPS_DIR}/cmake/bin:${PATH}
   - wget http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
   - chmod a+x android-ndk-r10e-linux-x86_64.bin
   - "./android-ndk-r10e-linux-x86_64.bin -y | grep -v Extracting"
