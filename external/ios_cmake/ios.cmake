@@ -1,9 +1,5 @@
 # from http://taichino.com/programming/python-programming/4225
 
-# variables
-set(COR_ARCH "i386" CACHE STRING "Target Architecture")
-set(COR_PLATFORM "iPhoneSimulator" CACHE STRING "Target Platform")
-
 # path
 set(DEV_ROOT "/Applications/Xcode.app/Contents/Developer")
 #file(GLOB IOS_SDKS "${DEV_ROOT}/Platforms/${COR_PLATFORM}.platform/Developer/SDKs/*")
