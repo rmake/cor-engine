@@ -1,6 +1,12 @@
 language: android
 git:
   submodules: false
+addons:
+  apt:
+    packages:
+      - cmake
+    sources:
+      - kalakris-cmake
 install:
   - printenv
   - echo `pwd`
