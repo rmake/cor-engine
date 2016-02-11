@@ -36,4 +36,6 @@ if(MSVC)
 elseif(${COR_BUILD_TYPE} EQUAL osx)
     target_link_libraries (cor_console_app_main debug ${PROJECT_SOURCE_DIR}/../../../external/mruby_build/builded/mac_debug/lib/libmruby.lib)
     target_link_libraries (cor_console_app_main optimized ${PROJECT_SOURCE_DIR}/../../../external/mruby_build/builded/mac_release/lib/libmruby.lib)
+
+    target_link_libraries (cor_console_app_main cor_all_mruby)
 endif()
