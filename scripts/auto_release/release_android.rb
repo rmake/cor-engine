@@ -26,12 +26,17 @@ run_cmd "ruby start_day_work.rb"
 
 #
 Dir.chdir run_dir
+Dir.chdir '../../libraries/cor_all_cocos2dx/proj.cmake'
+run_cmd "ruby build_android.rb -f --for-ci"
+
+#
+Dir.chdir run_dir
 Dir.chdir '../../projects/deploy_script'
 
 #run_cmd 'ruby deploy_android.rb ../majitai_running'
 run_cmd "ruby ../project_script/copy_project.rb ../majitai_running"
 Dir.chdir "../cor_lib_test_main"
-run_cmd "cocos compile -p android -j 2 --ndk-mode release"
+run_cmd "cocos compile -p android -j 2 --mode release --ndk-mode release"
 
 puts "end of release_android.rb"
 

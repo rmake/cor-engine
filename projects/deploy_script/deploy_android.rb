@@ -11,6 +11,14 @@ else
   system "ruby ../project_script/copy_project.rb"
 end
 
+run_dir = File.dirname(File.expand_path(__FILE__))
+Dir.chdir run_dir
+
+Dir.chdir run_dir
+Dir.chdir '../../libraries/cor_all_cocos2dx/proj.cmake'
+run_cmd "ruby build_android.rb"
+
+Dir.chdir run_dir
 system("ruby build_android.rb")
 #system("sh package_android.sh")
 

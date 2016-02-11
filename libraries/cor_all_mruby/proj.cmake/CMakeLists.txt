@@ -26,7 +26,6 @@ include_directories (../../cor_data_structure/sources)
 include_directories (../../cor_system/sources)
 include_directories (../../cor_type/sources)
 include_directories (../../cor_mruby_interface/sources)
-include_directories (../../cor_mruby_interface/sources)
 
 
 target_include_directories (cor_all_mruby PUBLIC ../../)

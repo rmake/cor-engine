@@ -33,8 +33,8 @@ def build type
     system "cmake ../.. -G \"Visual Studio 14 2015 Win64\""
     do_win_build
   when "android"
-    #configurations = ["Release", "Debug"]
-    configurations = ["Release"]
+    configurations = ["Release", "Debug"]
+    #configurations = ["Release"]
     archs = ["armeabi", "armeabi-v7a", "x86"]
     #archs = ["x86"]
     configurations.each do |configuration|
@@ -62,6 +62,11 @@ def build type
         FileUtils.chdir "../.."
       end
     end
+  when "osx"
+    system "cmake ../.."
+    do_default_build
+  when "ios"
+
   end
 
   puts "build ended!"
@@ -171,3 +176,40 @@ EOS
     puts "#{v}"
   end
 end
+
+def build_ios
+  #configurations = ["Release", "Debug"]
+  configurations = ["Release"]
+  archs = {
+    "iPhoneOS" => ["armv7", "armv7s", "arm64"],
+    "iPhoneSimulator" => ["i386"],
+  }
+  #platforms = ["iPhoneSimulator", "iPhoneOS"]
+  platforms = ["iPhoneSimulator"]
+  platforms.each do |platform|
+    configurations.each do |configuration|
+      archs.each do |arch|
+        FileUtils.mkdir_p "#{arch}/#{configuration}"
+        FileUtils.chdir "#{arch}/#{configuration}"
+        cmd = [
+          "cmake ../../../.. ",
+          "-DCMAKE_TOOLCHAIN_FILE=../../../external/ios_cmake/ios.cmake",
+          "-DPLATFORM=#{platform}",
+          "-DARCH=#{arch}",
+          "-G\"Unix Makefiles\""
+          ].join(" ")
+        do_build_output cmd
+        do_build_output "which make"
+        if ARGV.include? "--for-ci"
+          do_build_output "make -j 2"
+        elsif ARGV.select{|v| v.match(/-j\d+/)}.length > 0
+          do_build_output "make -j #{ARGV.select{|v| v.match(/-j\d+/)}[0].scan(/\d+/)[0]}"
+        else
+          do_build_output "make -j 4"
+        end
+        FileUtils.chdir "../.."
+      end
+    end
+  end
+end
+
