@@ -26,11 +26,11 @@ def build type
   case type
   when "win32"
     @is_vc = true
-    system "cmake ../.. -G \"Visual Studio 14 2015\""
+    system "cmake ../.. -G \"Visual Studio 14 2015\" -DCOR_BUILD_TYPE=#{type}"
     do_win_build
   when "win64"
     @is_vc = true
-    system "cmake ../.. -G \"Visual Studio 14 2015 Win64\""
+    system "cmake ../.. -G \"Visual Studio 14 2015 Win64\" -DCOR_BUILD_TYPE=#{type}"
     do_win_build
   when "android"
     configurations = ["Release", "Debug"]
@@ -43,6 +43,7 @@ def build type
         FileUtils.chdir "#{arch}/#{configuration}"
         cmd = [
           "cmake ../../../.. ",
+          "-DCOR_BUILD_TYPE=#{type}"
           "-DCMAKE_TOOLCHAIN_FILE=../../../external/android_cmake/android.toolchain.cmake",
           "-DANDROID_NDK=#{ENV["NDK_ROOT"]}",
           "-DCMAKE_BUILD_TYPE=#{configuration}",
@@ -63,10 +64,11 @@ def build type
       end
     end
   when "osx"
-    system "cmake ../.. -G\"Unix Makefiles\""
+    system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type}"
     do_default_build
   when "ios"
-
+    system "cmake ../.. -G\"Unix Makefiles\""
+    build_ios type
   end
 
   puts "build ended!"
@@ -177,7 +179,7 @@ EOS
   end
 end
 
-def build_ios
+def build_ios(type)
   #configurations = ["Release", "Debug"]
   configurations = ["Release"]
   archs = {
@@ -193,6 +195,7 @@ def build_ios
         FileUtils.chdir "#{arch}/#{configuration}"
         cmd = [
           "cmake ../../../.. ",
+          "-DCOR_BUILD_TYPE=#{type}"
           "-DCMAKE_TOOLCHAIN_FILE=../../../external/ios_cmake/ios.cmake",
           "-DPLATFORM=#{platform}",
           "-DARCH=#{arch}",
