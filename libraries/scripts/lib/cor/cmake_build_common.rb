@@ -195,7 +195,7 @@ def build_ios(type)
         FileUtils.chdir "#{arch}/#{configuration}"
         cmd = [
           "cmake ../../../.. ",
-          "-DCOR_BUILD_TYPE=#{type}"
+          "-DCOR_BUILD_TYPE=#{type}",
           "-DCMAKE_TOOLCHAIN_FILE=../../../external/ios_cmake/ios.cmake",
           "-DPLATFORM=#{platform}",
           "-DARCH=#{arch}",
