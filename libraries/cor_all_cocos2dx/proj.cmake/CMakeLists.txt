@@ -53,18 +53,12 @@ file(GLOB_RECURSE cor_all_cocos2dx_scr
 message("test")
 
 if(EXISTS ${PROJECT_SOURCE_DIR}/../../cor_project_structure/proj.common/cor_project_structure_cmake_local_conf.txt)
-    message("found ../../cor_project_structure/proj.common/cor_project_structure_cmake_local_conf.txt")
-
     include(${PROJECT_SOURCE_DIR}/../../cor_project_structure/proj.common/cor_project_structure_cmake_local_conf.txt)
 
-    message("cor_project_strucre_sources " ${cor_project_strucre_sources})
-
     foreach(loop_var ${cor_project_strucre_sources})
-        message("loop_var " ${loop_var})
         set(cor_all_cocos2dx_scr ${cor_all_cocos2dx_scr} ${PROJECT_SOURCE_DIR}/${loop_var})
     endforeach(loop_var)
 
-    message("cor_all_cocos2dx_scr " ${cor_all_cocos2dx_scr})
 endif()
 
 add_library (cor_all_cocos2dx ${cor_all_cocos2dx_scr})
@@ -99,6 +93,13 @@ if(MSVC)
     include_directories (${COCOS2D_PATH}/external/glfw3/include/win32)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Android")
     include_directories (${COCOS2D_PATH}/cocos/platform/android)
+
+elseif(${COR_BUILD_TYPE} MATCHES "osx")
+    include_directories (${COCOS2D_PATH}/cocos/platform/mac)
+    include_directories (${COCOS2D_PATH}/cocos/external/glfw3/include/mac)
+elseif({COR_BUILD_TYPE} MATCHES "ios")
+    include_directories (${COCOS2D_PATH}/cocos/platform/ios)
+    include_directories (${COCOS2D_PATH}/cocos/platform/ios/Simulation)
 endif()
 
 target_include_directories (cor_all_cocos2dx PUBLIC ../../)
