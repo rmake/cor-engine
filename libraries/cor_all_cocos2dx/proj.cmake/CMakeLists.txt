@@ -4,13 +4,13 @@ if(MSVC)
 
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /D_UNICODE /DCOCOS2D_DEBUG=1")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /D_UNICODE /DCOCOS2D_DEBUG=0")
-
-
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Android")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DANDROID_NDK -fexceptions -frtti -std=c++11 -fsigned-char")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DANDROID_NDK -fexceptions -frtti -std=c++11 -fsigned-char -DNDEBUG -O3")
     set(LIBRARY_OUTPUT_PATH_ROOT "${CMAKE_CURRENT_BINARY_DIR}" CACHE PATH "")
     set(EXECUTABLE_OUTPUT_PATH_ROOT "${CMAKE_CURRENT_BINARY_DIR}" CACHE PATH "")
+else()
+    set(CMAKE_CXX_FLAGS "-std=c++11  -stdlib=libc++ -fexceptions -frtti -fsigned-char ")
 endif()
 
 if(MSVC)

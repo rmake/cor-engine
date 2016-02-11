@@ -1,5 +1,12 @@
 cmake_minimum_required (VERSION 3.2)
 project (cor_console_app_main)
+
+if(MSVC)
+
+else()
+    set(CMAKE_CXX_FLAGS "-std=c++11  -stdlib=libc++ -fexceptions -frtti -fsigned-char ")
+endif()
+
 include_directories (cor_console_app_main)
 include_directories (../../../libraries/)
 include_directories (../../../external/boost)
