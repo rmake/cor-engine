@@ -22,6 +22,8 @@ link_directories(${CMAKE_CURRENT_BINARY_DIR}/cor_all_mruby)
 add_executable (cor_console_app_main ${cor_console_app_main_scr})
 #target_link_libraries (cor_console_app_main mruby)
 
+message("COR_BUILD_TYPE ${COR_BUILD_TYPE}")
+
 if(MSVC)
     if(CMAKE_SIZEOF_VOID_P EQUAL 8)
         target_link_libraries (cor_console_app_main debug ${PROJECT_SOURCE_DIR}/../../../external/mruby_build/builded/vc_debug/lib/libmruby.lib)
@@ -33,7 +35,10 @@ if(MSVC)
 
     target_link_libraries (cor_console_app_main cor_all_mruby)
 
-elseif(${COR_BUILD_TYPE} EQUAL osx)
+elseif(${COR_BUILD_TYPE} MATCHES "osx")
+
+    message("COR_BUILD_TYPE MATCHES osx")
+
     target_link_libraries (cor_console_app_main debug ${PROJECT_SOURCE_DIR}/../../../external/mruby_build/builded/mac_debug/lib/libmruby.lib)
     target_link_libraries (cor_console_app_main optimized ${PROJECT_SOURCE_DIR}/../../../external/mruby_build/builded/mac_release/lib/libmruby.lib)
 
