@@ -196,8 +196,8 @@ def build_ios(type)
           "cmake ../../../../.. ",
           "-DCOR_BUILD_TYPE=#{type}",
           "-DCMAKE_TOOLCHAIN_FILE=../../../external/ios_cmake/ios.cmake",
-          "-DCOR_PLATFORM=#{platform}",
-          "-DCOR_ARCH=#{arch}",
+          "-DPLATFORM=#{platform}",
+          "-DARCH=#{arch}",
           "-G\"Unix Makefiles\""
           ].join(" ")
         do_build_output cmd
