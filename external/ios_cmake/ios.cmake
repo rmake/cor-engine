@@ -1,3 +1,5 @@
+# from http://taichino.com/programming/python-programming/4225
+
 # variables
 set(ARCH "i386" CACHE STRING "Target Architecture")
 set(PLATFORM "iPhoneSimulator" CACHE STRING "Target Platform")

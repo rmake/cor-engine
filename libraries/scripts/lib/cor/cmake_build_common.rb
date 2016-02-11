@@ -63,7 +63,7 @@ def build type
       end
     end
   when "osx"
-    system "cmake ../.."
+    system "cmake ../.. -G\"Unix Makefiles\""
     do_default_build
   when "ios"
 
