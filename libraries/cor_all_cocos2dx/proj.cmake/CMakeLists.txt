@@ -31,7 +31,7 @@ else()
 
     if(${COR_BUILD_TYPE} MATCHES "osx")
         add_definitions(-DCC_TARGET_OS_MAC)
-    elsif({COR_BUILD_TYPE} MATCHES "ios")
+    elseif({COR_BUILD_TYPE} MATCHES "ios")
         add_definitions(-DCC_TARGET_OS_IPHONE)
     endif()
 
