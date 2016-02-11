@@ -13,6 +13,8 @@ else()
     set(CMAKE_CXX_FLAGS "-std=c++11  -stdlib=libc++ -fexceptions -frtti -fsigned-char ")
 endif()
 
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DCOCOS2D_DEBUG=1")
+
 if(MSVC)
     add_definitions(/DCOCOS2DXWIN32_EXPOR)
     add_definitions(/DGL_GLEXT_PROTOTYPES)
@@ -26,10 +28,16 @@ if(MSVC)
     add_definitions(/DPROTOBUF_USE_DLLS)
     add_definitions(/DMRB_ENABLE_CXX_EXCEPTION)
 else()
+
+    if(${COR_BUILD_TYPE} MATCHES "osx")
+        add_definitions(-DCC_TARGET_OS_MAC)
+    elsif({COR_BUILD_TYPE} MATCHES "ios")
+        add_definitions(-DCC_TARGET_OS_IPHONE)
+    endif()
+
     add_definitions(-DCC_ENABLE_CHIPMUNK_INTEGRATION=1)
     add_definitions(-DMRB_ENABLE_CXX_EXCEPTION)
 endif()
-
 
 set(COCOS2D_PATH "../../../projects/cor_lib_test_main/cocos2d")
 file(GLOB_RECURSE cor_all_cocos2dx_scr
