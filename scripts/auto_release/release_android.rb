@@ -27,7 +27,7 @@ run_cmd "ruby start_day_work.rb"
 #
 Dir.chdir run_dir
 Dir.chdir '../../libraries/cor_all_cocos2dx/proj.cmake'
-run_cmd "ruby build_android.rb -f --for-ci"
+run_cmd "ruby build_android.rb -f --for-ci --arch=armeabi-v7a release"
 
 #
 Dir.chdir run_dir

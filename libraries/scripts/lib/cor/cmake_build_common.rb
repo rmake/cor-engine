@@ -36,6 +36,14 @@ def build type
     configurations = ["Release", "Debug"]
     #configurations = ["Release"]
     archs = ["armeabi", "armeabi-v7a", "x86"]
+    if ARGV.include? "release"
+      configurations = ["Release"]
+    elsif ARGV.include? "debug"
+      configurations = ["Debug"]
+    end
+    if ARGV.select{|v| v.match(/--arch=\S+/)}.length > 0
+      archs = [ARGV.select{|v| v.match(/--arch=\S+/)}[0].gsub(/--arch=/, "")]
+    end
     #archs = ["x86"]
     configurations.each do |configuration|
       archs.each do |arch|
