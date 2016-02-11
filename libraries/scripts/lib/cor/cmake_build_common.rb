@@ -195,8 +195,8 @@ def build_ios(type)
   }
   #platforms = ["iPhoneSimulator", "iPhoneOS"]
   #platforms = ["iPhoneSimulator"]
-  #platforms = ["SIMULATOR", "OS"]
-  platforms = ["SIMULATOR"]
+  #platforms = ["SIMULATOR64", "OS"]
+  platforms = ["SIMULATOR64"]
   platforms.each do |platform|
     configurations.each do |configuration|
       #archs[platform].each do |arch|
