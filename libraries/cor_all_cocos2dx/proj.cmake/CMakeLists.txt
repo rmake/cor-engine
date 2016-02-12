@@ -15,6 +15,10 @@ else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11  -stdlib=libc++ -fexceptions -frtti -fsigned-char ")
 endif()
 
+if (DEFINED COR_CMAKE_OSX_ARCHITECTURES)
+    set(CMAKE_OSX_ARCHITECTURES ${COR_CMAKE_OSX_ARCHITECTURES})
+endif
+
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DCOCOS2D_DEBUG=1")
 
 if(MSVC)

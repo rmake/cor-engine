@@ -190,23 +190,22 @@ def build_ios(type)
   #configurations = ["Release", "Debug"]
   configurations = ["Release"]
   archs = {
-    "iPhoneOS" => ["armv7", "armv7s", "arm64"],
-    "iPhoneSimulator" => ["i386"],
+    "OS" => ["armv7", "armv7s", "arm64"],
+    "SIMULATOR64" => ["i386"],
   }
   #platforms = ["iPhoneSimulator", "iPhoneOS"]
   #platforms = ["iPhoneSimulator"]
-  #platforms = ["SIMULATOR64", "OS"]
-  platforms = ["SIMULATOR64"]
+  platforms = ["SIMULATOR64", "OS"]
+  #platforms = ["SIMULATOR64"]
   platforms.each do |platform|
     configurations.each do |configuration|
-      #archs[platform].each do |arch|
-        #FileUtils.mkdir_p "#{platform}/#{arch}/#{configuration}"
-        #FileUtils.chdir "#{platform}/#{arch}/#{configuration}"
-        FileUtils.mkdir_p "#{platform}/#{configuration}"
-        FileUtils.chdir "#{platform}/#{configuration}"
+      archs[platform].each do |arch|
+        FileUtils.mkdir_p "#{platform}/#{arch}/#{configuration}"
+        FileUtils.chdir "#{platform}/#{arch}/#{configuration}"
         cmd = [
-          "cmake ../../../.. ",
+          "cmake ../../../../.. ",
           "-DCOR_BUILD_TYPE=#{type}",
+          "-DCOR_CMAKE_OSX_ARCHITECTURES=#{arch}",
           "-DCMAKE_TOOLCHAIN_FILE=../../../external/ios_cmake/ios.cmake",
           "-DIOS_PLATFORM=#{platform}",
           ].join(" ")
@@ -219,15 +218,19 @@ def build_ios(type)
         else
           do_build_output "make -j 4"
         end
-        FileUtils.chdir "../.."
-      #end
-      #if platform == "iPhoneOS"
-      #  source_a_list = Dir.glob("#{platform}/*/#{configuration}/*.a")
-      #  a_name = File.basename source_a_list[0]
-      #
-      #  do_build_output "lipo -create #{source_a_list.join(" ")} -output #{platform}/#{a_name}"
-      #end
+        FileUtils.chdir "../../.."
+      end
     end
+  end
+  configurations.each do |configuration|
+    FileUtils.mkdir_p "#{configuration}"
+    FileUtils.chdir "#{configuration}"
+
+    source_a_list = Dir.glob("*/*/#{configuration}/*.a")
+    a_name = File.basename source_a_list[0]
+    do_build_output "lipo -create #{source_a_list.join(" ")} -output #{platform}/#{a_name}"
+
+    FileUtils.chdir ".."
   end
 end
 
