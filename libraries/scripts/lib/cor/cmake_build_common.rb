@@ -226,9 +226,11 @@ def build_ios(type)
     FileUtils.mkdir_p "#{configuration}"
     FileUtils.chdir "#{configuration}"
 
-    source_a_list = Dir.glob("*/*/#{configuration}/*.a")
+    source_a_list = Dir.glob("../*/*/#{configuration}/*.a")
+    puts "pwd #{Dir.pwd}"
+    puts "source_a_list #{source_a_list}"
     a_name = File.basename source_a_list[0]
-    do_build_output "lipo -create #{source_a_list.join(" ")} -output #{platform}/#{a_name}"
+    do_build_output "lipo -create #{source_a_list.join(" ")} -output #{a_name}"
 
     FileUtils.chdir ".."
   end

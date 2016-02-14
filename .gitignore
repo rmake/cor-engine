@@ -84,3 +84,5 @@ generated_binding*
 *.VC.opendb
 
 Thumbs.db
+.DS_Store
+
