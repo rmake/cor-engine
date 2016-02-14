@@ -42,7 +42,7 @@ def build type
       configurations = ["Debug"]
     end
     if ARGV.select{|v| v.match(/--arch=\S+/)}.length > 0
-      archs = [ARGV.select{|v| v.match(/--arch=\S+/)}[0].gsub(/--arch=/, "")]
+      archs = [ARGV.select{|v| v.match(/--arch=\S+/)}.map{|v| v.gsub(/--arch=/, "")}]
     end
     #archs = ["x86"]
     configurations.each do |configuration|
@@ -197,6 +197,17 @@ def build_ios(type)
   #platforms = ["iPhoneSimulator"]
   platforms = ["SIMULATOR64", "OS"]
   #platforms = ["SIMULATOR64"]
+  if ARGV.include? "release"
+    configurations = ["Release"]
+  elsif ARGV.include? "debug"
+    configurations = ["Debug"]
+  end
+  if ARGV.select{|v| v.match(/--arch=\S+/)}.length > 0
+    archs = [ARGV.select{|v| v.match(/--arch=\S+/)}.map{|v| v.gsub(/--arch=/, "")}]
+  end
+  if ARGV.select{|v| v.match(/--platform=\S+/)}.length > 0
+    platforms = [ARGV.select{|v| v.match(/--platform=\S+/)}.map{|v| v.gsub(/--platform=/, "")}]
+  end
   platforms.each do |platform|
     configurations.each do |configuration|
       archs[platform].each do |arch|
