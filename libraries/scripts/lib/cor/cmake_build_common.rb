@@ -196,9 +196,10 @@ def build_ios(type)
   configurations = ["Release", "Debug"]
   archs = {
     "OS" => ["armv7", "armv7s", "arm64"],
-    "SIMULATOR64" => ["i386"],
+    "SIMULATOR" => ["i386"],
+    "SIMULATOR64" => ["x86_64"],
   }
-  platforms = ["SIMULATOR64", "OS"]
+  platforms = ["SIMULATOR64", "SIMULATOR", "OS"]
   if ARGV.include? "release"
     configurations = ["Release"]
   elsif ARGV.include? "debug"
@@ -243,6 +244,9 @@ def build_ios(type)
     puts "pwd #{Dir.pwd}"
     puts "source_a_list #{source_a_list}"
     a_name = File.basename source_a_list[0]
+    if File.exists? a_name
+      FileUtils.rm a_name
+    end
     do_build_output "lipo -create #{source_a_list.join(" ")} -output #{a_name}"
 
     FileUtils.chdir ".."

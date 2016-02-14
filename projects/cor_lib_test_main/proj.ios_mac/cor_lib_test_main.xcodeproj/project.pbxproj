@@ -51,22 +51,6 @@
 		645137201C09A6280057407E /* project_resource in Resources */ = {isa = PBXBuildFile; fileRef = 6451371F1C09A6280057407E /* project_resource */; };
 		645137211C09A6280057407E /* project_resource in Resources */ = {isa = PBXBuildFile; fileRef = 6451371F1C09A6280057407E /* project_resource */; };
 		65EAEB1E1C31339400C0367F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EAEB1D1C31339400C0367F /* UIKit.framework */; };
-		65EB4D371BAFDB9400A755AA /* libcor_algorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D361BAFDB9400A755AA /* libcor_algorithm.a */; };
-		65EB4D391BAFDBA500A755AA /* libcor_cocos2dx_converter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D381BAFDBA500A755AA /* libcor_cocos2dx_converter.a */; };
-		65EB4D3B1BAFDBB700A755AA /* libcor_cocos2dx_mruby_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D3A1BAFDBB700A755AA /* libcor_cocos2dx_mruby_interface.a */; };
-		65EB4D3D1BAFDBC900A755AA /* libcor_data_structure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D3C1BAFDBC900A755AA /* libcor_data_structure.a */; };
-		65EB4D3F1BAFDBDA00A755AA /* libcor_mruby_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D3E1BAFDBDA00A755AA /* libcor_mruby_interface.a */; };
-		65EB4D411BAFDBEA00A755AA /* libcor_project_structure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D401BAFDBEA00A755AA /* libcor_project_structure.a */; };
-		65EB4D431BAFDBFA00A755AA /* libcor_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D421BAFDBFA00A755AA /* libcor_system.a */; };
-		65EB4D491BAFDD1000A755AA /* libcor_type.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D441BAFDC0C00A755AA /* libcor_type.a */; };
-		65EB4D7B1BAFE15200A755AA /* libcor_algorithm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D7A1BAFE15200A755AA /* libcor_algorithm.a */; };
-		65EB4D7D1BAFE16300A755AA /* libcor_cocos2dx_converter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D7C1BAFE16300A755AA /* libcor_cocos2dx_converter.a */; };
-		65EB4D7F1BAFE16C00A755AA /* libcor_data_structure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D7E1BAFE16C00A755AA /* libcor_data_structure.a */; };
-		65EB4D811BAFE19900A755AA /* libcor_mruby_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D801BAFE19900A755AA /* libcor_mruby_interface.a */; };
-		65EB4D831BAFE1AC00A755AA /* libcor_project_structure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D821BAFE1AC00A755AA /* libcor_project_structure.a */; };
-		65EB4D851BAFE1B900A755AA /* libcor_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D841BAFE1B900A755AA /* libcor_system.a */; };
-		65EB4D871BAFE1C800A755AA /* libcor_type.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D861BAFE1C800A755AA /* libcor_type.a */; };
-		65EB4D891BAFED3800A755AA /* libcor_cocos2dx_mruby_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB4D881BAFED3800A755AA /* libcor_cocos2dx_mruby_interface.a */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -107,118 +91,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = A07A4C241783777C0073F6A7;
 			remoteInfo = "cocos2dx iOS";
-		};
-		65EB4D251BAFD92900A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D051BAFD7F600A755AA;
-			remoteInfo = cor_algorithm_mac;
-		};
-		65EB4D271BAFD92900A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D091BAFD82D00A755AA;
-			remoteInfo = "cor_cocos2dx_converter_mac copy";
-		};
-		65EB4D291BAFD92900A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D0D1BAFD82F00A755AA;
-			remoteInfo = "cor_cocos2dx_mruby_interface_mac copy copy";
-		};
-		65EB4D2B1BAFD92900A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D111BAFD83100A755AA;
-			remoteInfo = "cor_data_structure_mac copy copy copy";
-		};
-		65EB4D2D1BAFD92900A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D151BAFD83200A755AA;
-			remoteInfo = "cor_mruby_interface_mac copy copy copy copy";
-		};
-		65EB4D2F1BAFD92900A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D191BAFD8BE00A755AA;
-			remoteInfo = "cor_project_structure_mac copy copy copy copy copy";
-		};
-		65EB4D311BAFD92900A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D1D1BAFD8D700A755AA;
-			remoteInfo = "cor_system_mac copy copy copy copy copy copy";
-		};
-		65EB4D331BAFD92900A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D211BAFD8ED00A755AA;
-			remoteInfo = "cor_type_mac copy copy copy copy copy copy copy";
-		};
-		65EB4D6A1BAFE13A00A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D4A1BAFE08500A755AA;
-			remoteInfo = cor_algorithm_ios;
-		};
-		65EB4D6C1BAFE13A00A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D4E1BAFE08800A755AA;
-			remoteInfo = cor_cocos2dx_converter_ios;
-		};
-		65EB4D6E1BAFE13A00A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D521BAFE08900A755AA;
-			remoteInfo = cor_cocos2dx_mruby_interface_ios;
-		};
-		65EB4D701BAFE13A00A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D561BAFE08A00A755AA;
-			remoteInfo = cor_data_structure_ios;
-		};
-		65EB4D721BAFE13A00A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D5A1BAFE08B00A755AA;
-			remoteInfo = cor_mruby_interface_ios;
-		};
-		65EB4D741BAFE13A00A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D5E1BAFE08C00A755AA;
-			remoteInfo = cor_project_structure_ios;
-		};
-		65EB4D761BAFE13A00A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D621BAFE08E00A755AA;
-			remoteInfo = cor_system_ios;
-		};
-		65EB4D781BAFE13A00A755AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65EB4D661BAFE08F00A755AA;
-			remoteInfo = cor_type_ios;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -304,14 +176,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				65EAEB1E1C31339400C0367F /* UIKit.framework in Frameworks */,
-				65EB4D891BAFED3800A755AA /* libcor_cocos2dx_mruby_interface.a in Frameworks */,
-				65EB4D871BAFE1C800A755AA /* libcor_type.a in Frameworks */,
-				65EB4D851BAFE1B900A755AA /* libcor_system.a in Frameworks */,
-				65EB4D831BAFE1AC00A755AA /* libcor_project_structure.a in Frameworks */,
-				65EB4D811BAFE19900A755AA /* libcor_mruby_interface.a in Frameworks */,
-				65EB4D7F1BAFE16C00A755AA /* libcor_data_structure.a in Frameworks */,
-				65EB4D7D1BAFE16300A755AA /* libcor_cocos2dx_converter.a in Frameworks */,
-				65EB4D7B1BAFE15200A755AA /* libcor_algorithm.a in Frameworks */,
 				ED545A7C1B68A1F400C3958E /* libiconv.dylib in Frameworks */,
 				52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */,
 				1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */,
@@ -331,14 +195,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65EB4D491BAFDD1000A755AA /* libcor_type.a in Frameworks */,
-				65EB4D431BAFDBFA00A755AA /* libcor_system.a in Frameworks */,
-				65EB4D411BAFDBEA00A755AA /* libcor_project_structure.a in Frameworks */,
-				65EB4D3F1BAFDBDA00A755AA /* libcor_mruby_interface.a in Frameworks */,
-				65EB4D3D1BAFDBC900A755AA /* libcor_data_structure.a in Frameworks */,
-				65EB4D3B1BAFDBB700A755AA /* libcor_cocos2dx_mruby_interface.a in Frameworks */,
-				65EB4D391BAFDBA500A755AA /* libcor_cocos2dx_converter.a in Frameworks */,
-				65EB4D371BAFDB9400A755AA /* libcor_algorithm.a in Frameworks */,
 				ED545A7E1B68A1FA00C3958E /* libiconv.dylib in Frameworks */,
 				1AC6FB21180E996B004C840B /* libcocos2d Mac.a in Frameworks */,
 				5087E76717EB910900C73F5D /* libz.dylib in Frameworks */,
@@ -518,229 +374,33 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		65EB4D051BAFD7F600A755AA /* cor_algorithm_osx */ = {
+		657070461C7081FB00796F6A /* cor_all_cocos2dx_ios */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D081BAFD7F600A755AA /* Build configuration list for PBXLegacyTarget "cor_algorithm_osx" */;
+			buildArgumentsString = "build_ios.rb $(ACTION)";
+			buildConfigurationList = 657070471C7081FB00796F6A /* Build configuration list for PBXLegacyTarget "cor_all_cocos2dx_ios" */;
 			buildPhases = (
 			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_algorithm/proj.ios_mac/osx;
+			buildToolPath = /usr/bin/ruby;
+			buildWorkingDirectory = ../../../libraries/cor_all_cocos2dx/proj.cmake;
 			dependencies = (
 			);
-			name = cor_algorithm_osx;
+			name = cor_all_cocos2dx_ios;
 			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
+			productName = cor_all_cocos2dx_ios;
 		};
-		65EB4D091BAFD82D00A755AA /* cor_cocos2dx_converter_osx */ = {
+		6570704A1C70824D00796F6A /* cor_all_cocos2dx_osx */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D0A1BAFD82D00A755AA /* Build configuration list for PBXLegacyTarget "cor_cocos2dx_converter_osx" */;
+			buildArgumentsString = "build_osx.rb $(ACTION)";
+			buildConfigurationList = 6570704B1C70824D00796F6A /* Build configuration list for PBXLegacyTarget "cor_all_cocos2dx_osx" */;
 			buildPhases = (
 			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_cocos2dx_converter/proj.ios_mac/osx;
+			buildToolPath = /usr/bin/ruby;
+			buildWorkingDirectory = ../../../libraries/cor_all_cocos2dx/proj.cmake;
 			dependencies = (
 			);
-			name = cor_cocos2dx_converter_osx;
+			name = cor_all_cocos2dx_osx;
 			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D0D1BAFD82F00A755AA /* cor_cocos2dx_mruby_interface_osx */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D0E1BAFD82F00A755AA /* Build configuration list for PBXLegacyTarget "cor_cocos2dx_mruby_interface_osx" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/osx;
-			dependencies = (
-			);
-			name = cor_cocos2dx_mruby_interface_osx;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D111BAFD83100A755AA /* cor_data_structure_osx */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D121BAFD83100A755AA /* Build configuration list for PBXLegacyTarget "cor_data_structure_osx" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_data_structure/proj.ios_mac/osx;
-			dependencies = (
-			);
-			name = cor_data_structure_osx;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D151BAFD83200A755AA /* cor_mruby_interface_osx */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D161BAFD83200A755AA /* Build configuration list for PBXLegacyTarget "cor_mruby_interface_osx" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_mruby_interface/proj.ios_mac/osx;
-			dependencies = (
-			);
-			name = cor_mruby_interface_osx;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D191BAFD8BE00A755AA /* cor_project_structure_osx */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D1A1BAFD8BE00A755AA /* Build configuration list for PBXLegacyTarget "cor_project_structure_osx" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_project_structure/proj.ios_mac/osx;
-			dependencies = (
-			);
-			name = cor_project_structure_osx;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D1D1BAFD8D700A755AA /* cor_system_osx */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D1E1BAFD8D700A755AA /* Build configuration list for PBXLegacyTarget "cor_system_osx" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_system/proj.ios_mac/osx;
-			dependencies = (
-			);
-			name = cor_system_osx;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D211BAFD8ED00A755AA /* cor_type_osx */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D221BAFD8ED00A755AA /* Build configuration list for PBXLegacyTarget "cor_type_osx" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_type/proj.ios_mac/osx;
-			dependencies = (
-			);
-			name = cor_type_osx;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D4A1BAFE08500A755AA /* cor_algorithm_ios */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D4B1BAFE08500A755AA /* Build configuration list for PBXLegacyTarget "cor_algorithm_ios" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_algorithm/proj.ios_mac/ios;
-			dependencies = (
-			);
-			name = cor_algorithm_ios;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D4E1BAFE08800A755AA /* cor_cocos2dx_converter_ios */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D4F1BAFE08800A755AA /* Build configuration list for PBXLegacyTarget "cor_cocos2dx_converter_ios" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_cocos2dx_converter/proj.ios_mac/ios;
-			dependencies = (
-			);
-			name = cor_cocos2dx_converter_ios;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D521BAFE08900A755AA /* cor_cocos2dx_mruby_interface_ios */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D531BAFE08900A755AA /* Build configuration list for PBXLegacyTarget "cor_cocos2dx_mruby_interface_ios" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/ios;
-			dependencies = (
-			);
-			name = cor_cocos2dx_mruby_interface_ios;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D561BAFE08A00A755AA /* cor_data_structure_ios */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D571BAFE08A00A755AA /* Build configuration list for PBXLegacyTarget "cor_data_structure_ios" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_data_structure/proj.ios_mac/ios;
-			dependencies = (
-			);
-			name = cor_data_structure_ios;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D5A1BAFE08B00A755AA /* cor_mruby_interface_ios */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D5B1BAFE08B00A755AA /* Build configuration list for PBXLegacyTarget "cor_mruby_interface_ios" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_mruby_interface/proj.ios_mac/ios;
-			dependencies = (
-			);
-			name = cor_mruby_interface_ios;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D5E1BAFE08C00A755AA /* cor_project_structure_ios */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D5F1BAFE08C00A755AA /* Build configuration list for PBXLegacyTarget "cor_project_structure_ios" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "../../..//libraries/cor_project_structure/proj.ios_mac/ios";
-			dependencies = (
-			);
-			name = cor_project_structure_ios;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D621BAFE08E00A755AA /* cor_system_ios */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D631BAFE08E00A755AA /* Build configuration list for PBXLegacyTarget "cor_system_ios" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_system/proj.ios_mac/ios;
-			dependencies = (
-			);
-			name = cor_system_ios;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
-		};
-		65EB4D661BAFE08F00A755AA /* cor_type_ios */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 65EB4D671BAFE08F00A755AA /* Build configuration list for PBXLegacyTarget "cor_type_ios" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = ../../../libraries/cor_type/proj.ios_mac/ios;
-			dependencies = (
-			);
-			name = cor_type_ios;
-			passBuildSettingsInEnvironment = 1;
-			productName = cor_algorithm;
+			productName = cor_all_cocos2dx;
 		};
 /* End PBXLegacyTarget section */
 
@@ -756,14 +416,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				65EB4D6B1BAFE13A00A755AA /* PBXTargetDependency */,
-				65EB4D6D1BAFE13A00A755AA /* PBXTargetDependency */,
-				65EB4D6F1BAFE13A00A755AA /* PBXTargetDependency */,
-				65EB4D711BAFE13A00A755AA /* PBXTargetDependency */,
-				65EB4D731BAFE13A00A755AA /* PBXTargetDependency */,
-				65EB4D751BAFE13A00A755AA /* PBXTargetDependency */,
-				65EB4D771BAFE13A00A755AA /* PBXTargetDependency */,
-				65EB4D791BAFE13A00A755AA /* PBXTargetDependency */,
 				1AC6FB25180E99E1004C840B /* PBXTargetDependency */,
 			);
 			name = "cor_lib_test_main-mobile";
@@ -782,14 +434,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				65EB4D261BAFD92900A755AA /* PBXTargetDependency */,
-				65EB4D281BAFD92900A755AA /* PBXTargetDependency */,
-				65EB4D2A1BAFD92900A755AA /* PBXTargetDependency */,
-				65EB4D2C1BAFD92900A755AA /* PBXTargetDependency */,
-				65EB4D2E1BAFD92900A755AA /* PBXTargetDependency */,
-				65EB4D301BAFD92900A755AA /* PBXTargetDependency */,
-				65EB4D321BAFD92900A755AA /* PBXTargetDependency */,
-				65EB4D341BAFD92900A755AA /* PBXTargetDependency */,
 				1AC6FB16180E9959004C840B /* PBXTargetDependency */,
 			);
 			name = "cor_lib_test_main-desktop";
@@ -808,8 +452,11 @@
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 7E54L82AAV;
 					};
-					65EB4D051BAFD7F600A755AA = {
-						CreatedOnToolsVersion = 7.0;
+					657070461C7081FB00796F6A = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					6570704A1C70824D00796F6A = {
+						CreatedOnToolsVersion = 7.2;
 					};
 				};
 			};
@@ -833,24 +480,10 @@
 			);
 			projectRoot = "";
 			targets = (
-				65EB4D4A1BAFE08500A755AA /* cor_algorithm_ios */,
-				65EB4D4E1BAFE08800A755AA /* cor_cocos2dx_converter_ios */,
-				65EB4D521BAFE08900A755AA /* cor_cocos2dx_mruby_interface_ios */,
-				65EB4D561BAFE08A00A755AA /* cor_data_structure_ios */,
-				65EB4D5A1BAFE08B00A755AA /* cor_mruby_interface_ios */,
-				65EB4D5E1BAFE08C00A755AA /* cor_project_structure_ios */,
-				65EB4D621BAFE08E00A755AA /* cor_system_ios */,
-				65EB4D661BAFE08F00A755AA /* cor_type_ios */,
 				1D6058900D05DD3D006BFB54 /* cor_lib_test_main-mobile */,
-				65EB4D051BAFD7F600A755AA /* cor_algorithm_osx */,
-				65EB4D091BAFD82D00A755AA /* cor_cocos2dx_converter_osx */,
-				65EB4D0D1BAFD82F00A755AA /* cor_cocos2dx_mruby_interface_osx */,
-				65EB4D111BAFD83100A755AA /* cor_data_structure_osx */,
-				65EB4D151BAFD83200A755AA /* cor_mruby_interface_osx */,
-				65EB4D191BAFD8BE00A755AA /* cor_project_structure_osx */,
-				65EB4D1D1BAFD8D700A755AA /* cor_system_osx */,
-				65EB4D211BAFD8ED00A755AA /* cor_type_osx */,
 				5087E73D17EB910900C73F5D /* cor_lib_test_main-desktop */,
+				657070461C7081FB00796F6A /* cor_all_cocos2dx_ios */,
+				6570704A1C70824D00796F6A /* cor_all_cocos2dx_osx */,
 			);
 		};
 /* End PBXProject section */
@@ -946,86 +579,6 @@
 			name = "cocos2dx iOS";
 			targetProxy = 1AC6FB24180E99E1004C840B /* PBXContainerItemProxy */;
 		};
-		65EB4D261BAFD92900A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D051BAFD7F600A755AA /* cor_algorithm_osx */;
-			targetProxy = 65EB4D251BAFD92900A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D281BAFD92900A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D091BAFD82D00A755AA /* cor_cocos2dx_converter_osx */;
-			targetProxy = 65EB4D271BAFD92900A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D2A1BAFD92900A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D0D1BAFD82F00A755AA /* cor_cocos2dx_mruby_interface_osx */;
-			targetProxy = 65EB4D291BAFD92900A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D2C1BAFD92900A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D111BAFD83100A755AA /* cor_data_structure_osx */;
-			targetProxy = 65EB4D2B1BAFD92900A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D2E1BAFD92900A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D151BAFD83200A755AA /* cor_mruby_interface_osx */;
-			targetProxy = 65EB4D2D1BAFD92900A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D301BAFD92900A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D191BAFD8BE00A755AA /* cor_project_structure_osx */;
-			targetProxy = 65EB4D2F1BAFD92900A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D321BAFD92900A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D1D1BAFD8D700A755AA /* cor_system_osx */;
-			targetProxy = 65EB4D311BAFD92900A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D341BAFD92900A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D211BAFD8ED00A755AA /* cor_type_osx */;
-			targetProxy = 65EB4D331BAFD92900A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D6B1BAFE13A00A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D4A1BAFE08500A755AA /* cor_algorithm_ios */;
-			targetProxy = 65EB4D6A1BAFE13A00A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D6D1BAFE13A00A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D4E1BAFE08800A755AA /* cor_cocos2dx_converter_ios */;
-			targetProxy = 65EB4D6C1BAFE13A00A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D6F1BAFE13A00A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D521BAFE08900A755AA /* cor_cocos2dx_mruby_interface_ios */;
-			targetProxy = 65EB4D6E1BAFE13A00A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D711BAFE13A00A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D561BAFE08A00A755AA /* cor_data_structure_ios */;
-			targetProxy = 65EB4D701BAFE13A00A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D731BAFE13A00A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D5A1BAFE08B00A755AA /* cor_mruby_interface_ios */;
-			targetProxy = 65EB4D721BAFE13A00A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D751BAFE13A00A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D5E1BAFE08C00A755AA /* cor_project_structure_ios */;
-			targetProxy = 65EB4D741BAFE13A00A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D771BAFE13A00A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D621BAFE08E00A755AA /* cor_system_ios */;
-			targetProxy = 65EB4D761BAFE13A00A755AA /* PBXContainerItemProxy */;
-		};
-		65EB4D791BAFE13A00A755AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65EB4D661BAFE08F00A755AA /* cor_type_ios */;
-			targetProxy = 65EB4D781BAFE13A00A755AA /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1061,19 +614,13 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					../../../external/mruby_build/builded/ios_debug/lib,
-					../../../libraries/cor_algorithm/proj.ios_mac/ios,
-					../../../libraries/cor_cocos2dx_converter/proj.ios_mac/ios,
-					../../../libraries/cor_data_structure/proj.ios_mac/ios,
-					../../../libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/ios,
-					../../../libraries/cor_project_structure/proj.ios_mac/ios,
-					../../../libraries/cor_system/proj.ios_mac/ios,
-					../../../libraries/cor_type/proj.ios_mac/ios,
-					../../../libraries/cor_mruby_interface/proj.ios_mac/ios,
+					../../../libraries/cor_all_cocos2dx/proj.cmake/build/ios/Debug,
 				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 					"-lmruby_combined",
+					"-lcor_all_cocos2dx",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.rmake.cor-lib-test-main.app01";
 				PROVISIONING_PROFILE = "";
@@ -1165,20 +712,14 @@
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
-					../../../libraries/cor_algorithm/proj.ios_mac/osx,
-					../../../libraries/cor_cocos2dx_converter/proj.ios_mac/osx,
-					../../../libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/osx,
-					../../../libraries/cor_data_structure/proj.ios_mac/osx,
-					../../../libraries/cor_mruby_interface/proj.ios_mac/osx,
-					../../../libraries/cor_project_structure/proj.ios_mac/osx,
-					../../../libraries/cor_system/proj.ios_mac/osx,
-					../../../libraries/cor_type/proj.ios_mac/osx,
 					../../../external/mruby_build/builded/mac_debug/lib,
+					../../../libraries/cor_all_cocos2dx/proj.cmake/build/osx,
 				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
 					"-lmruby",
+					"-lcor_all_cocos2dx",
 				);
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
@@ -1211,26 +752,20 @@
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
-					../../../libraries/cor_algorithm/proj.ios_mac/osx,
-					../../../libraries/cor_cocos2dx_converter/proj.ios_mac/osx,
-					../../../libraries/cor_cocos2dx_mruby_interface/proj.ios_mac/osx,
-					../../../libraries/cor_data_structure/proj.ios_mac/osx,
-					../../../libraries/cor_mruby_interface/proj.ios_mac/osx,
-					../../../libraries/cor_project_structure/proj.ios_mac/osx,
-					../../../libraries/cor_system/proj.ios_mac/osx,
-					../../../libraries/cor_type/proj.ios_mac/osx,
 					../../../external/mruby_build/builded/mac_release/lib,
+					../../../libraries/cor_all_cocos2dx/proj.cmake/build/osx,
 				);
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
 					"-lmruby",
+					"-lcor_all_cocos2dx",
 				);
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
 			name = Release;
 		};
-		65EB4D061BAFD7F600A755AA /* Debug */ = {
+		657070481C7081FB00796F6A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1271,7 +806,7 @@
 			};
 			name = Debug;
 		};
-		65EB4D071BAFD7F600A755AA /* Release */ = {
+		657070491C7081FB00796F6A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1305,7 +840,7 @@
 			};
 			name = Release;
 		};
-		65EB4D0B1BAFD82D00A755AA /* Debug */ = {
+		6570704C1C70824D00796F6A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1346,1057 +881,7 @@
 			};
 			name = Debug;
 		};
-		65EB4D0C1BAFD82D00A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D0F1BAFD82F00A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D101BAFD82F00A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D131BAFD83100A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D141BAFD83100A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D171BAFD83200A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D181BAFD83200A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D1B1BAFD8BE00A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D1C1BAFD8BE00A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D1F1BAFD8D700A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D201BAFD8D700A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D231BAFD8ED00A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D241BAFD8ED00A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D4C1BAFE08500A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D4D1BAFE08500A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D501BAFE08800A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D511BAFE08800A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D541BAFE08900A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D551BAFE08900A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D581BAFE08A00A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D591BAFE08A00A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D5C1BAFE08B00A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D5D1BAFE08B00A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D601BAFE08C00A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D611BAFE08C00A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D641BAFE08E00A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D651BAFE08E00A755AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		65EB4D681BAFE08F00A755AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		65EB4D691BAFE08F00A755AA /* Release */ = {
+		6570704D1C70824D00796F6A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2512,149 +997,21 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		65EB4D081BAFD7F600A755AA /* Build configuration list for PBXLegacyTarget "cor_algorithm_osx" */ = {
+		657070471C7081FB00796F6A /* Build configuration list for PBXLegacyTarget "cor_all_cocos2dx_ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				65EB4D061BAFD7F600A755AA /* Debug */,
-				65EB4D071BAFD7F600A755AA /* Release */,
+				657070481C7081FB00796F6A /* Debug */,
+				657070491C7081FB00796F6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
 		};
-		65EB4D0A1BAFD82D00A755AA /* Build configuration list for PBXLegacyTarget "cor_cocos2dx_converter_osx" */ = {
+		6570704B1C70824D00796F6A /* Build configuration list for PBXLegacyTarget "cor_all_cocos2dx_osx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				65EB4D0B1BAFD82D00A755AA /* Debug */,
-				65EB4D0C1BAFD82D00A755AA /* Release */,
+				6570704C1C70824D00796F6A /* Debug */,
+				6570704D1C70824D00796F6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D0E1BAFD82F00A755AA /* Build configuration list for PBXLegacyTarget "cor_cocos2dx_mruby_interface_osx" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D0F1BAFD82F00A755AA /* Debug */,
-				65EB4D101BAFD82F00A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D121BAFD83100A755AA /* Build configuration list for PBXLegacyTarget "cor_data_structure_osx" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D131BAFD83100A755AA /* Debug */,
-				65EB4D141BAFD83100A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D161BAFD83200A755AA /* Build configuration list for PBXLegacyTarget "cor_mruby_interface_osx" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D171BAFD83200A755AA /* Debug */,
-				65EB4D181BAFD83200A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D1A1BAFD8BE00A755AA /* Build configuration list for PBXLegacyTarget "cor_project_structure_osx" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D1B1BAFD8BE00A755AA /* Debug */,
-				65EB4D1C1BAFD8BE00A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D1E1BAFD8D700A755AA /* Build configuration list for PBXLegacyTarget "cor_system_osx" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D1F1BAFD8D700A755AA /* Debug */,
-				65EB4D201BAFD8D700A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D221BAFD8ED00A755AA /* Build configuration list for PBXLegacyTarget "cor_type_osx" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D231BAFD8ED00A755AA /* Debug */,
-				65EB4D241BAFD8ED00A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D4B1BAFE08500A755AA /* Build configuration list for PBXLegacyTarget "cor_algorithm_ios" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D4C1BAFE08500A755AA /* Debug */,
-				65EB4D4D1BAFE08500A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D4F1BAFE08800A755AA /* Build configuration list for PBXLegacyTarget "cor_cocos2dx_converter_ios" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D501BAFE08800A755AA /* Debug */,
-				65EB4D511BAFE08800A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D531BAFE08900A755AA /* Build configuration list for PBXLegacyTarget "cor_cocos2dx_mruby_interface_ios" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D541BAFE08900A755AA /* Debug */,
-				65EB4D551BAFE08900A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D571BAFE08A00A755AA /* Build configuration list for PBXLegacyTarget "cor_data_structure_ios" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D581BAFE08A00A755AA /* Debug */,
-				65EB4D591BAFE08A00A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D5B1BAFE08B00A755AA /* Build configuration list for PBXLegacyTarget "cor_mruby_interface_ios" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D5C1BAFE08B00A755AA /* Debug */,
-				65EB4D5D1BAFE08B00A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D5F1BAFE08C00A755AA /* Build configuration list for PBXLegacyTarget "cor_project_structure_ios" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D601BAFE08C00A755AA /* Debug */,
-				65EB4D611BAFE08C00A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D631BAFE08E00A755AA /* Build configuration list for PBXLegacyTarget "cor_system_ios" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D641BAFE08E00A755AA /* Debug */,
-				65EB4D651BAFE08E00A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		65EB4D671BAFE08F00A755AA /* Build configuration list for PBXLegacyTarget "cor_type_ios" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65EB4D681BAFE08F00A755AA /* Debug */,
-				65EB4D691BAFE08F00A755AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "cor_lib_test_main" */ = {
 			isa = XCConfigurationList;
