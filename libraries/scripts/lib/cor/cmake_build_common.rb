@@ -33,44 +33,7 @@ def build type
     system "cmake ../.. -G \"Visual Studio 14 2015 Win64\" -DCOR_BUILD_TYPE=#{type}"
     do_win_build
   when "android"
-    configurations = ["Release", "Debug"]
-    #configurations = ["Release"]
-    archs = ["armeabi", "armeabi-v7a", "x86"]
-    if ARGV.include? "release"
-      configurations = ["Release"]
-    elsif ARGV.include? "debug"
-      configurations = ["Debug"]
-    end
-    if ARGV.select{|v| v.match(/--arch=\S+/)}.length > 0
-      archs = [ARGV.select{|v| v.match(/--arch=\S+/)}.map{|v| v.gsub(/--arch=/, "")}]
-    end
-    #archs = ["x86"]
-    configurations.each do |configuration|
-      archs.each do |arch|
-        FileUtils.mkdir_p "#{arch}/#{configuration}"
-        FileUtils.chdir "#{arch}/#{configuration}"
-        cmd = [
-          "cmake ../../../.. ",
-          "-DCOR_BUILD_TYPE=#{type}",
-          "-DCMAKE_TOOLCHAIN_FILE=../../../external/android_cmake/android.toolchain.cmake",
-          "-DANDROID_NDK=#{ENV["NDK_ROOT"]}",
-          "-DCMAKE_BUILD_TYPE=#{configuration}",
-          "-DANDROID_NATIVE_API_LEVEL=14",
-          "-DANDROID_ABI=\"#{arch}\"",
-          "-G\"Unix Makefiles\""
-          ].join(" ")
-        do_build_output cmd
-        do_build_output "which make"
-        if ARGV.include? "--for-ci"
-          do_build_output "make -j 2"
-        elsif ARGV.select{|v| v.match(/-j\d+/)}.length > 0
-          do_build_output "make -j #{ARGV.select{|v| v.match(/-j\d+/)}[0].scan(/\d+/)[0]}"
-        else
-          do_build_output "make -j 4"
-        end
-        FileUtils.chdir "../.."
-      end
-    end
+    build_android type
   when "osx"
     system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type}"
     do_default_build
@@ -186,17 +149,53 @@ EOS
   end
 end
 
+def build_android(type)
+  configurations = ["Release", "Debug"]
+  archs = ["armeabi", "armeabi-v7a", "x86"]
+  if ARGV.include? "release"
+    configurations = ["Release"]
+  elsif ARGV.include? "debug"
+    configurations = ["Debug"]
+  end
+  if ARGV.select{|v| v.match(/--arch=\S+/)}.length > 0
+    archs = [ARGV.select{|v| v.match(/--arch=\S+/)}.map{|v| v.gsub(/--arch=/, "")}]
+  end
+  #archs = ["x86"]
+  configurations.each do |configuration|
+    archs.each do |arch|
+      FileUtils.mkdir_p "#{arch}/#{configuration}"
+      FileUtils.chdir "#{arch}/#{configuration}"
+      cmd = [
+        "cmake ../../../.. ",
+        "-DCOR_BUILD_TYPE=#{type}",
+        "-DCMAKE_TOOLCHAIN_FILE=../../../external/android_cmake/android.toolchain.cmake",
+        "-DANDROID_NDK=#{ENV["NDK_ROOT"]}",
+        "-DCMAKE_BUILD_TYPE=#{configuration}",
+        "-DANDROID_NATIVE_API_LEVEL=14",
+        "-DANDROID_ABI=\"#{arch}\"",
+        "-G\"Unix Makefiles\""
+        ].join(" ")
+      do_build_output cmd
+      do_build_output "which make"
+      if ARGV.include? "--for-ci"
+        do_build_output "make -j 2"
+      elsif ARGV.select{|v| v.match(/-j\d+/)}.length > 0
+        do_build_output "make -j #{ARGV.select{|v| v.match(/-j\d+/)}[0].scan(/\d+/)[0]}"
+      else
+        do_build_output "make -j 4"
+      end
+      FileUtils.chdir "../.."
+    end
+  end
+end
+
 def build_ios(type)
-  #configurations = ["Release", "Debug"]
-  configurations = ["Release"]
+  configurations = ["Release", "Debug"]
   archs = {
     "OS" => ["armv7", "armv7s", "arm64"],
     "SIMULATOR64" => ["i386"],
   }
-  #platforms = ["iPhoneSimulator", "iPhoneOS"]
-  #platforms = ["iPhoneSimulator"]
   platforms = ["SIMULATOR64", "OS"]
-  #platforms = ["SIMULATOR64"]
   if ARGV.include? "release"
     configurations = ["Release"]
   elsif ARGV.include? "debug"
