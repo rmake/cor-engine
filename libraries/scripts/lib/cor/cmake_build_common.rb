@@ -11,9 +11,12 @@ def build type
 
   build_path = "build/#{type}"
 
-  if ARGV.include? "-f"
+  if ARGV.include?("-f") || ARGV.include?("clean")
     puts "clean"
     FileUtils.rm_rf build_path
+    if ARGV.include? "clean"
+      return
+    end
   end
 
   FileUtils.mkdir_p build_path
