@@ -73,6 +73,15 @@ namespace cor
                     }
                 }
 
+                ~AllocInfoTable() {
+                    for(size_t i = 0; i < AllocInfoTableSize; i++)
+                    {
+                        while(table[i].next != &table[i]) {
+                            remove(table[i].next);
+                        }
+                    }
+                }
+
                 size_t hash(void* p)
                 {
                     return ((size_t)p) % AllocInfoTableSize;
@@ -111,7 +120,7 @@ namespace cor
                         ap->remove();
                         ::free(static_cast<void*>(ap));
                     }
-                    
+
                 }
 
                 void remove(AllocInfoPtr ap)
@@ -124,7 +133,7 @@ namespace cor
                 }
             };
 
-            
+
             struct Header;
             typedef Header* HeaderPtr;
             struct Header
@@ -176,7 +185,7 @@ namespace cor
             static PAllocationMonitor am;
             return am;
         }
-        
+
         AllocationMonitor::AllocationMonitor()
         {
             static AllocationMonitorItnl itnl_;
@@ -199,7 +208,7 @@ namespace cor
             itnl->captured_status = 0;
 #endif
         }
-        
+
         AllocationMonitor::~AllocationMonitor()
         {
             RSize i, isz;
@@ -263,7 +272,7 @@ namespace cor
             return itnl->captured_status;
 #else
             return 0;
-#endif      
+#endif
         }
 
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
@@ -277,14 +286,14 @@ namespace cor
         RString AllocationMonitor::get_captured_data()
         {
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
-            
+
 
             std::vector<RString> data;
             RSize sz = itnl->captured_count;
             for(RSize i = 0 ; i < sz ; i++)
             {
                 if(itnl->captured_list[i].p)
-                { 
+                {
                     RStringStream s;
                     RBytePtr bp = (RBytePtr)itnl->captured_list[i].p;
                     bp += sizeof(AllocationMonitorItnl::Header);
@@ -315,7 +324,7 @@ namespace cor
                     OutputDebugStringA((s.str() + "\n").c_str());
                     data.push_back(s.str());
                 }
-                
+
             }
             RString str;
             for(auto i : data)
@@ -326,7 +335,7 @@ namespace cor
             return str;
 #else
             return RString();
-#endif        
+#endif
         }
 
         void AllocationMonitor::clear_caputred_data()
@@ -342,7 +351,7 @@ namespace cor
             static AllocationMonitor amo;
             return &amo;
         }
-        
+
 #ifdef COR_ALLOCATION_MONITOR_LEAK_CHECK
 #ifdef WIN32
         struct LeakCheck
@@ -375,7 +384,7 @@ namespace cor
             void* p = nullptr;
             p = ::malloc(n);
 
-            
+
             if(am && itnl->available)
             {
                 itnl->alloc_info_table.insert(p, n);
@@ -418,7 +427,7 @@ namespace cor
                 itnl->delete_count++;
                 itnl->mutex.unlock();
             }
-            
+
         }
 
         void* AllocationMonitor::al_realloc(void* p, size_t n)
@@ -458,7 +467,7 @@ namespace cor
                     }
                 }
                 itnl->mutex.unlock();
-                
+
 
             }
 

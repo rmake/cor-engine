@@ -4,7 +4,7 @@ project (cor_console_app_main)
 if(MSVC)
 
 else()
-    set(CMAKE_CXX_FLAGS "-std=c++11  -stdlib=libc++ -fexceptions -frtti -fsigned-char ")
+    set(CMAKE_CXX_FLAGS "-std=c++11 -fexceptions -frtti -fsigned-char ")
 endif()
 
 include_directories (cor_console_app_main)
@@ -42,5 +42,13 @@ elseif(${COR_BUILD_TYPE} MATCHES "osx")
     target_link_libraries (cor_console_app_main debug ${PROJECT_SOURCE_DIR}/../../../external/mruby_build/builded/mac_debug/lib/libmruby.a)
     target_link_libraries (cor_console_app_main optimized ${PROJECT_SOURCE_DIR}/../../../external/mruby_build/builded/mac_release/lib/libmruby.a)
 
+    target_link_libraries (cor_console_app_main cor_all_mruby)
+
+else()
+
+    execute_process(COMMAND
+        ruby ${PROJECT_SOURCE_DIR}/../../../external/mruby_build/build.rb
+    )
+    target_link_libraries (cor_console_app_main ${PROJECT_SOURCE_DIR}/../../../external/mruby/build/default_debug/lib/libmruby.a)
     target_link_libraries (cor_console_app_main cor_all_mruby)
 endif()

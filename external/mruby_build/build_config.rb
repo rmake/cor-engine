@@ -26,13 +26,24 @@ builds = []
 #    :is_debug => false,
 #}
 
+#builds << {
+#  :name => 'mingw_debug',
+#  :toolchain => :gcc,
+#  :is_debug => true,
+#}
+#builds << {
+#    :name => 'mingw_release',
+#    :toolchain => :gcc,
+#    :is_debug => false,
+#}
+
 builds << {
-  :name => 'mingw_debug',
+  :name => 'default_debug',
   :toolchain => :gcc,
   :is_debug => true,
 }
 builds << {
-    :name => 'mingw_release',
+    :name => 'default_release',
     :toolchain => :gcc,
     :is_debug => false,
 }
@@ -45,8 +56,8 @@ builds.each do |b|
     if b[:is_debug]
       enable_debug
     end
-    
-  
+
+
     # include all core GEMs
     #conf.gembox 'full-core'
     conf.gembox 'default'
@@ -54,7 +65,7 @@ builds.each do |b|
     conf.compilers.each do |c|
       c.defines += %w(MRB_ENABLE_CXX_EXCEPTION)
     end
-  
+
     enable_cxx_abi
   end
 end

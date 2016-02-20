@@ -42,6 +42,16 @@ def build type
     do_default_build
   when "ios"
     build_ios type
+  when "default"
+    if RUBY_PLATFORM.downcase =~ /mswin(?!ce)|mingw|cygwin|bccwin/
+      #system "cmake ../.. -G\"Visual Studio 14 2015 Win64\" -DCOR_BUILD_TYPE=#{type}"
+      #do_win_build
+      #system "cmake ../.. -G\"MSYS Makefiles\" -DCOR_BUILD_TYPE=#{type}"
+      system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type}"
+    else
+      system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type}"
+    end
+    system "make -j 4"
   end
 
   puts "build ended!"
