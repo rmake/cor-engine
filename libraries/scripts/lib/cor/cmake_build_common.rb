@@ -216,10 +216,10 @@ def build_ios(type)
     configurations = ["Debug"]
   end
   if ARGV.select{|v| v.match(/--arch=\S+/)}.length > 0
-    archs = [ARGV.select{|v| v.match(/--arch=\S+/)}.map{|v| v.gsub(/--arch=/, "")}]
+    archs = ARGV.select{|v| v.match(/--arch=\S+/)}.map{|v| v.gsub(/--arch=/, "")}
   end
   if ARGV.select{|v| v.match(/--platform=\S+/)}.length > 0
-    platforms = [ARGV.select{|v| v.match(/--platform=\S+/)}.map{|v| v.gsub(/--platform=/, "")}]
+    platforms = ARGV.select{|v| v.match(/--platform=\S+/)}.map{|v| v.gsub(/--platform=/, "")}
   end
   platforms.each do |platform|
     configurations.each do |configuration|
