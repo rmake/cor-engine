@@ -59,6 +59,13 @@ end
 
 @results = []
 
+def get_cmake_option
+  if ARGV.select{|v| v.match(/--cmake-option=\S+/)}.length > 0
+    return ARGV.select{|v| v.match(/--cmake-option=\S+/)}.map{|v| v.gsub(/--cmake-option=/, "")}
+  end
+  ""
+end
+
 def cvt_string str
   if @is_vc
     return str.encode("UTF-8", "Shift_JIS")
