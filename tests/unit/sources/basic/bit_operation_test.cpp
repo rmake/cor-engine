@@ -8,14 +8,13 @@
 #include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(bit_operation)
- 
+
 BOOST_AUTO_TEST_CASE(bit_operation_count_one)
 {
     {
         auto f = [=](cor::RInt32 a, cor::RSize b){
             auto v = a;
             auto sz = cor::algorithm::BitOperation::count_one(v);
-            cor::log_debug("a ", a, ", sz ", sz);
             BOOST_CHECK_EQUAL(sz, b);
         };
 
@@ -23,12 +22,11 @@ BOOST_AUTO_TEST_CASE(bit_operation_count_one)
         f(406959, 12);
         f(0xf0000000, 4);
     }
-    
+
     {
         auto f = [=](cor::RInt64 a, cor::RSize b){
             auto v = a;
             auto sz = cor::algorithm::BitOperation::count_one(v);
-            cor::log_debug("a ", a, ", sz ", sz);
             BOOST_CHECK_EQUAL(sz, b);
         };
 
@@ -42,7 +40,6 @@ BOOST_AUTO_TEST_CASE(bit_operation_ciel_pow_two)
         auto f = [=](cor::RInt32 a, cor::RSize b){
             auto v = a;
             auto sz = cor::algorithm::BitOperation::ciel_pow_two(v);
-            cor::log_debug("a ", a, ", sz ", sz);
             BOOST_CHECK_EQUAL(sz, b);
         };
 
