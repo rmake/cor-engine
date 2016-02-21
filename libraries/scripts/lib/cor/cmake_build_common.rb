@@ -29,16 +29,16 @@ def build type
   case type
   when "win32"
     @is_vc = true
-    system "cmake ../.. -G \"Visual Studio 14 2015\" -DCOR_BUILD_TYPE=#{type}"
+    system "cmake ../.. -G \"Visual Studio 14 2015\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
     do_win_build
   when "win64"
     @is_vc = true
-    system "cmake ../.. -G \"Visual Studio 14 2015 Win64\" -DCOR_BUILD_TYPE=#{type}"
+    do_build_output "cmake ../.. -G \"Visual Studio 14 2015 Win64\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
     do_win_build
   when "android"
     build_android type
   when "osx"
-    system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type}"
+    system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
     do_default_build
   when "ios"
     build_ios type
@@ -47,9 +47,9 @@ def build type
       #system "cmake ../.. -G\"Visual Studio 14 2015 Win64\" -DCOR_BUILD_TYPE=#{type}"
       #do_win_build
       #system "cmake ../.. -G\"MSYS Makefiles\" -DCOR_BUILD_TYPE=#{type}"
-      system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type}"
+      system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
     else
-      system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type}"
+      system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
     end
     system "make -j 4"
   end
@@ -61,7 +61,8 @@ end
 
 def get_cmake_option
   if ARGV.select{|v| v.match(/--cmake-option=\S+/)}.length > 0
-    return ARGV.select{|v| v.match(/--cmake-option=\S+/)}.map{|v| v.gsub(/--cmake-option=/, "")}
+    puts "get_cmake_option #{ARGV.select{|v| v.match(/--cmake-option=\S+/)}}"
+    return ARGV.select{|v| v.match(/--cmake-option=\S+/)}.map{|v| v.gsub(/--cmake-option=/, "")}.join(" ")
   end
   ""
 end
@@ -193,7 +194,8 @@ def build_android(type)
         "-DCMAKE_BUILD_TYPE=#{configuration}",
         "-DANDROID_NATIVE_API_LEVEL=14",
         "-DANDROID_ABI=\"#{arch}\"",
-        "-G\"Unix Makefiles\""
+        "-G\"Unix Makefiles\"",
+        "#{get_cmake_option}"
         ].join(" ")
       do_build_output cmd
       do_build_output "which make"
@@ -239,6 +241,7 @@ def build_ios(type)
           "-DCOR_CMAKE_OSX_ARCHITECTURES=#{arch}",
           "-DCMAKE_TOOLCHAIN_FILE=../../../external/ios_cmake/ios.cmake",
           "-DIOS_PLATFORM=#{platform}",
+          "#{get_cmake_option}"
           ].join(" ")
         do_build_output cmd
         do_build_output "which make"

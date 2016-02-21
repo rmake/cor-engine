@@ -18,7 +18,7 @@ def run_cmd(cmd)
   r
 end
 
-run_cmd "ruby ../unit/proj.cmake/test.rb --log_level=test_suite #{ARGV}"
+run_cmd "ruby ../unit/proj.cmake/test.rb --log_level=test_suite #{ARGV.map{|v| "\"#{v}\""}.join " "}"
 
 
 
