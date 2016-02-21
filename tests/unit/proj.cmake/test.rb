@@ -26,9 +26,9 @@ end
 
 if RUBY_PLATFORM.downcase =~ /mswin(?!ce)|mingw|cygwin|bccwin/
   run_cmd "ruby build_win64.rb #{build_args[0].join " "}"
-  run_cmd "build/win64/Debug/cor_test_main.exe #{build_args[1].join " "}"
+  run_cmd "build/win64/Debug/cor_test_main.exe #{build_args[1] ? build_args[1].join(" "): ""}"
 else
   run_cmd "ruby build_default.rb #{build_args[0].join " "}"
-  run_cmd "build/default/cor_test_main #{build_args[1].join " "}"
+  run_cmd "build/default/cor_test_main #{build_args[1] ? build_args[1].join(" "): ""}"
 end
 

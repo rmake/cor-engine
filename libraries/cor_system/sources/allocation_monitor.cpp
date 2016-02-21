@@ -195,7 +195,7 @@ namespace cor
             itnl->new_count = 0;
             itnl->delete_count = 0;
             itnl->alloc_size = 0;
-            itnl->available = rtrue;
+            itnl->available = rfalse;
 
             RSize i, isz;
             isz = AllocationMonitorItnl::freed_table_size;
