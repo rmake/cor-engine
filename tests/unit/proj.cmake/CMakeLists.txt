@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.2)
 project (cor_test_main)
+find_package (Threads)
 
 if(MSVC)
 
 else()
-    set(CMAKE_CXX_FLAGS "-std=c++11 -fexceptions -frtti -fsigned-char ")
+    set(CMAKE_CXX_FLAGS "-std=c++11 -fexceptions -frtti -fsigned-char -pthread")
 endif()
 
 include_directories (cor_test_main)

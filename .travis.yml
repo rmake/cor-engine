@@ -36,6 +36,7 @@ install:
   - printenv
 script:
   - cocos --version
+  - ruby tests/script/run.rb
   - ruby scripts/auto_release/release_android.rb
 before_deploy:
   - gem install mime-types -v 2.6.2

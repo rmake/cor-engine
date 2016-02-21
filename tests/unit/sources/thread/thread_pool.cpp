@@ -1,10 +1,10 @@
+#define BOOST_TEST_NO_LIB
+#include <boost/test/unit_test.hpp>
 
 #include "cor_algorithm/sources/utilities.h"
 #include "cor_system/sources/logger.h"
 #include "cor_system/sources/thread_pool.h"
 
-#define BOOST_TEST_NO_LIB
-#include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(thread_pool)
 

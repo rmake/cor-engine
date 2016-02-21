@@ -34,7 +34,7 @@ if RUBY_PLATFORM.downcase =~ /mswin(?!ce)|mingw|cygwin|bccwin/
   run_cmd "ruby build_win64.rb #{force}"
   run_cmd "build/win64/Debug/cor_test_main.exe #{args}"
 else
-  run_cmd "ruby build_default.rb"
-  run_cmd "build/default/cor_test_main.exe #{args}"
+  run_cmd "ruby build_default.rb #{force}"
+  run_cmd "build/default/cor_test_main #{args}"
 end
 

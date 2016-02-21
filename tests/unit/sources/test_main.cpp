@@ -1,7 +1,9 @@
 #define BOOST_TEST_MAIN
-extern int putenv(char*);
 #define BOOST_TEST_NO_LIB
 #include <boost/test/included/unit_test.hpp>
+extern "C" {
+extern int putenv(char*);
+}
 
 BOOST_AUTO_TEST_SUITE(sample)
 
