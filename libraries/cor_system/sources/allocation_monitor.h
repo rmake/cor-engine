@@ -28,6 +28,7 @@ namespace cor
             RSize get_alloc_size();
             RString get_status_text();
 
+            void set_enable(RBool enabled);
             void set_captured_status(RInt32 captured_status);
             RInt32 get_captured_status();
             RString get_captured_data();

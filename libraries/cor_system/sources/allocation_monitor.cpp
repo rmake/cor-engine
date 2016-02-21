@@ -61,7 +61,8 @@ namespace cor
                 }
             };
 
-            static const size_t AllocInfoTableSize = 4049;
+            //static const size_t AllocInfoTableSize = 4049;
+            static const size_t AllocInfoTableSize = 20011;
             struct AllocInfoTable
             {
                 AllocInfo table[AllocInfoTableSize];
@@ -77,6 +78,15 @@ namespace cor
                     for(size_t i = 0; i < AllocInfoTableSize; i++)
                     {
                         while(table[i].next != &table[i]) {
+                            remove(table[i].next);
+                        }
+                    }
+                }
+
+                void clear() {
+                    for (size_t i = 0; i < AllocInfoTableSize; i++)
+                    {
+                        while (table[i].next != &table[i]) {
                             remove(table[i].next);
                         }
                     }
@@ -195,7 +205,7 @@ namespace cor
             itnl->new_count = 0;
             itnl->delete_count = 0;
             itnl->alloc_size = 0;
-            itnl->available = rfalse;
+            itnl->available = rtrue;
 
             RSize i, isz;
             isz = AllocationMonitorItnl::freed_table_size;
@@ -257,6 +267,15 @@ namespace cor
             s << "alloc_count " << get_alloc_count();
             s << ", alloc_size " << get_alloc_size();
             return s.str();
+        }
+
+        void AllocationMonitor::set_enable(RBool enabled)
+        {
+            itnl->available = enabled;
+            if (!itnl->available)
+            {
+                itnl->alloc_info_table.clear();
+            }
         }
 
         void AllocationMonitor::set_captured_status(RInt32 captured_status)
