@@ -4,13 +4,13 @@ git:
 compiler:
   - gcc
 before_install:
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo add-apt-repository -yes ppa:ubuntu-toolchain-r/test
 install:
   - printenv
   - echo `pwd`
 
-  - sudo apt-get install -qq g++-4.8
-  - export CXX="g++-4.8"
+  - sudo apt-get -qq update
+  - sudo apt-get -qq install g++-4.8
 
   - CMAKE_URL="http://www.cmake.org/files/v3.3/cmake-3.3.2-Linux-x86_64.tar.gz"
   - mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
