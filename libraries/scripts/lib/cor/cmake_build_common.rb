@@ -171,7 +171,7 @@ def build_android(type)
     configurations = ["Debug"]
   end
   if ARGV.select{|v| v.match(/--arch=\S+/)}.length > 0
-    archs = [ARGV.select{|v| v.match(/--arch=\S+/)}.map{|v| v.gsub(/--arch=/, "")}]
+    archs = ARGV.select{|v| v.match(/--arch=\S+/)}.map{|v| v.gsub(/--arch=/, "")}
   end
   #archs = ["x86"]
   configurations.each do |configuration|
