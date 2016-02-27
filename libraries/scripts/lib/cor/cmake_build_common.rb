@@ -216,10 +216,10 @@ def build_ios(type)
   archs = {
     "OS" => ["armv7", "armv7s", "arm64"],
     "SIMULATOR" => ["i386", "x86_64"],
-    "SIMULATOR64" => ["x86_64"],
+    "SIMULATOR64" => ["i386", "x86_64"],
   }
   #platforms = ["SIMULATOR64", "SIMULATOR", "OS"]
-  platforms = ["SIMULATOR", "OS"]
+  platforms = ["SIMULATOR64", "OS"]
   if ARGV.include? "release"
     configurations = ["Release"]
   elsif ARGV.include? "debug"
@@ -231,6 +231,7 @@ def build_ios(type)
   if ARGV.select{|v| v.match(/--platform=\S+/)}.length > 0
     platforms = ARGV.select{|v| v.match(/--platform=\S+/)}.map{|v| v.gsub(/--platform=/, "")}
   end
+  puts "platforms #{platforms}"
   platforms.each do |platform|
     configurations.each do |configuration|
       #archs[platform].each do |arch|
@@ -261,7 +262,7 @@ def build_ios(type)
       cmd = [
         "cmake ../../../.. ",
         "-DCOR_BUILD_TYPE=#{type}",
-        "-DCOR_CMAKE_OSX_ARCHITECTURES=\"#{archs[platform].join " "}\"",
+        "-DCOR_CMAKE_OSX_ARCHITECTURES=\"#{archs[platform].join ";"}\"",
         "-DCMAKE_TOOLCHAIN_FILE=../../../external/ios_cmake/ios.cmake",
         "-DIOS_PLATFORM=#{platform}",
         "#{get_cmake_option}"
