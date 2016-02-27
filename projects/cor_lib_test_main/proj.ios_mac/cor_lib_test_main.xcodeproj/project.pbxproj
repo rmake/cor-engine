@@ -92,6 +92,20 @@
 			remoteGlobalIDString = A07A4C241783777C0073F6A7;
 			remoteInfo = "cocos2dx iOS";
 		};
+		64BDF1151C8169C5008D47A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 657070461C7081FB00796F6A;
+			remoteInfo = cor_all_cocos2dx_ios;
+		};
+		64BDF1171C8169D1008D47A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6570704A1C70824D00796F6A;
+			remoteInfo = cor_all_cocos2dx_osx;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -416,6 +430,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				64BDF1161C8169C5008D47A7 /* PBXTargetDependency */,
 				1AC6FB25180E99E1004C840B /* PBXTargetDependency */,
 			);
 			name = "cor_lib_test_main-mobile";
@@ -434,6 +449,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				64BDF1181C8169D1008D47A7 /* PBXTargetDependency */,
 				1AC6FB16180E9959004C840B /* PBXTargetDependency */,
 			);
 			name = "cor_lib_test_main-desktop";
@@ -578,6 +594,16 @@
 			isa = PBXTargetDependency;
 			name = "cocos2dx iOS";
 			targetProxy = 1AC6FB24180E99E1004C840B /* PBXContainerItemProxy */;
+		};
+		64BDF1161C8169C5008D47A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 657070461C7081FB00796F6A /* cor_all_cocos2dx_ios */;
+			targetProxy = 64BDF1151C8169C5008D47A7 /* PBXContainerItemProxy */;
+		};
+		64BDF1181C8169D1008D47A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6570704A1C70824D00796F6A /* cor_all_cocos2dx_osx */;
+			targetProxy = 64BDF1171C8169D1008D47A7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1004,6 +1030,7 @@
 				657070491C7081FB00796F6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 		6570704B1C70824D00796F6A /* Build configuration list for PBXLegacyTarget "cor_all_cocos2dx_osx" */ = {
 			isa = XCConfigurationList;
@@ -1012,6 +1039,7 @@
 				6570704D1C70824D00796F6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "cor_lib_test_main" */ = {
 			isa = XCConfigurationList;
