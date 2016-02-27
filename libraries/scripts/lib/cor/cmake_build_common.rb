@@ -215,10 +215,11 @@ def build_ios(type)
   configurations = ["Release", "Debug"]
   archs = {
     "OS" => ["armv7", "armv7s", "arm64"],
-    "SIMULATOR" => ["i386"],
+    "SIMULATOR" => ["i386", "x86_64"],
     "SIMULATOR64" => ["x86_64"],
   }
-  platforms = ["SIMULATOR64", "SIMULATOR", "OS"]
+  #platforms = ["SIMULATOR64", "SIMULATOR", "OS"]
+  platforms = ["SIMULATOR", "OS"]
   if ARGV.include? "release"
     configurations = ["Release"]
   elsif ARGV.include? "debug"
@@ -232,35 +233,72 @@ def build_ios(type)
   end
   platforms.each do |platform|
     configurations.each do |configuration|
-      archs[platform].each do |arch|
-        FileUtils.mkdir_p "#{platform}/#{arch}/#{configuration}"
-        FileUtils.chdir "#{platform}/#{arch}/#{configuration}"
-        cmd = [
-          "cmake ../../../../.. ",
-          "-DCOR_BUILD_TYPE=#{type}",
-          "-DCOR_CMAKE_OSX_ARCHITECTURES=#{arch}",
-          "-DCMAKE_TOOLCHAIN_FILE=../../../external/ios_cmake/ios.cmake",
-          "-DIOS_PLATFORM=#{platform}",
-          "#{get_cmake_option}"
-          ].join(" ")
-        do_build_output cmd
-        do_build_output "which make"
-        if ARGV.include? "--for-ci"
-          do_build_output "make -j 2"
-        elsif ARGV.select{|v| v.match(/-j\d+/)}.length > 0
-          do_build_output "make -j #{ARGV.select{|v| v.match(/-j\d+/)}[0].scan(/\d+/)[0]}"
-        else
-          do_build_output "make -j 4"
-        end
-        FileUtils.chdir "../../.."
+      #archs[platform].each do |arch|
+      #  FileUtils.mkdir_p "#{platform}/#{arch}/#{configuration}"
+      #  FileUtils.chdir "#{platform}/#{arch}/#{configuration}"
+      #  cmd = [
+      #    "cmake ../../../../.. ",
+      #    "-DCOR_BUILD_TYPE=#{type}",
+      #    "-DCOR_CMAKE_OSX_ARCHITECTURES=#{arch}",
+      #    "-DCMAKE_TOOLCHAIN_FILE=../../../external/ios_cmake/ios.cmake",
+      #    "-DIOS_PLATFORM=#{platform}",
+      #    "#{get_cmake_option}"
+      #    ].join(" ")
+      #  do_build_output cmd
+      #  do_build_output "which make"
+      #  if ARGV.include? "--for-ci"
+      #    do_build_output "make -j 2"
+      #  elsif ARGV.select{|v| v.match(/-j\d+/)}.length > 0
+      #    do_build_output "make -j #{ARGV.select{|v| v.match(/-j\d+/)}[0].scan(/\d+/)[0]}"
+      #  else
+      #    do_build_output "make -j 4"
+      #  end
+      #  FileUtils.chdir "../../.."
+      #end
+
+      FileUtils.mkdir_p "#{platform}/#{configuration}"
+      FileUtils.chdir "#{platform}/#{configuration}"
+      cmd = [
+        "cmake ../../../.. ",
+        "-DCOR_BUILD_TYPE=#{type}",
+        "-DCOR_CMAKE_OSX_ARCHITECTURES=\"#{archs[platform].join " "}\"",
+        "-DCMAKE_TOOLCHAIN_FILE=../../../external/ios_cmake/ios.cmake",
+        "-DIOS_PLATFORM=#{platform}",
+        "#{get_cmake_option}"
+        ].join(" ")
+      do_build_output cmd
+      do_build_output "which make"
+      if ARGV.include? "--for-ci"
+        do_build_output "make -j 2"
+      elsif ARGV.select{|v| v.match(/-j\d+/)}.length > 0
+        do_build_output "make -j #{ARGV.select{|v| v.match(/-j\d+/)}[0].scan(/\d+/)[0]}"
+      else
+        do_build_output "make -j 4"
       end
+      FileUtils.chdir "../.."
+
     end
   end
+  #configurations.each do |configuration|
+  #  FileUtils.mkdir_p "#{configuration}"
+  #  FileUtils.chdir "#{configuration}"
+  #
+  #  source_a_list = Dir.glob("../*/*/#{configuration}/*.a")
+  #  puts "pwd #{Dir.pwd}"
+  #  puts "source_a_list #{source_a_list}"
+  #  a_name = File.basename source_a_list[0]
+  #  if File.exists? a_name
+  #    FileUtils.rm a_name
+  #  end
+  #  do_build_output "lipo -create #{source_a_list.join(" ")} -output #{a_name}"
+  #
+  #  FileUtils.chdir ".."
+  #end
   configurations.each do |configuration|
     FileUtils.mkdir_p "#{configuration}"
     FileUtils.chdir "#{configuration}"
 
-    source_a_list = Dir.glob("../*/*/#{configuration}/*.a")
+    source_a_list = Dir.glob("../*/#{configuration}/*.a")
     puts "pwd #{Dir.pwd}"
     puts "source_a_list #{source_a_list}"
     a_name = File.basename source_a_list[0]
