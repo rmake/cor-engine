@@ -58,6 +58,7 @@ class CorProject
   end
 
   def self.target_project
+    @target_project ||= "cor_cocos2dx "
     @target_project
   end
 
@@ -466,6 +467,9 @@ list.each do |fn|
   d_table.delete dfn
 end
 
+target_project_name = "project_structure"
+target_project_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(File.absolute_path(__FILE__)))
+
 case target_project
 when "cor_test"
   target_project_name = "mruby_interface"
@@ -503,7 +507,10 @@ unless resource_only
 
     import_cpp_include_from = Pathname(File.dirname(import_cpp_file))
     import_cpp_includes = cpp_list.map do |v|
+      puts "v #{v}"
       import_cpp_include_to = Pathname(File.absolute_path(v[:fn]))
+      puts "import_cpp_include_to #{import_cpp_include_to.to_s}"
+      puts "import_cpp_include_from #{import_cpp_include_from.to_s}"
       r = import_cpp_include_to.relative_path_from(import_cpp_include_from)
       r.to_s
     end
@@ -524,18 +531,24 @@ unless resource_only
     prototype_defs = import_cpp_entries.map{|v|
       "        void #{v}(mruby_interface::MrubyState& mrb);\n" }.join
     call_entry_functions = import_cpp_entries.map{|v|
-      "            #{v}(mrb);\n" }.join
+      "            external_initializer::#{v}(mrb);\n" }.join
 
     import_cpp_code = <<EOS
 #include "cor_type/sources/basic_types.h"
 
 namespace cor
 {
+    namespace external_initializer
+    {
+#{prototype_defs}
+    }
+}
+
+namespace cor
+{
     namespace #{target_project_name}
     {
         static const char* imported_name = "copy source is #{source_path}";
-
-#{prototype_defs}
 
         void ExternalCodeImporter::initialize(mruby_interface::MrubyState& mrb)
         {

@@ -1,8 +1,10 @@
 #include "import/external_code_importer.h"
 #include "import_test.h"
+#include "test.h"
 
 namespace cor
 {
+
     namespace mruby_interface
     {
         int ImportTest::add(int a, int b)
@@ -19,6 +21,13 @@ namespace cor
         }
     }
 
+    namespace external_initializer
+    {
+        void mruby_simple_console_import_initialize(mruby_interface::MrubyState& mrb)
+        {
+            mruby_interface::mruby_simple_console_import_initialize(mrb);
+        }
+    }
 }
 
 

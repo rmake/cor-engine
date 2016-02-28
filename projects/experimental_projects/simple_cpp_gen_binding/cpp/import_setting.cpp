@@ -3,11 +3,11 @@
 
 namespace cor
 {
-    namespace project_structure
+    namespace external_initializer
     {
         void simple_cpp_gen_binding_import_initialize(mruby_interface::MrubyState& mrb)
         {
-            simple_cpp_gen_binding::GeneratedBinding::bind(mrb);
+            project_structure::simple_cpp_gen_binding::GeneratedBinding::bind(mrb);
         }
     }
 

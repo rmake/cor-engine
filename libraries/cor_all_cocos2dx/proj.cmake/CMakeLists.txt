@@ -66,7 +66,7 @@ file(GLOB_RECURSE cor_all_cocos2dx_scr
 if(EXISTS ${PROJECT_SOURCE_DIR}/../../cor_project_structure/proj.common/cor_project_structure_cmake_local_conf.txt)
     include(${PROJECT_SOURCE_DIR}/../../cor_project_structure/proj.common/cor_project_structure_cmake_local_conf.txt)
 
-    foreach(loop_var ${cor_project_strucre_sources})
+    foreach(loop_var ${cor_project_structure_sources})
         set(cor_all_cocos2dx_scr ${cor_all_cocos2dx_scr} ${PROJECT_SOURCE_DIR}/${loop_var})
     endforeach(loop_var)
 

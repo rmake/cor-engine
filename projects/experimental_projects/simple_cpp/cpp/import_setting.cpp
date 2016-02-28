@@ -3,6 +3,7 @@
 
 namespace cor
 {
+
     namespace project_structure
     {
         void simple_cpp_import_initialize(mruby_interface::MrubyState& mrb)
@@ -14,4 +15,11 @@ namespace cor
         }
     }
 
+    namespace external_initializer
+    {
+        void simple_cpp_import_initialize(mruby_interface::MrubyState& mrb)
+        {
+            project_structure::simple_cpp_import_initialize(mrb);
+        }
+    }
 }

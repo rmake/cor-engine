@@ -44,6 +44,9 @@ def build type
     build_android type
   when "osx"
     system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
+    if ARGV.include? "--gen-only"
+      return
+    end
     do_default_build
   when "ios"
     build_ios type
@@ -55,6 +58,9 @@ def build type
       system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
     else
       system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
+    end
+    if ARGV.include? "--gen-only"
+      return
     end
     system "make -j 4"
   end
@@ -185,6 +191,9 @@ def do_win_build
     end
   end
 
+  if ARGV.include? "--gen-only"
+    return
+  end
 
   if @current_type == "win32"
     cmds = <<EOS
@@ -245,13 +254,15 @@ def build_android(type)
         "#{get_cmake_option}"
         ].join(" ")
       do_build_output cmd
-      do_build_output "which make"
-      if ARGV.include? "--for-ci"
-        do_build_output "make -j 2"
-      elsif ARGV.select{|v| v.match(/-j\d+/)}.length > 0
-        do_build_output "make -j #{ARGV.select{|v| v.match(/-j\d+/)}[0].scan(/\d+/)[0]}"
-      else
-        do_build_output "make -j 4"
+      unless ARGV.include? "--gen-only"
+        do_build_output "which make"
+        if ARGV.include? "--for-ci"
+          do_build_output "make -j 2"
+        elsif ARGV.select{|v| v.match(/-j\d+/)}.length > 0
+          do_build_output "make -j #{ARGV.select{|v| v.match(/-j\d+/)}[0].scan(/\d+/)[0]}"
+        else
+          do_build_output "make -j 4"
+        end
       end
       FileUtils.chdir "../.."
     end
@@ -315,18 +326,24 @@ def build_ios(type)
         "#{get_cmake_option}"
         ].join(" ")
       do_build_output cmd
-      do_build_output "which make"
-      if ARGV.include? "--for-ci"
-        do_build_output "make -j 2"
-      elsif ARGV.select{|v| v.match(/-j\d+/)}.length > 0
-        do_build_output "make -j #{ARGV.select{|v| v.match(/-j\d+/)}[0].scan(/\d+/)[0]}"
-      else
-        do_build_output "make -j 4"
+      unless ARGV.include? "--gen-only"
+        do_build_output "which make"
+        if ARGV.include? "--for-ci"
+          do_build_output "make -j 2"
+        elsif ARGV.select{|v| v.match(/-j\d+/)}.length > 0
+          do_build_output "make -j #{ARGV.select{|v| v.match(/-j\d+/)}[0].scan(/\d+/)[0]}"
+        else
+          do_build_output "make -j 4"
+        end
       end
       FileUtils.chdir "../.."
 
     end
   end
+
+  if ARGV.include? "--gen-only"
+      return
+    end
   #configurations.each do |configuration|
   #  FileUtils.mkdir_p "#{configuration}"
   #  FileUtils.chdir "#{configuration}"
