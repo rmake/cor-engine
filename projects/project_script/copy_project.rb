@@ -1,7 +1,6 @@
 
 require 'fileutils'
 
-project_structure_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(File.absolute_path(__FILE__)))
 
 FileUtils.chdir "#{File.dirname __FILE__}"
 here = Dir::getwd
@@ -46,6 +45,20 @@ class CorProject
 
   def self.add_include(v)
     self.includes << "#{self.source_path}/#{v}"
+  end
+
+  #
+  # "cor_cpp_lib"
+  # "cor_mruby_lib"
+  # "cor_test"
+  # "cor_console"
+  # "cor_cocos2dx"
+  def self.target_project=(target_project)
+    @target_project = target_project
+  end
+
+  def self.target_project
+    @target_project
   end
 
   def self.import_cpp=(v)
@@ -173,17 +186,10 @@ CorProject.engine_path = relative_engine_path
 
 puts "CorProject.engine_path #{CorProject.engine_path}"
 
-destination_resource_root_path = "../cor_lib_test_main/Resources"
-destination_resource_path = "#{destination_resource_root_path}/project_resource"
-source_conf_path = "#{source_path}/conf.rb"
-source_resource_path = "#{source_path}/resources"
-win32_copy_destination = File.expand_path("../../proj.win32/Debug.win32/project_resource", destination_resource_path)
-mruby_binging_generator_script_path = "../../libraries/scripts"
-
-FileUtils.mkpath destination_resource_path
-
 list = []
 import_cpp_entries = []
+
+source_conf_path = "#{source_path}/conf.rb"
 
 if File.exists? source_conf_path
 
@@ -210,6 +216,31 @@ if File.exists? source_conf_path
   load source_conf_path
 
 end
+
+target_project = CorProject.target_project
+
+# "cor_cpp_lib"
+# "cor_mruby_lib"
+# "cor_test"
+# "cor_mruby_console"
+# "cor_cocos2dx"
+
+destination_resource_root_path = "../cor_lib_test_main/Resources"
+
+case target_project
+when "cor_test"
+  destination_resource_root_path = "../../tests/unit/resources"
+when "cor_mruby_console"
+  destination_resource_root_path = "../cor_mruby_console_app/resources"
+when "cor_cocos2dx"
+  destination_resource_root_path = "../cor_lib_test_main/Resources"
+end
+destination_resource_path = "#{destination_resource_root_path}/project_resource"
+source_resource_path = "#{source_path}/resources"
+win32_copy_destination = File.expand_path("../../proj.win32/Debug.win32/project_resource", destination_resource_path)
+mruby_binging_generator_script_path = "../../libraries/scripts"
+
+FileUtils.mkpath destination_resource_path
 
 CorProject.includes.uniq!{|v| File::expand_path(v)}
 puts "__CorProject.includes #{CorProject.includes}"
@@ -435,13 +466,27 @@ list.each do |fn|
   d_table.delete dfn
 end
 
-import_cpp_props_file = "#{project_structure_path}/proj.vc/cor_project_structure/cor_project_structure_local_conf.props"
-import_cpp_local_conf_mk = "#{project_structure_path}/proj.common/cor_project_structure_local_conf.mk"
-import_cpp_local_cmake_conf_mk = "#{project_structure_path}/proj.common/cor_project_structure_cmake_local_conf.txt"
-import_cpp_local_conf_txt = "#{project_structure_path}/proj.common/cor_project_structure_local_conf.txt"
-import_cpp_file = "#{project_structure_path}/sources/import/external_code_import_local_conf.h"
-import_cpp_importer_file = "#{project_structure_path}/sources/import/external_code_importer.cpp"
-import_cpp_copy_dest = "#{project_structure_path}/sources/import/cpp"
+case target_project
+when "cor_test"
+  target_project_name = "mruby_interface"
+  target_project_path = File.expand_path("../../libraries/cor_mruby_interface", File.dirname(File.absolute_path(__FILE__)))
+when "cor_mruby_console"
+  target_project_name = "mruby_interface"
+  target_project_path = File.expand_path("../../libraries/cor_mruby_interface", File.dirname(File.absolute_path(__FILE__)))
+when "cor_cocos2dx"
+  target_project_name = "project_structure"
+  target_project_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(File.absolute_path(__FILE__)))
+end
+
+FileUtils.mkdir_p "#{target_project_path}/proj.common/"
+
+import_cpp_props_file = "#{target_project_path}/proj.vc/cor_#{target_project_name}/cor_#{target_project_name}_local_conf.props"
+import_cpp_local_conf_mk = "#{target_project_path}/proj.common/cor_#{target_project_name}_local_conf.mk"
+import_cpp_local_cmake_conf_mk = "#{target_project_path}/proj.common/cor_#{target_project_name}_cmake_local_conf.txt"
+import_cpp_local_conf_txt = "#{target_project_path}/proj.common/cor_#{target_project_name}_local_conf.txt"
+import_cpp_file = "#{target_project_path}/sources/import/external_code_import_local_conf.h"
+import_cpp_importer_file = "#{target_project_path}/sources/import/external_code_importer.cpp"
+import_cpp_copy_dest = "#{target_project_path}/sources/import/cpp"
 FileUtils.rmtree import_cpp_copy_dest
 
 unless resource_only
@@ -486,7 +531,7 @@ unless resource_only
 
 namespace cor
 {
-    namespace project_structure
+    namespace #{target_project_name}
     {
         static const char* imported_name = "copy source is #{source_path}";
 
@@ -548,17 +593,17 @@ EOS
 
     Cor.u.file_write import_cpp_local_cmake_conf_mk, <<EOS
 #{import_cpp_props_includes.map{|v| "include_directories(../#{v})"}.join("\n")}
-set(cor_project_strucre_sources
+set(cor_#{target_project_name}_sources
 #{import_cpp_list.map{|v| "  #{v.gsub(/^..\//, "")}"}.join("\n")})
 EOS
 
-    FileUtils.chdir project_structure_path
+    FileUtils.chdir target_project_path
 
     proj_file_list = Cor.u.file_list("../cor_project_structure/sources").select{ |v|
       v.match(/(\.h$)|(\.cpp$)/)
     }
-    GenProject.vc_project_filter "cor_project_structure", "../cor_project_structure",
-      "../cor_project_structure/proj.vc", proj_file_list + import_cpp_includes, true
+    GenProject.vc_project_filter "cor_#{target_project_name}", "../cor_#{target_project_name}",
+      "../cor_#{target_project_name}/proj.vc", proj_file_list + import_cpp_includes, true
 
     new_import_cpp_local_conf_txt_data = import_cpp_includes.map{|v| v.gsub(/^\.\.\//, "")}.join(";")
     Cor.u.file_write import_cpp_local_conf_txt, import_cpp_includes.map{|v| v.gsub(/^\.\.\//, "")}.join(";")
@@ -668,6 +713,8 @@ end
 rescue => e
   puts "e #{e}"
   puts "#{e.backtrace}"
+
+  STDOUT.flush
 
   sleep 100
 

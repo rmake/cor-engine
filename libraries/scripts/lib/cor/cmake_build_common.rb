@@ -7,12 +7,17 @@ require "rexml/document"
 
 @vs_path = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0"
 
+def puts_flush(*a)
+  puts *a
+  STDOUT.flush
+end
+
 def build type
 
   build_path = "build/#{type}"
 
   if ARGV.include?("-f") || ARGV.include?("clean")
-    puts "clean"
+    puts_flush "clean"
     FileUtils.rm_rf build_path
     if ARGV.include? "clean"
       return
@@ -54,14 +59,42 @@ def build type
     system "make -j 4"
   end
 
-  puts "build ended!"
+  if @all_success
+    puts_flush "all success!"
+  else
+    puts_flush "some failed!"
+  end
+  puts_flush "build ended!"
+
+  if @all_success && ARGV.include?("run")
+    puts_flush "==> run ==>"
+    config = "Debug"
+    if ARGV.include?("debug")
+      config = "Debug"
+    elsif ARGV.include?("release")
+      config = "Release"
+    end
+    case type
+    when "win32"
+      exes = Dir.glob("**/Debug/*.exe")
+      Dir.chdir File.dirname(exes[0])
+      exes = Dir.glob("*.exe")
+      system "#{exes[0]}"
+    when "win64"
+      exes = Dir.glob("**/Debug/*.exe")
+      Dir.chdir File.dirname(exes[0])
+      exes = Dir.glob("*.exe")
+      system "#{exes[0]}"
+    end
+  end
 end
 
 @results = []
+@all_success = true
 
 def get_cmake_option
   if ARGV.select{|v| v.match(/--cmake-option=\S+/)}.length > 0
-    puts "get_cmake_option #{ARGV.select{|v| v.match(/--cmake-option=\S+/)}}"
+    puts_flush "get_cmake_option #{ARGV.select{|v| v.match(/--cmake-option=\S+/)}}"
     return ARGV.select{|v| v.match(/--cmake-option=\S+/)}.map{|v| v.gsub(/--cmake-option=/, "")}.join(" ")
   end
   ""
@@ -76,18 +109,32 @@ def cvt_string str
 end
 
 def do_build_output cmd
-  puts "cmd srart #{cmd}"
+  puts_flush "cmd srart #{cmd}"
   STDOUT.flush
   if @is_vc
-    o, e, s = Open3.capture3 cmd
-    puts "cmd '#{cmd}' of o ->"
-    puts "#{cvt_string o}"
-    puts "cmd '#{cmd}' of e ->"
-    puts "#{cvt_string e}"
-    result = s.success?
-    @results << "cmd '#{cmd}' | success? -> #{s.success?} | #{s}"
+    #o, e, s = Open3.capture3 cmd
+    #puts_flush "cmd '#{cmd}' of o ->"
+    #puts_flush "#{cvt_string o}"
+    #puts_flush "cmd '#{cmd}' of e ->"
+    #puts_flush "#{cvt_string e}"
+    #result = s.success?
+    #@results << "cmd '#{cmd}' | success? -> #{s.success?} | #{s}"
+
+    Open3.popen3(cmd) do |i, o, e, w|
+      i.close
+      o.each do |line|
+        puts_flush "#{cvt_string line}"
+      end
+      e.each do |line|
+        puts_flush "#{cvt_string line}"
+      end
+      result = w.value.success?
+      @all_success &&= result
+      @results << "cmd '#{cmd}' | success? -> #{w.value.success?} | #{w}"
+    end
   else
     result = system cmd
+    @all_success &&= result
     @results << "cmd '#{cmd}' | success? -> #{result} | #{$?}"
   end
   result
@@ -104,7 +151,7 @@ def do_default_build
     do_build_output "cmake --build . --config Debug"
   end
   @results.each do |v|
-    puts "#{v}"
+    puts_flush "#{v}"
   end
 end
 
@@ -166,7 +213,7 @@ msbuild.exe #{Dir.glob("*.sln")[0]} /p:configuration=release /maxcpucount:4 /p:B
 EOS
   end
   @results.each do |v|
-    puts "#{v}"
+    puts_flush "#{v}"
   end
 end
 
@@ -231,7 +278,7 @@ def build_ios(type)
   if ARGV.select{|v| v.match(/--platform=\S+/)}.length > 0
     platforms = ARGV.select{|v| v.match(/--platform=\S+/)}.map{|v| v.gsub(/--platform=/, "")}
   end
-  puts "platforms #{platforms}"
+  puts_flush "platforms #{platforms}"
   platforms.each do |platform|
     configurations.each do |configuration|
       #archs[platform].each do |arch|
@@ -285,8 +332,8 @@ def build_ios(type)
   #  FileUtils.chdir "#{configuration}"
   #
   #  source_a_list = Dir.glob("../*/*/#{configuration}/*.a")
-  #  puts "pwd #{Dir.pwd}"
-  #  puts "source_a_list #{source_a_list}"
+  #  puts_flush "pwd #{Dir.pwd}"
+  #  puts_flush "source_a_list #{source_a_list}"
   #  a_name = File.basename source_a_list[0]
   #  if File.exists? a_name
   #    FileUtils.rm a_name
@@ -300,8 +347,8 @@ def build_ios(type)
     FileUtils.chdir "#{configuration}"
 
     source_a_list = Dir.glob("../*/#{configuration}/*.a")
-    puts "pwd #{Dir.pwd}"
-    puts "source_a_list #{source_a_list}"
+    puts_flush "pwd #{Dir.pwd}"
+    puts_flush "source_a_list #{source_a_list}"
     a_name = File.basename source_a_list[0]
     if File.exists? a_name
       FileUtils.rm a_name

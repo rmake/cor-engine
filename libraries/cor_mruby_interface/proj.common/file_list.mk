@@ -30,6 +30,7 @@ PRJSRCS:=../../cor_mruby_interface/sources/basic_bind/sub_0.cpp\
     ../../cor_mruby_interface/sources/basic_bind/sub_8.cpp\
     ../../cor_mruby_interface/sources/basic_bind/sub_9.cpp\
     ../../cor_mruby_interface/sources/basic_bind.cpp\
+    ../../cor_mruby_interface/sources/import/external_code_importer.cpp\
     ../../cor_mruby_interface/sources/mrubybind.cpp\
     ../../cor_mruby_interface/sources/mruby_array.cpp\
     ../../cor_mruby_interface/sources/mruby_experimental.cpp\

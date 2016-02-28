@@ -23,12 +23,27 @@ endif()
 
 add_definitions(-DMRB_ENABLE_CXX_EXCEPTION)
 file(GLOB_RECURSE cor_all_mruby_scr
+    "../../cor_mruby_interface/sources/*.h"
     "../../cor_mruby_interface/sources/*.cpp"
+    "../../cor_algorithm/sources/*.h"
     "../../cor_algorithm/sources/*.cpp"
+    "../../cor_data_structure/sources/*.h"
     "../../cor_data_structure/sources/*.cpp"
+    "../../cor_system/sources/*.h"
     "../../cor_system/sources/*.cpp"
+    "../../cor_type/sources/*.h"
     "../../cor_type/sources/*.cpp"
 )
+
+if(EXISTS ${PROJECT_SOURCE_DIR}/../../cor_mruby_interface/proj.common/cor_mruby_interface_cmake_local_conf.txt)
+    include(${PROJECT_SOURCE_DIR}/../../cor_mruby_interface/proj.common/cor_mruby_interface_cmake_local_conf.txt)
+
+    foreach(loop_var ${cor_mruby_interface_sources})
+        set(cor_all_mruby_scr ${cor_all_mruby_scr} ${PROJECT_SOURCE_DIR}/${loop_var})
+    endforeach(loop_var)
+
+endif()
+
 add_library (cor_all_mruby ${cor_all_mruby_scr})
 include_directories (../../)
 include_directories (../../../external/boost)
