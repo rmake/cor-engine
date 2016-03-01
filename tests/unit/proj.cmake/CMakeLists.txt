@@ -8,6 +8,8 @@ else()
     set(CMAKE_CXX_FLAGS "-std=c++11 -fexceptions -frtti -fsigned-char -pthread")
 endif()
 
+add_definitions("-DCOR_ALLOCATION_MONITOR_ENABLE")
+
 include_directories (cor_test_main)
 include_directories (../../../libraries/)
 include_directories (../../../external/boost)

@@ -16,6 +16,9 @@
 
 //#define COR_ALLOCATION_MONITOR_CAPTURE_MODE
 
+//#define COR_ALLOCATION_MONITOR_ENABLE
+//#define COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
+
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
 #include <typeinfo.h>
 #include <iostream>
@@ -161,7 +164,9 @@ namespace cor
                 RBool freed;
             };
 
+#ifdef COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
             AllocInfoTable alloc_info_table;
+#endif
 
             RSize new_count;
             RSize delete_count;
@@ -274,7 +279,9 @@ namespace cor
             itnl->available = enabled;
             if (!itnl->available)
             {
+#ifdef COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
                 itnl->alloc_info_table.clear();
+#endif
             }
         }
 
@@ -392,6 +399,7 @@ namespace cor
 
         void* AllocationMonitor::alloc(size_t n)
         {
+#ifdef COR_ALLOCATION_MONITOR_ENABLE
             PAllocationMonitor am = get_instance();
             AllocationMonitorItnl* itnl = am->itnl;
             if(am && itnl->available)
@@ -399,19 +407,23 @@ namespace cor
                 itnl->mutex.lock();
 
             }
+#endif
 
             void* p = nullptr;
             p = ::malloc(n);
 
-
+#ifdef COR_ALLOCATION_MONITOR_ENABLE
             if(am && itnl->available)
             {
+#ifdef COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
                 itnl->alloc_info_table.insert(p, n);
+#endif
                 itnl->alloc_size += n;
                 itnl->new_count++;
                 itnl->mutex.unlock();
 
             }
+#endif
 
             return p;
 
@@ -424,52 +436,59 @@ namespace cor
                 return;
             }
 
+#ifdef COR_ALLOCATION_MONITOR_ENABLE
             PAllocationMonitor am = get_instance();
             AllocationMonitorItnl* itnl = am->itnl;
             if(am && itnl->available)
             {
                 itnl->mutex.lock();
 
+#ifdef COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
                 auto ap = itnl->alloc_info_table.find(p);
                 if(ap)
                 {
                     itnl->alloc_size -= ap->n;
                     itnl->alloc_info_table.remove(ap);
                 }
-
+#endif
             }
+#endif
 
             ::free(p);
 
+#ifdef COR_ALLOCATION_MONITOR_ENABLE
             if(am && itnl->available)
             {
                 itnl->delete_count++;
                 itnl->mutex.unlock();
             }
-
+#endif
         }
 
         void* AllocationMonitor::al_realloc(void* p, size_t n)
         {
+#ifdef COR_ALLOCATION_MONITOR_ENABLE
             PAllocationMonitor am = get_instance();
             AllocationMonitorItnl* itnl = am->itnl;
             if(am && itnl->available)
             {
                 itnl->mutex.lock();
-
+#ifdef COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
                 auto ap = itnl->alloc_info_table.find(p);
                 if(ap)
                 {
                     itnl->alloc_size -= ap->n;
                     itnl->alloc_info_table.remove(ap);
                 }
-
+#endif
             }
+#endif
 
             void* np;
 
             np = ::realloc(p, n);
 
+#ifdef COR_ALLOCATION_MONITOR_ENABLE
             if(am && itnl->available)
             {
                 if(!p || !np)
@@ -481,14 +500,16 @@ namespace cor
                     if(np)
                     {
                         itnl->alloc_size += n;
+#ifdef COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
                         itnl->alloc_info_table.insert(np, n);
+#endif
                         itnl->new_count++;
                     }
                 }
                 itnl->mutex.unlock();
 
-
             }
+#endif
 
             return np;
         }
