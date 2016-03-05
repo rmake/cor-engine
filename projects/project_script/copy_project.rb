@@ -51,7 +51,8 @@ class CorProject
   # "cor_cpp_lib"
   # "cor_mruby_lib"
   # "cor_test"
-  # "cor_console"
+  # "cor_cpp_console"
+  # "cor_mruby_console"
   # "cor_cocos2dx"
   def self.target_project=(target_project)
     @target_project = target_project
@@ -188,7 +189,7 @@ CorProject.engine_path = relative_engine_path
 puts "CorProject.engine_path #{CorProject.engine_path}"
 
 list = []
-import_cpp_entries = []
+import_cpp_infos = []
 
 source_conf_path = "#{source_path}/conf.rb"
 
@@ -197,7 +198,10 @@ if File.exists? source_conf_path
   puts "load source conf #{source_conf_path}"
   load source_conf_path
 
-  import_cpp_entries << CorProject.import_cpp_entry
+  import_cpp_infos << {
+    "target_project" => CorProject.target_project,
+    "entry" => CorProject.import_cpp_entry,
+  }
 
   project_includes = CorProject.includes
   project_includes.each do |project_include|
@@ -210,7 +214,10 @@ if File.exists? source_conf_path
 
       puts "CorProject.engine_path #{CorProject.engine_path}"
 
-      import_cpp_entries << CorProject.import_cpp_entry
+      import_cpp_infos << {
+        "target_project" => CorProject.target_project,
+        "entry" => CorProject.import_cpp_entry,
+      }
     end
   end
 
@@ -220,9 +227,11 @@ end
 
 target_project = CorProject.target_project
 
+#
 # "cor_cpp_lib"
 # "cor_mruby_lib"
 # "cor_test"
+# "cor_cpp_console"
 # "cor_mruby_console"
 # "cor_cocos2dx"
 
@@ -231,6 +240,8 @@ destination_resource_root_path = "../cor_lib_test_main/Resources"
 case target_project
 when "cor_test"
   destination_resource_root_path = "../../tests/unit/resources"
+when "cor_cpp_console"
+  destination_resource_root_path = "../cor_console_app/resources"
 when "cor_mruby_console"
   destination_resource_root_path = "../cor_mruby_console_app/resources"
 when "cor_cocos2dx"
@@ -470,10 +481,32 @@ end
 target_project_name = "project_structure"
 target_project_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(File.absolute_path(__FILE__)))
 
+#
+# cpp
+# mruby
+
+def get_taget_interface_type(target_project)
+  target_interface_type = "mruby"
+  case target_project
+  when "cor_test"
+    target_interface_type = "mruby"
+  when "cor_cpp_console"
+    target_interface_type = "cpp"
+  when "cor_mruby_console"
+    target_interface_type = "mruby"
+  when "cor_cocos2dx"
+    target_interface_type = "mruby"
+  end
+  target_interface_type
+end
+
 case target_project
 when "cor_test"
   target_project_name = "mruby_interface"
   target_project_path = File.expand_path("../../libraries/cor_mruby_interface", File.dirname(File.absolute_path(__FILE__)))
+when "cor_cpp_console"
+  target_project_name = "cpp_interface"
+  target_project_path = File.expand_path("../../libraries/cor_cpp_interface", File.dirname(File.absolute_path(__FILE__)))
 when "cor_mruby_console"
   target_project_name = "mruby_interface"
   target_project_path = File.expand_path("../../libraries/cor_mruby_interface", File.dirname(File.absolute_path(__FILE__)))
@@ -526,12 +559,31 @@ unless resource_only
     #end
     #import_cpp_includes = import_cpp_includes.join "\n"
 
-    puts "import_cpp_entries #{import_cpp_entries}"
+    puts "import_cpp_infos #{import_cpp_infos}"
 
-    prototype_defs = import_cpp_entries.map{|v|
-      "        void #{v}(mruby_interface::MrubyState& mrb);\n" }.join
-    call_entry_functions = import_cpp_entries.map{|v|
-      "            external_initializer::#{v}(mrb);\n" }.join
+    case get_taget_interface_type(target_project)
+    when "cpp"
+      cpp_initialize_argument = ""
+    when "mruby"
+      cpp_initialize_argument = "mruby_interface::MrubyState& mrb"
+    end
+
+    prototype_defs = import_cpp_infos.map{|v|
+      case get_taget_interface_type(v["target_project"])
+      when "cpp"
+        arg = ""
+      when "mruby"
+        arg = "mruby_interface::MrubyState& mrb"
+      end
+      "        void #{v["entry"]}(#{arg});\n" }.join
+    call_entry_functions = import_cpp_infos.map{|v|
+      case get_taget_interface_type(v["target_project"])
+      when "cpp"
+        arg = ""
+      when "mruby"
+        arg = "mruby_interface::MrubyState& mrb"
+      end
+      "            external_initializer::#{v["entry"]}(#{arg});\n" }.join
 
     import_cpp_code = <<EOS
 #include "cor_type/sources/basic_types.h"
@@ -550,7 +602,7 @@ namespace cor
     {
         static const char* imported_name = "copy source is #{source_path}";
 
-        void ExternalCodeImporter::initialize(mruby_interface::MrubyState& mrb)
+        void ExternalCodeImporter::initialize(#{cpp_initialize_argument})
         {
 #{call_entry_functions}
         }

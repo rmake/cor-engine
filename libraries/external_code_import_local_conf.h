@@ -6,13 +6,17 @@
 #define COR_IMPORTER_CURRENT_NAMESPACE project_structure
 #endif
 
+#ifndef COR_IMPORTER_INITIALIZE
+#define COR_IMPORTER_INITIALIZE void ExternalCodeImporter::initialize(mruby_interface::MrubyState& mrb)
+#endif
+
 namespace cor
 {
     namespace COR_IMPORTER_CURRENT_NAMESPACE
     {
         static const char* imported_name = "default_import_project";
 
-        void ExternalCodeImporter::initialize(mruby_interface::MrubyState& mrb)
+        COR_IMPORTER_INITIALIZE
         {
 
         }
