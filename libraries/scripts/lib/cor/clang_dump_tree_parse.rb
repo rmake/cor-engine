@@ -171,13 +171,20 @@ module Cor
     end
 
 
-    def self.parse_token(line)
+    def self.parse_token(t)
+      line = t[:line]
       line = line.gsub(/C\:\\Program Files \(x86\)\\Microsoft Visual Studio /, "VCPATH")
       line = line.gsub(/VCPATH[^:]+:/, "line:")
       line = line.gsub(/\/Applications\/Xcode.app\/Contents\/Developer/, "XCODEPATH")
       line = line.gsub(/XCODEPATH[^:]+:/, "line:")
       line = line.gsub(/ inline noexcept.unevaluated 0x(\w+)/, "")
+      line = line.gsub(/col\:\d* used invalid /, "").gsub(/line\:\d*:\d* used invalid /, "")
       line = line.gsub(/col\:\d* used /, "").gsub(/line\:\d*:\d* used /, "")
+      line = line.gsub(/((line\:\d*:\d*)|(col\:\d*)) referenced invalid (.*?) 'int'/){|v|
+        v.gsub(/'int'/, "#{self.get_name_layer(t)}#{$4}")
+      }
+      line = line.gsub(/col\:\d* referenced invalid /, "").gsub(/line\:\d*:\d* referenced invalid /, "")
+      line = line.gsub(/col\:\d* invalid /, "").gsub(/line\:\d*:\d* invalid /, "")
       line = line.gsub(/col\:\d* implicit (used )?/, "").gsub(/line\:\d*:\d* implicit (used )?/, "")
       line = line.gsub(/col\:\d* referenced /, "").gsub(/line\:\d*:\d* referenced /, "")
       line = line.gsub(/col\:\d* /, "").gsub(/line\:\d*:\d* /, "")
@@ -190,7 +197,7 @@ module Cor
       nm = ""
       t = t[:parent]
       while t
-        match = parse_token t[:line]
+        match = parse_token t
         if match[0] ==  "NamespaceDecl"
           nm = match.last + '::' + nm
         elsif match[0] ==  "CXXRecordDecl"
@@ -210,7 +217,7 @@ module Cor
     def self.get_current_template(t)
       t = t[:parent]
       while t
-        match = parse_token t[:line]
+        match = parse_token t
         if match[0] == "ClassTemplateDecl"
           break
         end
@@ -288,7 +295,7 @@ module Cor
       enum_constants = []
       traverse_tree tree do |t|
         match = t[:line].match(class_pattern)
-        a = parse_token t[:line]
+        a = parse_token t
         mta = match.to_a
         class_name = nil
         public_start = false
@@ -375,7 +382,7 @@ module Cor
 
         pbl = t[:public_start]
         t[:children].each do |c|
-          a = parse_token c[:line]
+          a = parse_token c
           if a[0] == 'AccessSpecDecl'
             pbl = a.last == 'public'
           elsif a[0] == 'CXXMethodDecl'
@@ -401,7 +408,7 @@ module Cor
             methods << f
             c[:method] = f
             c[:children].each do |c|
-              a = parse_token c[:line]
+              a = parse_token c
               if a[0] == 'ParmVarDecl'
                 arg_type = self.parse_separated(a.last)
                 if arg_type[:val] == 'cinit'
@@ -431,7 +438,7 @@ module Cor
             methods << f
             c[:method] = f
             c[:children].each do |c|
-              a = parse_token c[:line]
+              a = parse_token c
               if a[0] == 'ParmVarDecl'
                 arg_type = self.parse_separated(a.last)
                 if arg_type[:val] == 'cinit'
@@ -455,12 +462,12 @@ module Cor
 
         pbl = t[:public_start]
         t[:children].each do |c|
-          a = parse_token c[:line]
+          a = parse_token c
 
           if a[0] == 'CXXRecordDecl'
 
             c[:children].each do |c|
-              a = parse_token c[:line]
+              a = parse_token c
 
               if a[0] == 'AccessSpecDecl'
                 pbl = a.last == 'public'
@@ -485,7 +492,7 @@ module Cor
                 #methods << f
                 c[:method] = f
                 c[:children].each do |c|
-                  a = parse_token c[:line]
+                  a = parse_token c
                   if a[0] == 'ParmVarDecl'
                     arg_type = self.parse_separated(a.last)
                     if arg_type[:val] == 'cinit'
@@ -513,7 +520,7 @@ module Cor
                 #methods << f
                 c[:method] = f
                 c[:children].each do |c|
-                  a = parse_token c[:line]
+                  a = parse_token c
                   if a[0] == 'ParmVarDecl'
                     arg_type = self.parse_separated(a.last)
                     if arg_type[:val] == 'cinit'

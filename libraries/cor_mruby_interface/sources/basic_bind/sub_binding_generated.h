@@ -45,6 +45,7 @@
 #include "cor_system/sources/parallel_processor.h"
 #include "cor_system/sources/thread_pool.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
+#include "cor_mruby_interface/sources/import/external_code_importer.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"
@@ -70,7 +71,6 @@ namespace cor
           void BasicBind_bind_func_10(mruby_interface::MrubyState& mrb);
           void BasicBind_bind_func_11(mruby_interface::MrubyState& mrb);
           void BasicBind_bind_func_12(mruby_interface::MrubyState& mrb);
-          void BasicBind_bind_func_13(mruby_interface::MrubyState& mrb);
 
         
         bool BasicBind_CostGridSpace_valid_question(std::weak_ptr<cor::data_structure::CostGridSpace> c);
@@ -133,8 +133,7 @@ namespace cor
         std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRInt32> BasicBind_MrubyExperimentalTemplateStructRInt32_create();
         bool BasicBind_MrubyExperimentalTemplateStructRString_valid_question(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c);
         std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> BasicBind_MrubyExperimentalTemplateStructRString_create();
-        cor::data_structure::CostGridSpaceItem BasicBind_CostGridSpaceItem_create_0();
-        cor::data_structure::CostGridSpacePath BasicBind_CostGridSpacePath_create();
+        cor::data_structure::CostGridSpaceItem BasicBind_CostGridSpaceItem_create();
         void BasicBind_cor__data_structure__CostGridSpace_set_max_cost(std::weak_ptr<cor::data_structure::CostGridSpace> c, float a0);
         void BasicBind_cor__data_structure__CostGridSpace_set_neighbor_mode(std::weak_ptr<cor::data_structure::CostGridSpace> c, int a0);
         cor::data_structure::CostGridSpaceNeighborMode::Enum BasicBind_cor__data_structure__CostGridSpace_get_neighbor_mode(std::weak_ptr<cor::data_structure::CostGridSpace> c);
@@ -156,6 +155,7 @@ namespace cor
         unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c);
         unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c);
         std::string BasicBind_cor__system__AllocationMonitor_get_status_text(cor::system::AllocationMonitor* c);
+        void BasicBind_cor__system__AllocationMonitor_set_enable(cor::system::AllocationMonitor* c, int a0);
         void BasicBind_cor__system__AllocationMonitor_set_captured_status(cor::system::AllocationMonitor* c, int a0);
         int BasicBind_cor__system__AllocationMonitor_get_captured_status(cor::system::AllocationMonitor* c);
         std::string BasicBind_cor__system__AllocationMonitor_get_captured_data(cor::system::AllocationMonitor* c);
@@ -206,7 +206,7 @@ namespace cor
         std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_get_null(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> a0);
         void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c);
-        void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::RCharArray> a0);
+        void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, int a0);
         std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_cor__mruby_interface__MrubyRefContainer_create_1();
         std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_cor__mruby_interface__MrubyRefContainer_create_2(mrubybind::MrubyRef a0);
         void BasicBind_cor__mruby_interface__MrubyRefContainer_set_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c, mrubybind::MrubyRef a0);
@@ -607,10 +607,6 @@ namespace cor
         cor::type::Vector2I BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_parent(cor::data_structure::CostGridSpaceItem& c);
         void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_any(cor::data_structure::CostGridSpaceItem& c, cor::mruby_interface::AnyWP a);
         cor::mruby_interface::AnyWP BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_any(cor::data_structure::CostGridSpaceItem& c);
-        void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_cost(cor::data_structure::CostGridSpacePath& c, float a);
-        float BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_cost(cor::data_structure::CostGridSpacePath& c);
-        void BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path(cor::data_structure::CostGridSpacePath& c, MrubyRef a);
-        MrubyRef BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_path(cor::data_structure::CostGridSpacePath& c);
 
     }
 }

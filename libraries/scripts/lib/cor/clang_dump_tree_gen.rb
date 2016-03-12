@@ -247,6 +247,11 @@ module Cor
           type += "*"
         end
 
+        if type == "$use_this$"
+          puts "use #{old_type}"
+          return old_type
+        end
+
         if old_type == type
 
           ntp = option[:type_assoc_table][type]
@@ -311,7 +316,6 @@ module Cor
         "std::basic_string<char>" => true,
         "std::basic_string<char, std::char_traits<char>, std::allocator<char> >" => true,
         "std::basic_string<char, std::char_traits<char>, std::allocator<char>>" => true,
-        "std::string" => true,
         "RString" => true,
         "cor::RString" => true,
         "RBool" => true,
@@ -1627,7 +1631,7 @@ EOS
           end
 
           if is_cocos_value_array
-            call_method = "cor::cocos2dx_mruby_interface::CocosValue::convert_mruby_to_cocos_value_vec(#{call_method})"
+            call_method = "cor::cocos2dx_mruby_interface::CocosValue::convert_mruby_cocos_value_vec(#{call_method})"
           end
 
           if ret.match(/^std::shared_ptr/)

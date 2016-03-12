@@ -175,7 +175,7 @@ module Cor
         "-I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/x86_64-redhat-linux/"
         ].join(' ')
 
-      cmd_clang = "clang++ -Xclang -ast-dump -fsyntax-only -std=c++11 -pg -Wall -fno-color-diagnostics -DLINUX -DCC_STATIC #{includes} data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp"
+      cmd_clang = "clang++ -Xclang -ast-dump -fsyntax-only -std=c++11 -pg -Wall -fno-color-diagnostics  -DLINUX -DCC_STATIC #{includes} data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp"
 
       puts "cmd_clang #{cmd_clang}"
 
@@ -346,9 +346,9 @@ module Cor
       Utility.file_write "#{option[:path]}/sub_binding_generated.h", src.gsub(/\"..\/..\//, "\"") + source_filter.call(proto_header)
       code_sub_cpp.each_with_index do |v, i|
         if v != ""
-          Utility.file_write "#{option[:path]}/sub_#{i}.cpp", src.gsub(/\"..\/..\//, "\"") + source_filter.call(v)
+          Utility.file_write "#{option[:path]}/#{option[:name]}_sub_#{i}.cpp", src.gsub(/\"..\/..\//, "\"") + source_filter.call(v)
         else
-          Utility.file_write "#{option[:path]}/sub_#{i}.cpp", v
+          Utility.file_write "#{option[:path]}/#{option[:name]}_sub_#{i}.cpp", v
         end
       end
     end
