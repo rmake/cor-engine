@@ -148,14 +148,14 @@ module Cor
         a2 += @additional_include_files
       end
 
-      src = "#undef __SSE__\n" +
+      only_gen_src = "#undef __SSE__\n" +
+        "#define BOOST_VARIANT_HPP\n"
+      src =
         a.map{|v| "#include \"../#{v}\"\n" }.join("") +
         "#undef RELATIVE\n#undef ABSOLUTE\n" +
         a2.map{|v| "#include \"../#{v}\"\n" }.join("")
 
-      Utility.file_write "data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp", src
-
-      src = src.gsub(/#undef.*?\n/m, "")
+      Utility.file_write "data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp", only_gen_src + src
 
       inc_path = ALL_INCPATH + ["../"]
       includes = inc_path.map{|v| "-I#{v}"}.join(' ')
@@ -175,7 +175,11 @@ module Cor
         "-I/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2/x86_64-redhat-linux/"
         ].join(' ')
 
-      cmd_clang = "clang++ -Xclang -ast-dump -fsyntax-only -std=c++11 -pg -Wall -fno-color-diagnostics  -DLINUX -DCC_STATIC #{includes} data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp"
+      if RUBY_PLATFORM.downcase =~ /mswin(?!ce)|mingw|cygwin|bccwin/
+        cmd_clang = "clang++ -fcxx-exceptions -Xclang -ast-dump -fsyntax-only -std=c++11 -pg -Wall -fms-compatibility-version=19.00.22816 -fno-color-diagnostics -DCOCOS2DXWIN32_EXPORTS -D_WINDOWS -DWIN32 -D_WIN32 -D_USRDLL -D_EXPORT_DLL_ -D_USEGUIDLL -D_USREXDLL -D_USRSTUDIODLL -DCC_STATIC #{includes} data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp"
+      else
+        cmd_clang = "clang++ -Xclang -ast-dump -fsyntax-only -std=c++11 -pg -Wall -fno-color-diagnostics -DLINUX -DCC_STATIC #{includes} data_gen/#{option[:name]}_cor_mruby_interface_inc.cpp"
+      end
 
       puts "cmd_clang #{cmd_clang}"
 

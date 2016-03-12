@@ -1,4 +1,5 @@
 #undef __SSE__
+#define BOOST_VARIANT_HPP
 #include "../../cor_type/sources/basic_types.h"
 #include "../../cor_type/sources/collision/collision_2d.h"
 #include "../../cor_type/sources/collision/collision_2d_tmpl.h"

@@ -27,6 +27,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/sprite_experimental.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
 #include "../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
@@ -42,18 +44,6 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
-        cocos2d::Vec3 Cocos2dxBind_cocos2d__Shaky3D_get_original_vertex_11(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Shaky3D> c, cocos2d::Vec2 a0)
-        {
-
-            return c->getOriginalVertex(a0);
-        }
-
-        void Cocos2dxBind_cocos2d__Shaky3D_set_vertex_11(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Shaky3D> c, cocos2d::Vec2 a0, cocos2d::Vec3 a1)
-        {
-
-            c->setVertex(a0, a1);
-        }
-
         cocos2d::Rect Cocos2dxBind_cocos2d__Shaky3D_get_grid_rect_11(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Shaky3D> c)
         {
 
@@ -4970,6 +4960,30 @@ namespace cor
         {
 
             return c->getChildByName(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__LabelAtlas_enumerate_children_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, std::string a0, mrubybind::FuncPtr<bool (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a1)
+        {
+
+            c->enumerateChildren(a0, 
+              [=](cocos2d::Node * b0){
+                  bool  r;
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a1.is_living()) {
+                          r = a1.func()(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>(b0));
+                      }
+                  }, [&]() {
+                      r = bool ();
+                  });
+                  return r;
+              }
+);
+        }
+
+        MrubyRef Cocos2dxBind_cocos2d__LabelAtlas_get_children_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c)
+        {
+
+            return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
 

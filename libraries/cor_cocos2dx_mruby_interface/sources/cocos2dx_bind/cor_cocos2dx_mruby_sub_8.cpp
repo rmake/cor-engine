@@ -27,6 +27,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/sprite_experimental.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
 #include "../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
@@ -42,30 +44,6 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
-        void Cocos2dxBind_cocos2d__LabelAtlas_enumerate_children_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, std::string a0, mrubybind::FuncPtr<bool (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a1)
-        {
-
-            c->enumerateChildren(a0, 
-              [=](cocos2d::Node * b0){
-                  bool  r;
-                  cor::mruby_interface::MrubyState::catch_error([&](){
-                      if(a1.is_living()) {
-                          r = a1.func()(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>(b0));
-                      }
-                  }, [&]() {
-                      r = bool ();
-                  });
-                  return r;
-              }
-);
-        }
-
-        MrubyRef Cocos2dxBind_cocos2d__LabelAtlas_get_children_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c)
-        {
-
-            return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
-        }
-
         int Cocos2dxBind_cocos2d__LabelAtlas_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c)
         {
 
@@ -5056,6 +5034,18 @@ namespace cor
         {
 
             c->setName(a0);
+        }
+
+        void* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_user_data_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getUserData();
+        }
+
+        const void* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_user_data_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return const_cast<const void* >(c->getUserData());
         }
 
 

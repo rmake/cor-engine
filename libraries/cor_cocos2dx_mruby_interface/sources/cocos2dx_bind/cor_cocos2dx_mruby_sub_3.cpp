@@ -27,6 +27,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/sprite_experimental.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
 #include "../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
@@ -42,12 +44,6 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
-        void Cocos2dxBind_cocos2d__Label_set_user_object_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> a0)
-        {
-
-            c->setUserObject(a0.get());
-        }
-
         cocos2d::GLProgram* Cocos2dxBind_cocos2d__Label_get_gl_program_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c)
         {
 
@@ -698,28 +694,28 @@ namespace cor
             c->onTouchCancelled(a0.get(), a1.get());
         }
 
-        void Cocos2dxBind_cocos2d__Layer_on_touches_began_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
+        void Cocos2dxBind_cocos2d__Layer_on_touches_began_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
         {
 
-            c->onTouchesBegan(a0, a1.get());
+            c->onTouchesBegan(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0), a1.get());
         }
 
-        void Cocos2dxBind_cocos2d__Layer_on_touches_moved_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
+        void Cocos2dxBind_cocos2d__Layer_on_touches_moved_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
         {
 
-            c->onTouchesMoved(a0, a1.get());
+            c->onTouchesMoved(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0), a1.get());
         }
 
-        void Cocos2dxBind_cocos2d__Layer_on_touches_ended_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
+        void Cocos2dxBind_cocos2d__Layer_on_touches_ended_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
         {
 
-            c->onTouchesEnded(a0, a1.get());
+            c->onTouchesEnded(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0), a1.get());
         }
 
-        void Cocos2dxBind_cocos2d__Layer_on_touches_cancelled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
+        void Cocos2dxBind_cocos2d__Layer_on_touches_cancelled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
         {
 
-            c->onTouchesCancelled(a0, a1.get());
+            c->onTouchesCancelled(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0), a1.get());
         }
 
         void Cocos2dxBind_cocos2d__Layer_on_acceleration_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, cocos2d::Acceleration * a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
@@ -2044,28 +2040,28 @@ namespace cor
             c->onTouchCancelled(a0.get(), a1.get());
         }
 
-        void Cocos2dxBind_cocos2d__LayerColor_on_touches_began_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
+        void Cocos2dxBind_cocos2d__LayerColor_on_touches_began_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
         {
 
-            c->onTouchesBegan(a0, a1.get());
+            c->onTouchesBegan(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0), a1.get());
         }
 
-        void Cocos2dxBind_cocos2d__LayerColor_on_touches_moved_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
+        void Cocos2dxBind_cocos2d__LayerColor_on_touches_moved_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
         {
 
-            c->onTouchesMoved(a0, a1.get());
+            c->onTouchesMoved(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0), a1.get());
         }
 
-        void Cocos2dxBind_cocos2d__LayerColor_on_touches_ended_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
+        void Cocos2dxBind_cocos2d__LayerColor_on_touches_ended_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
         {
 
-            c->onTouchesEnded(a0, a1.get());
+            c->onTouchesEnded(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0), a1.get());
         }
 
-        void Cocos2dxBind_cocos2d__LayerColor_on_touches_cancelled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
+        void Cocos2dxBind_cocos2d__LayerColor_on_touches_cancelled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
         {
 
-            c->onTouchesCancelled(a0, a1.get());
+            c->onTouchesCancelled(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0), a1.get());
         }
 
         void Cocos2dxBind_cocos2d__LayerColor_on_acceleration_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, cocos2d::Acceleration * a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
@@ -3550,14 +3546,14 @@ namespace cor
             return c->getReferenceCount();
         }
 
-        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_began(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (const int &, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a)
+        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_began(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (MrubyRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a)
         {
 
             c->onTouchesBegan = 
-              [=](const int & b0, cocos2d::Event * b1){
+              [=](const std::vector<cocos2d::Touch *, std::allocator<cocos2d::Touch *> > & b0, cocos2d::Event * b1){
                   cor::mruby_interface::MrubyState::catch_error([&](){
                       if(a.is_living()) {
-                          a.func()(b0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>(b1));
+                          a.func()(cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby<cocos2d::Touch>(b0), cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>(b1));
                       }
                   }, [&]() {
 
@@ -3566,14 +3562,14 @@ namespace cor
 ;
         }
 
-        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_moved(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (const int &, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a)
+        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_moved(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (MrubyRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a)
         {
 
             c->onTouchesMoved = 
-              [=](const int & b0, cocos2d::Event * b1){
+              [=](const std::vector<cocos2d::Touch *, std::allocator<cocos2d::Touch *> > & b0, cocos2d::Event * b1){
                   cor::mruby_interface::MrubyState::catch_error([&](){
                       if(a.is_living()) {
-                          a.func()(b0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>(b1));
+                          a.func()(cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby<cocos2d::Touch>(b0), cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>(b1));
                       }
                   }, [&]() {
 
@@ -3582,14 +3578,14 @@ namespace cor
 ;
         }
 
-        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_ended(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (const int &, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a)
+        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_ended(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (MrubyRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a)
         {
 
             c->onTouchesEnded = 
-              [=](const int & b0, cocos2d::Event * b1){
+              [=](const std::vector<cocos2d::Touch *, std::allocator<cocos2d::Touch *> > & b0, cocos2d::Event * b1){
                   cor::mruby_interface::MrubyState::catch_error([&](){
                       if(a.is_living()) {
-                          a.func()(b0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>(b1));
+                          a.func()(cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby<cocos2d::Touch>(b0), cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>(b1));
                       }
                   }, [&]() {
 
@@ -3598,14 +3594,14 @@ namespace cor
 ;
         }
 
-        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_cancelled(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (const int &, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a)
+        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_cancelled(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (MrubyRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a)
         {
 
             c->onTouchesCancelled = 
-              [=](const int & b0, cocos2d::Event * b1){
+              [=](const std::vector<cocos2d::Touch *, std::allocator<cocos2d::Touch *> > & b0, cocos2d::Event * b1){
                   cor::mruby_interface::MrubyState::catch_error([&](){
                       if(a.is_living()) {
-                          a.func()(b0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>(b1));
+                          a.func()(cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby<cocos2d::Touch>(b0), cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>(b1));
                       }
                   }, [&]() {
 
@@ -4052,28 +4048,28 @@ namespace cor
             return c->hasVisibleParents();
         }
 
-        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_began_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
+        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_began_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
         {
 
-            c->onTouchesBegan(a0, a1.get());
+            c->onTouchesBegan(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0), a1.get());
         }
 
-        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_moved_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
+        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_moved_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
         {
 
-            c->onTouchesMoved(a0, a1.get());
+            c->onTouchesMoved(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0), a1.get());
         }
 
-        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_ended_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
+        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_ended_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
         {
 
-            c->onTouchesEnded(a0, a1.get());
+            c->onTouchesEnded(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0), a1.get());
         }
 
-        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_cancelled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
+        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_cancelled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
         {
 
-            c->onTouchesCancelled(a0, a1.get());
+            c->onTouchesCancelled(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0), a1.get());
         }
 
         void Cocos2dxBind_cocos2d__extension__ScrollView_on_acceleration_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, cocos2d::Acceleration * a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1)
@@ -5234,6 +5230,12 @@ namespace cor
         {
 
             c->setCameraMask(a0, a1);
+        }
+
+        void Cocos2dxBind_cocos2d__extension__ScrollView_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c)
+        {
+
+            c->retain();
         }
 
 

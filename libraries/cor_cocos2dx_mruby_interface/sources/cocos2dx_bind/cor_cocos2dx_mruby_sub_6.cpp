@@ -27,6 +27,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/sprite_experimental.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
 #include "../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
@@ -42,18 +44,6 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
-        void Cocos2dxBind_cocos2d__EaseCircleActionIn_update(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> c, float a0)
-        {
-
-            c->update(a0);
-        }
-
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> Cocos2dxBind_cocos2d__EaseCircleActionIn_clone(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> c)
-        {
-
-            return c->clone();
-        }
-
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> Cocos2dxBind_cocos2d__EaseCircleActionIn_reverse(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> c)
         {
 
@@ -4808,6 +4798,18 @@ namespace cor
         {
 
             return c->getVertex(a0);
+        }
+
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__Shaky3D_get_original_vertex_11(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Shaky3D> c, cocos2d::Vec2 a0)
+        {
+
+            return c->getOriginalVertex(a0);
+        }
+
+        void Cocos2dxBind_cocos2d__Shaky3D_set_vertex_11(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Shaky3D> c, cocos2d::Vec2 a0, cocos2d::Vec3 a1)
+        {
+
+            c->setVertex(a0, a1);
         }
 
 

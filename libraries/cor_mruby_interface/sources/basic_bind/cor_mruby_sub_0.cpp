@@ -51,6 +51,8 @@
 #include "cor_mruby_interface/sources/mruby_experimental.h"
 #include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
@@ -329,18 +331,6 @@ namespace cor
         {
 
             return cor::system::AllocationMonitor::al_realloc(a0, a1);
-        }
-
-        void BasicBind_cor__system__CorCrypt_set_enabled(int a0)
-        {
-
-            cor::system::CorCrypt::set_enabled(a0);
-        }
-
-        int BasicBind_cor__system__CorCrypt_get_enabled()
-        {
-
-            return cor::system::CorCrypt::get_enabled();
         }
 
 

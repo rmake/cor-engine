@@ -51,6 +51,8 @@
 #include "cor_mruby_interface/sources/mruby_experimental.h"
 #include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
@@ -61,6 +63,180 @@ namespace cor
     namespace mruby_interface
     {
         
+        int BasicBind_cor__type__Box2I_get_width_size(cor::type::Box2I& c)
+        {
+
+            return c.get_width_size();
+        }
+
+        void BasicBind_cor__type__Box2I_accessor_set_p(cor::type::Box2I& c, cor::type::Vector2I a)
+        {
+
+            c.p = a;
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Box2I_accessor_get_p(cor::type::Box2I& c)
+        {
+
+            return c.p;
+        }
+
+        void BasicBind_cor__type__Box2I_accessor_set_w(cor::type::Box2I& c, cor::type::Vector2I a)
+        {
+
+            c.w = a;
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Box2I_accessor_get_w(cor::type::Box2I& c)
+        {
+
+            return c.w;
+        }
+
+        void BasicBind_cor__type__OBox2F_is_cross(cor::type::OBox2F& c, cor::type::OBox2F a0)
+        {
+
+            c.is_cross(a0);
+        }
+
+        void BasicBind_cor__type__OBox2F_is_include(cor::type::OBox2F& c, cor::type::Vector2F a0)
+        {
+
+            c.is_include(a0);
+        }
+
+        float BasicBind_cor__type__OBox2F_get_distance(cor::type::OBox2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.get_distance(a0);
+        }
+
+        void BasicBind_cor__type__OBox2F_get_vertices(cor::type::OBox2F& c)
+        {
+
+            c.get_vertices();
+        }
+
+        void BasicBind_cor__type__OBox2F_get_aabb(cor::type::OBox2F& c)
+        {
+
+            c.get_aabb();
+        }
+
+        void BasicBind_cor__type__OBox2I_is_cross(cor::type::OBox2I& c, cor::type::OBox2I a0)
+        {
+
+            c.is_cross(a0);
+        }
+
+        void BasicBind_cor__type__OBox2I_is_include(cor::type::OBox2I& c, cor::type::Vector2I a0)
+        {
+
+            c.is_include(a0);
+        }
+
+        int BasicBind_cor__type__OBox2I_get_distance(cor::type::OBox2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.get_distance(a0);
+        }
+
+        void BasicBind_cor__type__OBox2I_get_vertices(cor::type::OBox2I& c)
+        {
+
+            c.get_vertices();
+        }
+
+        void BasicBind_cor__type__OBox2I_get_aabb(cor::type::OBox2I& c)
+        {
+
+            c.get_aabb();
+        }
+
+        void BasicBind_cor__type__Sphere2F_set(cor::type::Sphere2F& c, cor::type::Vector2F a0, float a1)
+        {
+
+            c.set(a0, a1);
+        }
+
+        void BasicBind_cor__type__Sphere2F_is_collide(cor::type::Sphere2F& c, cor::type::Sphere2F a0)
+        {
+
+            c.is_collide(a0);
+        }
+
+        void BasicBind_cor__type__Sphere2F_is_include_point(cor::type::Sphere2F& c, cor::type::Vector2F a0)
+        {
+
+            c.is_include_point(a0);
+        }
+
+        float BasicBind_cor__type__Sphere2F_get_distance(cor::type::Sphere2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.get_distance(a0);
+        }
+
+        void BasicBind_cor__type__Sphere2F_accessor_set_p(cor::type::Sphere2F& c, cor::type::Vector2F a)
+        {
+
+            c.p = a;
+        }
+
+        cor::type::Vector2F BasicBind_cor__type__Sphere2F_accessor_get_p(cor::type::Sphere2F& c)
+        {
+
+            return c.p;
+        }
+
+        void BasicBind_cor__type__Sphere2F_accessor_set_r(cor::type::Sphere2F& c, float a)
+        {
+
+            c.r = a;
+        }
+
+        float BasicBind_cor__type__Sphere2F_accessor_get_r(cor::type::Sphere2F& c)
+        {
+
+            return c.r;
+        }
+
+        void BasicBind_cor__type__Sphere2I_set(cor::type::Sphere2I& c, cor::type::Vector2I a0, int a1)
+        {
+
+            c.set(a0, a1);
+        }
+
+        void BasicBind_cor__type__Sphere2I_is_collide(cor::type::Sphere2I& c, cor::type::Sphere2I a0)
+        {
+
+            c.is_collide(a0);
+        }
+
+        void BasicBind_cor__type__Sphere2I_is_include_point(cor::type::Sphere2I& c, cor::type::Vector2I a0)
+        {
+
+            c.is_include_point(a0);
+        }
+
+        int BasicBind_cor__type__Sphere2I_get_distance(cor::type::Sphere2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.get_distance(a0);
+        }
+
+        void BasicBind_cor__type__Sphere2I_accessor_set_p(cor::type::Sphere2I& c, cor::type::Vector2I a)
+        {
+
+            c.p = a;
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Sphere2I_accessor_get_p(cor::type::Sphere2I& c)
+        {
+
+            return c.p;
+        }
+
         void BasicBind_cor__type__Sphere2I_accessor_set_r(cor::type::Sphere2I& c, int a)
         {
 
@@ -103,180 +279,6 @@ namespace cor
             c.get_box();
         }
 
-        void BasicBind_cor__type__OSphere2I_is_cross(cor::type::OSphere2I& c, cor::type::OSphere2I a0)
-        {
-
-            c.is_cross(a0);
-        }
-
-        void BasicBind_cor__type__OSphere2I_is_include(cor::type::OSphere2I& c, cor::type::Vector2I a0)
-        {
-
-            c.is_include(a0);
-        }
-
-        int BasicBind_cor__type__OSphere2I_get_distance(cor::type::OSphere2I& c, cor::type::Vector2I a0)
-        {
-
-            return c.get_distance(a0);
-        }
-
-        void BasicBind_cor__type__OSphere2I_get_draw_vertices(cor::type::OSphere2I& c)
-        {
-
-            c.get_draw_vertices();
-        }
-
-        void BasicBind_cor__type__OSphere2I_get_box(cor::type::OSphere2I& c)
-        {
-
-            c.get_box();
-        }
-
-        int BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRInt32_add(int a0, int a1)
-        {
-
-            return cor::mruby_interface::MrubyExperimentalTemplateStructRInt32::add(a0, a1);
-        }
-
-        int BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRInt32_add2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRInt32> c, int a0, int a1, int a2)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            return tmp_c->add2(a0, a1, a2);
-        }
-
-        void BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRInt32_set_n(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRInt32> c, int a0)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            tmp_c->set_n(a0);
-        }
-
-        std::basic_string<char, std::char_traits<char>, std::allocator<char>> BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add(std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a1)
-        {
-
-            return cor::mruby_interface::MrubyExperimentalTemplateStructRString::add(a0, a1);
-        }
-
-        std::basic_string<char, std::char_traits<char>, std::allocator<char>> BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_add2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a1, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a2)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            return tmp_c->add2(a0, a1, a2);
-        }
-
-        void BasicBind_cor__mruby_interface__MrubyExperimentalTemplateStructRString_set_n(std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            tmp_c->set_n(a0);
-        }
-
-        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_terminated(cor::data_structure::CostGridSpaceItem& c, int a)
-        {
-
-            c.terminated = a;
-        }
-
-        int BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_terminated(cor::data_structure::CostGridSpaceItem& c)
-        {
-
-            return c.terminated;
-        }
-
-        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_passable(cor::data_structure::CostGridSpaceItem& c, int a)
-        {
-
-            c.passable = a;
-        }
-
-        int BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_passable(cor::data_structure::CostGridSpaceItem& c)
-        {
-
-            return c.passable;
-        }
-
-        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_enter_cost(cor::data_structure::CostGridSpaceItem& c, float a)
-        {
-
-            c.enter_cost = a;
-        }
-
-        float BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_enter_cost(cor::data_structure::CostGridSpaceItem& c)
-        {
-
-            return c.enter_cost;
-        }
-
-        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_passed(cor::data_structure::CostGridSpaceItem& c, int a)
-        {
-
-            c.passed = a;
-        }
-
-        int BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_passed(cor::data_structure::CostGridSpaceItem& c)
-        {
-
-            return c.passed;
-        }
-
-        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_min_cost(cor::data_structure::CostGridSpaceItem& c, float a)
-        {
-
-            c.min_cost = a;
-        }
-
-        float BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_min_cost(cor::data_structure::CostGridSpaceItem& c)
-        {
-
-            return c.min_cost;
-        }
-
-        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_parent(cor::data_structure::CostGridSpaceItem& c, cor::type::Vector2I a)
-        {
-
-            c.parent = a;
-        }
-
-        cor::type::Vector2I BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_parent(cor::data_structure::CostGridSpaceItem& c)
-        {
-
-            return c.parent;
-        }
-
-        void BasicBind_cor__data_structure__CostGridSpaceItem_accessor_set_any(cor::data_structure::CostGridSpaceItem& c, cor::mruby_interface::AnyWP a)
-        {
-
-            c.any = a.lock();
-        }
-
-        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__CostGridSpaceItem_accessor_get_any(cor::data_structure::CostGridSpaceItem& c)
-        {
-
-            return c.any;
-        }
-
 
 
         
@@ -287,9 +289,7 @@ namespace cor
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.add_convertable("CorMrubyInterface::MrubyExperimentalTemplateStructRInt32", "CorMrubyInterface::AnyWP");
-            binder.add_convertable("CorMrubyInterface::MrubyExperimentalTemplateStructRString", "CorMrubyInterface::AnyWP");
-
+                
           }
 
     }

@@ -27,6 +27,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/sprite_experimental.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
 #include "../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
@@ -113,8 +115,10 @@ namespace cor
         cocos2d::Value Cocos2dxBind_Value_create_5(bool a0);
         cocos2d::Value Cocos2dxBind_Value_create_6(const char * a0);
         cocos2d::Value Cocos2dxBind_Value_create_7(std::string a0);
-        cocos2d::Value Cocos2dxBind_Value_create_8(MrubyRef a0);
-        cocos2d::Value Cocos2dxBind_Value_create_10(cocos2d::Value a0);
+        cocos2d::Value Cocos2dxBind_Value_create_8(std::vector<cocos2d::Value, std::allocator<cocos2d::Value> > a0);
+        cocos2d::Value Cocos2dxBind_Value_create_10(std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0);
+        cocos2d::Value Cocos2dxBind_Value_create_12(std::unordered_map<int, cocos2d::Value, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<const int, cocos2d::Value> > > a0);
+        cocos2d::Value Cocos2dxBind_Value_create_14(cocos2d::Value a0);
         bool Cocos2dxBind_SpriteFrame_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> c);
         bool Cocos2dxBind_AnimationFrame_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c);
         bool Cocos2dxBind_Animation_valid_question(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation> c);
@@ -607,9 +611,9 @@ namespace cor
         void Cocos2dxBind_cocos2d__Event_accessor_set__script_object(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> c, void * a);
         void * Cocos2dxBind_cocos2d__Event_accessor_get__script_object(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> c);
         cocos2d::EventTouch::EventCode Cocos2dxBind_cocos2d__EventTouch_get_event_code(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c);
-        int Cocos2dxBind_cocos2d__EventTouch_get_touches(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c);
+        MrubyRef Cocos2dxBind_cocos2d__EventTouch_get_touches(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c);
         void Cocos2dxBind_cocos2d__EventTouch_set_event_code(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c, int a0);
-        void Cocos2dxBind_cocos2d__EventTouch_set_touches(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c, int a0);
+        void Cocos2dxBind_cocos2d__EventTouch_set_touches(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c, MrubyRef a0);
         cocos2d::Event::Type Cocos2dxBind_cocos2d__EventTouch_get_type_5(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c);
         void Cocos2dxBind_cocos2d__EventTouch_stop_propagation_5(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c);
         bool Cocos2dxBind_cocos2d__EventTouch_is_stopped_5(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c);
@@ -1068,9 +1072,9 @@ namespace cor
         double Cocos2dxBind_cocos2d__Value_as_double(cocos2d::Value c);
         bool Cocos2dxBind_cocos2d__Value_as_bool(cocos2d::Value c);
         std::string Cocos2dxBind_cocos2d__Value_as_string(cocos2d::Value c);
-        MrubyRef Cocos2dxBind_cocos2d__Value_as_value_vector_2(cocos2d::Value c);
-        cocos2d::ValueMap Cocos2dxBind_cocos2d__Value_as_value_map_2(cocos2d::Value c);
-        cocos2d::ValueMapIntKey Cocos2dxBind_cocos2d__Value_as_int_key_map_2(cocos2d::Value c);
+        std::vector<cocos2d::Value, std::allocator<cocos2d::Value> > Cocos2dxBind_cocos2d__Value_as_value_vector_2(cocos2d::Value c);
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__Value_as_value_map_2(cocos2d::Value c);
+        std::unordered_map<int, cocos2d::Value, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<const int, cocos2d::Value> > > Cocos2dxBind_cocos2d__Value_as_int_key_map_2(cocos2d::Value c);
         bool Cocos2dxBind_cocos2d__Value_is_null(cocos2d::Value c);
         cocos2d::Value::Type Cocos2dxBind_cocos2d__Value_get_type(cocos2d::Value c);
         std::string Cocos2dxBind_cocos2d__Value_get_description(cocos2d::Value c);
@@ -1109,15 +1113,15 @@ namespace cor
         int Cocos2dxBind_cocos2d__SpriteFrame_accessor_get__lua_id(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> c);
         void Cocos2dxBind_cocos2d__SpriteFrame_accessor_set__script_object(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> c, void * a);
         void * Cocos2dxBind_cocos2d__SpriteFrame_accessor_get__script_object(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> c);
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> Cocos2dxBind_cocos2d__AnimationFrame_create(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> a0, float a1, cocos2d::ValueMap a2);
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> Cocos2dxBind_cocos2d__AnimationFrame_create(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> a0, float a1, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a2);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> Cocos2dxBind_cocos2d__AnimationFrame_get_sprite_frame(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c);
         void Cocos2dxBind_cocos2d__AnimationFrame_set_sprite_frame(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> a0);
         float Cocos2dxBind_cocos2d__AnimationFrame_get_delay_units(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c);
         void Cocos2dxBind_cocos2d__AnimationFrame_set_delay_units(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c, float a0);
-        cocos2d::ValueMap Cocos2dxBind_cocos2d__AnimationFrame_get_user_info_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c);
-        void Cocos2dxBind_cocos2d__AnimationFrame_set_user_info(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c, cocos2d::ValueMap a0);
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__AnimationFrame_get_user_info_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c);
+        void Cocos2dxBind_cocos2d__AnimationFrame_set_user_info(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> Cocos2dxBind_cocos2d__AnimationFrame_clone(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c);
-        bool Cocos2dxBind_cocos2d__AnimationFrame_init_with_sprite_frame(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> a0, float a1, cocos2d::ValueMap a2);
+        bool Cocos2dxBind_cocos2d__AnimationFrame_init_with_sprite_frame(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> a0, float a1, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a2);
         void Cocos2dxBind_cocos2d__AnimationFrame_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c);
         void Cocos2dxBind_cocos2d__AnimationFrame_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__AnimationFrame_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c);
@@ -2578,9 +2582,8 @@ namespace cor
         void Cocos2dxBind_cocos2d__Sprite_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__Sprite_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c);
         unsigned int Cocos2dxBind_cocos2d__Sprite_get_reference_count_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c);
-        void Cocos2dxBind_cocos2d__FontAtlas_add_letter_definition(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, int a0, cocos2d::FontLetterDefinition a1);
-        bool Cocos2dxBind_cocos2d__FontAtlas_prepare_letter_definitions(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, int a0);
-        int Cocos2dxBind_cocos2d__FontAtlas_get_textures(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c);
+        void Cocos2dxBind_cocos2d__FontAtlas_add_letter_definition(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, char16_t a0, cocos2d::FontLetterDefinition a1);
+        bool Cocos2dxBind_cocos2d__FontAtlas_prepare_letter_definitions(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, std::basic_string<char16_t, std::char_traits<char16_t>, std::allocator<char16_t> > a0);
         void Cocos2dxBind_cocos2d__FontAtlas_add_texture(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, int a1);
         float Cocos2dxBind_cocos2d__FontAtlas_get_line_height(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c);
         void Cocos2dxBind_cocos2d__FontAtlas_set_line_height(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, float a0);
@@ -2845,10 +2848,10 @@ namespace cor
         void Cocos2dxBind_cocos2d__Layer_on_touch_moved_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__Layer_on_touch_ended_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__Layer_on_touch_cancelled_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
-        void Cocos2dxBind_cocos2d__Layer_on_touches_began_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
-        void Cocos2dxBind_cocos2d__Layer_on_touches_moved_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
-        void Cocos2dxBind_cocos2d__Layer_on_touches_ended_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
-        void Cocos2dxBind_cocos2d__Layer_on_touches_cancelled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
+        void Cocos2dxBind_cocos2d__Layer_on_touches_began_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
+        void Cocos2dxBind_cocos2d__Layer_on_touches_moved_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
+        void Cocos2dxBind_cocos2d__Layer_on_touches_ended_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
+        void Cocos2dxBind_cocos2d__Layer_on_touches_cancelled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__Layer_on_acceleration_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, cocos2d::Acceleration * a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__Layer_on_key_pressed_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__Layer_on_key_released_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
@@ -3054,10 +3057,10 @@ namespace cor
         void Cocos2dxBind_cocos2d__LayerColor_on_touch_moved_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__LayerColor_on_touch_ended_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__LayerColor_on_touch_cancelled_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Touch> a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
-        void Cocos2dxBind_cocos2d__LayerColor_on_touches_began_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
-        void Cocos2dxBind_cocos2d__LayerColor_on_touches_moved_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
-        void Cocos2dxBind_cocos2d__LayerColor_on_touches_ended_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
-        void Cocos2dxBind_cocos2d__LayerColor_on_touches_cancelled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
+        void Cocos2dxBind_cocos2d__LayerColor_on_touches_began_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
+        void Cocos2dxBind_cocos2d__LayerColor_on_touches_moved_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
+        void Cocos2dxBind_cocos2d__LayerColor_on_touches_ended_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
+        void Cocos2dxBind_cocos2d__LayerColor_on_touches_cancelled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__LayerColor_on_acceleration_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, cocos2d::Acceleration * a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__LayerColor_on_key_pressed_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__LayerColor_on_key_released_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
@@ -3281,10 +3284,10 @@ namespace cor
         void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c);
         unsigned int Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_get_reference_count_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c);
-        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_began(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (const int &, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a);
-        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_moved(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (const int &, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a);
-        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_ended(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (const int &, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a);
-        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_cancelled(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (const int &, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a);
+        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_began(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (MrubyRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a);
+        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_moved(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (MrubyRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a);
+        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_ended(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (MrubyRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a);
+        void Cocos2dxBind_cocos2d__EventListenerTouchAllAtOnce_accessor_set_on_touches_cancelled(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventListenerTouchAllAtOnce> c, mrubybind::FuncPtr<void (MrubyRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event>)> a);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionTween> Cocos2dxBind_cocos2d__ActionTween_create(float a0, std::string a1, float a2, float a3);
         void Cocos2dxBind_cocos2d__ActionTween_start_with_target(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionTween> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0);
         void Cocos2dxBind_cocos2d__ActionTween_update(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionTween> c, float a0);
@@ -3358,10 +3361,10 @@ namespace cor
         void Cocos2dxBind_cocos2d__extension__ScrollView_add_child_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, std::string a2);
         void Cocos2dxBind_cocos2d__extension__ScrollView_update_tween_action(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, float a0, std::string a1);
         bool Cocos2dxBind_cocos2d__extension__ScrollView_has_visible_parents(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c);
-        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_began_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
-        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_moved_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
-        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_ended_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
-        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_cancelled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
+        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_began_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
+        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_moved_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
+        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_ended_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
+        void Cocos2dxBind_cocos2d__extension__ScrollView_on_touches_cancelled_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, MrubyRef a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__extension__ScrollView_on_acceleration_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, cocos2d::Acceleration * a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__extension__ScrollView_on_key_pressed_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
         void Cocos2dxBind_cocos2d__extension__ScrollView_on_key_released_3(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c, int a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Event> a1);
@@ -3562,9 +3565,9 @@ namespace cor
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> Cocos2dxBind_cocos2d__Scene_create();
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> Cocos2dxBind_cocos2d__Scene_create_with_size(cocos2d::Size a0);
         std::string Cocos2dxBind_cocos2d__Scene_get_description(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c);
-        int Cocos2dxBind_cocos2d__Scene_get_cameras(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c);
+        MrubyRef Cocos2dxBind_cocos2d__Scene_get_cameras(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> Cocos2dxBind_cocos2d__Scene_get_default_camera(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c);
-        int Cocos2dxBind_cocos2d__Scene_get_lights(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c);
+        MrubyRef Cocos2dxBind_cocos2d__Scene_get_lights(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c);
         void Cocos2dxBind_cocos2d__Scene_render(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c, cocos2d::Renderer * a0);
         void Cocos2dxBind_cocos2d__Scene_remove_all_children(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c);
         bool Cocos2dxBind_cocos2d__Scene_init(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c);
@@ -3858,7 +3861,6 @@ namespace cor
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation3D> Cocos2dxBind_cocos2d__Animation3D_create(std::string a0, std::string a1);
         float Cocos2dxBind_cocos2d__Animation3D_get_duration(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation3D> c);
         cocos2d::Animation3D::Curve* Cocos2dxBind_cocos2d__Animation3D_get_bone_curve_by_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation3D> c, std::string a0);
-        int Cocos2dxBind_cocos2d__Animation3D_get_bone_curves(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation3D> c);
         bool Cocos2dxBind_cocos2d__Animation3D_init(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation3D> c, cocos2d::Animation3DData a0);
         bool Cocos2dxBind_cocos2d__Animation3D_init_with_file(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation3D> c, std::string a0, std::string a1);
         void Cocos2dxBind_cocos2d__Animation3D_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation3D> c);
@@ -3890,8 +3892,8 @@ namespace cor
         void Cocos2dxBind_cocos2d__Animate3D_set_transition_time(float a0);
         void Cocos2dxBind_cocos2d__Animate3D_set_quality(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c, int a0);
         cocos2d::Animate3DQuality Cocos2dxBind_cocos2d__Animate3D_get_quality(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c);
-        void Cocos2dxBind_cocos2d__Animate3D_set_key_frame_user_info(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c, int a0, cocos2d::ValueMap a1);
-        cocos2d::ValueMap* Cocos2dxBind_cocos2d__Animate3D_get_key_frame_user_info_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c, int a0);
+        void Cocos2dxBind_cocos2d__Animate3D_set_key_frame_user_info(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c, int a0, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a1);
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > >* Cocos2dxBind_cocos2d__Animate3D_get_key_frame_user_info_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c, int a0);
         void Cocos2dxBind_cocos2d__Animate3D_remove_from_map(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c);
         bool Cocos2dxBind_cocos2d__Animate3D_init_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation3D> a0);
         bool Cocos2dxBind_cocos2d__Animate3D_init_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation3D> a0, float a1, float a2);
@@ -4057,8 +4059,8 @@ namespace cor
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> Cocos2dxBind_cocos2d__PointArray_reverse(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c);
         void Cocos2dxBind_cocos2d__PointArray_reverse_inline(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> Cocos2dxBind_cocos2d__PointArray_clone(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c);
-        const int* Cocos2dxBind_cocos2d__PointArray_get_control_points(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c);
-        void Cocos2dxBind_cocos2d__PointArray_set_control_points(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, int * a0);
+        const std::vector<cocos2d::Vec2*>* Cocos2dxBind_cocos2d__PointArray_get_control_points(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c);
+        void Cocos2dxBind_cocos2d__PointArray_set_control_points(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, std::vector<cocos2d::Vec2 *> * a0);
         void Cocos2dxBind_cocos2d__PointArray_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c);
         void Cocos2dxBind_cocos2d__PointArray_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__PointArray_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c);
@@ -9176,7 +9178,7 @@ namespace cor
         float Cocos2dxBind_cocos2d__PhysicsBody_get_angular_velocity_limit(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> c);
         void Cocos2dxBind_cocos2d__PhysicsBody_remove_from_world(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> c);
         cocos2d::PhysicsWorld* Cocos2dxBind_cocos2d__PhysicsBody_get_world(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> c);
-        int Cocos2dxBind_cocos2d__PhysicsBody_get_joints(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> c);
+        std::vector<cocos2d::PhysicsJoint*> Cocos2dxBind_cocos2d__PhysicsBody_get_joints(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cocos2d__PhysicsBody_get_node(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> c);
         void Cocos2dxBind_cocos2d__PhysicsBody_set_category_bitmask(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> c, int a0);
         void Cocos2dxBind_cocos2d__PhysicsBody_set_contact_test_bitmask(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> c, int a0);
@@ -9371,26 +9373,26 @@ namespace cor
         unsigned char* Cocos2dxBind_cocos2d__FileUtils_get_file_data_from_zip(cocos2d::FileUtils* c, std::string a0, std::string a1, long * a2);
         std::string Cocos2dxBind_cocos2d__FileUtils_full_path_for_filename(cocos2d::FileUtils* c, std::string a0);
         void Cocos2dxBind_cocos2d__FileUtils_load_filename_lookup_dictionary_from_file(cocos2d::FileUtils* c, std::string a0);
-        void Cocos2dxBind_cocos2d__FileUtils_set_filename_lookup_dictionary(cocos2d::FileUtils* c, cocos2d::ValueMap a0);
+        void Cocos2dxBind_cocos2d__FileUtils_set_filename_lookup_dictionary(cocos2d::FileUtils* c, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0);
         std::string Cocos2dxBind_cocos2d__FileUtils_full_path_from_relative_file(cocos2d::FileUtils* c, std::string a0, std::string a1);
-        void Cocos2dxBind_cocos2d__FileUtils_set_search_resolutions_order(cocos2d::FileUtils* c, int a0);
+        void Cocos2dxBind_cocos2d__FileUtils_set_search_resolutions_order(cocos2d::FileUtils* c, std::vector<std::string> a0);
         void Cocos2dxBind_cocos2d__FileUtils_add_search_resolutions_order(cocos2d::FileUtils* c, std::string a0, const bool a1);
-        int Cocos2dxBind_cocos2d__FileUtils_get_search_resolutions_order(cocos2d::FileUtils* c);
-        void Cocos2dxBind_cocos2d__FileUtils_set_search_paths(cocos2d::FileUtils* c, int a0);
+        std::vector<std::string> Cocos2dxBind_cocos2d__FileUtils_get_search_resolutions_order(cocos2d::FileUtils* c);
+        void Cocos2dxBind_cocos2d__FileUtils_set_search_paths(cocos2d::FileUtils* c, std::vector<std::string> a0);
         void Cocos2dxBind_cocos2d__FileUtils_set_default_resource_root_path(cocos2d::FileUtils* c, std::string a0);
         void Cocos2dxBind_cocos2d__FileUtils_add_search_path(cocos2d::FileUtils* c, std::string a0, const bool a1);
-        int Cocos2dxBind_cocos2d__FileUtils_get_search_paths(cocos2d::FileUtils* c);
+        std::vector<std::string> Cocos2dxBind_cocos2d__FileUtils_get_search_paths(cocos2d::FileUtils* c);
         std::string Cocos2dxBind_cocos2d__FileUtils_get_writable_path(cocos2d::FileUtils* c);
         void Cocos2dxBind_cocos2d__FileUtils_set_writable_path(cocos2d::FileUtils* c, std::string a0);
         void Cocos2dxBind_cocos2d__FileUtils_set_popup_notify(cocos2d::FileUtils* c, bool a0);
         bool Cocos2dxBind_cocos2d__FileUtils_is_popup_notify(cocos2d::FileUtils* c);
-        cocos2d::ValueMap Cocos2dxBind_cocos2d__FileUtils_get_value_map_from_file(cocos2d::FileUtils* c, std::string a0);
-        cocos2d::ValueMap Cocos2dxBind_cocos2d__FileUtils_get_value_map_from_data(cocos2d::FileUtils* c, const char * a0, int a1);
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__FileUtils_get_value_map_from_file(cocos2d::FileUtils* c, std::string a0);
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__FileUtils_get_value_map_from_data(cocos2d::FileUtils* c, const char * a0, int a1);
         bool Cocos2dxBind_cocos2d__FileUtils_write_string_to_file(cocos2d::FileUtils* c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, std::string a1);
         bool Cocos2dxBind_cocos2d__FileUtils_write_data_to_file(cocos2d::FileUtils* c, cocos2d::Data a0, std::string a1);
-        bool Cocos2dxBind_cocos2d__FileUtils_write_value_vector_to_file(cocos2d::FileUtils* c, int a0, std::string a1);
+        bool Cocos2dxBind_cocos2d__FileUtils_write_value_vector_to_file(cocos2d::FileUtils* c, std::vector<cocos2d::Value, std::allocator<cocos2d::Value>> a0, std::string a1);
         std::string Cocos2dxBind_cocos2d__FileUtils_get_suitable_f_open(cocos2d::FileUtils* c, std::string a0);
-        MrubyRef Cocos2dxBind_cocos2d__FileUtils_get_value_vector_from_file(cocos2d::FileUtils* c, std::string a0);
+        std::vector<cocos2d::Value, std::allocator<cocos2d::Value> > Cocos2dxBind_cocos2d__FileUtils_get_value_vector_from_file(cocos2d::FileUtils* c, std::string a0);
         bool Cocos2dxBind_cocos2d__FileUtils_is_file_exist(cocos2d::FileUtils* c, std::string a0);
         std::string Cocos2dxBind_cocos2d__FileUtils_get_file_extension(cocos2d::FileUtils* c, std::string a0);
         bool Cocos2dxBind_cocos2d__FileUtils_is_absolute_path(cocos2d::FileUtils* c, std::string a0);
@@ -9401,14 +9403,14 @@ namespace cor
         bool Cocos2dxBind_cocos2d__FileUtils_rename_file_1(cocos2d::FileUtils* c, std::string a0, std::string a1, std::string a2);
         bool Cocos2dxBind_cocos2d__FileUtils_rename_file_2(cocos2d::FileUtils* c, std::string a0, std::string a1);
         int Cocos2dxBind_cocos2d__FileUtils_get_file_size(cocos2d::FileUtils* c, std::string a0);
-        int Cocos2dxBind_cocos2d__FileUtils_get_full_path_cache(cocos2d::FileUtils* c);
+        std::unordered_map<std::string, std::string> Cocos2dxBind_cocos2d__FileUtils_get_full_path_cache(cocos2d::FileUtils* c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> Cocos2dxBind_cocos2d__AnimationCache_get_instance();
         void Cocos2dxBind_cocos2d__AnimationCache_destroy_instance();
         bool Cocos2dxBind_cocos2d__AnimationCache_init(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> c);
         void Cocos2dxBind_cocos2d__AnimationCache_add_animation(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation> a0, std::string a1);
         void Cocos2dxBind_cocos2d__AnimationCache_remove_animation(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> c, std::string a0);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation> Cocos2dxBind_cocos2d__AnimationCache_get_animation(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> c, std::string a0);
-        void Cocos2dxBind_cocos2d__AnimationCache_add_animations_with_dictionary(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> c, cocos2d::ValueMap a0, std::string a1);
+        void Cocos2dxBind_cocos2d__AnimationCache_add_animations_with_dictionary(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> c, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0, std::string a1);
         void Cocos2dxBind_cocos2d__AnimationCache_add_animations_with_file(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> c, std::string a0);
         void Cocos2dxBind_cocos2d__AnimationCache_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> c);
         void Cocos2dxBind_cocos2d__AnimationCache_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> c);
@@ -9424,7 +9426,7 @@ namespace cor
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> Cocos2dxBind_cocos2d__SpriteBatchNode_create(std::string a0, int a1);
         cocos2d::TextureAtlas* Cocos2dxBind_cocos2d__SpriteBatchNode_get_texture_atlas_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c);
         void Cocos2dxBind_cocos2d__SpriteBatchNode_set_texture_atlas_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cocos2d::TextureAtlas * a0);
-        int Cocos2dxBind_cocos2d__SpriteBatchNode_get_descendants_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c);
+        MrubyRef Cocos2dxBind_cocos2d__SpriteBatchNode_get_descendants_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c);
         void Cocos2dxBind_cocos2d__SpriteBatchNode_increase_atlas_capacity_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c);
         void Cocos2dxBind_cocos2d__SpriteBatchNode_remove_child_at_index_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, int a0, bool a1);
         void Cocos2dxBind_cocos2d__SpriteBatchNode_append_child_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0);
@@ -9877,13 +9879,13 @@ namespace cor
         std::string Cocos2dxBind_cocos2d__TMXObjectGroup_get_group_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c);
         void Cocos2dxBind_cocos2d__TMXObjectGroup_set_group_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, std::string a0);
         cocos2d::Value Cocos2dxBind_cocos2d__TMXObjectGroup_get_property(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, std::string a0);
-        cocos2d::ValueMap Cocos2dxBind_cocos2d__TMXObjectGroup_get_object(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, std::string a0);
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__TMXObjectGroup_get_object(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, std::string a0);
         cocos2d::Vec2 Cocos2dxBind_cocos2d__TMXObjectGroup_get_position_offset(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c);
         void Cocos2dxBind_cocos2d__TMXObjectGroup_set_position_offset(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, cocos2d::Vec2 a0);
-        cocos2d::ValueMap Cocos2dxBind_cocos2d__TMXObjectGroup_get_properties_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c);
-        void Cocos2dxBind_cocos2d__TMXObjectGroup_set_properties(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, cocos2d::ValueMap a0);
-        MrubyRef Cocos2dxBind_cocos2d__TMXObjectGroup_get_objects_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c);
-        void Cocos2dxBind_cocos2d__TMXObjectGroup_set_objects(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, MrubyRef a0);
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__TMXObjectGroup_get_properties_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c);
+        void Cocos2dxBind_cocos2d__TMXObjectGroup_set_properties(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0);
+        std::vector<cocos2d::Value, std::allocator<cocos2d::Value> > Cocos2dxBind_cocos2d__TMXObjectGroup_get_objects_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c);
+        void Cocos2dxBind_cocos2d__TMXObjectGroup_set_objects(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, std::vector<cocos2d::Value, std::allocator<cocos2d::Value> > a0);
         void Cocos2dxBind_cocos2d__TMXObjectGroup_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c);
         void Cocos2dxBind_cocos2d__TMXObjectGroup_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__TMXObjectGroup_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c);
@@ -9917,14 +9919,14 @@ namespace cor
         void Cocos2dxBind_cocos2d__TMXLayer_set_tile_set(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cocos2d::TMXTilesetInfo * a0);
         int Cocos2dxBind_cocos2d__TMXLayer_get_layer_orientation(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c);
         void Cocos2dxBind_cocos2d__TMXLayer_set_layer_orientation(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, int a0);
-        cocos2d::ValueMap Cocos2dxBind_cocos2d__TMXLayer_get_properties_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c);
-        void Cocos2dxBind_cocos2d__TMXLayer_set_properties(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cocos2d::ValueMap a0);
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__TMXLayer_get_properties_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c);
+        void Cocos2dxBind_cocos2d__TMXLayer_set_properties(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0);
         void Cocos2dxBind_cocos2d__TMXLayer_add_child_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, int a2);
         void Cocos2dxBind_cocos2d__TMXLayer_remove_child(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, bool a1);
         std::string Cocos2dxBind_cocos2d__TMXLayer_get_description(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c);
         cocos2d::TextureAtlas* Cocos2dxBind_cocos2d__TMXLayer_get_texture_atlas_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c);
         void Cocos2dxBind_cocos2d__TMXLayer_set_texture_atlas_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cocos2d::TextureAtlas * a0);
-        int Cocos2dxBind_cocos2d__TMXLayer_get_descendants_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c);
+        MrubyRef Cocos2dxBind_cocos2d__TMXLayer_get_descendants_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c);
         void Cocos2dxBind_cocos2d__TMXLayer_increase_atlas_capacity_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c);
         void Cocos2dxBind_cocos2d__TMXLayer_remove_child_at_index_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, int a0, bool a1);
         void Cocos2dxBind_cocos2d__TMXLayer_append_child_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0);
@@ -10139,7 +10141,7 @@ namespace cor
         void Cocos2dxBind_cocos2d__TMXTiledMap_set_map_orientation(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, int a0);
         MrubyRef Cocos2dxBind_cocos2d__TMXTiledMap_get_object_groups_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c);
         void Cocos2dxBind_cocos2d__TMXTiledMap_set_object_groups(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, MrubyRef a0);
-        void Cocos2dxBind_cocos2d__TMXTiledMap_set_properties(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, cocos2d::ValueMap a0);
+        void Cocos2dxBind_cocos2d__TMXTiledMap_set_properties(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0);
         std::string Cocos2dxBind_cocos2d__TMXTiledMap_get_description(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c);
         bool Cocos2dxBind_cocos2d__TMXTiledMap_init_with_tmx_file(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, std::string a0);
         bool Cocos2dxBind_cocos2d__TMXTiledMap_init_with_xml(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, std::string a0, std::string a1);
@@ -10326,8 +10328,9 @@ namespace cor
         void Cocos2dxBind_cocos2d__TMXTiledMap_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__TMXTiledMap_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c);
         unsigned int Cocos2dxBind_cocos2d__TMXTiledMap_get_reference_count_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c);
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Mesh_create_1(int a0, int a1, int a2, cocos2d::Mesh::IndexArray a3);
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Mesh_create_2(std::string a0, cocos2d::MeshIndexData * a1, cocos2d::MeshSkin * a2);
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Mesh_create_1(std::vector<float> a0, std::vector<float> a1, std::vector<float> a2, std::vector<unsigned short, std::allocator<unsigned short> > a3);
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Mesh_create_2(std::vector<float> a0, int a1, std::vector<unsigned short, std::allocator<unsigned short> > a2, std::vector<cocos2d::MeshVertexAttrib> a3);
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Mesh_create_3(std::string a0, cocos2d::MeshIndexData * a1, cocos2d::MeshSkin * a2);
         unsigned int Cocos2dxBind_cocos2d__Mesh_get_vertex_buffer(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> c);
         bool Cocos2dxBind_cocos2d__Mesh_has_vertex_attrib(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> c, int a0);
         int Cocos2dxBind_cocos2d__Mesh_get_mesh_vertex_attrib_count(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> c);
@@ -10377,7 +10380,7 @@ namespace cor
         void Cocos2dxBind_cocos2d__Sprite3D_set_texture_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Sprite3D_get_mesh_by_index(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, int a0);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Sprite3D_get_mesh_by_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, std::string a0);
-        int Cocos2dxBind_cocos2d__Sprite3D_get_mesh_array_by_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, std::string a0);
+        MrubyRef Cocos2dxBind_cocos2d__Sprite3D_get_mesh_array_by_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, std::string a0);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Sprite3D_get_mesh(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c);
         int Cocos2dxBind_cocos2d__Sprite3D_get_mesh_count(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c);
         cocos2d::Skeleton3D* Cocos2dxBind_cocos2d__Sprite3D_get_skeleton(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c);

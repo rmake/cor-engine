@@ -51,6 +51,8 @@
 #include "cor_mruby_interface/sources/mruby_experimental.h"
 #include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
@@ -61,6 +63,66 @@ namespace cor
     namespace mruby_interface
     {
         
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_max_vec(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.max_vec(a0);
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_min_vec(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.min_vec(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_all_less(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.all_less(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_some_less(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.some_less(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_all_greater(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.all_greater(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_some_greater(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.some_greater(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_all_less_equal(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.all_less_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_some_less_equal(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.some_less_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_all_greater_equal(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.all_greater_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector2I_some_greater_equal(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            c.some_greater_equal(a0);
+        }
+
         int BasicBind_cor__type__Vector2I_sum(cor::type::Vector2I& c)
         {
 
@@ -215,78 +277,6 @@ namespace cor
         {
 
             return cor::type::Vector3F::zero();
-        }
-
-        cor::type::Vector3F BasicBind_cor__type__Vector3F_one()
-        {
-
-            return cor::type::Vector3F::one();
-        }
-
-        cor::type::Vector3F BasicBind_cor__type__Vector3F_max_vec(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            return c.max_vec(a0);
-        }
-
-        cor::type::Vector3F BasicBind_cor__type__Vector3F_min_vec(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            return c.min_vec(a0);
-        }
-
-        void BasicBind_cor__type__Vector3F_all_less(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            c.all_less(a0);
-        }
-
-        void BasicBind_cor__type__Vector3F_some_less(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            c.some_less(a0);
-        }
-
-        void BasicBind_cor__type__Vector3F_all_greater(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            c.all_greater(a0);
-        }
-
-        void BasicBind_cor__type__Vector3F_some_greater(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            c.some_greater(a0);
-        }
-
-        void BasicBind_cor__type__Vector3F_all_less_equal(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            c.all_less_equal(a0);
-        }
-
-        void BasicBind_cor__type__Vector3F_some_less_equal(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            c.some_less_equal(a0);
-        }
-
-        void BasicBind_cor__type__Vector3F_all_greater_equal(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            c.all_greater_equal(a0);
-        }
-
-        void BasicBind_cor__type__Vector3F_some_greater_equal(cor::type::Vector3F& c, cor::type::Vector3F a0)
-        {
-
-            c.some_greater_equal(a0);
-        }
-
-        float BasicBind_cor__type__Vector3F_sum(cor::type::Vector3F& c)
-        {
-
-            return c.sum();
         }
 
 

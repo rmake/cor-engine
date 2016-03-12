@@ -51,6 +51,8 @@
 #include "cor_mruby_interface/sources/mruby_experimental.h"
 #include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
@@ -61,6 +63,18 @@ namespace cor
     namespace mruby_interface
     {
         
+        void BasicBind_cor__system__CorCrypt_set_enabled(int a0)
+        {
+
+            cor::system::CorCrypt::set_enabled(a0);
+        }
+
+        int BasicBind_cor__system__CorCrypt_get_enabled()
+        {
+
+            return cor::system::CorCrypt::get_enabled();
+        }
+
         void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, unsigned int a1)
         {
 
@@ -275,66 +289,6 @@ namespace cor
         {
 
             return cor::system::Logger::get_instance();
-        }
-
-        int BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_test_2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> c)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            return tmp_c->test();
-        }
-
-        void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_accessor_set_a(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> c, int a)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            tmp_c->a = a;
-        }
-
-        int BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_accessor_get_a(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> c)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            return tmp_c->a;
-        }
-
-        int BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_toast(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> c)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            return tmp_c->toast();
-        }
-
-        int BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_test_2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> c)
-        {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            return tmp_c->test();
         }
 
 

@@ -1,4 +1,5 @@
 #undef __SSE__
+#define BOOST_VARIANT_HPP
 #include "../../cor_mruby_interface/sources/basic_bind.h"
 #include "../../cor_mruby_interface/sources/import/external_code_importer.h"
 #include "../../cor_mruby_interface/sources/mruby_array.h"

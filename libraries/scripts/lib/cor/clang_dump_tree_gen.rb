@@ -1631,7 +1631,7 @@ EOS
           end
 
           if is_cocos_value_array
-            call_method = "cor::cocos2dx_mruby_interface::CocosValue::convert_mruby_cocos_value_vec(#{call_method})"
+            call_method = "cor::cocos2dx_mruby_interface::CocosValue::convert_from_cocos_value_vec(#{call_method})"
           end
 
           if ret.match(/^std::shared_ptr/)

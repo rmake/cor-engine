@@ -27,6 +27,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/sprite_experimental.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
 #include "../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
@@ -4839,11 +4841,19 @@ namespace cor
         {
             return cocos2d::Value(a0);
         }
-        cocos2d::Value Cocos2dxBind_Value_create_8(MrubyRef a0)
+        cocos2d::Value Cocos2dxBind_Value_create_8(std::vector<cocos2d::Value, std::allocator<cocos2d::Value> > a0)
         {
-            return cocos2d::Value(cor::cocos2dx_mruby_interface::CocosValue::convert_to_cocos_value_vec(a0));
+            return cocos2d::Value(a0);
         }
-        cocos2d::Value Cocos2dxBind_Value_create_10(cocos2d::Value a0)
+        cocos2d::Value Cocos2dxBind_Value_create_10(std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0)
+        {
+            return cocos2d::Value(a0);
+        }
+        cocos2d::Value Cocos2dxBind_Value_create_12(std::unordered_map<int, cocos2d::Value, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<const int, cocos2d::Value> > > a0)
+        {
+            return cocos2d::Value(a0);
+        }
+        cocos2d::Value Cocos2dxBind_Value_create_14(cocos2d::Value a0)
         {
             return cocos2d::Value(a0);
         }

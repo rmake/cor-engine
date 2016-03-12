@@ -27,6 +27,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/sprite_experimental.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
 #include "../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
@@ -42,12 +44,6 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
-        void Cocos2dxBind_cocos2d__ui__Widget_enable_dpad_navigation_2(bool a0)
-        {
-
-            cocos2d::ui::Widget::enableDpadNavigation(a0);
-        }
-
         void Cocos2dxBind_cocos2d__ui__Widget_set_unify_size_enabled_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::Widget> c, bool a0)
         {
 

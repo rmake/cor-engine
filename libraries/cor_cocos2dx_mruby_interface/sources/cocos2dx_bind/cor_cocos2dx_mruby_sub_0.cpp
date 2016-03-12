@@ -27,6 +27,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/sprite_experimental.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
 #include "../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
@@ -1770,10 +1772,10 @@ namespace cor
             return c->getEventCode();
         }
 
-        int Cocos2dxBind_cocos2d__EventTouch_get_touches(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c)
+        MrubyRef Cocos2dxBind_cocos2d__EventTouch_get_touches(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c)
         {
 
-            return c->getTouches();
+            return cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby(c->getTouches());
         }
 
         void Cocos2dxBind_cocos2d__EventTouch_set_event_code(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c, int a0)
@@ -1782,10 +1784,10 @@ namespace cor
             c->setEventCode((cocos2d::EventTouch::EventCode)a0);
         }
 
-        void Cocos2dxBind_cocos2d__EventTouch_set_touches(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c, int a0)
+        void Cocos2dxBind_cocos2d__EventTouch_set_touches(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c, MrubyRef a0)
         {
 
-            c->setTouches(a0);
+            c->setTouches(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<cocos2d::Touch>(a0));
         }
 
         cocos2d::Event::Type Cocos2dxBind_cocos2d__EventTouch_get_type_5(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventTouch> c)
@@ -4960,19 +4962,19 @@ namespace cor
             return c.asString();
         }
 
-        MrubyRef Cocos2dxBind_cocos2d__Value_as_value_vector_2(cocos2d::Value c)
+        std::vector<cocos2d::Value, std::allocator<cocos2d::Value> > Cocos2dxBind_cocos2d__Value_as_value_vector_2(cocos2d::Value c)
         {
 
-            return cor::cocos2dx_mruby_interface::CocosValue::convert_mruby_cocos_value_vec(c.asValueVector());
+            return c.asValueVector();
         }
 
-        cocos2d::ValueMap Cocos2dxBind_cocos2d__Value_as_value_map_2(cocos2d::Value c)
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__Value_as_value_map_2(cocos2d::Value c)
         {
 
             return c.asValueMap();
         }
 
-        cocos2d::ValueMapIntKey Cocos2dxBind_cocos2d__Value_as_int_key_map_2(cocos2d::Value c)
+        std::unordered_map<int, cocos2d::Value, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<const int, cocos2d::Value> > > Cocos2dxBind_cocos2d__Value_as_int_key_map_2(cocos2d::Value c)
         {
 
             return c.asIntKeyMap();
@@ -5206,7 +5208,7 @@ namespace cor
             return c->_scriptObject;
         }
 
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> Cocos2dxBind_cocos2d__AnimationFrame_create(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> a0, float a1, cocos2d::ValueMap a2)
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> Cocos2dxBind_cocos2d__AnimationFrame_create(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> a0, float a1, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a2)
         {
 
             return cocos2d::AnimationFrame::create(a0.get(), a1, a2);
@@ -5236,13 +5238,13 @@ namespace cor
             c->setDelayUnits(a0);
         }
 
-        cocos2d::ValueMap Cocos2dxBind_cocos2d__AnimationFrame_get_user_info_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c)
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__AnimationFrame_get_user_info_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c)
         {
 
             return c->getUserInfo();
         }
 
-        void Cocos2dxBind_cocos2d__AnimationFrame_set_user_info(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c, cocos2d::ValueMap a0)
+        void Cocos2dxBind_cocos2d__AnimationFrame_set_user_info(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0)
         {
 
             c->setUserInfo(a0);
@@ -5254,7 +5256,7 @@ namespace cor
             return c->clone();
         }
 
-        bool Cocos2dxBind_cocos2d__AnimationFrame_init_with_sprite_frame(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> a0, float a1, cocos2d::ValueMap a2)
+        bool Cocos2dxBind_cocos2d__AnimationFrame_init_with_sprite_frame(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> a0, float a1, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a2)
         {
 
             return c->initWithSpriteFrame(a0.get(), a1, a2);
@@ -5811,6 +5813,8 @@ namespace cor
             binder.bind_static_method("Cocos2d", "Value", "create_7", Cocos2dxBind_Value_create_7);
             binder.bind_static_method("Cocos2d", "Value", "create_8", Cocos2dxBind_Value_create_8);
             binder.bind_static_method("Cocos2d", "Value", "create_10", Cocos2dxBind_Value_create_10);
+            binder.bind_static_method("Cocos2d", "Value", "create_12", Cocos2dxBind_Value_create_12);
+            binder.bind_static_method("Cocos2d", "Value", "create_14", Cocos2dxBind_Value_create_14);
             binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteFrame> >("Cocos2d", "SpriteFrame");
             binder.bind_custom_method("Cocos2d", "SpriteFrame", "valid?", Cocos2dxBind_SpriteFrame_valid_question);
             binder.bind_class<cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationFrame> >("Cocos2d", "AnimationFrame");

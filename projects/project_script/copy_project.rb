@@ -581,7 +581,7 @@ unless resource_only
       when "cpp"
         arg = ""
       when "mruby"
-        arg = "mruby_interface::MrubyState& mrb"
+        arg = "mrb"
       end
       "            external_initializer::#{v["entry"]}(#{arg});\n" }.join
 

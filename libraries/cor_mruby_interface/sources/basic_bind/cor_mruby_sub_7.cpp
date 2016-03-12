@@ -51,6 +51,8 @@
 #include "cor_mruby_interface/sources/mruby_experimental.h"
 #include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
@@ -61,6 +63,90 @@ namespace cor
     namespace mruby_interface
     {
         
+        int BasicBind_cor__type__Vector3I_distance(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            return c.distance(a0);
+        }
+
+        cor::type::Vector3I BasicBind_cor__type__Vector3I_zero()
+        {
+
+            return cor::type::Vector3I::zero();
+        }
+
+        cor::type::Vector3I BasicBind_cor__type__Vector3I_one()
+        {
+
+            return cor::type::Vector3I::one();
+        }
+
+        cor::type::Vector3I BasicBind_cor__type__Vector3I_max_vec(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            return c.max_vec(a0);
+        }
+
+        cor::type::Vector3I BasicBind_cor__type__Vector3I_min_vec(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            return c.min_vec(a0);
+        }
+
+        void BasicBind_cor__type__Vector3I_all_less(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            c.all_less(a0);
+        }
+
+        void BasicBind_cor__type__Vector3I_some_less(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            c.some_less(a0);
+        }
+
+        void BasicBind_cor__type__Vector3I_all_greater(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            c.all_greater(a0);
+        }
+
+        void BasicBind_cor__type__Vector3I_some_greater(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            c.some_greater(a0);
+        }
+
+        void BasicBind_cor__type__Vector3I_all_less_equal(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            c.all_less_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector3I_some_less_equal(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            c.some_less_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector3I_all_greater_equal(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            c.all_greater_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector3I_some_greater_equal(cor::type::Vector3I& c, cor::type::Vector3I a0)
+        {
+
+            c.some_greater_equal(a0);
+        }
+
+        int BasicBind_cor__type__Vector3I_sum(cor::type::Vector3I& c)
+        {
+
+            return c.sum();
+        }
+
         void BasicBind_cor__type__Vector3I_accessor_set_x(cor::type::Vector3I& c, int a)
         {
 
@@ -197,102 +283,6 @@ namespace cor
         {
 
             return c.xyz();
-        }
-
-        void BasicBind_cor__type__Vector4F_normalize(cor::type::Vector4F& c)
-        {
-
-            c.normalize();
-        }
-
-        float BasicBind_cor__type__Vector4F_dot(cor::type::Vector4F& c, cor::type::Vector4F a0)
-        {
-
-            return c.dot(a0);
-        }
-
-        float BasicBind_cor__type__Vector4F_distance(cor::type::Vector4F& c, cor::type::Vector4F a0)
-        {
-
-            return c.distance(a0);
-        }
-
-        cor::type::Vector4F BasicBind_cor__type__Vector4F_zero()
-        {
-
-            return cor::type::Vector4F::zero();
-        }
-
-        cor::type::Vector4F BasicBind_cor__type__Vector4F_one()
-        {
-
-            return cor::type::Vector4F::one();
-        }
-
-        cor::type::Vector4F BasicBind_cor__type__Vector4F_max_vec(cor::type::Vector4F& c, cor::type::Vector4F a0)
-        {
-
-            return c.max_vec(a0);
-        }
-
-        cor::type::Vector4F BasicBind_cor__type__Vector4F_min_vec(cor::type::Vector4F& c, cor::type::Vector4F a0)
-        {
-
-            return c.min_vec(a0);
-        }
-
-        void BasicBind_cor__type__Vector4F_all_less(cor::type::Vector4F& c, cor::type::Vector4F a0)
-        {
-
-            c.all_less(a0);
-        }
-
-        void BasicBind_cor__type__Vector4F_some_less(cor::type::Vector4F& c, cor::type::Vector4F a0)
-        {
-
-            c.some_less(a0);
-        }
-
-        void BasicBind_cor__type__Vector4F_all_greater(cor::type::Vector4F& c, cor::type::Vector4F a0)
-        {
-
-            c.all_greater(a0);
-        }
-
-        void BasicBind_cor__type__Vector4F_some_greater(cor::type::Vector4F& c, cor::type::Vector4F a0)
-        {
-
-            c.some_greater(a0);
-        }
-
-        void BasicBind_cor__type__Vector4F_all_less_equal(cor::type::Vector4F& c, cor::type::Vector4F a0)
-        {
-
-            c.all_less_equal(a0);
-        }
-
-        void BasicBind_cor__type__Vector4F_some_less_equal(cor::type::Vector4F& c, cor::type::Vector4F a0)
-        {
-
-            c.some_less_equal(a0);
-        }
-
-        void BasicBind_cor__type__Vector4F_all_greater_equal(cor::type::Vector4F& c, cor::type::Vector4F a0)
-        {
-
-            c.all_greater_equal(a0);
-        }
-
-        void BasicBind_cor__type__Vector4F_some_greater_equal(cor::type::Vector4F& c, cor::type::Vector4F a0)
-        {
-
-            c.some_greater_equal(a0);
-        }
-
-        float BasicBind_cor__type__Vector4F_sum(cor::type::Vector4F& c)
-        {
-
-            return c.sum();
         }
 
 

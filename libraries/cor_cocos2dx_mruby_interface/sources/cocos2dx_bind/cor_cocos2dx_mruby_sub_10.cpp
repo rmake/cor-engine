@@ -27,6 +27,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/sprite_experimental.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
 #include "../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
@@ -42,18 +44,6 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
-        float Cocos2dxBind_cocos2d__BaseLight_get_rotation_skew_y_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
-        {
-
-            return c->getRotationSkewY();
-        }
-
-        void Cocos2dxBind_cocos2d__BaseLight_set_order_of_arrival_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, int a0)
-        {
-
-            c->setOrderOfArrival(a0);
-        }
-
         int Cocos2dxBind_cocos2d__BaseLight_get_order_of_arrival_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
         {
 
@@ -5090,6 +5080,18 @@ namespace cor
         {
 
             c->setMass(a0);
+        }
+
+        float Cocos2dxBind_cocos2d__PhysicsShapeEdgeBox_get_density_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeEdgeBox> c)
+        {
+
+            return c->getDensity();
+        }
+
+        void Cocos2dxBind_cocos2d__PhysicsShapeEdgeBox_set_density_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeEdgeBox> c, float a0)
+        {
+
+            c->setDensity(a0);
         }
 
 

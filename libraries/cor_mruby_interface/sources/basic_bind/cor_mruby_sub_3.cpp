@@ -51,6 +51,8 @@
 #include "cor_mruby_interface/sources/mruby_experimental.h"
 #include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
@@ -61,6 +63,78 @@ namespace cor
     namespace mruby_interface
     {
         
+        void BasicBind_cor__RCharArray_max_size(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->max_size();
+        }
+
+        void BasicBind_cor__RCharArray_empty(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->empty();
+        }
+
+        std::allocator<char> BasicBind_cor__RCharArray_get_allocator(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            return tmp_c->get_allocator();
+        }
+
+        void BasicBind_cor__RCharArray_data_1(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->data();
+        }
+
+        void BasicBind_cor__RCharArray_data_2(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->data();
+        }
+
+        void BasicBind_cor__RCharArray_front_1(std::weak_ptr<cor::RCharArray> c)
+        {
+            auto tmp_c = c.lock();
+            if(!tmp_c)
+            {
+                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
+                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
+            }
+
+            tmp_c->front();
+        }
+
         void BasicBind_cor__RCharArray_front_2(std::weak_ptr<cor::RCharArray> c)
         {
             auto tmp_c = c.lock();
@@ -233,54 +307,6 @@ namespace cor
         {
 
             return cor::type::Vector2F::one();
-        }
-
-        cor::type::Vector2F BasicBind_cor__type__Vector2F_max_vec(cor::type::Vector2F& c, cor::type::Vector2F a0)
-        {
-
-            return c.max_vec(a0);
-        }
-
-        cor::type::Vector2F BasicBind_cor__type__Vector2F_min_vec(cor::type::Vector2F& c, cor::type::Vector2F a0)
-        {
-
-            return c.min_vec(a0);
-        }
-
-        void BasicBind_cor__type__Vector2F_all_less(cor::type::Vector2F& c, cor::type::Vector2F a0)
-        {
-
-            c.all_less(a0);
-        }
-
-        void BasicBind_cor__type__Vector2F_some_less(cor::type::Vector2F& c, cor::type::Vector2F a0)
-        {
-
-            c.some_less(a0);
-        }
-
-        void BasicBind_cor__type__Vector2F_all_greater(cor::type::Vector2F& c, cor::type::Vector2F a0)
-        {
-
-            c.all_greater(a0);
-        }
-
-        void BasicBind_cor__type__Vector2F_some_greater(cor::type::Vector2F& c, cor::type::Vector2F a0)
-        {
-
-            c.some_greater(a0);
-        }
-
-        void BasicBind_cor__type__Vector2F_all_less_equal(cor::type::Vector2F& c, cor::type::Vector2F a0)
-        {
-
-            c.all_less_equal(a0);
-        }
-
-        void BasicBind_cor__type__Vector2F_some_less_equal(cor::type::Vector2F& c, cor::type::Vector2F a0)
-        {
-
-            c.some_less_equal(a0);
         }
 
 

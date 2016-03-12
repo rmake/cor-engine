@@ -51,6 +51,8 @@
 #include "cor_mruby_interface/sources/mruby_experimental.h"
 #include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
@@ -61,6 +63,54 @@ namespace cor
     namespace mruby_interface
     {
         
+        cor::type::Vector2F BasicBind_cor__type__Vector2F_max_vec(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.max_vec(a0);
+        }
+
+        cor::type::Vector2F BasicBind_cor__type__Vector2F_min_vec(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            return c.min_vec(a0);
+        }
+
+        void BasicBind_cor__type__Vector2F_all_less(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            c.all_less(a0);
+        }
+
+        void BasicBind_cor__type__Vector2F_some_less(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            c.some_less(a0);
+        }
+
+        void BasicBind_cor__type__Vector2F_all_greater(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            c.all_greater(a0);
+        }
+
+        void BasicBind_cor__type__Vector2F_some_greater(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            c.some_greater(a0);
+        }
+
+        void BasicBind_cor__type__Vector2F_all_less_equal(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            c.all_less_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector2F_some_less_equal(cor::type::Vector2F& c, cor::type::Vector2F a0)
+        {
+
+            c.some_less_equal(a0);
+        }
+
         void BasicBind_cor__type__Vector2F_all_greater_equal(cor::type::Vector2F& c, cor::type::Vector2F a0)
         {
 
@@ -227,66 +277,6 @@ namespace cor
         {
 
             return cor::type::Vector2I::one();
-        }
-
-        cor::type::Vector2I BasicBind_cor__type__Vector2I_max_vec(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            return c.max_vec(a0);
-        }
-
-        cor::type::Vector2I BasicBind_cor__type__Vector2I_min_vec(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            return c.min_vec(a0);
-        }
-
-        void BasicBind_cor__type__Vector2I_all_less(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            c.all_less(a0);
-        }
-
-        void BasicBind_cor__type__Vector2I_some_less(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            c.some_less(a0);
-        }
-
-        void BasicBind_cor__type__Vector2I_all_greater(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            c.all_greater(a0);
-        }
-
-        void BasicBind_cor__type__Vector2I_some_greater(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            c.some_greater(a0);
-        }
-
-        void BasicBind_cor__type__Vector2I_all_less_equal(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            c.all_less_equal(a0);
-        }
-
-        void BasicBind_cor__type__Vector2I_some_less_equal(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            c.some_less_equal(a0);
-        }
-
-        void BasicBind_cor__type__Vector2I_all_greater_equal(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            c.all_greater_equal(a0);
-        }
-
-        void BasicBind_cor__type__Vector2I_some_greater_equal(cor::type::Vector2I& c, cor::type::Vector2I a0)
-        {
-
-            c.some_greater_equal(a0);
         }
 
 

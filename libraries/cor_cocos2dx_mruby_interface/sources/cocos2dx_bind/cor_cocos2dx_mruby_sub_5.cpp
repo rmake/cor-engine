@@ -27,6 +27,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/sprite_experimental.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
 #include "../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
@@ -42,18 +44,6 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
-        void Cocos2dxBind_cocos2d__EaseExponentialIn_stop_38(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseExponentialIn> c)
-        {
-
-            c->stop();
-        }
-
-        bool Cocos2dxBind_cocos2d__EaseExponentialIn_init_with_action_30(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseExponentialIn> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionInterval> a0)
-        {
-
-            return c->initWithAction(a0.get());
-        }
-
         float Cocos2dxBind_cocos2d__EaseExponentialIn_get_elapsed_90(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseExponentialIn> c)
         {
 
@@ -4770,6 +4760,18 @@ namespace cor
             return cocos2d::EaseCircleActionIn::create(a0.get());
         }
 
+        void Cocos2dxBind_cocos2d__EaseCircleActionIn_update(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> c, float a0)
+        {
+
+            c->update(a0);
+        }
+
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> Cocos2dxBind_cocos2d__EaseCircleActionIn_clone(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> c)
+        {
+
+            return c->clone();
+        }
+
 
 
         
@@ -6106,7 +6108,6 @@ namespace cor
             binder.bind_static_method("Cocos2d", "Animation3D", "create", Cocos2dxBind_cocos2d__Animation3D_create);
             binder.bind_custom_method("Cocos2d", "Animation3D", "get_duration", Cocos2dxBind_cocos2d__Animation3D_get_duration);
             binder.bind_custom_method("Cocos2d", "Animation3D", "get_bone_curve_by_name", Cocos2dxBind_cocos2d__Animation3D_get_bone_curve_by_name);
-            binder.bind_custom_method("Cocos2d", "Animation3D", "get_bone_curves", Cocos2dxBind_cocos2d__Animation3D_get_bone_curves);
             binder.bind_custom_method("Cocos2d", "Animation3D", "init", Cocos2dxBind_cocos2d__Animation3D_init);
             binder.bind_custom_method("Cocos2d", "Animation3D", "init_with_file", Cocos2dxBind_cocos2d__Animation3D_init_with_file);
             binder.bind_custom_method("Cocos2d", "Animation3D", "retain_176", Cocos2dxBind_cocos2d__Animation3D_retain_176);

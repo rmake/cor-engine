@@ -51,6 +51,8 @@
 #include "cor_mruby_interface/sources/mruby_experimental.h"
 #include "cor_mruby_interface/sources/mruby_ref_container.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "sub_binding_generated.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
@@ -61,6 +63,114 @@ namespace cor
     namespace mruby_interface
     {
         
+        int BasicBind_cor__type__Vector4I_get_magnitude(cor::type::Vector4I& c)
+        {
+
+            return c.get_magnitude();
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector4I_xy(cor::type::Vector4I& c)
+        {
+
+            return c.xy();
+        }
+
+        cor::type::Vector3I BasicBind_cor__type__Vector4I_xyz(cor::type::Vector4I& c)
+        {
+
+            return c.xyz();
+        }
+
+        void BasicBind_cor__type__Vector4I_normalize(cor::type::Vector4I& c)
+        {
+
+            c.normalize();
+        }
+
+        int BasicBind_cor__type__Vector4I_dot(cor::type::Vector4I& c, cor::type::Vector4I a0)
+        {
+
+            return c.dot(a0);
+        }
+
+        int BasicBind_cor__type__Vector4I_distance(cor::type::Vector4I& c, cor::type::Vector4I a0)
+        {
+
+            return c.distance(a0);
+        }
+
+        cor::type::Vector4I BasicBind_cor__type__Vector4I_zero()
+        {
+
+            return cor::type::Vector4I::zero();
+        }
+
+        cor::type::Vector4I BasicBind_cor__type__Vector4I_one()
+        {
+
+            return cor::type::Vector4I::one();
+        }
+
+        cor::type::Vector4I BasicBind_cor__type__Vector4I_max_vec(cor::type::Vector4I& c, cor::type::Vector4I a0)
+        {
+
+            return c.max_vec(a0);
+        }
+
+        cor::type::Vector4I BasicBind_cor__type__Vector4I_min_vec(cor::type::Vector4I& c, cor::type::Vector4I a0)
+        {
+
+            return c.min_vec(a0);
+        }
+
+        void BasicBind_cor__type__Vector4I_all_less(cor::type::Vector4I& c, cor::type::Vector4I a0)
+        {
+
+            c.all_less(a0);
+        }
+
+        void BasicBind_cor__type__Vector4I_some_less(cor::type::Vector4I& c, cor::type::Vector4I a0)
+        {
+
+            c.some_less(a0);
+        }
+
+        void BasicBind_cor__type__Vector4I_all_greater(cor::type::Vector4I& c, cor::type::Vector4I a0)
+        {
+
+            c.all_greater(a0);
+        }
+
+        void BasicBind_cor__type__Vector4I_some_greater(cor::type::Vector4I& c, cor::type::Vector4I a0)
+        {
+
+            c.some_greater(a0);
+        }
+
+        void BasicBind_cor__type__Vector4I_all_less_equal(cor::type::Vector4I& c, cor::type::Vector4I a0)
+        {
+
+            c.all_less_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector4I_some_less_equal(cor::type::Vector4I& c, cor::type::Vector4I a0)
+        {
+
+            c.some_less_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector4I_all_greater_equal(cor::type::Vector4I& c, cor::type::Vector4I a0)
+        {
+
+            c.all_greater_equal(a0);
+        }
+
+        void BasicBind_cor__type__Vector4I_some_greater_equal(cor::type::Vector4I& c, cor::type::Vector4I a0)
+        {
+
+            c.some_greater_equal(a0);
+        }
+
         int BasicBind_cor__type__Vector4I_sum(cor::type::Vector4I& c)
         {
 
@@ -181,126 +291,6 @@ namespace cor
             return c.get_x_vec();
         }
 
-        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_x_vec_2(cor::type::Matrix4x4F& c)
-        {
-
-            return c.get_x_vec();
-        }
-
-        void BasicBind_cor__type__Matrix4x4F_set_x_vec(cor::type::Matrix4x4F& c, cor::type::Vector3F a0)
-        {
-
-            c.set_x_vec(a0);
-        }
-
-        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_y_vec_1(cor::type::Matrix4x4F& c)
-        {
-
-            return c.get_y_vec();
-        }
-
-        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_y_vec_2(cor::type::Matrix4x4F& c)
-        {
-
-            return c.get_y_vec();
-        }
-
-        void BasicBind_cor__type__Matrix4x4F_set_y_vec(cor::type::Matrix4x4F& c, cor::type::Vector3F a0)
-        {
-
-            c.set_y_vec(a0);
-        }
-
-        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_z_vec_1(cor::type::Matrix4x4F& c)
-        {
-
-            return c.get_z_vec();
-        }
-
-        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_z_vec_2(cor::type::Matrix4x4F& c)
-        {
-
-            return c.get_z_vec();
-        }
-
-        void BasicBind_cor__type__Matrix4x4F_set_z_vec(cor::type::Matrix4x4F& c, cor::type::Vector3F a0)
-        {
-
-            c.set_z_vec(a0);
-        }
-
-        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_o_vec_1(cor::type::Matrix4x4F& c)
-        {
-
-            return c.get_o_vec();
-        }
-
-        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_o_vec_2(cor::type::Matrix4x4F& c)
-        {
-
-            return c.get_o_vec();
-        }
-
-        void BasicBind_cor__type__Matrix4x4F_set_o_vec(cor::type::Matrix4x4F& c, cor::type::Vector3F a0)
-        {
-
-            c.set_o_vec(a0);
-        }
-
-        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_rot_x(float a0)
-        {
-
-            return cor::type::Matrix4x4F::rot_x(a0);
-        }
-
-        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_rot_y(float a0)
-        {
-
-            return cor::type::Matrix4x4F::rot_y(a0);
-        }
-
-        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_rot_z(float a0)
-        {
-
-            return cor::type::Matrix4x4F::rot_z(a0);
-        }
-
-        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_translate(float a0, float a1, float a2)
-        {
-
-            return cor::type::Matrix4x4F::translate(a0, a1, a2);
-        }
-
-        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_scale(float a0, float a1, float a2)
-        {
-
-            return cor::type::Matrix4x4F::scale(a0, a1, a2);
-        }
-
-        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_ortho_matrix(float a0, float a1, float a2, float a3, float a4, float a5)
-        {
-
-            return cor::type::Matrix4x4F::ortho_matrix(a0, a1, a2, a3, a4, a5);
-        }
-
-        cor::type::Vector2F BasicBind_cor__type__Matrix4x4F_transform_1(cor::type::Matrix4x4F a0, cor::type::Vector2F a1)
-        {
-
-            return cor::type::Matrix4x4F::transform(a0, a1);
-        }
-
-        cor::type::Vector2F BasicBind_cor__type__Matrix4x4F_transform_2(cor::type::Matrix4x4F& c, cor::type::Vector2F a0)
-        {
-
-            return c.transform(a0);
-        }
-
-        cor::type::Vector2F BasicBind_cor__type__Matrix4x4F_transform_3(cor::type::Matrix4x4F& c, cor::type::Vector2F a0)
-        {
-
-            return c.transform(a0);
-        }
-
 
 
         
@@ -320,7 +310,7 @@ namespace cor
         {
             return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(std::make_shared<cor::mruby_interface::MrubyExperimentalTemplateStructRString>());
         }
-        cor::data_structure::CostGridSpaceItem BasicBind_CostGridSpaceItem_create()
+        cor::data_structure::CostGridSpaceItem BasicBind_CostGridSpaceItem_create_0()
         {
             return cor::data_structure::CostGridSpaceItem();
         }

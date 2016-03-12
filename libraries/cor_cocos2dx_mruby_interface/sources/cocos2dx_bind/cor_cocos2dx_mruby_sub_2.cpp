@@ -27,6 +27,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/sprite_experimental.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
 #include "../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
@@ -4742,22 +4744,16 @@ namespace cor
             return c->getReferenceCount();
         }
 
-        void Cocos2dxBind_cocos2d__FontAtlas_add_letter_definition(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, int a0, cocos2d::FontLetterDefinition a1)
+        void Cocos2dxBind_cocos2d__FontAtlas_add_letter_definition(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, char16_t a0, cocos2d::FontLetterDefinition a1)
         {
 
             c->addLetterDefinition(a0, a1);
         }
 
-        bool Cocos2dxBind_cocos2d__FontAtlas_prepare_letter_definitions(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, int a0)
+        bool Cocos2dxBind_cocos2d__FontAtlas_prepare_letter_definitions(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, std::basic_string<char16_t, std::char_traits<char16_t>, std::allocator<char16_t> > a0)
         {
 
             return c->prepareLetterDefinitions(a0);
-        }
-
-        int Cocos2dxBind_cocos2d__FontAtlas_get_textures(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c)
-        {
-
-            return c->getTextures();
         }
 
         void Cocos2dxBind_cocos2d__FontAtlas_add_texture(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, int a1)
@@ -5778,6 +5774,12 @@ namespace cor
         {
 
             return const_cast<const cocos2d::Ref* >(c->getUserObject());
+        }
+
+        void Cocos2dxBind_cocos2d__Label_set_user_object_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> a0)
+        {
+
+            c->setUserObject(a0.get());
         }
 
 
