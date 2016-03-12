@@ -1,7 +1,7 @@
 
 require 'fileutils'
 
-module COR
+module Cor
 
   module Utility
     def self.file_enum path, &p
@@ -130,4 +130,3 @@ module COR
 
 end
 
-Cor = COR

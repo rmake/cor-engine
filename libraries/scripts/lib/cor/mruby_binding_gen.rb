@@ -2,7 +2,7 @@
 require 'cor/utility'
 require 'pathname'
 
-module COR
+module Cor
 
   module MrubyBindingGen
 

@@ -1,25 +1,25 @@
 
 require "cor/utility_impl"
 
-module COR
+module Cor
 
   module ClangDumpTree
-  
+
     class TreeData
-    
+
       attr_accessor :tree
       attr_accessor :classes
       attr_accessor :class_templates
       attr_accessor :typedefs
       attr_accessor :methods
       attr_accessor :enum_constants
-      
+
       attr_accessor :typedef_table
-      
+
       def print_tree
         ClangDumpTree::print_tree self.tree
       end
-      
+
       def print_classes
         str = []
         self.classes.each do |c|
@@ -34,7 +34,7 @@ module COR
         end
         str.join('')
       end
-      
+
       def print_typedefs
         str = []
         self.typedefs.each do |t|
@@ -47,7 +47,7 @@ module COR
         end
         str.join('')
       end
-      
+
       def print_methods
         str = []
         self.methods.each do |m|
@@ -67,10 +67,10 @@ module COR
         end
         str.join('')
       end
-      
+
       def print_class_templates
         str = []
-        
+
         self.class_templates.each do |t|
           s = ""
           s += "[\n"
@@ -84,10 +84,10 @@ module COR
         end
         str.join('')
       end
-      
+
       def print_enum_constants
         str = []
-        
+
         self.enum_constants.each do |t|
           s = ""
           s += "[\n"
@@ -99,7 +99,7 @@ module COR
         end
         str.join('')
       end
-      
+
       def gen_typedef_table
         typedef_table = {}
         self.typedefs.each do |t|
@@ -107,9 +107,9 @@ module COR
         end
         self.typedef_table = typedef_table
       end
-    
+
     end
-  
+
     def self.traverse_tree(tree, depth = 0, &block)
       if yield tree, depth
         tree[:children].each do |c|
@@ -117,7 +117,7 @@ module COR
         end
       end
     end
-  
+
     def self.print_tree(tree)
       str = []
       traverse_tree tree do |v, depth|
@@ -126,27 +126,27 @@ module COR
       end
       str.join ""
     end
-    
+
     def self.construct_tree(a, tree = [], index = 0, depth = 0)
-      
+
       len = a.length
-      
+
       t = nil
-      
+
       while index < len
-        
+
         line = a[index]
         line = line.gsub(/std\:\:__1/, "std")
         a[index] = line
-        
+
         d = line.scan(/^ */)[0].length / 2
-        
+
         if d == depth
           t = {
             :line => line[(d * 2)..line.length],
             :children => [],
           }
-        
+
           tree << t
           index += 1
         else
@@ -154,22 +154,22 @@ module COR
             ch, index = self.construct_tree a, [], index, depth + 1
             index += 1
             t[:children] += ch
-            
+
             ch.each do |c|
               c[:parent] = t
             end
-            
+
           else
             index -= 1
             break
           end
         end
-        
+
       end
-      
+
       [tree, index]
     end
-    
+
 
     def self.parse_token(line)
       line = line.gsub(/C\:\\Program Files \(x86\)\\Microsoft Visual Studio /, "VCPATH")
@@ -181,7 +181,7 @@ module COR
       line = line.gsub(/col\:\d* implicit (used )?/, "").gsub(/line\:\d*:\d* implicit (used )?/, "")
       line = line.gsub(/col\:\d* referenced /, "").gsub(/line\:\d*:\d* referenced /, "")
       line = line.gsub(/col\:\d* /, "").gsub(/line\:\d*:\d* /, "")
-      
+
       a = line.scan(/(('[^']*':'[^']*')|('[^']*')|(<[^<^>]*([^<^>]*<[^<^>]*>[^<^>]*)*[^<^>]*>)|(\S+))/)
       a.map{|v| v[0]}
     end
@@ -206,7 +206,7 @@ module COR
       end
       nm.gsub(/std\:\:inline/, "std")
     end
-    
+
     def self.get_current_template(t)
       t = t[:parent]
       while t
@@ -224,15 +224,15 @@ module COR
 
     def self.parse_separated(v)
       spl = v.split "':'"
-      
-      
+
+
       if spl.first == "\'va_list"
         return {
           :val => "delete type",
           :is_enum => spl.first.match(/^enum /) || spl.first.match(/^const enum /),
         }
       end
-      
+
       spl = spl.last.gsub("'", '')
       sp = spl.gsub(/(class )|(^enum )|(struct )/, '').gsub(/^const enum /, "const ")
       {
@@ -258,7 +258,7 @@ module COR
         :is_const => vl.match(/^const /),
       }
     end
-  
+
     def self.parse_tree(str)
 
       str = str.gsub(/(\|)|(\`)|(\-)/, ' ')
@@ -267,14 +267,14 @@ module COR
       a = str.scan /.*?\n/m
 
       #
-      
+
 
       tree, index = construct_tree(a)
       tree = tree[0]
 
       #
       str = print_tree tree
-      
+
 
       #
       enum_class_mode = false
@@ -298,19 +298,19 @@ module COR
           public_start = true
           class_name = mta[4]
         end
-        
+
         if a[0] == "NamespaceDecl"
-          
+
         elsif a[0] == "public"
           if t[:parent][:class_name]
             t[:parent][:super_classes] << self.parse_separated(a[1])
           end
-          
+
         elsif a[0] == "CXXRecordDecl" && match #&& (class_name == 'Utilities' || class_name == 'Child' || class_name == 'RootClass')
           class_name = get_name_layer(t) + class_name
           t[:class_name] = class_name
           t[:public_start] = public_start
-          t[:super_classes] = [] 
+          t[:super_classes] = []
           t[:fields] = []
           selected << t
           classes << class_name
@@ -318,20 +318,20 @@ module COR
           tp = {}
           tp[:typedef_name] = get_name_layer(t) + a[3]
           tp[:source] = self.parse_separated(a[4])
-          
+
           typedefs << tp
-          
+
         elsif a[0] == "ClassTemplateDecl"
           t[:template_name] = get_name_layer(t) + a.last
           t[:template_args] = []
           t[:public_start] = public_start
-          t[:super_classes] = [] 
+          t[:super_classes] = []
           t[:fields] = []
           t[:typedefs] = []
           class_templates << t
-          
+
         elsif a[0] == "TemplateTypeParmDecl"
-          
+
           tmpl = self.get_current_template t
           if tmpl && tmpl
             if a.last[-1] != "'"
@@ -360,12 +360,12 @@ module COR
           t[:is_class] = enum_class_mode
           enum_constants << t
         end
-        
+
         true
       end
 
       #
-      a = selected.map{|v| print_tree v}  
+      a = selected.map{|v| print_tree v}
 
       #
 
@@ -381,7 +381,7 @@ module COR
           elsif a[0] == 'CXXMethodDecl'
             #next unless pbl
             method_name = a[3]
-            
+
             c[:method_name] = method_name
             args = []
             method_ret = self.parse_method_return a[4]
@@ -450,18 +450,18 @@ module COR
           end
         end
       end
-      
+
       class_templates.each do |t|
-        
+
         pbl = t[:public_start]
         t[:children].each do |c|
           a = parse_token c[:line]
-          
+
           if a[0] == 'CXXRecordDecl'
-          
+
             c[:children].each do |c|
               a = parse_token c[:line]
-              
+
               if a[0] == 'AccessSpecDecl'
                 pbl = a.last == 'public'
               elsif a[0] == 'CXXMethodDecl'
@@ -523,7 +523,7 @@ module COR
                   end
                 end
               elsif a[0] == 'FieldDecl'
-              
+
                 next unless pbl
                 next if a.length <= 4
                 t[:fields] << {
@@ -531,36 +531,36 @@ module COR
                   :field_type => self.parse_separated(a[4]),
                 }
               elsif a[0] == "TypedefDecl"
-                
+
                 tp = {}
                 tp[:typedef_name] = a[3]
                 tp[:source] = self.parse_separated(a[4])
-                
+
                 t[:typedefs] << tp
-              
+
               end
-              
+
             end
           end
-          
+
         end
       end
 
       td = TreeData.new
-      
+
       td.tree = tree
       td.classes = selected
       td.typedefs = typedefs
       td.methods = methods
       td.class_templates = class_templates
       td.enum_constants = enum_constants
-      
+
       td.gen_typedef_table
-      
+
       td
     end
-    
-  
+
+
   end
 
 end

@@ -1,6 +1,6 @@
 require "cor/clang_dump_tree_parse"
 
-module COR
+module Cor
 
   module ClangDumpTree
 
