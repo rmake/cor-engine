@@ -44,6 +44,12 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
+        const void* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_user_data_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return const_cast<const void* >(c->getUserData());
+        }
+
         void Cocos2dxBind_cocos2d__ParticleSystemQuad_set_user_data_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c, void * a0)
         {
 
@@ -218,7 +224,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__ParticleSystemQuad_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        ssize_t Cocos2dxBind_cocos2d__ParticleSystemQuad_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -1210,7 +1216,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__ProtectedNode_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        ssize_t Cocos2dxBind_cocos2d__ProtectedNode_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
         {
 
             return c->getChildrenCount();
@@ -1480,7 +1486,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__ProtectedNode_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
+        ssize_t Cocos2dxBind_cocos2d__ProtectedNode_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ProtectedNode> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -2576,7 +2582,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__RenderTexture_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        ssize_t Cocos2dxBind_cocos2d__RenderTexture_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
         {
 
             return c->getChildrenCount();
@@ -2864,7 +2870,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__RenderTexture_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
+        ssize_t Cocos2dxBind_cocos2d__RenderTexture_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::RenderTexture> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -4000,7 +4006,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__Camera_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        ssize_t Cocos2dxBind_cocos2d__Camera_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
         {
 
             return c->getChildrenCount();
@@ -4288,7 +4294,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__Camera_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
+        ssize_t Cocos2dxBind_cocos2d__Camera_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -5140,12 +5146,6 @@ namespace cor
         {
 
             return c->getRotationSkewY();
-        }
-
-        void Cocos2dxBind_cocos2d__BaseLight_set_order_of_arrival_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, int a0)
-        {
-
-            c->setOrderOfArrival(a0);
         }
 
 

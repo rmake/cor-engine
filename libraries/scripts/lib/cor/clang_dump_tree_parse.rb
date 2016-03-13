@@ -180,6 +180,9 @@ module Cor
       line = line.gsub(/ inline noexcept.unevaluated 0x(\w+)/, "")
       line = line.gsub(/col\:\d* used invalid /, "").gsub(/line\:\d*:\d* used invalid /, "")
       line = line.gsub(/col\:\d* used /, "").gsub(/line\:\d*:\d* used /, "")
+      #line = line.gsub(/((line\:\d*:\d*)|(col\:\d*)) invalid (.*?) 'int'/){|v|
+      #  v.gsub(/'int'/, "#{self.get_name_layer(t)}#{$4}")
+      #}
       line = line.gsub(/((line\:\d*:\d*)|(col\:\d*)) referenced invalid (.*?) 'int'/){|v|
         v.gsub(/'int'/, "#{self.get_name_layer(t)}#{$4}")
       }

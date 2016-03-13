@@ -153,7 +153,7 @@ namespace cor
             return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::mruby_interface::MrubyExperimentalBindTestClass::create());
         }
 
-        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_2(std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0)
+        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_2(std::string a0)
         {
 
             return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::mruby_interface::MrubyExperimentalBindTestClass::create(a0));

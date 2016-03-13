@@ -117,6 +117,8 @@ module Cor
       a = []
       lib_list.each do |p|
         a += Utility.file_list "../#{p}/sources" do |path|
+          path.match(/\.h/) && !path.match(/local_conf\.h/)
+
           [".h"].index File.extname(path)
         end
       end

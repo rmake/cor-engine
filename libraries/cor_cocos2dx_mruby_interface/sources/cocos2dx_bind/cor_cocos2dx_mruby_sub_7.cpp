@@ -44,6 +44,12 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
+        void Cocos2dxBind_cocos2d__Shaky3D_set_vertex_11(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Shaky3D> c, cocos2d::Vec2 a0, cocos2d::Vec3 a1)
+        {
+
+            c->setVertex(a0, a1);
+        }
+
         cocos2d::Rect Cocos2dxBind_cocos2d__Shaky3D_get_grid_rect_11(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Shaky3D> c)
         {
 
@@ -860,7 +866,7 @@ namespace cor
             return c->getActionByTag(a0, a1);
         }
 
-        int Cocos2dxBind_cocos2d__ActionManager_get_number_of_running_actions_in_target(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionManager> c, const cocos2d::Node * a0)
+        ssize_t Cocos2dxBind_cocos2d__ActionManager_get_number_of_running_actions_in_target(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionManager> c, const cocos2d::Node * a0)
         {
 
             return c->getNumberOfRunningActionsInTarget(a0);
@@ -1970,13 +1976,13 @@ namespace cor
             return c->getTextureAtlas();
         }
 
-        void Cocos2dxBind_cocos2d__AtlasNode_set_quads_to_draw_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c, int a0)
+        void Cocos2dxBind_cocos2d__AtlasNode_set_quads_to_draw_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c, long long a0)
         {
 
             c->setQuadsToDraw(a0);
         }
 
-        int Cocos2dxBind_cocos2d__AtlasNode_get_quads_to_draw_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c)
+        ssize_t Cocos2dxBind_cocos2d__AtlasNode_get_quads_to_draw_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c)
         {
 
             return c->getQuadsToDraw();
@@ -2432,7 +2438,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__AtlasNode_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c)
+        ssize_t Cocos2dxBind_cocos2d__AtlasNode_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c)
         {
 
             return c->getChildrenCount();
@@ -2732,7 +2738,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__AtlasNode_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c)
+        ssize_t Cocos2dxBind_cocos2d__AtlasNode_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -3688,7 +3694,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__ClippingNode_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ClippingNode> c)
+        ssize_t Cocos2dxBind_cocos2d__ClippingNode_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ClippingNode> c)
         {
 
             return c->getChildrenCount();
@@ -3964,7 +3970,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__ClippingNode_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ClippingNode> c)
+        ssize_t Cocos2dxBind_cocos2d__ClippingNode_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ClippingNode> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -4530,13 +4536,13 @@ namespace cor
             return c->getTextureAtlas();
         }
 
-        void Cocos2dxBind_cocos2d__LabelAtlas_set_quads_to_draw_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, int a0)
+        void Cocos2dxBind_cocos2d__LabelAtlas_set_quads_to_draw_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, long long a0)
         {
 
             c->setQuadsToDraw(a0);
         }
 
-        int Cocos2dxBind_cocos2d__LabelAtlas_get_quads_to_draw_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c)
+        ssize_t Cocos2dxBind_cocos2d__LabelAtlas_get_quads_to_draw_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c)
         {
 
             return c->getQuadsToDraw();
@@ -4978,12 +4984,6 @@ namespace cor
                   return r;
               }
 );
-        }
-
-        MrubyRef Cocos2dxBind_cocos2d__LabelAtlas_get_children_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c)
-        {
-
-            return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
 

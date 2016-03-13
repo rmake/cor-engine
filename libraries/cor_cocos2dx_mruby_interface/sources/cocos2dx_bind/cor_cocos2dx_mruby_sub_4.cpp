@@ -44,6 +44,12 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
+        void Cocos2dxBind_cocos2d__extension__ScrollView_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c)
+        {
+
+            c->retain();
+        }
+
         void Cocos2dxBind_cocos2d__extension__ScrollView_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c)
         {
 
@@ -692,7 +698,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__Scene_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c)
+        ssize_t Cocos2dxBind_cocos2d__Scene_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c)
         {
 
             return c->getChildrenCount();
@@ -998,7 +1004,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__Scene_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c)
+        ssize_t Cocos2dxBind_cocos2d__Scene_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -2426,19 +2432,19 @@ namespace cor
             return c.getBytes();
         }
 
-        int Cocos2dxBind_cocos2d__Data_get_size(cocos2d::Data& c)
+        ssize_t Cocos2dxBind_cocos2d__Data_get_size(cocos2d::Data& c)
         {
 
             return c.getSize();
         }
 
-        void Cocos2dxBind_cocos2d__Data_copy(cocos2d::Data& c, const unsigned char * a0, const long a1)
+        void Cocos2dxBind_cocos2d__Data_copy(cocos2d::Data& c, const unsigned char * a0, const long long a1)
         {
 
             c.copy(a0, a1);
         }
 
-        void Cocos2dxBind_cocos2d__Data_fast_set(cocos2d::Data& c, unsigned char * a0, const long a1)
+        void Cocos2dxBind_cocos2d__Data_fast_set(cocos2d::Data& c, unsigned char * a0, const long long a1)
         {
 
             c.fastSet(a0, a1);
@@ -3262,13 +3268,13 @@ namespace cor
             return c->getReferenceCount();
         }
 
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> Cocos2dxBind_cocos2d__PointArray_create(int a0)
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> Cocos2dxBind_cocos2d__PointArray_create(long long a0)
         {
 
             return cocos2d::PointArray::create(a0);
         }
 
-        bool Cocos2dxBind_cocos2d__PointArray_init_with_capacity(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, int a0)
+        bool Cocos2dxBind_cocos2d__PointArray_init_with_capacity(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, long long a0)
         {
 
             return c->initWithCapacity(a0);
@@ -3280,19 +3286,19 @@ namespace cor
             c->addControlPoint(a0);
         }
 
-        cocos2d::Vec2 Cocos2dxBind_cocos2d__PointArray_get_control_point_at_index(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, int a0)
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__PointArray_get_control_point_at_index(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, long long a0)
         {
 
             return c->getControlPointAtIndex(a0);
         }
 
-        void Cocos2dxBind_cocos2d__PointArray_remove_control_point_at_index(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, int a0)
+        void Cocos2dxBind_cocos2d__PointArray_remove_control_point_at_index(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, long long a0)
         {
 
             c->removeControlPointAtIndex(a0);
         }
 
-        int Cocos2dxBind_cocos2d__PointArray_count(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c)
+        ssize_t Cocos2dxBind_cocos2d__PointArray_count(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c)
         {
 
             return c->count();
@@ -5038,12 +5044,6 @@ namespace cor
             c->stop();
         }
 
-        bool Cocos2dxBind_cocos2d__EaseExponentialIn_init_with_action_30(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseExponentialIn> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionInterval> a0)
-        {
-
-            return c->initWithAction(a0.get());
-        }
-
 
 
         
@@ -6292,6 +6292,7 @@ namespace cor
             binder.bind_custom_method("Cocos2d", "Sprite", "get_reference_count_176", Cocos2dxBind_cocos2d__Sprite_get_reference_count_176);
             binder.bind_custom_method("Cocos2d", "FontAtlas", "add_letter_definition", Cocos2dxBind_cocos2d__FontAtlas_add_letter_definition);
             binder.bind_custom_method("Cocos2d", "FontAtlas", "prepare_letter_definitions", Cocos2dxBind_cocos2d__FontAtlas_prepare_letter_definitions);
+            binder.bind_custom_method("Cocos2d", "FontAtlas", "get_textures", Cocos2dxBind_cocos2d__FontAtlas_get_textures);
             binder.bind_custom_method("Cocos2d", "FontAtlas", "add_texture", Cocos2dxBind_cocos2d__FontAtlas_add_texture);
             binder.bind_custom_method("Cocos2d", "FontAtlas", "get_line_height", Cocos2dxBind_cocos2d__FontAtlas_get_line_height);
             binder.bind_custom_method("Cocos2d", "FontAtlas", "set_line_height", Cocos2dxBind_cocos2d__FontAtlas_set_line_height);

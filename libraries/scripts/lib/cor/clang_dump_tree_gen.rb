@@ -14,6 +14,25 @@ module Cor
       "[]=" => "_brackets_equal_",
     }
 
+    DIRECT_TYPES = {
+      "void" => true,
+      "int" => true,
+      "float" => true,
+      "double" => true,
+      "bool" => true,
+      "ssize_t" => true,
+      "ssize_t *" => true,
+      "char16_t" => true,
+      "std::string" => true,
+      "std::basic_string<char>" => true,
+      "std::basic_string<char, std::char_traits<char>, std::allocator<char> >" => true,
+      "std::basic_string<char, std::char_traits<char>, std::allocator<char>>" => true,
+      "RString" => true,
+      "cor::RString" => true,
+      "RBool" => true,
+      "cor::RBool" => true,
+    }
+
     def self.is_function(s)
       s.index(")") && (!s.index(">") || (s.index(">") < s.index(")")))
     end
@@ -204,6 +223,10 @@ module Cor
         end
       end
 
+      if DIRECT_TYPES[type]
+        return type
+      end
+
       while true
         old_type = type
 
@@ -247,11 +270,6 @@ module Cor
           type += "*"
         end
 
-        if type == "$use_this$"
-          puts "use #{old_type}"
-          return old_type
-        end
-
         if old_type == type
 
           ntp = option[:type_assoc_table][type]
@@ -261,7 +279,7 @@ module Cor
           type = ntp if ntp
         end
 
-        if old_type == type
+        if old_type == type || DIRECT_TYPES[type]
           keys.each do |k|
             @typedef_assoc_base[k] = type
           end
@@ -298,29 +316,15 @@ module Cor
         type = type.gsub(@top_const, "").gsub(@tail_amp, "")
       end
 
-      #if type.match(@top_const)
-      #  type = type.gsub(@top_const, "")
-      #end
-
       if (!type.match(@top_const) && type.match(/\&$/)) || type.match(/::\*/) #|| type.match(/std::vector/)
         return nil
       end
 
-      direct_type = {
-        "void" => true,
-        "int" => true,
-        "float" => true,
-        "double" => true,
-        "bool" => true,
-        "std::string" => true,
-        "std::basic_string<char>" => true,
-        "std::basic_string<char, std::char_traits<char>, std::allocator<char> >" => true,
-        "std::basic_string<char, std::char_traits<char>, std::allocator<char>>" => true,
-        "RString" => true,
-        "cor::RString" => true,
-        "RBool" => true,
-        "cor::RBool" => true,
-      }
+      direct_type = DIRECT_TYPES
+
+      if direct_type[type]
+        return type
+      end
 
       type = yield m, type, option
       #type = self.typedef_assoc m, type, option
@@ -2315,12 +2319,12 @@ EOS
 
       Utility.file_write "log/#{option[:name]}/code.rb.log", method_overload_define.join
 
-      if RUBY_PLATFORM.include? "mswin32"
+      if RUBY_PLATFORM.downcase =~ /mswin(?!ce)|mingw|cygwin|bccwin/
         #`../../external/mruby/build/host/bin/mrbc.exe -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
-        `../../external/mruby_build/builded/vc_debug_32/bin/mrbc.exe -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
+        `../../external/mruby_build/builded/vc_debug_32/bin/mrbc.exe -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`;
 
       else
-        `../../external/mruby/build/host/bin/mrbc -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
+        `../../external/mruby/build/host/bin/mrbc -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`;
       end
       method_overload_define = Utility.file_read("log/#{option[:name]}/code.c.log").gsub(/#include.*?\n/m, "static ")
 

@@ -63,6 +63,9 @@ file(GLOB_RECURSE cor_all_cocos2dx_scr
     "../../cor_project_structure/sources/*.cpp"
 )
 
+file(GLOB to_remove "../../cor_mruby_interface/sources/import/*.cpp" "../../cor_mruby_interface/sources/import/*.h")
+list(REMOVE_ITEM cor_all_cocos2dx_scr to_remove)
+
 if(EXISTS ${PROJECT_SOURCE_DIR}/../../cor_project_structure/proj.common/cor_project_structure_cmake_local_conf.txt)
     include(${PROJECT_SOURCE_DIR}/../../cor_project_structure/proj.common/cor_project_structure_cmake_local_conf.txt)
 

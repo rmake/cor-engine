@@ -44,6 +44,12 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
+        void Cocos2dxBind_cocos2d__PhysicsShapeEdgeBox_set_density_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeEdgeBox> c, float a0)
+        {
+
+            c->setDensity(a0);
+        }
+
         float Cocos2dxBind_cocos2d__PhysicsShapeEdgeBox_get_restitution_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeEdgeBox> c)
         {
 
@@ -1972,7 +1978,7 @@ namespace cor
             return c->getDataFromFile(a0);
         }
 
-        unsigned char* Cocos2dxBind_cocos2d__FileUtils_get_file_data_from_zip(cocos2d::FileUtils* c, std::string a0, std::string a1, long * a2)
+        unsigned char* Cocos2dxBind_cocos2d__FileUtils_get_file_data_from_zip(cocos2d::FileUtils* c, std::string a0, std::string a1, ssize_t * a2)
         {
 
             return c->getFileDataFromZip(a0, a1, a2);
@@ -2080,7 +2086,7 @@ namespace cor
             return c->getValueMapFromData(a0, a1);
         }
 
-        bool Cocos2dxBind_cocos2d__FileUtils_write_string_to_file(cocos2d::FileUtils* c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, std::string a1)
+        bool Cocos2dxBind_cocos2d__FileUtils_write_string_to_file(cocos2d::FileUtils* c, std::string a0, std::string a1)
         {
 
             return c->writeStringToFile(a0, a1);
@@ -2284,13 +2290,13 @@ namespace cor
             return c->_scriptObject;
         }
 
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> Cocos2dxBind_cocos2d__SpriteBatchNode_create_with_texture_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, int a1)
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> Cocos2dxBind_cocos2d__SpriteBatchNode_create_with_texture_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, long long a1)
         {
 
             return cocos2d::SpriteBatchNode::createWithTexture(a0.get(), a1);
         }
 
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> Cocos2dxBind_cocos2d__SpriteBatchNode_create(std::string a0, int a1)
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> Cocos2dxBind_cocos2d__SpriteBatchNode_create(std::string a0, long long a1)
         {
 
             return cocos2d::SpriteBatchNode::create(a0, a1);
@@ -2320,7 +2326,7 @@ namespace cor
             c->increaseAtlasCapacity();
         }
 
-        void Cocos2dxBind_cocos2d__SpriteBatchNode_remove_child_at_index_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, int a0, bool a1)
+        void Cocos2dxBind_cocos2d__SpriteBatchNode_remove_child_at_index_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, long long a0, bool a1)
         {
 
             c->removeChildAtIndex(a0, a1);
@@ -2338,25 +2344,25 @@ namespace cor
             c->removeSpriteFromAtlas(a0.get());
         }
 
-        int Cocos2dxBind_cocos2d__SpriteBatchNode_rebuild_index_in_order_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, int a1)
+        ssize_t Cocos2dxBind_cocos2d__SpriteBatchNode_rebuild_index_in_order_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, long long a1)
         {
 
             return c->rebuildIndexInOrder(a0.get(), a1);
         }
 
-        int Cocos2dxBind_cocos2d__SpriteBatchNode_highest_atlas_index_in_child_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0)
+        ssize_t Cocos2dxBind_cocos2d__SpriteBatchNode_highest_atlas_index_in_child_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0)
         {
 
             return c->highestAtlasIndexInChild(a0.get());
         }
 
-        int Cocos2dxBind_cocos2d__SpriteBatchNode_lowest_atlas_index_in_child_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0)
+        ssize_t Cocos2dxBind_cocos2d__SpriteBatchNode_lowest_atlas_index_in_child_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0)
         {
 
             return c->lowestAtlasIndexInChild(a0.get());
         }
 
-        int Cocos2dxBind_cocos2d__SpriteBatchNode_atlas_index_for_child_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, int a1)
+        ssize_t Cocos2dxBind_cocos2d__SpriteBatchNode_atlas_index_for_child_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, int a1)
         {
 
             return c->atlasIndexForChild(a0.get(), a1);
@@ -2446,7 +2452,7 @@ namespace cor
             return c->getDescription();
         }
 
-        void Cocos2dxBind_cocos2d__SpriteBatchNode_insert_quad_from_sprite_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, int a1)
+        void Cocos2dxBind_cocos2d__SpriteBatchNode_insert_quad_from_sprite_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, long long a1)
         {
 
             c->insertQuadFromSprite(a0.get(), a1);
@@ -2458,13 +2464,13 @@ namespace cor
             return c->addSpriteWithoutQuad(a0.get(), a1, a2);
         }
 
-        bool Cocos2dxBind_cocos2d__SpriteBatchNode_init_with_texture_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, int a1)
+        bool Cocos2dxBind_cocos2d__SpriteBatchNode_init_with_texture_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, long long a1)
         {
 
             return c->initWithTexture(a0.get(), a1);
         }
 
-        bool Cocos2dxBind_cocos2d__SpriteBatchNode_init_with_file_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, std::string a0, int a1)
+        bool Cocos2dxBind_cocos2d__SpriteBatchNode_init_with_file_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, std::string a0, long long a1)
         {
 
             return c->initWithFile(a0, a1);
@@ -2848,7 +2854,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__SpriteBatchNode_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c)
+        ssize_t Cocos2dxBind_cocos2d__SpriteBatchNode_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c)
         {
 
             return c->getChildrenCount();
@@ -3112,7 +3118,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__SpriteBatchNode_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c)
+        ssize_t Cocos2dxBind_cocos2d__SpriteBatchNode_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -4446,7 +4452,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__TextFieldTTF_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextFieldTTF> c)
+        ssize_t Cocos2dxBind_cocos2d__TextFieldTTF_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextFieldTTF> c)
         {
 
             return c->getChildrenCount();
@@ -4716,7 +4722,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__TextFieldTTF_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextFieldTTF> c)
+        ssize_t Cocos2dxBind_cocos2d__TextFieldTTF_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TextFieldTTF> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -5196,12 +5202,6 @@ namespace cor
         {
 
             return c->getGroupName();
-        }
-
-        void Cocos2dxBind_cocos2d__TMXObjectGroup_set_group_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, std::string a0)
-        {
-
-            c->setGroupName(a0);
         }
 
 

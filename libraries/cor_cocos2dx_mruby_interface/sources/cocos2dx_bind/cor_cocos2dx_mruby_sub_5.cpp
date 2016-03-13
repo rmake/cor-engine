@@ -44,6 +44,12 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
+        bool Cocos2dxBind_cocos2d__EaseExponentialIn_init_with_action_30(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseExponentialIn> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ActionInterval> a0)
+        {
+
+            return c->initWithAction(a0.get());
+        }
+
         float Cocos2dxBind_cocos2d__EaseExponentialIn_get_elapsed_90(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseExponentialIn> c)
         {
 
@@ -4764,12 +4770,6 @@ namespace cor
         {
 
             c->update(a0);
-        }
-
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> Cocos2dxBind_cocos2d__EaseCircleActionIn_clone(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> c)
-        {
-
-            return c->clone();
         }
 
 

@@ -44,6 +44,12 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
+        void Cocos2dxBind_cocos2d__BaseLight_set_order_of_arrival_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, int a0)
+        {
+
+            c->setOrderOfArrival(a0);
+        }
+
         int Cocos2dxBind_cocos2d__BaseLight_get_order_of_arrival_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
         {
 
@@ -122,7 +128,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__BaseLight_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        ssize_t Cocos2dxBind_cocos2d__BaseLight_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
         {
 
             return c->getChildrenCount();
@@ -422,7 +428,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__BaseLight_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        ssize_t Cocos2dxBind_cocos2d__BaseLight_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -1384,7 +1390,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__DirectionLight_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DirectionLight> c)
+        ssize_t Cocos2dxBind_cocos2d__DirectionLight_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DirectionLight> c)
         {
 
             return c->getChildrenCount();
@@ -1684,7 +1690,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__DirectionLight_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DirectionLight> c)
+        ssize_t Cocos2dxBind_cocos2d__DirectionLight_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DirectionLight> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -2628,7 +2634,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__AmbientLight_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> c)
+        ssize_t Cocos2dxBind_cocos2d__AmbientLight_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> c)
         {
 
             return c->getChildrenCount();
@@ -2928,7 +2934,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__AmbientLight_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> c)
+        ssize_t Cocos2dxBind_cocos2d__AmbientLight_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AmbientLight> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -5086,12 +5092,6 @@ namespace cor
         {
 
             return c->getDensity();
-        }
-
-        void Cocos2dxBind_cocos2d__PhysicsShapeEdgeBox_set_density_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeEdgeBox> c, float a0)
-        {
-
-            c->setDensity(a0);
         }
 
 

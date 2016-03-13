@@ -225,7 +225,7 @@ namespace cor
             return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::data_structure::SharedPtrTable::create());
         }
 
-        void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, cor::mruby_interface::AnyWP a1)
+        void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)
@@ -237,7 +237,7 @@ namespace cor
             tmp_c->set(a0, a1.lock());
         }
 
-        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0)
+        cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)
@@ -249,31 +249,31 @@ namespace cor
             return tmp_c->get(a0);
         }
 
-        unsigned int BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c)
+        unsigned long long BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c)
         {
 
             return c->get_new_count();
         }
 
-        unsigned int BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c)
+        unsigned long long BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c)
         {
 
             return c->get_delete_count();
         }
 
-        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c)
+        unsigned long long BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c)
         {
 
             return c->get_alloc_count();
         }
 
-        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c)
+        unsigned long long BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c)
         {
 
             return c->get_alloc_size();
         }
 
-        std::string BasicBind_cor__system__AllocationMonitor_get_status_text(cor::system::AllocationMonitor* c)
+        RString BasicBind_cor__system__AllocationMonitor_get_status_text(cor::system::AllocationMonitor* c)
         {
 
             return c->get_status_text();
@@ -297,7 +297,7 @@ namespace cor
             return c->get_captured_status();
         }
 
-        std::string BasicBind_cor__system__AllocationMonitor_get_captured_data(cor::system::AllocationMonitor* c)
+        RString BasicBind_cor__system__AllocationMonitor_get_captured_data(cor::system::AllocationMonitor* c)
         {
 
             return c->get_captured_data();
@@ -315,7 +315,7 @@ namespace cor
             return cor::system::AllocationMonitor::get_instance();
         }
 
-        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned int a0)
+        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned long long a0)
         {
 
             return cor::system::AllocationMonitor::alloc(a0);
@@ -327,7 +327,7 @@ namespace cor
             cor::system::AllocationMonitor::al_free(a0);
         }
 
-        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned int a1)
+        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned long long a1)
         {
 
             return cor::system::AllocationMonitor::al_realloc(a0, a1);

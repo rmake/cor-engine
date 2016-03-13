@@ -1328,7 +1328,7 @@ namespace cor
             c->releaseGLTexture();
         }
 
-        bool Cocos2dxBind_cocos2d__Texture2D_init_with_data(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> c, const void * a0, int a1, int a2, int a3, int a4, cocos2d::Size a5)
+        bool Cocos2dxBind_cocos2d__Texture2D_init_with_data(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> c, const void * a0, long long a1, int a2, int a3, int a4, cocos2d::Size a5)
         {
 
             return c->initWithData(a0, a1, (cocos2d::Texture2D::PixelFormat)a2, a3, a4, a5);
@@ -2222,7 +2222,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__Node_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c)
+        ssize_t Cocos2dxBind_cocos2d__Node_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c)
         {
 
             return c->getChildrenCount();
@@ -2534,7 +2534,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__Node_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c)
+        ssize_t Cocos2dxBind_cocos2d__Node_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -3646,7 +3646,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__DrawNode_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c)
+        ssize_t Cocos2dxBind_cocos2d__DrawNode_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c)
         {
 
             return c->getChildrenCount();
@@ -3946,7 +3946,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__DrawNode_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c)
+        ssize_t Cocos2dxBind_cocos2d__DrawNode_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -4488,7 +4488,7 @@ namespace cor
             return c.get_type_id();
         }
 
-        unsigned int Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_index(cor::cocos2dx_converter::Collision2dNodeRef& c)
+        unsigned long long Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_index(cor::cocos2dx_converter::Collision2dNodeRef& c)
         {
 
             return c.get_index();
@@ -4614,7 +4614,7 @@ namespace cor
             tmp_c->set_collision_group_pair(a0, a1, a2);
         }
 
-        int Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_get_collision_group_pair(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, int a1)
+        RBool Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_get_collision_group_pair(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, int a1)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)
@@ -4770,7 +4770,7 @@ namespace cor
             tmp_c->all_pair_call();
         }
 
-        int Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_find_nearest(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, cor::type::Vector2Tmpl<float> a1, int a2, mrubybind::FuncPtr<void (float, cor::cocos2dx_converter::Collision2dNodeRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a3)
+        RBool Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_find_nearest(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, cor::type::Vector2Tmpl<float> a1, int a2, mrubybind::FuncPtr<void (float, cor::cocos2dx_converter::Collision2dNodeRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a3)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)
@@ -4840,7 +4840,7 @@ namespace cor
             tmp_c->render_to_draw_node_o_box(a0.get(), a1, a2.get());
         }
 
-        void Cocos2dxBind_cor__cocos2dx_converter__EasyHttpClient_get_text(std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, mrubybind::FuncPtr<void (std::string, std::string)> a1)
+        void Cocos2dxBind_cor__cocos2dx_converter__EasyHttpClient_get_text(std::string a0, mrubybind::FuncPtr<void (std::string, std::string)> a1)
         {
 
             cor::cocos2dx_converter::EasyHttpClient::get_text(a0, 
@@ -4890,7 +4890,7 @@ namespace cor
 );
         }
 
-        unsigned int Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_get_index(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c)
+        unsigned long long Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_get_index(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)
@@ -4902,7 +4902,7 @@ namespace cor
             return tmp_c->get_index();
         }
 
-        int Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_is_erased(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c)
+        RBool Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_is_erased(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)

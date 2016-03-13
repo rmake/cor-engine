@@ -44,7 +44,13 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
-        int Cocos2dxBind_cocos2d__LabelAtlas_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c)
+        MrubyRef Cocos2dxBind_cocos2d__LabelAtlas_get_children_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c)
+        {
+
+            return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
+        }
+
+        ssize_t Cocos2dxBind_cocos2d__LabelAtlas_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c)
         {
 
             return c->getChildrenCount();
@@ -344,7 +350,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__LabelAtlas_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c)
+        ssize_t Cocos2dxBind_cocos2d__LabelAtlas_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -1330,7 +1336,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__MotionStreak_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::MotionStreak> c)
+        ssize_t Cocos2dxBind_cocos2d__MotionStreak_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::MotionStreak> c)
         {
 
             return c->getChildrenCount();
@@ -1630,7 +1636,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__MotionStreak_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::MotionStreak> c)
+        ssize_t Cocos2dxBind_cocos2d__MotionStreak_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::MotionStreak> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -3114,7 +3120,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__ParticleSystem_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystem> c)
+        ssize_t Cocos2dxBind_cocos2d__ParticleSystem_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystem> c)
         {
 
             return c->getChildrenCount();
@@ -3414,7 +3420,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__ParticleSystem_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystem> c)
+        ssize_t Cocos2dxBind_cocos2d__ParticleSystem_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystem> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -4934,7 +4940,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__ParticleSystemQuad_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        ssize_t Cocos2dxBind_cocos2d__ParticleSystemQuad_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
         {
 
             return c->getChildrenCount();
@@ -5040,12 +5046,6 @@ namespace cor
         {
 
             return c->getUserData();
-        }
-
-        const void* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_user_data_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
-        {
-
-            return const_cast<const void* >(c->getUserData());
         }
 
 

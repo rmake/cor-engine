@@ -44,6 +44,12 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
+        void Cocos2dxBind_cocos2d__Label_set_user_object_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> a0)
+        {
+
+            c->setUserObject(a0.get());
+        }
+
         cocos2d::GLProgram* Cocos2dxBind_cocos2d__Label_get_gl_program_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c)
         {
 
@@ -188,7 +194,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__Label_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c)
+        ssize_t Cocos2dxBind_cocos2d__Label_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -1120,7 +1126,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__Layer_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c)
+        ssize_t Cocos2dxBind_cocos2d__Layer_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c)
         {
 
             return c->getChildrenCount();
@@ -1432,7 +1438,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__Layer_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c)
+        ssize_t Cocos2dxBind_cocos2d__Layer_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -2448,7 +2454,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__LayerColor_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c)
+        ssize_t Cocos2dxBind_cocos2d__LayerColor_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c)
         {
 
             return c->getChildrenCount();
@@ -2748,7 +2754,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__LayerColor_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c)
+        ssize_t Cocos2dxBind_cocos2d__LayerColor_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LayerColor> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -4456,7 +4462,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__extension__ScrollView_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c)
+        ssize_t Cocos2dxBind_cocos2d__extension__ScrollView_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c)
         {
 
             return c->getChildrenCount();
@@ -4756,7 +4762,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__extension__ScrollView_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c)
+        ssize_t Cocos2dxBind_cocos2d__extension__ScrollView_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -5230,12 +5236,6 @@ namespace cor
         {
 
             c->setCameraMask(a0, a1);
-        }
-
-        void Cocos2dxBind_cocos2d__extension__ScrollView_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::extension::ScrollView> c)
-        {
-
-            c->retain();
         }
 
 

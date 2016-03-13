@@ -44,6 +44,12 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
+        void Cocos2dxBind_cocos2d__ui__Widget_enable_dpad_navigation_2(bool a0)
+        {
+
+            cocos2d::ui::Widget::enableDpadNavigation(a0);
+        }
+
         void Cocos2dxBind_cocos2d__ui__Widget_set_unify_size_enabled_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::Widget> c, bool a0)
         {
 
@@ -542,7 +548,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__ui__Widget_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::Widget> c)
+        ssize_t Cocos2dxBind_cocos2d__ui__Widget_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::Widget> c)
         {
 
             return c->getChildrenCount();
@@ -812,7 +818,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__ui__Widget_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::Widget> c)
+        ssize_t Cocos2dxBind_cocos2d__ui__Widget_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::Widget> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -2066,7 +2072,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__ui__Scale9Sprite_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::Scale9Sprite> c)
+        ssize_t Cocos2dxBind_cocos2d__ui__Scale9Sprite_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::Scale9Sprite> c)
         {
 
             return c->getChildrenCount();
@@ -2336,7 +2342,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__ui__Scale9Sprite_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::Scale9Sprite> c)
+        ssize_t Cocos2dxBind_cocos2d__ui__Scale9Sprite_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::Scale9Sprite> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -3970,7 +3976,7 @@ namespace cor
             return cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby(c->getChildren());
         }
 
-        int Cocos2dxBind_cocos2d__ui__EditBox_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::EditBox> c)
+        ssize_t Cocos2dxBind_cocos2d__ui__EditBox_get_children_count_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::EditBox> c)
         {
 
             return c->getChildrenCount();
@@ -4228,7 +4234,7 @@ namespace cor
             return c->getActionByTag(a0);
         }
 
-        int Cocos2dxBind_cocos2d__ui__EditBox_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::EditBox> c)
+        ssize_t Cocos2dxBind_cocos2d__ui__EditBox_get_number_of_running_actions_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::EditBox> c)
         {
 
             return c->getNumberOfRunningActions();
@@ -5002,13 +5008,13 @@ namespace cor
             return c->getReferenceCount();
         }
 
-        void Cocos2dxBind_cocos2d___ttfConfig_accessor_set_font_file_path(cocos2d::_ttfConfig& c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a)
+        void Cocos2dxBind_cocos2d___ttfConfig_accessor_set_font_file_path(cocos2d::_ttfConfig& c, std::string a)
         {
 
             c.fontFilePath = a;
         }
 
-        std::basic_string<char, std::char_traits<char>, std::allocator<char>> Cocos2dxBind_cocos2d___ttfConfig_accessor_get_font_file_path(cocos2d::_ttfConfig& c)
+        std::string Cocos2dxBind_cocos2d___ttfConfig_accessor_get_font_file_path(cocos2d::_ttfConfig& c)
         {
 
             return c.fontFilePath;
