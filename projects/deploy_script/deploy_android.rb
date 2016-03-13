@@ -16,7 +16,7 @@ Dir.chdir run_dir
 
 Dir.chdir run_dir
 Dir.chdir '../../libraries/cor_all_cocos2dx/proj.cmake'
-run_cmd "ruby build_android.rb"
+run_cmd "ruby make.rb android"
 
 Dir.chdir run_dir
 system("ruby build_android.rb")
