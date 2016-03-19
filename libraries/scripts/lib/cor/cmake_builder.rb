@@ -20,17 +20,17 @@ module Cor
       if ARGV.include?("-h") || ARGV.length < 1
         puts <<EOS
 build example:
-  ruby build.rb win32
-  ruby build.rb win64
-  ruby build.rb android
-  ruby build.rb osx
-  ruby build.rb ios
-  ruby build.rb default
+  ruby make.rb win32
+  ruby make.rb win64
+  ruby make.rb android
+  ruby make.rb osx
+  ruby make.rb ios
+  ruby make.rb default
 
-  ruby build.rb win32 -f
-  ruby build.rb win32 clean
-  ruby build.rb win32 debug run
-  ruby build.rb win32 release
+  ruby make.rb win32 -f
+  ruby make.rb win32 clean
+  ruby make.rb win32 debug run
+  ruby make.rb win32 release
 EOS
         return
       end

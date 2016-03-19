@@ -1,5 +1,4 @@
 #include "cor_mruby_interface/sources/basic_bind.h"
-#include "cor_mruby_interface/sources/import/external_code_importer.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"
@@ -2438,13 +2437,13 @@ namespace cor
             return c.getSize();
         }
 
-        void Cocos2dxBind_cocos2d__Data_copy(cocos2d::Data& c, const unsigned char * a0, const long long a1)
+        void Cocos2dxBind_cocos2d__Data_copy(cocos2d::Data& c, const unsigned char * a0, const long a1)
         {
 
             c.copy(a0, a1);
         }
 
-        void Cocos2dxBind_cocos2d__Data_fast_set(cocos2d::Data& c, unsigned char * a0, const long long a1)
+        void Cocos2dxBind_cocos2d__Data_fast_set(cocos2d::Data& c, unsigned char * a0, const long a1)
         {
 
             c.fastSet(a0, a1);
@@ -3268,13 +3267,13 @@ namespace cor
             return c->getReferenceCount();
         }
 
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> Cocos2dxBind_cocos2d__PointArray_create(long long a0)
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> Cocos2dxBind_cocos2d__PointArray_create(int a0)
         {
 
             return cocos2d::PointArray::create(a0);
         }
 
-        bool Cocos2dxBind_cocos2d__PointArray_init_with_capacity(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, long long a0)
+        bool Cocos2dxBind_cocos2d__PointArray_init_with_capacity(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, int a0)
         {
 
             return c->initWithCapacity(a0);
@@ -3286,13 +3285,13 @@ namespace cor
             c->addControlPoint(a0);
         }
 
-        cocos2d::Vec2 Cocos2dxBind_cocos2d__PointArray_get_control_point_at_index(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, long long a0)
+        cocos2d::Vec2 Cocos2dxBind_cocos2d__PointArray_get_control_point_at_index(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, int a0)
         {
 
             return c->getControlPointAtIndex(a0);
         }
 
-        void Cocos2dxBind_cocos2d__PointArray_remove_control_point_at_index(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, long long a0)
+        void Cocos2dxBind_cocos2d__PointArray_remove_control_point_at_index(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, int a0)
         {
 
             c->removeControlPointAtIndex(a0);

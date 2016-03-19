@@ -33,10 +33,12 @@ file(GLOB_RECURSE cor_all_mruby_scr
     "../../cor_system/sources/*.cpp"
     "../../cor_type/sources/*.h"
     "../../cor_type/sources/*.cpp"
+    "../../cor_mruby_import/sources/*.h"
+    "../../cor_mruby_import/sources/*.cpp"
 )
 
-if(EXISTS ${PROJECT_SOURCE_DIR}/../../cor_mruby_interface/proj.common/cor_mruby_interface_cmake_local_conf.txt)
-    include(${PROJECT_SOURCE_DIR}/../../cor_mruby_interface/proj.common/cor_mruby_interface_cmake_local_conf.txt)
+if(EXISTS ${PROJECT_SOURCE_DIR}/../../cor_mruby_import/proj.common/cor_mruby_interface_cmake_local_conf.txt)
+    include(${PROJECT_SOURCE_DIR}/../../cor_mruby_import/proj.common/cor_mruby_interface_cmake_local_conf.txt)
 
     foreach(loop_var ${cor_mruby_interface_sources})
         set(cor_all_mruby_scr ${cor_all_mruby_scr} ${PROJECT_SOURCE_DIR}/${loop_var})
@@ -54,6 +56,7 @@ include_directories (../../cor_data_structure/sources)
 include_directories (../../cor_system/sources)
 include_directories (../../cor_type/sources)
 include_directories (../../cor_mruby_interface/sources)
+include_directories (../../cor_mruby_import/sources)
 
 
 target_include_directories (cor_all_mruby PUBLIC ../../)

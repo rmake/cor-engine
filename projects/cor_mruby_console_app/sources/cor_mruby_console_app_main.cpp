@@ -3,7 +3,7 @@
 #include "cor_type/sources/basic_types.h"
 #include "cor_mruby_interface/sources/mruby_state.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
-#include "cor_mruby_interface/sources/import/external_code_importer.h"
+#include "cor_mruby_import/sources/import/external_code_importer.h"
 
 int main()
 {

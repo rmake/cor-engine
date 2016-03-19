@@ -1,5 +1,4 @@
 #include "cor_mruby_interface/sources/basic_bind.h"
-#include "cor_mruby_interface/sources/import/external_code_importer.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"
@@ -350,7 +349,7 @@ namespace cor
             c->increaseAtlasCapacity();
         }
 
-        void Cocos2dxBind_cocos2d__TMXLayer_remove_child_at_index_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, long long a0, bool a1)
+        void Cocos2dxBind_cocos2d__TMXLayer_remove_child_at_index_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, int a0, bool a1)
         {
 
             c->removeChildAtIndex(a0, a1);
@@ -368,7 +367,7 @@ namespace cor
             c->removeSpriteFromAtlas(a0.get());
         }
 
-        ssize_t Cocos2dxBind_cocos2d__TMXLayer_rebuild_index_in_order_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, long long a1)
+        ssize_t Cocos2dxBind_cocos2d__TMXLayer_rebuild_index_in_order_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, int a1)
         {
 
             return c->rebuildIndexInOrder(a0.get(), a1);
@@ -464,7 +463,7 @@ namespace cor
             c->draw(a0, a1, a2);
         }
 
-        void Cocos2dxBind_cocos2d__TMXLayer_insert_quad_from_sprite_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, long long a1)
+        void Cocos2dxBind_cocos2d__TMXLayer_insert_quad_from_sprite_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, int a1)
         {
 
             c->insertQuadFromSprite(a0.get(), a1);
@@ -476,13 +475,13 @@ namespace cor
             return c->addSpriteWithoutQuad(a0.get(), a1, a2);
         }
 
-        bool Cocos2dxBind_cocos2d__TMXLayer_init_with_texture_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, long long a1)
+        bool Cocos2dxBind_cocos2d__TMXLayer_init_with_texture_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, int a1)
         {
 
             return c->initWithTexture(a0.get(), a1);
         }
 
-        bool Cocos2dxBind_cocos2d__TMXLayer_init_with_file_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, std::string a0, long long a1)
+        bool Cocos2dxBind_cocos2d__TMXLayer_init_with_file_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, std::string a0, int a1)
         {
 
             return c->initWithFile(a0, a1);

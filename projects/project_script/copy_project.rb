@@ -503,13 +503,13 @@ end
 case target_project
 when "cor_test"
   target_project_name = "mruby_interface"
-  target_project_path = File.expand_path("../../libraries/cor_mruby_interface", File.dirname(File.absolute_path(__FILE__)))
+  target_project_path = File.expand_path("../../libraries/cor_mruby_import", File.dirname(File.absolute_path(__FILE__)))
 when "cor_cpp_console"
   target_project_name = "cpp_interface"
-  target_project_path = File.expand_path("../../libraries/cor_cpp_interface", File.dirname(File.absolute_path(__FILE__)))
+  target_project_path = File.expand_path("../../libraries/cor_cpp_import", File.dirname(File.absolute_path(__FILE__)))
 when "cor_mruby_console"
   target_project_name = "mruby_interface"
-  target_project_path = File.expand_path("../../libraries/cor_mruby_interface", File.dirname(File.absolute_path(__FILE__)))
+  target_project_path = File.expand_path("../../libraries/cor_mruby_import", File.dirname(File.absolute_path(__FILE__)))
 when "cor_cocos2dx"
   target_project_name = "project_structure"
   target_project_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(File.absolute_path(__FILE__)))
@@ -525,6 +525,8 @@ import_cpp_file = "#{target_project_path}/sources/import/external_code_import_lo
 import_cpp_importer_file = "#{target_project_path}/sources/import/external_code_importer.cpp"
 import_cpp_copy_dest = "#{target_project_path}/sources/import/cpp"
 FileUtils.rmtree import_cpp_copy_dest
+
+puts "import_cpp_file #{import_cpp_file}"
 
 unless resource_only
 

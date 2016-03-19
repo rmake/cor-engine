@@ -1,5 +1,4 @@
 #include "cor_mruby_interface/sources/basic_bind.h"
-#include "cor_mruby_interface/sources/import/external_code_importer.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"

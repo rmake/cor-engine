@@ -1,5 +1,4 @@
 #include "cor_mruby_interface/sources/basic_bind.h"
-#include "cor_mruby_interface/sources/import/external_code_importer.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"
@@ -3098,13 +3097,13 @@ namespace cor
             return c->initWithImageFile(a0);
         }
 
-        bool Cocos2dxBind_cocos2d__Image_init_with_image_data(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Image> c, const unsigned char * a0, long long a1)
+        bool Cocos2dxBind_cocos2d__Image_init_with_image_data(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Image> c, const unsigned char * a0, int a1)
         {
 
             return c->initWithImageData(a0, a1);
         }
 
-        bool Cocos2dxBind_cocos2d__Image_init_with_raw_data(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Image> c, const unsigned char * a0, long long a1, int a2, int a3, int a4, bool a5)
+        bool Cocos2dxBind_cocos2d__Image_init_with_raw_data(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Image> c, const unsigned char * a0, int a1, int a2, int a3, int a4, bool a5)
         {
 
             return c->initWithRawData(a0, a1, a2, a3, a4, a5);
@@ -3380,7 +3379,7 @@ namespace cor
             return c->getSpriteFrame();
         }
 
-        void Cocos2dxBind_cocos2d__Sprite_set_display_frame_with_animation_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c, std::string a0, long long a1)
+        void Cocos2dxBind_cocos2d__Sprite_set_display_frame_with_animation_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c, std::string a0, int a1)
         {
 
             c->setDisplayFrameWithAnimationName(a0, a1);
@@ -3416,7 +3415,7 @@ namespace cor
             return c->getAtlasIndex();
         }
 
-        void Cocos2dxBind_cocos2d__Sprite_set_atlas_index(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c, long long a0)
+        void Cocos2dxBind_cocos2d__Sprite_set_atlas_index(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c, int a0)
         {
 
             c->setAtlasIndex(a0);

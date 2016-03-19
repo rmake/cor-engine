@@ -1,5 +1,4 @@
 #include "cor_mruby_interface/sources/basic_bind.h"
-#include "cor_mruby_interface/sources/import/external_code_importer.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"
@@ -1328,7 +1327,7 @@ namespace cor
             c->releaseGLTexture();
         }
 
-        bool Cocos2dxBind_cocos2d__Texture2D_init_with_data(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> c, const void * a0, long long a1, int a2, int a3, int a4, cocos2d::Size a5)
+        bool Cocos2dxBind_cocos2d__Texture2D_init_with_data(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> c, const void * a0, int a1, int a2, int a3, int a4, cocos2d::Size a5)
         {
 
             return c->initWithData(a0, a1, (cocos2d::Texture2D::PixelFormat)a2, a3, a4, a5);
@@ -4488,7 +4487,7 @@ namespace cor
             return c.get_type_id();
         }
 
-        unsigned long long Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_index(cor::cocos2dx_converter::Collision2dNodeRef& c)
+        unsigned int Cocos2dxBind_cor__cocos2dx_converter__Collision2dNodeRef_get_index(cor::cocos2dx_converter::Collision2dNodeRef& c)
         {
 
             return c.get_index();
@@ -4890,7 +4889,7 @@ namespace cor
 );
         }
 
-        unsigned long long Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_get_index(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c)
+        unsigned int Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_get_index(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c)
         {
             auto tmp_c = c.lock();
             if(!tmp_c)

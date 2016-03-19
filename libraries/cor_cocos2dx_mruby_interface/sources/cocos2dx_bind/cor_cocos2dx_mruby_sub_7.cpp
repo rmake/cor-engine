@@ -1,5 +1,4 @@
 #include "cor_mruby_interface/sources/basic_bind.h"
-#include "cor_mruby_interface/sources/import/external_code_importer.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"
@@ -1976,7 +1975,7 @@ namespace cor
             return c->getTextureAtlas();
         }
 
-        void Cocos2dxBind_cocos2d__AtlasNode_set_quads_to_draw_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c, long long a0)
+        void Cocos2dxBind_cocos2d__AtlasNode_set_quads_to_draw_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AtlasNode> c, int a0)
         {
 
             c->setQuadsToDraw(a0);
@@ -4536,7 +4535,7 @@ namespace cor
             return c->getTextureAtlas();
         }
 
-        void Cocos2dxBind_cocos2d__LabelAtlas_set_quads_to_draw_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, long long a0)
+        void Cocos2dxBind_cocos2d__LabelAtlas_set_quads_to_draw_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, int a0)
         {
 
             c->setQuadsToDraw(a0);

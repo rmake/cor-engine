@@ -45,7 +45,6 @@
 #include "cor_system/sources/parallel_processor.h"
 #include "cor_system/sources/thread_pool.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
-#include "cor_mruby_interface/sources/import/external_code_importer.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"
@@ -75,13 +74,13 @@ namespace cor
             return cor::system::CorCrypt::get_enabled();
         }
 
-        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, unsigned long long a1)
+        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, unsigned int a1)
         {
 
             cor::system::CorCrypt::encode(a0, a1);
         }
 
-        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, unsigned long long a1)
+        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, unsigned int a1)
         {
 
             cor::system::CorCrypt::decode(a0, a1);
@@ -183,73 +182,73 @@ namespace cor
             c->call_print_func((cor::system::LogType::Enum)a0, a1);
         }
 
-        unsigned long long BasicBind_cor__system__Logger_get_local_count(cor::system::Logger* c, int a0)
+        unsigned int BasicBind_cor__system__Logger_get_local_count(cor::system::Logger* c, int a0)
         {
 
             return c->get_local_count((cor::system::LogType::Enum)a0);
         }
 
-        unsigned long long BasicBind_cor__system__Logger_get_local_debug_count(cor::system::Logger* c)
+        unsigned int BasicBind_cor__system__Logger_get_local_debug_count(cor::system::Logger* c)
         {
 
             return c->get_local_debug_count();
         }
 
-        unsigned long long BasicBind_cor__system__Logger_get_local_info_count(cor::system::Logger* c)
+        unsigned int BasicBind_cor__system__Logger_get_local_info_count(cor::system::Logger* c)
         {
 
             return c->get_local_info_count();
         }
 
-        unsigned long long BasicBind_cor__system__Logger_get_local_warn_count(cor::system::Logger* c)
+        unsigned int BasicBind_cor__system__Logger_get_local_warn_count(cor::system::Logger* c)
         {
 
             return c->get_local_warn_count();
         }
 
-        unsigned long long BasicBind_cor__system__Logger_get_local_error_count(cor::system::Logger* c)
+        unsigned int BasicBind_cor__system__Logger_get_local_error_count(cor::system::Logger* c)
         {
 
             return c->get_local_error_count();
         }
 
-        unsigned long long BasicBind_cor__system__Logger_get_local_fatal_count(cor::system::Logger* c)
+        unsigned int BasicBind_cor__system__Logger_get_local_fatal_count(cor::system::Logger* c)
         {
 
             return c->get_local_fatal_count();
         }
 
-        unsigned long long BasicBind_cor__system__Logger_get_count(int a0)
+        unsigned int BasicBind_cor__system__Logger_get_count(int a0)
         {
 
             return cor::system::Logger::get_count((cor::system::LogType::Enum)a0);
         }
 
-        unsigned long long BasicBind_cor__system__Logger_get_debug_count()
+        unsigned int BasicBind_cor__system__Logger_get_debug_count()
         {
 
             return cor::system::Logger::get_debug_count();
         }
 
-        unsigned long long BasicBind_cor__system__Logger_get_info_count()
+        unsigned int BasicBind_cor__system__Logger_get_info_count()
         {
 
             return cor::system::Logger::get_info_count();
         }
 
-        unsigned long long BasicBind_cor__system__Logger_get_warn_count()
+        unsigned int BasicBind_cor__system__Logger_get_warn_count()
         {
 
             return cor::system::Logger::get_warn_count();
         }
 
-        unsigned long long BasicBind_cor__system__Logger_get_error_count()
+        unsigned int BasicBind_cor__system__Logger_get_error_count()
         {
 
             return cor::system::Logger::get_error_count();
         }
 
-        unsigned long long BasicBind_cor__system__Logger_get_fatal_count()
+        unsigned int BasicBind_cor__system__Logger_get_fatal_count()
         {
 
             return cor::system::Logger::get_fatal_count();

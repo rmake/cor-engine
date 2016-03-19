@@ -45,7 +45,6 @@
 #include "cor_system/sources/parallel_processor.h"
 #include "cor_system/sources/thread_pool.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
-#include "cor_mruby_interface/sources/import/external_code_importer.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"
@@ -249,25 +248,25 @@ namespace cor
             return tmp_c->get(a0);
         }
 
-        unsigned long long BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c)
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c)
         {
 
             return c->get_new_count();
         }
 
-        unsigned long long BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c)
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c)
         {
 
             return c->get_delete_count();
         }
 
-        unsigned long long BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c)
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c)
         {
 
             return c->get_alloc_count();
         }
 
-        unsigned long long BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c)
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c)
         {
 
             return c->get_alloc_size();
@@ -315,7 +314,7 @@ namespace cor
             return cor::system::AllocationMonitor::get_instance();
         }
 
-        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned long long a0)
+        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned int a0)
         {
 
             return cor::system::AllocationMonitor::alloc(a0);
@@ -327,7 +326,7 @@ namespace cor
             cor::system::AllocationMonitor::al_free(a0);
         }
 
-        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned long long a1)
+        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned int a1)
         {
 
             return cor::system::AllocationMonitor::al_realloc(a0, a1);

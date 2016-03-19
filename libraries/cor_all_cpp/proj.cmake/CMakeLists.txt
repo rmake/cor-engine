@@ -33,10 +33,12 @@ file(GLOB_RECURSE cor_all_cpp_scr
     "../../cor_type/sources/*.cpp"
     "../../cor_cpp_interface/sources/*.h"
     "../../cor_cpp_interface/sources/*.cpp"
+    "../../cor_cpp_import/sources/*.h"
+    "../../cor_cpp_import/sources/*.cpp"
 )
 
-if(EXISTS ${PROJECT_SOURCE_DIR}/../../cor_cpp_interface/proj.common/cor_cpp_interface_cmake_local_conf.txt)
-    include(${PROJECT_SOURCE_DIR}/../../cor_cpp_interface/proj.common/cor_cpp_interface_cmake_local_conf.txt)
+if(EXISTS ${PROJECT_SOURCE_DIR}/../../cor_cpp_import/proj.common/cor_cpp_interface_cmake_local_conf.txt)
+    include(${PROJECT_SOURCE_DIR}/../../cor_cpp_import/proj.common/cor_cpp_interface_cmake_local_conf.txt)
 
     foreach(loop_var ${cor_cpp_interface_sources})
         set(cor_all_cpp_scr ${cor_all_cpp_scr} ${PROJECT_SOURCE_DIR}/${loop_var})
@@ -53,7 +55,7 @@ include_directories (../../cor_algorithm/sources)
 include_directories (../../cor_data_structure/sources)
 include_directories (../../cor_system/sources)
 include_directories (../../cor_type/sources)
-include_directories (../../cor_cpp_interface/sources)
+include_directories (../../cor_cpp_import/sources)
 
 
 target_include_directories (cor_all_cpp PUBLIC ../../)

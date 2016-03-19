@@ -1,5 +1,4 @@
 #include "cor_mruby_interface/sources/basic_bind.h"
-#include "cor_mruby_interface/sources/import/external_code_importer.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
 #include "cor_mruby_interface/sources/mruby_experimental.h"
@@ -2290,13 +2289,13 @@ namespace cor
             return c->_scriptObject;
         }
 
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> Cocos2dxBind_cocos2d__SpriteBatchNode_create_with_texture_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, long long a1)
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> Cocos2dxBind_cocos2d__SpriteBatchNode_create_with_texture_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, int a1)
         {
 
             return cocos2d::SpriteBatchNode::createWithTexture(a0.get(), a1);
         }
 
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> Cocos2dxBind_cocos2d__SpriteBatchNode_create(std::string a0, long long a1)
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> Cocos2dxBind_cocos2d__SpriteBatchNode_create(std::string a0, int a1)
         {
 
             return cocos2d::SpriteBatchNode::create(a0, a1);
@@ -2326,7 +2325,7 @@ namespace cor
             c->increaseAtlasCapacity();
         }
 
-        void Cocos2dxBind_cocos2d__SpriteBatchNode_remove_child_at_index_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, long long a0, bool a1)
+        void Cocos2dxBind_cocos2d__SpriteBatchNode_remove_child_at_index_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, int a0, bool a1)
         {
 
             c->removeChildAtIndex(a0, a1);
@@ -2344,7 +2343,7 @@ namespace cor
             c->removeSpriteFromAtlas(a0.get());
         }
 
-        ssize_t Cocos2dxBind_cocos2d__SpriteBatchNode_rebuild_index_in_order_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, long long a1)
+        ssize_t Cocos2dxBind_cocos2d__SpriteBatchNode_rebuild_index_in_order_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, int a1)
         {
 
             return c->rebuildIndexInOrder(a0.get(), a1);
@@ -2452,7 +2451,7 @@ namespace cor
             return c->getDescription();
         }
 
-        void Cocos2dxBind_cocos2d__SpriteBatchNode_insert_quad_from_sprite_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, long long a1)
+        void Cocos2dxBind_cocos2d__SpriteBatchNode_insert_quad_from_sprite_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> a0, int a1)
         {
 
             c->insertQuadFromSprite(a0.get(), a1);
@@ -2464,13 +2463,13 @@ namespace cor
             return c->addSpriteWithoutQuad(a0.get(), a1, a2);
         }
 
-        bool Cocos2dxBind_cocos2d__SpriteBatchNode_init_with_texture_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, long long a1)
+        bool Cocos2dxBind_cocos2d__SpriteBatchNode_init_with_texture_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, int a1)
         {
 
             return c->initWithTexture(a0.get(), a1);
         }
 
-        bool Cocos2dxBind_cocos2d__SpriteBatchNode_init_with_file_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, std::string a0, long long a1)
+        bool Cocos2dxBind_cocos2d__SpriteBatchNode_init_with_file_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c, std::string a0, int a1)
         {
 
             return c->initWithFile(a0, a1);
