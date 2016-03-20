@@ -1,4 +1,5 @@
 $LOAD_PATH.push('../../../libraries/scripts/lib')
-require "cor/cmake_builder"
+require "cor/cor_builder"
 
-Cor::CmakeBuilder.build
+Cor::CorBuilder.build
+

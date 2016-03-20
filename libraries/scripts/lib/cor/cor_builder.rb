@@ -124,58 +124,68 @@ EOS
         FileUtils.chdir "#{@cor_path}/libraries/cor_all_cocos2dx/proj.cmake"
         CmakeBuilder.build_type(type, args.select{|v| v != "run"})
 
-        @all_success = true
-        @is_vc = true
-        @results = []
+        if type == "android"
+          FileUtils.chdir "#{@cor_path}/projects/cor_lib_test_main/proj.android"
+          if args.include? "run"
+            system "cocos run -p android -j 6 --ndk-mode release"
+          else
+            system "cocos compile -p android -m release -j 6 --ndk-mode release"
+          end
 
-        FileUtils.chdir "#{@cor_path}/projects/cor_lib_test_main/proj.win32.cmake_lib"
+        elsif type == "win32"
+          @all_success = true
+          @is_vc = true
+          @results = []
 
-        if type == "win32"
-          cmds = <<EOS
+          FileUtils.chdir "#{@cor_path}/projects/cor_lib_test_main/proj.win32.cmake_lib"
+
+          if type == "win32"
+            cmds = <<EOS
 call "#{CmakeBuilder::VS_PATH}\\VC\\vcvarsall.bat" x86
 EOS
-        else
-          cmds = <<EOS
+          else
+            cmds = <<EOS
 call "#{CmakeBuilder::VS_PATH}\\VC\\vcvarsall.bat" x64
 EOS
-        end
-
-        if args.include? "release"
-          call_on_windows cmds + <<EOS
-msbuild.exe cor_lib_test_main.sln /p:configuration=release /maxcpucount:4 /p:BuildInParallel=true
-EOS
-        elsif args.include? "debug"
-          call_on_windows cmds + <<EOS
-msbuild.exe cor_lib_test_main.sln /p:configuration=debug /maxcpucount:4 /p:BuildInParallel=true
-EOS
-        else
-          call_on_windows cmds + <<EOS
-msbuild.exe cor_lib_test_main.sln /p:configuration=debug /maxcpucount:4 /p:BuildInParallel=true
-EOS
-          call_on_windows cmds + <<EOS
-msbuild.exe cor_lib_test_main.sln /p:configuration=release /maxcpucount:4 /p:BuildInParallel=true
-EOS
-        end
-
-        if @all_success && args.include?("run")
-          puts_flush "==> run ==>"
-          config = "Debug"
-          if args.include?("debug")
-            config = "Debug"
-          elsif args.include?("release")
-            config = "Release"
           end
-          case type
-          when "win32"
-            exes = Dir.glob("**/Debug.win32/*.exe")
-            Dir.chdir File.dirname(exes[0])
-            exes = Dir.glob("*.exe")
-            system "#{exes[0]}"
-          when "win64"
-            exes = Dir.glob("**/Debug.win32/*.exe")
-            Dir.chdir File.dirname(exes[0])
-            exes = Dir.glob("*.exe")
-            system "#{exes[0]}"
+
+          if args.include? "release"
+            call_on_windows cmds + <<EOS
+msbuild.exe cor_lib_test_main.sln /p:configuration=release /maxcpucount:4 /p:BuildInParallel=true
+EOS
+          elsif args.include? "debug"
+            call_on_windows cmds + <<EOS
+msbuild.exe cor_lib_test_main.sln /p:configuration=debug /maxcpucount:4 /p:BuildInParallel=true
+EOS
+          else
+            call_on_windows cmds + <<EOS
+msbuild.exe cor_lib_test_main.sln /p:configuration=debug /maxcpucount:4 /p:BuildInParallel=true
+EOS
+            call_on_windows cmds + <<EOS
+msbuild.exe cor_lib_test_main.sln /p:configuration=release /maxcpucount:4 /p:BuildInParallel=true
+EOS
+          end
+
+          if @all_success && args.include?("run")
+            puts_flush "==> run ==>"
+            config = "Debug"
+            if args.include?("debug")
+              config = "Debug"
+            elsif args.include?("release")
+              config = "Release"
+            end
+            case type
+            when "win32"
+              exes = Dir.glob("**/Debug.win32/*.exe")
+              Dir.chdir File.dirname(exes[0])
+              exes = Dir.glob("*.exe")
+              system "#{exes[0]}"
+            when "win64"
+              exes = Dir.glob("**/Debug.win32/*.exe")
+              Dir.chdir File.dirname(exes[0])
+              exes = Dir.glob("*.exe")
+              system "#{exes[0]}"
+            end
           end
         end
 
