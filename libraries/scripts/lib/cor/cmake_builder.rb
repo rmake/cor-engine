@@ -5,11 +5,13 @@ require "rexml/document"
 module Cor
   class CmakeBuilder
 
+    VS_PATH = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0"
+
     def initialize
       @current_type = nil
       @is_vc = false
 
-      @vs_path = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0"
+      @vs_path = VS_PATH
 
       @results = []
       @all_success = true

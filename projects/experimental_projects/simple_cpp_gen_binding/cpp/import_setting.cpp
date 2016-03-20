@@ -7,7 +7,7 @@ namespace cor
     {
         void simple_cpp_gen_binding_import_initialize(mruby_interface::MrubyState& mrb)
         {
-            project_structure::simple_cpp_gen_binding::GeneratedBinding::bind(mrb);
+            cor::simple_cpp_gen_binding::GeneratedBinding::bind(mrb);
         }
     }
 
