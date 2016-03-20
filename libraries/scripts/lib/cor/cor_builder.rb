@@ -129,7 +129,11 @@ EOS
           if args.include? "run"
             system "cocos run -p android -j 6 --ndk-mode release"
           else
-            system "cocos compile -p android -m release -j 6 --ndk-mode release"
+            if args.include? "--for-ci"
+              system "cocos compile -p android -j 2 --ndk-mode release --app-abi=armeabi-v7a"
+            else
+              system "cocos compile -p android -m release -j 6 --ndk-mode release"
+            end
           end
 
         elsif type == "win32"

@@ -35,7 +35,7 @@ Dir.chdir run_dir
 
 Dir.chdir '../../projects/majitai_running'
 
-run_cmd "ruby make.rb android -f --for-ci --arch=armeabi-v7a release release"
+run_cmd "ruby make.rb android --for-ci --arch=armeabi-v7a release"
 
 #run_cmd 'ruby deploy_android.rb ../majitai_running'
 #run_cmd "ruby ../project_script/copy_project.rb ../majitai_running"
