@@ -36,6 +36,9 @@ if is_ff == "0"
   if @result
     run_cmd "ruby start_day_work.rb"
   end
+else
+  @result = false
+  puts "error! need fast forward."
 end
 
 exit @result
