@@ -67,15 +67,24 @@ module Cor
       relative_path.to_s
     end
 
+    def self.package_path=(v)
+      @package_path = v
+    end
+
+    def self.package_path
+      @package_path
+    end
+
     def self.set_templated_binding(file_path, option)
+
+      self.package_path = "#{MrubyBindingGen.convert_relative_path File.dirname(file_path)}"
+      base_cpp_path = "#{self.package_path}/cpp"
 
       if option[:name]
         name = option[:name]
         MrubyBindingGen.name "#{name}_cpp_gen_binding"
         MrubyBindingGen.namespace "#{name}_cpp_gen_binding"
-        package_path = "#{MrubyBindingGen.convert_relative_path File.dirname(file_path)}"
-        base_cpp_path = "#{package_path}/cpp"
-        cpp_path = "#{package_path}/cpp/#{name}"
+        cpp_path = "#{self.package_path}/cpp/#{name}"
         MrubyBindingGen.output_path "#{cpp_path}/generated_binding"
 
       end
@@ -85,7 +94,7 @@ module Cor
       end
 
       if option[:include_paths]
-        MrubyBindingGen.add_include_files option[:include_paths]
+        MrubyBindingGen.add_include_paths option[:include_paths]
       end
 
       binding_base_path = "#{cpp_path}/binding_interface"

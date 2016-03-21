@@ -287,6 +287,7 @@ unless resource_only
     end
 
     if CorProject.import_cpp && Dir.exists?("#{inc}/cpp")
+      puts "pre_gen #{inc}"
 
       binding_gen.call inc
 
