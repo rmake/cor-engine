@@ -1,6 +1,6 @@
 require 'rexml/document'
 
-module COR
+module Cor
 
   class GenProject
     def self.vc_project_filter(libname, project_path, proj_vc_path, file_list_all, filter_only = false)

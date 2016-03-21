@@ -178,7 +178,7 @@ namespace cor
             static EventListenerPhysicsContactWP create_collision_only_event_listener()
             {
                 auto el = cocos2d::EventListenerPhysicsContact::create();
-            
+
                 el->onContactPreSolve = [=](cocos2d::PhysicsContact& contact, cocos2d::PhysicsContactPreSolve& solve){
                     return false;
                 };
@@ -385,10 +385,10 @@ namespace cor
                     cocos2d::Vec2(rect.getMinX(), rect.getMinY())
                 };
                 node->drawPolygon(vertices, 4, color, 0, color);
-                
+
             }
 
-            static void set_keybord_event(cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> node, 
+            static void set_keybord_event(cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> node,
                 mrubybind::FuncPtr<void(int)> key_pressed,
                 mrubybind::FuncPtr<void(int)> key_released) {
                 auto ed = node->getEventDispatcher();
@@ -420,7 +420,7 @@ namespace cor
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
                 exit(0);
-#endif    
+#endif
             }
 
             static void set_edit_box_delegate(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ui::EditBox> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Layer> a)
@@ -430,7 +430,7 @@ namespace cor
 
             static void set_label_blend_func(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Label> c)
             {
-                
+
             }
 
             static void set_text_sprite_blend_func(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c)
@@ -444,13 +444,13 @@ namespace cor
                 a.pushBack(cocos2d::DelayTime::create(interval));
                 a.pushBack(cocos2d::CallFunc::create([=](){
                     mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb());
-                    try { 
+                    try {
                         callback.func()();
-                    } 
-                    catch(mrb_int e) 
-                    { 
-                        auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); 
-                    } 
+                    }
+                    catch(mrb_int e)
+                    {
+                        auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log();
+                    }
                 }));
                 return project_mruby_call_itnl_instance->current_layer->runAction(cocos2d::Sequence::create(
                         a
@@ -603,9 +603,9 @@ namespace cor
                 static int a;
                 a++;  // you set breakpoint here
             }
-            
+
         };
-        
+
         ProjectMrubyCall::ProjectMrubyCall() : itnl(new ProjectMrubyCallItnl())
         {
             itnl->first = rtrue;
@@ -618,9 +618,9 @@ namespace cor
                 monstartup("libcocos2dcpp.so");
             }
 #endif
-            
+
         }
-        
+
         ProjectMrubyCall::~ProjectMrubyCall()
         {
             clear();
@@ -678,7 +678,7 @@ namespace cor
                     project_mruby_call_administrator = true;
                 }
             }
-            
+
         }
 
         void ProjectMrubyCall::start()
@@ -704,7 +704,7 @@ namespace cor
                 ExternalCodeImporter::init_first();
 
             }
-            
+
             itnl->current_scene = this->get_scene();
             itnl->current_layer = this->get_layer();
             itnl->app = this->get_app();
@@ -719,15 +719,15 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "c_null_value", ProjectMrubyCallItnl::c_null_value);
             binder.bind_static_method("Cor", "Project", "create_allocation_state_label", ProjectMrubyCallItnl::create_allocation_state_label);
             binder.bind_static_method("Cor", "Project", "create_collision_only_event_listener", ProjectMrubyCallItnl::create_collision_only_event_listener);
-            binder.bind_static_method("Cor", "Project", "get_collision_system", ProjectMrubyCallItnl::get_collision_system); 
+            binder.bind_static_method("Cor", "Project", "get_collision_system", ProjectMrubyCallItnl::get_collision_system);
             binder.bind_static_method("Cor", "Project", "get_rts_object_group", ProjectMrubyCallItnl::get_rts_object_group);
-            binder.bind_static_method("Cor", "Project", "reset_collision_system", ProjectMrubyCallItnl::reset_collision_system); 
+            binder.bind_static_method("Cor", "Project", "reset_collision_system", ProjectMrubyCallItnl::reset_collision_system);
             binder.bind_static_method("Cor", "Project", "set_scene_local", ProjectMrubyCallItnl::set_scene_local);
             binder.bind_static_method("Cor", "Project", "start_ruby_project", ProjectMrubyCallItnl::start_ruby_project);
             binder.bind_static_method("Cor", "Project", "start_ruby_project_proc", ProjectMrubyCallItnl::start_ruby_project_proc);
             binder.bind_static_method("Cor", "Project", "start_ruby_project_code", ProjectMrubyCallItnl::start_ruby_project_code);
             binder.bind_static_method("Cor", "Project", "call_start_proc", ProjectMrubyCallItnl::call_start_proc);
-            binder.bind_static_method("Cor", "Project", "test_str", ProjectMrubyCallItnl::test_str); 
+            binder.bind_static_method("Cor", "Project", "test_str", ProjectMrubyCallItnl::test_str);
             binder.bind_static_method("Cor", "Project", "convert_to_writable_path", ProjectMrubyCallItnl::convert_to_writable_path);
             binder.bind_static_method("Cor", "Project", "exist_writable_file", ProjectMrubyCallItnl::exist_writable_file);
             binder.bind_static_method("Cor", "Project", "remove_writable_file", ProjectMrubyCallItnl::remove_writable_file);
@@ -736,7 +736,7 @@ namespace cor
             binder.bind_static_method("Cor", "Project", "read_text_from_file", ProjectMrubyCallItnl::read_text_from_file);
             binder.bind_static_method("Cor", "Project", "read_text_from_file_path", ProjectMrubyCallItnl::read_text_from_file_path);
             binder.bind_static_method("Cor", "Project", "draw_rect", ProjectMrubyCallItnl::draw_rect);
-            binder.bind_static_method("Cor", "Project", "get_time_ms", ProjectMrubyCallItnl::get_time_ms); 
+            binder.bind_static_method("Cor", "Project", "get_time_ms", ProjectMrubyCallItnl::get_time_ms);
             binder.bind_static_method("Cor", "Project", "matrix_transform", ProjectMrubyCallItnl::matrix_transform);
             binder.bind_static_method("Cor", "Project", "exit_application", ProjectMrubyCallItnl::exit_application);
             binder.bind_static_method("Cor", "Project", "write_text_to_file_direct", ProjectMrubyCallItnl::write_text_to_file_direct);
@@ -763,7 +763,7 @@ namespace cor
 
             itnl->collision = std::make_shared<cocos2dx_converter::Collision2dNode>();
             itnl->rts_object_group = cocos2dx_converter::RtsObjectGroup::create(itnl->collision);
-            
+
 
         }
 

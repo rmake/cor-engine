@@ -66,6 +66,7 @@ namespace cor
             //itnl->mrb = mrb_open_allocf(alloc, this);
 
             itnl->binder = std::unique_ptr<mrubybind::MrubyBind>(new mrubybind::MrubyBind(itnl->mrb));
+            itnl->binder->bind_static_method(nullptr, "MrubyBind", "rescue_cpp_error", MrubyState::rescue_cpp_error);
 
             return rtrue;
         }
@@ -239,6 +240,37 @@ namespace cor
             log_exception();
 
             return r;
+        }
+
+        void MrubyState::catch_error(std::function<void()> process, std::function<void()> error)
+        {
+            auto mrb = cor::mruby_interface::MrubyState::get_current();
+            mrubybind::MrubyArenaStore mas(mrb->get_mrb());
+            try { 
+                process();
+                mrb->exception_store_log();
+            }
+            catch(mrb_int e) 
+            {
+                error();
+                mrb->exception_store_log(); 
+            }
+        }
+
+        void MrubyState::rescue_cpp_error(mrubybind::FuncPtr<void()> process)
+        {
+            auto mrbs = cor::mruby_interface::MrubyState::get_current();
+            mrubybind::MrubyArenaStore mas(mrbs->get_mrb());
+            try {
+                process.func()();
+                mrbs->exception_store_log();
+            }
+            catch(std::runtime_error e)
+            {
+                mrbs->exception_store_log();
+                auto mrb = mrbs->get_mrb();
+                mrb_raisef(mrb, E_RUNTIME_ERROR, (RString("cpp runtime error: ") + e.what() + ".").c_str());
+            }
         }
 
         void MrubyState::add_tmp_shared_itnl(AnySP v)

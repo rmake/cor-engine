@@ -5,9 +5,20 @@ require 'cor/utility'
 require 'json'
 require 'fileutils'
 
+if ARGV[0]
+  system "ruby ../project_script/copy_project.rb #{ARGV[0]}"
+else
+  system "ruby ../project_script/copy_project.rb"
+end
 
-system "ruby ../project_script/copy_project.rb"
+run_dir = File.dirname(File.expand_path(__FILE__))
+Dir.chdir run_dir
 
+Dir.chdir run_dir
+Dir.chdir '../../libraries/cor_all_cocos2dx/proj.cmake'
+run_cmd "ruby make.rb android"
+
+Dir.chdir run_dir
 system("ruby build_android.rb")
 #system("sh package_android.sh")
 

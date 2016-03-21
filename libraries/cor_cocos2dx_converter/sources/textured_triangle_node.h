@@ -25,7 +25,7 @@ namespace cor
             void set_texuter(cocos2d::Texture2D* texture);
             cocos2d::Texture2D* get_texture();
 
-            bool init();
+            bool init() override;
             void clear();
 
             void ensure_capacity(int count);

@@ -20,6 +20,7 @@ namespace cor
         public:
             typedef ArrayPoolBlockTmpl<T> Block;
             typedef Block* BlockPtr;
+            static const RSize align_size = 16;
 
             RSize active;
             RSize weak_count;
@@ -37,6 +38,17 @@ namespace cor
             RSize get_weak_count();
             void add_weak_ref();
             void relase_weak_ref();
+
+            static void* aligned_alloc(size_t size);
+            static void algined_free(void* p);
+            void* operator new(size_t size);
+            void* operator new[](size_t size);
+            void operator delete(void* p) throw();
+            void operator delete[](void* p) throw();
+            static void* operator new(size_t size, void* p);
+            static void* operator new[](size_t size, void* p);
+            void operator delete(void* m, void* p) throw();
+            void operator delete[](void* m, void* p) throw();
 
         };
 
@@ -98,7 +110,7 @@ namespace cor
             void clear();
 
             void set_self(InfoSP self);
-            
+
             void add_delete_item(RSize index);
 
             void inc_size();
@@ -185,10 +197,10 @@ namespace cor
             ArrayPoolTmpl(const ArrayPoolTmpl&) {}
             ArrayPoolTmpl(const InfoSP&) {}
         public:
-            
+
             ArrayPoolTmpl();
             ArrayPoolTmpl(RSize block_width);
-            
+
             ~ArrayPoolTmpl();
 
             void clear();

@@ -1,7 +1,6 @@
 
 require 'fileutils'
 
-project_structure_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(File.absolute_path(__FILE__)))
 
 FileUtils.chdir "#{File.dirname __FILE__}"
 here = Dir::getwd
@@ -11,93 +10,14 @@ $LOAD_PATH.push("../../libraries/scripts/lib")
 
 require 'cor/utility'
 require 'cor/gen_project'
+require 'cor/cor_project'
 require 'json'
 require 'pathname'
 
 key = "ak8tm.mj"
 begin
 
-class CorProject
-
-  def self.source_path=(v)
-    @source_path = v
-  end
-
-  def self.source_path
-    @source_path
-  end
-
-  def self.includes=(a)
-    @includes = a
-  end
-
-  def self.includes
-    @includes ||= []
-    @includes
-  end
-
-  def self.add_include(v)
-    self.includes << "#{self.source_path}/#{v}"
-  end
-
-  def self.import_cpp=(v)
-    @import_cpp = v
-  end
-
-  def self.import_cpp
-    @import_cpp
-  end
-
-  def self.import_cpp_entry=(v)
-    @import_cpp_entry = v
-  end
-
-  def self.import_cpp_entry
-    @import_cpp_entry
-  end
-
-  def self.crypt=(v)
-    @crypt = v
-  end
-
-  def self.crypt
-    @crypt
-  end
-
-  def self.administrator=(v)
-    @administrator = v
-  end
-
-  def self.administrator
-    @administrator
-  end
-
-  def self.set_import_cpp_filter(&block)
-    @import_cpp_filter = block
-  end
-
-  def self.import_cpp_filter
-    @import_cpp_filter
-  end
-
-  def self.binding_confs=(a)
-    @binding_confs = a
-  end
-
-  def self.binding_confs
-    @binding_confs
-  end
-
-  def self.current_project_path=(v)
-    @current_project_path = v
-  end
-
-  def self.current_project_path
-    @current_project_path
-  end
-
-end
-
+CorProject = Cor::CorProject
 
 source_path = "../small_experimental"
 if File.exist? "project_source_path_local_conf.rb"
@@ -118,13 +38,38 @@ end
 
 resource_only = false
 win32_copy = false
+ignore_local_conf = false
 
 ma.each do |v|
   if v == "--resource-only"
     resource_only = true
   elsif v == "--win32-copy"
     win32_copy = true
+  elsif v == "--ignore-local-conf"
+    ignore_local_conf = true
   end
+end
+
+past_copy = "past_copy.log"
+if File.exist?(past_copy) && ignore_local_conf
+  past_copy_json = Cor.u.file_read past_copy
+  past_copy_data = JSON.parse past_copy_json
+  source_path = past_copy_data["current_project"] || source_path
+end
+puts "source_path #{source_path}"
+past_copy_data = {
+  "current_project" => source_path,
+  "past_crypt" => false,
+  "past_win32_copy" => false,
+  "file_table" => {},
+  "past_cpps" => {},
+}
+past_copy_table = past_copy_data["file_table"]
+force_update = false
+if File.exist? past_copy
+  past_copy_json = Cor.u.file_read past_copy
+  past_copy_data = JSON.parse past_copy_json
+  past_copy_table = past_copy_data["file_table"]
 end
 
 if va[0]
@@ -133,30 +78,43 @@ end
 
 CorProject.source_path = source_path
 
-destination_resource_root_path = "../cor_lib_test_main/Resources"
-destination_resource_path = "#{destination_resource_root_path}/project_resource"
-source_conf_path = "#{source_path}/conf.rb"
-source_resource_path = "#{source_path}/resources"
-win32_copy_destination = File.expand_path("../../proj.win32/Debug.win32/project_resource", destination_resource_path)
-mruby_binging_generator_script_path = "../../libraries/scripts"
+source_absolute_path = Pathname(File.expand_path(source_path))
+engine_base_path = Pathname(File.expand_path("../../"))
+relative_engine_path = engine_base_path.relative_path_from source_absolute_path
+CorProject.engine_path = relative_engine_path
 
-FileUtils.mkpath destination_resource_path
+puts "CorProject.engine_path #{CorProject.engine_path}"
 
 list = []
-import_cpp_entries = []
+import_cpp_infos = []
+
+source_conf_path = "#{source_path}/conf.rb"
 
 if File.exists? source_conf_path
 
   puts "load source conf #{source_conf_path}"
   load source_conf_path
 
-  import_cpp_entries << CorProject.import_cpp_entry
+  import_cpp_infos << {
+    "target_project" => CorProject.target_project,
+    "entry" => CorProject.import_cpp_entry,
+  }
 
   project_includes = CorProject.includes
   project_includes.each do |project_include|
     if File.exists? "#{project_include}/conf.rb"
       load "#{project_include}/conf.rb"
-      import_cpp_entries << CorProject.import_cpp_entry
+
+      source_absolute_path = Pathname(File.expand_path(project_include))
+      relative_engine_path = engine_base_path.relative_path_from source_absolute_path
+      CorProject.engine_path = relative_engine_path
+
+      puts "CorProject.engine_path #{CorProject.engine_path}"
+
+      import_cpp_infos << {
+        "target_project" => CorProject.target_project,
+        "entry" => CorProject.import_cpp_entry,
+      }
     end
   end
 
@@ -164,7 +122,37 @@ if File.exists? source_conf_path
 
 end
 
+target_project = CorProject.target_project
 
+#
+# "cor_cpp_lib"
+# "cor_mruby_lib"
+# "cor_test"
+# "cor_cpp_console"
+# "cor_mruby_console"
+# "cor_cocos2dx"
+
+destination_resource_root_path = "../cor_lib_test_main/Resources"
+
+case target_project
+when "cor_test"
+  destination_resource_root_path = "../../tests/unit/resources"
+when "cor_cpp_console"
+  destination_resource_root_path = "../cor_console_app/resources"
+when "cor_mruby_console"
+  destination_resource_root_path = "../cor_mruby_console_app/resources"
+when "cor_cocos2dx"
+  destination_resource_root_path = "../cor_lib_test_main/Resources"
+end
+destination_resource_path = "#{destination_resource_root_path}/project_resource"
+source_resource_path = "#{source_path}/resources"
+win32_copy_destination = File.expand_path("../../proj.win32/Debug.win32/project_resource", destination_resource_path)
+mruby_binging_generator_script_path = "../../libraries/scripts"
+
+FileUtils.mkpath destination_resource_path
+
+CorProject.includes.uniq!{|v| File::expand_path(v)}
+puts "__CorProject.includes #{CorProject.includes}"
 
 FileUtils.rm Dir.glob("#{destination_resource_root_path}/*.log")
 
@@ -191,6 +179,8 @@ CorProject.includes.each do |inc_path|
   end
 end
 
+puts "source_resource_path #{source_resource_path}"
+
 if Dir.exists? source_resource_path
   list += Cor.u.file_list(source_resource_path).map{|fn|
     {
@@ -199,6 +189,8 @@ if Dir.exists? source_resource_path
     }
   }
 end
+puts "list #{list.select{|v| v[:n].match(/start\.rb/)} }"
+
 d_list = Cor.u.file_list destination_resource_path do |fn|
   !fn.include? ".gitignore"
 end
@@ -208,21 +200,6 @@ d_list.each do |fn|
   d_table[fn] = fn
 end
 
-past_copy = "past_copy.log"
-past_copy_data = {
-  "current_project" => source_path,
-  "past_crypt" => false,
-  "past_win32_copy" => false,
-  "file_table" => {},
-  "past_cpps" => {},
-}
-past_copy_table = past_copy_data["file_table"]
-force_update = false
-if File.exist? past_copy
-  past_copy_json = Cor.u.file_read past_copy
-  past_copy_data = JSON.parse past_copy_json
-  past_copy_table = past_copy_data["file_table"]
-end
 
 if source_path != past_copy_data["current_project"]
   force_update = true
@@ -240,10 +217,16 @@ past_copy_data["past_win32_copy"] = win32_copy
 past_copy_data["current_project"] = source_path
 past_copy_data["past_cpps"] ||= {}
 
+if force_update
+  past_copy_data["file_table"] = {}
+  past_copy_table = past_copy_data["file_table"]
+end
+
 
 binding_gen = Proc.new do |path|
   CorProject.current_project_path = path
   binding_conf = "#{path}/binding_conf.rb"
+  puts "binding_conf #{binding_conf}"
   if File.exists?(binding_conf)
     #FileUtils.chdir File.dirname(binding_conf)
 
@@ -254,7 +237,7 @@ binding_gen = Proc.new do |path|
 
     cpps.each do |cpp_name|
       next unless cpp_name.match(/\.h$/)
-      if !File.exist?(cpp_name) || past_cpps[cpp_name] != File.mtime(cpp_name).to_s || force_update
+      if !File.exist?(cpp_name) || past_cpps[cpp_name].to_s != File.mtime(cpp_name).to_s || force_update
         is_run_gen = true
       end
       past_cpps[cpp_name] = File.mtime(cpp_name)
@@ -280,6 +263,8 @@ binding_gen = Proc.new do |path|
     #FileUtils.chdir here
   end
 end
+
+puts "CorProject.includes #{CorProject.includes}"
 
 unless resource_only
 
@@ -390,13 +375,55 @@ list.each do |fn|
   d_table.delete dfn
 end
 
-import_cpp_props_file = "#{project_structure_path}/proj.vc/cor_project_structure/cor_project_structure_local_conf.props"
-import_cpp_local_conf_mk = "#{project_structure_path}/proj.common/cor_project_structure_local_conf.mk"
-import_cpp_local_conf_txt = "#{project_structure_path}/proj.common/cor_project_structure_local_conf.txt"
-import_cpp_file = "#{project_structure_path}/sources/import/external_code_import_local_conf.h"
-import_cpp_importer_file = "#{project_structure_path}/sources/import/external_code_importer.cpp"
-import_cpp_copy_dest = "#{project_structure_path}/sources/import/cpp"
+target_project_name = "project_structure"
+target_project_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(File.absolute_path(__FILE__)))
+
+#
+# cpp
+# mruby
+
+def get_taget_interface_type(target_project)
+  target_interface_type = "mruby"
+  case target_project
+  when "cor_test"
+    target_interface_type = "mruby"
+  when "cor_cpp_console"
+    target_interface_type = "cpp"
+  when "cor_mruby_console"
+    target_interface_type = "mruby"
+  when "cor_cocos2dx"
+    target_interface_type = "mruby"
+  end
+  target_interface_type
+end
+
+case target_project
+when "cor_test"
+  target_project_name = "mruby_interface"
+  target_project_path = File.expand_path("../../libraries/cor_mruby_import", File.dirname(File.absolute_path(__FILE__)))
+when "cor_cpp_console"
+  target_project_name = "cpp_interface"
+  target_project_path = File.expand_path("../../libraries/cor_cpp_import", File.dirname(File.absolute_path(__FILE__)))
+when "cor_mruby_console"
+  target_project_name = "mruby_interface"
+  target_project_path = File.expand_path("../../libraries/cor_mruby_import", File.dirname(File.absolute_path(__FILE__)))
+when "cor_cocos2dx"
+  target_project_name = "project_structure"
+  target_project_path = File.expand_path("../../libraries/cor_project_structure", File.dirname(File.absolute_path(__FILE__)))
+end
+
+FileUtils.mkdir_p "#{target_project_path}/proj.common/"
+
+import_cpp_props_file = "#{target_project_path}/proj.vc/cor_#{target_project_name}/cor_#{target_project_name}_local_conf.props"
+import_cpp_local_conf_mk = "#{target_project_path}/proj.common/cor_#{target_project_name}_local_conf.mk"
+import_cpp_local_cmake_conf_mk = "#{target_project_path}/proj.common/cor_#{target_project_name}_cmake_local_conf.txt"
+import_cpp_local_conf_txt = "#{target_project_path}/proj.common/cor_#{target_project_name}_local_conf.txt"
+import_cpp_file = "#{target_project_path}/sources/import/external_code_import_local_conf.h"
+import_cpp_importer_file = "#{target_project_path}/sources/import/external_code_importer.cpp"
+import_cpp_copy_dest = "#{target_project_path}/sources/import/cpp"
 FileUtils.rmtree import_cpp_copy_dest
+
+puts "import_cpp_file #{import_cpp_file}"
 
 unless resource_only
 
@@ -412,7 +439,10 @@ unless resource_only
 
     import_cpp_include_from = Pathname(File.dirname(import_cpp_file))
     import_cpp_includes = cpp_list.map do |v|
+      puts "v #{v}"
       import_cpp_include_to = Pathname(File.absolute_path(v[:fn]))
+      puts "import_cpp_include_to #{import_cpp_include_to.to_s}"
+      puts "import_cpp_include_from #{import_cpp_include_from.to_s}"
       r = import_cpp_include_to.relative_path_from(import_cpp_include_from)
       r.to_s
     end
@@ -420,30 +450,58 @@ unless resource_only
     import_cpp_list = import_cpp_includes.select do |v| v.match(/\.cpp$/) end
     import_h_list = import_cpp_includes.select do |v| v.match(/\.h$/) end
 
+    import_cpp_list = import_cpp_list.uniq
+    import_h_list = import_h_list.uniq
+
     #import_cpp_includes = import_cpp_includes.map do |v|
     #  "#include \"#{v}\""
     #end
     #import_cpp_includes = import_cpp_includes.join "\n"
 
-    puts "import_cpp_entries #{import_cpp_entries}"
+    puts "import_cpp_infos #{import_cpp_infos}"
 
-    prototype_defs = import_cpp_entries.map{|v|
-      "        void #{v}(mruby_interface::MrubyState& mrb);\n" }.join
-    call_entry_functions = import_cpp_entries.map{|v|
-      "            #{v}(mrb);\n" }.join
+    case get_taget_interface_type(target_project)
+    when "cpp"
+      cpp_initialize_argument = ""
+    when "mruby"
+      cpp_initialize_argument = "mruby_interface::MrubyState& mrb"
+    end
+
+    prototype_defs = import_cpp_infos.map{|v|
+      case get_taget_interface_type(v["target_project"])
+      when "cpp"
+        arg = ""
+      when "mruby"
+        arg = "mruby_interface::MrubyState& mrb"
+      end
+      "        void #{v["entry"]}(#{arg});\n" }.join
+    call_entry_functions = import_cpp_infos.map{|v|
+      case get_taget_interface_type(v["target_project"])
+      when "cpp"
+        arg = ""
+      when "mruby"
+        arg = "mrb"
+      end
+      "            external_initializer::#{v["entry"]}(#{arg});\n" }.join
 
     import_cpp_code = <<EOS
 #include "cor_type/sources/basic_types.h"
 
 namespace cor
 {
-    namespace project_structure
+    namespace external_initializer
+    {
+#{prototype_defs}
+    }
+}
+
+namespace cor
+{
+    namespace #{target_project_name}
     {
         static const char* imported_name = "copy source is #{source_path}";
 
-#{prototype_defs}
-
-        void ExternalCodeImporter::initialize(mruby_interface::MrubyState& mrb)
+        void ExternalCodeImporter::initialize(#{cpp_initialize_argument})
         {
 #{call_entry_functions}
         }
@@ -497,13 +555,19 @@ PRJINCS += ../sources #{import_cpp_props_includes.map{|v| "../#{v}"}.join(' ')}
 PRJSRCS += #{import_cpp_list.map{|v| "#{v.gsub(/^..\//, "")}"}.join(' ')}
 EOS
 
-    FileUtils.chdir project_structure_path
+    Cor.u.file_write import_cpp_local_cmake_conf_mk, <<EOS
+#{import_cpp_props_includes.map{|v| "include_directories(../#{v})"}.join("\n")}
+set(cor_#{target_project_name}_sources
+#{import_cpp_list.map{|v| "  #{v.gsub(/^..\//, "")}"}.join("\n")})
+EOS
+
+    FileUtils.chdir target_project_path
 
     proj_file_list = Cor.u.file_list("../cor_project_structure/sources").select{ |v|
       v.match(/(\.h$)|(\.cpp$)/)
     }
-    GenProject.vc_project_filter "cor_project_structure", "../cor_project_structure",
-      "../cor_project_structure/proj.vc", proj_file_list + import_cpp_includes, true
+    GenProject.vc_project_filter "cor_#{target_project_name}", "../cor_#{target_project_name}",
+      "../cor_#{target_project_name}/proj.vc", proj_file_list + import_cpp_includes, true
 
     new_import_cpp_local_conf_txt_data = import_cpp_includes.map{|v| v.gsub(/^\.\.\//, "")}.join(";")
     Cor.u.file_write import_cpp_local_conf_txt, import_cpp_includes.map{|v| v.gsub(/^\.\.\//, "")}.join(";")
@@ -530,6 +594,8 @@ EOS
 PRJINCS +=
 PRJSRCS +=
 EOS
+
+    FileUtils.rm_f import_cpp_local_cmake_conf_mk
 
     new_import_cpp_local_conf_txt_data = ""
     Cor.u.file_write import_cpp_local_conf_txt, new_import_cpp_local_conf_txt_data
@@ -611,6 +677,8 @@ end
 rescue => e
   puts "e #{e}"
   puts "#{e.backtrace}"
+
+  STDOUT.flush
 
   sleep 100
 

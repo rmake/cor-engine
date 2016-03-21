@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<Project DefaultTargets='Build' ToolsVersion='12.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+<Project DefaultTargets='Build' ToolsVersion='14.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
   <ItemGroup Label='ProjectConfigurations'>
     <ProjectConfiguration Include='Debug|Win32'>
       <Configuration>Debug</Configuration>
@@ -19,13 +19,13 @@
   <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;' Label='Configuration'>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;' Label='Configuration'>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -52,6 +52,7 @@
       <AdditionalIncludeDirectories>../../../;../../../../projects/cor_lib_test_main/cocos2d/;../../../../projects/cor_lib_test_main/cocos2d/cocos/;../../../../projects/cor_lib_test_main/cocos2d/cocos/2d;../../../../projects/cor_lib_test_main/cocos2d/cocos/audio/include;../../../../projects/cor_lib_test_main/cocos2d/cocos/math;../../../../projects/cor_lib_test_main/cocos2d/cocos/renderer;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/desktop;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/win32;../../../../projects/cor_lib_test_main/cocos2d/cocos/base;../../../../projects/cor_lib_test_main/cocos2d/cocos/physics;../../../../projects/cor_lib_test_main/cocos2d/cocos/math/kazmath;../../../../projects/cor_lib_test_main/cocos2d/external/win32-specific/gles/include/OGLES;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include/win32;../../../../projects/cor_lib_test_main/cocos2d/extensions/;../../../../projects/cor_lib_test_main/cocos2d/external;../../../../external/mrubybind;../../../../external/mruby/include;../../../../external/boost;../../sources/import/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
+      <ObjectFileName>$(IntDir)/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -69,6 +70,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_LIB;COCOS2DXWIN32_EXPORTS;GL_GLEXT_PROTOTYPES;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_USE3DDLL;_EXPORT_DLL_;_USRSTUDIODLL;_USREXDLL;_USEGUIDLL;CC_ENABLE_CHIPMUNK_INTEGRATION=1;PROTOBUF_USE_DLLS;LIBPROTOBUF_EXPORTS;MRB_ENABLE_CXX_EXCEPTION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>../../../;../../../../projects/cor_lib_test_main/cocos2d/;../../../../projects/cor_lib_test_main/cocos2d/cocos/;../../../../projects/cor_lib_test_main/cocos2d/cocos/2d;../../../../projects/cor_lib_test_main/cocos2d/cocos/audio/include;../../../../projects/cor_lib_test_main/cocos2d/cocos/math;../../../../projects/cor_lib_test_main/cocos2d/cocos/renderer;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/desktop;../../../../projects/cor_lib_test_main/cocos2d/cocos/platform/win32;../../../../projects/cor_lib_test_main/cocos2d/cocos/base;../../../../projects/cor_lib_test_main/cocos2d/cocos/physics;../../../../projects/cor_lib_test_main/cocos2d/cocos/math/kazmath;../../../../projects/cor_lib_test_main/cocos2d/external/win32-specific/gles/include/OGLES;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include;../../../../projects/cor_lib_test_main/cocos2d/external/glfw3/include/win32;../../../../projects/cor_lib_test_main/cocos2d/extensions/;../../../../projects/cor_lib_test_main/cocos2d/external;../../../../external/mrubybind;../../../../external/mruby/include;../../../../external/boost;../../sources/import/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ObjectFileName>$(IntDir)/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/tmp/%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

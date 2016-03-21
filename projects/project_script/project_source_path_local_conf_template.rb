@@ -11,4 +11,3 @@
 #SOURCE_PATH = "../experimental_projects/set_on_enter_callback_cpp"
 #SOURCE_PATH = "../experimental_projects/obj3d"
 #SOURCE_PATH = "../experimental_projects/simple_3d_world"
-

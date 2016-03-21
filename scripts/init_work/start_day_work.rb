@@ -32,14 +32,13 @@ end
 
 if WINDOWS
   Dir.chdir "../../external/mruby_build"
-  
+
   #run_cmd "sh build_win_all.sh"
-  
+
 end
 
-Dir.chdir run_dir
-Dir.chdir "../../libraries/scripts/"
-
-run_cmd  "ruby filelist.rb"
+#Dir.chdir run_dir
+#Dir.chdir "../../libraries/scripts/"
+#run_cmd  "ruby filelist.rb"
 
 exit @result

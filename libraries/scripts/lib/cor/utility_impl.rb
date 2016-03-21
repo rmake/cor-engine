@@ -1,7 +1,7 @@
 
 require 'fileutils'
 
-module COR
+module Cor
 
   module Utility
     def self.file_enum path, &p
@@ -10,16 +10,16 @@ module COR
         next if fn == ".."
 
         fpath = "#{path}/#{fn}"
-        
-        if File::ftype(fpath) == "directory" 
+
+        if File::ftype(fpath) == "directory"
           self.file_enum fpath, &p
         else
           yield fpath
         end
-        
+
       end
     end
-  
+
     def self.file_list path, &block
       a = []
       self.file_enum path do |fpath|
@@ -33,24 +33,24 @@ module COR
       end
       a
     end
-    
+
     def self.dir_enum path, &block
       Dir.foreach(path) do |fn|
         next if fn == "."
         next if fn == ".."
 
         fpath = "#{path}/#{fn}"
-        
-        if File::ftype(fpath) == "directory" 
+
+        if File::ftype(fpath) == "directory"
           yield fpath
           self.dir_enum fpath, &block
         else
-          
+
         end
-        
+
       end
     end
-    
+
     def self.dir_list path, &block
       a = []
       self.dir_enum path do |fpath|
@@ -64,14 +64,14 @@ module COR
       end
       a
     end
-    
+
     def self.file_write fn, data
       FileUtils.mkpath(File.dirname(fn))
       File.open fn, "wb" do |f|
         f.write data
       end
     end
-    
+
     def self.file_read fn
       data = nil
       File.open fn, "rb" do |f|
@@ -79,7 +79,22 @@ module COR
       end
       data
     end
-  
+
+    def self.write_file fn, data
+      FileUtils.mkpath(File.dirname(fn))
+      File.open fn, "wb" do |f|
+        f.write data
+      end
+    end
+
+    def self.read_file fn
+      data = nil
+      File.open fn, "rb" do |f|
+        data = f.read
+      end
+      data
+    end
+
     def self.underscore s
       s.gsub(/::/, '/').
       gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
@@ -87,15 +102,15 @@ module COR
       tr("-", "_").
       downcase
     end
-    
+
     def self.camelize s
       s.split('_').map{|s| s.capitalize}.join('')
     end
-    
+
     def self.c_string_encode str
       "\"#{str.gsub("\\", "\\\\").gsub("\n", "\\n").gsub("\t", "\\t").gsub("\"", "\\\"")}\""
     end
-    
+
     def self.interval_slice a, size
       a = a.clone
       r = []
@@ -105,7 +120,7 @@ module COR
       end
       r
     end
-    
+
   end
 
   def self.u
@@ -115,4 +130,3 @@ module COR
 
 end
 
-Cor = COR

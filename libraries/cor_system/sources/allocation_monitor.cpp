@@ -16,6 +16,9 @@
 
 //#define COR_ALLOCATION_MONITOR_CAPTURE_MODE
 
+//#define COR_ALLOCATION_MONITOR_ENABLE
+//#define COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
+
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
 #include <typeinfo.h>
 #include <iostream>
@@ -27,6 +30,123 @@ namespace cor
     {
         struct AllocationMonitorItnl
         {
+            struct AllocInfo;
+            typedef AllocInfo* AllocInfoPtr;
+            struct AllocInfo
+            {
+                void* ptr;
+                size_t n;
+                AllocInfoPtr next;
+                AllocInfoPtr prev;
+
+                void init(void* ptr, size_t n)
+                {
+                    this->n = n;
+                    this->ptr = ptr;
+                    this->next = this;
+                    this->prev = this;
+                }
+
+                void remove() {
+                    this->next->prev = this->prev;
+                    this->prev->next = this->next;
+
+                    this->prev = this;
+                    this->next = this;
+                }
+
+                void insert(AllocInfoPtr p) {
+                    p->remove();
+                    p->prev = this->prev;
+                    p->next = this;
+                    this->prev->next = p;
+                    this->prev = p;
+                }
+            };
+
+            //static const size_t AllocInfoTableSize = 4049;
+            static const size_t AllocInfoTableSize = 20011;
+            struct AllocInfoTable
+            {
+                AllocInfo table[AllocInfoTableSize];
+
+                AllocInfoTable() {
+                    for(size_t i = 0; i < AllocInfoTableSize; i++)
+                    {
+                        table[i].init(nullptr, 0);
+                    }
+                }
+
+                ~AllocInfoTable() {
+                    for(size_t i = 0; i < AllocInfoTableSize; i++)
+                    {
+                        while(table[i].next != &table[i]) {
+                            remove(table[i].next);
+                        }
+                    }
+                }
+
+                void clear() {
+                    for (size_t i = 0; i < AllocInfoTableSize; i++)
+                    {
+                        while (table[i].next != &table[i]) {
+                            remove(table[i].next);
+                        }
+                    }
+                }
+
+                size_t hash(void* p)
+                {
+                    return ((size_t)p) % AllocInfoTableSize;
+                }
+
+                AllocInfoPtr insert(void* p, size_t n)
+                {
+                    AllocInfoPtr ap = static_cast<AllocInfoPtr>(::malloc(sizeof(AllocInfo)));
+                    ap->init(p, n);
+                    auto k = hash(p);
+                    table[k].insert(ap);
+                    return ap;
+                }
+
+                AllocInfoPtr find(void* p)
+                {
+                    auto k = hash(p);
+                    auto ap = table[k].next;
+                    while(ap != &table[k])
+                    {
+                        if(p == ap->ptr)
+                        {
+                            return ap;
+                        }
+                        ap = ap->next;
+                    }
+                    return nullptr;
+                }
+
+                void remove(void* p)
+                {
+                    auto k = hash(p);
+                    auto ap = find(p);
+                    if(ap)
+                    {
+                        ap->remove();
+                        ::free(static_cast<void*>(ap));
+                    }
+
+                }
+
+                void remove(AllocInfoPtr ap)
+                {
+                    if(ap)
+                    {
+                        ap->remove();
+                        ::free(static_cast<void*>(ap));
+                    }
+                }
+            };
+
+
             struct Header;
             typedef Header* HeaderPtr;
             struct Header
@@ -43,6 +163,10 @@ namespace cor
                 HeaderPtr next;
                 RBool freed;
             };
+
+#ifdef COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
+            AllocInfoTable alloc_info_table;
+#endif
 
             RSize new_count;
             RSize delete_count;
@@ -76,7 +200,7 @@ namespace cor
             static PAllocationMonitor am;
             return am;
         }
-        
+
         AllocationMonitor::AllocationMonitor()
         {
             static AllocationMonitorItnl itnl_;
@@ -99,7 +223,7 @@ namespace cor
             itnl->captured_status = 0;
 #endif
         }
-        
+
         AllocationMonitor::~AllocationMonitor()
         {
             RSize i, isz;
@@ -150,6 +274,17 @@ namespace cor
             return s.str();
         }
 
+        void AllocationMonitor::set_enable(RBool enabled)
+        {
+            itnl->available = enabled;
+            if (!itnl->available)
+            {
+#ifdef COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
+                itnl->alloc_info_table.clear();
+#endif
+            }
+        }
+
         void AllocationMonitor::set_captured_status(RInt32 captured_status)
         {
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
@@ -163,7 +298,7 @@ namespace cor
             return itnl->captured_status;
 #else
             return 0;
-#endif      
+#endif
         }
 
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
@@ -177,14 +312,14 @@ namespace cor
         RString AllocationMonitor::get_captured_data()
         {
 #ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
-            
+
 
             std::vector<RString> data;
             RSize sz = itnl->captured_count;
             for(RSize i = 0 ; i < sz ; i++)
             {
                 if(itnl->captured_list[i].p)
-                { 
+                {
                     RStringStream s;
                     RBytePtr bp = (RBytePtr)itnl->captured_list[i].p;
                     bp += sizeof(AllocationMonitorItnl::Header);
@@ -215,7 +350,7 @@ namespace cor
                     OutputDebugStringA((s.str() + "\n").c_str());
                     data.push_back(s.str());
                 }
-                
+
             }
             RString str;
             for(auto i : data)
@@ -226,7 +361,7 @@ namespace cor
             return str;
 #else
             return RString();
-#endif        
+#endif
         }
 
         void AllocationMonitor::clear_caputred_data()
@@ -242,7 +377,7 @@ namespace cor
             static AllocationMonitor amo;
             return &amo;
         }
-        
+
 #ifdef COR_ALLOCATION_MONITOR_LEAK_CHECK
 #ifdef WIN32
         struct LeakCheck
@@ -264,203 +399,117 @@ namespace cor
 
         void* AllocationMonitor::alloc(size_t n)
         {
-            {
-#ifdef COR_ALLOCATION_MONITOR_LEAK_CHECK
-#ifdef WIN32
-                static LeakCheck lx;
-#endif
-#endif
-            }
-
+#ifdef COR_ALLOCATION_MONITOR_ENABLE
             PAllocationMonitor am = get_instance();
+            AllocationMonitorItnl* itnl = am->itnl;
+            if(am && itnl->available)
+            {
+                itnl->mutex.lock();
+
+            }
+#endif
+
             void* p = nullptr;
-            auto s = algorithm::BitOperation::ciel_pow_two(n);
-            auto ns = 1 << s;
-            if(am)
+            p = ::malloc(n);
+
+#ifdef COR_ALLOCATION_MONITOR_ENABLE
+            if(am && itnl->available)
             {
-                AllocationMonitorItnl* itnl = am->itnl;
-                if(itnl->available)
-                {
-                    itnl->mutex.lock();
-
-                    if(itnl->freed_table[s])
-                    {
-                        p = itnl->freed_table[s];
-                        itnl->freed_table[s] = itnl->freed_table[s]->next;
-                    }
-                }
-            }
-
-            RSize sz = sizeof(AllocationMonitorItnl::Header) + ns;
-
-            if(!p)
-            {
-                p = ::malloc(sz);
-            }
-            auto bp = static_cast<RBytePtr>(p);
-            auto h = static_cast<AllocationMonitorItnl::HeaderPtr>(p);
-#ifdef COR_ALLOCATION_MONITOR_INDEX_COUNT
-            static size_t count = 0;
-            h->count = count;
-            count++;
+#ifdef COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
+                itnl->alloc_info_table.insert(p, n);
 #endif
-#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
-            h->mark = 0xABCDEEFF;
-            h->captured_index = -1;
-#endif
-            h->size = sz;
-            h->n = n;
-            h->freed = rfalse;
-            h->next = nullptr;
-            bp += sizeof(AllocationMonitorItnl::Header);
+                itnl->alloc_size += n;
+                itnl->new_count++;
+                itnl->mutex.unlock();
 
-
-            if(am)
-            {
-#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
-                if(am->itnl->captured_status)
-                {
-                    auto ct = am->itnl->captured_count;
-                    am->itnl->captured_list[ct].p = h;
-                    am->itnl->captured_list[ct].status = am->itnl->captured_status;
-                    h->captured_index = ct;
-                    am->itnl->captured_count++;
-                }
-#endif
-                AllocationMonitorItnl* itnl = am->itnl;
-                if(itnl->available)
-                {
-                    itnl->mutex.unlock();
-                    itnl->alloc_size += sz;
-                    itnl->new_count++;
-                }
             }
+#endif
 
-            return static_cast<void*>(bp);
+            return p;
+
         }
 
         void AllocationMonitor::al_free(void* p)
         {
+            if(!p)
+            {
+                return;
+            }
+
+#ifdef COR_ALLOCATION_MONITOR_ENABLE
             PAllocationMonitor am = get_instance();
-            if(am)
+            AllocationMonitorItnl* itnl = am->itnl;
+            if(am && itnl->available)
             {
-                AllocationMonitorItnl* itnl = am->itnl;
-                if(itnl->available)
+                itnl->mutex.lock();
+
+#ifdef COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
+                auto ap = itnl->alloc_info_table.find(p);
+                if(ap)
                 {
-                    itnl->mutex.lock();
+                    itnl->alloc_size -= ap->n;
+                    itnl->alloc_info_table.remove(ap);
                 }
+#endif
             }
-
-            size_t sz = 0;
-
-            if(!am && p)
-            {
-                auto bp = static_cast<RBytePtr>(p);
-                bp -= sizeof(AllocationMonitorItnl::Header);
-                p = bp;
-                auto h = static_cast<AllocationMonitorItnl::HeaderPtr>(p);
-                h->freed = rtrue;
-                sz = h->size;
-
-                ::free(p);
-            }
-
-            if(am)
-            {
-                AllocationMonitorItnl* itnl = am->itnl;
-
-                
-                if(p)
-                {
-                    auto bp = static_cast<RBytePtr>(p);
-                    bp -= sizeof(AllocationMonitorItnl::Header);
-                    auto h = static_cast<AllocationMonitorItnl::HeaderPtr>((void*)bp);
-#ifdef COR_ALLOCATION_MONITOR_CAPTURE_MODE
-                    if(h->mark == 0xABCDEEFF && h->captured_index >= 0)
-                    {
-                        am->itnl->captured_list[h->captured_index].p = nullptr;
-                        am->itnl->captured_list[h->captured_index].status = 0xffffffff;
-                        h->captured_index = -1;
-                    }
 #endif
 
-                    if(itnl->available)
-                    {
-                        if(!h->freed)
-                        {
-                            h->freed = rtrue;
-                            sz = h->size;
+            ::free(p);
 
-                            auto s = algorithm::BitOperation::ciel_pow_two(h->n);
-                            h->next = itnl->freed_table[s];
-                            itnl->freed_table[s] = h;
-                        }
-                    }
-                    else
-                    {
-                        ::free(h);
-                    }
-                    
-                }
-
-                if(itnl->available)
-                {
-                    itnl->mutex.unlock();
-                    if(p)
-                    {
-                        itnl->delete_count++;
-                        itnl->alloc_size -= sz;
-                    }
-                }
+#ifdef COR_ALLOCATION_MONITOR_ENABLE
+            if(am && itnl->available)
+            {
+                itnl->delete_count++;
+                itnl->mutex.unlock();
             }
-            
+#endif
         }
 
         void* AllocationMonitor::al_realloc(void* p, size_t n)
         {
+#ifdef COR_ALLOCATION_MONITOR_ENABLE
             PAllocationMonitor am = get_instance();
-            if(am)
+            AllocationMonitorItnl* itnl = am->itnl;
+            if(am && itnl->available)
             {
-                AllocationMonitorItnl* itnl = am->itnl;
                 itnl->mutex.lock();
+#ifdef COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
+                auto ap = itnl->alloc_info_table.find(p);
+                if(ap)
+                {
+                    itnl->alloc_size -= ap->n;
+                    itnl->alloc_info_table.remove(ap);
+                }
+#endif
             }
+#endif
 
             void* np;
 
-            if(n > 0)
-            {
-                np = AllocationMonitor::alloc(n);
+            np = ::realloc(p, n);
 
-                if(p)
+#ifdef COR_ALLOCATION_MONITOR_ENABLE
+            if(am && itnl->available)
+            {
+                if(!p || !np)
                 {
-
-                    auto bp = static_cast<RBytePtr>(p);
-                    bp -= sizeof(AllocationMonitorItnl::Header);
-                    auto h = static_cast<AllocationMonitorItnl::HeaderPtr>((void*)bp);
-
-
-                    if(!h->freed)
+                    if(p)
                     {
-                        if(h->n > 0)
-                        {
-                            ::memmove(np, p, h->n < n ? h->n : n);
-                        }
-                        AllocationMonitor::al_free(p);
+                        itnl->delete_count++;
                     }
-                    
+                    if(np)
+                    {
+                        itnl->alloc_size += n;
+#ifdef COR_ALLOCATION_MONITOR_USE_ALLOC_INFO_TABLE
+                        itnl->alloc_info_table.insert(np, n);
+#endif
+                        itnl->new_count++;
+                    }
                 }
-            }
-            else
-            {
-                np = nullptr;
-                AllocationMonitor::al_free(p);
-            }
-
-            if(am)
-            {
-                AllocationMonitorItnl* itnl = am->itnl;
                 itnl->mutex.unlock();
+
             }
+#endif
 
             return np;
         }
@@ -469,7 +518,7 @@ namespace cor
 }
 
 
-#if 0
+//#if 0
 //#ifdef COR_CUSTOM_NEW_OPERATOR
 void* operator new(size_t n) throw(std::bad_alloc)
 {
@@ -491,6 +540,6 @@ void operator delete[](void* p) throw()
     return cor::system::AllocationMonitor::al_free(p);
 }
 //#endif
-#endif
+//#endif
 
 

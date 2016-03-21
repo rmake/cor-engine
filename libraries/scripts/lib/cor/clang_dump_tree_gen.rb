@@ -1,6 +1,6 @@
 require "cor/clang_dump_tree_parse"
 
-module COR
+module Cor
 
   module ClangDumpTree
 
@@ -12,6 +12,25 @@ module COR
       "-@" => "_minus_self_",
       "[]" => "_brackets_",
       "[]=" => "_brackets_equal_",
+    }
+
+    DIRECT_TYPES = {
+      "void" => true,
+      "int" => true,
+      "float" => true,
+      "double" => true,
+      "bool" => true,
+      "ssize_t" => true,
+      "ssize_t *" => true,
+      "char16_t" => true,
+      "std::string" => true,
+      "std::basic_string<char>" => true,
+      "std::basic_string<char, std::char_traits<char>, std::allocator<char> >" => true,
+      "std::basic_string<char, std::char_traits<char>, std::allocator<char>>" => true,
+      "RString" => true,
+      "cor::RString" => true,
+      "RBool" => true,
+      "cor::RBool" => true,
     }
 
     def self.is_function(s)
@@ -204,6 +223,10 @@ module COR
         end
       end
 
+      if DIRECT_TYPES[type]
+        return type
+      end
+
       while true
         old_type = type
 
@@ -256,7 +279,7 @@ module COR
           type = ntp if ntp
         end
 
-        if old_type == type
+        if old_type == type || DIRECT_TYPES[type]
           keys.each do |k|
             @typedef_assoc_base[k] = type
           end
@@ -293,30 +316,15 @@ module COR
         type = type.gsub(@top_const, "").gsub(@tail_amp, "")
       end
 
-      #if type.match(@top_const)
-      #  type = type.gsub(@top_const, "")
-      #end
-
       if (!type.match(@top_const) && type.match(/\&$/)) || type.match(/::\*/) #|| type.match(/std::vector/)
         return nil
       end
 
-      direct_type = {
-        "void" => true,
-        "int" => true,
-        "float" => true,
-        "double" => true,
-        "bool" => true,
-        "std::string" => true,
-        "std::basic_string<char>" => true,
-        "std::basic_string<char, std::char_traits<char>, std::allocator<char> >" => true,
-        "std::basic_string<char, std::char_traits<char>, std::allocator<char>>" => true,
-        "std::string" => true,
-        "RString" => true,
-        "cor::RString" => true,
-        "RBool" => true,
-        "cor::RBool" => true,
-      }
+      direct_type = DIRECT_TYPES
+
+      if direct_type[type]
+        return type
+      end
 
       type = yield m, type, option
       #type = self.typedef_assoc m, type, option
@@ -532,7 +540,18 @@ module COR
           end
         end
         if ret.gsub(" ", "") == "void"
-          call_arg = "[=](#{func_args_def.join(", ")}){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a#{i}.is_living()) { a#{i}.func()(#{func_args_list.join(", ")}); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } }"
+          #call_arg = "[=](#{func_args_def.join(", ")}){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a#{i}.is_living()) { a#{i}.func()(#{func_args_list.join(", ")}); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); } }"
+          call_arg = "\n" + <<EOS
+              [=](#{func_args_def.join(", ")}){
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a#{i}.is_living()) {
+                          a#{i}.func()(#{func_args_list.join(", ")});
+                      }
+                  }, [&]() {
+
+                  });
+              }
+EOS
         else
           empty_ret = ret
           if empty_ret.match(/.*?\*/)
@@ -540,7 +559,20 @@ module COR
           else
             empty_ret = "#{ret}()"
           end
-          call_arg = "[=](#{func_args_def.join(", ")}){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a#{i}.is_living()) { #{ret} r = a#{i}.func()(#{func_args_list.join(", ")}); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); return r; } else return #{empty_ret} ; } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); return #{empty_ret}; }}"
+          #call_arg = "[=](#{func_args_def.join(", ")}){ mrubybind::MrubyArenaStore mas(cor::mruby_interface::MrubyState::get_current()->get_mrb()); try { if(a#{i}.is_living()) { #{ret} r = a#{i}.func()(#{func_args_list.join(", ")}); auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); return r; } else return #{empty_ret} ; } catch(mrb_int e) { auto mrb = cor::mruby_interface::MrubyState::get_current(); mrb->exception_store_log(); return #{empty_ret}; }}"
+          call_arg = "\n" + <<EOS
+              [=](#{func_args_def.join(", ")}){
+                  #{ret} r;
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a#{i}.is_living()) {
+                          r = a#{i}.func()(#{func_args_list.join(", ")});
+                      }
+                  }, [&]() {
+                      r = #{empty_ret};
+                  });
+                  return r;
+              }
+EOS
         end
         arg = "mrubybind::FuncPtr<#{ret}(#{cva.map{|v| v}.join(', ')})>"
       elsif tp[:is_enum]
@@ -720,7 +752,7 @@ module COR
 
           tp_self_keys =
             [
-              "#{tmpl[:template_name].gsub(/^.*::/, "")}<#{tp_self_key.join(",")}>",
+              "#{tmpl[:template_name].gsub(/^.*::/, "")}<#{tp_self_key.join(", ")}>",
               "#{tmpl[:template_name].gsub(/^.*::/, "")}",
             ]
 
@@ -834,7 +866,6 @@ module COR
             selected_methods << nm
           end
         end
-
 
       end
 
@@ -1007,6 +1038,53 @@ module COR
 
       class_replace_table = {}
 
+      ["double", "int"].each do |v|
+
+        ch = {
+          :value => :value,
+          :class_type => "MrubyRef",
+          :access => "cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec<#{v}>(source)",
+          :inv_access => "cor::mruby_interface::MrubyArray::convert_str_vec_to_mruby<#{v}>(source)",
+          :is_value_std_array => true,
+        }
+
+        class_replace_table["const std::vector<#{v}>&"] = ch
+        class_replace_table["std::vector<#{v}>&"] = ch
+        class_replace_table["const std::vector<#{v}>"] = ch
+        class_replace_table["std::vector<#{v}>"] = ch
+        class_replace_table["const std::vector<#{v} >&"] = ch
+        class_replace_table["std::vector<#{v} >&"] = ch
+        class_replace_table["const std::vector<#{v} >"] = ch
+        class_replace_table["std::vector<#{v} >"] = ch
+        class_replace_table["const std::vector<#{v}, std::allocator<#{v} > >"] = ch
+        class_replace_table["std::vector<#{v}, std::allocator<#{v} > >"] = ch
+        class_replace_table["const std::vector<#{v}, std::allocator<#{v}>>"] = ch
+        class_replace_table["std::vector<#{v}, std::allocator<#{v}>>"] = ch
+
+        ch = {
+          :value => :value,
+          :class_type => "MrubyRef",
+          :access => "cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec_2_dim<#{v}>(source)",
+          :inv_access => "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby<#{v}>(source)",
+          :is_value_std_array_2_dim => true,
+        }
+
+        class_replace_table["const std::vector<std::vector<#{v}>>&"] = ch
+        class_replace_table["std::vector<std::vector<#{v}>>&"] = ch
+        class_replace_table["const std::vector<std::vector<#{v}>>"] = ch
+        class_replace_table["std::vector<std::vector<#{v}>>"] = ch
+        class_replace_table["const std::vector<std::vector<#{v}> >&"] = ch
+        class_replace_table["std::vector<std::vector<#{v}> >&"] = ch
+        class_replace_table["const std::vector<std::vector<#{v}> >"] = ch
+        class_replace_table["std::vector<std::vector<#{v}> >"] = ch
+        class_replace_table["const std::vector<std::vector<#{v}, std::allocator<#{v}>, std::allocator<std::vector<#{v}, std::allocator<#{v}>> > >"] = ch
+        class_replace_table["std::vector<std::vector<#{v}, std::allocator<#{v}>, std::allocator<std::vector<#{v}, std::allocator<#{v}>> > >"] = ch
+        class_replace_table["const std::vector<std::vector<#{v}, std::allocator<#{v}>>, std::allocator<std::vector<#{v}, std::allocator<#{v}>>>>"] = ch
+        class_replace_table["std::vector<std::vector<#{v}, std::allocator<#{v}>>, std::allocator<std::vector<#{v}, std::allocator<#{v}>>>>"] = ch
+
+
+      end
+
       classes.each do |k, v|
           #tp = option[:class_selector].call v
           tp = target_class_table[v[:original_class_name]][:value]
@@ -1122,7 +1200,7 @@ module COR
             ch = {
               :value => :value,
               :class_type => "MrubyRef",
-              :access => "cor::cocos2dx_mruby_interface::CocosArray::convert_to_from_cocos_vec<#{v[:original_class_name]}>(source)",
+              :access => "cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_cocos_vec<#{v[:original_class_name]}>(source)",
               :inv_access => "cor::cocos2dx_mruby_interface::CocosArray::convert_cocos_vec_to_mruby<#{v[:original_class_name]}>(source)",
               :is_cocos_array => true,
             }
@@ -1149,7 +1227,7 @@ module COR
             ch = {
               :value => :value,
               :class_type => "MrubyRef",
-              :access => "cor::cocos2dx_mruby_interface::CocosArray::convert_to_from_std_vec<#{v[:original_class_name]}>(source)",
+              :access => "cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_std_vec<#{v[:original_class_name]}>(source)",
               :inv_access => "cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby<#{v[:original_class_name]}>(source)",
               :is_std_array => true,
             }
@@ -1173,7 +1251,8 @@ module COR
             ch = {
               :value => :value,
               :class_type => "MrubyRef",
-              :access => "cor::mruby_interface::MrubyArray::convert_to_from_std_vec<#{v[:original_class_name]}>(source)",
+              :access => "cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec<#{v[:original_class_name]}>(source)",
+              :inv_access => "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby<#{v[:original_class_name]}>(source)",
               :is_value_std_array => true,
             }
 
@@ -1189,6 +1268,27 @@ module COR
             class_replace_table["std::vector<#{assoced}, std::allocator<#{assoced} > >"] = ch
             class_replace_table["const std::vector<#{assoced}, std::allocator<#{assoced}>>"] = ch
             class_replace_table["std::vector<#{assoced}, std::allocator<#{assoced}>>"] = ch
+
+            ch = {
+              :value => :value,
+              :class_type => "MrubyRef",
+              :access => "cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec_2_dim<#{v[:original_class_name]}>(source)",
+              :inv_access => "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby<#{v[:original_class_name]}>(source)",
+              :is_value_std_array_2_dim => true,
+            }
+
+            class_replace_table["const std::vector<std::vector<#{v[:original_class_name]}>>&"] = ch
+            class_replace_table["std::vector<std::vector<#{v[:original_class_name]}>>&"] = ch
+            class_replace_table["const std::vector<std::vector<#{v[:original_class_name]}>>"] = ch
+            class_replace_table["std::vector<std::vector<#{v[:original_class_name]}>>"] = ch
+            class_replace_table["const std::vector<std::vector<#{v[:original_class_name]}> >&"] = ch
+            class_replace_table["std::vector<std::vector<#{v[:original_class_name]}> >&"] = ch
+            class_replace_table["const std::vector<std::vector<#{v[:original_class_name]}> >"] = ch
+            class_replace_table["std::vector<std::vector<#{v[:original_class_name]}> >"] = ch
+            class_replace_table["const std::vector<std::vector<#{assoced}, std::allocator<#{assoced}>, std::allocator<std::vector<#{assoced}> > >"] = ch
+            class_replace_table["std::vector<std::vector<#{assoced}, std::allocator<#{assoced}>, std::allocator<std::vector<#{assoced}> > >"] = ch
+            class_replace_table["const std::vector<std::vector<#{assoced}, std::allocator<#{assoced}>>, std::allocator<std::vector<#{assoced}>>>"] = ch
+            class_replace_table["std::vector<std::vector<#{assoced}, std::allocator<#{assoced}>>, std::allocator<std::vector<#{assoced}>>>"] = ch
 
           end
 
@@ -1457,6 +1557,7 @@ EOS
             is_std_array = crt[:is_std_array]
             is_cocos_value_array = crt[:is_cocos_value_array]
             is_value_std_array = crt[:is_value_std_array]
+            is_value_std_array_2_dim = crt[:is_value_std_array_2_dim]
           end
 
           is_nil = true unless ret
@@ -1526,7 +1627,11 @@ EOS
           end
 
           if is_value_std_array
-            call_method = "cor::mruby_interface::MrubyArray::convert_to_from_std_vec(#{call_method})"
+            call_method = "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby(#{call_method})"
+          end
+
+          if is_value_std_array_2_dim
+            call_method = "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby(#{call_method})"
           end
 
           if is_cocos_value_array
@@ -1611,6 +1716,7 @@ EOS
             is_std_array = crt[:is_std_array]
             is_cocos_value_array = crt[:is_cocos_value_array]
             is_value_std_array = crt[:is_value_std_array]
+            is_value_std_array_2_dim = crt[:is_value_std_array_2_dim]
           end
 
           unless type
@@ -1660,7 +1766,12 @@ EOS
 
 
           if is_value_std_array
-            va = "cor::mruby_interface::MrubyArray::convert_to_from_std_vec<#{source_type.gsub(/^std::vector</, "").gsub(/, std::allocator<.*>$/, "")} >(#{va})"
+            va = "cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec<#{source_type.gsub(/^std::vector</, "").gsub(/, std::allocator<.*>$/, "")} >(#{va})"
+            vb = "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby(#{vb})"
+          end
+
+          if is_value_std_array_2_dim
+            va = "cor::mruby_interface::MrubyArray::convert_mruby_to_std_vec<#{source_type.gsub(/^std::vector<\s*std::vector<\s*/, "").gsub(/>\s*, std::allocator<.*>$/, "")} >(#{va})"
             vb = "cor::mruby_interface::MrubyArray::convert_std_vec_to_mruby(#{vb})"
           end
 
@@ -2208,30 +2319,34 @@ EOS
 
       Utility.file_write "log/#{option[:name]}/code.rb.log", method_overload_define.join
 
-      if RUBY_PLATFORM.include? "mswin32"
+      if RUBY_PLATFORM.downcase =~ /mswin(?!ce)|mingw|cygwin|bccwin/
         #`../../external/mruby/build/host/bin/mrbc.exe -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
-        `../../external/mruby_build/builded/vc_debug_32/bin/mrbc.exe -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
+        `../../external/mruby_build/builded/vc_debug_32/bin/mrbc.exe -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`;
 
       else
-        `../../external/mruby/build/host/bin/mrbc -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`
+        `../../external/mruby/build/host/bin/mrbc -B#{class_name}_mruby_code -o log/#{option[:name]}/code.c.log log/#{option[:name]}/code.rb.log`;
       end
       method_overload_define = Utility.file_read("log/#{option[:name]}/code.c.log").gsub(/#include.*?\n/m, "static ")
 
       string_literals = string_literals.map{|k, v| v[:def]}.join
-      method_defines = method_defines.join
 
-      class_defines = class_defines.join
+      method_registrations_length = method_registrations.length + class_registrations.length + class_convertables.length + constant_registrations.length
 
-
-      l = method_registrations.length + class_registrations.length + class_convertables.length + constant_registrations.length
-
-      l = [l / (12), 1].max
+      l = [(method_registrations_length / (12.0)).ceil, 1].max
 
       method_registrations = Utility.interval_slice(method_registrations, l).map{|v| v.join}
       class_registrations = Utility.interval_slice(class_registrations, l).map{|v| v.join}
       class_convertables = Utility.interval_slice(class_convertables, l).map{|v| v.join}
       constant_registrations = Utility.interval_slice(constant_registrations, l).map{|v| v.join}
 
+      total_length = method_registrations.length +
+        class_registrations.length + class_convertables.length +
+        constant_registrations.length
+
+      method_defines_length = [(method_defines.length / total_length.to_f).ceil, 1].max
+      class_defines_length = [(class_defines.length / total_length.to_f).ceil, 1].max
+      method_defines = Utility.interval_slice(method_defines, method_defines_length).map{|v| v.join}
+      class_defines = Utility.interval_slice(class_defines, class_defines_length).map{|v| v.join}
 
       calls_a = []
       (class_registrations + method_registrations + class_convertables + constant_registrations).each_with_index do |s, ct|
@@ -2321,6 +2436,8 @@ EOS
       src = <<EOS
 #include "#{header_path}.h"
 #include "#{header_path}/sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 #{
 if option[:cor_name_space]
@@ -2330,11 +2447,6 @@ end
 }
     namespace #{name_space}
     {
-        #{"\n" + class_defines.to_s}
-
-        #{"\n" + method_defines.to_s}
-
-
 
         void #{class_name}::bind(mruby_interface::MrubyState& mrb)
         {
@@ -2368,10 +2480,14 @@ end
 }
 
 EOS
+
+      sub_index = 0
       sub_src = call_defs.map do |cd|
         tsrc = <<EOS
 #include "#{header_path}.h"
 #include "sub_binding_generated.h"
+#include "cor_mruby_interface/sources/mruby_state.h"
+#include "cor_mruby_interface/sources/mruby_array.h"
 
 #{
 if option[:cor_name_space]
@@ -2381,6 +2497,9 @@ end
 }
     namespace #{name_space}
     {
+        #{"\n" + method_defines[sub_index].to_s}
+
+        #{"\n" + class_defines[sub_index].to_s}
 
         #{"\n" + cd.to_s}
     }
@@ -2390,6 +2509,7 @@ if option[:cor_name_space]
 end
 }
 EOS
+        sub_index += 1
         tsrc
       end
 

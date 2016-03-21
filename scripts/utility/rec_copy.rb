@@ -7,7 +7,7 @@ dst_path = ARGV[1]
 pattern = Regexp.new(ARGV[2]) || /.*/
 
 def copy_files(src_path, dst_path, pattern)
-  
+
   Dir.foreach(src_path){ |fn|
     next if fn == "."
     next if fn == ".."
@@ -19,7 +19,6 @@ def copy_files(src_path, dst_path, pattern)
     #if FileTest::directory?(spath)
     if File::ftype(spath) == "directory"
 
-      print "dir #{spath}\n"
       begin
         #Dir.mkdir(dpath)
       rescue
@@ -27,9 +26,7 @@ def copy_files(src_path, dst_path, pattern)
       end
       copy_files(spath, dpath, pattern)
     else
-      #print "time #{FileUtils.cmp(spath, dpath)} #{File.exist?(dpath)}\n"
       if (!File.exist?(dpath) || !FileUtils.cmp(spath, dpath)) && fn.index(pattern)
-        print "file #{spath}\n"
         FileUtils.mkpath dst_path
         FileUtils.cp(spath, dst_path)
       end

@@ -3,20 +3,20 @@
 
 #include "project_group.h"
 #include "2d/CCLayer.h"
-#include "UI/UIEditBox/UIEditBox.h"
+#include "ui/UIEditBox/UIEditBox.h"
 
 namespace cor
 {
     namespace project_structure
     {
         struct ProjectGroupSceneItnl;
-    
+
         class ProjectGroupScene : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
         {
             std::unique_ptr<ProjectGroupSceneItnl> itnl;
-        
+
         public:
-        
+
             ProjectGroupScene();
             virtual ~ProjectGroupScene();
 

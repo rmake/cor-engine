@@ -22,7 +22,6 @@ LOCAL_SRC_FILES:= $(MRUBY_PATH)/build_src/build/host/mrbgems/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-range-ext/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-sprintf/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-string-ext/gem_init.c \
-  $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-string-utf8/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-struct/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-symbol-ext/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrbgems/mruby-time/gem_init.c \
@@ -30,10 +29,6 @@ LOCAL_SRC_FILES:= $(MRUBY_PATH)/build_src/build/host/mrbgems/gem_init.c \
   $(MRUBY_PATH)/build_src/build/host/mrblib/mrblib.c \
   $(MRUBY_PATH)/build_src/build/mrbgems/mruby-json/src/mrb_json.c \
   $(MRUBY_PATH)/build_src/build/mrbgems/mruby-json/src/parson.c \
-  $(MRUBY_PATH)/build_src/doc/api/mruby/array.h.md \
-  $(MRUBY_PATH)/build_src/doc/api/mruby/hash.h.md \
-  $(MRUBY_PATH)/build_src/doc/api/mruby/value.h.md \
-  $(MRUBY_PATH)/build_src/doc/api/mruby.h.md \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-array-ext/src/array.c \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-compiler/core/codegen.c \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-error/src/exception.c \
@@ -54,7 +49,6 @@ LOCAL_SRC_FILES:= $(MRUBY_PATH)/build_src/build/host/mrbgems/gem_init.c \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-sprintf/src/kernel.c \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-sprintf/src/sprintf.c \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-string-ext/src/string.c \
-  $(MRUBY_PATH)/build_src/mrbgems/mruby-string-utf8/src/string.c \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-struct/src/struct.c \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-symbol-ext/src/symbol.c \
   $(MRUBY_PATH)/build_src/mrbgems/mruby-time/src/time.c \

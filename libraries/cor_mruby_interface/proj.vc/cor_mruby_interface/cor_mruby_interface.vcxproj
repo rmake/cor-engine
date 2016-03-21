@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<Project DefaultTargets='Build' ToolsVersion='12.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+<Project DefaultTargets='Build' ToolsVersion='14.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
   <ItemGroup Label='ProjectConfigurations'>
     <ProjectConfiguration Include='Debug|Win32'>
       <Configuration>Debug</Configuration>
@@ -19,13 +19,13 @@
   <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;' Label='Configuration'>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition='&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;' Label='Configuration'>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -123,8 +123,11 @@
     
     
     
-  <ClCompile Include='../../sources/basic_bind/sub_0.cpp'/><ClCompile Include='../../sources/basic_bind/sub_1.cpp'/><ClCompile Include='../../sources/basic_bind/sub_10.cpp'/><ClCompile Include='../../sources/basic_bind/sub_11.cpp'/><ClCompile Include='../../sources/basic_bind/sub_12.cpp'/><ClCompile Include='../../sources/basic_bind/sub_13.cpp'/><ClCompile Include='../../sources/basic_bind/sub_14.cpp'/><ClCompile Include='../../sources/basic_bind/sub_15.cpp'/><ClCompile Include='../../sources/basic_bind/sub_16.cpp'/><ClCompile Include='../../sources/basic_bind/sub_17.cpp'/><ClCompile Include='../../sources/basic_bind/sub_18.cpp'/><ClCompile Include='../../sources/basic_bind/sub_19.cpp'/><ClCompile Include='../../sources/basic_bind/sub_2.cpp'/><ClCompile Include='../../sources/basic_bind/sub_20.cpp'/><ClCompile Include='../../sources/basic_bind/sub_21.cpp'/><ClCompile Include='../../sources/basic_bind/sub_22.cpp'/><ClCompile Include='../../sources/basic_bind/sub_23.cpp'/><ClCompile Include='../../sources/basic_bind/sub_24.cpp'/><ClCompile Include='../../sources/basic_bind/sub_25.cpp'/><ClCompile Include='../../sources/basic_bind/sub_26.cpp'/><ClCompile Include='../../sources/basic_bind/sub_27.cpp'/><ClCompile Include='../../sources/basic_bind/sub_28.cpp'/><ClCompile Include='../../sources/basic_bind/sub_29.cpp'/><ClCompile Include='../../sources/basic_bind/sub_3.cpp'/><ClCompile Include='../../sources/basic_bind/sub_4.cpp'/><ClCompile Include='../../sources/basic_bind/sub_5.cpp'/><ClCompile Include='../../sources/basic_bind/sub_6.cpp'/><ClCompile Include='../../sources/basic_bind/sub_7.cpp'/><ClCompile Include='../../sources/basic_bind/sub_8.cpp'/><ClCompile Include='../../sources/basic_bind/sub_9.cpp'/><ClCompile Include='../../sources/basic_bind.cpp'/><ClCompile Include='../../sources/mrubybind.cpp'/><ClCompile Include='../../sources/mruby_array.cpp'/><ClCompile Include='../../sources/mruby_experimental.cpp'/><ClCompile Include='../../sources/mruby_ref_container.cpp'/><ClCompile Include='../../sources/mruby_state.cpp'/></ItemGroup>
+    
+  <ClCompile Include='../../sources/basic_bind/cor_mruby_sub_0.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_1.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_10.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_11.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_12.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_13.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_14.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_15.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_16.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_17.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_18.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_19.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_2.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_20.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_21.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_22.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_23.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_24.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_25.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_26.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_27.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_28.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_29.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_3.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_4.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_5.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_6.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_7.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_8.cpp'/><ClCompile Include='../../sources/basic_bind/cor_mruby_sub_9.cpp'/><ClCompile Include='../../sources/basic_bind.cpp'/><ClCompile Include='../../sources/mrubybind.cpp'/><ClCompile Include='../../sources/mruby_array.cpp'/><ClCompile Include='../../sources/mruby_experimental.cpp'/><ClCompile Include='../../sources/mruby_ref_container.cpp'/><ClCompile Include='../../sources/mruby_state.cpp'/></ItemGroup>
   <ItemGroup>
+    
+    
     
     
     

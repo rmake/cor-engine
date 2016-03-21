@@ -20,7 +20,7 @@
 
 namespace cor
 {
-    
+
 
     typedef int RBool;
     typedef float RFloat;
@@ -40,14 +40,15 @@ namespace cor
     typedef void* RPointer;
     typedef const void* RCPointer;
     typedef std::stringstream RStringStream;
-    
-#ifdef __CYGWIN__
-    typedef __int64 RInt64;
-    typedef unsigned __int64 RUInt64;
-#elif defined __MINGW32__
-    typedef __int64 RInt64;
-    typedef unsigned __int64 RUInt64;
-#elif defined __GNUC__
+
+//#ifdef __CYGWIN__
+//    typedef __int64 RInt64;
+//    typedef unsigned __int64 RUInt64;
+//#elif defined __MINGW32__
+//    typedef __int64 RInt64;
+//    typedef unsigned __int64 RUInt64;
+//#elif defined __GNUC__
+#ifdef __GNUC__
     typedef long long int RInt64;
     typedef unsigned long long int RUInt64;
 #elif defined WIN32
@@ -60,7 +61,7 @@ namespace cor
 
     static const RBool rtrue = 1;
     static const RBool rfalse = 0;
-    
+
     typedef std::vector<RString> RStringArray;
     typedef std::vector<RByte> RByteArray;
     typedef std::vector<RChar> RCharArray;
@@ -71,7 +72,7 @@ namespace cor
     typedef std::vector<RFloat> RFloatArray;
     typedef std::vector<RDouble> RDoubleArray;
     typedef std::vector<RSize> RSizeArray;
-    
+
     typedef RBool* RBoolPtr;
     typedef RFloat* RFloatPtr;
     typedef RDouble* RDoublePtr;

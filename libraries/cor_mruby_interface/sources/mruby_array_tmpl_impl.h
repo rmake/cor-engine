@@ -2,7 +2,6 @@
 #define ____COR_MRUBY_INTERFACE_SOURCES_MRUBY_ARRAY_TMPL_IMPL_H_
 
 #include "mruby_array_tmpl.h"
-#include "cor_algorithm/sources/utilities.h"
 
 namespace cor
 {

@@ -26,6 +26,8 @@
 #include "cor_cocos2dx_mruby_interface/sources/cocos_weak_ptr.h"
 #include "cor_cocos2dx_mruby_interface/sources/mruby_script_engine.h"
 #include "cor_cocos2dx_mruby_interface/sources/sprite_experimental.h"
+#undef RELATIVE
+#undef ABSOLUTE
 #include "../projects/cor_lib_test_main/cocos2d/cocos/cocos2d.h"
 #include "../projects/cor_lib_test_main/cocos2d/cocos/ui/UIEditBox/UIEditBox.h"
 #include "../projects/cor_lib_test_main/cocos2d/extensions/GUI/CCScrollView/CCScrollView.h"
@@ -1044,7 +1046,7 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_set_transform_to_render(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::type::Matrix4x4Tmpl<float> a0);
         cor::type::Matrix4x4Tmpl<float> Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_get_transform_to_render(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_set_collision_group_pair(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, int a1, int a2);
-        int Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_get_collision_group_pair(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, int a1);
+        RBool Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_get_collision_group_pair(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, int a1);
         cor::cocos2dx_converter::Collision2dNodeRef Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_add_o_box(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, cor::type::BoxTmpl<float, cor::type::Vector2Tmpl<float>> a2, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a3);
         cor::cocos2dx_converter::Collision2dNodeRef Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_add_o_sphere(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, cor::type::SphereTmpl<float, cor::type::Vector2Tmpl<float>> a2, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a3);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_find_o_box_1(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, int a1, cor::type::BoxTmpl<float, cor::type::Vector2Tmpl<float>> a2, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a3);
@@ -1052,16 +1054,16 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_find_pair(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, int a1, mrubybind::FuncPtr<void (cor::cocos2dx_converter::Collision2dNodeRef, cor::cocos2dx_converter::Collision2dNodeRef)> a2);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_all_find_pair(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, mrubybind::FuncPtr<void (cor::cocos2dx_converter::Collision2dNodeRef, cor::cocos2dx_converter::Collision2dNodeRef)> a0);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_all_pair_call(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c);
-        int Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_find_nearest(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, cor::type::Vector2Tmpl<float> a1, int a2, mrubybind::FuncPtr<void (float, cor::cocos2dx_converter::Collision2dNodeRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a3);
+        RBool Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_find_nearest(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0, cor::type::Vector2Tmpl<float> a1, int a2, mrubybind::FuncPtr<void (float, cor::cocos2dx_converter::Collision2dNodeRef, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a3);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_fit(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_set_changed(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, int a0);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_render_to_draw_node(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a0);
         void Cocos2dxBind_cor__cocos2dx_converter__Collision2dNode_render_to_draw_node_o_box(std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, cor::type::BoxTmpl<float, cor::type::Vector2Tmpl<float>> a1, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a2);
-        void Cocos2dxBind_cor__cocos2dx_converter__EasyHttpClient_get_text(std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, mrubybind::FuncPtr<void (std::string, std::string)> a1);
+        void Cocos2dxBind_cor__cocos2dx_converter__EasyHttpClient_get_text(std::string a0, mrubybind::FuncPtr<void (std::string, std::string)> a1);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_get_node(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_set_collision_callback(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c, mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a0);
         unsigned int Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_get_index(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c);
-        int Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_is_erased(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c);
+        RBool Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_is_erased(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectSensor_remove(std::weak_ptr<cor::cocos2dx_converter::RtsObjectSensor> c);
         int Cocos2dxBind_cocos2d__Value_as_byte(cocos2d::Value c);
         int Cocos2dxBind_cocos2d__Value_as_int(cocos2d::Value c);
@@ -2029,7 +2031,7 @@ namespace cor
         void Cocos2dxBind_cocos2d__TargetedAction_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TargetedAction> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__TargetedAction_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TargetedAction> c);
         unsigned int Cocos2dxBind_cocos2d__TargetedAction_get_reference_count_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TargetedAction> c);
-        int Cocos2dxBind_cor__cocos2dx_converter__RtsObjectAction_is_erased(std::weak_ptr<cor::cocos2dx_converter::RtsObjectAction> c);
+        RBool Cocos2dxBind_cor__cocos2dx_converter__RtsObjectAction_is_erased(std::weak_ptr<cor::cocos2dx_converter::RtsObjectAction> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectAction_stop(std::weak_ptr<cor::cocos2dx_converter::RtsObjectAction> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectAction_step(std::weak_ptr<cor::cocos2dx_converter::RtsObjectAction> c);
         std::weak_ptr<cor::cocos2dx_converter::RtsObject> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_create_1();
@@ -2039,17 +2041,17 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_kind(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
         int Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_kind(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_movable(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
-        int Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_movable(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
+        RBool Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_movable(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_collidable(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
-        int Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_collidable(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
+        RBool Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_collidable(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_enemy_collidable(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
-        int Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_enemy_collidable(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
+        RBool Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_enemy_collidable(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_rotate_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
-        int Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_rotate_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
+        RBool Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_rotate_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_parabola_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
-        int Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_parabola_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
+        RBool Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_parabola_animation(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_flip_mode(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, int a0);
-        int Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_flip_mode(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
+        RBool Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_flip_mode(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_node_render(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObject_set_node_render_z(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> Cocos2dxBind_cor__cocos2dx_converter__RtsObject_get_node_render(std::weak_ptr<cor::cocos2dx_converter::RtsObject> c);
@@ -2125,9 +2127,9 @@ namespace cor
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_each_edges(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c, mrubybind::FuncPtr<void (cor::cocos2dx_converter::RtsObjectCostGridSpaceCell *, cor::cocos2dx_converter::RtsObjectCostGridSpaceCell *, float)> a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_each_cell(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c, mrubybind::FuncPtr<void (cor::cocos2dx_converter::RtsObjectCostGridSpaceCell *)> a0);
         void Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpace_make_graph(std::weak_ptr<cor::cocos2dx_converter::RtsObjectCostGridSpace> c);
-        std::string Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a0);
-        std::string Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a1, std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> a2, std::weak_ptr<cor::data_structure::CostGridSpace> a3, std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> a4);
-        std::string Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_thread_run();
+        RString Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a0);
+        RString Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_run2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node> a0, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::DrawNode> a1, std::weak_ptr<cor::cocos2dx_converter::Collision2dNode> a2, std::weak_ptr<cor::data_structure::CostGridSpace> a3, std::weak_ptr<cor::cocos2dx_converter::RtsObjectGroup> a4);
+        RString Cocos2dxBind_cor__cocos2dx_converter__RtsObjectCostGridSpaceExperimental_thread_run();
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::TexturedTriangleNode> Cocos2dxBind_cor__cocos2dx_converter__TexturedTriangleNode_create_1();
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::TexturedTriangleNode> Cocos2dxBind_cor__cocos2dx_converter__TexturedTriangleNode_create_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0);
         void Cocos2dxBind_cor__cocos2dx_converter__TexturedTriangleNode_set_texuter(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cor::cocos2dx_converter::TexturedTriangleNode> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0);
@@ -2579,8 +2581,8 @@ namespace cor
         void Cocos2dxBind_cocos2d__Sprite_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__Sprite_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c);
         unsigned int Cocos2dxBind_cocos2d__Sprite_get_reference_count_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite> c);
-        void Cocos2dxBind_cocos2d__FontAtlas_add_letter_definition(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, int a0, cocos2d::FontLetterDefinition a1);
-        bool Cocos2dxBind_cocos2d__FontAtlas_prepare_letter_definitions(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, std::u16string a0);
+        void Cocos2dxBind_cocos2d__FontAtlas_add_letter_definition(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, char16_t a0, cocos2d::FontLetterDefinition a1);
+        bool Cocos2dxBind_cocos2d__FontAtlas_prepare_letter_definitions(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, std::basic_string<char16_t, std::char_traits<char16_t>, std::allocator<char16_t> > a0);
         std::unordered_map<ssize_t, cocos2d::Texture2D*> Cocos2dxBind_cocos2d__FontAtlas_get_textures(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c);
         void Cocos2dxBind_cocos2d__FontAtlas_add_texture(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c, cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Texture2D> a0, int a1);
         float Cocos2dxBind_cocos2d__FontAtlas_get_line_height(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::FontAtlas> c);
@@ -3918,8 +3920,8 @@ namespace cor
         unsigned int Cocos2dxBind_cocos2d__Animate3D_get_reference_count_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c);
         unsigned char* Cocos2dxBind_cocos2d__Data_get_bytes(cocos2d::Data& c);
         ssize_t Cocos2dxBind_cocos2d__Data_get_size(cocos2d::Data& c);
-        void Cocos2dxBind_cocos2d__Data_copy(cocos2d::Data& c, const unsigned char * a0, const int a1);
-        void Cocos2dxBind_cocos2d__Data_fast_set(cocos2d::Data& c, unsigned char * a0, const int a1);
+        void Cocos2dxBind_cocos2d__Data_copy(cocos2d::Data& c, const unsigned char * a0, const long a1);
+        void Cocos2dxBind_cocos2d__Data_fast_set(cocos2d::Data& c, unsigned char * a0, const long a1);
         void Cocos2dxBind_cocos2d__Data_clear(cocos2d::Data& c);
         bool Cocos2dxBind_cocos2d__Data_is_null(cocos2d::Data& c);
         void Cocos2dxBind_cocos2d__EventCustom_set_user_data_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventCustom> c, void * a0);
@@ -9386,7 +9388,7 @@ namespace cor
         bool Cocos2dxBind_cocos2d__FileUtils_is_popup_notify(cocos2d::FileUtils* c);
         std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__FileUtils_get_value_map_from_file(cocos2d::FileUtils* c, std::string a0);
         std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__FileUtils_get_value_map_from_data(cocos2d::FileUtils* c, const char * a0, int a1);
-        bool Cocos2dxBind_cocos2d__FileUtils_write_string_to_file(cocos2d::FileUtils* c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a0, std::string a1);
+        bool Cocos2dxBind_cocos2d__FileUtils_write_string_to_file(cocos2d::FileUtils* c, std::string a0, std::string a1);
         bool Cocos2dxBind_cocos2d__FileUtils_write_data_to_file(cocos2d::FileUtils* c, cocos2d::Data a0, std::string a1);
         bool Cocos2dxBind_cocos2d__FileUtils_write_value_vector_to_file(cocos2d::FileUtils* c, std::vector<cocos2d::Value, std::allocator<cocos2d::Value>> a0, std::string a1);
         std::string Cocos2dxBind_cocos2d__FileUtils_get_suitable_f_open(cocos2d::FileUtils* c, std::string a0);
@@ -11438,8 +11440,8 @@ namespace cor
         void Cocos2dxBind_cocos2d__EventKeyboard_release_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventKeyboard> c);
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Ref> Cocos2dxBind_cocos2d__EventKeyboard_autorelease_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventKeyboard> c);
         unsigned int Cocos2dxBind_cocos2d__EventKeyboard_get_reference_count_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventKeyboard> c);
-        void Cocos2dxBind_cocos2d___ttfConfig_accessor_set_font_file_path(cocos2d::_ttfConfig& c, std::basic_string<char, std::char_traits<char>, std::allocator<char>> a);
-        std::basic_string<char, std::char_traits<char>, std::allocator<char>> Cocos2dxBind_cocos2d___ttfConfig_accessor_get_font_file_path(cocos2d::_ttfConfig& c);
+        void Cocos2dxBind_cocos2d___ttfConfig_accessor_set_font_file_path(cocos2d::_ttfConfig& c, std::string a);
+        std::string Cocos2dxBind_cocos2d___ttfConfig_accessor_get_font_file_path(cocos2d::_ttfConfig& c);
         void Cocos2dxBind_cocos2d___ttfConfig_accessor_set_font_size(cocos2d::_ttfConfig& c, int a);
         int Cocos2dxBind_cocos2d___ttfConfig_accessor_get_font_size(cocos2d::_ttfConfig& c);
         void Cocos2dxBind_cocos2d___ttfConfig_accessor_set_glyphs(cocos2d::_ttfConfig& c, int a);

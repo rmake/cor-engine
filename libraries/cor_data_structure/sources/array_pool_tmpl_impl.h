@@ -3,13 +3,13 @@
 
 #include "array_pool_tmpl.h"
 #include "cor_algorithm/sources/utilities_tmpl.h"
-#include "cor_system/sources/logger.h"   
+#include "cor_system/sources/logger.h"
 
 namespace cor
 {
     namespace data_structure
     {
-        
+
         template<class T> ArrayPoolItemTmpl<T>::ArrayPoolItemTmpl()
         {
             active = rfalse;
@@ -21,7 +21,7 @@ namespace cor
 
         template<class T> ArrayPoolItemTmpl<T>::~ArrayPoolItemTmpl()
         {
-            
+
         }
 
         template<class T> RBool ArrayPoolItemTmpl<T>::is_active()
@@ -75,6 +75,61 @@ namespace cor
             add_delete_item();
             block->release_active_count();
 
+        }
+
+        template<class T> void* ArrayPoolItemTmpl<T>::aligned_alloc(size_t size)
+        {
+            void* p = new RByte[size + align_size];
+            void* aligned = reinterpret_cast<void*>((reinterpret_cast<size_t>(p) + align_size) / align_size * align_size);
+            *(reinterpret_cast<void**>(aligned) - 1) = p;
+            return aligned;
+        }
+
+        template<class T> void ArrayPoolItemTmpl<T>::algined_free(void* p)
+        {
+            if (!p) 
+            {
+                return;
+            }
+            RByte* unaligned = reinterpret_cast<RByte*>(*(reinterpret_cast<void**>(p) - 1));
+            delete[] unaligned;
+        }
+
+        template<class T> void* ArrayPoolItemTmpl<T>::operator new(size_t size)
+        {
+            return aligned_alloc(size);
+        }
+
+        template<class T> void* ArrayPoolItemTmpl<T>::operator new[](size_t size)
+        {
+            return aligned_alloc(size);
+        }
+
+        template<class T> void ArrayPoolItemTmpl<T>::operator delete(void* p) throw()
+        {
+            ArrayPoolItemTmpl<T>::algined_free(p);
+        }
+
+        template<class T> void ArrayPoolItemTmpl<T>::operator delete[](void* p) throw()
+        {
+            ArrayPoolItemTmpl<T>::algined_free(p);
+        }
+
+        template<class T> void* ArrayPoolItemTmpl<T>::operator new(size_t size, void* p)
+        {
+            return ::operator new(size, p);
+        }
+        template<class T> void* ArrayPoolItemTmpl<T>::operator new[](size_t size, void* p)
+        {
+            return ::operator new[](size, p);
+        }
+        template<class T> void ArrayPoolItemTmpl<T>::operator delete(void* m, void* p) throw()
+        {
+            ::operator delete(m, p);
+        }
+        template<class T> void ArrayPoolItemTmpl<T>::operator delete[](void* m, void* p) throw()
+        {
+            ::operator delete[](m, p);
         }
 
 
@@ -480,8 +535,8 @@ namespace cor
 
 
 
-        
-        
+
+
 
 
     }

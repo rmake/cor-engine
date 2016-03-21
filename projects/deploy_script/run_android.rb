@@ -18,9 +18,20 @@ def run_cmd(cmd)
   r
 end
 
-run_cmd "ruby ../project_script/copy_project.rb"
+if ARGV[0]
+  run_cmd "ruby ../project_script/copy_project.rb #{ARGV[0]}"
+else
+  run_cmd "ruby ../project_script/copy_project.rb"
+end
+
+Dir.chdir run_dir
+Dir.chdir '../../libraries/cor_all_cocos2dx/proj.cmake'
+run_cmd "ruby make.rb android"
+
+Dir.chdir run_dir
+
 Dir.chdir "../cor_lib_test_main"
 ENV.store 'V', '1'
-run_cmd "cocos run -p android -j 8 --ndk-mode release"
+run_cmd "cocos run -p android -j 6 --ndk-mode release"
 
 exit @result

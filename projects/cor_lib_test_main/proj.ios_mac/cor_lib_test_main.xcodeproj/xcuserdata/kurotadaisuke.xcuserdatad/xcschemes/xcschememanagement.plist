@@ -34,6 +34,21 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>cor_all_cocos2dx 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>22</integer>
+		</dict>
+		<key>cor_all_cocos2dx.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
+		<key>cor_all_cocos2dx_osx.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
 		<key>cor_cocos2dx_converter_mac copy.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -113,6 +128,26 @@
 			<true/>
 		</dict>
 		<key>5087E73D17EB910900C73F5D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>657070341C70621100796F6A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>657070381C70627E00796F6A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>657070461C7081FB00796F6A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6570704A1C70824D00796F6A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
