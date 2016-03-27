@@ -1,7 +1,7 @@
+include Cor
+include CorSystem
+Project.load_eval "lib/test/cor_test_case.rb"
+Project.load_eval "vector3.rb"
 
-puts "test"
-
-v = Cor::ImportTest.add 3, 7
-CorSystem::Logger.debug "ImportTest.add 3, 7 -> #{v}"
-
-puts "test end"
+info_text = CorTestCase.log_result
+Logger.info info_text

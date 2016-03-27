@@ -61,9 +61,8 @@ class RtsTestCase
         "  #{k} -> #{v}\n"
       end).join + "},\n"
     end).join
-    Project.write_text_to_file_direct "log_result_#{@log_result_count}.log", all_results
+    #Project.write_text_to_file_direct "log_result_#{@log_result_count}.log", all_results
     @log_result_count += 1
-
 
     str
   end

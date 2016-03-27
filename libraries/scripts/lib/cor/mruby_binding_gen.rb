@@ -97,6 +97,8 @@ module Cor
         MrubyBindingGen.add_include_paths option[:include_paths]
       end
 
+      puts "cpp_path #{cpp_path}"
+
       binding_base_path = "#{cpp_path}/binding_interface"
       finded_headers = Dir.glob("#{binding_base_path}/**/*.h")
 

@@ -48,6 +48,15 @@ module Cor
       @target_project
     end
 
+    def self.current_target_project=(current_target_project)
+      @current_target_project = current_target_project
+    end
+
+    def self.current_target_project
+      @current_target_project ||= self.target_project
+      @current_target_project
+    end
+
     def self.import_cpp=(v)
       @import_cpp = v
     end

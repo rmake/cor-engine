@@ -1,5 +1,6 @@
 require "cor/cmake_builder"
 require "cor/cor_project"
+require "cor/gen_cpp"
 require "fileutils"
 require "open3"
 require "pathname"
@@ -29,7 +30,14 @@ build example:
   ruby make.rb win32 clean
   ruby make.rb win32 debug run
   ruby make.rb win32 release
+  ruby make.rb --gen-cpp=cpp/some --namespace=cor::example
+  ruby make.rb --gen-cpp-tmpl=cpp/some --namespace=cor::example
 EOS
+        return
+      end
+
+      if ARGV.grep(/--gen-cpp=\S+/).length > 0 || ARGV.grep(/--gen-cpp-tmpl=\S+/).length > 0
+        GenCpp.gen ARGV
         return
       end
 

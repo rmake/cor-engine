@@ -1,6 +1,7 @@
 include Cor
-Project.load_eval "lib/cor_all.rb"
-Project.load_eval "cor_eigen_test/vector3.rb"
+include CorSystem
+Project.load_eval "lib/test/cor_test_case.rb"
+Project.load_eval "vector3.rb"
 
 info_text = CorTestCase.log_result
-CorMessageView.simple_show info_text
+Logger.info info_text

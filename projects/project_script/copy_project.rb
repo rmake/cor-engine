@@ -95,29 +95,38 @@ if File.exists? source_conf_path
   puts "load source conf #{source_conf_path}"
   load source_conf_path
 
+  CorProject.current_target_project = CorProject.target_project
+
   import_cpp_infos << {
     "target_project" => CorProject.target_project,
     "entry" => CorProject.import_cpp_entry,
   }
 
   project_includes = CorProject.includes
-  project_includes.each do |project_include|
+  project_include_table = {}
+  ct = 0
+  while ct < project_includes.length
+    project_include = project_includes[ct]
+    next if project_include_table[project_include]
     if File.exists? "#{project_include}/conf.rb"
-      load "#{project_include}/conf.rb"
-
+      CorProject.source_path = project_include
       source_absolute_path = Pathname(File.expand_path(project_include))
       relative_engine_path = engine_base_path.relative_path_from source_absolute_path
       CorProject.engine_path = relative_engine_path
-
-      puts "CorProject.engine_path #{CorProject.engine_path}"
+      load "#{project_include}/conf.rb"
 
       import_cpp_infos << {
         "target_project" => CorProject.target_project,
         "entry" => CorProject.import_cpp_entry,
       }
     end
+    project_include_table[project_include] = true
+    ct += 1
   end
 
+  puts "project_includes #{project_includes}"
+
+  CorProject.source_path = source_path
   load source_conf_path
 
 end
