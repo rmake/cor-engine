@@ -20,7 +20,7 @@ I confirm this on windows 8.1, Android, OSX, iOS(simulator).
 ## Common
 
 - cocos2d-x development environment
-
+- cmake
 
 ## Windows with prebuilt
 
