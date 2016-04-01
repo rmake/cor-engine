@@ -3,6 +3,7 @@ $LOAD_PATH.push('.')
 
 require 'fileutils'
 require 'open3'
+require 'json'
 
 run_dir = File.dirname(File.expand_path(__FILE__))
 Dir.chdir run_dir
@@ -27,8 +28,7 @@ run_cmd "git fetch"
 
 ff_cmd = "git rev-list --count #{source_branch}..origin/#{source_branch}"
 puts "ff_cmd #{ff_cmd}"
-is_ff = `#{ff_cmd}`
-puts "is_ff #{is_ff}"
+is_ff = `#{ff_cmd}`.chomp
 if is_ff == "0"
   #run_cmd "git pull origin devel"
   run_cmd "git pull --rebase origin #{source_branch}"
