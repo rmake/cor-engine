@@ -12,16 +12,29 @@ namespace cor
         template<class T, class Index, class Parent>class Vector3 : public Parent {
         public:
 
-            Vector3() {
+            Vector3()
+            {
 
             }
 
-            Vector3(const Vector3& vector) {
+            Vector3(const Vector3& vector)
+            {
                 *this = vector;
             }
 
-            Vector3(const Parent& vector) {
+            Vector3(const Parent& vector)
+            {
                 *static_cast<Parent*>(this) = vector;
+            }
+
+            Vector3(const T& x, const T& y, const T& z)
+            {
+                *static_cast<Parent*>(this) = Parent(x, y, z);
+            }
+
+            Parent getOriginal()
+            {
+                return *static_cast<Parent*>(this);
             }
 
             T get(Index index)
