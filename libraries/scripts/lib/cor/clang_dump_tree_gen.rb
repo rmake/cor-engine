@@ -31,6 +31,7 @@ module Cor
       "cor::RString" => true,
       "RBool" => true,
       "cor::RBool" => true,
+      "cor::RSize" => true,
     }
 
     def self.is_function(s)
@@ -230,8 +231,8 @@ module Cor
       while true
         old_type = type
 
-        if ct > 20
-          raise "test"
+        if ct > 40
+          raise "too much iteration in assoc type #{type}"
         end
         ct += 1
 
@@ -2513,7 +2514,12 @@ EOS
         tsrc
       end
 
-      while sub_src.length < 30
+      while sub_src.length > 12
+        sub_src[1] += sub_src[0]
+        sub_src.shift
+      end
+
+      while sub_src.length < 12
         sub_src << ""
       end
 

@@ -101,7 +101,12 @@ EOS
 
       relative_here = Pathname.new(@here).relative_path_from(Pathname.new((File.dirname(@copy_project_path))))
 
-      cmd = "ruby #{@copy_project_path} #{relative_here.to_s}"
+      flags = []
+      if args.include? "-f"
+        flags << "-f"
+      end
+
+      cmd = "ruby #{@copy_project_path} #{relative_here.to_s} #{flags.join " "}"
       puts_flush "cmd #{cmd}"
       system cmd
 

@@ -62,290 +62,204 @@ namespace cor
     namespace mruby_interface
     {
         
-        void BasicBind_cor__type__Vector4F_normalize(cor::type::Vector4F& c)
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_x_vec_2(cor::type::Matrix4x4F& c)
         {
 
-            c.normalize();
+            return c.get_x_vec();
         }
 
-        float BasicBind_cor__type__Vector4F_dot(cor::type::Vector4F& c, cor::type::Vector4F a0)
+        void BasicBind_cor__type__Matrix4x4F_set_x_vec(cor::type::Matrix4x4F& c, cor::type::Vector3F a0)
         {
 
-            return c.dot(a0);
+            c.set_x_vec(a0);
         }
 
-        float BasicBind_cor__type__Vector4F_distance(cor::type::Vector4F& c, cor::type::Vector4F a0)
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_y_vec_1(cor::type::Matrix4x4F& c)
         {
 
-            return c.distance(a0);
+            return c.get_y_vec();
         }
 
-        cor::type::Vector4F BasicBind_cor__type__Vector4F_zero()
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_y_vec_2(cor::type::Matrix4x4F& c)
         {
 
-            return cor::type::Vector4F::zero();
+            return c.get_y_vec();
         }
 
-        cor::type::Vector4F BasicBind_cor__type__Vector4F_one()
+        void BasicBind_cor__type__Matrix4x4F_set_y_vec(cor::type::Matrix4x4F& c, cor::type::Vector3F a0)
         {
 
-            return cor::type::Vector4F::one();
+            c.set_y_vec(a0);
         }
 
-        cor::type::Vector4F BasicBind_cor__type__Vector4F_max_vec(cor::type::Vector4F& c, cor::type::Vector4F a0)
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_z_vec_1(cor::type::Matrix4x4F& c)
         {
 
-            return c.max_vec(a0);
+            return c.get_z_vec();
         }
 
-        cor::type::Vector4F BasicBind_cor__type__Vector4F_min_vec(cor::type::Vector4F& c, cor::type::Vector4F a0)
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_z_vec_2(cor::type::Matrix4x4F& c)
         {
 
-            return c.min_vec(a0);
+            return c.get_z_vec();
         }
 
-        void BasicBind_cor__type__Vector4F_all_less(cor::type::Vector4F& c, cor::type::Vector4F a0)
+        void BasicBind_cor__type__Matrix4x4F_set_z_vec(cor::type::Matrix4x4F& c, cor::type::Vector3F a0)
         {
 
-            c.all_less(a0);
+            c.set_z_vec(a0);
         }
 
-        void BasicBind_cor__type__Vector4F_some_less(cor::type::Vector4F& c, cor::type::Vector4F a0)
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_o_vec_1(cor::type::Matrix4x4F& c)
         {
 
-            c.some_less(a0);
+            return c.get_o_vec();
         }
 
-        void BasicBind_cor__type__Vector4F_all_greater(cor::type::Vector4F& c, cor::type::Vector4F a0)
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_get_o_vec_2(cor::type::Matrix4x4F& c)
         {
 
-            c.all_greater(a0);
+            return c.get_o_vec();
         }
 
-        void BasicBind_cor__type__Vector4F_some_greater(cor::type::Vector4F& c, cor::type::Vector4F a0)
+        void BasicBind_cor__type__Matrix4x4F_set_o_vec(cor::type::Matrix4x4F& c, cor::type::Vector3F a0)
         {
 
-            c.some_greater(a0);
+            c.set_o_vec(a0);
         }
 
-        void BasicBind_cor__type__Vector4F_all_less_equal(cor::type::Vector4F& c, cor::type::Vector4F a0)
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_rot_x(float a0)
         {
 
-            c.all_less_equal(a0);
+            return cor::type::Matrix4x4F::rot_x(a0);
         }
 
-        void BasicBind_cor__type__Vector4F_some_less_equal(cor::type::Vector4F& c, cor::type::Vector4F a0)
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_rot_y(float a0)
         {
 
-            c.some_less_equal(a0);
+            return cor::type::Matrix4x4F::rot_y(a0);
         }
 
-        void BasicBind_cor__type__Vector4F_all_greater_equal(cor::type::Vector4F& c, cor::type::Vector4F a0)
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_rot_z(float a0)
         {
 
-            c.all_greater_equal(a0);
+            return cor::type::Matrix4x4F::rot_z(a0);
         }
 
-        void BasicBind_cor__type__Vector4F_some_greater_equal(cor::type::Vector4F& c, cor::type::Vector4F a0)
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_translate(float a0, float a1, float a2)
         {
 
-            c.some_greater_equal(a0);
+            return cor::type::Matrix4x4F::translate(a0, a1, a2);
         }
 
-        float BasicBind_cor__type__Vector4F_sum(cor::type::Vector4F& c)
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_scale(float a0, float a1, float a2)
         {
 
-            return c.sum();
+            return cor::type::Matrix4x4F::scale(a0, a1, a2);
         }
 
-        void BasicBind_cor__type__Vector4F_accessor_set_x(cor::type::Vector4F& c, float a)
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_ortho_matrix(float a0, float a1, float a2, float a3, float a4, float a5)
         {
 
-            c.x = a;
+            return cor::type::Matrix4x4F::ortho_matrix(a0, a1, a2, a3, a4, a5);
         }
 
-        float BasicBind_cor__type__Vector4F_accessor_get_x(cor::type::Vector4F& c)
+        cor::type::Vector2F BasicBind_cor__type__Matrix4x4F_transform_1(cor::type::Matrix4x4F a0, cor::type::Vector2F a1)
         {
 
-            return c.x;
+            return cor::type::Matrix4x4F::transform(a0, a1);
         }
 
-        void BasicBind_cor__type__Vector4F_accessor_set_y(cor::type::Vector4F& c, float a)
+        cor::type::Vector2F BasicBind_cor__type__Matrix4x4F_transform_2(cor::type::Matrix4x4F& c, cor::type::Vector2F a0)
         {
 
-            c.y = a;
+            return c.transform(a0);
         }
 
-        float BasicBind_cor__type__Vector4F_accessor_get_y(cor::type::Vector4F& c)
+        cor::type::Vector2F BasicBind_cor__type__Matrix4x4F_transform_3(cor::type::Matrix4x4F& c, cor::type::Vector2F a0)
         {
 
-            return c.y;
+            return c.transform(a0);
         }
 
-        void BasicBind_cor__type__Vector4F_accessor_set_z(cor::type::Vector4F& c, float a)
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_transform_4(cor::type::Matrix4x4F a0, cor::type::Vector3F a1)
         {
 
-            c.z = a;
+            return cor::type::Matrix4x4F::transform(a0, a1);
         }
 
-        float BasicBind_cor__type__Vector4F_accessor_get_z(cor::type::Vector4F& c)
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_transform_5(cor::type::Matrix4x4F& c, cor::type::Vector3F a0)
         {
 
-            return c.z;
+            return c.transform(a0);
         }
 
-        void BasicBind_cor__type__Vector4F_accessor_set_w(cor::type::Vector4F& c, float a)
+        cor::type::Vector3F BasicBind_cor__type__Matrix4x4F_transform_6(cor::type::Matrix4x4F& c, cor::type::Vector3F a0)
         {
 
-            c.w = a;
+            return c.transform(a0);
         }
 
-        float BasicBind_cor__type__Vector4F_accessor_get_w(cor::type::Vector4F& c)
+        cor::type::Vector4F BasicBind_cor__type__Matrix4x4F_transform_7(cor::type::Matrix4x4F a0, cor::type::Vector4F a1)
         {
 
-            return c.w;
+            return cor::type::Matrix4x4F::transform(a0, a1);
         }
 
-        cor::type::Vector4F BasicBind_cor__type__Vector4F_operator__asterisk__0(cor::type::Vector4F & a0, float a1)
+        cor::type::Vector4F BasicBind_cor__type__Matrix4x4F_transform_8(cor::type::Matrix4x4F& c, cor::type::Vector4F a0)
         {
-            return a0*a1;
+
+            return c.transform(a0);
         }
 
-        cor::type::Vector4F BasicBind_cor__type__Vector4F_operator__plus__0(cor::type::Vector4F & a0, cor::type::Vector4F a1)
+        cor::type::Vector4F BasicBind_cor__type__Matrix4x4F_transform_9(cor::type::Matrix4x4F& c, cor::type::Vector4F a0)
         {
-            return a0+a1;
+
+            return c.transform(a0);
         }
 
-        cor::type::Vector4F BasicBind_cor__type__Vector4F_operator__minus__0(cor::type::Vector4F & a0, cor::type::Vector4F a1)
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_transpose_inverse(cor::type::Matrix4x4F a0)
         {
-            return a0-a1;
+
+            return cor::type::Matrix4x4F::transpose_inverse(a0);
         }
 
-        cor::type::Vector4F BasicBind_cor__type__Vector4F_operator__minus_self__0(cor::type::Vector4F & a0)
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_transpose_inverse_2(cor::type::Matrix4x4F& c)
         {
-            return -a0;
+
+            return c.transpose_inverse();
         }
 
-        float BasicBind_cor__type__Vector4F_operator__brackets__0(cor::type::Vector4F & a0, int a1)
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_transpose_inverse_3(cor::type::Matrix4x4F& c)
         {
-            return a0[a1];
+
+            return c.transpose_inverse();
         }
 
-        float BasicBind_cor__type__Vector4F_operator__brackets_equal__0(cor::type::Vector4F & a0, int a1, float a2)
-        {
-            return a0[a1] = a2;
-        }
-
-        void BasicBind_cor__type__Vector4I_set(cor::type::Vector4I& c, int a0, int a1, int a2, int a3)
+        cor::type::Matrix4x4F BasicBind_cor__type__Matrix4x4F_affine_inverse(cor::type::Matrix4x4F a0)
         {
 
-            c.set(a0, a1, a2, a3);
-        }
-
-        void BasicBind_cor__type__Vector4I_begin_1(cor::type::Vector4I& c)
-        {
-
-            c.begin();
-        }
-
-        void BasicBind_cor__type__Vector4I_end_1(cor::type::Vector4I& c)
-        {
-
-            c.end();
-        }
-
-        void BasicBind_cor__type__Vector4I_begin_2(cor::type::Vector4I& c)
-        {
-
-            c.begin();
-        }
-
-        void BasicBind_cor__type__Vector4I_end_2(cor::type::Vector4I& c)
-        {
-
-            c.end();
-        }
-
-        void BasicBind_cor__type__Vector4I_size(cor::type::Vector4I& c)
-        {
-
-            c.size();
-        }
-
-        int* BasicBind_cor__type__Vector4I_get_p_1(cor::type::Vector4I& c)
-        {
-
-            return c.get_p();
-        }
-
-        const int* BasicBind_cor__type__Vector4I_get_p_2(cor::type::Vector4I& c)
-        {
-
-            return const_cast<const int* >(c.get_p());
-        }
-
-        int BasicBind_cor__type__Vector4I_get_square_magnitude(cor::type::Vector4I& c)
-        {
-
-            return c.get_square_magnitude();
+            return cor::type::Matrix4x4F::affine_inverse(a0);
         }
 
 
 
         
-        cor::type::Sphere2I BasicBind_Sphere2I_create_0()
+        cor::data_structure::CostGridSpacePath BasicBind_CostGridSpacePath_create()
         {
-            return cor::type::Sphere2I();
-        }
-        cor::type::Sphere2I BasicBind_Sphere2I_create_1(cor::type::Sphere2I a0)
-        {
-            return cor::type::Sphere2I(a0);
-        }
-        cor::type::Sphere2I BasicBind_Sphere2I_create_2(cor::type::Vector2I a0, int a1)
-        {
-            return cor::type::Sphere2I(a0, a1);
-        }
-        cor::type::OSphere2F BasicBind_OSphere2F_create()
-        {
-            return cor::type::OSphere2F();
-        }
-        cor::type::OSphere2I BasicBind_OSphere2I_create()
-        {
-            return cor::type::OSphere2I();
+            return cor::data_structure::CostGridSpacePath();
         }
 
 
         
-          void BasicBind_bind_func_8(mruby_interface::MrubyState& mrb)
+          void BasicBind_bind_func_10(mruby_interface::MrubyState& mrb)
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_custom_method("CorType", "OBox2I", "is_cross", BasicBind_cor__type__OBox2I_is_cross);
-            binder.bind_custom_method("CorType", "OBox2I", "is_include", BasicBind_cor__type__OBox2I_is_include);
-            binder.bind_custom_method("CorType", "OBox2I", "get_distance", BasicBind_cor__type__OBox2I_get_distance);
-            binder.bind_custom_method("CorType", "OBox2I", "get_vertices", BasicBind_cor__type__OBox2I_get_vertices);
-            binder.bind_custom_method("CorType", "OBox2I", "get_aabb", BasicBind_cor__type__OBox2I_get_aabb);
-            binder.bind_custom_method("CorType", "Sphere2F", "set", BasicBind_cor__type__Sphere2F_set);
-            binder.bind_custom_method("CorType", "Sphere2F", "is_collide", BasicBind_cor__type__Sphere2F_is_collide);
-            binder.bind_custom_method("CorType", "Sphere2F", "is_include_point", BasicBind_cor__type__Sphere2F_is_include_point);
-            binder.bind_custom_method("CorType", "Sphere2F", "get_distance", BasicBind_cor__type__Sphere2F_get_distance);
-            binder.bind_custom_method("CorType", "Sphere2F", "p=", BasicBind_cor__type__Sphere2F_accessor_set_p);
-            binder.bind_custom_method("CorType", "Sphere2F", "p", BasicBind_cor__type__Sphere2F_accessor_get_p);
-            binder.bind_custom_method("CorType", "Sphere2F", "r=", BasicBind_cor__type__Sphere2F_accessor_set_r);
-            binder.bind_custom_method("CorType", "Sphere2F", "r", BasicBind_cor__type__Sphere2F_accessor_get_r);
-            binder.bind_custom_method("CorType", "Sphere2I", "set", BasicBind_cor__type__Sphere2I_set);
-            binder.bind_custom_method("CorType", "Sphere2I", "is_collide", BasicBind_cor__type__Sphere2I_is_collide);
-            binder.bind_custom_method("CorType", "Sphere2I", "is_include_point", BasicBind_cor__type__Sphere2I_is_include_point);
-            binder.bind_custom_method("CorType", "Sphere2I", "get_distance", BasicBind_cor__type__Sphere2I_get_distance);
-            binder.bind_custom_method("CorType", "Sphere2I", "p=", BasicBind_cor__type__Sphere2I_accessor_set_p);
-            binder.bind_custom_method("CorType", "Sphere2I", "p", BasicBind_cor__type__Sphere2I_accessor_get_p);
-            binder.bind_custom_method("CorType", "Sphere2I", "r=", BasicBind_cor__type__Sphere2I_accessor_set_r);
-            binder.bind_custom_method("CorType", "Sphere2I", "r", BasicBind_cor__type__Sphere2I_accessor_get_r);
-            binder.bind_custom_method("CorType", "OSphere2F", "is_cross", BasicBind_cor__type__OSphere2F_is_cross);
-            binder.bind_custom_method("CorType", "OSphere2F", "is_include", BasicBind_cor__type__OSphere2F_is_include);
-            binder.bind_custom_method("CorType", "OSphere2F", "get_distance", BasicBind_cor__type__OSphere2F_get_distance);
-            binder.bind_custom_method("CorType", "OSphere2F", "get_draw_vertices", BasicBind_cor__type__OSphere2F_get_draw_vertices);
-            binder.bind_custom_method("CorType", "OSphere2F", "get_box", BasicBind_cor__type__OSphere2F_get_box);
+                            binder.bind_custom_method("CorDataStructure", "CostGridSpacePath", "cost=", BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_cost);
+            binder.bind_custom_method("CorDataStructure", "CostGridSpacePath", "cost", BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_cost);
+            binder.bind_custom_method("CorDataStructure", "CostGridSpacePath", "path=", BasicBind_cor__data_structure__CostGridSpacePath_accessor_set_path);
+            binder.bind_custom_method("CorDataStructure", "CostGridSpacePath", "path", BasicBind_cor__data_structure__CostGridSpacePath_accessor_get_path);
 
           }
 

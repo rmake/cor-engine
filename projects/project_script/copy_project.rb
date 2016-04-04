@@ -39,6 +39,7 @@ end
 resource_only = false
 win32_copy = false
 ignore_local_conf = false
+force_update = false
 
 ma.each do |v|
   if v == "--resource-only"
@@ -47,6 +48,8 @@ ma.each do |v|
     win32_copy = true
   elsif v == "--ignore-local-conf"
     ignore_local_conf = true
+  elsif v == "-f"
+    force_update = true
   end
 end
 
@@ -65,7 +68,6 @@ past_copy_data = {
   "past_cpps" => {},
 }
 past_copy_table = past_copy_data["file_table"]
-force_update = false
 if File.exist? past_copy
   past_copy_json = Cor.u.file_read past_copy
   past_copy_data = JSON.parse past_copy_json

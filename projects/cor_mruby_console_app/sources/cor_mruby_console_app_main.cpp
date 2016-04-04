@@ -29,7 +29,7 @@ int main()
     std::istreambuf_iterator<char> last;
     std::string str(it, last);
 
-    mrb.load_string_log(str);
+    mrb.load_string_error_log("resources/project_resource/start.rb", str);
 
     return 0;
 

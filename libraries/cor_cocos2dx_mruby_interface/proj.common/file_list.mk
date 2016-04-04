@@ -3,25 +3,7 @@ PRJSRCS:=../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_m
     ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_1.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_10.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_11.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_12.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_13.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_14.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_15.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_16.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_17.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_18.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_19.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_2.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_20.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_21.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_22.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_23.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_24.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_25.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_26.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_27.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_28.cpp\
-    ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_29.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_3.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_4.cpp\
     ../../cor_cocos2dx_mruby_interface/sources/cocos2dx_bind/cor_cocos2dx_mruby_sub_5.cpp\

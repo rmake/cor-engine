@@ -42,9 +42,33 @@ namespace cor
                 return (*this)(index);
             }
 
-            void set(Index index, T value)
+            void set(Index index, const T& value)
             {
                 (*this)(index) = value;
+            }
+
+            T get_x() {
+                return (*this)(0);
+            }
+
+            T get_y() {
+                return (*this)(1);
+            }
+
+            T get_z() {
+                return (*this)(2);
+            }
+
+            void set_x(const T& x) {
+                (*this)(0) = x;
+            }
+
+            void set_y(const T& y) {
+                (*this)(1) = y;
+            }
+
+            void set_z(const T& z) {
+                (*this)(2) = z;
             }
 
             RDouble dot(const Vector3& vector)
@@ -78,8 +102,8 @@ namespace cor
             }
         };
 
-        typedef Vector3<RDouble, RInt32, Eigen::Vector3d> Vector3D;
-        typedef Vector3<RDouble, RInt32, Eigen::Vector3f> Vector3F;
+        typedef Vector3<RDouble, RInt32, EVector3D> Vector3D;
+        typedef Vector3<RDouble, RInt32, EVector3F> Vector3F;
 
     }
 

@@ -54,6 +54,13 @@ class RtsTestCase
     str = self.output_result.join("\n")
 
     @log_result_count ||= 0
+
+    Logger.info str
+    error_log = CorTestCase.get_error_log
+    if error_log.length > 0
+      Logger.info error_log
+    end
+
     @log_result_count += 1
 
     str

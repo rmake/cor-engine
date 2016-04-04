@@ -240,6 +240,8 @@ module Cor
           "long" => "int",
           "short" => "int",
           "unsigned short" => "int",
+          "unsigned long long" => "cor::RSize",
+          "RSize" => "cor::RSize",
           "__va_list_tag *" => "delete",
           "std::shared_ptr<void>" => "std::weak_ptr<void>",
           "std::function<void (EventCustom *)>" => "mrubybind::FuncPtr<void (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EventCustom>)>",

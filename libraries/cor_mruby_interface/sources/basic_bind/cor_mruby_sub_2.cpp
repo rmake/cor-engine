@@ -62,412 +62,304 @@ namespace cor
     namespace mruby_interface
     {
         
-        int BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_test_2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> c)
+        cor::type::Vector2F BasicBind_cor__type__Vector2F_max_vec(cor::type::Vector2F& c, cor::type::Vector2F a0)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            return tmp_c->test();
+            return c.max_vec(a0);
         }
 
-        void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_accessor_set_a(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> c, int a)
+        cor::type::Vector2F BasicBind_cor__type__Vector2F_min_vec(cor::type::Vector2F& c, cor::type::Vector2F a0)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->a = a;
+            return c.min_vec(a0);
         }
 
-        int BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_accessor_get_a(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> c)
+        void BasicBind_cor__type__Vector2F_all_less(cor::type::Vector2F& c, cor::type::Vector2F a0)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            return tmp_c->a;
+            c.all_less(a0);
         }
 
-        int BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_toast(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> c)
+        void BasicBind_cor__type__Vector2F_some_less(cor::type::Vector2F& c, cor::type::Vector2F a0)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            return tmp_c->toast();
+            c.some_less(a0);
         }
 
-        int BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_test_2(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> c)
+        void BasicBind_cor__type__Vector2F_all_greater(cor::type::Vector2F& c, cor::type::Vector2F a0)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            return tmp_c->test();
+            c.all_greater(a0);
         }
 
-        void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_accessor_set_a(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> c, int a)
+        void BasicBind_cor__type__Vector2F_some_greater(cor::type::Vector2F& c, cor::type::Vector2F a0)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->a = a;
+            c.some_greater(a0);
         }
 
-        int BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_accessor_get_a(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> c)
+        void BasicBind_cor__type__Vector2F_all_less_equal(cor::type::Vector2F& c, cor::type::Vector2F a0)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            return tmp_c->a;
+            c.all_less_equal(a0);
         }
 
-        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_1()
+        void BasicBind_cor__type__Vector2F_some_less_equal(cor::type::Vector2F& c, cor::type::Vector2F a0)
         {
 
-            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::mruby_interface::MrubyExperimentalBindTestClass::create());
+            c.some_less_equal(a0);
         }
 
-        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_2(std::string a0)
+        void BasicBind_cor__type__Vector2F_all_greater_equal(cor::type::Vector2F& c, cor::type::Vector2F a0)
         {
 
-            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::mruby_interface::MrubyExperimentalBindTestClass::create(a0));
+            c.all_greater_equal(a0);
         }
 
-        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_get_null(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c)
+        void BasicBind_cor__type__Vector2F_some_greater_equal(cor::type::Vector2F& c, cor::type::Vector2F a0)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(tmp_c->get_null());
+            c.some_greater_equal(a0);
         }
 
-        void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> a0)
+        float BasicBind_cor__type__Vector2F_sum(cor::type::Vector2F& c)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->recieve(*a0.lock().get());
+            return c.sum();
         }
 
-        void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c)
+        void BasicBind_cor__type__Vector2F_accessor_set_x(cor::type::Vector2F& c, float a)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->test();
+            c.x = a;
         }
 
-        void BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c, std::weak_ptr<cor::RCharArray> a0)
+        float BasicBind_cor__type__Vector2F_accessor_get_x(cor::type::Vector2F& c)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->tmpl_test(*a0.lock().get());
+            return c.x;
         }
 
-        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_cor__mruby_interface__MrubyRefContainer_create_1()
+        void BasicBind_cor__type__Vector2F_accessor_set_y(cor::type::Vector2F& c, float a)
         {
 
-            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::mruby_interface::MrubyRefContainer::create());
+            c.y = a;
         }
 
-        std::weak_ptr<cor::mruby_interface::MrubyRefContainer> BasicBind_cor__mruby_interface__MrubyRefContainer_create_2(mrubybind::MrubyRef a0)
+        float BasicBind_cor__type__Vector2F_accessor_get_y(cor::type::Vector2F& c)
         {
 
-            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(cor::mruby_interface::MrubyRefContainer::create(a0));
+            return c.y;
         }
 
-        void BasicBind_cor__mruby_interface__MrubyRefContainer_set_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c, mrubybind::MrubyRef a0)
+        cor::type::Vector2F BasicBind_cor__type__Vector2F_operator__asterisk__0(cor::type::Vector2F & a0, float a1)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            tmp_c->set_value(a0);
+            return a0*a1;
         }
 
-        mrubybind::MrubyRef BasicBind_cor__mruby_interface__MrubyRefContainer_get_value(std::weak_ptr<cor::mruby_interface::MrubyRefContainer> c)
+        cor::type::Vector2F BasicBind_cor__type__Vector2F_operator__plus__0(cor::type::Vector2F & a0, cor::type::Vector2F a1)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            return tmp_c->get_value();
+            return a0+a1;
         }
 
-        void BasicBind_cor__RCharArray_capacity(std::weak_ptr<cor::RCharArray> c)
+        cor::type::Vector2F BasicBind_cor__type__Vector2F_operator__minus__0(cor::type::Vector2F & a0, cor::type::Vector2F a1)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            tmp_c->capacity();
+            return a0-a1;
         }
 
-        void BasicBind_cor__RCharArray_begin_1(std::weak_ptr<cor::RCharArray> c)
+        cor::type::Vector2F BasicBind_cor__type__Vector2F_operator__minus_self__0(cor::type::Vector2F & a0)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            tmp_c->begin();
+            return -a0;
         }
 
-        void BasicBind_cor__RCharArray_begin_2(std::weak_ptr<cor::RCharArray> c)
+        float BasicBind_cor__type__Vector2F_operator__brackets__0(cor::type::Vector2F & a0, int a1)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            tmp_c->begin();
+            return a0[a1];
         }
 
-        void BasicBind_cor__RCharArray_end_1(std::weak_ptr<cor::RCharArray> c)
+        float BasicBind_cor__type__Vector2F_operator__brackets_equal__0(cor::type::Vector2F & a0, int a1, float a2)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
-
-            tmp_c->end();
+            return a0[a1] = a2;
         }
 
-        void BasicBind_cor__RCharArray_end_2(std::weak_ptr<cor::RCharArray> c)
+        void BasicBind_cor__type__Vector2I_set(cor::type::Vector2I& c, int a0, int a1)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->end();
+            c.set(a0, a1);
         }
 
-        void BasicBind_cor__RCharArray_rbegin_1(std::weak_ptr<cor::RCharArray> c)
+        void BasicBind_cor__type__Vector2I_begin_1(cor::type::Vector2I& c)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->rbegin();
+            c.begin();
         }
 
-        void BasicBind_cor__RCharArray_rbegin_2(std::weak_ptr<cor::RCharArray> c)
+        void BasicBind_cor__type__Vector2I_end_1(cor::type::Vector2I& c)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->rbegin();
+            c.end();
         }
 
-        void BasicBind_cor__RCharArray_rend_1(std::weak_ptr<cor::RCharArray> c)
+        void BasicBind_cor__type__Vector2I_begin_2(cor::type::Vector2I& c)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->rend();
+            c.begin();
         }
 
-        void BasicBind_cor__RCharArray_rend_2(std::weak_ptr<cor::RCharArray> c)
+        void BasicBind_cor__type__Vector2I_end_2(cor::type::Vector2I& c)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->rend();
+            c.end();
         }
 
-        void BasicBind_cor__RCharArray_cbegin(std::weak_ptr<cor::RCharArray> c)
+        void BasicBind_cor__type__Vector2I_size(cor::type::Vector2I& c)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->cbegin();
+            c.size();
         }
 
-        void BasicBind_cor__RCharArray_cend(std::weak_ptr<cor::RCharArray> c)
+        int* BasicBind_cor__type__Vector2I_get_p_1(cor::type::Vector2I& c)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->cend();
+            return c.get_p();
         }
 
-        void BasicBind_cor__RCharArray_crbegin(std::weak_ptr<cor::RCharArray> c)
+        const int* BasicBind_cor__type__Vector2I_get_p_2(cor::type::Vector2I& c)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->crbegin();
+            return const_cast<const int* >(c.get_p());
         }
 
-        void BasicBind_cor__RCharArray_crend(std::weak_ptr<cor::RCharArray> c)
+        int BasicBind_cor__type__Vector2I_get_square_magnitude(cor::type::Vector2I& c)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->crend();
+            return c.get_square_magnitude();
         }
 
-        void BasicBind_cor__RCharArray_shrink_to_fit(std::weak_ptr<cor::RCharArray> c)
+        int BasicBind_cor__type__Vector2I_get_magnitude(cor::type::Vector2I& c)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->shrink_to_fit();
+            return c.get_magnitude();
         }
 
-        void BasicBind_cor__RCharArray_size(std::weak_ptr<cor::RCharArray> c)
+        void BasicBind_cor__type__Vector2I_normalize(cor::type::Vector2I& c)
         {
-            auto tmp_c = c.lock();
-            if(!tmp_c)
-            {
-                auto mrb = cor::mruby_interface::MrubyState::get_current()->get_mrb();
-                mrb_raisef(mrb, E_TYPE_ERROR, "self reference to released shared_ptr");
-            }
 
-            tmp_c->size();
+            c.normalize();
+        }
+
+        int BasicBind_cor__type__Vector2I_dot(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.dot(a0);
+        }
+
+        int BasicBind_cor__type__Vector2I_cross(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.cross(a0);
+        }
+
+        int BasicBind_cor__type__Vector2I_distance(cor::type::Vector2I& c, cor::type::Vector2I a0)
+        {
+
+            return c.distance(a0);
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_zero()
+        {
+
+            return cor::type::Vector2I::zero();
+        }
+
+        cor::type::Vector2I BasicBind_cor__type__Vector2I_one()
+        {
+
+            return cor::type::Vector2I::one();
         }
 
 
 
         
-        bool BasicBind_MrubyExperimentalBindTestStruct_valid_question(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> c)
+        cor::type::Vector2F BasicBind_Vector2F_create_0()
         {
-            return !c.expired();
+            return cor::type::Vector2F();
         }
-        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestStruct> BasicBind_MrubyExperimentalBindTestStruct_create()
+        cor::type::Vector2F BasicBind_Vector2F_create_1(cor::type::Vector2F a0)
         {
-            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(std::make_shared<cor::mruby_interface::MrubyExperimentalBindTestStruct>());
+            return cor::type::Vector2F(a0);
         }
-        bool BasicBind_MrubyExperimentalBindTestClassInherited_valid_question(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> c)
+        cor::type::Vector2F BasicBind_Vector2F_create_2(float a0, float a1)
         {
-            return !c.expired();
+            return cor::type::Vector2F(a0, a1);
         }
-        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClassInherited> BasicBind_MrubyExperimentalBindTestClassInherited_create()
+        cor::type::Vector2I BasicBind_Vector2I_create_0()
         {
-            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(std::make_shared<cor::mruby_interface::MrubyExperimentalBindTestClassInherited>());
+            return cor::type::Vector2I();
         }
-        bool BasicBind_MrubyExperimentalBindTestClass_valid_question(std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> c)
+        cor::type::Vector2I BasicBind_Vector2I_create_1(cor::type::Vector2I a0)
         {
-            return !c.expired();
+            return cor::type::Vector2I(a0);
         }
-        std::weak_ptr<cor::mruby_interface::MrubyExperimentalBindTestClass> BasicBind_MrubyExperimentalBindTestClass_create()
+        cor::type::Vector2I BasicBind_Vector2I_create_2(int a0, int a1)
         {
-            return cor::mruby_interface::MrubyState::add_tmp_shared_and_return(std::make_shared<cor::mruby_interface::MrubyExperimentalBindTestClass>());
+            return cor::type::Vector2I(a0, a1);
+        }
+        cor::type::Vector3F BasicBind_Vector3F_create_0()
+        {
+            return cor::type::Vector3F();
+        }
+        cor::type::Vector3F BasicBind_Vector3F_create_1(cor::type::Vector3F a0)
+        {
+            return cor::type::Vector3F(a0);
+        }
+        cor::type::Vector3F BasicBind_Vector3F_create_2(float a0, float a1, float a2)
+        {
+            return cor::type::Vector3F(a0, a1, a2);
         }
 
 
         
-          void BasicBind_bind_func_2(mruby_interface::MrubyState& mrb)
+          void BasicBind_bind_func_4(mruby_interface::MrubyState& mrb)
           {
                 auto& binder = mrb.ref_binder();
                 (void)binder;
-                            binder.bind_class<cor::type::OSphere2I >("CorType", "OSphere2I");
-            binder.bind_static_method("CorType", "OSphere2I", "create", BasicBind_OSphere2I_create);
-            binder.bind_class<std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRInt32> >("CorMrubyInterface", "MrubyExperimentalTemplateStructRInt32");
-            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalTemplateStructRInt32", "valid?", BasicBind_MrubyExperimentalTemplateStructRInt32_valid_question);
-            binder.bind_static_method("CorMrubyInterface", "MrubyExperimentalTemplateStructRInt32", "create", BasicBind_MrubyExperimentalTemplateStructRInt32_create);
-            binder.bind_class<std::weak_ptr<cor::mruby_interface::MrubyExperimentalTemplateStructRString> >("CorMrubyInterface", "MrubyExperimentalTemplateStructRString");
-            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalTemplateStructRString", "valid?", BasicBind_MrubyExperimentalTemplateStructRString_valid_question);
-            binder.bind_static_method("CorMrubyInterface", "MrubyExperimentalTemplateStructRString", "create", BasicBind_MrubyExperimentalTemplateStructRString_create);
-            binder.bind_class<cor::data_structure::CostGridSpaceItem >("CorDataStructure", "CostGridSpaceItem");
-            binder.bind_static_method("CorDataStructure", "CostGridSpaceItem", "create_0", BasicBind_CostGridSpaceItem_create_0);
-            binder.bind_class<cor::data_structure::CostGridSpacePath >("CorDataStructure", "CostGridSpacePath");
-            binder.bind_static_method("CorDataStructure", "CostGridSpacePath", "create", BasicBind_CostGridSpacePath_create);
+                            binder.bind_custom_method("CorSystem", "Logger", "add_print_func_1", BasicBind_cor__system__Logger_add_print_func_1);
+            binder.bind_custom_method("CorSystem", "Logger", "add_print_func_2", BasicBind_cor__system__Logger_add_print_func_2);
+            binder.bind_custom_method("CorSystem", "Logger", "pop_print_func", BasicBind_cor__system__Logger_pop_print_func);
+            binder.bind_custom_method("CorSystem", "Logger", "clear_print_func", BasicBind_cor__system__Logger_clear_print_func);
+            binder.bind_custom_method("CorSystem", "Logger", "call_print_func", BasicBind_cor__system__Logger_call_print_func);
+            binder.bind_custom_method("CorSystem", "Logger", "get_local_count", BasicBind_cor__system__Logger_get_local_count);
+            binder.bind_custom_method("CorSystem", "Logger", "get_local_debug_count", BasicBind_cor__system__Logger_get_local_debug_count);
+            binder.bind_custom_method("CorSystem", "Logger", "get_local_info_count", BasicBind_cor__system__Logger_get_local_info_count);
+            binder.bind_custom_method("CorSystem", "Logger", "get_local_warn_count", BasicBind_cor__system__Logger_get_local_warn_count);
+            binder.bind_custom_method("CorSystem", "Logger", "get_local_error_count", BasicBind_cor__system__Logger_get_local_error_count);
+            binder.bind_custom_method("CorSystem", "Logger", "get_local_fatal_count", BasicBind_cor__system__Logger_get_local_fatal_count);
+            binder.bind_static_method("CorSystem", "Logger", "get_count", BasicBind_cor__system__Logger_get_count);
+            binder.bind_static_method("CorSystem", "Logger", "get_debug_count", BasicBind_cor__system__Logger_get_debug_count);
+            binder.bind_static_method("CorSystem", "Logger", "get_info_count", BasicBind_cor__system__Logger_get_info_count);
+            binder.bind_static_method("CorSystem", "Logger", "get_warn_count", BasicBind_cor__system__Logger_get_warn_count);
+            binder.bind_static_method("CorSystem", "Logger", "get_error_count", BasicBind_cor__system__Logger_get_error_count);
+            binder.bind_static_method("CorSystem", "Logger", "get_fatal_count", BasicBind_cor__system__Logger_get_fatal_count);
+            binder.bind_static_method("CorSystem", "Logger", "info", BasicBind_cor__system__Logger_info);
+            binder.bind_static_method("CorSystem", "Logger", "debug", BasicBind_cor__system__Logger_debug);
+            binder.bind_static_method("CorSystem", "Logger", "warn", BasicBind_cor__system__Logger_warn);
+            binder.bind_static_method("CorSystem", "Logger", "error", BasicBind_cor__system__Logger_error);
+            binder.bind_static_method("CorSystem", "Logger", "fatal", BasicBind_cor__system__Logger_fatal);
+            binder.bind_static_method("CorSystem", "Logger", "get_instance", BasicBind_cor__system__Logger_get_instance);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestStruct", "test_2", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_test_2);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestStruct", "a=", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_accessor_set_a);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestStruct", "a", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestStruct_accessor_get_a);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClassInherited", "toast", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_toast);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClassInherited", "test_2", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_test_2);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClassInherited", "a=", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_accessor_set_a);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClassInherited", "a", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClassInherited_accessor_get_a);
+            binder.bind_static_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "create_1", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_1);
+            binder.bind_static_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "create_2", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_create_2);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "get_null", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_get_null);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "recieve", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_recieve);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "test", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_test);
+            binder.bind_custom_method("CorMrubyInterface", "MrubyExperimentalBindTestClass", "tmpl_test", BasicBind_cor__mruby_interface__MrubyExperimentalBindTestClass_tmpl_test);
 
           }
 
