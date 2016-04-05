@@ -56,7 +56,7 @@ class RtsTestCase
     @log_result_count ||= 0
 
     Logger.info str
-    error_log = CorTestCase.get_error_log
+    error_log = RtsTestCase.get_error_log
     if error_log.length > 0
       Logger.info error_log
     end

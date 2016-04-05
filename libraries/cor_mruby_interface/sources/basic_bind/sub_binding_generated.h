@@ -164,13 +164,13 @@ namespace cor
         RString BasicBind_cor__system__AllocationMonitor_get_captured_data(cor::system::AllocationMonitor* c);
         void BasicBind_cor__system__AllocationMonitor_clear_caputred_data(cor::system::AllocationMonitor* c);
         cor::system::AllocationMonitor* BasicBind_cor__system__AllocationMonitor_get_instance();
-        void* BasicBind_cor__system__AllocationMonitor_alloc(cor::RSize a0);
+        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned long long a0);
         void BasicBind_cor__system__AllocationMonitor_al_free(void * a0);
-        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, cor::RSize a1);
+        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned long long a1);
         void BasicBind_cor__system__CorCrypt_set_enabled(int a0);
         RBool BasicBind_cor__system__CorCrypt_get_enabled();
-        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, cor::RSize a1);
-        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, cor::RSize a1);
+        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, unsigned long long a1);
+        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, unsigned long long a1);
         RBool BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c);
         void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0);
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c);

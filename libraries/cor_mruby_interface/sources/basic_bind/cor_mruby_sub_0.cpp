@@ -495,13 +495,13 @@ namespace cor
             return cor::system::CorCrypt::get_enabled();
         }
 
-        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, cor::RSize a1)
+        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, unsigned long long a1)
         {
 
             cor::system::CorCrypt::encode(a0, a1);
         }
 
-        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, cor::RSize a1)
+        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, unsigned long long a1)
         {
 
             cor::system::CorCrypt::decode(a0, a1);
@@ -1044,7 +1044,7 @@ namespace cor
             return cor::system::AllocationMonitor::get_instance();
         }
 
-        void* BasicBind_cor__system__AllocationMonitor_alloc(cor::RSize a0)
+        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned long long a0)
         {
 
             return cor::system::AllocationMonitor::alloc(a0);
@@ -1056,7 +1056,7 @@ namespace cor
             cor::system::AllocationMonitor::al_free(a0);
         }
 
-        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, cor::RSize a1)
+        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned long long a1)
         {
 
             return cor::system::AllocationMonitor::al_realloc(a0, a1);

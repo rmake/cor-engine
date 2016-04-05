@@ -252,6 +252,11 @@ module Cor
         (class_layer.length).downto(0) do |i|
           namespace = class_layer[0...i].join("::")
           assoc_type = (class_layer[0...i] + [removed_tail_type]).join("::")
+          if DIRECT_TYPES[assoc_type]
+            removed_tail_type = assoc_type
+            class_name = assoc_type
+            break
+          end
           if typedef_table[assoc_type]
             removed_tail_type = typedef_table[assoc_type][:source][:val]
             class_name = assoc_type
