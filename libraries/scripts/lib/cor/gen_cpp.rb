@@ -128,9 +128,9 @@ EOS
 
 
       base_name = path.split('/').last
-      tmpl_head_name = "_#{Utility.underscore(path + "_tmpl").upcase.gsub("/", "_").gsub(".", "_")}_"
-      tmpl_impl_head_name = "_#{Utility.underscore(path + "_tmpl_impl").upcase.gsub("/", "_").gsub(".", "_")}_"
-      head_name = "_#{Utility.underscore(path).upcase.gsub("/", "_").gsub(".", "_")}_"
+      tmpl_head_name = "_#{Utility.underscore(path + "_tmpl").upcase.gsub("/", "_").gsub(".", "_")}_H_"
+      tmpl_impl_head_name = "_#{Utility.underscore(path + "_tmpl_impl").upcase.gsub("/", "_").gsub(".", "_")}_H_"
+      head_name = "_#{Utility.underscore(path).upcase.gsub("/", "_").gsub(".", "_")}_H_"
 
       puts "base_name #{base_name}"
 

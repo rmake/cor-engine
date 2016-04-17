@@ -18,4 +18,6 @@ namespace cor
 
 }
 
+#include "vector3.h"
+
 #endif
