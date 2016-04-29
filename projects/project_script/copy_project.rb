@@ -25,6 +25,12 @@ if File.exist? "project_source_path_local_conf.rb"
   source_path = SOURCE_PATH
 end
 
+def call_system(cmd)
+  unless system(cmd)
+    raise "call_system '#{cmd}' failed"
+  end
+end
+
 ma = []
 va = []
 
@@ -264,7 +270,7 @@ binding_gen = Proc.new do |path|
 
     cmd = "ruby #{mruby_binging_generator_script_path}/generate_mruby_interface.rb #{conf_path_for_gen.to_s}/binding_conf.rb"
     puts "cmd #{cmd}"
-    system(cmd)
+    call_system(cmd)
 
     cpps.each do |cpp_name|
       next unless cpp_name.match(/\.h$/)
@@ -622,7 +628,7 @@ EOS
     Dir.chdir mruby_binging_generator_script_path
     cmd = "ruby filelist.rb"
     puts "cmd #{cmd}"
-    system(cmd)
+    call_system(cmd)
     Dir.chdir here
   end
 
@@ -687,12 +693,16 @@ dir_list.reverse.each do |d|
 end
 
 rescue => e
-  puts "e #{e}"
-  puts "#{e.backtrace}"
+  unless resource_only
+    raise e
+  else
+    puts "e #{e}"
+    puts "#{e.backtrace}"
 
-  STDOUT.flush
+    STDOUT.flush
 
-  sleep 100
+    sleep 100
 
-  raise e
+    raise e
+  end
 end

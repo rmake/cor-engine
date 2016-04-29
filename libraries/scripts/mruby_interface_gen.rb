@@ -5,6 +5,7 @@ $LOAD_PATH.push('lib')
 require 'cor/utility'
 require 'cor/clang_dump_tree_parse'
 require 'cor/clang_dump_tree_gen'
+require 'cor/clang_dump_tree_gen_mruby_binding'
 require 'cor/mruby_binding_gen'
 
 
@@ -17,11 +18,17 @@ tasks = [
   "gen_task/cocos2dx_mruby_interface.rb",
 ]
 
+def call_system(cmd)
+  unless system(cmd)
+    raise "call_system '#{cmd}' failed"
+  end
+end
+
 threads = []
 tasks.each do |task|
   threads << Thread.new do
     #puts `ruby mruby_interface_gen.rb #{option[:name]}`
-    system "ruby generate_mruby_interface.rb #{task}"
+    call_system "ruby generate_mruby_interface.rb #{task}"
   end
 end
 

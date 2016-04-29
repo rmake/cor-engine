@@ -6,6 +6,7 @@ $LOAD_PATH.push('lib')
 require 'cor/utility'
 require 'cor/clang_dump_tree_parse'
 require 'cor/clang_dump_tree_gen'
+require 'cor/clang_dump_tree_gen_mruby_binding'
 require 'cor/mruby_binding_gen'
 
 require 'inc_path.rb'

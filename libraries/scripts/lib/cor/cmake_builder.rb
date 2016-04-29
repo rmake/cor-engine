@@ -17,6 +17,12 @@ module Cor
       @all_success = true
     end
 
+    def call_system(cmd)
+      unless system(cmd)
+        raise "call_system '#{cmd}' failed"
+      end
+    end
+
     def self.build
 
       if ARGV.include?("-h") || ARGV.length < 1
@@ -70,7 +76,7 @@ EOS
       case type
       when "win32"
         @is_vc = true
-        system "cmake ../.. -G \"Visual Studio 14 2015\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
+        self.call_system "cmake ../.. -G \"Visual Studio 14 2015\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
         do_win_build
       when "win64"
         @is_vc = true
@@ -79,7 +85,7 @@ EOS
       when "android"
         build_android type
       when "osx"
-        system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
+        self.call_system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
         if args.include? "--gen-only"
           return
         end
@@ -88,17 +94,17 @@ EOS
         build_ios type
       when "default"
         if RUBY_PLATFORM.downcase =~ /mswin(?!ce)|mingw|cygwin|bccwin/
-          #system "cmake ../.. -G\"Visual Studio 14 2015 Win64\" -DCOR_BUILD_TYPE=#{type}"
+          #self.call_system "cmake ../.. -G\"Visual Studio 14 2015 Win64\" -DCOR_BUILD_TYPE=#{type}"
           #do_win_build
-          #system "cmake ../.. -G\"MSYS Makefiles\" -DCOR_BUILD_TYPE=#{type}"
-          system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
+          #self.call_system "cmake ../.. -G\"MSYS Makefiles\" -DCOR_BUILD_TYPE=#{type}"
+          self.call_system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
         else
-          system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
+          self.call_system "cmake ../.. -G\"Unix Makefiles\" -DCOR_BUILD_TYPE=#{type} #{get_cmake_option}"
         end
         if args.include? "--gen-only"
           return
         end
-        system "make -j 4"
+        self.call_system "make -j 4"
       end
 
       if @all_success
@@ -121,12 +127,12 @@ EOS
           exes = Dir.glob("**/Debug/*.exe")
           Dir.chdir File.dirname(exes[0])
           exes = Dir.glob("*.exe")
-          system "#{exes[0]}"
+          self.call_system "#{exes[0]}"
         when "win64"
           exes = Dir.glob("**/Debug/*.exe")
           Dir.chdir File.dirname(exes[0])
           exes = Dir.glob("*.exe")
-          system "#{exes[0]}"
+          self.call_system "#{exes[0]}"
         end
       end
     end
@@ -165,7 +171,7 @@ EOS
           @results << "cmd '#{cmd}' | success? -> #{w.value.success?} | #{w}"
         end
       else
-        result = system cmd
+        result = self.call_system cmd
         @all_success &&= result
         @results << "cmd '#{cmd}' | success? -> #{result} | #{$?}"
       end

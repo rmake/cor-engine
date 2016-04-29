@@ -14,6 +14,12 @@ module Cor
 
     end
 
+    def call_system(cmd)
+      unless system(cmd)
+        raise "call_system '#{cmd}' failed"
+      end
+    end
+
     def self.build
 
       if ARGV.include?("-h") || ARGV.length < 1
@@ -79,7 +85,7 @@ EOS
           @results << "cmd '#{cmd}' | success? -> #{w.value.success?} | #{w}"
         end
       else
-        result = system cmd
+        result = self.call_system cmd
         @all_success &&= result
         @results << "cmd '#{cmd}' | success? -> #{result} | #{$?}"
       end
@@ -108,7 +114,7 @@ EOS
 
       cmd = "ruby #{@copy_project_path} #{relative_here.to_s} #{flags.join " "}"
       puts_flush "cmd #{cmd}"
-      system cmd
+      self.call_system cmd
 
       if File.exists? "conf.rb"
         load "conf.rb"
@@ -140,12 +146,12 @@ EOS
         if type == "android"
           FileUtils.chdir "#{@cor_path}/projects/cor_lib_test_main/proj.android"
           if args.include? "run"
-            system "cocos run -p android -j 6 --ndk-mode release"
+            self.call_system "cocos run -p android -j 6 --ndk-mode release"
           else
             if args.include? "--for-ci"
-              system "cocos compile -p android -j 2 --ndk-mode release --app-abi=armeabi-v7a"
+              self.call_system "cocos compile -p android -j 2 --ndk-mode release --app-abi=armeabi-v7a"
             else
-              system "cocos compile -p android -m release -j 6 --ndk-mode release"
+              self.call_system "cocos compile -p android -m release -j 6 --ndk-mode release"
             end
           end
 
@@ -196,12 +202,12 @@ EOS
               exes = Dir.glob("**/Debug.win32/*.exe")
               Dir.chdir File.dirname(exes[0])
               exes = Dir.glob("*.exe")
-              system "#{exes[0]}"
+              self.call_system "#{exes[0]}"
             when "win64"
               exes = Dir.glob("**/Debug.win32/*.exe")
               Dir.chdir File.dirname(exes[0])
               exes = Dir.glob("*.exe")
-              system "#{exes[0]}"
+              self.call_system "#{exes[0]}"
             end
           end
         end
