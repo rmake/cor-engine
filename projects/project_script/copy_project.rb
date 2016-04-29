@@ -486,21 +486,23 @@ unless resource_only
     end
 
     prototype_defs = import_cpp_infos.map{|v|
+      next nil unless v["entry"]
       case get_taget_interface_type(v["target_project"])
       when "cpp"
         arg = ""
       when "mruby"
         arg = "mruby_interface::MrubyState& mrb"
       end
-      "        void #{v["entry"]}(#{arg});\n" }.join
+      "        void #{v["entry"]}(#{arg});\n" }.compact.join
     call_entry_functions = import_cpp_infos.map{|v|
+      next nil unless v["entry"]
       case get_taget_interface_type(v["target_project"])
       when "cpp"
         arg = ""
       when "mruby"
         arg = "mrb"
       end
-      "            external_initializer::#{v["entry"]}(#{arg});\n" }.join
+      "            external_initializer::#{v["entry"]}(#{arg});\n" }.compact.join
 
     import_cpp_code = <<EOS
 #include "cor_type/sources/basic_types.h"
