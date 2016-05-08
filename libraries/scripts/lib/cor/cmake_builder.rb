@@ -127,12 +127,12 @@ EOS
           exes = Dir.glob("**/Debug/*.exe")
           Dir.chdir File.dirname(exes[0])
           exes = Dir.glob("*.exe")
-          self.call_system "#{exes[0]}"
+          self.call_system "#{exes[0]} #{get_run_option}"
         when "win64"
           exes = Dir.glob("**/Debug/*.exe")
           Dir.chdir File.dirname(exes[0])
           exes = Dir.glob("*.exe")
-          self.call_system "#{exes[0]}"
+          self.call_system "#{exes[0]} #{get_run_option}"
         end
       end
     end
@@ -141,6 +141,14 @@ EOS
       if ARGV.select{|v| v.match(/--cmake-option=\S+/)}.length > 0
         puts_flush "get_cmake_option #{ARGV.select{|v| v.match(/--cmake-option=\S+/)}}"
         return ARGV.select{|v| v.match(/--cmake-option=\S+/)}.map{|v| v.gsub(/--cmake-option=/, "")}.join(" ")
+      end
+      ""
+    end
+
+    def get_run_option
+      if ARGV.select{|v| v.match(/--run-option=\S+/)}.length > 0
+        puts_flush "get_cmake_option #{ARGV.select{|v| v.match(/--run-option=\S+/)}}"
+        return ARGV.select{|v| v.match(/--run-option=\S+/)}.map{|v| v.gsub(/--run-option=/, "")}.join(" ")
       end
       ""
     end

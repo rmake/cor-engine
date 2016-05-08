@@ -38,6 +38,7 @@ build example:
   ruby make.rb win32 release
   ruby make.rb --gen-cpp=cpp/some --namespace=cor::example
   ruby make.rb --gen-cpp-tmpl=cpp/some --namespace=cor::example
+  ruby make.rb win32 debug run --run-option=--log_level=test_suite
 EOS
         return
       end
