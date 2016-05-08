@@ -9,8 +9,7 @@
 BOOST_AUTO_TEST_SUITE(allocation_monitor)
 
 BOOST_AUTO_TEST_CASE(allocation_monitor_count)
-{
-
+{	
     cor::system::AllocationMonitor am;
 
     cor::RSize start_count = am.get_alloc_count();

@@ -424,7 +424,7 @@ def get_taget_interface_type(target_project)
   target_interface_type = "mruby"
   case target_project
   when "cor_test"
-    target_interface_type = "mruby"
+    target_interface_type = "cpp"
   when "cor_cpp_console"
     target_interface_type = "cpp"
   when "cor_mruby_console"
@@ -437,8 +437,8 @@ end
 
 case target_project
 when "cor_test"
-  target_project_name = "mruby_interface"
-  target_project_path = File.expand_path("../../libraries/cor_mruby_import", File.dirname(File.absolute_path(__FILE__)))
+  target_project_name = "cpp_interface"
+  target_project_path = File.expand_path("../../libraries/cor_cpp_import", File.dirname(File.absolute_path(__FILE__)))
 when "cor_cpp_console"
   target_project_name = "cpp_interface"
   target_project_path = File.expand_path("../../libraries/cor_cpp_import", File.dirname(File.absolute_path(__FILE__)))
