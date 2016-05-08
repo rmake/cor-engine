@@ -65,7 +65,7 @@ class SizedParallel::Pool
   # @param      [Integer]      n parallelizm.
   # @yieldparam [Pool]         self
   # @raise      [ArgumetError] argument does not make sense.
-  def initialize n = Etc.nprocessors
+  def initialize n = 4 || Etc.nprocessors
     case n when Integer then
       raise ArgumentError, 'negative number makes no sense' if n <= 0
       @n = n
