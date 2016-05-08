@@ -30,7 +30,7 @@ namespace cor
                 *static_cast<Parent*>(this) = Parent(x, y, z);
             }
 
-            Parent getOriginal()
+            Parent get_original()
             {
                 return *static_cast<Parent*>(this);
             }

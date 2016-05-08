@@ -6,13 +6,16 @@ FileUtils.chdir "#{File.dirname __FILE__}"
 here = Dir::getwd
 
 $LOAD_PATH.push(".")
+$LOAD_PATH.push("../../libraries/scripts/external_lib")
 $LOAD_PATH.push("../../libraries/scripts/lib")
 
 require 'cor/utility'
 require 'cor/gen_project'
 require 'cor/cor_project'
+require "cor/mruby_binding_gen"
 require 'json'
 require 'pathname'
+require 'sized_parallel/pool'
 
 key = "ak8tm.mj"
 begin
@@ -239,6 +242,7 @@ if force_update
   past_copy_table = past_copy_data["file_table"]
 end
 
+next_past_cpps = past_copy_data["past_cpps"].clone
 
 binding_gen = Proc.new do |path|
   CorProject.current_project_path = path
@@ -250,6 +254,16 @@ binding_gen = Proc.new do |path|
     past_cpps = past_copy_data["past_cpps"]
     cpps = Cor.u.file_list("#{path}/cpp")
 
+    base_path = Pathname(File.expand_path(mruby_binging_generator_script_path))
+    conf_path = Pathname(File.expand_path(path))
+    conf_path_for_gen = conf_path.relative_path_from base_path
+
+    MrubyBindingGen.clear_instance
+    load "#{conf_path_for_gen.to_s}/binding_conf.rb"
+    MrubyBindingGen.all_include_paths.each do |include_path|
+      cpps += Cor.u.file_list(include_path)
+    end
+
     is_run_gen = false
 
     cpps.each do |cpp_name|
@@ -257,14 +271,10 @@ binding_gen = Proc.new do |path|
       if !File.exist?(cpp_name) || past_cpps[cpp_name].to_s != File.mtime(cpp_name).to_s || force_update
         is_run_gen = true
       end
-      past_cpps[cpp_name] = File.mtime(cpp_name)
+      next_past_cpps[cpp_name] = File.mtime(cpp_name)
     end
 
     next unless is_run_gen
-
-    base_path = Pathname(File.expand_path(mruby_binging_generator_script_path))
-    conf_path = Pathname(File.expand_path(path))
-    conf_path_for_gen = conf_path.relative_path_from base_path
 
     puts "conf_path_for_gen #{conf_path_for_gen}"
 
@@ -274,7 +284,7 @@ binding_gen = Proc.new do |path|
 
     cpps.each do |cpp_name|
       next unless cpp_name.match(/\.h$/)
-      past_cpps[cpp_name] = File.mtime(cpp_name).to_s
+      next_past_cpps[cpp_name] = File.mtime(cpp_name).to_s
     end
 
     #FileUtils.chdir here
@@ -282,6 +292,8 @@ binding_gen = Proc.new do |path|
 end
 
 puts "CorProject.includes #{CorProject.includes}"
+
+thread_pool = SizedParallel::Pool.new
 
 unless resource_only
 
@@ -306,7 +318,9 @@ unless resource_only
     if CorProject.import_cpp && Dir.exists?("#{inc}/cpp")
       puts "pre_gen #{inc}"
 
-      binding_gen.call inc
+      thread_pool.process inc do |inc|
+        binding_gen.call inc
+      end
 
       import_cpp_props_includes << "#{inc}/cpp"
       tmpcpp_list = Cor.u.file_list("#{inc}/cpp") do |v|
@@ -330,7 +344,9 @@ unless resource_only
 
   if CorProject.import_cpp && Dir.exists?("#{source_path}/cpp")
 
-    binding_gen.call source_path
+    thread_pool.process(source_path) do |source_path|
+      binding_gen.call source_path
+    end
 
     import_cpp_props_includes << "#{source_path}/cpp"
 
@@ -345,6 +361,10 @@ unless resource_only
 
   end
 end
+
+thread_pool.wait
+
+past_copy_data["past_cpps"] = next_past_cpps
 
 puts "project copy"
 
@@ -545,11 +565,11 @@ EOS
     end.join
 
     imporer_txt = Cor.u.file_read import_cpp_importer_file
-    Cor.u.file_write import_cpp_importer_file, imporer_txt
+    Cor.u.write_file_if_changed import_cpp_importer_file, imporer_txt
 
-    Cor.u.file_write import_cpp_file, import_cpp_code
+    Cor.u.write_file_if_changed import_cpp_file, import_cpp_code
 
-    Cor.u.file_write import_cpp_props_file, <<EOS
+    Cor.u.write_file_if_changed import_cpp_props_file, <<EOS
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
@@ -570,12 +590,12 @@ EOS
 </Project>
 EOS
 
-    Cor.u.file_write import_cpp_local_conf_mk, <<EOS
+    Cor.u.write_file_if_changed import_cpp_local_conf_mk, <<EOS
 PRJINCS += ../sources #{import_cpp_props_includes.map{|v| "../#{v}"}.join(' ')}
 PRJSRCS += #{import_cpp_list.map{|v| "#{v.gsub(/^..\//, "")}"}.join(' ')}
 EOS
 
-    Cor.u.file_write import_cpp_local_cmake_conf_mk, <<EOS
+    Cor.u.write_file_if_changed import_cpp_local_cmake_conf_mk, <<EOS
 #{import_cpp_props_includes.map{|v| "include_directories(../#{v})"}.join("\n")}
 set(cor_#{target_project_name}_sources
 #{import_cpp_list.map{|v| "  #{v.gsub(/^..\//, "")}"}.join("\n")})
@@ -590,7 +610,7 @@ EOS
       "../cor_#{target_project_name}/proj.vc", proj_file_list + import_cpp_includes, true
 
     new_import_cpp_local_conf_txt_data = import_cpp_includes.map{|v| v.gsub(/^\.\.\//, "")}.join(";")
-    Cor.u.file_write import_cpp_local_conf_txt, import_cpp_includes.map{|v| v.gsub(/^\.\.\//, "")}.join(";")
+    Cor.u.write_file_if_changed import_cpp_local_conf_txt, import_cpp_includes.map{|v| v.gsub(/^\.\.\//, "")}.join(";")
 
     FileUtils.chdir here
 
@@ -599,7 +619,7 @@ EOS
       FileUtils.remove import_cpp_file
     end
 
-    Cor.u.file_write import_cpp_props_file, <<EOS
+    Cor.u.write_file_if_changed import_cpp_props_file, <<EOS
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
@@ -610,7 +630,7 @@ EOS
 </Project>
 EOS
 
-    Cor.u.file_write import_cpp_local_conf_mk, <<EOS
+    Cor.u.write_file_if_changed import_cpp_local_conf_mk, <<EOS
 PRJINCS +=
 PRJSRCS +=
 EOS

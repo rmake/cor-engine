@@ -6,78 +6,154 @@ module Cor
 
   module MrubyBindingGen
 
-    def self.name(v)
+    class MrubyBindingGenImplement
+
+      include MrubyBindingGen
+
+      def initialize
+        @use_default_assoc_table = true
+        @use_cor_name_space = true
+      end
+    end
+
+    def self.instance
+      @instance ||= MrubyBindingGenImplement.new
+      @instance
+    end
+
+    def self.clear_instance
+      @instance = nil
+    end
+
+    def name(v)
       @name = v
     end
 
-    def self.output_path(path)
+    def self.name(v)
+      self.instance.name v
+    end
+
+    def output_path(path)
       @output_path = path
     end
 
-    def self.namespace(namespace)
+    def self.output_path(path)
+      self.instance.output_path path
+    end
+
+    def namespace(namespace)
       @namespace = namespace
     end
 
-    def self.add_include_files(files)
+    def self.namespace(namespace)
+      self.instance.namespace namespace
+    end
+
+    def add_include_files(files)
       @additional_include_files ||= []
       @additional_include_files += files
     end
 
-    def self.add_include_paths(paths)
+    def self.add_include_files(files)
+      self.instance.add_include_files files
+    end
+
+    def add_include_paths(paths)
       @add_include_paths ||= []
       @add_include_paths += paths
     end
 
-    def self.add_cor_lib_list(lib_list)
+    def self.add_include_paths(paths)
+      self.instance.add_include_paths(paths)
+    end
+
+    def all_include_paths
+      @add_include_paths
+    end
+
+    def self.all_include_paths
+      self.instance.all_include_paths
+    end
+
+    def add_cor_lib_list(lib_list)
       @lib_list ||= []
       @lib_list += lib_list
     end
 
-    @@use_default_assoc_table = true
-
-    def self.use_default_assoc_table(use)
-      @@use_default_assoc_table = use
+    def self.add_cor_lib_list(lib_list)
+      self.instance.add_cor_lib_list(lib_list)
     end
 
-    @@use_cor_name_space = true
 
-    #def self.use_cor_name_space(use)
-    #  @@use_cor_name_space = use
-    #end
+    def use_default_assoc_table(use)
+      @use_default_assoc_table = use
+    end
 
-    def self.merge_type_assoc_table(table)
+    def self.use_default_assoc_table(use)
+      self.instance.use_default_assoc_table(use)
+    end
+
+    def use_cor_name_space(use)
+      @use_cor_name_space = use
+    end
+
+    def self.use_cor_name_space(use)
+      self.instance.use_cor_name_space use
+    end
+
+    def merge_type_assoc_table(table)
       @type_assoc_table ||= {}
       @type_assoc_table.merge! table
     end
 
-    def self.add_taget_classes(classes)
+    def self.merge_type_assoc_table(table)
+      self.instance.merge_type_assoc_table table
+    end
+
+    def add_taget_classes(classes)
       @target_classes ||= []
       @target_classes += classes
     end
 
-    def self.add_taget_enums(enums)
+    def self.add_taget_classes(classes)
+      self.instance.add_taget_classes classes
+    end
+
+    def add_taget_enums(enums)
       @target_enums ||= []
       @target_enums += enums
     end
 
-    def self.convert_relative_path(path)
+    def self.add_taget_enums(enums)
+      self.instance.add_taget_enums(enums)
+    end
+
+    def convert_relative_path(path)
       base_path = Pathname(File.expand_path("./"))
       target_path = Pathname(File.expand_path(path))
       relative_path = target_path.relative_path_from base_path
       relative_path.to_s
     end
 
-    def self.package_path=(v)
+    def package_path=(v)
       @package_path = v
     end
 
-    def self.package_path
+    def package_path
       @package_path
     end
 
-    def self.set_templated_binding(file_path, option)
+    def self.package_path=(v)
+      self.instance.package_path = v
+    end
 
-      self.package_path = "#{MrubyBindingGen.convert_relative_path File.dirname(file_path)}"
+    def self.package_path
+     self.instance.package_path
+    end
+
+    def set_templated_binding(file_path, option)
+
+      self.package_path = "#{self.convert_relative_path File.dirname(file_path)}"
       base_cpp_path = "#{self.package_path}/cpp"
 
       if option[:name]
@@ -116,7 +192,11 @@ module Cor
 
     end
 
-    def self.gen_code(option)
+    def self.set_templated_binding(file_path, option)
+      self.instance.set_templated_binding file_path, option
+    end
+
+    def gen_code(option)
 
       option[:name] ||= @name
       option[:path] ||= @output_path
@@ -228,7 +308,7 @@ module Cor
       target_classes = @target_classes || []
       target_enums = @target_enums || []
 
-      if @@use_default_assoc_table
+      if @use_default_assoc_table
         type_assoc_table = {
           "std::vector<char>" => "cor::RCharArray",
           "std::__1::vector<char, std::__1::allocator<char>>" => "cor::RCharArray",
@@ -331,7 +411,7 @@ module Cor
         name_space = "cocos2dx_mruby_interface"
       end
 
-      cor_name_space = @@use_cor_name_space
+      cor_name_space = @use_cor_name_space
 
       code_header, code_cpp, code_sub_cpp, proto_header = ClangDumpTree.gen_code({
         :name => option[:name],
@@ -370,6 +450,10 @@ module Cor
           Utility.file_write "#{option[:path]}/#{option[:name]}_sub_#{i}.cpp", v
         end
       end
+    end
+
+    def self.gen_code(option)
+      self.instance.gen_code(option)
     end
 
   end

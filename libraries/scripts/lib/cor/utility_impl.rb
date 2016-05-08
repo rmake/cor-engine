@@ -95,6 +95,20 @@ module Cor
       data
     end
 
+    def self.write_file_if_changed(fn, data)
+      FileUtils.mkpath(File.dirname(fn))
+      if File.exists?(fn)
+        File.open fn, "rb" do |f|
+          if f.read == data
+            return
+          end
+        end
+      end
+      File.open fn, "wb" do |f|
+        f.write data
+      end
+    end
+
     def self.underscore s
       s.gsub(/::/, '/').
       gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').

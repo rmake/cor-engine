@@ -1,4 +1,4 @@
-load "../binding_conf.rb"
+#load_relative "../binding_conf.rb"
 MrubyBindingGen.set_templated_binding __FILE__, :name => "cor_eigen_test"
 
 MrubyBindingGen.add_taget_classes([
