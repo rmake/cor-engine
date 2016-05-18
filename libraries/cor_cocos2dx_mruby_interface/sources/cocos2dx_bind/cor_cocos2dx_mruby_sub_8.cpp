@@ -43,6 +43,12 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
+        float Cocos2dxBind_cocos2d__BaseLight_get_rotation_skew_y_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
+        {
+
+            return c->getRotationSkewY();
+        }
+
         void Cocos2dxBind_cocos2d__BaseLight_set_order_of_arrival_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c, int a0)
         {
 
@@ -5085,12 +5091,6 @@ namespace cor
         {
 
             c->setMass(a0);
-        }
-
-        float Cocos2dxBind_cocos2d__PhysicsShapeEdgeBox_get_density_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeEdgeBox> c)
-        {
-
-            return c->getDensity();
         }
 
 

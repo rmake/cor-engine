@@ -31,7 +31,7 @@ module Cor
       "cor::RString" => true,
       "RBool" => true,
       "cor::RBool" => true,
-      "cor::RSize" => true,
+      #"cor::RSize" => true,
     }
 
     def self.is_function(s)
@@ -1089,8 +1089,6 @@ EOS
           access = nil
           access_p = nil
           original_class_type = nil
-
-
 
           case tp
           when :value

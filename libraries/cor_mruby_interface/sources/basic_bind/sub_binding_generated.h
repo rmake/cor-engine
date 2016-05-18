@@ -44,6 +44,7 @@
 #include "cor_system/sources/logger.h"
 #include "cor_system/sources/parallel_processor.h"
 #include "cor_system/sources/thread_pool.h"
+#include "cor_system/sources/utility_for_test.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
@@ -153,10 +154,10 @@ namespace cor
         std::weak_ptr<cor::data_structure::SharedPtrTable> BasicBind_cor__data_structure__SharedPtrTable_create();
         void BasicBind_cor__data_structure__SharedPtrTable_set(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0, cor::mruby_interface::AnyWP a1);
         cor::mruby_interface::AnyWP BasicBind_cor__data_structure__SharedPtrTable_get(std::weak_ptr<cor::data_structure::SharedPtrTable> c, std::string a0);
-        cor::RSize BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c);
-        cor::RSize BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c);
-        cor::RSize BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c);
-        cor::RSize BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c);
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c);
         RString BasicBind_cor__system__AllocationMonitor_get_status_text(cor::system::AllocationMonitor* c);
         void BasicBind_cor__system__AllocationMonitor_set_enable(cor::system::AllocationMonitor* c, int a0);
         void BasicBind_cor__system__AllocationMonitor_set_captured_status(cor::system::AllocationMonitor* c, int a0);
@@ -164,13 +165,13 @@ namespace cor
         RString BasicBind_cor__system__AllocationMonitor_get_captured_data(cor::system::AllocationMonitor* c);
         void BasicBind_cor__system__AllocationMonitor_clear_caputred_data(cor::system::AllocationMonitor* c);
         cor::system::AllocationMonitor* BasicBind_cor__system__AllocationMonitor_get_instance();
-        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned long long a0);
+        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned int a0);
         void BasicBind_cor__system__AllocationMonitor_al_free(void * a0);
-        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned long long a1);
+        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned int a1);
         void BasicBind_cor__system__CorCrypt_set_enabled(int a0);
         RBool BasicBind_cor__system__CorCrypt_get_enabled();
-        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, unsigned long long a1);
-        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, unsigned long long a1);
+        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, unsigned int a1);
+        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, unsigned int a1);
         RBool BasicBind_cor__system__JobQueue_empty(std::weak_ptr<cor::system::JobQueue> c);
         void BasicBind_cor__system__JobQueue_add_job(std::weak_ptr<cor::system::JobQueue> c, mrubybind::FuncPtr<void ()> a0);
         void BasicBind_cor__system__JobQueue_step(std::weak_ptr<cor::system::JobQueue> c);
@@ -179,18 +180,18 @@ namespace cor
         void BasicBind_cor__system__Logger_pop_print_func(cor::system::Logger* c);
         void BasicBind_cor__system__Logger_clear_print_func(cor::system::Logger* c);
         void BasicBind_cor__system__Logger_call_print_func(cor::system::Logger* c, int a0, RString a1);
-        cor::RSize BasicBind_cor__system__Logger_get_local_count(cor::system::Logger* c, int a0);
-        cor::RSize BasicBind_cor__system__Logger_get_local_debug_count(cor::system::Logger* c);
-        cor::RSize BasicBind_cor__system__Logger_get_local_info_count(cor::system::Logger* c);
-        cor::RSize BasicBind_cor__system__Logger_get_local_warn_count(cor::system::Logger* c);
-        cor::RSize BasicBind_cor__system__Logger_get_local_error_count(cor::system::Logger* c);
-        cor::RSize BasicBind_cor__system__Logger_get_local_fatal_count(cor::system::Logger* c);
-        cor::RSize BasicBind_cor__system__Logger_get_count(int a0);
-        cor::RSize BasicBind_cor__system__Logger_get_debug_count();
-        cor::RSize BasicBind_cor__system__Logger_get_info_count();
-        cor::RSize BasicBind_cor__system__Logger_get_warn_count();
-        cor::RSize BasicBind_cor__system__Logger_get_error_count();
-        cor::RSize BasicBind_cor__system__Logger_get_fatal_count();
+        unsigned int BasicBind_cor__system__Logger_get_local_count(cor::system::Logger* c, int a0);
+        unsigned int BasicBind_cor__system__Logger_get_local_debug_count(cor::system::Logger* c);
+        unsigned int BasicBind_cor__system__Logger_get_local_info_count(cor::system::Logger* c);
+        unsigned int BasicBind_cor__system__Logger_get_local_warn_count(cor::system::Logger* c);
+        unsigned int BasicBind_cor__system__Logger_get_local_error_count(cor::system::Logger* c);
+        unsigned int BasicBind_cor__system__Logger_get_local_fatal_count(cor::system::Logger* c);
+        unsigned int BasicBind_cor__system__Logger_get_count(int a0);
+        unsigned int BasicBind_cor__system__Logger_get_debug_count();
+        unsigned int BasicBind_cor__system__Logger_get_info_count();
+        unsigned int BasicBind_cor__system__Logger_get_warn_count();
+        unsigned int BasicBind_cor__system__Logger_get_error_count();
+        unsigned int BasicBind_cor__system__Logger_get_fatal_count();
         void BasicBind_cor__system__Logger_info(RString a0);
         void BasicBind_cor__system__Logger_debug(RString a0);
         void BasicBind_cor__system__Logger_warn(RString a0);

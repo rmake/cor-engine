@@ -43,6 +43,12 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
+        std::string Cocos2dxBind_cocos2d__TMXObjectGroup_get_group_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c)
+        {
+
+            return c->getGroupName();
+        }
+
         void Cocos2dxBind_cocos2d__TMXObjectGroup_set_group_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, std::string a0)
         {
 
@@ -55,7 +61,7 @@ namespace cor
             return c->getProperty(a0);
         }
 
-        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__TMXObjectGroup_get_object(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, std::string a0)
+        cocos2d::ValueMap Cocos2dxBind_cocos2d__TMXObjectGroup_get_object(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, std::string a0)
         {
 
             return c->getObject(a0);
@@ -73,28 +79,28 @@ namespace cor
             c->setPositionOffset(a0);
         }
 
-        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__TMXObjectGroup_get_properties_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c)
+        cocos2d::ValueMap Cocos2dxBind_cocos2d__TMXObjectGroup_get_properties_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c)
         {
 
             return c->getProperties();
         }
 
-        void Cocos2dxBind_cocos2d__TMXObjectGroup_set_properties(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0)
+        void Cocos2dxBind_cocos2d__TMXObjectGroup_set_properties(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, cocos2d::ValueMap a0)
         {
 
             c->setProperties(a0);
         }
 
-        std::vector<cocos2d::Value, std::allocator<cocos2d::Value> > Cocos2dxBind_cocos2d__TMXObjectGroup_get_objects_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c)
+        MrubyRef Cocos2dxBind_cocos2d__TMXObjectGroup_get_objects_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c)
         {
 
-            return c->getObjects();
+            return cor::cocos2dx_mruby_interface::CocosValue::convert_from_cocos_value_vec(c->getObjects());
         }
 
-        void Cocos2dxBind_cocos2d__TMXObjectGroup_set_objects(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, std::vector<cocos2d::Value, std::allocator<cocos2d::Value> > a0)
+        void Cocos2dxBind_cocos2d__TMXObjectGroup_set_objects(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c, MrubyRef a0)
         {
 
-            c->setObjects(a0);
+            c->setObjects(cor::cocos2dx_mruby_interface::CocosValue::convert_to_cocos_value_vec(a0));
         }
 
         void Cocos2dxBind_cocos2d__TMXObjectGroup_retain_176(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c)
@@ -295,13 +301,13 @@ namespace cor
             c->setLayerOrientation(a0);
         }
 
-        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__TMXLayer_get_properties_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c)
+        cocos2d::ValueMap Cocos2dxBind_cocos2d__TMXLayer_get_properties_1(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c)
         {
 
             return c->getProperties();
         }
 
-        void Cocos2dxBind_cocos2d__TMXLayer_set_properties(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0)
+        void Cocos2dxBind_cocos2d__TMXLayer_set_properties(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c, cocos2d::ValueMap a0)
         {
 
             c->setProperties(a0);
@@ -337,10 +343,10 @@ namespace cor
             c->setTextureAtlas(a0);
         }
 
-        MrubyRef Cocos2dxBind_cocos2d__TMXLayer_get_descendants_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c)
+        int Cocos2dxBind_cocos2d__TMXLayer_get_descendants_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c)
         {
 
-            return cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby(c->getDescendants());
+            return c->getDescendants();
         }
 
         void Cocos2dxBind_cocos2d__TMXLayer_increase_atlas_capacity_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXLayer> c)
@@ -1719,7 +1725,7 @@ namespace cor
             c->setObjectGroups(cor::cocos2dx_mruby_interface::CocosArray::convert_mruby_to_cocos_vec<cocos2d::TMXObjectGroup>(a0));
         }
 
-        void Cocos2dxBind_cocos2d__TMXTiledMap_set_properties(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0)
+        void Cocos2dxBind_cocos2d__TMXTiledMap_set_properties(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXTiledMap> c, cocos2d::ValueMap a0)
         {
 
             c->setProperties(a0);
@@ -2933,19 +2939,13 @@ namespace cor
             return c->getReferenceCount();
         }
 
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Mesh_create_1(std::vector<float> a0, std::vector<float> a1, std::vector<float> a2, std::vector<unsigned short, std::allocator<unsigned short> > a3)
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Mesh_create_1(int a0, int a1, int a2, cocos2d::Mesh::IndexArray a3)
         {
 
             return cocos2d::Mesh::create(a0, a1, a2, a3);
         }
 
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Mesh_create_2(std::vector<float> a0, int a1, std::vector<unsigned short, std::allocator<unsigned short> > a2, std::vector<cocos2d::MeshVertexAttrib> a3)
-        {
-
-            return cocos2d::Mesh::create(a0, a1, a2, a3);
-        }
-
-        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Mesh_create_3(std::string a0, cocos2d::MeshIndexData * a1, cocos2d::MeshSkin * a2)
+        cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Mesh_create_2(std::string a0, cocos2d::MeshIndexData * a1, cocos2d::MeshSkin * a2)
         {
 
             return cocos2d::Mesh::create(a0, a1, a2);
@@ -3265,10 +3265,10 @@ namespace cor
             return c->getMeshByName(a0);
         }
 
-        MrubyRef Cocos2dxBind_cocos2d__Sprite3D_get_mesh_array_by_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, std::string a0)
+        int Cocos2dxBind_cocos2d__Sprite3D_get_mesh_array_by_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c, std::string a0)
         {
 
-            return cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby(c->getMeshArrayByName(a0));
+            return c->getMeshArrayByName(a0);
         }
 
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Mesh> Cocos2dxBind_cocos2d__Sprite3D_get_mesh(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Sprite3D> c)

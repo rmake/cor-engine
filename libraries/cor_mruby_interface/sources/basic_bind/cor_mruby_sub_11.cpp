@@ -44,6 +44,7 @@
 #include "cor_system/sources/logger.h"
 #include "cor_system/sources/parallel_processor.h"
 #include "cor_system/sources/thread_pool.h"
+#include "cor_system/sources/utility_for_test.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"

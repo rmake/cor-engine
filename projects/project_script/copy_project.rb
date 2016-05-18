@@ -244,10 +244,12 @@ end
 
 next_past_cpps = past_copy_data["past_cpps"].clone
 
+thread_pool = SizedParallel::Pool.new
+
 binding_gen = Proc.new do |path|
   CorProject.current_project_path = path
   binding_conf = "#{path}/binding_conf.rb"
-  puts "binding_conf #{binding_conf}"
+  puts "binding_conf #{binding_conf} #{File.exists?(binding_conf)}"
   if File.exists?(binding_conf)
     #FileUtils.chdir File.dirname(binding_conf)
 
@@ -258,8 +260,12 @@ binding_gen = Proc.new do |path|
     conf_path = Pathname(File.expand_path(path))
     conf_path_for_gen = conf_path.relative_path_from base_path
 
+
     MrubyBindingGen.clear_instance
     load "#{conf_path_for_gen.to_s}/binding_conf.rb"
+    unless MrubyBindingGen.instance.get_name
+      next
+    end
     MrubyBindingGen.all_include_paths.each do |include_path|
       cpps += Cor.u.file_list(include_path)
     end
@@ -276,24 +282,34 @@ binding_gen = Proc.new do |path|
 
     next unless is_run_gen
 
-    puts "conf_path_for_gen #{conf_path_for_gen}"
+    thread_pool.process next_past_cpps, cpps, mruby_binging_generator_script_path, conf_path_for_gen do
+      |next_past_cpps, cpps, mruby_binging_generator_script_path, conf_path_for_gen|
+      begin
 
-    cmd = "ruby #{mruby_binging_generator_script_path}/generate_mruby_interface.rb #{conf_path_for_gen.to_s}/binding_conf.rb"
-    puts "cmd #{cmd}"
-    call_system(cmd)
+        puts "conf_path_for_gen #{conf_path_for_gen}"
 
-    cpps.each do |cpp_name|
-      next unless cpp_name.match(/\.h$/)
-      next_past_cpps[cpp_name] = File.mtime(cpp_name).to_s
+        cmd = "ruby #{mruby_binging_generator_script_path}/generate_mruby_interface.rb #{conf_path_for_gen.to_s}/binding_conf.rb"
+        puts "cmd #{cmd}"
+        call_system(cmd)
+
+        cpps.each do |cpp_name|
+          next unless cpp_name.match(/\.h$/)
+          next_past_cpps[cpp_name] = File.mtime(cpp_name).to_s
+        end
+
+      rescue  => e
+        puts "thread error(#{conf_path_for_gen}) #{e} #{e.backtrace}"
+        raise e
+      end
     end
+
+
 
     #FileUtils.chdir here
   end
 end
 
 puts "CorProject.includes #{CorProject.includes}"
-
-thread_pool = SizedParallel::Pool.new
 
 unless resource_only
 
@@ -318,9 +334,7 @@ unless resource_only
     if CorProject.import_cpp && Dir.exists?("#{inc}/cpp")
       puts "pre_gen #{inc}"
 
-      thread_pool.process inc do |inc|
-        binding_gen.call inc
-      end
+      binding_gen.call inc
 
       import_cpp_props_includes << "#{inc}/cpp"
       tmpcpp_list = Cor.u.file_list("#{inc}/cpp") do |v|
@@ -344,9 +358,7 @@ unless resource_only
 
   if CorProject.import_cpp && Dir.exists?("#{source_path}/cpp")
 
-    thread_pool.process(source_path) do |source_path|
-      binding_gen.call source_path
-    end
+    binding_gen.call source_path
 
     import_cpp_props_includes << "#{source_path}/cpp"
 
@@ -397,7 +409,7 @@ list.each do |fn|
   dfn = "#{destination_resource_path}/#{fn[:n]}"
 
   if !File.exist?(dfn) || past_copy_table[fn[:fn]] != File.mtime(fn[:fn]).to_s  || File.size(fn[:fn]) != File.size(dfn) || force_update
-    puts "do copy #{fn} -> #{dfn}"
+    #puts "do copy #{fn} -> #{dfn}"
     FileUtils.mkpath File.dirname(dfn)
     resource_file_copy key, fn[:fn], dfn
 
@@ -477,10 +489,7 @@ unless resource_only
 
     import_cpp_include_from = Pathname(File.dirname(import_cpp_file))
     import_cpp_includes = cpp_list.map do |v|
-      puts "v #{v}"
       import_cpp_include_to = Pathname(File.absolute_path(v[:fn]))
-      puts "import_cpp_include_to #{import_cpp_include_to.to_s}"
-      puts "import_cpp_include_from #{import_cpp_include_from.to_s}"
       r = import_cpp_include_to.relative_path_from(import_cpp_include_from)
       r.to_s
     end

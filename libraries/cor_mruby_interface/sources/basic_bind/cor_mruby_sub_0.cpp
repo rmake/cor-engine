@@ -44,6 +44,7 @@
 #include "cor_system/sources/logger.h"
 #include "cor_system/sources/parallel_processor.h"
 #include "cor_system/sources/thread_pool.h"
+#include "cor_system/sources/utility_for_test.h"
 #include "cor_mruby_interface/sources/basic_bind.h"
 #include "cor_mruby_interface/sources/mruby_array.h"
 #include "cor_mruby_interface/sources/mruby_array_tmpl.h"
@@ -495,13 +496,13 @@ namespace cor
             return cor::system::CorCrypt::get_enabled();
         }
 
-        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, unsigned long long a1)
+        void BasicBind_cor__system__CorCrypt_encode(unsigned char * a0, unsigned int a1)
         {
 
             cor::system::CorCrypt::encode(a0, a1);
         }
 
-        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, unsigned long long a1)
+        void BasicBind_cor__system__CorCrypt_decode(unsigned char * a0, unsigned int a1)
         {
 
             cor::system::CorCrypt::decode(a0, a1);
@@ -603,73 +604,73 @@ namespace cor
             c->call_print_func((cor::system::LogType::Enum)a0, a1);
         }
 
-        cor::RSize BasicBind_cor__system__Logger_get_local_count(cor::system::Logger* c, int a0)
+        unsigned int BasicBind_cor__system__Logger_get_local_count(cor::system::Logger* c, int a0)
         {
 
             return c->get_local_count((cor::system::LogType::Enum)a0);
         }
 
-        cor::RSize BasicBind_cor__system__Logger_get_local_debug_count(cor::system::Logger* c)
+        unsigned int BasicBind_cor__system__Logger_get_local_debug_count(cor::system::Logger* c)
         {
 
             return c->get_local_debug_count();
         }
 
-        cor::RSize BasicBind_cor__system__Logger_get_local_info_count(cor::system::Logger* c)
+        unsigned int BasicBind_cor__system__Logger_get_local_info_count(cor::system::Logger* c)
         {
 
             return c->get_local_info_count();
         }
 
-        cor::RSize BasicBind_cor__system__Logger_get_local_warn_count(cor::system::Logger* c)
+        unsigned int BasicBind_cor__system__Logger_get_local_warn_count(cor::system::Logger* c)
         {
 
             return c->get_local_warn_count();
         }
 
-        cor::RSize BasicBind_cor__system__Logger_get_local_error_count(cor::system::Logger* c)
+        unsigned int BasicBind_cor__system__Logger_get_local_error_count(cor::system::Logger* c)
         {
 
             return c->get_local_error_count();
         }
 
-        cor::RSize BasicBind_cor__system__Logger_get_local_fatal_count(cor::system::Logger* c)
+        unsigned int BasicBind_cor__system__Logger_get_local_fatal_count(cor::system::Logger* c)
         {
 
             return c->get_local_fatal_count();
         }
 
-        cor::RSize BasicBind_cor__system__Logger_get_count(int a0)
+        unsigned int BasicBind_cor__system__Logger_get_count(int a0)
         {
 
             return cor::system::Logger::get_count((cor::system::LogType::Enum)a0);
         }
 
-        cor::RSize BasicBind_cor__system__Logger_get_debug_count()
+        unsigned int BasicBind_cor__system__Logger_get_debug_count()
         {
 
             return cor::system::Logger::get_debug_count();
         }
 
-        cor::RSize BasicBind_cor__system__Logger_get_info_count()
+        unsigned int BasicBind_cor__system__Logger_get_info_count()
         {
 
             return cor::system::Logger::get_info_count();
         }
 
-        cor::RSize BasicBind_cor__system__Logger_get_warn_count()
+        unsigned int BasicBind_cor__system__Logger_get_warn_count()
         {
 
             return cor::system::Logger::get_warn_count();
         }
 
-        cor::RSize BasicBind_cor__system__Logger_get_error_count()
+        unsigned int BasicBind_cor__system__Logger_get_error_count()
         {
 
             return cor::system::Logger::get_error_count();
         }
 
-        cor::RSize BasicBind_cor__system__Logger_get_fatal_count()
+        unsigned int BasicBind_cor__system__Logger_get_fatal_count()
         {
 
             return cor::system::Logger::get_fatal_count();
@@ -978,25 +979,25 @@ namespace cor
             return tmp_c->get(a0);
         }
 
-        cor::RSize BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c)
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_new_count(cor::system::AllocationMonitor* c)
         {
 
             return c->get_new_count();
         }
 
-        cor::RSize BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c)
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_delete_count(cor::system::AllocationMonitor* c)
         {
 
             return c->get_delete_count();
         }
 
-        cor::RSize BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c)
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_count(cor::system::AllocationMonitor* c)
         {
 
             return c->get_alloc_count();
         }
 
-        cor::RSize BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c)
+        unsigned int BasicBind_cor__system__AllocationMonitor_get_alloc_size(cor::system::AllocationMonitor* c)
         {
 
             return c->get_alloc_size();
@@ -1044,7 +1045,7 @@ namespace cor
             return cor::system::AllocationMonitor::get_instance();
         }
 
-        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned long long a0)
+        void* BasicBind_cor__system__AllocationMonitor_alloc(unsigned int a0)
         {
 
             return cor::system::AllocationMonitor::alloc(a0);
@@ -1056,7 +1057,7 @@ namespace cor
             cor::system::AllocationMonitor::al_free(a0);
         }
 
-        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned long long a1)
+        void* BasicBind_cor__system__AllocationMonitor_al_realloc(void * a0, unsigned int a1)
         {
 
             return cor::system::AllocationMonitor::al_realloc(a0, a1);

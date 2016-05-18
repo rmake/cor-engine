@@ -132,6 +132,9 @@ class SizedParallel::Pool
                 failed = e
                 break
               else
+                # always stop
+                failed = e
+                break
                 # silently ignore
               end
             end

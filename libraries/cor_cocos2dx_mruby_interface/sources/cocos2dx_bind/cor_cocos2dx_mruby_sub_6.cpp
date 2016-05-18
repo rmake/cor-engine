@@ -43,6 +43,24 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
+        void Cocos2dxBind_cocos2d__LabelAtlas_enumerate_children_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c, std::string a0, mrubybind::FuncPtr<bool (cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>)> a1)
+        {
+
+            c->enumerateChildren(a0, 
+              [=](cocos2d::Node * b0){
+                  bool  r;
+                  cor::mruby_interface::MrubyState::catch_error([&](){
+                      if(a1.is_living()) {
+                          r = a1.func()(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Node>(b0));
+                      }
+                  }, [&]() {
+                      r = bool ();
+                  });
+                  return r;
+              }
+);
+        }
+
         MrubyRef Cocos2dxBind_cocos2d__LabelAtlas_get_children_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::LabelAtlas> c)
         {
 
@@ -5039,12 +5057,6 @@ namespace cor
         {
 
             c->setName(a0);
-        }
-
-        void* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_user_data_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
-        {
-
-            return c->getUserData();
         }
 
 

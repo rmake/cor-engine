@@ -1039,6 +1039,8 @@ EOS
         class_registrations.length + class_convertables.length +
         constant_registrations.length
 
+      puts "total_length #{total_length}"
+
       method_defines_length = [(method_defines.length / total_length.to_f).ceil, 1].max
       class_defines_length = [(class_defines.length / total_length.to_f).ceil, 1].max
       method_defines = Utility.interval_slice(method_defines, method_defines_length).map{|v| v.join}

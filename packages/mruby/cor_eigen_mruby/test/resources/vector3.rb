@@ -16,19 +16,19 @@ patterns.each do |h|
   cls = h[:cls]
   CorTestCase.run "#{name}.constructor" do |t|
 
-    v0 = cls.create 1, 2, 3
+    v0 = cls.new 1, 2, 3
 
     t.check_equal v0.get(0), 1
     t.check_equal v0.get(1), 2
     t.check_equal v0.get(2), 3
 
-    v1 = cls.create v0
+    v1 = cls.new v0
 
     t.check_equal v1.get(0), 1
     t.check_equal v1.get(1), 2
     t.check_equal v1.get(2), 3
 
-    v2 = cls.create v1.get_original
+    v2 = cls.new v1.get_original
 
     t.check_equal v2.get(0), 1
     t.check_equal v2.get(1), 2
@@ -41,7 +41,7 @@ patterns.each do |h|
 
   CorTestCase.run "#{name}.set/get" do |t|
 
-    v = cls.create
+    v = cls.new
     v.set 0, 6
     v.set 1, 5
     v.set 2, 4
@@ -56,7 +56,7 @@ patterns.each do |h|
 
   CorTestCase.run "#{name}.get_x/y/z" do |t|
 
-    v = cls.create
+    v = cls.new
     v.set 0, 6
     v.set 1, 5
     v.set 2, 4
@@ -71,7 +71,7 @@ patterns.each do |h|
 
   CorTestCase.run "#{name}.set_x/y/z" do |t|
 
-    v = cls.create
+    v = cls.new
     v.set_x 6
     v.set_y 5
     v.set_z 4
@@ -86,12 +86,12 @@ patterns.each do |h|
 
   CorTestCase.run "#{name}.+" do |t|
 
-    v0 = cls.create
+    v0 = cls.new
     v0.set 0, 6
     v0.set 1, 5
     v0.set 2, 4
 
-    v1 = cls.create 3, 3, 4
+    v1 = cls.new 3, 3, 4
 
     v2 = v0 + v1
 
@@ -105,12 +105,12 @@ patterns.each do |h|
 
   CorTestCase.run "#{name}.-" do |t|
 
-    v0 = cls.create
+    v0 = cls.new
     v0.set 0, 6
     v0.set 1, 5
     v0.set 2, 4
 
-    v1 = cls.create 3, 3, 4
+    v1 = cls.new 3, 3, 4
 
     v2 = v0 - v1
 
@@ -124,7 +124,7 @@ patterns.each do |h|
 
   CorTestCase.run "#{name}.*" do |t|
 
-    v0 = cls.create
+    v0 = cls.new
     v0.set 0, 6
     v0.set 1, 5
     v0.set 2, 4
@@ -141,7 +141,7 @@ patterns.each do |h|
 
   CorTestCase.run "#{name}.-(self)" do |t|
 
-    v0 = cls.create
+    v0 = cls.new
     v0.set 0, 6
     v0.set 1, 5
     v0.set 2, 4

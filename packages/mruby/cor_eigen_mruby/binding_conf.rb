@@ -9,17 +9,17 @@ MrubyBindingGen.add_taget_classes([
     {
       :name => "cor::eigen::EVector3D",
       :value => :value,
-      :create_function => "create",
+      :create_function => "new",
     },
     {
       :name => "cor::eigen::EVector3F",
       :value => :value,
-      :create_function => "create",
+      :create_function => "new",
     },
     {
       :name => "cor::eigen::Vector3D",
       :value => :value,
-      :create_function => "create",
+      :create_function => "new",
       :operator => [
         { :name => "*", :args => [
           {:ret => "cor::eigen::Vector3D", :arg => ["double"]},
@@ -38,7 +38,7 @@ MrubyBindingGen.add_taget_classes([
     {
       :name => "cor::eigen::Vector3F",
       :value => :value,
-      :create_function => "create",
+      :create_function => "new",
       :operator => [
         { :name => "*", :args => [
           {:ret => "cor::eigen::Vector3F", :arg => ["double"]},

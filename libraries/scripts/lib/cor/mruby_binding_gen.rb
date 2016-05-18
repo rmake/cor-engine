@@ -29,6 +29,10 @@ module Cor
       @name = v
     end
 
+    def get_name
+      @name
+    end
+
     def self.name(v)
       self.instance.name v
     end
@@ -242,7 +246,8 @@ module Cor
       end
 
       only_gen_src = "#undef __SSE__\n" +
-        "#define BOOST_VARIANT_HPP\n"
+        "#define BOOST_VARIANT_HPP\n" +
+        "#define COR_MRUBY_BINDING_GENERATING\n"
       src =
         a.map{|v| "#include \"../#{v}\"\n" }.join("") +
         "#undef RELATIVE\n#undef ABSOLUTE\n" +
@@ -320,7 +325,9 @@ module Cor
           "long" => "int",
           "short" => "int",
           "unsigned short" => "int",
+          #"cor::RSize" => "unsigned int",
           #"unsigned long long" => "cor::RSize",
+          "unsigned long long" => "unsigned int",
           #"RSize" => "cor::RSize",
           "__va_list_tag *" => "delete",
           "std::shared_ptr<void>" => "std::weak_ptr<void>",

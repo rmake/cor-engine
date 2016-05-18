@@ -43,6 +43,12 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
+        void* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_user_data_57(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
+        {
+
+            return c->getUserData();
+        }
+
         const void* Cocos2dxBind_cocos2d__ParticleSystemQuad_get_user_data_58(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::ParticleSystemQuad> c)
         {
 
@@ -5141,12 +5147,6 @@ namespace cor
             c->setRotationSkewY(a0);
         }
 
-        float Cocos2dxBind_cocos2d__BaseLight_get_rotation_skew_y_29(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::BaseLight> c)
-        {
-
-            return c->getRotationSkewY();
-        }
-
 
 
         
@@ -6308,7 +6308,6 @@ namespace cor
             binder.bind_custom_method("Cocos2d", "TMXTiledMap", "get_reference_count_176", Cocos2dxBind_cocos2d__TMXTiledMap_get_reference_count_176);
             binder.bind_static_method("Cocos2d", "Mesh", "create_1", Cocos2dxBind_cocos2d__Mesh_create_1);
             binder.bind_static_method("Cocos2d", "Mesh", "create_2", Cocos2dxBind_cocos2d__Mesh_create_2);
-            binder.bind_static_method("Cocos2d", "Mesh", "create_3", Cocos2dxBind_cocos2d__Mesh_create_3);
             binder.bind_custom_method("Cocos2d", "Mesh", "get_vertex_buffer", Cocos2dxBind_cocos2d__Mesh_get_vertex_buffer);
             binder.bind_custom_method("Cocos2d", "Mesh", "has_vertex_attrib", Cocos2dxBind_cocos2d__Mesh_has_vertex_attrib);
             binder.bind_custom_method("Cocos2d", "Mesh", "get_mesh_vertex_attrib_count", Cocos2dxBind_cocos2d__Mesh_get_mesh_vertex_attrib_count);
