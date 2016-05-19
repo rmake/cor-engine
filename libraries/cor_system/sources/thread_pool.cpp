@@ -1,6 +1,8 @@
 #include "thread_pool.h"
 #include <condition_variable>
 #include "cor_system/sources/logger.h"
+#include <thread>
+#include <mutex>
 
 namespace cor
 {
@@ -27,7 +29,7 @@ namespace cor
                 terminated = rfalse;
             }
         };
-        
+
         ThreadPool::ThreadPool() : itnl(new ThreadPoolItnl())
         {
             set_threads(1);
@@ -71,8 +73,8 @@ namespace cor
                             std::this_thread::sleep_for(std::chrono::milliseconds(1));
                         }
                     }
-                    
-                    
+
+
                 }));
             }
         }
@@ -107,7 +109,7 @@ namespace cor
 
         void ThreadPool::add_job(ThreadRunFunc run_func, ThreadEndFunc end_func)
         {
-            
+
             itnl->thread_job_queue->add_job([=](){
                 run_func();
 

@@ -2,16 +2,13 @@
 #define ____COR_SYSTEM_SOURCES_PARALLEL_PROCESSOR_H_
 
 #include "cor_system/sources/job_queue.h"
-#include <thread>
-#include <mutex>
-
 
 namespace cor
 {
     namespace system
     {
         struct ParallelProcessorItnl;
-    
+
         class ParallelProcessor
         {
             std::unique_ptr<ParallelProcessorItnl> itnl;

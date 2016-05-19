@@ -172,6 +172,7 @@ module Cor
 
 
     def self.parse_token(t)
+      return t[:parsed] if t[:parsed]
       line = t[:line]
       line = line.gsub(/C\:\\Program Files \(x86\)\\Microsoft Visual Studio /, "VCPATH")
       line = line.gsub(/VCPATH[^:]+:/, "line:")
@@ -193,7 +194,8 @@ module Cor
       line = line.gsub(/col\:\d* /, "").gsub(/line\:\d*:\d* /, "")
 
       a = line.scan(/(('[^']*':'[^']*')|('[^']*')|(<[^<^>]*([^<^>]*<[^<^>]*>[^<^>]*)*[^<^>]*>)|(\S+))/)
-      a.map{|v| v[0]}
+      t[:parsed] = a.map{|v| v[0]}
+      t[:parsed]
     end
 
     def self.get_name_layer(t)
@@ -554,6 +556,10 @@ module Cor
           end
 
         end
+      end
+
+      traverse_tree(tree) do |t|
+        t.delete :parsed
       end
 
       td = TreeData.new

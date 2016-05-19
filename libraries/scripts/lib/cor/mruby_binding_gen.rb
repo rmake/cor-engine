@@ -245,9 +245,93 @@ module Cor
         a2 += @additional_include_files
       end
 
-      only_gen_src = "#undef __SSE__\n" +
-        "#define BOOST_VARIANT_HPP\n" +
-        "#define COR_MRUBY_BINDING_GENERATING\n"
+      only_gen_src = <<EOS
+#undef __SSE__
+#define BOOST_VARIANT_HPP
+#define COR_MRUBY_BINDING_GENERATING
+
+//#define _VECTOR_
+//#define _STRING_
+//#define _SSTREAM_
+//#define _SET_
+//#define _MAP_
+//#define _MEMORY_
+//#define _ALGORITHM_
+//#define _FUNCTIONAL_
+//#define _IOSTREAM_
+//#define _QUEUE_
+//#define _THREAD_
+//
+//namespace std
+//{
+//    template<typename T> struct allocator {};
+//    template<typename T> struct char_traits{};
+//    template<typename T, typename CT = char_traits<T>, typename Allocator = allocator<T> > struct basic_string {
+//        static int npos;
+//        basic_string();
+//        basic_string(const T*);
+//        basic_string(const T*, int n);
+//        const T* c_str() const;
+//        unsigned int size() const;
+//        void append(const T*);
+//
+//    };
+//    typedef basic_string<char> string;
+//    typedef basic_string<wchar_t> wstring;
+//    template<typename T, typename V>struct pair {
+//        T first;
+//        V second;
+//    };
+//    template<typename T, typename Allocator = allocator<T> >struct vector {
+//        void push_back(T t);
+//        T& operator[](int i);
+//        void resize(int sz);
+//    };
+//    template<typename T, typename Allocator = allocator<T> >struct set {};
+//    template<typename T, typename V, typename Allocator = allocator<T> >struct map {
+//        V& operator[](T t);
+//        pair<T, V>* find(T t);
+//        pair<T, V>* begin();
+//        pair<T, V>* end();
+//        void erase(T t);
+//    };
+//    template<typename T, typename V, typename Allocator = allocator<T> >struct multimap {};
+//    template<typename T> struct deque {};
+//    template <class T, class Container = deque<T> > class queue;
+//    struct stringstream {
+//        string str() const;
+//    };
+//    struct iostream {};
+//    template<typename T>struct shared_ptr {
+//        shared_ptr();
+//        shared_ptr(T * );
+//        T* get() const;
+//        T* operator->();
+//    };
+//    template<typename T>struct weak_ptr {};
+//    template<typename T>struct unique_ptr {};
+//    template<typename T>struct function {
+//        function();
+//        template<typename Y> function(Y y);
+//    };
+//
+//    template<typename T>shared_ptr<T> make_shared() { return shared_ptr<T>(); };
+//
+//    struct thread {};
+//    struct mutex {};
+//    struct runtime_error {
+//        runtime_error(string s);
+//    };
+//}
+//
+//namespace boost
+//{
+//    template<typename T, typename V>struct variant {};
+//}
+//
+//#include <float.h>
+
+EOS
       src =
         a.map{|v| "#include \"../#{v}\"\n" }.join("") +
         "#undef RELATIVE\n#undef ABSOLUTE\n" +
@@ -288,6 +372,8 @@ module Cor
       Utility.file_write "log/#{option[:name]}/tmp.log", str
 
       tree = ClangDumpTree::parse_tree str
+
+      str = nil
 
       #str = tree.print_tree
       #Utility.file_write "log/#{option[:name]}/print_tree.log", str

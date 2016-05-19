@@ -1,7 +1,6 @@
 ﻿#ifndef _COR_TYPE_BASIC_TYPES_H_
 #define _COR_TYPE_BASIC_TYPES_H_
 
-//#ifndef COR_MRUBY_BINDING_GENERATING
 #include <string>
 #include <sstream>
 #include <vector>
@@ -11,22 +10,6 @@
 #include <memory>
 #include <functional>
 #include <float.h>
-
-//#else
-//namespace std
-//{
-//    struct string {};
-//    struct wstring {};
-//    template<typename T> struct allocator {};
-//    template<typename T, typename Allocator = allocator<T> >struct vector {};
-//    struct stringstream {};
-//    template<typename T>struct shared_ptr {};
-//    template<typename T>struct weak_ptr {};
-//    template<typename T>struct function {};
-//    template<class R, class... Args>struct function {};
-//}
-//#include <float.h>
-//#endif
 
 #ifdef WIN32
 #define THEAD_LOCAL static __declspec(thread)

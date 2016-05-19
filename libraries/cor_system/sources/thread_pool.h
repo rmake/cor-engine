@@ -2,8 +2,6 @@
 #define ____COR_SYSTEM_SOURCES_THREAD_POOL_H_
 
 #include "cor_system/sources/job_queue.h"
-#include <thread>
-#include <mutex>
 
 namespace cor
 {

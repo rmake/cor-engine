@@ -1,6 +1,8 @@
 
 #include "parallel_processor.h"
 #include <condition_variable>
+#include <thread>
+#include <mutex>
 
 namespace cor
 {
@@ -57,14 +59,14 @@ namespace cor
                         }
                     }
                     dec_run_count();
-                    
+
                     if(itnl->thread_job_queue->empty())
                     {
                         std::unique_lock<std::mutex> l(itnl->cnd_mutex);
                         itnl->main_cnd.notify_all();
                         itnl->cnd.wait(l);
                     }
-                
+
                 }));
             }
         }
@@ -86,11 +88,11 @@ namespace cor
             std::lock_guard<std::mutex> locker(itnl->run_count_mutex);
             callback(itnl->run_count);
         }
-        
+
 
         void ParallelProcessor::run()
         {
-            
+
             itnl->cnd.notify_all();
 
             std::unique_lock<std::mutex> l(itnl->main_cnd_mutex);
