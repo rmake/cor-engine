@@ -12,7 +12,11 @@ module Cor
   class CorBuilder
 
     def initialize
-
+      @cs_path = Dir.glob("C:/Windows/Microsoft.NET/Framework64/v*").find do |v|
+        puts "v #{v}"
+        v.match(/4\.0[^\\]*$/)
+      end
+      puts "@cs_path #{@cs_path}"
     end
 
     def call_system(cmd)
@@ -141,10 +145,18 @@ EOS
           FileUtils.chdir "#{@cor_path}/projects/cor_mruby_console_app/proj.cmake"
         when "cor_cocos2dx"
           #FileUtils.chdir "#{@cor_path}/projects/cor_lib_test_main/proj.cmake"
+        when "cor_cs_console"
+          FileUtils.chdir "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake"
         end
 
         if target_project != "cor_cocos2dx"
           CmakeBuilder.build_type(type, args)
+
+          if target_project == "cor_cs_console"
+            FileUtils.mkdir_p "#{@cor_path}/projects/cor_cs_console_app/proj.cs/build_tmp"
+            FileUtils.chdir "#{@cor_path}/projects/cor_cs_console_app/proj.cs/build_tmp"
+            self.call_system "#{@cs_path}\\csc ..\\..\\sources\\*.cs"
+          end
         else
           FileUtils.chdir "#{@cor_path}/libraries/cor_all_cocos2dx/proj.cmake"
           CmakeBuilder.build_type(type, args.select{|v| v != "run"})
@@ -219,6 +231,8 @@ EOS
           end
 
         end
+
+
       end).to_s
 
     end

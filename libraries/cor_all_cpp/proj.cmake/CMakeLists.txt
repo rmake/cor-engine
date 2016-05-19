@@ -46,8 +46,6 @@ if(EXISTS ${PROJECT_SOURCE_DIR}/../../cor_cpp_import/proj.common/cor_cpp_interfa
 
 endif()
 
-message("cor_all_cpp_scr ${cor_all_cpp_scr}")
-
 add_library (cor_all_cpp ${cor_all_cpp_scr})
 include_directories (../../)
 include_directories (../../../external/boost)

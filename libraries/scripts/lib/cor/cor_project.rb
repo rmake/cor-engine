@@ -39,6 +39,7 @@ module Cor
     # "cor_cpp_console"
     # "cor_mruby_console"
     # "cor_cocos2dx"
+    # "cor_cs_console"
     def self.target_project=(target_project)
       @target_project = target_project
     end
