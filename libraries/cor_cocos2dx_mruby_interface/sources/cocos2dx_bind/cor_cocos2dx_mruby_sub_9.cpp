@@ -43,12 +43,6 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
-        float Cocos2dxBind_cocos2d__PhysicsShapeEdgeBox_get_density_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeEdgeBox> c)
-        {
-
-            return c->getDensity();
-        }
-
         void Cocos2dxBind_cocos2d__PhysicsShapeEdgeBox_set_density_8(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsShapeEdgeBox> c, float a0)
         {
 
@@ -619,7 +613,7 @@ namespace cor
             return c->getWorld();
         }
 
-        int Cocos2dxBind_cocos2d__PhysicsBody_get_joints(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> c)
+        std::vector<cocos2d::PhysicsJoint*> Cocos2dxBind_cocos2d__PhysicsBody_get_joints(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PhysicsBody> c)
         {
 
             return c->getJoints();
@@ -2001,7 +1995,7 @@ namespace cor
             c->loadFilenameLookupDictionaryFromFile(a0);
         }
 
-        void Cocos2dxBind_cocos2d__FileUtils_set_filename_lookup_dictionary(cocos2d::FileUtils* c, cocos2d::ValueMap a0)
+        void Cocos2dxBind_cocos2d__FileUtils_set_filename_lookup_dictionary(cocos2d::FileUtils* c, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0)
         {
 
             c->setFilenameLookupDictionary(a0);
@@ -2013,7 +2007,7 @@ namespace cor
             return c->fullPathFromRelativeFile(a0, a1);
         }
 
-        void Cocos2dxBind_cocos2d__FileUtils_set_search_resolutions_order(cocos2d::FileUtils* c, int a0)
+        void Cocos2dxBind_cocos2d__FileUtils_set_search_resolutions_order(cocos2d::FileUtils* c, std::vector<std::string> a0)
         {
 
             c->setSearchResolutionsOrder(a0);
@@ -2025,13 +2019,13 @@ namespace cor
             c->addSearchResolutionsOrder(a0, a1);
         }
 
-        int Cocos2dxBind_cocos2d__FileUtils_get_search_resolutions_order(cocos2d::FileUtils* c)
+        std::vector<std::string> Cocos2dxBind_cocos2d__FileUtils_get_search_resolutions_order(cocos2d::FileUtils* c)
         {
 
             return c->getSearchResolutionsOrder();
         }
 
-        void Cocos2dxBind_cocos2d__FileUtils_set_search_paths(cocos2d::FileUtils* c, int a0)
+        void Cocos2dxBind_cocos2d__FileUtils_set_search_paths(cocos2d::FileUtils* c, std::vector<std::string> a0)
         {
 
             c->setSearchPaths(a0);
@@ -2049,7 +2043,7 @@ namespace cor
             c->addSearchPath(a0, a1);
         }
 
-        int Cocos2dxBind_cocos2d__FileUtils_get_search_paths(cocos2d::FileUtils* c)
+        std::vector<std::string> Cocos2dxBind_cocos2d__FileUtils_get_search_paths(cocos2d::FileUtils* c)
         {
 
             return c->getSearchPaths();
@@ -2079,13 +2073,13 @@ namespace cor
             return c->isPopupNotify();
         }
 
-        cocos2d::ValueMap Cocos2dxBind_cocos2d__FileUtils_get_value_map_from_file(cocos2d::FileUtils* c, std::string a0)
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__FileUtils_get_value_map_from_file(cocos2d::FileUtils* c, std::string a0)
         {
 
             return c->getValueMapFromFile(a0);
         }
 
-        cocos2d::ValueMap Cocos2dxBind_cocos2d__FileUtils_get_value_map_from_data(cocos2d::FileUtils* c, const char * a0, int a1)
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > Cocos2dxBind_cocos2d__FileUtils_get_value_map_from_data(cocos2d::FileUtils* c, const char * a0, int a1)
         {
 
             return c->getValueMapFromData(a0, a1);
@@ -2103,7 +2097,7 @@ namespace cor
             return c->writeDataToFile(a0, a1);
         }
 
-        bool Cocos2dxBind_cocos2d__FileUtils_write_value_vector_to_file(cocos2d::FileUtils* c, int a0, std::string a1)
+        bool Cocos2dxBind_cocos2d__FileUtils_write_value_vector_to_file(cocos2d::FileUtils* c, std::vector<cocos2d::Value, std::allocator<cocos2d::Value>> a0, std::string a1)
         {
 
             return c->writeValueVectorToFile(a0, a1);
@@ -2115,10 +2109,10 @@ namespace cor
             return c->getSuitableFOpen(a0);
         }
 
-        MrubyRef Cocos2dxBind_cocos2d__FileUtils_get_value_vector_from_file(cocos2d::FileUtils* c, std::string a0)
+        std::vector<cocos2d::Value, std::allocator<cocos2d::Value> > Cocos2dxBind_cocos2d__FileUtils_get_value_vector_from_file(cocos2d::FileUtils* c, std::string a0)
         {
 
-            return cor::cocos2dx_mruby_interface::CocosValue::convert_from_cocos_value_vec(c->getValueVectorFromFile(a0));
+            return c->getValueVectorFromFile(a0);
         }
 
         bool Cocos2dxBind_cocos2d__FileUtils_is_file_exist(cocos2d::FileUtils* c, std::string a0)
@@ -2181,7 +2175,7 @@ namespace cor
             return c->getFileSize(a0);
         }
 
-        int Cocos2dxBind_cocos2d__FileUtils_get_full_path_cache(cocos2d::FileUtils* c)
+        std::unordered_map<std::string, std::string> Cocos2dxBind_cocos2d__FileUtils_get_full_path_cache(cocos2d::FileUtils* c)
         {
 
             return c->getFullPathCache();
@@ -2223,7 +2217,7 @@ namespace cor
             return c->getAnimation(a0);
         }
 
-        void Cocos2dxBind_cocos2d__AnimationCache_add_animations_with_dictionary(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> c, cocos2d::ValueMap a0, std::string a1)
+        void Cocos2dxBind_cocos2d__AnimationCache_add_animations_with_dictionary(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::AnimationCache> c, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a0, std::string a1)
         {
 
             c->addAnimationsWithDictionary(a0, a1);
@@ -2319,10 +2313,10 @@ namespace cor
             c->setTextureAtlas(a0);
         }
 
-        int Cocos2dxBind_cocos2d__SpriteBatchNode_get_descendants_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c)
+        MrubyRef Cocos2dxBind_cocos2d__SpriteBatchNode_get_descendants_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c)
         {
 
-            return c->getDescendants();
+            return cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby(c->getDescendants());
         }
 
         void Cocos2dxBind_cocos2d__SpriteBatchNode_increase_atlas_capacity_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::SpriteBatchNode> c)
@@ -5201,6 +5195,12 @@ namespace cor
         {
 
             return c->getReferenceCount();
+        }
+
+        std::string Cocos2dxBind_cocos2d__TMXObjectGroup_get_group_name(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::TMXObjectGroup> c)
+        {
+
+            return c->getGroupName();
         }
 
 

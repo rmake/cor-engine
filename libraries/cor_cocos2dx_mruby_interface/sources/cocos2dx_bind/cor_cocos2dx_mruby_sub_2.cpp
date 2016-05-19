@@ -205,10 +205,10 @@ namespace cor
             return c->getDescription();
         }
 
-        int Cocos2dxBind_cocos2d__Scene_get_cameras(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c)
+        MrubyRef Cocos2dxBind_cocos2d__Scene_get_cameras(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c)
         {
 
-            return c->getCameras();
+            return cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby(c->getCameras());
         }
 
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Camera> Cocos2dxBind_cocos2d__Scene_get_default_camera(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c)
@@ -217,10 +217,10 @@ namespace cor
             return c->getDefaultCamera();
         }
 
-        int Cocos2dxBind_cocos2d__Scene_get_lights(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c)
+        MrubyRef Cocos2dxBind_cocos2d__Scene_get_lights(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c)
         {
 
-            return c->getLights();
+            return cor::cocos2dx_mruby_interface::CocosArray::convert_std_vec_to_mruby(c->getLights());
         }
 
         void Cocos2dxBind_cocos2d__Scene_render(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Scene> c, cocos2d::Renderer * a0)
@@ -2083,12 +2083,6 @@ namespace cor
             return c->getBoneCurveByName(a0);
         }
 
-        int Cocos2dxBind_cocos2d__Animation3D_get_bone_curves(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation3D> c)
-        {
-
-            return c->getBoneCurves();
-        }
-
         bool Cocos2dxBind_cocos2d__Animation3D_init(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animation3D> c, cocos2d::Animation3DData a0)
         {
 
@@ -2275,13 +2269,13 @@ namespace cor
             return c->getQuality();
         }
 
-        void Cocos2dxBind_cocos2d__Animate3D_set_key_frame_user_info(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c, int a0, cocos2d::ValueMap a1)
+        void Cocos2dxBind_cocos2d__Animate3D_set_key_frame_user_info(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c, int a0, std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > > a1)
         {
 
             c->setKeyFrameUserInfo(a0, a1);
         }
 
-        cocos2d::ValueMap* Cocos2dxBind_cocos2d__Animate3D_get_key_frame_user_info_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c, int a0)
+        std::unordered_map<std::string, cocos2d::Value, std::hash<std::string >, std::equal_to<std::string >, std::allocator<std::pair<const std::string, cocos2d::Value> > >* Cocos2dxBind_cocos2d__Animate3D_get_key_frame_user_info_2(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Animate3D> c, int a0)
         {
 
             return c->getKeyFrameUserInfo(a0);
@@ -3327,13 +3321,13 @@ namespace cor
             return c->clone();
         }
 
-        const int* Cocos2dxBind_cocos2d__PointArray_get_control_points(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c)
+        const std::vector<cocos2d::Vec2*>* Cocos2dxBind_cocos2d__PointArray_get_control_points(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c)
         {
 
-            return const_cast<const int* >(c->getControlPoints());
+            return const_cast<const std::vector<cocos2d::Vec2*>* >(c->getControlPoints());
         }
 
-        void Cocos2dxBind_cocos2d__PointArray_set_control_points(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, int * a0)
+        void Cocos2dxBind_cocos2d__PointArray_set_control_points(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::PointArray> c, std::vector<cocos2d::Vec2 *> * a0)
         {
 
             c->setControlPoints(a0);
@@ -5041,6 +5035,12 @@ namespace cor
         {
 
             c->startWithTarget(a0.get());
+        }
+
+        void Cocos2dxBind_cocos2d__EaseExponentialIn_stop_38(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseExponentialIn> c)
+        {
+
+            c->stop();
         }
 
 

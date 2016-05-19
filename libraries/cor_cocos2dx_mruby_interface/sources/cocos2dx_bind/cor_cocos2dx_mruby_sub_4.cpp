@@ -43,12 +43,6 @@ namespace cor
     namespace cocos2dx_mruby_interface
     {
         
-        void Cocos2dxBind_cocos2d__EaseCircleActionIn_update(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> c, float a0)
-        {
-
-            c->update(a0);
-        }
-
         cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> Cocos2dxBind_cocos2d__EaseCircleActionIn_clone(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::EaseCircleActionIn> c)
         {
 
@@ -4809,6 +4803,12 @@ namespace cor
         {
 
             return c->getVertex(a0);
+        }
+
+        cocos2d::Vec3 Cocos2dxBind_cocos2d__Shaky3D_get_original_vertex_11(cor::cocos2dx_mruby_interface::CocosWeakPtrTmpl<cocos2d::Shaky3D> c, cocos2d::Vec2 a0)
+        {
+
+            return c->getOriginalVertex(a0);
         }
 
 
