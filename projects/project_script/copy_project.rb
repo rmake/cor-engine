@@ -98,8 +98,11 @@ puts "CorProject.engine_path #{CorProject.engine_path}"
 
 list = []
 import_cpp_infos = []
+import_cs_infos = []
 
 source_conf_path = "#{source_path}/conf.rb"
+
+project_table = {}
 
 if File.exists? source_conf_path
 
@@ -113,32 +116,60 @@ if File.exists? source_conf_path
     "entry" => CorProject.import_cpp_entry,
   }
 
+  import_cs_infos << {
+    "target_project" => CorProject.target_project,
+    "entry" => CorProject.import_cs_entry,
+  }
+
   project_includes = CorProject.includes
-  project_include_table = {}
+
+  def clear_cor_project_instance
+    CorProject.clear_instance
+  end
+
+  project_includes.uniq!{|v| File::expand_path(v)}
+  puts "project_includes #{project_includes}"
   ct = 0
   while ct < project_includes.length
     project_include = project_includes[ct]
-    next if project_include_table[project_include]
+    next if project_table[project_include]
     if File.exists? "#{project_include}/conf.rb"
+      clear_cor_project_instance
       CorProject.source_path = project_include
       source_absolute_path = Pathname(File.expand_path(project_include))
       relative_engine_path = engine_base_path.relative_path_from source_absolute_path
       CorProject.engine_path = relative_engine_path
-      load "#{project_include}/conf.rb"
+      load "#{source_absolute_path}/conf.rb"
 
-      import_cpp_infos << {
-        "target_project" => CorProject.target_project,
-        "entry" => CorProject.import_cpp_entry,
-      }
+      if CorProject.import_cpp
+        import_cpp_infos << {
+          "target_project" => CorProject.target_project,
+          "entry" => CorProject.import_cpp_entry,
+        }
+      end
+
+      if CorProject.import_cs
+        import_cs_infos << {
+          "target_project" => CorProject.target_project,
+          "entry" => CorProject.import_cs_entry,
+        }
+      end
     end
-    project_include_table[project_include] = true
+    project_table[project_include] = CorProject.instance
+    project_includes += CorProject.includes
+    project_includes.uniq!{|v| File::expand_path(v)}
     ct += 1
   end
 
-  puts "project_includes #{project_includes}"
-
+  clear_cor_project_instance
   CorProject.source_path = source_path
+  source_absolute_path = Pathname(File.expand_path(project_include))
+  relative_engine_path = engine_base_path.relative_path_from source_absolute_path
+  CorProject.engine_path = relative_engine_path
   load source_conf_path
+  project_table[source_path] = CorProject.instance
+
+  puts "project_includes #{project_includes}"
 
 end
 
@@ -173,8 +204,7 @@ mruby_binging_generator_script_path = "../../libraries/scripts"
 
 FileUtils.mkpath destination_resource_path
 
-CorProject.includes.uniq!{|v| File::expand_path(v)}
-puts "__CorProject.includes #{CorProject.includes}"
+project_includes.uniq!{|v| File::expand_path(v)}
 
 FileUtils.rm Dir.glob("#{destination_resource_root_path}/*.log")
 
@@ -189,7 +219,7 @@ list += Cor.u.file_list(find_path).map{|fn|
   }
 }
 
-CorProject.includes.each do |inc_path|
+project_includes.each do |inc_path|
   find_path = "#{inc_path}/resources/"
   if Dir.exists? find_path
     list += Cor.u.file_list("#{inc_path}/resources").map{|fn|
@@ -305,13 +335,68 @@ binding_gen = Proc.new do |path|
       end
     end
 
-
-
     #FileUtils.chdir here
+  end
+
+end
+
+binding_gen_by_conf = Proc.new do |path|
+  CorProject.current_project_path = path
+  puts "binding_gen_by_conf path #{path}"
+  current_project = project_table[path]
+  puts "project_table #{project_table}"
+  puts "current_project #{current_project}"
+
+  past_cpps = past_copy_data["past_cpps"]
+
+  child_includes = Proc.new do |project|
+    includes = project.includes.clone
+    project.includes.each do |include|
+      includes += child_includes.call project_table[include]
+    end
+    includes
+  end
+
+
+  cpps = child_includes.call(current_project).map{|path|
+    Cor.u.file_list("#{path}/cpp") + Cor.u.file_list("#{path}/swig")
+  }.reduce([], :+)
+
+  is_run_gen = false
+
+  cpps.each do |cpp_name|
+    next unless cpp_name.match(/\.h$/)
+    if !File.exist?(cpp_name) || past_cpps[cpp_name].to_s != File.mtime(cpp_name).to_s || force_update
+      is_run_gen = true
+    end
+    next_past_cpps[cpp_name] = File.mtime(cpp_name)
+  end
+
+  next unless is_run_gen
+
+  current_project.binding_generations.each do |binding_generation|
+    puts "binding_generation[:type] #{binding_generation[:type]}"
+    if binding_generation[:type] == "cs"
+      thread_pool.process path, binding_generation do |path, binding_generation|
+        interface_path = "#{path}/#{binding_generation[:swig_interface]}"
+        out_dir_path = "#{path}/cs/generated_binding"
+        out_path = "#{path}/cpp/generated_binding/#{File.basename(binding_generation[:swig_interface]).gsub(/\..*?$/, ".cpp")}"
+        FileUtils.rm_r out_dir_path if Dir.exists? out_dir_path
+        FileUtils.mkdir_p out_dir_path
+        FileUtils.rm_r File.dirname(out_path) if Dir.exists? File.dirname(out_path)
+        FileUtils.mkdir_p File.dirname(out_path)
+        puts "path #{path}"
+        default_includes = ["-I../../libraries"];
+        cpp_include_paths = (project_includes.map{|v| "-I#{v}/cpp"} + default_includes).join(" ")
+        cmd = "swig -csharp -c++ -outdir #{out_dir_path} -o #{out_path} #{cpp_include_paths} #{interface_path}"
+        puts "cmd #{cmd}"
+        call_system(cmd)
+      end
+    end
   end
 end
 
-puts "CorProject.includes #{CorProject.includes}"
+puts "project_includes #{project_includes}"
 
 unless resource_only
 
@@ -324,7 +409,7 @@ unless resource_only
     FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
   end
 
-  CorProject.includes.each do |inc|
+  project_includes.each do |inc|
     source_projects = "#{inc}/project_file"
     puts "source_projects #{source_projects}"
 
@@ -332,6 +417,8 @@ unless resource_only
       puts "project_file copy #{source_projects} -> #{destination_projects}"
       FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
     end
+
+    binding_gen_by_conf.call inc
 
     if CorProject.import_cpp && Dir.exists?("#{inc}/cpp")
       puts "pre_gen #{inc}"
@@ -357,6 +444,8 @@ unless resource_only
     puts "project_file copy #{source_projects} -> #{destination_projects}"
     FileUtils.cp_r Dir.glob("#{source_projects}/*"), destination_projects
   end
+
+  binding_gen_by_conf.call source_path
 
   if CorProject.import_cpp && Dir.exists?("#{source_path}/cpp")
 
@@ -451,6 +540,7 @@ def get_taget_interface_type(target_project)
   target_interface_type
 end
 
+target_cs_project_path = ""
 case target_project
 when "cor_test"
   target_project_name = "cpp_interface"
@@ -461,6 +551,7 @@ when "cor_cpp_console"
 when "cor_cs_console"
   target_project_name = "cpp_interface"
   target_project_path = File.expand_path("../../libraries/cor_cpp_import", File.dirname(File.absolute_path(__FILE__)))
+  target_cs_project_path = File.expand_path("../../libraries/cor_cs_import", File.dirname(File.absolute_path(__FILE__)))
 when "cor_mruby_console"
   target_project_name = "mruby_interface"
   target_project_path = File.expand_path("../../libraries/cor_mruby_import", File.dirname(File.absolute_path(__FILE__)))
@@ -477,7 +568,9 @@ import_cpp_local_cmake_conf_mk = "#{target_project_path}/proj.common/cor_#{targe
 import_cpp_local_conf_txt = "#{target_project_path}/proj.common/cor_#{target_project_name}_local_conf.txt"
 import_cpp_file = "#{target_project_path}/sources/import/external_code_import_local_conf.h"
 import_cpp_importer_file = "#{target_project_path}/sources/import/external_code_importer.cpp"
+import_cpp_importer_file = "#{target_project_path}/sources/import/external_code_importer.cpp"
 import_cpp_copy_dest = "#{target_project_path}/sources/import/cpp"
+import_cs_importer_file = "#{target_cs_project_path}/sources/ExternalCodeImporterTmp.cs"
 FileUtils.rmtree import_cpp_copy_dest
 
 puts "import_cpp_file #{import_cpp_file}"
@@ -513,6 +606,7 @@ unless resource_only
     #import_cpp_includes = import_cpp_includes.join "\n"
 
     puts "import_cpp_infos #{import_cpp_infos}"
+    puts "import_cs_infos #{import_cs_infos}"
 
     case get_taget_interface_type(target_project)
     when "cpp"
@@ -672,6 +766,36 @@ EOS
 
 end
 
+
+if CorProject.import_cs
+
+  call_cs_entry_functions = import_cs_infos.map do |info|
+    "        #{info["entry"]}();"
+  end
+
+  Cor.u.file_write import_cs_importer_file, <<EOS
+class ExternalCodeImporterTmp
+{
+    public void Run()
+    {
+#{call_cs_entry_functions.join("\n")}
+    }
+}
+EOS
+
+else
+
+  Cor.u.file_write import_cs_importer_file, <<EOS
+class ExternalCodeImporterTmp
+{
+    public void Run()
+    {
+
+    }
+}
+EOS
+
+end
 
 past_copy_json = JSON.pretty_generate past_copy_data
 Cor.u.file_write past_copy, past_copy_json

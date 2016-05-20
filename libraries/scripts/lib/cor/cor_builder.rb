@@ -13,10 +13,8 @@ module Cor
 
     def initialize
       @cs_path = Dir.glob("C:/Windows/Microsoft.NET/Framework64/v*").find do |v|
-        puts "v #{v}"
         v.match(/4\.0[^\\]*$/)
       end
-      puts "@cs_path #{@cs_path}"
     end
 
     def call_system(cmd)

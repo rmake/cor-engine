@@ -75,6 +75,7 @@ projects/cor_lib_test_main/proj.android/res
 projects/cor_lib_test_main/Resources/
 projects/cor_console_app/resources/
 projects/cor_mruby_console_app/resources/
+projects/cor_cs_console_app/resources/
 test/unit/resources/
 
 libraries/cor_project_structure/proj.vc/cor_project_structure/cor_project_structure.vcxproj.filters
@@ -83,6 +84,8 @@ libraries/scripts/data_gen
 libraries/scripts/log/
 
 generated_binding*
+
+ExternalCodeImporterTmp.cs
 
 *.VC.opendb
 

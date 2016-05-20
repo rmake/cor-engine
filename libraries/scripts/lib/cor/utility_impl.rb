@@ -5,18 +5,19 @@ module Cor
 
   module Utility
     def self.file_enum path, &p
-      Dir.foreach(path) do |fn|
-        next if fn == "."
-        next if fn == ".."
+      if Dir.exists? path
+        Dir.foreach(path) do |fn|
+          next if fn == "."
+          next if fn == ".."
 
-        fpath = "#{path}/#{fn}"
+          fpath = "#{path}/#{fn}"
 
-        if File::ftype(fpath) == "directory"
-          self.file_enum fpath, &p
-        else
-          yield fpath
+          if File::ftype(fpath) == "directory"
+            self.file_enum fpath, &p
+          else
+            yield fpath
+          end
         end
-
       end
     end
 
