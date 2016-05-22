@@ -5,6 +5,7 @@ require "fileutils"
 require "open3"
 require "pathname"
 require "benchmark"
+require "json"
 
 CorProject = Cor::CorProject
 
@@ -12,6 +13,8 @@ module Cor
   class CorBuilder
 
     def initialize
+      @all_success ||= true
+      @results ||= []
       @cs_path = Dir.glob("C:/Windows/Microsoft.NET/Framework64/v*").find do |v|
         v.match(/4\.0[^\\]*$/)
       end
@@ -74,6 +77,7 @@ EOS
     def do_build_output cmd
       puts_flush "cmd srart #{cmd}"
       STDOUT.flush
+
       if @is_vc
 
         Open3.popen3(cmd) do |i, o, e, w|
@@ -92,6 +96,9 @@ EOS
         result = self.call_system cmd
         @all_success &&= result
         @results << "cmd '#{cmd}' | success? -> #{result} | #{$?}"
+      end
+      unless @all_success
+        raise "do_build_output '#{cmd}' failed"
       end
       result
     end
@@ -151,9 +158,46 @@ EOS
           CmakeBuilder.build_type(type, args)
 
           if target_project == "cor_cs_console"
-            FileUtils.mkdir_p "#{@cor_path}/projects/cor_cs_console_app/proj.cs/build_tmp"
-            FileUtils.chdir "#{@cor_path}/projects/cor_cs_console_app/proj.cs/build_tmp"
-            self.call_system "#{@cs_path}\\csc ..\\..\\sources\\*.cs"
+            FileUtils.mkdir_p "#{@cor_path}/projects/cor_cs_console_app/proj.cs/build"
+            FileUtils.chdir "#{@cor_path}/projects/cor_cs_console_app/proj.cs/build"
+            source_directories = JSON.parse(File.read "#{@cor_path}/libraries/cor_cs_import/proj.cs/source_directories_local_conf.txt")
+            source_directories_option = source_directories["source_directories"].
+              map{|v| "/recurse:#{v.gsub(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR)}\\*.cs"}.join(" ")
+            importer_source_directory_option = "/recurse:#{@cor_path.gsub(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR
+              )}\\libraries\\cor_cs_import\\sources\\*.cs"
+
+            configurations = ["Release", "Debug"]
+            if ARGV.include? "release"
+              configurations = ["Release"]
+            elsif ARGV.include? "debug"
+              configurations = ["Debug"]
+            end
+
+            if type == "win32" || type == "win64"
+              @is_vc = true
+            end
+
+            configurations.each do |configuration|
+              FileUtils.mkdir_p "./#{type}/#{configuration}"
+              self.do_build_output "#{@cs_path}\\csc /debug /out:#{"./#{type}/#{configuration}/cor_cs_console_app.exe"} #{importer_source_directory_option} #{source_directories_option} /recurse:..\\..\\sources\\*.cs"
+
+              FileUtils.install Dir.glob(
+                "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake/build/#{type}/#{configuration}/*",
+                ), "./#{type}/#{configuration}"
+            end
+
+            #case type
+            #when "win32"
+            #  exes = Dir.glob("**/Debug.win32/*.exe")
+            #  Dir.chdir File.dirname(exes[0])
+            #  exes = Dir.glob("*.exe")
+            #  self.call_system "#{exes[0]}"
+            #when "win64"
+            #  exes = Dir.glob("**/Debug.win32/*.exe")
+            #  Dir.chdir File.dirname(exes[0])
+            #  exes = Dir.glob("*.exe")
+            #  self.call_system "#{exes[0]}"
+            #end
           end
         else
           FileUtils.chdir "#{@cor_path}/libraries/cor_all_cocos2dx/proj.cmake"

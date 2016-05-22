@@ -104,6 +104,12 @@ source_conf_path = "#{source_path}/conf.rb"
 
 project_table = {}
 
+import_cpp = false
+import_cpp ||= CorProject.import_cpp
+
+import_cs = false
+import_cs ||= CorProject.import_cs
+
 if File.exists? source_conf_path
 
   puts "load source conf #{source_conf_path}"
@@ -119,6 +125,7 @@ if File.exists? source_conf_path
   import_cs_infos << {
     "target_project" => CorProject.target_project,
     "entry" => CorProject.import_cs_entry,
+    "path" => CorProject.source_path,
   }
 
   project_includes = CorProject.includes
@@ -141,6 +148,8 @@ if File.exists? source_conf_path
       CorProject.engine_path = relative_engine_path
       load "#{source_absolute_path}/conf.rb"
 
+      import_cpp ||= CorProject.import_cpp
+      import_cs ||= CorProject.import_cpp
       if CorProject.import_cpp
         import_cpp_infos << {
           "target_project" => CorProject.target_project,
@@ -152,6 +161,7 @@ if File.exists? source_conf_path
         import_cs_infos << {
           "target_project" => CorProject.target_project,
           "entry" => CorProject.import_cs_entry,
+          "path" => CorProject.source_path,
         }
       end
     end
@@ -388,7 +398,7 @@ binding_gen_by_conf = Proc.new do |path|
         puts "path #{path}"
         default_includes = ["-I../../libraries"];
         cpp_include_paths = (project_includes.map{|v| "-I#{v}/cpp"} + default_includes).join(" ")
-        cmd = "swig -csharp -c++ -outdir #{out_dir_path} -o #{out_path} #{cpp_include_paths} #{interface_path}"
+        cmd = "swig -csharp -c++ -module cor_cpp_dll -outdir #{out_dir_path} -o #{out_path} #{cpp_include_paths} #{interface_path}"
         puts "cmd #{cmd}"
         call_system(cmd)
       end
@@ -457,6 +467,9 @@ unless resource_only
       next CorProject.import_cpp_filter.call v if CorProject.import_cpp_filter
       true
     end
+
+    puts "tmpcpp_list #{tmpcpp_list}"
+
     tmpcpp_list = tmpcpp_list.map do |v|
       {:fn => v, :base => "#{source_path}/cpp"}
     end
@@ -568,9 +581,7 @@ import_cpp_local_cmake_conf_mk = "#{target_project_path}/proj.common/cor_#{targe
 import_cpp_local_conf_txt = "#{target_project_path}/proj.common/cor_#{target_project_name}_local_conf.txt"
 import_cpp_file = "#{target_project_path}/sources/import/external_code_import_local_conf.h"
 import_cpp_importer_file = "#{target_project_path}/sources/import/external_code_importer.cpp"
-import_cpp_importer_file = "#{target_project_path}/sources/import/external_code_importer.cpp"
 import_cpp_copy_dest = "#{target_project_path}/sources/import/cpp"
-import_cs_importer_file = "#{target_cs_project_path}/sources/ExternalCodeImporterTmp.cs"
 FileUtils.rmtree import_cpp_copy_dest
 
 puts "import_cpp_file #{import_cpp_file}"
@@ -585,7 +596,7 @@ unless resource_only
     cpp_list_changed = true
   end
 
-  if CorProject.import_cpp
+  if import_cpp
 
     import_cpp_include_from = Pathname(File.dirname(import_cpp_file))
     import_cpp_includes = cpp_list.map do |v|
@@ -599,6 +610,8 @@ unless resource_only
 
     import_cpp_list = import_cpp_list.uniq
     import_h_list = import_h_list.uniq
+
+    puts "import_cpp_list #{import_cpp_list}"
 
     #import_cpp_includes = import_cpp_includes.map do |v|
     #  "#include \"#{v}\""
@@ -767,7 +780,14 @@ EOS
 end
 
 
-if CorProject.import_cs
+import_cs_importer_file = "#{target_cs_project_path}/sources/ExternalCodeImporterTmp.cs"
+import_cs_source_directories_file = "#{target_cs_project_path}/proj.cs/source_directories_local_conf.txt"
+if import_cs
+
+  import_cs_list = JSON.pretty_generate({
+    :source_directories => import_cs_infos.map{|v| File.expand_path v["path"] + "/cs"}
+  })
+  Cor.u.file_write import_cs_source_directories_file, import_cs_list
 
   call_cs_entry_functions = import_cs_infos.map do |info|
     "        #{info["entry"]}();"
@@ -776,7 +796,7 @@ if CorProject.import_cs
   Cor.u.file_write import_cs_importer_file, <<EOS
 class ExternalCodeImporterTmp
 {
-    public void Run()
+    public static void Run()
     {
 #{call_cs_entry_functions.join("\n")}
     }
@@ -788,7 +808,7 @@ else
   Cor.u.file_write import_cs_importer_file, <<EOS
 class ExternalCodeImporterTmp
 {
-    public void Run()
+    public static void Run()
     {
 
     }
@@ -799,8 +819,6 @@ end
 
 past_copy_json = JSON.pretty_generate past_copy_data
 Cor.u.file_write past_copy, past_copy_json
-
-sleep 1
 
 d_table.keys.each do |fn|
   FileUtils.remove fn
@@ -842,8 +860,6 @@ if win32_copy
 end
 
 resource_file_copy key, "../../LICENSE", "#{destination_resource_path}/licenses/LICENSE"
-
-sleep 1
 
 dir_list = Cor.u.dir_list destination_resource_path
 dir_list.reverse.each do |d|
