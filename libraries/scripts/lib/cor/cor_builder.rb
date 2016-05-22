@@ -123,13 +123,13 @@ EOS
         flags << "-f"
       end
 
-      puts_flush Benchmark::CAPTION + " copy_project\n" + (Benchmark.measure do
+      #puts_flush Benchmark::CAPTION + " copy_project\n" + (Benchmark.measure do
         cmd = "ruby #{@copy_project_path} #{relative_here.to_s} #{flags.join " "}"
         puts_flush "cmd #{cmd}"
         self.call_system cmd
-      end).to_s
+      #end).to_s
 
-      puts_flush Benchmark::CAPTION + " build\n" + (Benchmark.measure do
+      #puts_flush Benchmark::CAPTION + " build\n" + (Benchmark.measure do
 
         if File.exists? "conf.rb"
           load "conf.rb"
@@ -154,10 +154,17 @@ EOS
           FileUtils.chdir "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake"
         end
 
+        if target_project == "cor_cs_console"
+          old_args = args
+          args = args.clone
+          args.delete "run"
+        end
+
         if target_project != "cor_cocos2dx"
           CmakeBuilder.build_type(type, args)
 
           if target_project == "cor_cs_console"
+            args = old_args
             FileUtils.mkdir_p "#{@cor_path}/projects/cor_cs_console_app/proj.cs/build"
             FileUtils.chdir "#{@cor_path}/projects/cor_cs_console_app/proj.cs/build"
             source_directories = JSON.parse(File.read "#{@cor_path}/libraries/cor_cs_import/proj.cs/source_directories_local_conf.txt")
@@ -186,18 +193,19 @@ EOS
                 ), "./#{type}/#{configuration}"
             end
 
-            #case type
-            #when "win32"
-            #  exes = Dir.glob("**/Debug.win32/*.exe")
-            #  Dir.chdir File.dirname(exes[0])
-            #  exes = Dir.glob("*.exe")
-            #  self.call_system "#{exes[0]}"
-            #when "win64"
-            #  exes = Dir.glob("**/Debug.win32/*.exe")
-            #  Dir.chdir File.dirname(exes[0])
-            #  exes = Dir.glob("*.exe")
-            #  self.call_system "#{exes[0]}"
-            #end
+            if @all_success && args.include?("run")
+              puts_flush "==> run ==>"
+              configuration = "Debug"
+              if args.include?("debug")
+                configuration = "Debug"
+              elsif args.include?("release")
+                configuration = "Release"
+              end
+              if type == "win32" || type == "win64"
+                exes = Dir.glob("./#{type}/#{configuration}/*.exe")
+                self.do_build_output "#{exes[0]}"
+              end
+            end
           end
         else
           FileUtils.chdir "#{@cor_path}/libraries/cor_all_cocos2dx/proj.cmake"
@@ -275,7 +283,7 @@ EOS
         end
 
 
-      end).to_s
+      #end).to_s
 
     end
 

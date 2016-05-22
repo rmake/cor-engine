@@ -398,7 +398,8 @@ binding_gen_by_conf = Proc.new do |path|
         puts "path #{path}"
         default_includes = ["-I../../libraries"];
         cpp_include_paths = (project_includes.map{|v| "-I#{v}/cpp"} + default_includes).join(" ")
-        cmd = "swig -csharp -c++ -module cor_cpp_dll -outdir #{out_dir_path} -o #{out_path} #{cpp_include_paths} #{interface_path}"
+        swig_cs_namespace = File.basename(binding_generation[:swig_interface]).gsub(/\..*?$/, "")
+        cmd = "swig -csharp -c++ -namespace cor_cpp_dll -module cor_cpp_dll -outdir #{out_dir_path} -o #{out_path} #{cpp_include_paths} #{interface_path}"
         puts "cmd #{cmd}"
         call_system(cmd)
       end
