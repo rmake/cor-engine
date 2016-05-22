@@ -128,20 +128,19 @@ if File.exists? source_conf_path
     "path" => CorProject.source_path,
   }
 
-  project_includes = CorProject.includes
+  project_includes = CorProject.includes.clone
 
   def clear_cor_project_instance
     CorProject.clear_instance
   end
 
   project_includes.uniq!{|v| File::expand_path(v)}
-  puts "project_includes #{project_includes}"
   ct = 0
   while ct < project_includes.length
     project_include = project_includes[ct]
     next if project_table[project_include]
+    clear_cor_project_instance
     if File.exists? "#{project_include}/conf.rb"
-      clear_cor_project_instance
       CorProject.source_path = project_include
       source_absolute_path = Pathname(File.expand_path(project_include))
       relative_engine_path = engine_base_path.relative_path_from source_absolute_path
@@ -178,8 +177,6 @@ if File.exists? source_conf_path
   CorProject.engine_path = relative_engine_path
   load source_conf_path
   project_table[source_path] = CorProject.instance
-
-  puts "project_includes #{project_includes}"
 
 end
 
@@ -251,7 +248,6 @@ if Dir.exists? source_resource_path
     }
   }
 end
-puts "list #{list.select{|v| v[:n].match(/start\.rb/)} }"
 
 d_list = Cor.u.file_list destination_resource_path do |fn|
   !fn.include? ".gitignore"
@@ -331,7 +327,6 @@ binding_gen = Proc.new do |path|
         puts "conf_path_for_gen #{conf_path_for_gen}"
 
         cmd = "ruby #{mruby_binging_generator_script_path}/generate_mruby_interface.rb #{conf_path_for_gen.to_s}/binding_conf.rb"
-        puts "cmd #{cmd}"
         call_system(cmd)
 
         cpps.each do |cpp_name|
@@ -354,13 +349,13 @@ binding_gen_by_conf = Proc.new do |path|
   CorProject.current_project_path = path
   puts "binding_gen_by_conf path #{path}"
   current_project = project_table[path]
-  puts "project_table #{project_table}"
-  puts "current_project #{current_project}"
 
   past_cpps = past_copy_data["past_cpps"]
 
   child_includes = Proc.new do |project|
+    next [] unless project
     includes = project.includes.clone
+    puts "includes #{project.source_path} #{includes}"
     project.includes.each do |include|
       includes += child_includes.call project_table[include]
     end
@@ -623,15 +618,10 @@ unless resource_only
     import_cpp_list = import_cpp_list.uniq
     import_h_list = import_h_list.uniq
 
-    puts "import_cpp_list #{import_cpp_list}"
-
     #import_cpp_includes = import_cpp_includes.map do |v|
     #  "#include \"#{v}\""
     #end
     #import_cpp_includes = import_cpp_includes.join "\n"
-
-    puts "import_cpp_infos #{import_cpp_infos}"
-    puts "import_cs_infos #{import_cs_infos}"
 
     case get_taget_interface_type(target_project)
     when "cpp"
