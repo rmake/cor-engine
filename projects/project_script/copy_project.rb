@@ -395,13 +395,24 @@ binding_gen_by_conf = Proc.new do |path|
         FileUtils.mkdir_p out_dir_path
         FileUtils.rm_r File.dirname(out_path) if Dir.exists? File.dirname(out_path)
         FileUtils.mkdir_p File.dirname(out_path)
-        puts "path #{path}"
         default_includes = ["-I../../libraries"];
         cpp_include_paths = (project_includes.map{|v| "-I#{v}/cpp"} + default_includes).join(" ")
         swig_cs_namespace = File.basename(binding_generation[:swig_interface]).gsub(/\..*?$/, "")
-        cmd = "swig -csharp -c++ -namespace cor_cpp_dll -module cor_cpp_dll -outdir #{out_dir_path} -o #{out_path} #{cpp_include_paths} #{interface_path}"
-        puts "cmd #{cmd}"
+        cmd = "swig -csharp -c++ -namespace cor_cpp_dll -module cor_cpp_dll -outdir " +
+          "#{out_dir_path} -o #{out_path} #{cpp_include_paths} #{interface_path}"
         call_system(cmd)
+        Dir.glob("#{out_dir_path}/*.cs").each do |v|
+          code = File.read v
+          code.match(/public class (.*?) : global::System.IDisposable/) do |matched|
+            code.match(/\A(.*)public #{matched[1]}\([^}]*}(.*)\Z/m) do |sub_matched|
+              cvted = sub_matched[2].gsub(/public (\w+) (\w+)\(/) do |mtc|
+                "public #{$1} #{Cor.u.camelize($2)}("
+              end
+              code.gsub! sub_matched[2], cvted
+            end
+            File.write v, code
+          end
+        end
       end
     end
   end

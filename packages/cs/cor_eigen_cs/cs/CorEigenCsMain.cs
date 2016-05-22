@@ -8,7 +8,7 @@ class CorEigenCsMain
 
         var v = new Vector3F(1, 2, 3);
 
-        System.Console.WriteLine("v.get_x " + v.get_x().ToString());
+        System.Console.WriteLine("v.GetX " + v.GetX().ToString());
 
     }
 }
