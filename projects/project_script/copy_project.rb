@@ -148,7 +148,7 @@ if File.exists? source_conf_path
       load "#{source_absolute_path}/conf.rb"
 
       import_cpp ||= CorProject.import_cpp
-      import_cs ||= CorProject.import_cpp
+      import_cs ||= CorProject.import_cs
       if CorProject.import_cpp
         import_cpp_infos << {
           "target_project" => CorProject.target_project,
@@ -787,7 +787,7 @@ import_cs_source_directories_file = "#{target_cs_project_path}/proj.cs/source_di
 if import_cs
 
   import_cs_list = JSON.pretty_generate({
-    :source_directories => import_cs_infos.map{|v| File.expand_path v["path"] + "/cs"}
+    :source_directories => import_cs_infos.select{|v| v["path"] }.map{|v| File.expand_path v["path"] + "/cs"}
   })
   Cor.u.file_write import_cs_source_directories_file, import_cs_list
 
