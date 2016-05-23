@@ -105,10 +105,7 @@ source_conf_path = "#{source_path}/conf.rb"
 project_table = {}
 
 import_cpp = false
-import_cpp ||= CorProject.import_cpp
-
 import_cs = false
-import_cs ||= CorProject.import_cs
 
 if File.exists? source_conf_path
 
@@ -156,6 +153,9 @@ if File.exists? source_conf_path
         }
       end
 
+      puts "source_path #{CorProject.source_path}"
+      puts "import_cs #{import_cs.inspect} #{CorProject.import_cs.inspect}"
+
       if CorProject.import_cs
         import_cs_infos << {
           "target_project" => CorProject.target_project,
@@ -178,7 +178,12 @@ if File.exists? source_conf_path
   load source_conf_path
   project_table[source_path] = CorProject.instance
 
+  import_cpp ||= CorProject.import_cpp
+  import_cs ||= CorProject.import_cs
+
 end
+
+puts "import_cs #{import_cs.inspect}"
 
 target_project = CorProject.target_project
 
