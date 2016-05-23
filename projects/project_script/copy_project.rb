@@ -786,21 +786,20 @@ EOS
 
 end
 
-if target_cs_project_path
+if import_cs
   import_cs_importer_file = "#{target_cs_project_path}/sources/ExternalCodeImporterTmp.cs"
   import_cs_source_directories_file = "#{target_cs_project_path}/proj.cs/source_directories_local_conf.txt"
-  if import_cs
 
-    import_cs_list = JSON.pretty_generate({
-      :source_directories => import_cs_infos.select{|v| v["path"] }.map{|v| File.expand_path v["path"] + "/cs"}
-    })
-    Cor.u.file_write import_cs_source_directories_file, import_cs_list
+  import_cs_list = JSON.pretty_generate({
+    :source_directories => import_cs_infos.select{|v| v["path"] }.map{|v| File.expand_path v["path"] + "/cs"}
+  })
+  Cor.u.file_write import_cs_source_directories_file, import_cs_list
 
-    call_cs_entry_functions = import_cs_infos.map do |info|
-      "        #{info["entry"]}();"
-    end
+  call_cs_entry_functions = import_cs_infos.map do |info|
+    "        #{info["entry"]}();"
+  end
 
-    Cor.u.file_write import_cs_importer_file, <<EOS
+  Cor.u.file_write import_cs_importer_file, <<EOS
 class ExternalCodeImporterTmp
 {
     public static void Run()
@@ -809,21 +808,8 @@ class ExternalCodeImporterTmp
     }
 }
 EOS
-
-  else
-
-    Cor.u.file_write import_cs_importer_file, <<EOS
-class ExternalCodeImporterTmp
-{
-    public static void Run()
-    {
-
-    }
-}
-EOS
-
-  end
 end
+
 
 past_copy_json = JSON.pretty_generate past_copy_data
 Cor.u.file_write past_copy, past_copy_json
