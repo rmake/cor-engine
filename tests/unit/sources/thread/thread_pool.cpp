@@ -5,6 +5,7 @@
 #include "cor_system/sources/logger.h"
 #include "cor_system/sources/thread_pool.h"
 #include <mutex>
+#include <thread>
 
 BOOST_AUTO_TEST_SUITE(thread_pool)
 
