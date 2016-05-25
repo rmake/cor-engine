@@ -13,6 +13,7 @@ require 'cor/utility'
 require 'cor/gen_project'
 require 'cor/cor_project'
 require "cor/mruby_binding_gen"
+require "cor/cor_swig_cs_filter"
 require 'json'
 require 'pathname'
 require 'sized_parallel/pool'
@@ -323,6 +324,8 @@ binding_gen = Proc.new do |path|
       next_past_cpps[cpp_name] = File.mtime(cpp_name)
     end
 
+    is_run_gen ||= force_update
+
     next unless is_run_gen
 
     thread_pool.process next_past_cpps, cpps, mruby_binging_generator_script_path, conf_path_for_gen do
@@ -367,25 +370,27 @@ binding_gen_by_conf = Proc.new do |path|
     includes
   end
 
-
   cpps = child_includes.call(current_project).map{|path|
     Cor.u.file_list("#{path}/cpp") + Cor.u.file_list("#{path}/swig")
   }.reduce([], :+)
+  Cor.u.file_list("#{path}/cpp") + Cor.u.file_list("#{path}/swig")
 
   is_run_gen = false
 
   cpps.each do |cpp_name|
-    next unless cpp_name.match(/\.h$/)
+    next unless cpp_name.match(/\.(h|i)$/)
     if !File.exist?(cpp_name) || past_cpps[cpp_name].to_s != File.mtime(cpp_name).to_s || force_update
       is_run_gen = true
     end
     next_past_cpps[cpp_name] = File.mtime(cpp_name)
   end
 
+  is_run_gen ||= force_update
+
   next unless is_run_gen
 
   current_project.binding_generations.each do |binding_generation|
-    puts "binding_generation[:type] #{binding_generation[:type]}"
+    puts "binding_generation #{binding_generation[:type]} #{path}"
     if binding_generation[:type] == "cs"
       thread_pool.process path, binding_generation do |path, binding_generation|
         interface_path = "#{path}/#{binding_generation[:swig_interface]}"
@@ -398,21 +403,10 @@ binding_gen_by_conf = Proc.new do |path|
         default_includes = ["-I../../libraries"];
         cpp_include_paths = (project_includes.map{|v| "-I#{v}/cpp"} + default_includes).join(" ")
         swig_cs_namespace = File.basename(binding_generation[:swig_interface]).gsub(/\..*?$/, "")
-        cmd = "swig -csharp -c++ -namespace cor_cpp_dll -module cor_cpp_dll -outdir " +
+        cmd = "swig -csharp -c++ -namespace CorCppDll -module #{swig_cs_namespace} -dllimport cor_cpp_dll -outdir " +
           "#{out_dir_path} -o #{out_path} #{cpp_include_paths} #{interface_path}"
         call_system(cmd)
-        Dir.glob("#{out_dir_path}/*.cs").each do |v|
-          code = File.read v
-          code.match(/public class (.*?) : global::System.IDisposable/) do |matched|
-            code.match(/\A(.*)public #{matched[1]}\([^}]*}(.*)\Z/m) do |sub_matched|
-              cvted = sub_matched[2].gsub(/public (\w+) (\w+)\(/) do |mtc|
-                "public #{$1} #{Cor.u.camelize($2)}("
-              end
-              code.gsub! sub_matched[2], cvted
-            end
-            File.write v, code
-          end
-        end
+        Cor::CorSwigCsFilter.convert(out_dir_path)
       end
     end
   end
@@ -795,7 +789,7 @@ if import_cs
   })
   Cor.u.file_write import_cs_source_directories_file, import_cs_list
 
-  call_cs_entry_functions = import_cs_infos.map do |info|
+  call_cs_entry_functions = import_cs_infos.select{|info| info["entry"]}.map do |info|
     "        #{info["entry"]}();"
   end
 

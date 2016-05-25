@@ -1,4 +1,4 @@
-using cor_cpp_dll;
+using CorCppDll;
 
 class CorEigenCsMain
 {

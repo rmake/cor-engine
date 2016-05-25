@@ -1,3 +1,4 @@
+%import "../../../../cpp/cor_swig_base_cpp/swig/common/cor_swig_base_cpp.i"
 
 %module cor_eigen_dll
 %{
