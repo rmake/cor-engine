@@ -18,6 +18,8 @@ module Cor
       @cs_path = Dir.glob("C:/Windows/Microsoft.NET/Framework64/v*").find do |v|
         v.match(/4\.0[^\\]*$/)
       end
+      @nunit_path = 'C:\Program Files (x86)\NUnit.org\nunit-console\nunit3-console.exe'
+      @nunit_dll_path = 'C:\Program Files (x86)\NUnit.org\framework\3.2.1.0\net-4.0\nunit.framework.dll'
     end
 
     def call_system(cmd)
@@ -80,7 +82,12 @@ EOS
 
       if @is_vc
 
-        Open3.popen3(cmd) do |i, o, e, w|
+        env = ENV.clone
+
+        env.delete "tmp"
+        env.delete "temp"
+
+        Open3.popen3(env, cmd) do |i, o, e, w|
           i.close
           o.each do |line|
             puts_flush "#{cvt_string line}"
@@ -150,11 +157,11 @@ EOS
           FileUtils.chdir "#{@cor_path}/projects/cor_mruby_console_app/proj.cmake"
         when "cor_cocos2dx"
           #FileUtils.chdir "#{@cor_path}/projects/cor_lib_test_main/proj.cmake"
-        when "cor_cs_console"
+        when "cor_cs_console", "cor_cs_test"
           FileUtils.chdir "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake"
         end
 
-        if target_project == "cor_cs_console"
+        if ["cor_cs_console","cor_cs_test"].include? target_project
           old_args = args
           args = args.clone
           args.delete "run"
@@ -204,6 +211,49 @@ EOS
               if type == "win32" || type == "win64"
                 exes = Dir.glob("./#{type}/#{configuration}/*.exe")
                 self.do_build_output "#{exes[0]}"
+              end
+            end
+          elsif "cor_cs_test"
+            args = old_args
+            FileUtils.mkdir_p "#{@cor_path}/tests/cs/proj.cs/build"
+            FileUtils.chdir "#{@cor_path}/tests/cs/proj.cs/build"
+            source_directories = JSON.parse(File.read "#{@cor_path}/libraries/cor_cs_import/proj.cs/source_directories_local_conf.txt")
+            source_directories_option = source_directories["source_directories"].
+              map{|v| "/recurse:#{v.gsub(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR)}\\*.cs"}.join(" ")
+            importer_source_directory_option = "/recurse:#{@cor_path.gsub(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR
+              )}\\libraries\\cor_cs_import\\sources\\*.cs"
+
+            configurations = ["Release", "Debug"]
+            if ARGV.include? "release"
+              configurations = ["Release"]
+            elsif ARGV.include? "debug"
+              configurations = ["Debug"]
+            end
+
+            if type == "win32" || type == "win64"
+              @is_vc = true
+            end
+
+            configurations.each do |configuration|
+              FileUtils.mkdir_p "./#{type}/#{configuration}"
+              self.do_build_output "#{@cs_path}\\csc /debug /target:library /r:\"#{@nunit_dll_path}\" /out:#{"./#{type}/#{configuration}/cor_cs_test.dll"} #{importer_source_directory_option} #{source_directories_option}"
+
+              FileUtils.install Dir.glob(
+                "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake/build/#{type}/#{configuration}/*",
+                ), "./#{type}/#{configuration}"
+            end
+
+            if @all_success && args.include?("run")
+              puts_flush "==> run ==>"
+              configuration = "Debug"
+              if args.include?("debug")
+                configuration = "Debug"
+              elsif args.include?("release")
+                configuration = "Release"
+              end
+              if type == "win32" || type == "win64"
+                FileUtils.cp @nunit_dll_path, "./#{type}/#{configuration}/"
+                self.do_build_output "\"#{@nunit_path}\" ./#{type}/#{configuration}/cor_cs_test.dll"
               end
             end
           end

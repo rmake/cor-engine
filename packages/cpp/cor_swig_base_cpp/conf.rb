@@ -1,2 +1,2 @@
-CorProject.target_project = "cor_test"
+CorProject.target_project = "cor_cstest"
 CorProject.import_cpp = true

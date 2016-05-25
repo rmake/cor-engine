@@ -77,6 +77,7 @@ projects/cor_console_app/resources/
 projects/cor_mruby_console_app/resources/
 projects/cor_cs_console_app/resources/
 test/unit/resources/
+test/cs/resources/
 
 libraries/cor_project_structure/proj.vc/cor_project_structure/cor_project_structure.vcxproj.filters
 libraries/cor_project_structure/sources/import/cpp

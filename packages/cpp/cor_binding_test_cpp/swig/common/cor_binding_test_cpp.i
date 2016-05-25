@@ -4,7 +4,5 @@
 %{
 #include "cor_binding_test_cpp/cor_binding_test_functions.h"
 %}
-#include "cor_binding_test_cpp/cor_binding_test_functions.h"
 
-
-
+%include "cor_binding_test_cpp/cor_binding_test_functions.h"

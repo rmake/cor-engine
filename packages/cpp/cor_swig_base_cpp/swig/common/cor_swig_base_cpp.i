@@ -3,3 +3,4 @@
 #include "cor_type/sources/basic_types.h"
 %}
 %include "cor_type/sources/basic_types.h"
+%include "std_string.i"

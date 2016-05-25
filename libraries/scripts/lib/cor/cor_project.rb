@@ -77,6 +77,7 @@ module Cor
     # "cor_mruby_console"
     # "cor_cocos2dx"
     # "cor_cs_console"
+    # "cor_cs_test"
     def target_project=(target_project)
       @target_project = target_project
     end

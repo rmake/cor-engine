@@ -25,11 +25,12 @@ EOS
         else
 
           code.match(/public class (.*?) : global::System.IDisposable/) do |matched|
-            code.match(/\A(.*)public #{matched[1]}\([^}]*}(.*)\Z/m) do |sub_matched|
-              cvted = sub_matched[2].gsub(/public (\w+) (\w+)\(/) do |mtc|
-                "public #{$1} #{Cor.u.camelize($2)}("
+            code = code.gsub(/public (static |)(\w+) (\w+)\(/) do |mtc|
+              if $1 != matched[1]
+                "public #{$1}#{$2} #{Cor.u.camelize($3)}("
+              else
+                mtc
               end
-              code.gsub! sub_matched[2], cvted
             end
             Cor.u.write_file_if_changed v, code
           end
