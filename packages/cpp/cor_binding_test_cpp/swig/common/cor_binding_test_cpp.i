@@ -3,6 +3,9 @@
 %module cor_binding_test_dll
 %{
 #include "cor_binding_test_cpp/cor_binding_test_functions.h"
+#include "cor_binding_test_cpp/cor_binding_test_classes.h"
 %}
 
 %include "cor_binding_test_cpp/cor_binding_test_functions.h"
+%include "cor_binding_test_cpp/cor_binding_test_classes.h"
+

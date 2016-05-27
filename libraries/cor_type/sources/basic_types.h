@@ -92,4 +92,29 @@ namespace cor
     static const RFloat FloatMax = FLT_MAX;
 }
 
+#define COR_SP_HELPER_DEFINE(Cls)\
+    static std::shared_ptr<Cls> create();\
+    static Cls* from_sp(std::shared_ptr<Cls> sp);\
+    static std::weak_ptr<Cls> sp_to_wp(std::shared_ptr<Cls> sp);\
+    static std::shared_ptr<Cls> lock_wp(std::weak_ptr<Cls> wp);\
+    bool equal(Cls* a);\
+
+#define COR_SP_HELPER_IMPLEMENT(Cls)\
+    std::shared_ptr<Cls> Cls::create(){\
+        return std::make_shared<Cls>();\
+    }\
+    Cls* Cls::from_sp(std::shared_ptr<Cls> sp){\
+        return sp.get();\
+    }\
+    std::weak_ptr<Cls> Cls::sp_to_wp(std::shared_ptr<Cls> sp){\
+        return std::weak_ptr<Cls>(sp);\
+    }\
+    std::shared_ptr<Cls> Cls::lock_wp(std::weak_ptr<Cls> wp){\
+        auto sp = wp.lock();\
+        return sp;\
+    }\
+    bool Cls::equal(Cls* a){\
+        return this == a;\
+    }
+
 #endif

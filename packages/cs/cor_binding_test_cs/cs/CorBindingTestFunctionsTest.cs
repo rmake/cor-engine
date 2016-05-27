@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace CorBindingTest
 {
     [TestFixture]
-    class CorBindingTestFunctions
+    class CorBindingTestFunctionsTest
     {
 
         [Test]

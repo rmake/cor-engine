@@ -213,7 +213,7 @@ EOS
                 self.do_build_output "#{exes[0]}"
               end
             end
-          elsif "cor_cs_test"
+          elsif target_project == "cor_cs_test"
             args = old_args
             FileUtils.mkdir_p "#{@cor_path}/tests/cs/proj.cs/build"
             FileUtils.chdir "#{@cor_path}/tests/cs/proj.cs/build"
