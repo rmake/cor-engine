@@ -3,6 +3,9 @@
 
 #include "cor_type/sources/basic_types.h"
 
+typedef void (*CallbackFunc)();
+typedef std::function<void()> CallbackStdFunc;
+
 namespace cor
 {
     namespace binding_test
@@ -23,6 +26,19 @@ namespace cor
         };
 
         struct CorBindingTestClassItnl;
+
+        class Callback
+        {
+        private:
+            CallbackStdFunc func;
+        public:
+            Callback();
+            COR_SP_HELPER_DEFINE(Callback);
+
+            void set_func(CallbackFunc func);
+            void set_std_func(CallbackStdFunc func);
+            void call_func();
+        };
 
         class CorBindingTestClasses
         {

@@ -6,7 +6,29 @@ namespace cor
     namespace binding_test
     {
         COR_SP_HELPER_IMPLEMENT(SomeStruct)
+        COR_SP_HELPER_IMPLEMENT(Callback)
         COR_SP_HELPER_IMPLEMENT(CorBindingTestClasses)
+
+        Callback::Callback()
+        {
+            func = nullptr;
+        }
+
+        void Callback::set_func(CallbackFunc func)
+        {
+            this->func = func;
+        }
+
+        void Callback::set_std_func(CallbackStdFunc func)
+        {
+            this->func = func;
+        }
+
+        void Callback::call_func()
+        {
+            func();
+        }
+
 
         struct CorBindingTestClassItnl
         {

@@ -4,6 +4,15 @@ using NUnit.Framework;
 namespace CorBindingTest
 {
 
+    class CorBindingTestClassesCallback
+    {
+        public int count = 0;
+        public void Callback()
+        {
+            count++;
+        }
+    }
+
     [TestFixture]
     class CorBindingTestClassesTest
     {
@@ -43,6 +52,19 @@ namespace CorBindingTest
             testObj.SetSomeStruct(someStruct);
             var gottenSomeStruct = testObj.GetSomeStruct();
             Assert.AreEqual(someStruct.a, gottenSomeStruct.a);
+
+            var callback = new Callback();
+            var callbackTest = new CorBindingTestClassesCallback();
+
+            callback.SetStdFunc(callbackTest.Callback);
+            callback.CallFunc();
+            Assert.AreEqual(callbackTest.count, 1);
+
+            callback.SetFunc(callbackTest.Callback);
+            callback.CallFunc();
+            Assert.AreEqual(callbackTest.count, 2);
+
+
         }
 
     }

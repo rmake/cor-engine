@@ -375,7 +375,7 @@ binding_gen_by_conf = Proc.new do |path|
   cpps = child_includes.call(current_project).map{|path|
     Cor.u.file_list("#{path}/cpp") + Cor.u.file_list("#{path}/swig")
   }.reduce([], :+)
-  Cor.u.file_list("#{path}/cpp") + Cor.u.file_list("#{path}/swig")
+  cpps += Cor.u.file_list("#{path}/cpp") + Cor.u.file_list("#{path}/swig")
 
   is_run_gen = false
 
