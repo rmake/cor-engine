@@ -30,14 +30,16 @@ namespace cor
         class Callback
         {
         private:
-            CallbackStdFunc func;
+            CallbackFunc func;
+            CallbackStdFunc std_func;
         public:
             Callback();
             COR_SP_HELPER_DEFINE(Callback);
 
             void set_func(CallbackFunc func);
-            void set_std_func(CallbackStdFunc func);
+            void set_std_func(CallbackStdFunc std_func);
             void call_func();
+            void call_std_func();
         };
 
         class CorBindingTestClasses
@@ -59,6 +61,40 @@ namespace cor
             RString get_c();
             void set_some_struct(SomeStruct some);
             SomeStruct get_some_struct();
+        };
+
+        class ParentClass;
+        typedef std::shared_ptr<ParentClass> ParentClassSp;
+        typedef std::weak_ptr<ParentClass> ParentClassWp;
+
+        class ParentClass
+        {
+            RInt32 num;
+        public:
+
+            ParentClass();
+            virtual ~ParentClass();
+            COR_SP_HELPER_DEFINE(ParentClass);
+
+            virtual void set_num(RInt32 num);
+            virtual RInt32 get_num();
+
+            virtual RString get_text();
+
+        };
+
+        class ChildClass;
+        typedef std::shared_ptr<ChildClass> ChildClassSp;
+        typedef std::weak_ptr<ChildClass> ChildClassWp;
+
+        class ChildClass : public ParentClass
+        {
+        public:
+
+            COR_SP_HELPER_DEFINE(ChildClass);
+
+            virtual RString get_text();
+
         };
 
     }

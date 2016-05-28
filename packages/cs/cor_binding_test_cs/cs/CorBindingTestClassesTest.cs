@@ -11,6 +11,11 @@ namespace CorBindingTest
         {
             count++;
         }
+
+        public void CallbackDec()
+        {
+            count--;
+        }
     }
 
     [TestFixture]
@@ -20,7 +25,7 @@ namespace CorBindingTest
         [Test]
         public void ClassTest()
         {
-            var testObjSp = CorBindingTestClasses.Create();
+            var testObjSp = CorBindingTestClasses.CreateSp(new CorBindingTestClasses());
             var testObj = CorBindingTestClasses.FromSp(testObjSp);
 
             testObj.SetA(4);
@@ -56,15 +61,33 @@ namespace CorBindingTest
             var callback = new Callback();
             var callbackTest = new CorBindingTestClassesCallback();
 
-            callback.SetStdFunc(callbackTest.Callback);
-            callback.CallFunc();
-            Assert.AreEqual(callbackTest.count, 1);
+            callback.SetStdFunc(callbackTest.CallbackDec);
+            callback.CallStdFunc();
+            Assert.AreEqual(callbackTest.count, -1);
 
             callback.SetFunc(callbackTest.Callback);
             callback.CallFunc();
-            Assert.AreEqual(callbackTest.count, 2);
+            Assert.AreEqual(callbackTest.count, 0);
 
 
+        }
+
+        [Test]
+        public void InheritanceTest()
+        {
+            var parent = new ParentClass();
+            parent.SetNum(100);
+            Assert.AreEqual(parent.GetText(), "parent_class 100");
+            Assert.AreEqual(parent.GetNum(), 100);
+
+            var child = new ChildClass();
+            child.SetNum(500);
+            Assert.AreEqual(child.GetText(), "child_class 500");
+            Assert.AreEqual(child.GetNum(), 500);
+
+            var childAsParent = child as ParentClass;
+            Assert.AreEqual(childAsParent.GetText(), "child_class 500");
+            Assert.AreEqual(childAsParent.GetNum(), 500);
         }
 
     }

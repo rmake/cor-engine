@@ -93,15 +93,15 @@ namespace cor
 }
 
 #define COR_SP_HELPER_DEFINE(Cls)\
-    static std::shared_ptr<Cls> create();\
+    static std::shared_ptr<Cls> create_sp(Cls* p);\
     static Cls* from_sp(std::shared_ptr<Cls> sp);\
     static std::weak_ptr<Cls> sp_to_wp(std::shared_ptr<Cls> sp);\
     static std::shared_ptr<Cls> lock_wp(std::weak_ptr<Cls> wp);\
     bool equal(Cls* a);\
 
 #define COR_SP_HELPER_IMPLEMENT(Cls)\
-    std::shared_ptr<Cls> Cls::create(){\
-        return std::make_shared<Cls>();\
+    std::shared_ptr<Cls> Cls::create_sp(Cls* p){\
+        return std::shared_ptr<Cls>(p);\
     }\
     Cls* Cls::from_sp(std::shared_ptr<Cls> sp){\
         return sp.get();\

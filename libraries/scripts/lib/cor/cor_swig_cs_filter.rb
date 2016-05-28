@@ -24,10 +24,11 @@ EOS
 
         else
 
-          code.match(/public class (.*?) : global::System.IDisposable/) do |matched|
-            code = code.gsub(/public (static |)(\w+) (\w+)\(/) do |mtc|
-              if $1 != matched[1]
-                "public #{$1}#{$2} #{Cor.u.camelize($3)}("
+          code.match(/public class (.*?) : (\S*)/) do |matched|
+            code = code.gsub(/public (override |virtual |static |)(\w+) (\w+)\(/) do |mtc|
+              m1 = $1; m2 = $2; m3 = $3;
+              if (m1 != matched[1])
+                "public #{m1}#{m2} #{Cor.u.camelize(m3)}("
               else
                 mtc
               end

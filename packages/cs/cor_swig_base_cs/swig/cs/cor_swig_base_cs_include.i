@@ -27,4 +27,3 @@ template<typename FuncType> std::function<FuncType> cast_function_pointer(std::f
         %typemap(cstype, out="IntPtr") TYPE, TYPE& "CSTYPE"
         %typemap(csin) TYPE, TYPE& "$csinput"
 %enddef
-

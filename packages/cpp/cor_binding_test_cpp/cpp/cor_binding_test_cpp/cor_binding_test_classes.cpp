@@ -7,11 +7,11 @@ namespace cor
     {
         COR_SP_HELPER_IMPLEMENT(SomeStruct)
         COR_SP_HELPER_IMPLEMENT(Callback)
-        COR_SP_HELPER_IMPLEMENT(CorBindingTestClasses)
 
         Callback::Callback()
         {
             func = nullptr;
+            std_func = nullptr;
         }
 
         void Callback::set_func(CallbackFunc func)
@@ -19,9 +19,9 @@ namespace cor
             this->func = func;
         }
 
-        void Callback::set_std_func(CallbackStdFunc func)
+        void Callback::set_std_func(CallbackStdFunc std_func)
         {
-            this->func = func;
+            this->std_func = std_func;
         }
 
         void Callback::call_func()
@@ -29,6 +29,13 @@ namespace cor
             func();
         }
 
+        void Callback::call_std_func()
+        {
+            std_func();
+        }
+
+
+        COR_SP_HELPER_IMPLEMENT(CorBindingTestClasses)
 
         struct CorBindingTestClassItnl
         {
@@ -88,6 +95,43 @@ namespace cor
             return itnl->s;
         }
 
+        COR_SP_HELPER_IMPLEMENT(ParentClass)
+
+        ParentClass::ParentClass()
+        {
+            num = 0;
+        }
+
+        ParentClass::~ParentClass()
+        {
+
+        }
+
+        void ParentClass::set_num(RInt32 num)
+        {
+            this->num = num;
+        }
+
+        RInt32 ParentClass::get_num()
+        {
+            return num;
+        }
+
+        RString ParentClass::get_text()
+        {
+            RStringStream s;
+            s << "parent_class " << get_num();
+            return s.str();
+        }
+
+        COR_SP_HELPER_IMPLEMENT(ChildClass)
+
+        RString ChildClass::get_text()
+        {
+            RStringStream s;
+            s << "child_class " << get_num();
+            return s.str();
+        }
     }
 
 }
