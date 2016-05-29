@@ -13,5 +13,5 @@
 %template(Vector3D) cor::eigen::Vector3<cor::RDouble, cor::RInt32, cor::eigen::EVector3D>;
 %template(Vector3F) cor::eigen::Vector3<cor::RDouble, cor::RInt32, cor::eigen::EVector3F>;
 
-%rename(__add__) cor::eigen::Vector3<cor::RDouble, cor::RInt32, cor::eigen::EVector3D>::operator+;
+%rename(Add) cor::eigen::Vector3<cor::RDouble, cor::RInt32, cor::eigen::EVector3D>::operator+;
 

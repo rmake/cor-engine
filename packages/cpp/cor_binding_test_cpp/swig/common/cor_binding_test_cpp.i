@@ -11,8 +11,6 @@
 %include "cor_binding_test_cpp/cor_binding_test_classes.h"
 %include "cor_binding_test_cpp/cor_binding_test_templates.h"
 
-%ignore  cor::binding_test::*::operator+;
-
 %rename(Add) cor::binding_test::SimpleTemplate<cor::RInt32>::operator+;
 %rename(Add) cor::binding_test::SimpleTemplate<cor::RDouble>::operator+;
 %rename(Add) cor::binding_test::SimpleTemplate<cor::RString>::operator+;
