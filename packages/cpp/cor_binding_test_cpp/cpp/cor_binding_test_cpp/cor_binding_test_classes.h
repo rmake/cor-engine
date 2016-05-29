@@ -33,6 +33,7 @@ namespace cor
             CallbackFunc func;
             CallbackStdFunc std_func;
         public:
+
             Callback();
             COR_SP_HELPER_DEFINE(Callback);
 
@@ -94,6 +95,33 @@ namespace cor
             COR_SP_HELPER_DEFINE(ChildClass);
 
             virtual RString get_text();
+
+        };
+
+        class EnumClass
+        {
+        public:
+            enum {
+                A,
+                B
+            };
+
+            enum class Val: int {
+                A,
+                B
+            };
+        private:
+            int a;
+            Val val;
+
+        public:
+            COR_SP_HELPER_DEFINE(EnumClass);
+
+            void set_a(int a);
+            int get_a();
+
+            void set_val(Val val);
+            Val get_val();
 
         };
 

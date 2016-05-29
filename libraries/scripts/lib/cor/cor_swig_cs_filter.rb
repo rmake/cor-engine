@@ -25,7 +25,7 @@ EOS
         else
 
           code.match(/public class (.*?) : (\S*)/) do |matched|
-            code = code.gsub(/public (override |virtual |static |)(\w+) (\w+)\(/) do |mtc|
+            code = code.gsub(/public (override |virtual |static |)(\S+) (\w+)\(/) do |mtc|
               m1 = $1; m2 = $2; m3 = $3;
               if (m1 != matched[1])
                 "public #{m1}#{m2} #{Cor.u.camelize(m3)}("
