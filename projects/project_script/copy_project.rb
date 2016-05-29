@@ -30,6 +30,7 @@ if File.exist? "project_source_path_local_conf.rb"
 end
 
 def call_system(cmd)
+  puts "cmd #{cmd}"
   unless system(cmd)
     raise "call_system '#{cmd}' failed"
   end

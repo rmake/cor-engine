@@ -3,6 +3,8 @@
 #include "cor_type/sources/basic_types.h"
 %}
 %include "cor_type/sources/basic_types.h"
-%include "std_string.i"
-%include <std_shared_ptr.i>
 
+#ifdef SWIGCSHARP
+%include <std_string.i>
+%include <std_shared_ptr.i>
+#endif
