@@ -132,6 +132,28 @@ namespace cor
             s << "child_class " << get_num();
             return s.str();
         }
+
+        COR_SP_HELPER_IMPLEMENT(EnumClass)
+
+        void EnumClass::set_a(int a)
+        {
+            this->a = a;
+        }
+
+        int EnumClass::get_a()
+        {
+            return a;
+        }
+
+        void EnumClass::set_val(EnumClass::Val val)
+        {
+            this->val = val;
+        }
+
+        EnumClass::Val EnumClass::get_val()
+        {
+            return val;
+        }
     }
 
 }

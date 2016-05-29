@@ -90,6 +90,22 @@ namespace CorBindingTest
             Assert.AreEqual(childAsParent.GetNum(), 500);
         }
 
+        [Test]
+        public void EnumTest()
+        {
+            var enumClass = new EnumClass();
+
+            Assert.AreEqual(EnumClass.A, 0);
+            Assert.AreEqual(EnumClass.B, 1);
+
+            enumClass.SetA(EnumClass.A);
+            Assert.AreEqual(enumClass.GetA(), EnumClass.A);
+
+            enumClass.SetVal(EnumClass.Val.A);
+            Assert.AreEqual(enumClass.GetVal(), EnumClass.Val.A);
+
+        }
+
     }
 }
 
