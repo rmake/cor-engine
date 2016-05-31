@@ -71,6 +71,10 @@ namespace CorBindingTest
             callback.CallFunc();
             Assert.AreEqual(callbackTest.count, 0);
 
+            callback.CallbackString("test", (string str) => {
+                System.Console.WriteLine("str " + str);
+            });
+
 
         }
 

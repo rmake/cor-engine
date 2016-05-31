@@ -8,22 +8,21 @@ namespace cor
     namespace system
     {
         struct LoggerItnl;
-        
+
         class LogType
         {
         public:
-            enum Enum
+            enum Enum : RInt32
             {
                 debug,
                 info,
                 warn,
                 error,
                 fatal,
-                count,
-                force_4byte = 0xffffffff
+                count
             };
         };
-    
+
         class Logger
         {
         public:
@@ -35,10 +34,10 @@ namespace cor
 
             std::unique_ptr<LoggerItnl> itnl;
 
-            
-        
+
+
         public:
-        
+
             Logger();
             virtual ~Logger();
 
@@ -66,7 +65,7 @@ namespace cor
 
             void print_impl(RStringStream& s)
             {
-                
+
             }
 
             template<class T, class... Rest> void print_impl(RStringStream& s, T v, Rest... rest)
@@ -84,7 +83,7 @@ namespace cor
 
             template<class... Ts> static void debug(Ts... args)
             {
-                
+
             }
 
             template<class... Ts> static void info(Ts... args)
