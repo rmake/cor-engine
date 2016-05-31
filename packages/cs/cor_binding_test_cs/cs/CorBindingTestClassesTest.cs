@@ -28,6 +28,8 @@ namespace CorBindingTest
             var testObjSp = CorBindingTestClasses.CreateSp(new CorBindingTestClasses());
             var testObj = CorBindingTestClasses.FromSp(testObjSp);
 
+            Assert.AreEqual(CorBindingTestClasses.StaticCall(7), 10);
+
             testObj.SetA(4);
             Assert.AreEqual(testObj.GetA(), 4);
             testObj.SetB(7.0f);
@@ -103,6 +105,16 @@ namespace CorBindingTest
 
             enumClass.SetVal(EnumClass.Val.A);
             Assert.AreEqual(enumClass.GetVal(), EnumClass.Val.A);
+
+        }
+
+        [Test]
+        public void OverloadTest()
+        {
+            var overloadClass = new OverloadClass();
+
+            Assert.AreEqual(overloadClass.OverloadedCall(9), 16);
+            Assert.AreEqual(overloadClass.OverloadedCall("string input"), "overloaded string input");
 
         }
 

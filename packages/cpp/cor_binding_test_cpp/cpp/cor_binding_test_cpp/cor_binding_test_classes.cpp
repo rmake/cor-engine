@@ -55,6 +55,11 @@ namespace cor
 
         }
 
+        int CorBindingTestClasses::static_call(int num)
+        {
+            return num + 3;
+        }
+
         void CorBindingTestClasses::set_a(RInt32 a)
         {
             itnl->a = a;
@@ -154,6 +159,16 @@ namespace cor
         {
             return val;
         }
+
+        int OverloadClass::overloaded_call(int a)
+        {
+            return a + 7;
+        }
+        std::string OverloadClass::overloaded_call(std::string a)
+        {
+            return "overloaded " + a;
+        }
+
     }
 
 }

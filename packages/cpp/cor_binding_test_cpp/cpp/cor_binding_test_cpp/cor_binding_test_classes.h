@@ -52,8 +52,9 @@ namespace cor
             virtual ~CorBindingTestClasses();
 
             COR_SP_HELPER_DEFINE(CorBindingTestClasses);
-            //static CorBindingTestClassSp create();
-            //static CorBindingTestClass* from_sp(CorBindingTestClassSp sp);
+
+            static int static_call(int num);
+
             void set_a(RInt32 a);
             RInt32 get_a();
             void set_b(RFloat b);
@@ -123,6 +124,13 @@ namespace cor
             void set_val(Val val);
             Val get_val();
 
+        };
+
+        class OverloadClass
+        {
+        public:
+            int overloaded_call(int a);
+            std::string overloaded_call(std::string a);
         };
 
     }

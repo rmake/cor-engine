@@ -199,19 +199,25 @@ target_project = CorProject.target_project
 
 destination_resource_root_path = "../cor_lib_test_main/Resources"
 
-case target_project
-when "cor_test"
-  destination_resource_root_path = "../../tests/unit/resources"
-when "cor_cpp_console"
-  destination_resource_root_path = "../cor_console_app/resources"
-when "cor_cs_console"
-  destination_resource_root_path = "../cor_cs_console_app/resources"
-when "cor_cs_test"
-  destination_resource_root_path = "../../tests/cs/resources"
-when "cor_mruby_console"
-  destination_resource_root_path = "../cor_mruby_console_app/resources"
-when "cor_cocos2dx"
-  destination_resource_root_path = "../cor_lib_test_main/Resources"
+if CorProject.output_resource_path
+  destination_resource_root_path = CorProject.output_resource_path
+else
+  case target_project
+  when "cor_test"
+    destination_resource_root_path = "../../tests/unit/resources"
+  when "cor_cpp_console"
+    destination_resource_root_path = "../cor_console_app/resources"
+  when "cor_cs_console"
+    destination_resource_root_path = "../cor_cs_console_app/resources"
+  when "cor_cs_test"
+    destination_resource_root_path = "../../tests/cs/resources"
+  when "cor_cs_dll"
+    destination_resource_root_path = "../../tests/cs/resources"
+  when "cor_mruby_console"
+    destination_resource_root_path = "../cor_mruby_console_app/resources"
+  when "cor_cocos2dx"
+    destination_resource_root_path = "../cor_lib_test_main/Resources"
+  end
 end
 destination_resource_path = "#{destination_resource_root_path}/project_resource"
 source_resource_path = "#{source_path}/resources"
@@ -321,10 +327,10 @@ binding_gen = Proc.new do |path|
 
     cpps.each do |cpp_name|
       next unless cpp_name.match(/\.h$/)
-      if !File.exist?(cpp_name) || past_cpps[cpp_name].to_s != File.mtime(cpp_name).to_s || force_update
+      if !File.exist?(File.expand_path cpp_name) || past_cpps[cpp_name].to_s != File.mtime(File.expand_path cpp_name).to_s || force_update
         is_run_gen = true
       end
-      next_past_cpps[cpp_name] = File.mtime(cpp_name)
+      next_past_cpps[cpp_name] = File.mtime(File.expand_path cpp_name)
     end
 
     is_run_gen ||= force_update
@@ -342,7 +348,7 @@ binding_gen = Proc.new do |path|
 
         cpps.each do |cpp_name|
           next unless cpp_name.match(/\.h$/)
-          next_past_cpps[cpp_name] = File.mtime(cpp_name).to_s
+          next_past_cpps[cpp_name] = File.mtime(File.expand_path cpp_name).to_s
         end
 
       rescue  => e
@@ -382,10 +388,10 @@ binding_gen_by_conf = Proc.new do |path|
 
   cpps.each do |cpp_name|
     next unless cpp_name.match(/\.(h|i)$/)
-    if !File.exist?(cpp_name) || past_cpps[cpp_name].to_s != File.mtime(cpp_name).to_s || force_update
+    if !File.exist?(File.expand_path cpp_name) || past_cpps[cpp_name].to_s != File.mtime(File.expand_path cpp_name).to_s || force_update
       is_run_gen = true
     end
-    next_past_cpps[cpp_name] = File.mtime(cpp_name)
+    next_past_cpps[cpp_name] = File.mtime(File.expand_path cpp_name)
   end
 
   is_run_gen ||= force_update
@@ -521,7 +527,8 @@ end
 list.each do |fn|
   dfn = "#{destination_resource_path}/#{fn[:n]}"
 
-  if !File.exist?(dfn) || past_copy_table[fn[:fn]] != File.mtime(fn[:fn]).to_s  || File.size(fn[:fn]) != File.size(dfn) || force_update
+  if !File.exist?(File.expand_path dfn) || past_copy_table[fn[:fn]] != File.mtime(File.expand_path fn[:fn]).to_s  ||
+      File.size(File.expand_path fn[:fn]) != File.size(File.expand_path dfn) || force_update
     #puts "do copy #{fn} -> #{dfn}"
     FileUtils.mkpath File.dirname(dfn)
     resource_file_copy key, fn[:fn], dfn
@@ -533,7 +540,7 @@ list.each do |fn|
     end
   end
 
-  past_copy_table[fn[:fn]] = File.mtime(fn[:fn]).to_s
+  past_copy_table[fn[:fn]] = File.mtime(File.expand_path fn[:fn]).to_s
 
   d_table.delete dfn
 end
@@ -556,6 +563,8 @@ def get_taget_interface_type(target_project)
     target_interface_type = "cpp"
   when "cor_cs_test"
     target_interface_type = "cpp"
+  when "cor_cs_dll"
+    target_interface_type = "cpp"
   when "cor_mruby_console"
     target_interface_type = "mruby"
   when "cor_cocos2dx"
@@ -572,7 +581,7 @@ when "cor_test"
 when "cor_cpp_console"
   target_project_name = "cpp_interface"
   target_project_path = File.expand_path("../../libraries/cor_cpp_import", File.dirname(File.absolute_path(__FILE__)))
-when "cor_cs_console", "cor_cs_test"
+when "cor_cs_console", "cor_cs_test", "cor_cs_dll"
   target_project_name = "cpp_interface"
   target_project_path = File.expand_path("../../libraries/cor_cpp_import", File.dirname(File.absolute_path(__FILE__)))
   target_cs_project_path = File.expand_path("../../libraries/cor_cs_import", File.dirname(File.absolute_path(__FILE__)))

@@ -78,6 +78,7 @@ module Cor
     # "cor_cocos2dx"
     # "cor_cs_console"
     # "cor_cs_test"
+    # "cor_cs_dll"
     def target_project=(target_project)
       @target_project = target_project
     end
@@ -142,38 +143,6 @@ module Cor
 
     def self.import_cpp_entry
       self.instance.import_cpp_entry
-    end
-
-    def import_cs=(v)
-      @import_cs = v
-    end
-
-    def import_cs
-      @import_cs
-    end
-
-    def self.import_cs=(v)
-      self.instance.import_cs = v
-    end
-
-    def self.import_cs
-      self.instance.import_cs
-    end
-
-    def import_cs_entry=(v)
-      @import_cs_entry = v
-    end
-
-    def import_cs_entry
-      @import_cs_entry
-    end
-
-    def self.import_cs_entry=(v)
-      self.instance.import_cs_entry = v
-    end
-
-    def self.import_cs_entry
-      self.instance.import_cs_entry
     end
 
     def crypt=(v)
@@ -275,6 +244,103 @@ module Cor
 
     def self.binding_generations
       self.instance.binding_generations
+    end
+
+    def on_build_end(&block)
+      @build_end = block
+    end
+
+    def build_end_proc
+      @build_end
+    end
+
+    def self.on_build_end(&block)
+      self.instance.on_build_end &block
+    end
+
+    def self.build_end_proc
+      self.instance.build_end_proc
+    end
+
+    #
+    def import_cs=(v)
+      @import_cs = v
+    end
+
+    def import_cs
+      @import_cs
+    end
+
+    def self.import_cs=(v)
+      self.instance.import_cs = v
+    end
+
+    def self.import_cs
+      self.instance.import_cs
+    end
+
+    def import_cs_entry=(v)
+      @import_cs_entry = v
+    end
+
+    def import_cs_entry
+      @import_cs_entry
+    end
+
+    def self.import_cs_entry=(v)
+      self.instance.import_cs_entry = v
+    end
+
+    def self.import_cs_entry
+      self.instance.import_cs_entry
+    end
+
+    def output_cs_path=(v)
+      @output_cs_path = v
+    end
+
+    def output_cs_path
+      @output_cs_path
+    end
+
+    def self.output_cs_path=(v)
+      self.instance.output_cs_path = v
+    end
+
+    def self.output_cs_path
+      self.instance.output_cs_path
+    end
+
+    def output_dll_path=(v)
+      @output_dll_path = v
+    end
+
+    def output_dll_path
+      @output_dll_path
+    end
+
+    def self.output_dll_path=(v)
+      self.instance.output_dll_path = v
+    end
+
+    def self.output_dll_path
+      self.instance.output_dll_path
+    end
+
+    def output_resource_path=(v)
+      @output_resource_path = v
+    end
+
+    def output_resource_path
+      @output_resource_path
+    end
+
+    def self.output_resource_path=(v)
+      self.instance.output_resource_path = v
+    end
+
+    def self.output_resource_path
+      self.instance.output_resource_path
     end
 
   end

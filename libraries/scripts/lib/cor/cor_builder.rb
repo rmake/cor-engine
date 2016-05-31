@@ -115,6 +115,17 @@ EOS
       do_build_output cmd
     end
 
+    def build_ended
+      CorProject.build_end_proc && CorProject.build_end_proc.call
+
+      if @all_success
+        puts_flush "build all success!"
+      else
+        puts_flush "build some failed!"
+      end
+
+    end
+
     def run_build(type, args)
 
       @base_path = File.expand_path(File.dirname(__FILE__))
@@ -157,11 +168,11 @@ EOS
           FileUtils.chdir "#{@cor_path}/projects/cor_mruby_console_app/proj.cmake"
         when "cor_cocos2dx"
           #FileUtils.chdir "#{@cor_path}/projects/cor_lib_test_main/proj.cmake"
-        when "cor_cs_console", "cor_cs_test"
+        when "cor_cs_console", "cor_cs_test", "cor_cs_dll"
           FileUtils.chdir "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake"
         end
 
-        if ["cor_cs_console","cor_cs_test"].include? target_project
+        if ["cor_cs_console","cor_cs_test", "cor_cs_dll"].include? target_project
           old_args = args
           args = args.clone
           args.delete "run"
@@ -170,10 +181,21 @@ EOS
         if target_project != "cor_cocos2dx"
           CmakeBuilder.build_type(type, args)
 
-          if target_project == "cor_cs_console"
+          if ["cor_cs_console","cor_cs_test", "cor_cs_dll"].include? target_project
             args = old_args
-            FileUtils.mkdir_p "#{@cor_path}/projects/cor_cs_console_app/proj.cs/build"
-            FileUtils.chdir "#{@cor_path}/projects/cor_cs_console_app/proj.cs/build"
+
+            if target_project == "cor_cs_console"
+              cs_build_path = "#{@cor_path}/projects/cor_cs_console_app/proj.cs/build"
+            elsif target_project == "cor_cs_test"
+              cs_build_path = "#{@cor_path}/tests/cs/proj.cs/build"
+            elsif target_project == "cor_cs_dll"
+              cs_build_path = CorProject.output_cs_path ?
+                "#{@here}/#{CorProject.output_cs_path}" :
+                "#{@cor_path}/tests/cs/proj.cs/build"
+            end
+
+            FileUtils.mkdir_p cs_build_path
+            FileUtils.chdir cs_build_path
             source_directories = JSON.parse(File.read "#{@cor_path}/libraries/cor_cs_import/proj.cs/source_directories_local_conf.txt")
             source_directories_option = source_directories["source_directories"].
               map{|v| "/recurse:#{v.gsub(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR)}\\*.cs"}.join(" ")
@@ -191,79 +213,92 @@ EOS
               @is_vc = true
             end
 
-            configurations.each do |configuration|
-              FileUtils.mkdir_p "./#{type}/#{configuration}"
-              self.do_build_output "#{@cs_path}\\csc /debug /out:#{"./#{type}/#{configuration}/cor_cs_console_app.exe"} #{importer_source_directory_option} #{source_directories_option} /recurse:..\\..\\sources\\*.cs"
+            if target_project != "cor_cs_dll"
+              configurations.each do |configuration|
+                FileUtils.mkdir_p "./#{type}/#{configuration}"
+                additional_cs_option = ""
+                if target_project == "cor_cs_console"
+                  additional_cs_option = "/out:#{"./#{type}/#{configuration}/cor_cs_console_app.exe"}"
+                elsif target_project == "cor_cs_test"
+                  additional_cs_option = "/target:library /r:\"#{@nunit_dll_path}\" /out:#{"./#{type}/#{configuration}/cor_cs_test.dll"}"
+                end
+                self.do_build_output "#{@cs_path}\\csc /debug #{additional_cs_option}  #{importer_source_directory_option} #{source_directories_option} /recurse:..\\..\\sources\\*.cs"
 
-              FileUtils.install Dir.glob(
-                "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake/build/#{type}/#{configuration}/*",
-                ), "./#{type}/#{configuration}"
+                FileUtils.install Dir.glob(
+                  "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake/build/#{type}/#{configuration}/*",
+                  ), "./#{type}/#{configuration}"
+              end
+            else
+
+              output_dll_path = CorProject.output_dll_path ?
+                "#{@here}/#{CorProject.output_dll_path}" :
+                "#{@cor_path}/tests/cs/proj.cs/build"
+
+              FileUtils.rm_rf output_dll_path
+              FileUtils.rm_rf cs_build_path
+
+              configurations.each do |configuration|
+                FileUtils.mkdir_p "#{output_dll_path}/#{type}/#{configuration}/"
+                FileUtils.install Dir.glob(
+                  "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake/build/#{type}/#{configuration}/*",
+                  ), "#{output_dll_path}/#{type}/#{configuration}/"
+              end
+
+              source_directories["source_directories"].each do |source_directory|
+                files = Dir.glob(
+                  "#{source_directory}/**/*"
+                  ).select{|v| File.file?(v)}
+                dist_base_path = "#{cs_build_path}/#{Cor.u.camelize source_directory.split('/')[-2]}"
+                files.each do |fname|
+                  fn = fname.gsub(/^#{source_directory}/, ".")
+                  dir = File.dirname fn
+                  dst = "#{dist_base_path}/#{dir}"
+                  FileUtils.mkdir_p dst
+                  FileUtils.install fname, dst
+                end
+              end
             end
+            self.build_ended
 
             if @all_success && args.include?("run")
-              puts_flush "==> run ==>"
-              configuration = "Debug"
-              if args.include?("debug")
+              if target_project == "cor_cs_console"
+                puts_flush "==> run ==>"
                 configuration = "Debug"
-              elsif args.include?("release")
-                configuration = "Release"
-              end
-              if type == "win32" || type == "win64"
-                exes = Dir.glob("./#{type}/#{configuration}/*.exe")
-                self.do_build_output "#{exes[0]}"
-              end
-            end
-          elsif target_project == "cor_cs_test"
-            args = old_args
-            FileUtils.mkdir_p "#{@cor_path}/tests/cs/proj.cs/build"
-            FileUtils.chdir "#{@cor_path}/tests/cs/proj.cs/build"
-            source_directories = JSON.parse(File.read "#{@cor_path}/libraries/cor_cs_import/proj.cs/source_directories_local_conf.txt")
-            source_directories_option = source_directories["source_directories"].
-              map{|v| "/recurse:#{v.gsub(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR)}\\*.cs"}.join(" ")
-            importer_source_directory_option = "/recurse:#{@cor_path.gsub(File::SEPARATOR, File::ALT_SEPARATOR || File::SEPARATOR
-              )}\\libraries\\cor_cs_import\\sources\\*.cs"
-
-            configurations = ["Release", "Debug"]
-            if ARGV.include? "release"
-              configurations = ["Release"]
-            elsif ARGV.include? "debug"
-              configurations = ["Debug"]
-            end
-
-            if type == "win32" || type == "win64"
-              @is_vc = true
-            end
-
-            configurations.each do |configuration|
-              FileUtils.mkdir_p "./#{type}/#{configuration}"
-              self.do_build_output "#{@cs_path}\\csc /debug /target:library /r:\"#{@nunit_dll_path}\" /out:#{"./#{type}/#{configuration}/cor_cs_test.dll"} #{importer_source_directory_option} #{source_directories_option}"
-
-              FileUtils.install Dir.glob(
-                "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake/build/#{type}/#{configuration}/*",
-                ), "./#{type}/#{configuration}"
-            end
-
-            if @all_success && args.include?("run")
-              puts_flush "==> run ==>"
-              configuration = "Debug"
-              if args.include?("debug")
+                if args.include?("debug")
+                  configuration = "Debug"
+                elsif args.include?("release")
+                  configuration = "Release"
+                end
+                if type == "win32" || type == "win64"
+                  exes = Dir.glob("./#{type}/#{configuration}/*.exe")
+                  self.do_build_output "#{exes[0]}"
+                end
+              elsif target_project == "cor_cs_test"
+                puts_flush "==> run ==>"
                 configuration = "Debug"
-              elsif args.include?("release")
-                configuration = "Release"
-              end
-              if type == "win32" || type == "win64"
-                FileUtils.cp @nunit_dll_path, "./#{type}/#{configuration}/"
-                self.do_build_output "\"#{@nunit_path}\" ./#{type}/#{configuration}/cor_cs_test.dll"
+                if args.include?("debug")
+                  configuration = "Debug"
+                elsif args.include?("release")
+                  configuration = "Release"
+                end
+                if type == "win32" || type == "win64"
+                  FileUtils.cp @nunit_dll_path, "./#{type}/#{configuration}/"
+                  self.do_build_output "\"#{@nunit_path}\" ./#{type}/#{configuration}/cor_cs_test.dll"
+                end
               end
             end
           end
         else
           FileUtils.chdir "#{@cor_path}/libraries/cor_all_cocos2dx/proj.cmake"
-          CmakeBuilder.build_type(type, args.select{|v| v != "run"})
+          CmakeBuilder.build_type(type, args)
+
+          @all_success = true
 
           if type == "android"
             FileUtils.chdir "#{@cor_path}/projects/cor_lib_test_main/proj.android"
             if args.include? "run"
+              self.call_system "cocos compile -p android -m release -j 6 --ndk-mode release"
+              self.build_ended
               self.call_system "cocos run -p android -j 6 --ndk-mode release"
             else
               if args.include? "--for-ci"
@@ -271,10 +306,11 @@ EOS
               else
                 self.call_system "cocos compile -p android -m release -j 6 --ndk-mode release"
               end
+              self.build_ended
             end
 
           elsif type == "win32"
-            @all_success = true
+
             @is_vc = true
             @results = []
 
@@ -307,7 +343,9 @@ msbuild.exe cor_lib_test_main.sln /p:configuration=release /maxcpucount:4 /p:Bui
 EOS
             end
 
-            if @all_success && args.include?("run")
+            self.build_ended
+
+            if @all_success && old_args.include?("run")
               puts_flush "==> run ==>"
               config = "Debug"
               if args.include?("debug")
@@ -328,12 +366,15 @@ EOS
                 self.call_system "#{exes[0]}"
               end
             end
+          else
+            self.build_ended
           end
 
         end
 
 
       #end).to_s
+
 
     end
 

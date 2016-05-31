@@ -19,7 +19,7 @@ template<typename FuncType> std::function<FuncType> cast_function_pointer(std::f
         %typemap(csin) TYPE, TYPE& "$csinput"
 %enddef
 
-%define %cs_std_callback(TYPE, FUNCTYPE, CSTYPE)
+%define %cs_std_callback(TYPE, CSTYPE)
         %typemap(ctype) TYPE, TYPE& "void*"
         %typemap(in) TYPE  %{ $1 = cast_function_pointer($1_type(), $input); %}
         %typemap(in) TYPE& %{ $1 = cast_function_pointer($1_type(), &$input); %}
