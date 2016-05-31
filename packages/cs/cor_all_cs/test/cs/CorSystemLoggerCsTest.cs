@@ -12,7 +12,7 @@ namespace CorSystemTest
         public void ClassTest()
         {
             Logger.GetInstance().ClearPrintFunc();
-            Logger.GetInstance().AddPrintFunc((LogType.Enum num, string str) => {
+            Logger.GetInstance().AddPrintCharPtrFunc((LogType.Enum num, string str) => {
                 System.Console.WriteLine("num " + num);
                 System.Console.WriteLine(str);
             });

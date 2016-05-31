@@ -29,7 +29,7 @@ namespace cor
         typedef void (*CallbackFunc)();
         typedef std::function<void()> CallbackStdFunc;
 
-        typedef std::function<void(RString)>StringCallbackFunc;
+        typedef std::function<void(const char *)>StringCallbackFunc;
 
         class Callback
         {
@@ -46,7 +46,7 @@ namespace cor
             void call_func();
             void call_std_func();
 
-            void callback_string(RString str, StringCallbackFunc str_func);
+            void callback_string(const char * str, StringCallbackFunc str_func);
         };
 
         class CorBindingTestClasses

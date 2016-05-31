@@ -27,6 +27,7 @@ namespace cor
         {
         public:
             typedef std::function<void(LogType::Enum, const RString&)> PrintFunc;
+            typedef std::function<void(LogType::Enum, const char *)> PrintCharPtrFunc;
             typedef std::pair<RString, PrintFunc> NamePrintFunc;
             typedef std::vector<NamePrintFunc> ArrayPrintFunc;
 
@@ -43,6 +44,8 @@ namespace cor
 
             void add_print_func(PrintFunc print_func);
             void add_print_func(RString name, PrintFunc print_func);
+            void add_print_char_ptr_func(PrintCharPtrFunc print_func);
+            void add_print_char_ptr_func(RString name, PrintCharPtrFunc print_func);
             void pop_print_func();
             void clear_print_func();
             void call_print_func(LogType::Enum type, const RString& str);

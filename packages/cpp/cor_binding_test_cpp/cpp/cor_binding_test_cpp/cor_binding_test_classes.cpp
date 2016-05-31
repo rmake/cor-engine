@@ -34,7 +34,7 @@ namespace cor
             std_func();
         }
 
-        void Callback::callback_string(RString str, StringCallbackFunc str_func)
+        void Callback::callback_string(const char * str, StringCallbackFunc str_func)
         {
             str_func(str);
         }
