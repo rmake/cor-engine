@@ -23,9 +23,11 @@ module Cor
     end
 
     def call_system(cmd)
-      unless system(cmd)
+      ret = system(cmd)
+      unless ret
         raise "call_system '#{cmd}' failed"
       end
+      ret
     end
 
     def self.build
