@@ -495,6 +495,8 @@ end
 
 thread_pool.wait
 
+sleep 0.1
+
 past_copy_data["past_cpps"] = next_past_cpps
 
 puts "project copy"

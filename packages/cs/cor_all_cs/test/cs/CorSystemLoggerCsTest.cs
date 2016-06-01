@@ -13,8 +13,8 @@ namespace CorSystemTest
         {
             Logger.GetInstance().ClearPrintFunc();
             Logger.GetInstance().AddPrintCharPtrFunc((LogType.Enum num, string str) => {
-                System.Console.WriteLine("num " + num);
-                System.Console.WriteLine(str);
+                Assert.AreEqual(num, LogType.Enum.Debug);
+                Assert.AreEqual(str, "test");
             });
             Logger.Debug("test");
         }

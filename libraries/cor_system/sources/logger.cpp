@@ -91,19 +91,19 @@ namespace cor
             this->add_print_func(s.str(), print_func);
         }
 
-        void Logger::add_print_char_ptr_func(PrintCharPtrFunc print_func)
-        {
-            add_print_func([print_func](LogType::Enum type, const RString& str){
-                print_func(type, str.c_str());
-            });
-        }
+        //void Logger::add_print_char_ptr_func(PrintCharPtrFunc print_func)
+        //{
+        //    add_print_func([print_func](LogType::Enum type, const RString& str){
+        //        print_func(type, str.c_str());
+        //    });
+        //}
 
-        void Logger::add_print_char_ptr_func(RString name, PrintCharPtrFunc print_func)
-        {
-            add_print_func(name, [print_func](LogType::Enum type, const RString& str){
-                print_func(type, str.c_str());
-            });
-        }
+        //void Logger::add_print_char_ptr_func(RString name, PrintCharPtrFunc print_func)
+        //{
+        //    add_print_func(name, [print_func](LogType::Enum type, const RString& str){
+        //        print_func(type, str.c_str());
+        //    });
+        //}
 
         void Logger::pop_print_func()
         {

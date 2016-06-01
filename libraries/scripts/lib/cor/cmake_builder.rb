@@ -177,11 +177,17 @@ EOS
           result = w.value.success?
           @all_success &&= result
           @results << "cmd '#{cmd}' | success? -> #{w.value.success?} | #{w}"
+          unless @all_success
+            raise "call_system '#{cmd}' failed"
+          end
         end
       else
         result = self.call_system cmd
         @all_success &&= result
         @results << "cmd '#{cmd}' | success? -> #{result} | #{$?}"
+        unless @all_success
+          raise "call_system '#{cmd}' failed"
+        end
       end
       result
     end

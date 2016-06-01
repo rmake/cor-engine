@@ -33,8 +33,18 @@ EOS
                 mtc
               end
             end
-            Cor.u.write_file_if_changed v, code
+
           end
+
+          code = code.gsub(/(public enum \w+ {)(.*?)(})/m) do |matched|
+            m1 = $1; m2 = $2; m3 = $3;
+            m2 = m2.gsub(/\w+/) do |mtc|
+              Cor.u.camelize mtc
+            end
+            "#{m1}#{m2}#{m3}"
+          end
+
+          Cor.u.write_file_if_changed v, code
         end
 
       end
