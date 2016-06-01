@@ -163,6 +163,12 @@ EOS
       end
     end
 
+    def show_results
+      @results.each do |v|
+        puts_flush "#{v}"
+      end
+    end
+
     def do_build_output cmd
       puts_flush "cmd srart #{cmd}"
       STDOUT.flush
@@ -188,6 +194,7 @@ EOS
         @results << "cmd '#{cmd}' | success? -> #{result} | #{$?}"
       end
       unless @all_success
+        self.show_results
         raise "call_system '#{cmd}' failed"
       end
       result
@@ -203,9 +210,7 @@ EOS
         do_build_output "cmake --build . --config Release"
         do_build_output "cmake --build . --config Debug"
       end
-      @results.each do |v|
-        puts_flush "#{v}"
-      end
+      self.show_results
     end
 
     def call_on_windows(cmds)
@@ -270,9 +275,7 @@ EOS
 msbuild.exe #{Dir.glob("*.sln")[0]} /p:configuration=release /maxcpucount:4 /p:BuildInParallel=true
 EOS
       end
-      @results.each do |v|
-        puts_flush "#{v}"
-      end
+      self.show_results
     end
 
     def build_android(type)
