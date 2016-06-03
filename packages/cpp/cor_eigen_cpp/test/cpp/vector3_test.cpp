@@ -1,10 +1,10 @@
 #include "cor_eigen_cpp/vector3.h"
-#include "cor_system/sources/utility_for_test.h"
+//#include "cor_system/sources/utility_for_test.h"
 
 #define BOOST_TEST_NO_LIB
 #include <boost/test/unit_test.hpp>
 
-COR_SYSTEM_FORCE_LINK_THIS(eigen_vector3)
+//COR_SYSTEM_FORCE_LINK_THIS(eigen_vector3)
 
 BOOST_AUTO_TEST_SUITE(eigen_vector3)
 
