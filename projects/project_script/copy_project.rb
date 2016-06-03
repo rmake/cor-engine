@@ -732,12 +732,12 @@ EOS
 EOS
 
     Cor.u.write_file_if_changed import_cpp_local_conf_mk, <<EOS
-PRJINCS += ../sources #{import_cpp_props_includes.map{|v| "../#{v}"}.join(' ')}
-PRJSRCS += #{import_cpp_list.map{|v| "#{v.gsub(/^..\//, "")}"}.join(' ')}
+PRJINCS += ../sources #{import_cpp_props_includes.map{|v| Pathname.new("../#{v}").cleanpath.to_s}.join(' ')}
+PRJSRCS += #{import_cpp_list.map{|v| "#{Pathname.new(v.gsub(/^..\//, "")).cleanpath.to_s}"}.join(' ')}
 EOS
 
     Cor.u.write_file_if_changed import_cpp_local_cmake_conf_mk, <<EOS
-#{import_cpp_props_includes.map{|v| "include_directories(../#{v})"}.join("\n")}
+#{import_cpp_props_includes.map{|v| "include_directories(#{Pathname.new("../" + v).cleanpath.to_s})"}.join("\n")}
 set(cor_#{target_project_name}_sources
 #{import_cpp_list.map{|v| "  #{v.gsub(/^..\//, "")}"}.join("\n")})
 EOS
@@ -750,8 +750,8 @@ EOS
     GenProject.vc_project_filter "cor_#{target_project_name}", "../cor_#{target_project_name}",
       "../cor_#{target_project_name}/proj.vc", proj_file_list + import_cpp_includes, true
 
-    new_import_cpp_local_conf_txt_data = import_cpp_includes.map{|v| v.gsub(/^\.\.\//, "")}.join(";")
-    Cor.u.write_file_if_changed import_cpp_local_conf_txt, import_cpp_includes.map{|v| v.gsub(/^\.\.\//, "")}.join(";")
+    new_import_cpp_local_conf_txt_data = import_cpp_includes.map{|v| Pathname.new(v.gsub(/^\.\.\//, "")).cleanpath.to_s}.join(";")
+    Cor.u.write_file_if_changed import_cpp_local_conf_txt, import_cpp_includes.map{|v| Pathname.new(v.gsub(/^\.\.\//, "")).cleanpath.to_s}.join(";")
 
     FileUtils.chdir here
 

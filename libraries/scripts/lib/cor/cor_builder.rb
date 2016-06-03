@@ -226,9 +226,16 @@ EOS
                 end
                 self.do_build_output "#{@cs_path}\\csc /debug #{additional_cs_option}  #{importer_source_directory_option} #{source_directories_option} /recurse:..\\..\\sources\\*.cs"
 
-                FileUtils.install Dir.glob(
-                  "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake/build/#{type}/#{configuration}/*",
-                  ), "./#{type}/#{configuration}"
+                Dir.glob(
+                  "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake/build/#{type}/#{configuration}/**/*",
+                ).each do |fname|
+                  if File.file? fname
+                    relative_fname = fname.gsub(/^#{@cor_path}\/libraries\/cor_cpp_dll\/proj\.cmake\/build\//, "")
+                    distination_fname = "./" + relative_fname
+                    FileUtils.mkdir_p File.dirname(distination_fname)
+                    FileUtils.install fname, distination_fname
+                  end
+                end
               end
             else
 
@@ -236,14 +243,21 @@ EOS
                 "#{@here}/#{CorProject.output_dll_path}" :
                 "#{@cor_path}/tests/cs/proj.cs/build"
 
-              FileUtils.rm_rf output_dll_path
+              FileUtils.rm_rf "#{output_dll_path}/#{type}"
               FileUtils.rm_rf cs_build_path
 
               configurations.each do |configuration|
-                FileUtils.mkdir_p "#{output_dll_path}/#{type}/#{configuration}/"
-                FileUtils.install Dir.glob(
-                  "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake/build/#{type}/#{configuration}/*",
-                  ), "#{output_dll_path}/#{type}/#{configuration}/"
+                Dir.glob(
+                  "#{@cor_path}/libraries/cor_cpp_dll/proj.cmake/build/#{type}/**/#{configuration}/**/*",
+                ).each do |fname|
+                  ext = File.extname(fname).downcase
+                  if File.file?(fname) && [".so", ".dll", ".pdb"].include?(ext)
+                    relative_fname = fname.gsub(/^#{@cor_path}\/libraries\/cor_cpp_dll\/proj\.cmake\/build\//, "")
+                    distination_fname = "#{output_dll_path}/" + relative_fname
+                    FileUtils.mkdir_p File.dirname(distination_fname)
+                    FileUtils.install fname, File.dirname(distination_fname)
+                  end
+                end
               end
 
               source_directories["source_directories"].each do |source_directory|
