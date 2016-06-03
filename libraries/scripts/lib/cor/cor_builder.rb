@@ -243,7 +243,10 @@ EOS
                 "#{@here}/#{CorProject.output_dll_path}" :
                 "#{@cor_path}/tests/cs/proj.cs/build"
 
-              FileUtils.rm_rf "#{output_dll_path}/#{type}"
+              #FileUtils.rm_rf "#{output_dll_path}/#{type}"
+              #FileUtils.rm_rf Dir.glob("#{output_dll_path}/#{type}/**/*.so")
+              #FileUtils.rm_rf Dir.glob("#{output_dll_path}/#{type}/**/*.dll")
+              #FileUtils.rm_rf Dir.glob("#{output_dll_path}/#{type}/**/*.pdb")
               FileUtils.rm_rf cs_build_path
 
               configurations.each do |configuration|

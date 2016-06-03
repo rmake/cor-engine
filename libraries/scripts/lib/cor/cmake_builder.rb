@@ -306,6 +306,7 @@ EOS
             "#{get_cmake_option}"
             ].join(" ")
           do_build_output cmd
+          do_build_output cmd
           unless ARGV.include? "--gen-only"
             do_build_output "which make"
             if ARGV.include? "--for-ci"

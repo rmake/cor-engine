@@ -14,15 +14,15 @@ namespace cor
         const RSize CorCryptItnl::encode_size = 1024;
         RBool CorCryptItnl::enabled = rfalse;
         const RString CorCryptItnl::key("ak8tm.mj");
-        
+
         CorCrypt::CorCrypt() : itnl(new CorCryptItnl())
         {
-            
+
         }
-        
+
         CorCrypt::~CorCrypt()
         {
-            
+
         }
 
         void CorCrypt::set_enabled(RBool enabled)
