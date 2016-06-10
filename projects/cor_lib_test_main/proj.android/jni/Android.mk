@@ -5,7 +5,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE            := cor_all_cocos2dx
-LOCAL_SRC_FILES         := ../../../../libraries/cor_all_cocos2dx/proj.cmake/build/android/$(TARGET_ARCH_ABI)/Release/libcor_all_cocos2dx.a
+LOCAL_SRC_FILES         := ../../../../libraries/cor_all_cocos2dx/proj.cmake/build/android/$(TARGET_ARCH_ABI)/Release/libs/$(TARGET_ARCH_ABI)/libcor_all_cocos2dx.a
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../../../libraries
 
 include $(PREBUILT_STATIC_LIBRARY)
